@@ -461,6 +461,7 @@
 
     <script>
         const SECRET_CODE = '3978128';
+        const API_URL = 'https://script.google.com/macros/s/AKfycbxUfR_ARS5-U9Od_GcEr25a9Xr8et-VVgtdWqgLVGw5WO7ZmVMbj_Y4IImPusvrzTtxYg/exec';
         let pendingAction = null;
 
         const FORM_DATA = [
@@ -656,11 +657,11 @@
 
     document.getElementById('mechanicActivityScreen').classList.remove('hidden');
 
-    // Set tanggal hari ini
     const dateInput = document.getElementById('activityDate');
 
     if (dateInput) {
         const today = new Date();
+
         const localDate = new Date(
             today.getTime() - today.getTimezoneOffset() * 60000
         )
@@ -671,6 +672,8 @@
     }
 
     lucide.createIcons();
+
+    loadMechanicMasterData();
 }
         
         window.onload = () => {
