@@ -344,18 +344,28 @@
 
         <!-- REPAIRED BY -->
         <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">
-                Repaired By
-            </label>
+    <label class="block text-sm font-bold text-slate-700 mb-2">
+        Repaired By
+    </label>
 
-            <select
-                id="activityRepairedBy"
-                multiple
-                class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
-            >
-                <option value="">Memuat mechanic...</option>
-            </select>
+    <div
+        id="activityRepairedByContainer"
+        class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl p-3"
+    >
+        <div
+            id="activityRepairedByOptions"
+            class="space-y-2 max-h-52 overflow-y-auto"
+        >
+            <div class="text-sm text-slate-400 p-2">
+                Memuat mechanic...
+            </div>
         </div>
+    </div>
+
+    <p class="text-[10px] text-slate-400 mt-2 italic">
+        Pilih satu atau beberapa mechanic.
+    </p>
+</div>
 
         <!-- SHIFT -->
         <div>
@@ -679,7 +689,6 @@
     const unitSelect = document.getElementById('activityUnit');
     const preventiveSelect = document.getElementById('activityPreventive');
     const remarkSelect = document.getElementById('activityRemark');
-    const repairedBySelect = document.getElementById('activityRepairedBy');
     const lotoSelect = document.getElementById('activityLoto');
 
     try {
@@ -744,16 +753,36 @@
         });
 
         // =========================
-        // REPAIRED BY
-        // =========================
-        repairedBySelect.innerHTML = '<option value="">Pilih Mechanic</option>';
+// REPAIRED BY
+// =========================
 
-        data.repairedBy.forEach(item => {
-            const option = document.createElement('option');
-            option.value = item;
-            option.textContent = item;
-            repairedBySelect.appendChild(option);
-        });
+const repairedByOptions =
+    document.getElementById('activityRepairedByOptions');
+
+repairedByOptions.innerHTML = '';
+
+data.repairedBy.forEach(item => {
+
+    const label = document.createElement('label');
+
+    label.className =
+        'flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:bg-blue-50 transition';
+
+    label.innerHTML = `
+        <input
+            type="checkbox"
+            name="repairedBy"
+            value="${item}"
+            class="repaired-by-checkbox w-5 h-5 accent-blue-800"
+        >
+
+        <span class="text-sm font-semibold text-slate-700">
+            ${item}
+        </span>
+    `;
+
+    repairedByOptions.appendChild(label);
+});
 
         // =========================
         // LOTO
@@ -775,7 +804,8 @@
         unitSelect.innerHTML = '<option value="">Gagal memuat unit</option>';
         preventiveSelect.innerHTML = '<option value="">Gagal memuat data</option>';
         remarkSelect.innerHTML = '<option value="">Gagal memuat data</option>';
-        repairedBySelect.innerHTML = '<option value="">Gagal memuat mechanic</option>';
+        document.getElementById('activityRepairedByOptions').innerHTML =
+    '<div class="text-sm text-red-500 p-2">Gagal memuat mechanic</div>';
         lotoSelect.innerHTML = '<option value="">Gagal memuat status</option>';
 
         showToast('Gagal mengambil master data dari server.');
@@ -795,10 +825,9 @@ document.getElementById('mechanicActivityForm').addEventListener('submit', async
         trouble: document.getElementById('activityTrouble').value,
         remark: document.getElementById('activityRemark').value,
         repairedBy: Array.from(
-    document.getElementById('activityRepairedBy').selectedOptions
+    document.querySelectorAll('.repaired-by-checkbox:checked')
 )
-.map(option => option.value)
-.filter(value => value !== '')
+.map(checkbox => checkbox.value)
 .join(', '),
         shift: document.getElementById('activityShift').value,
         loto: document.getElementById('activityLoto').value
