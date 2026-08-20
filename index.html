@@ -685,10 +685,14 @@
 
     loadMechanicMasterData();
 }
-        async function loadMechanicMasterData() {
+
+
+async function loadMechanicMasterData() {
+
     const unitSelect = document.getElementById('activityUnit');
     const preventiveSelect = document.getElementById('activityPreventive');
     const remarkSelect = document.getElementById('activityRemark');
+    const repairedBySelect = document.getElementById('activityRepairedBy');
     const lotoSelect = document.getElementById('activityLoto');
 
     try {
