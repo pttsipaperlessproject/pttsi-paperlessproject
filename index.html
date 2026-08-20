@@ -696,123 +696,190 @@ async function loadMechanicMasterData() {
     const lotoSelect = document.getElementById('activityLoto');
 
     try {
-        // Tampilkan status loading
-        unitSelect.innerHTML = '<option value="">Memuat unit...</option>';
-        preventiveSelect.innerHTML = '<option value="">Memuat data...</option>';
-        remarkSelect.innerHTML = '<option value="">Memuat data...</option>';
-        repairedBySelect.innerHTML = '<option value="">Memuat mechanic...</option>';
-        lotoSelect.innerHTML = '<option value="">Memuat status...</option>';
 
-        const response = await fetch(API_URL + '?action=master', {
-            method: 'GET',
-            cache: 'no-store'
-        });
+        // =========================
+        // TAMPILKAN STATUS LOADING
+        // =========================
+
+        unitSelect.innerHTML =
+            '<option value="">Memuat unit...</option>';
+
+        preventiveSelect.innerHTML =
+            '<option value="">Memuat data...</option>';
+
+        remarkSelect.innerHTML =
+            '<option value="">Memuat data...</option>';
+
+        repairedBySelect.innerHTML =
+            '<option value="">Memuat mechanic...</option>';
+
+        lotoSelect.innerHTML =
+            '<option value="">Memuat status...</option>';
+
+
+        // =========================
+        // AMBIL MASTER DATA
+        // =========================
+
+        const response = await fetch(
+            API_URL + '?action=master',
+            {
+                method: 'GET',
+                cache: 'no-store'
+            }
+        );
 
         if (!response.ok) {
-            throw new Error('HTTP Error ' + response.status);
+            throw new Error(
+                'HTTP Error ' + response.status
+            );
         }
+
 
         const data = await response.json();
 
         console.log('MASTER DATA:', data);
 
+
         if (!data || !data.units) {
-            throw new Error('Master data tidak valid.');
+            throw new Error(
+                'Master data tidak valid.'
+            );
         }
+
 
         // =========================
         // UNIT
         // =========================
-        unitSelect.innerHTML = '<option value="">Pilih Unit</option>';
+
+        unitSelect.innerHTML =
+            '<option value="">Pilih Unit</option>';
 
         data.units.forEach(unit => {
-            const option = document.createElement('option');
+
+            const option =
+                document.createElement('option');
+
             option.value = unit;
             option.textContent = unit;
+
             unitSelect.appendChild(option);
+
         });
+
 
         // =========================
         // PREVENTIVE
         // =========================
-        preventiveSelect.innerHTML = '<option value="">Pilih Preventive</option>';
+
+        preventiveSelect.innerHTML =
+            '<option value="">Pilih Preventive</option>';
 
         data.preventive.forEach(item => {
-            const option = document.createElement('option');
+
+            const option =
+                document.createElement('option');
+
             option.value = item;
             option.textContent = item;
+
             preventiveSelect.appendChild(option);
+
         });
+
 
         // =========================
         // REMARK
         // =========================
-        remarkSelect.innerHTML = '<option value="">Pilih Remark</option>';
+
+        remarkSelect.innerHTML =
+            '<option value="">Pilih Remark</option>';
 
         data.remarks.forEach(item => {
-            const option = document.createElement('option');
+
+            const option =
+                document.createElement('option');
+
             option.value = item;
             option.textContent = item;
+
             remarkSelect.appendChild(option);
+
         });
 
+
         // =========================
-// REPAIRED BY
-// =========================
+        // REPAIRED BY
+        // =========================
 
-const repairedByOptions =
-    document.getElementById('activityRepairedByOptions');
+        repairedBySelect.innerHTML =
+            '<option value="">Pilih Mechanic</option>';
 
-repairedByOptions.innerHTML = '';
+        data.repairedBy.forEach(item => {
 
-data.repairedBy.forEach(item => {
+            const option =
+                document.createElement('option');
 
-    const label = document.createElement('label');
+            option.value = item;
+            option.textContent = item;
 
-    label.className =
-        'flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:bg-blue-50 transition';
+            repairedBySelect.appendChild(option);
 
-    label.innerHTML = `
-        <input
-            type="checkbox"
-            name="repairedBy"
-            value="${item}"
-            class="repaired-by-checkbox w-5 h-5 accent-blue-800"
-        >
+        });
 
-        <span class="text-sm font-semibold text-slate-700">
-            ${item}
-        </span>
-    `;
-
-    repairedByOptions.appendChild(label);
-});
 
         // =========================
         // LOTO
         // =========================
-        lotoSelect.innerHTML = '<option value="">Pilih Status LOTO</option>';
+
+        lotoSelect.innerHTML =
+            '<option value="">Pilih Status LOTO</option>';
 
         data.loto.forEach(item => {
-            const option = document.createElement('option');
+
+            const option =
+                document.createElement('option');
+
             option.value = item;
             option.textContent = item;
+
             lotoSelect.appendChild(option);
+
         });
 
-        console.log('Master data berhasil dimuat.');
+
+        console.log(
+            'Master data berhasil dimuat.'
+        );
+
 
     } catch (error) {
-        console.error('Gagal memuat master data:', error);
 
-        unitSelect.innerHTML = '<option value="">Gagal memuat unit</option>';
-        preventiveSelect.innerHTML = '<option value="">Gagal memuat data</option>';
-        remarkSelect.innerHTML = '<option value="">Gagal memuat data</option>';
-        document.getElementById('activityRepairedByOptions').innerHTML =
-    '<div class="text-sm text-red-500 p-2">Gagal memuat mechanic</div>';
-        lotoSelect.innerHTML = '<option value="">Gagal memuat status</option>';
+        console.error(
+            'Gagal memuat master data:',
+            error
+        );
 
-        showToast('Gagal mengambil master data dari server.');
+
+        unitSelect.innerHTML =
+            '<option value="">Gagal memuat unit</option>';
+
+        preventiveSelect.innerHTML =
+            '<option value="">Gagal memuat data</option>';
+
+        remarkSelect.innerHTML =
+            '<option value="">Gagal memuat data</option>';
+
+        repairedBySelect.innerHTML =
+            '<option value="">Gagal memuat mechanic</option>';
+
+        lotoSelect.innerHTML =
+            '<option value="">Gagal memuat status</option>';
+
+
+        showToast(
+            'Gagal mengambil master data dari server.'
+        );
     }
 }
 document.getElementById('mechanicActivityForm').addEventListener('submit', async function(e) {
