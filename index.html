@@ -307,7 +307,6 @@
 
             <select
                 id="activityPreventive"
-                required
                 class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
             >
                 <option value="">Memuat data...</option>
@@ -351,7 +350,7 @@
 
             <select
                 id="activityRepairedBy"
-                required
+                multiple
                 class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
             >
                 <option value="">Memuat mechanic...</option>
@@ -795,7 +794,12 @@ document.getElementById('mechanicActivityForm').addEventListener('submit', async
         preventive: document.getElementById('activityPreventive').value,
         trouble: document.getElementById('activityTrouble').value,
         remark: document.getElementById('activityRemark').value,
-        repairedBy: document.getElementById('activityRepairedBy').value,
+        repairedBy: Array.from(
+    document.getElementById('activityRepairedBy').selectedOptions
+)
+.map(option => option.value)
+.filter(value => value !== '')
+.join(', '),
         shift: document.getElementById('activityShift').value,
         loto: document.getElementById('activityLoto').value
     };
