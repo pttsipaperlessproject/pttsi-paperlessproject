@@ -782,7 +782,85 @@
         showToast('Gagal mengambil master data dari server.');
     }
 }
-window.onload = () => {
+document.getElementById('mechanicActivityForm').addEventListener('submit', async function(e) {
+
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('submitActivityBtn');
+
+    const payload = {
+        action: 'submitActivity',
+        date: document.getElementById('activityDate').value,
+        unit: document.getElementById('activityUnit').value,
+        preventive: document.getElementById('activityPreventive').value,
+        trouble: document.getElementById('activityTrouble').value,
+        remark: document.getElementById('activityRemark').value,
+        repairedBy: document.getElementById('activityRepairedBy').value,
+        shift: document.getElementById('activityShift').value,
+        loto: document.getElementById('activityLoto').value
+    };
+
+    console.log('SUBMIT PAYLOAD:', payload);
+
+    try {
+
+        submitBtn.disabled = true;
+
+        submitBtn.innerHTML = `
+            <i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>
+            SUBMITTING...
+        `;
+
+        lucide.createIcons();
+
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        console.log('SUBMIT RESPONSE:', result);
+
+        if (!result.success) {
+            throw new Error(result.message || 'Gagal menyimpan data.');
+        }
+
+        showToast('Activity berhasil disimpan.');
+
+        document.getElementById('mechanicActivityForm').reset();
+
+        // Set tanggal kembali ke hari ini
+        const today = new Date();
+
+        const localDate = new Date(
+            today.getTime() - today.getTimezoneOffset() * 60000
+        )
+        .toISOString()
+        .split('T')[0];
+
+        document.getElementById('activityDate').value = localDate;
+
+    } catch (error) {
+
+        console.error('SUBMIT ERROR:', error);
+
+        showToast('Gagal menyimpan activity.');
+
+    } finally {
+
+        submitBtn.disabled = false;
+
+        submitBtn.innerHTML = `
+            <i data-lucide="send" class="w-5 h-5"></i>
+            SUBMIT ACTIVITY
+        `;
+
+        lucide.createIcons();
+    }
+
+});
+        window.onload = () => {
     lucide.createIcons();
     showHome();
 };
