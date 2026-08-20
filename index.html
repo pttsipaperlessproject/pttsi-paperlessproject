@@ -651,42 +651,7 @@
         document.getElementById('passwordInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') confirmAuth(); });
 
         function showMechanicActivity() {
-            async function loadMechanicMasterData() {
-    const unitSelect = document.getElementById('activityUnit');
 
-    if (!unitSelect) return;
-
-    unitSelect.innerHTML = '<option value="">Memuat unit...</option>';
-
-    try {
-        const response = await fetch(API_URL + '?action=master');
-
-        if (!response.ok) {
-            throw new Error('Gagal menghubungi server.');
-        }
-
-        const data = await response.json();
-
-        console.log('MASTER DATA:', data);
-
-        unitSelect.innerHTML = '<option value="">Pilih Unit</option>';
-
-        data.units.forEach(unit => {
-            const option = document.createElement('option');
-            option.value = unit;
-            option.textContent = unit;
-            unitSelect.appendChild(option);
-        });
-
-    } catch (error) {
-        console.error('MASTER DATA ERROR:', error);
-
-        unitSelect.innerHTML =
-            '<option value="">Gagal memuat unit</option>';
-
-        showToast('Gagal mengambil data unit.');
-    }
-}
     document.querySelectorAll(
         '#homeScreen, #formMenuScreen'
     ).forEach(s => s.classList.add('hidden'));
@@ -711,11 +676,117 @@
 
     loadMechanicMasterData();
 }
-        
-        window.onload = () => {
-            lucide.createIcons();
-            showHome();
-        };
-    </script>
+        async function loadMechanicMasterData() {
+    const unitSelect = document.getElementById('activityUnit');
+    const preventiveSelect = document.getElementById('activityPreventive');
+    const remarkSelect = document.getElementById('activityRemark');
+    const repairedBySelect = document.getElementById('activityRepairedBy');
+    const lotoSelect = document.getElementById('activityLoto');
+
+    try {
+        // Tampilkan status loading
+        unitSelect.innerHTML = '<option value="">Memuat unit...</option>';
+        preventiveSelect.innerHTML = '<option value="">Memuat data...</option>';
+        remarkSelect.innerHTML = '<option value="">Memuat data...</option>';
+        repairedBySelect.innerHTML = '<option value="">Memuat mechanic...</option>';
+        lotoSelect.innerHTML = '<option value="">Memuat status...</option>';
+
+        const response = await fetch(API_URL + '?action=master', {
+            method: 'GET',
+            cache: 'no-store'
+        });
+
+        if (!response.ok) {
+            throw new Error('HTTP Error ' + response.status);
+        }
+
+        const data = await response.json();
+
+        console.log('MASTER DATA:', data);
+
+        if (!data || !data.units) {
+            throw new Error('Master data tidak valid.');
+        }
+
+        // =========================
+        // UNIT
+        // =========================
+        unitSelect.innerHTML = '<option value="">Pilih Unit</option>';
+
+        data.units.forEach(unit => {
+            const option = document.createElement('option');
+            option.value = unit;
+            option.textContent = unit;
+            unitSelect.appendChild(option);
+        });
+
+        // =========================
+        // PREVENTIVE
+        // =========================
+        preventiveSelect.innerHTML = '<option value="">Pilih Preventive</option>';
+
+        data.preventive.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item;
+            option.textContent = item;
+            preventiveSelect.appendChild(option);
+        });
+
+        // =========================
+        // REMARK
+        // =========================
+        remarkSelect.innerHTML = '<option value="">Pilih Remark</option>';
+
+        data.remarks.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item;
+            option.textContent = item;
+            remarkSelect.appendChild(option);
+        });
+
+        // =========================
+        // REPAIRED BY
+        // =========================
+        repairedBySelect.innerHTML = '<option value="">Pilih Mechanic</option>';
+
+        data.repairedBy.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item;
+            option.textContent = item;
+            repairedBySelect.appendChild(option);
+        });
+
+        // =========================
+        // LOTO
+        // =========================
+        lotoSelect.innerHTML = '<option value="">Pilih Status LOTO</option>';
+
+        data.loto.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item;
+            option.textContent = item;
+            lotoSelect.appendChild(option);
+        });
+
+        console.log('Master data berhasil dimuat.');
+
+    } catch (error) {
+        console.error('Gagal memuat master data:', error);
+
+        unitSelect.innerHTML = '<option value="">Gagal memuat unit</option>';
+        preventiveSelect.innerHTML = '<option value="">Gagal memuat data</option>';
+        remarkSelect.innerHTML = '<option value="">Gagal memuat data</option>';
+        repairedBySelect.innerHTML = '<option value="">Gagal memuat mechanic</option>';
+        lotoSelect.innerHTML = '<option value="">Gagal memuat status</option>';
+
+        showToast('Gagal mengambil master data dari server.');
+    }
+}
+window.onload = () => {
+    lucide.createIcons();
+    showHome();
+};
+</script>
+
 </body>
 </html>
