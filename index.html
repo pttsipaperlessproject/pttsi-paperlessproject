@@ -4,27 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAPERLESS PROJECT - PT TSI</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
+        body {
+            font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             min-height: 100vh;
             color: #1e293b;
         }
-        
-        .color-primary { background-color: #1E3A8A; }
-        .text-primary { color: #1E3A8A; }
-        
-        .fade-in { 
-            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+
+        .color-primary {
+            background-color: #1E3A8A;
         }
-        
+
+        .text-primary {
+            color: #1E3A8A;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .menu-item {
@@ -33,7 +52,7 @@
             border-left: 5px solid #D97706;
             background: #ffffff;
         }
-        
+
         .menu-item:hover {
             background-color: #fffbeb;
             transform: translateX(5px);
@@ -44,7 +63,7 @@
             border-left: 5px solid #dc2626 !important;
             background: #fef2f2 !important;
         }
-        
+
         .menu-item-restricted:hover {
             background-color: #fee2e2 !important;
         }
@@ -52,7 +71,7 @@
         .submenu-link {
             transition: all 0.2s ease;
         }
-        
+
         .submenu-link:hover {
             background-color: #FCD34D;
             color: #1E3A8A !important;
@@ -68,13 +87,15 @@
         .logo-wrapper {
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        
+
         .logo-wrapper:hover {
             transform: scale(1.08) rotate(2deg);
         }
 
         .logo-shadow {
-            filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+            filter:
+                drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
+                drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
         }
 
         #toast {
@@ -96,873 +117,2486 @@
 
         #toast.show {
             visibility: visible;
-            animation: fadein_toast 0.5s, fadeout_toast 0.5s 2.5s;
+            animation:
+                fadein_toast 0.5s,
+                fadeout_toast 0.5s 2.5s;
         }
 
         @keyframes fadein_toast {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
         }
 
         @keyframes fadeout_toast {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
         }
 
         @media (max-width: 640px) {
-            .glass-panel { padding: 1.5rem !important; }
+            .glass-panel {
+                padding: 1.5rem !important;
+            }
+        }
+
+        /* =========================================
+           CUSTOM MULTI SELECT
+        ========================================= */
+
+        .multi-option {
+            transition: all 0.15s ease;
+            cursor: pointer;
+        }
+
+        .multi-option:hover {
+            background-color: #eff6ff;
+            border-color: #93c5fd;
+        }
+
+        .multi-option.selected {
+            background-color: #eff6ff;
+            border-color: #2563eb;
+        }
+
+        .multi-option input {
+            cursor: pointer;
+        }
+
+        .multi-option label {
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .multi-option-check {
+            width: 18px;
+            height: 18px;
+            accent-color: #1d4ed8;
+            flex-shrink: 0;
+        }
+
+        .selection-summary {
+            min-height: 24px;
         }
     </style>
 </head>
+
 <body class="flex flex-col items-center p-4 sm:p-8">
 
-    <main class="w-full max-w-4xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in">
-        <!-- Header -->
-        <header id="mainHeader" class="w-full mb-10 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
-            <div class="mb-4 logo-wrapper">
-                <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-                    <img src="default_logo.png" alt="Logo PT TSI" class="w-full h-full object-contain" id="companyLogo" onerror="handleLogoError()">
-                    <div id="logoFallback" class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white">
-                        <span class="font-black text-2xl">TSI</span>
-                    </div>
-                </div>
-            </div>
-            <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
-                <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
-                    PAPERLESS PROJECT
-                </h1>
-                <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-                <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
-                    PT TATSUMI SERUNI INDONESIA
-                </h2>
-            </div>
-            <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
-                Digitalization Initiative v2.0
-            </div>
-        </header>
-
-        <!-- 1. HOME SCREEN -->
-        <div id="homeScreen" class="space-y-6 flex flex-col items-center text-center fade-in">
-            <div class="space-y-2 mb-4">
-                <h2 class="text-3xl font-extrabold text-slate-800 tracking-tight">Portal Layanan Digital</h2>
-                <p class="text-slate-500 font-medium">Sistem Digitalisasi Data Operasional Terpadu.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-                <!-- FORM MENU -->
-                <button onclick="showFormMenu()" class="group bg-blue-800 text-white font-bold py-10 px-6 rounded-2xl shadow-xl hover:bg-blue-700 transition-all duration-300 flex flex-col items-center justify-center space-y-4 border-b-8 border-blue-950 active:scale-95">
-                    <i data-lucide="file-text" class="w-12 h-12 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xl tracking-wide uppercase">Menu Formulir</span>
-                </button>
-                
-                <!-- NEW REPORT MENU LINK -->
-                <button onclick="checkAuth(() => openLink('https://pttsipaperlessproject2-report.netlify.app/', false))" class="group bg-amber-600 text-white font-bold py-10 px-6 rounded-2xl shadow-xl hover:bg-amber-500 transition-all duration-300 flex flex-col items-center justify-center space-y-4 border-b-8 border-amber-800 active:scale-95">
-                    <i data-lucide="bar-chart-3" class="w-12 h-12 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xl tracking-wide uppercase">Menu Laporan</span>
-                </button>
-            </div>
-
-            <!-- NEW WORKSHOP MONITOR LINK -->
-            <button onclick="openLink('https://pttsipaperlessproject2-workshop.netlify.app/', false)" class="w-full group bg-slate-800 text-white font-bold p-6 rounded-2xl shadow-lg hover:bg-slate-700 transition-all duration-300 flex flex-col sm:flex-row items-center justify-center gap-4 active:scale-95 text-center sm:text-left">
-                <div class="bg-slate-700 text-amber-400 p-3 rounded-xl group-hover:scale-110 transition-transform border border-slate-600">
-                    <i data-lucide="monitor" class="w-8 h-8"></i>
-                </div>
-                <div>
-                    <span class="text-xl block font-black uppercase tracking-wider">Workshop Live Monitor</span>
-                    <span class="text-[10px] sm:text-xs font-medium text-slate-300 italic block mt-1">
-                        Pantau status pengerjaan unit dan aktivitas workshop secara real-time.
-                    </span>
-                </div>
-            </button>
-        </div>
-
-        <!-- 2. FORM MENU SCREEN -->
-        <div id="formMenuScreen" class="space-y-6 hidden fade-in">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-bold text-primary flex items-center gap-2">
-                    <i data-lucide="clipboard-list"></i> Digital Form Repository
-                </h2>
-                <button onclick="showHome()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm">
-                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali
-                </button>
-            </div>
-
-            <div class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4">
-                <div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0">
-                    <i data-lucide="shield-check" class="w-6 h-6"></i>
-                </div>
-                <div class="space-y-1">
-                    <h4 class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]">Protokol Keselamatan Kerja (K3L)</h4>
-                    <p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">
-                        Seluruh personel operasional <b>diwajibkan</b> untuk senantiasa menegakkan standar K3, mematuhi Prosedur Operasional Standar (SOP), serta Instruksi Kerja yang telah dilegalisasi dalam kerangka <b>SMK3 Perusahaan</b> guna menjamin keamanan dan keberlanjutan kerja.
-                    </p>
-                </div>
-            </div>
-
-            <!-- MECHANIC ACTIVITY -->
-<button
-    onclick="showMechanicActivity()"
-    class="w-full menu-item p-5 rounded-2xl shadow-sm border border-slate-100 text-left"
+<main
+    class="w-full max-w-4xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in"
 >
-    <div class="flex justify-between items-center font-bold text-primary uppercase tracking-wide">
 
-        <div class="flex items-center gap-3 text-sm sm:text-base">
-            <i data-lucide="wrench" class="w-5 h-5 text-amber-600 shrink-0"></i>
+    <!-- =========================================
+         HEADER
+    ========================================== -->
 
-            <div class="flex flex-col">
-                <span>Mechanic Activity</span>
+    <header
+        id="mainHeader"
+        class="w-full mb-10 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
+    >
 
-                <p class="text-[10px] font-medium italic opacity-60 normal-case mt-1">
-                    Daily workshop mechanic activity
-                </p>
+        <div class="mb-4 logo-wrapper">
+            <div
+                class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
+            >
+                <img
+                    src="default_logo.png"
+                    alt="Logo PT TSI"
+                    class="w-full h-full object-contain"
+                    id="companyLogo"
+                    onerror="handleLogoError()"
+                >
+
+                <div
+                    id="logoFallback"
+                    class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+                >
+                    <span class="font-black text-2xl">TSI</span>
+                </div>
             </div>
         </div>
 
-        <i
-            data-lucide="arrow-right"
-            class="w-5 h-5 opacity-40 shrink-0"
-        ></i>
+        <div
+            class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
+        >
+            <h1
+                class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
+            >
+                PAPERLESS PROJECT
+            </h1>
 
-    </div>
-</button>
-            
-            <div id="formMenuContainer" class="space-y-4"></div>
+            <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+
+            <h2
+                class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
+            >
+                PT TATSUMI SERUNI INDONESIA
+            </h2>
         </div>
-<!-- 3. MECHANIC ACTIVITY SCREEN -->
-<div id="mechanicActivityScreen" class="space-y-6 hidden fade-in">
 
-    <!-- Header -->
-    <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-bold text-primary flex items-center gap-2">
-            <i data-lucide="wrench"></i>
-            Mechanic Activity
-        </h2>
+        <div
+            class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase"
+        >
+            Digitalization Initiative v2.0
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         HOME SCREEN
+    ========================================== -->
+
+    <div
+        id="homeScreen"
+        class="space-y-6 flex flex-col items-center text-center fade-in"
+    >
+
+        <div class="space-y-2 mb-4">
+            <h2
+                class="text-3xl font-extrabold text-slate-800 tracking-tight"
+            >
+                Portal Layanan Digital
+            </h2>
+
+            <p class="text-slate-500 font-medium">
+                Sistem Digitalisasi Data Operasional Terpadu.
+            </p>
+        </div>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+
+            <!-- FORM MENU -->
+
+            <button
+                onclick="showFormMenu()"
+                class="group bg-blue-800 text-white font-bold py-10 px-6 rounded-2xl shadow-xl hover:bg-blue-700 transition-all duration-300 flex flex-col items-center justify-center space-y-4 border-b-8 border-blue-950 active:scale-95"
+            >
+                <i
+                    data-lucide="file-text"
+                    class="w-12 h-12 group-hover:scale-110 transition-transform"
+                ></i>
+
+                <span class="text-xl tracking-wide uppercase">
+                    Menu Formulir
+                </span>
+            </button>
+
+
+            <!-- REPORT -->
+
+            <button
+                onclick="checkAuth(() => openLink('https://pttsipaperlessproject2-report.netlify.app/', false))"
+                class="group bg-amber-600 text-white font-bold py-10 px-6 rounded-2xl shadow-xl hover:bg-amber-500 transition-all duration-300 flex flex-col items-center justify-center space-y-4 border-b-8 border-amber-800 active:scale-95"
+            >
+                <i
+                    data-lucide="bar-chart-3"
+                    class="w-12 h-12 group-hover:scale-110 transition-transform"
+                ></i>
+
+                <span class="text-xl tracking-wide uppercase">
+                    Menu Laporan
+                </span>
+            </button>
+
+        </div>
+
+
+        <!-- WORKSHOP MONITOR -->
 
         <button
-            onclick="showFormMenu()"
-            class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm"
+            onclick="openLink('https://pttsipaperlessproject2-workshop.netlify.app/', false)"
+            class="w-full group bg-slate-800 text-white font-bold p-6 rounded-2xl shadow-lg hover:bg-slate-700 transition-all duration-300 flex flex-col sm:flex-row items-center justify-center gap-4 active:scale-95 text-center sm:text-left"
         >
-            <i data-lucide="arrow-left" class="w-4 h-4"></i>
-            Kembali
-        </button>
-    </div>
 
-    <!-- Description -->
-    <div class="p-5 rounded-2xl bg-blue-50 border border-blue-100 shadow-sm">
-        <div class="flex items-start gap-3">
-            <div class="bg-blue-800 p-2.5 rounded-xl text-white shrink-0">
-                <i data-lucide="clipboard-pen" class="w-5 h-5"></i>
+            <div
+                class="bg-slate-700 text-amber-400 p-3 rounded-xl group-hover:scale-110 transition-transform border border-slate-600"
+            >
+                <i data-lucide="monitor" class="w-8 h-8"></i>
             </div>
 
             <div>
-                <h4 class="font-bold text-blue-900 text-sm uppercase tracking-wide">
-                    Daily Mechanic Activity
-                </h4>
 
-                <p class="text-blue-800 text-xs mt-1 leading-relaxed">
-                    Input aktivitas pekerjaan mechanic harian secara langsung
-                    ke dalam sistem Workshop.
-                </p>
+                <span
+                    class="text-xl block font-black uppercase tracking-wider"
+                >
+                    Workshop Live Monitor
+                </span>
+
+                <span
+                    class="text-[10px] sm:text-xs font-medium text-slate-300 italic block mt-1"
+                >
+                    Pantau status pengerjaan unit dan aktivitas workshop
+                    secara real-time.
+                </span>
+
             </div>
-        </div>
-    </div>
 
-    <!-- FORM -->
-    <form id="mechanicActivityForm" class="space-y-5">
-
-        <!-- DATE -->
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">
-                Date
-            </label>
-
-            <input
-                type="date"
-                id="activityDate"
-                required
-                class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
-            >
-        </div>
-
-        <!-- UNIT -->
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">
-                Unit
-            </label>
-
-            <select
-                id="activityUnit"
-                required
-                class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
-            >
-                <option value="">Memuat unit...</option>
-            </select>
-        </div>
-
-        <!-- PREVENTIVE -->
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">
-                Preventive
-            </label>
-
-            <select
-                id="activityPreventive"
-                class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
-            >
-                <option value="">Memuat data...</option>
-            </select>
-        </div>
-
-        <!-- TROUBLE -->
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">
-                Trouble
-            </label>
-
-            <textarea
-                id="activityTrouble"
-                rows="3"
-                placeholder="Masukkan trouble / pekerjaan..."
-                class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition resize-none"
-            ></textarea>
-        </div>
-
-        <!-- REMARK -->
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">
-                Remark
-            </label>
-
-            <select
-                id="activityRemark"
-                required
-                class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
-            >
-                <option value="">Memuat data...</option>
-            </select>
-        </div>
-
-        <!-- REPAIRED BY -->
-<div>
-    <label class="block text-sm font-bold text-slate-700 mb-2">
-        Repaired By
-    </label>
-
-    <select
-        id="activityRepairedBy"
-        multiple
-        class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
-        size="5"
-    >
-        <option value="">Memuat mechanic...</option>
-    </select>
-
-    <p class="text-[10px] text-slate-400 mt-2 italic">
-        Pilih satu atau beberapa mechanic. Tidak wajib diisi.
-    </p>
-</div>
-
-        <!-- SHIFT -->
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">
-                Shift
-            </label>
-
-            <select
-                id="activityShift"
-                required
-                class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
-            >
-                <option value="">Pilih Shift</option>
-                <option value="1">Shift 1</option>
-                <option value="2">Shift 2</option>
-                <option value="3">Shift 3</option>
-            </select>
-        </div>
-
-        <!-- STATUS LOTO -->
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">
-                Status LOTO
-            </label>
-
-            <select
-                id="activityLoto"
-                required
-                class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
-            >
-                <option value="">Memuat status...</option>
-            </select>
-        </div>
-
-        <!-- SUBMIT -->
-        <button
-            type="submit"
-            id="submitActivityBtn"
-            class="w-full bg-blue-800 hover:bg-blue-700 text-white font-black py-4 px-6 rounded-2xl shadow-xl border-b-8 border-blue-950 active:scale-[0.98] transition-all flex items-center justify-center gap-3"
-        >
-            <i data-lucide="send" class="w-5 h-5"></i>
-            SUBMIT ACTIVITY
         </button>
 
-    </form>
-</div>
-        
-        <!-- AUTH MODAL -->
-        <div id="authModal" class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center p-4 z-50 backdrop-blur-sm">
-            <div class="bg-white p-8 rounded-3xl shadow-2xl max-sm w-full text-center space-y-6 border-t-8 border-amber-600 fade-in">
-                <div class="mx-auto w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center">
-                    <i data-lucide="lock" class="w-8 h-8 text-amber-600"></i>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold text-slate-800 uppercase tracking-tight">Endpoint Restricted</h3>
-                    <p class="text-slate-500 text-sm mt-1">Otoritas diperlukan untuk akses data.</p>
-                </div>
-                <div class="space-y-3">
-                    <input type="password" id="passwordInput" placeholder="Access Token" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center text-lg font-bold focus:border-amber-500 outline-none transition-all">
-                    <div id="passwordError" class="hidden text-[10px] text-red-600 font-bold bg-red-50 p-3 rounded-xl border border-red-100 uppercase">
-                        ACCESS DENIED: Kode akses tidak valid!
+    </div>
+
+
+    <!-- =========================================
+         FORM MENU SCREEN
+    ========================================== -->
+
+    <div
+        id="formMenuScreen"
+        class="space-y-6 hidden fade-in"
+    >
+
+        <div class="flex justify-between items-center mb-4">
+
+            <h2
+                class="text-2xl font-bold text-primary flex items-center gap-2"
+            >
+                <i data-lucide="clipboard-list"></i>
+                Digital Form Repository
+            </h2>
+
+            <button
+                onclick="showHome()"
+                class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm"
+            >
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Kembali
+            </button>
+
+        </div>
+
+
+        <div
+            class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4"
+        >
+
+            <div
+                class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0"
+            >
+                <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+
+            <div class="space-y-1">
+
+                <h4
+                    class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]"
+                >
+                    Protokol Keselamatan Kerja (K3L)
+                </h4>
+
+                <p
+                    class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium"
+                >
+                    Seluruh personel operasional <b>diwajibkan</b>
+                    untuk senantiasa menegakkan standar K3, mematuhi
+                    Prosedur Operasional Standar (SOP), serta Instruksi Kerja
+                    yang telah dilegalisasi dalam kerangka
+                    <b>SMK3 Perusahaan</b> guna menjamin keamanan dan
+                    keberlanjutan kerja.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MECHANIC ACTIVITY -->
+
+        <button
+            onclick="showMechanicActivity()"
+            class="w-full menu-item p-5 rounded-2xl shadow-sm border border-slate-100 text-left"
+        >
+
+            <div
+                class="flex justify-between items-center font-bold text-primary uppercase tracking-wide"
+            >
+
+                <div class="flex items-center gap-3 text-sm sm:text-base">
+
+                    <i
+                        data-lucide="wrench"
+                        class="w-5 h-5 text-amber-600 shrink-0"
+                    ></i>
+
+                    <div class="flex flex-col">
+
+                        <span>Mechanic Activity</span>
+
+                        <p
+                            class="text-[10px] font-medium italic opacity-60 normal-case mt-1"
+                        >
+                            Daily workshop mechanic activity
+                        </p>
+
                     </div>
+
                 </div>
-                <div class="flex gap-3">
-                    <button onclick="closeAuth()" class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition">Batal</button>
-                    <button onclick="confirmAuth()" class="flex-1 bg-blue-800 text-white font-bold py-3 rounded-xl hover:bg-blue-900 shadow-lg shadow-blue-200 transition">Authorize</button>
-                </div>
+
+                <i
+                    data-lucide="arrow-right"
+                    class="w-5 h-5 opacity-40 shrink-0"
+                ></i>
+
             </div>
+
+        </button>
+
+
+        <div
+            id="formMenuContainer"
+            class="space-y-4"
+        ></div>
+
+    </div>
+
+
+    <!-- =========================================
+         MECHANIC ACTIVITY SCREEN
+    ========================================== -->
+
+    <div
+        id="mechanicActivityScreen"
+        class="space-y-6 hidden fade-in"
+    >
+
+        <!-- HEADER -->
+
+        <div class="flex justify-between items-center mb-4">
+
+            <h2
+                class="text-2xl font-bold text-primary flex items-center gap-2"
+            >
+                <i data-lucide="wrench"></i>
+                Mechanic Activity
+            </h2>
+
+            <button
+                onclick="showFormMenu()"
+                class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm"
+            >
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Kembali
+            </button>
+
         </div>
 
-        <!-- THANK YOU / NEXT FORM MODAL -->
-        <div id="thanksModal" class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center p-4 z-50 backdrop-blur-sm">
-            <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center space-y-6 border-t-8 border-emerald-600 fade-in">
-                <div class="mx-auto w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center">
-                    <i data-lucide="check-circle" class="w-8 h-8 text-emerald-600"></i>
+
+        <!-- DESCRIPTION -->
+
+        <div
+            class="p-5 rounded-2xl bg-blue-50 border border-blue-100 shadow-sm"
+        >
+
+            <div class="flex items-start gap-3">
+
+                <div
+                    class="bg-blue-800 p-2.5 rounded-xl text-white shrink-0"
+                >
+                    <i data-lucide="clipboard-pen" class="w-5 h-5"></i>
                 </div>
+
                 <div>
-                    <h3 class="text-2xl font-bold text-slate-800 uppercase tracking-tight">Terima Kasih!</h3>
-                    <p class="text-slate-500 text-sm mt-1">Data formulir Anda telah dikirim ke tab baru.</p>
+
+                    <h4
+                        class="font-bold text-blue-900 text-sm uppercase tracking-wide"
+                    >
+                        Daily Mechanic Activity
+                    </h4>
+
+                    <p
+                        class="text-blue-800 text-xs mt-1 leading-relaxed"
+                    >
+                        Input aktivitas pekerjaan mechanic harian secara
+                        langsung ke dalam sistem Workshop.
+                    </p>
+
                 </div>
-                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p class="text-slate-700 font-semibold text-sm">Apakah Anda ingin mengisi formulir digital lainnya?</p>
-                </div>
-                <div class="flex gap-3">
-                    <button onclick="closeWindow()" class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition">Tutup Tab</button>
-                    <button onclick="closeThanks()" class="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 shadow-lg shadow-emerald-100 transition">Ya, Lanjut</button>
-                </div>
+
             </div>
+
         </div>
 
-        <!-- TOAST MESSAGE -->
-        <div id="toast" class="flex items-center gap-3">
-            <i data-lucide="info" class="text-amber-400 w-5 h-5"></i>
-            <span id="toastMsg"></span>
+
+        <!-- FORM -->
+
+        <form
+            id="mechanicActivityForm"
+            class="space-y-5"
+        >
+
+            <!-- DATE -->
+
+            <div>
+
+                <label
+                    class="block text-sm font-bold text-slate-700 mb-2"
+                >
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="activityDate"
+                    required
+                    class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
+                >
+
+            </div>
+
+
+            <!-- UNIT -->
+
+            <div>
+
+                <label
+                    class="block text-sm font-bold text-slate-700 mb-2"
+                >
+                    Unit
+                </label>
+
+                <select
+                    id="activityUnit"
+                    required
+                    class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
+                >
+                    <option value="">
+                        Memuat unit...
+                    </option>
+                </select>
+
+            </div>
+
+
+            <!-- =========================================
+                 PREVENTIVE
+                 OPTIONAL + MULTIPLE
+            ========================================== -->
+
+            <div>
+
+                <label
+                    class="block text-sm font-bold text-slate-700 mb-2"
+                >
+                    Preventive
+                    <span
+                        class="text-[10px] text-slate-400 font-normal italic"
+                    >
+                        (optional)
+                    </span>
+                </label>
+
+
+                <div
+                    id="preventiveContainer"
+                    class="space-y-2"
+                >
+
+                    <div
+                        class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 text-sm text-slate-400"
+                    >
+                        Memuat data preventive...
+                    </div>
+
+                </div>
+
+
+                <p
+                    class="text-[10px] text-slate-400 mt-2 italic"
+                >
+                    Bisa memilih lebih dari satu preventive atau tidak memilih
+                    sama sekali.
+                </p>
+
+            </div>
+
+
+            <!-- TROUBLE -->
+
+            <div>
+
+                <label
+                    class="block text-sm font-bold text-slate-700 mb-2"
+                >
+                    Trouble
+                </label>
+
+                <textarea
+                    id="activityTrouble"
+                    rows="3"
+                    placeholder="Masukkan trouble / pekerjaan..."
+                    class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition resize-none"
+                ></textarea>
+
+            </div>
+
+
+            <!-- REMARK -->
+
+            <div>
+
+                <label
+                    class="block text-sm font-bold text-slate-700 mb-2"
+                >
+                    Remark
+                </label>
+
+                <select
+                    id="activityRemark"
+                    required
+                    class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
+                >
+                    <option value="">
+                        Memuat data...
+                    </option>
+                </select>
+
+            </div>
+
+
+            <!-- =========================================
+                 REPAIRED BY
+                 OPTIONAL + MULTIPLE
+            ========================================== -->
+
+            <div>
+
+                <label
+                    class="block text-sm font-bold text-slate-700 mb-2"
+                >
+                    Repaired By
+                    <span
+                        class="text-[10px] text-slate-400 font-normal italic"
+                    >
+                        (optional)
+                    </span>
+                </label>
+
+
+                <div
+                    id="repairedByContainer"
+                    class="space-y-2"
+                >
+
+                    <div
+                        class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 text-sm text-slate-400"
+                    >
+                        Memuat mechanic...
+                    </div>
+
+                </div>
+
+
+                <p
+                    class="text-[10px] text-slate-400 mt-2 italic"
+                >
+                    Klik nama mechanic untuk memilih. Bisa memilih satu,
+                    beberapa, atau tidak sama sekali.
+                </p>
+
+            </div>
+
+
+            <!-- SHIFT -->
+
+            <div>
+
+                <label
+                    class="block text-sm font-bold text-slate-700 mb-2"
+                >
+                    Shift
+                </label>
+
+                <select
+                    id="activityShift"
+                    required
+                    class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
+                >
+
+                    <option value="">
+                        Pilih Shift
+                    </option>
+
+                    <option value="1">
+                        Shift 1
+                    </option>
+
+                    <option value="2">
+                        Shift 2
+                    </option>
+
+                    <option value="3">
+                        Shift 3
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- STATUS LOTO -->
+
+            <div>
+
+                <label
+                    class="block text-sm font-bold text-slate-700 mb-2"
+                >
+                    Status LOTO
+                </label>
+
+                <select
+                    id="activityLoto"
+                    required
+                    class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold focus:border-blue-700 focus:ring-2 focus:ring-blue-100 outline-none transition"
+                >
+
+                    <option value="">
+                        Memuat status...
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                id="submitActivityBtn"
+                class="w-full bg-blue-800 hover:bg-blue-700 text-white font-black py-4 px-6 rounded-2xl shadow-xl border-b-8 border-blue-950 active:scale-[0.98] transition-all flex items-center justify-center gap-3"
+            >
+
+                <i
+                    data-lucide="send"
+                    class="w-5 h-5"
+                ></i>
+
+                SUBMIT ACTIVITY
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- =========================================
+         AUTH MODAL
+    ========================================== -->
+
+    <div
+        id="authModal"
+        class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center p-4 z-50 backdrop-blur-sm"
+    >
+
+        <div
+            class="bg-white p-8 rounded-3xl shadow-2xl max-sm w-full text-center space-y-6 border-t-8 border-amber-600 fade-in"
+        >
+
+            <div
+                class="mx-auto w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center"
+            >
+                <i
+                    data-lucide="lock"
+                    class="w-8 h-8 text-amber-600"
+                ></i>
+            </div>
+
+            <div>
+
+                <h3
+                    class="text-2xl font-bold text-slate-800 uppercase tracking-tight"
+                >
+                    Endpoint Restricted
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-1">
+                    Otoritas diperlukan untuk akses data.
+                </p>
+
+            </div>
+
+            <div class="space-y-3">
+
+                <input
+                    type="password"
+                    id="passwordInput"
+                    placeholder="Access Token"
+                    class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center text-lg font-bold focus:border-amber-500 outline-none transition-all"
+                >
+
+                <div
+                    id="passwordError"
+                    class="hidden text-[10px] text-red-600 font-bold bg-red-50 p-3 rounded-xl border border-red-100 uppercase"
+                >
+                    ACCESS DENIED: Kode akses tidak valid!
+                </div>
+
+            </div>
+
+            <div class="flex gap-3">
+
+                <button
+                    onclick="closeAuth()"
+                    class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition"
+                >
+                    Batal
+                </button>
+
+                <button
+                    onclick="confirmAuth()"
+                    class="flex-1 bg-blue-800 text-white font-bold py-3 rounded-xl hover:bg-blue-900 shadow-lg shadow-blue-200 transition"
+                >
+                    Authorize
+                </button>
+
+            </div>
+
         </div>
-    </main>
 
-    <footer class="mt-8 text-center text-slate-400 px-4 pb-8">
-        <p class="font-bold text-slate-500 tracking-tight uppercase">&copy; 2026 Paperless Project - PT TSI. All rights reserved.</p>
-        <p class="text-[10px] mt-1">System Architecture by: <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span> | <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span></p>
-    </footer>
+    </div>
 
-    <script>
-        const SECRET_CODE = '3978128';
-        const API_URL = 'https://script.google.com/macros/s/AKfycbxUfR_ARS5-U9Od_GcEr25a9Xr8et-VVgtdWqgLVGw5WO7ZmVMbj_Y4IImPusvrzTtxYg/exec';
-        let pendingAction = null;
 
-        const FORM_DATA = [
-            { id: "lph", title: "Laporan Pemeriksaan Harian (LPH)", icon: "truck", children: [
-                { name: "LPH Wheel Loader", link: "https://forms.gle/YzV3hmmFSSiUAZkJ9" },
-                { name: "LPH Forklift", link: "https://forms.gle/E6btWm7G5YxrQkyt8" },
-                { name: "LPH Dumptruck", link: "https://forms.gle/57WPzJ2LUxqCPtXMA" },
-                { name: "LPH Excavator", link: "https://forms.gle/G7uFHthvNmU6ubNP8" }
-            ]},
-            { id: "rjo", title: "Repair Job Order (RJO)", icon: "wrench", children: [
-                { name: "Buka Form RJO", link: "https://forms.gle/FrSktMFs83bHhPZ39" }
-            ]},
-            { id: "ciu", title: "Checklist Inspection Unit", icon: "clipboard-check", children: [
-                { name: "CIU Dumptruck", link: "https://forms.gle/2wLcpNpDGGmeWpZy8" },
-                { name: "CIU Excavator", link: "https://forms.gle/DXk1yQVa4rns8p6h9" },
-                { name: "CIU Forklift", link: "https://forms.gle/4G3usE7nUZyq9xNe8" },
-                { name: "CIU Wheel Loader", link: "https://forms.gle/vGaa6pGjcM16MWqk7" }
-            ]},
-            { id: "cps", title: "Checklist Periodic Service", icon: "calendar-clock", children: [
-                { name: "CPS Dumptruck", link: "https://docs.google.com/forms/d/e/1FAIpQLSehLV9Z9ppLAuyWTHd_RpS9OgxXwz7cH6Jv4m3Ov6QeV0ccRA/viewform" },
-                { name: "CPS Excavator", link: "https://docs.google.com/forms/d/e/1FAIpQLScZVERcQ1GFS29_DTR3YkNiGUqf99O-u-On0PG24hrfFojs-g/viewform" },
-                { name: "CPS Forklift", link: "https://docs.google.com/forms/d/e/1FAIpQLScXX5R0rOsJxX0kNKEY1pxTRVOQh6lD3YsBjguf53I1pLo7Bw/viewform" },
-                { name: "CPS Wheel Loader", link: "https://docs.google.com/forms/d/e/1FAIpQLScOD63w9xuMoalEdYcU6YiQIUHbtkBNUT8Me8TpujUrO9jnNg/viewform" }
-            ]},
-            { id: "cim", title: "Checklist Inspection Machine", icon: "settings", children: [
-                { name: "CIM Compressor", link: "https://docs.google.com/forms/d/e/1FAIpQLSfyypoY9V594bImNv6T8HWWBcyG2JS57-p5UTASWKikPOr5rQ/viewform" },
-                { name: "CIM Crane", link: "https://docs.google.com/forms/d/e/1FAIpQLSfSHoHSzp5iQGtbVtym4ziVhKhdbxpmViC096GAUZhL_pRQKg/viewform" },
-                { name: "CIM Grinding Machine", link: "https://docs.google.com/forms/d/e/1FAIpQLSeI5LUWrA4UgcozFcHS55CoPXlhwZZZxtLrm66CGM6YVEuBlQ/viewform" },
-                { name: "CIM Tabung Bertekanan", link: "https://docs.google.com/forms/d/e/1FAIpQLSe7_60xawLnhab7h9kbxleRyQgYvfWSalDuoujIbrudiChTXA/viewform" },
-                { name: "CIM Welding Machine", link: "https://docs.google.com/forms/d/e/1FAIpQLSejNr0h2V1w6cjxFRkvj4p7kJ7EKGWWRzVBreuxkPMpy2cbUQ/viewform" }
-            ]},
-            { id: "usa", title: "Usage & Activity", icon: "history", children: [
-                { name: "Checklist Oil Usage", link: "https://docs.google.com/forms/d/e/1FAIpQLSfIV1S2Ax2uicpA5AqRDoOPuw0m4lo9VKXP2nS7jtvoB_JMpQ/viewform" },
-                { name: "Greasing Activity", link: "https://docs.google.com/forms/d/e/1FAIpQLSeeLpDCfQ2Vj6Wjkx4JCj0sjM2wFSQGb40LqlO6z0YccAMMdw/viewform" }
-            ]},
-            { id: "etr", title: "Emergency Trouble Report (ETR)", icon: "alert-octagon", restricted: true, 
-              description: "Form repair unit kerusakan fatal/berbahaya.", 
-              children: [{ name: "Buka Form ETR", link: "https://forms.gle/7U7vn9yzpCDWP3nW7" }]
-            }
-        ];
+    <!-- =========================================
+         THANK YOU MODAL
+    ========================================== -->
 
-        function handleLogoError() {
-            document.getElementById('companyLogo').classList.add('hidden');
-            document.getElementById('logoFallback').classList.remove('hidden');
+    <div
+        id="thanksModal"
+        class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center p-4 z-50 backdrop-blur-sm"
+    >
+
+        <div
+            class="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center space-y-6 border-t-8 border-emerald-600 fade-in"
+        >
+
+            <div
+                class="mx-auto w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center"
+            >
+                <i
+                    data-lucide="check-circle"
+                    class="w-8 h-8 text-emerald-600"
+                ></i>
+            </div>
+
+            <div>
+
+                <h3
+                    class="text-2xl font-bold text-slate-800 uppercase tracking-tight"
+                >
+                    Terima Kasih!
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-1">
+                    Data formulir Anda telah dikirim ke tab baru.
+                </p>
+
+            </div>
+
+            <div
+                class="p-4 bg-slate-50 rounded-2xl border border-slate-100"
+            >
+
+                <p class="text-slate-700 font-semibold text-sm">
+                    Apakah Anda ingin mengisi formulir digital lainnya?
+                </p>
+
+            </div>
+
+            <div class="flex gap-3">
+
+                <button
+                    onclick="closeWindow()"
+                    class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition"
+                >
+                    Tutup Tab
+                </button>
+
+                <button
+                    onclick="closeThanks()"
+                    class="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 shadow-lg shadow-emerald-100 transition"
+                >
+                    Ya, Lanjut
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="flex items-center gap-3"
+    >
+
+        <i
+            data-lucide="info"
+            class="text-amber-400 w-5 h-5"
+        ></i>
+
+        <span id="toastMsg"></span>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer
+    class="mt-8 text-center text-slate-400 px-4 pb-8"
+>
+
+    <p
+        class="font-bold text-slate-500 tracking-tight uppercase"
+    >
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+
+    <p class="text-[10px] mt-1">
+        System Architecture by:
+        <span
+            class="text-slate-600 font-semibold uppercase"
+        >
+            Imam Wahyu Ramadhan, S.T.
+        </span>
+
+        |
+
+        <span
+            class="text-amber-600 font-bold uppercase tracking-tighter"
+        >
+            Project 2.0
+        </span>
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* =====================================================
+       CONFIGURATION
+    ===================================================== */
+
+    const SECRET_CODE = '3978128';
+
+    const API_URL =
+        'https://script.google.com/macros/s/AKfycbxUfR_ARS5-U9Od_GcEr25a9Xr8et-VVgtdWqgLVGw5WO7ZmVMbj_Y4IImPusvrzTtxYg/exec';
+
+    let pendingAction = null;
+
+
+    /* =====================================================
+       FORM DATA
+    ===================================================== */
+
+    const FORM_DATA = [
+
+        {
+            id: "lph",
+            title: "Laporan Pemeriksaan Harian (LPH)",
+            icon: "truck",
+            children: [
+                {
+                    name: "LPH Wheel Loader",
+                    link: "https://forms.gle/YzV3hmmFSSiUAZkJ9"
+                },
+                {
+                    name: "LPH Forklift",
+                    link: "https://forms.gle/E6btWm7G5YxrQkyt8"
+                },
+                {
+                    name: "LPH Dumptruck",
+                    link: "https://forms.gle/57WPzJ2LUxqCPtXMA"
+                },
+                {
+                    name: "LPH Excavator",
+                    link: "https://forms.gle/G7uFHthvNmU6ubNP8"
+                }
+            ]
+        },
+
+        {
+            id: "rjo",
+            title: "Repair Job Order (RJO)",
+            icon: "wrench",
+            children: [
+                {
+                    name: "Buka Form RJO",
+                    link: "https://forms.gle/FrSktMFs83bHhPZ39"
+                }
+            ]
+        },
+
+        {
+            id: "ciu",
+            title: "Checklist Inspection Unit",
+            icon: "clipboard-check",
+            children: [
+                {
+                    name: "CIU Dumptruck",
+                    link: "https://forms.gle/2wLcpNpDGGmeWpZy8"
+                },
+                {
+                    name: "CIU Excavator",
+                    link: "https://forms.gle/DXk1yQVa4rns8p6h9"
+                },
+                {
+                    name: "CIU Forklift",
+                    link: "https://forms.gle/4G3usE7nUZyq9xNe8"
+                },
+                {
+                    name: "CIU Wheel Loader",
+                    link: "https://forms.gle/vGaa6pGjcM16MWqk7"
+                }
+            ]
+        },
+
+        {
+            id: "cps",
+            title: "Checklist Periodic Service",
+            icon: "calendar-clock",
+            children: [
+                {
+                    name: "CPS Dumptruck",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLSehLV9Z9ppLAuyWTHd_RpS9OgxXwz7cH6Jv4m3Ov6QeV0ccRA/viewform"
+                },
+                {
+                    name: "CPS Excavator",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLScZVERcQ1GFS29_DTR3YkNiGUqf99O-u-On0PG24hrfFojs-g/viewform"
+                },
+                {
+                    name: "CPS Forklift",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLScXX5R0rOsJxX0kNKEY1pxTRVOQh6lD3YsBjguf53I1pLo7Bw/viewform"
+                },
+                {
+                    name: "CPS Wheel Loader",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLScOD63w9xuMoalEdYcU6YiQIUHbtkBNUT8Me8TpujUrO9jnNg/viewform"
+                }
+            ]
+        },
+
+        {
+            id: "cim",
+            title: "Checklist Inspection Machine",
+            icon: "settings",
+            children: [
+                {
+                    name: "CIM Compressor",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLSfyypoY9V594bImNv6T8HWWBcyG2JS57-p5UTASWKikPOr5rQ/viewform"
+                },
+                {
+                    name: "CIM Crane",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLSfSHoHSzp5iQGtbVtym4ziVhKhdbxpmViC096GAUZhL_pRQKg/viewform"
+                },
+                {
+                    name: "CIM Grinding Machine",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLSeI5LUWrA4UgcozFcHS55CoPXlhwZZZxtLrm66CGM6YVEuBlQ/viewform"
+                },
+                {
+                    name: "CIM Tabung Bertekanan",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLSe7_60xawLnhab7h9kbxleRyQgYvfWSalDuoujIbrudiChTXA/viewform"
+                },
+                {
+                    name: "CIM Welding Machine",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLSejNr0h2V1w6cjxFRkvj4p7kJ7EKGWWRzVBreuxkPMpy2cbUQ/viewform"
+                }
+            ]
+        },
+
+        {
+            id: "usa",
+            title: "Usage & Activity",
+            icon: "history",
+            children: [
+                {
+                    name: "Checklist Oil Usage",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLSfIV1S2Ax2uicpA5AqRDoOPuw0m4lo9VKXP2nS7jtvoB_JMpQ/viewform"
+                },
+                {
+                    name: "Greasing Activity",
+                    link: "https://docs.google.com/forms/d/e/1FAIpQLSeeLpDCfQ2Vj6Wjkx4JCj0sjM2wFSQGb40LqlO6z0YccAMMdw/viewform"
+                }
+            ]
+        },
+
+        {
+            id: "etr",
+            title: "Emergency Trouble Report (ETR)",
+            icon: "alert-octagon",
+            restricted: true,
+            description: "Form repair unit kerusakan fatal/berbahaya.",
+            children: [
+                {
+                    name: "Buka Form ETR",
+                    link: "https://forms.gle/7U7vn9yzpCDWP3nW7"
+                }
+            ]
         }
 
-        function showHome() {
-    document.querySelectorAll(
-        '#homeScreen, #formMenuScreen, #mechanicActivityScreen'
-    ).forEach(s => s.classList.add('hidden'));
+    ];
 
-    document.getElementById('homeScreen').classList.remove('hidden');
-}
 
-        function showFormMenu() {
-    document.querySelectorAll('#homeScreen, #mechanicActivityScreen').forEach(s => {
-        s.classList.add('hidden');
-    });
+    /* =====================================================
+       LOGO
+    ===================================================== */
 
-    document.getElementById('formMenuScreen').classList.remove('hidden');
-    renderForms();
-}
+    function handleLogoError() {
 
-        function renderForms() {
-            const container = document.getElementById('formMenuContainer');
-            container.innerHTML = '';
-            FORM_DATA.forEach(group => {
-                const div = document.createElement('div');
-                div.className = `menu-item p-5 rounded-2xl shadow-sm border border-slate-100 ${group.restricted ? 'menu-item-restricted' : ''}`;
-                div.innerHTML = `
-                    <div class="flex justify-between items-center font-bold text-primary uppercase tracking-wide">
-                        <div class="flex items-center gap-3 text-sm sm:text-base pr-2">
-                            <i data-lucide="${group.icon}" class="w-5 h-5 shrink-0 ${group.restricted ? 'text-red-600' : 'text-amber-600'}"></i>
-                            <div class="flex flex-col">
-                                <span class="${group.restricted ? 'text-red-700' : ''}">${group.title}</span>
-                                ${group.description ? `<p class="text-[10px] font-medium italic opacity-60 normal-case mt-1 leading-tight">${group.description}</p>` : ''}
-                            </div>
+        const logo = document.getElementById('companyLogo');
+        const fallback = document.getElementById('logoFallback');
+
+        if (logo) {
+            logo.classList.add('hidden');
+        }
+
+        if (fallback) {
+            fallback.classList.remove('hidden');
+        }
+
+    }
+
+
+    /* =====================================================
+       SCREEN NAVIGATION
+    ===================================================== */
+
+    function showHome() {
+
+        document.querySelectorAll(
+            '#homeScreen, #formMenuScreen, #mechanicActivityScreen'
+        ).forEach(screen => {
+
+            screen.classList.add('hidden');
+
+        });
+
+        document
+            .getElementById('homeScreen')
+            .classList.remove('hidden');
+
+    }
+
+
+    function showFormMenu() {
+
+        document.querySelectorAll(
+            '#homeScreen, #mechanicActivityScreen'
+        ).forEach(screen => {
+
+            screen.classList.add('hidden');
+
+        });
+
+        document
+            .getElementById('formMenuScreen')
+            .classList.remove('hidden');
+
+        renderForms();
+
+    }
+
+
+    /* =====================================================
+       FORM MENU
+    ===================================================== */
+
+    function renderForms() {
+
+        const container =
+            document.getElementById('formMenuContainer');
+
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        FORM_DATA.forEach(group => {
+
+            const div =
+                document.createElement('div');
+
+            div.className =
+                `menu-item p-5 rounded-2xl shadow-sm border border-slate-100 ${
+                    group.restricted
+                        ? 'menu-item-restricted'
+                        : ''
+                }`;
+
+            div.innerHTML = `
+
+                <div
+                    class="flex justify-between items-center font-bold text-primary uppercase tracking-wide"
+                >
+
+                    <div
+                        class="flex items-center gap-3 text-sm sm:text-base pr-2"
+                    >
+
+                        <i
+                            data-lucide="${group.icon}"
+                            class="w-5 h-5 shrink-0 ${
+                                group.restricted
+                                    ? 'text-red-600'
+                                    : 'text-amber-600'
+                            }"
+                        ></i>
+
+                        <div class="flex flex-col">
+
+                            <span
+                                class="${
+                                    group.restricted
+                                        ? 'text-red-700'
+                                        : ''
+                                }"
+                            >
+                                ${group.title}
+                            </span>
+
+                            ${
+                                group.description
+                                    ? `
+                                        <p
+                                            class="text-[10px] font-medium italic opacity-60 normal-case mt-1 leading-tight"
+                                        >
+                                            ${group.description}
+                                        </p>
+                                      `
+                                    : ''
+                            }
+
                         </div>
-                        <i id="icon-${group.id}" data-lucide="chevron-down" class="w-5 h-5 opacity-40 transition-transform shrink-0"></i>
+
                     </div>
-                    <div id="sub-${group.id}" class="hidden mt-4 space-y-2 border-t border-slate-100 pt-4"></div>
+
+                    <i
+                        id="icon-${group.id}"
+                        data-lucide="chevron-down"
+                        class="w-5 h-5 opacity-40 transition-transform shrink-0"
+                    ></i>
+
+                </div>
+
+                <div
+                    id="sub-${group.id}"
+                    class="hidden mt-4 space-y-2 border-t border-slate-100 pt-4"
+                ></div>
+
+            `;
+
+
+            const sub =
+                div.querySelector(`#sub-${group.id}`);
+
+
+            group.children.forEach(item => {
+
+                const btn =
+                    document.createElement('button');
+
+                btn.className =
+                    "submenu-link block w-full text-left p-3 rounded-xl text-slate-600 font-semibold flex items-center gap-3 bg-slate-50 border border-transparent text-sm";
+
+                btn.innerHTML = `
+                    <i
+                        data-lucide="arrow-right-circle"
+                        class="w-4 h-4 text-amber-500 shrink-0"
+                    ></i>
+
+                    <span>${item.name}</span>
                 `;
-                const sub = div.querySelector(`#sub-${group.id}`);
-                group.children.forEach(item => {
-                    const btn = document.createElement('button');
-                    btn.className = "submenu-link block w-full text-left p-3 rounded-xl text-slate-600 font-semibold flex items-center gap-3 bg-slate-50 border border-transparent text-sm";
-                    btn.innerHTML = `<i data-lucide="arrow-right-circle" class="w-4 h-4 text-amber-500 shrink-0"></i> <span>${item.name}</span>`;
-                    btn.onclick = (e) => {
-                        e.stopPropagation();
-                        // GForms are always treated as "external/form" and open in new tab
-                        if (group.restricted) checkAuth(() => openLink(item.link, true));
-                        else openLink(item.link, true);
-                    };
-                    sub.appendChild(btn);
-                });
-                div.onclick = () => {
-                    const isHidden = sub.classList.contains('hidden');
-                    document.querySelectorAll('#formMenuContainer [id^="sub-"]').forEach(el => el.classList.add('hidden'));
-                    document.querySelectorAll('#formMenuContainer [id^="icon-"]').forEach(el => el.style.transform = 'rotate(0deg)');
-                    if (isHidden) {
-                        sub.classList.remove('hidden');
-                        document.getElementById(`icon-${group.id}`).style.transform = 'rotate(180deg)';
+
+
+                btn.onclick = event => {
+
+                    event.stopPropagation();
+
+                    if (group.restricted) {
+
+                        checkAuth(() =>
+                            openLink(item.link, true)
+                        );
+
+                    } else {
+
+                        openLink(item.link, true);
+
                     }
+
                 };
-                container.appendChild(div);
+
+
+                sub.appendChild(btn);
+
             });
+
+
+            div.onclick = () => {
+
+                const isHidden =
+                    sub.classList.contains('hidden');
+
+
+                document
+                    .querySelectorAll(
+                        '#formMenuContainer [id^="sub-"]'
+                    )
+                    .forEach(el =>
+                        el.classList.add('hidden')
+                    );
+
+
+                document
+                    .querySelectorAll(
+                        '#formMenuContainer [id^="icon-"]'
+                    )
+                    .forEach(el =>
+                        el.style.transform = 'rotate(0deg)'
+                    );
+
+
+                if (isHidden) {
+
+                    sub.classList.remove('hidden');
+
+                    const icon =
+                        document.getElementById(
+                            `icon-${group.id}`
+                        );
+
+                    if (icon) {
+                        icon.style.transform =
+                            'rotate(180deg)';
+                    }
+
+                }
+
+            };
+
+
+            container.appendChild(div);
+
+        });
+
+
+        if (window.lucide) {
             lucide.createIcons();
         }
 
-        /**
-         * opens a link.
-         * @param {string} link - The URL to open.
-         * @param {boolean} isForm - If true, opens in new tab and shows thank you modal.
-         */
-        function openLink(link, isForm = false) {
-            if (!link || link === '#') {
-                showToast("Data sedang disinkronisasi.");
-                return;
-            }
-
-            if (isForm) {
-                // Open in NEW tab
-                window.open(link, '_blank');
-                // Show the "Thank you / Next?" modal
-                showThanks();
-            } else {
-                // Open in CURRENT tab (for Reports/Monitor)
-                window.location.href = link;
-            }
-        }
-
-        function showThanks() {
-            const modal = document.getElementById('thanksModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeThanks() {
-            const modal = document.getElementById('thanksModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function closeWindow() {
-            // Note: browser policy usually prevents closing a window that wasn't opened by script,
-            // but in many mobile environments this will just act as a way to back out or prompt.
-            // As a fallback, we redirect to home if window.close is blocked.
-            window.close();
-            setTimeout(() => {
-                closeThanks();
-                showHome();
-            }, 500);
-        }
-
-        function showToast(message) {
-            const t = document.getElementById("toast");
-            document.getElementById("toastMsg").innerText = message;
-            t.classList.add("show");
-            setTimeout(() => t.classList.remove("show"), 3000);
-        }
-
-        function checkAuth(cb) {
-            pendingAction = cb;
-            document.getElementById('authModal').classList.remove('hidden');
-            document.getElementById('authModal').classList.add('flex');
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordInput').focus();
-        }
-
-        function closeAuth() {
-            document.getElementById('authModal').classList.add('hidden');
-            document.getElementById('authModal').classList.remove('flex');
-        }
-
-        function confirmAuth() {
-            if (document.getElementById('passwordInput').value === SECRET_CODE) {
-                const action = pendingAction;
-                closeAuth();
-                if (action) action();
-            } else {
-                const err = document.getElementById('passwordError');
-                err.classList.remove('hidden');
-                setTimeout(() => err.classList.add('hidden'), 2000);
-            }
-        }
-
-        document.getElementById('passwordInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') confirmAuth(); });
-
-        function showMechanicActivity() {
-
-    document.querySelectorAll(
-        '#homeScreen, #formMenuScreen'
-    ).forEach(s => s.classList.add('hidden'));
-
-    document.getElementById('mechanicActivityScreen').classList.remove('hidden');
-
-    const dateInput = document.getElementById('activityDate');
-
-    if (dateInput) {
-        const today = new Date();
-
-        const localDate = new Date(
-            today.getTime() - today.getTimezoneOffset() * 60000
-        )
-        .toISOString()
-        .split('T')[0];
-
-        dateInput.value = localDate;
     }
 
-    lucide.createIcons();
 
-    loadMechanicMasterData();
-}
+    /* =====================================================
+       OPEN LINK
+    ===================================================== */
 
+    function openLink(link, isForm = false) {
 
-async function loadMechanicMasterData() {
+        if (!link || link === '#') {
 
-    const unitSelect = document.getElementById('activityUnit');
-    const preventiveSelect = document.getElementById('activityPreventive');
-    const remarkSelect = document.getElementById('activityRemark');
-    const repairedBySelect = document.getElementById('activityRepairedBy');
-    const lotoSelect = document.getElementById('activityLoto');
+            showToast(
+                "Data sedang disinkronisasi."
+            );
 
-    try {
+            return;
 
-        // =========================
-        // TAMPILKAN STATUS LOADING
-        // =========================
-
-        unitSelect.innerHTML =
-            '<option value="">Memuat unit...</option>';
-
-        preventiveSelect.innerHTML =
-            '<option value="">Memuat data...</option>';
-
-        remarkSelect.innerHTML =
-            '<option value="">Memuat data...</option>';
-
-        repairedBySelect.innerHTML =
-            '<option value="">Memuat mechanic...</option>';
-
-        lotoSelect.innerHTML =
-            '<option value="">Memuat status...</option>';
+        }
 
 
-        // =========================
-        // AMBIL MASTER DATA
-        // =========================
+        if (isForm) {
 
-        const response = await fetch(
-            API_URL + '?action=master',
-            {
-                method: 'GET',
-                cache: 'no-store'
+            window.open(link, '_blank');
+
+            showThanks();
+
+        } else {
+
+            window.location.href = link;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       THANK YOU
+    ===================================================== */
+
+    function showThanks() {
+
+        const modal =
+            document.getElementById('thanksModal');
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+    }
+
+
+    function closeThanks() {
+
+        const modal =
+            document.getElementById('thanksModal');
+
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+
+    }
+
+
+    function closeWindow() {
+
+        window.close();
+
+        setTimeout(() => {
+
+            closeThanks();
+            showHome();
+
+        }, 500);
+
+    }
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+        const messageElement =
+            document.getElementById("toastMsg");
+
+        if (!toast || !messageElement) {
+            return;
+        }
+
+        messageElement.innerText = message;
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 3000);
+
+    }
+
+
+    /* =====================================================
+       AUTH
+    ===================================================== */
+
+    function checkAuth(callback) {
+
+        pendingAction = callback;
+
+        const modal =
+            document.getElementById('authModal');
+
+        const password =
+            document.getElementById('passwordInput');
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        password.value = '';
+        password.focus();
+
+    }
+
+
+    function closeAuth() {
+
+        const modal =
+            document.getElementById('authModal');
+
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+
+    }
+
+
+    function confirmAuth() {
+
+        const password =
+            document.getElementById('passwordInput');
+
+        if (password.value === SECRET_CODE) {
+
+            const action =
+                pendingAction;
+
+            pendingAction = null;
+
+            closeAuth();
+
+            if (action) {
+                action();
+            }
+
+        } else {
+
+            const error =
+                document.getElementById('passwordError');
+
+            error.classList.remove('hidden');
+
+            setTimeout(() => {
+
+                error.classList.add('hidden');
+
+            }, 2000);
+
+        }
+
+    }
+
+
+    const passwordInput =
+        document.getElementById('passwordInput');
+
+    if (passwordInput) {
+
+        passwordInput.addEventListener(
+            'keydown',
+            event => {
+
+                if (event.key === 'Enter') {
+                    confirmAuth();
+                }
+
             }
         );
 
-        if (!response.ok) {
-            throw new Error(
-                'HTTP Error ' + response.status
+    }
+
+
+    /* =====================================================
+       MECHANIC ACTIVITY SCREEN
+    ===================================================== */
+
+    function showMechanicActivity() {
+
+        document.querySelectorAll(
+            '#homeScreen, #formMenuScreen, #mechanicActivityScreen'
+        ).forEach(screen => {
+
+            screen.classList.add('hidden');
+
+        });
+
+
+        const screen =
+            document.getElementById(
+                'mechanicActivityScreen'
             );
+
+        if (!screen) {
+
+            console.error(
+                'mechanicActivityScreen tidak ditemukan.'
+            );
+
+            return;
+
         }
 
 
-        const data = await response.json();
-
-        console.log('MASTER DATA:', data);
+        screen.classList.remove('hidden');
 
 
-        if (!data || !data.units) {
-            throw new Error(
-                'Master data tidak valid.'
-            );
+        const dateInput =
+            document.getElementById('activityDate');
+
+
+        if (dateInput) {
+
+            dateInput.value =
+                getTodayLocalDate();
+
         }
 
 
-        // =========================
-        // UNIT
-        // =========================
+        if (window.lucide) {
+            lucide.createIcons();
+        }
 
-        unitSelect.innerHTML =
-            '<option value="">Pilih Unit</option>';
 
-        data.units.forEach(unit => {
+        loadMechanicMasterData();
 
-            const option =
-                document.createElement('option');
+    }
 
-            option.value = unit;
-            option.textContent = unit;
 
-            unitSelect.appendChild(option);
+    /* =====================================================
+       TODAY DATE
+    ===================================================== */
+
+    function getTodayLocalDate() {
+
+        const today =
+            new Date();
+
+        const localDate =
+            new Date(
+                today.getTime() -
+                today.getTimezoneOffset() * 60000
+            );
+
+        return localDate
+            .toISOString()
+            .split('T')[0];
+
+    }
+
+
+    /* =====================================================
+       SAFE ARRAY
+    ===================================================== */
+
+    function safeArray(value) {
+
+        if (Array.isArray(value)) {
+            return value;
+        }
+
+        if (
+            value &&
+            typeof value === 'object'
+        ) {
+            return Object.values(value);
+        }
+
+        return [];
+
+    }
+
+
+    /* =====================================================
+       RENDER MULTI CHECKBOX
+    ===================================================== */
+
+    function renderMultiCheckboxes(
+        containerId,
+        items,
+        name
+    ) {
+
+        const container =
+            document.getElementById(containerId);
+
+
+        if (!container) {
+
+            console.error(
+                `Container ${containerId} tidak ditemukan.`
+            );
+
+            return;
+
+        }
+
+
+        container.innerHTML = '';
+
+
+        const cleanItems =
+            safeArray(items)
+                .filter(item =>
+                    item !== null &&
+                    item !== undefined &&
+                    String(item).trim() !== ''
+                )
+                .map(item => String(item).trim());
+
+
+        if (cleanItems.length === 0) {
+
+            container.innerHTML = `
+
+                <div
+                    class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 text-sm text-slate-400 italic"
+                >
+                    Tidak ada data tersedia.
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        cleanItems.forEach((item, index) => {
+
+            const wrapper =
+                document.createElement('div');
+
+            wrapper.className =
+                'multi-option border-2 border-slate-200 bg-slate-50 rounded-2xl p-3';
+
+
+            const safeId =
+                `${name}_${index}_${Date.now()}`;
+
+
+            wrapper.innerHTML = `
+
+                <label
+                    for="${safeId}"
+                    class="flex items-center gap-3"
+                >
+
+                    <input
+                        type="checkbox"
+                        id="${safeId}"
+                        name="${name}"
+                        value="${escapeHtmlAttribute(item)}"
+                        class="multi-option-check"
+                    >
+
+                    <span
+                        class="text-sm font-semibold text-slate-700"
+                    >
+                        ${escapeHtml(item)}
+                    </span>
+
+                </label>
+
+            `;
+
+
+            const checkbox =
+                wrapper.querySelector('input');
+
+
+            checkbox.addEventListener(
+                'change',
+                () => {
+
+                    if (checkbox.checked) {
+
+                        wrapper.classList.add(
+                            'selected'
+                        );
+
+                    } else {
+
+                        wrapper.classList.remove(
+                            'selected'
+                        );
+
+                    }
+
+                }
+            );
+
+
+            container.appendChild(wrapper);
 
         });
 
-
-        // =========================
-        // PREVENTIVE
-        // =========================
-
-        preventiveSelect.innerHTML =
-            '<option value="">Pilih Preventive</option>';
-
-        data.preventive.forEach(item => {
-
-            const option =
-                document.createElement('option');
-
-            option.value = item;
-            option.textContent = item;
-
-            preventiveSelect.appendChild(option);
-
-        });
+    }
 
 
-        // =========================
-        // REMARK
-        // =========================
+    /* =====================================================
+       ESCAPE HTML
+    ===================================================== */
 
-        remarkSelect.innerHTML =
-            '<option value="">Pilih Remark</option>';
+    function escapeHtml(value) {
 
-        data.remarks.forEach(item => {
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
 
-            const option =
-                document.createElement('option');
-
-            option.value = item;
-            option.textContent = item;
-
-            remarkSelect.appendChild(option);
-
-        });
+    }
 
 
-        // =========================
-        // REPAIRED BY
-        // =========================
+    function escapeHtmlAttribute(value) {
 
-        repairedBySelect.innerHTML =
-            '<option value="">Pilih Mechanic</option>';
+        return escapeHtml(value);
 
-        data.repairedBy.forEach(item => {
-
-            const option =
-                document.createElement('option');
-
-            option.value = item;
-            option.textContent = item;
-
-            repairedBySelect.appendChild(option);
-
-        });
+    }
 
 
-        // =========================
-        // LOTO
-        // =========================
+    /* =====================================================
+       GET SELECTED CHECKBOXES
+    ===================================================== */
 
-        lotoSelect.innerHTML =
-            '<option value="">Pilih Status LOTO</option>';
+    function getSelectedValues(name) {
 
-        data.loto.forEach(item => {
+        return Array.from(
+            document.querySelectorAll(
+                `input[name="${name}"]:checked`
+            )
+        )
+        .map(input => input.value)
+        .filter(value =>
+            value &&
+            value.trim() !== ''
+        );
 
-            const option =
-                document.createElement('option');
+    }
 
-            option.value = item;
-            option.textContent = item;
 
-            lotoSelect.appendChild(option);
+    /* =====================================================
+       LOAD MASTER DATA
+    ===================================================== */
 
-        });
+    async function loadMechanicMasterData() {
+
+        const unitSelect =
+            document.getElementById(
+                'activityUnit'
+            );
+
+        const remarkSelect =
+            document.getElementById(
+                'activityRemark'
+            );
+
+        const lotoSelect =
+            document.getElementById(
+                'activityLoto'
+            );
+
+        const preventiveContainer =
+            document.getElementById(
+                'preventiveContainer'
+            );
+
+        const repairedByContainer =
+            document.getElementById(
+                'repairedByContainer'
+            );
 
 
         console.log(
-            'Master data berhasil dimuat.'
+            'Memulai load master data...'
         );
 
 
-    } catch (error) {
+        /*
+         * CEK ELEMEN
+         */
 
-        console.error(
-            'Gagal memuat master data:',
-            error
-        );
+        if (!unitSelect) {
 
+            console.error(
+                'ERROR: activityUnit tidak ditemukan.'
+            );
 
-        unitSelect.innerHTML =
-            '<option value="">Gagal memuat unit</option>';
+            return;
 
-        preventiveSelect.innerHTML =
-            '<option value="">Gagal memuat data</option>';
-
-        remarkSelect.innerHTML =
-            '<option value="">Gagal memuat data</option>';
-
-        repairedBySelect.innerHTML =
-            '<option value="">Gagal memuat mechanic</option>';
-
-        lotoSelect.innerHTML =
-            '<option value="">Gagal memuat status</option>';
-
-
-        showToast(
-            'Gagal mengambil master data dari server.'
-        );
-    }
-}
-document.getElementById('mechanicActivityForm').addEventListener('submit', async function(e) {
-
-    e.preventDefault();
-
-    const submitBtn = document.getElementById('submitActivityBtn');
-
-    const payload = {
-        action: 'submitActivity',
-        date: document.getElementById('activityDate').value,
-        unit: document.getElementById('activityUnit').value,
-        preventive: document.getElementById('activityPreventive').value,
-        trouble: document.getElementById('activityTrouble').value,
-        remark: document.getElementById('activityRemark').value,
-        repairedBy: Array.from(
-    document.querySelectorAll('.repaired-by-checkbox:checked')
-)
-.map(checkbox => checkbox.value)
-.join(', '),
-        shift: document.getElementById('activityShift').value,
-        loto: document.getElementById('activityLoto').value
-    };
-
-    console.log('SUBMIT PAYLOAD:', payload);
-
-    try {
-
-        submitBtn.disabled = true;
-
-        submitBtn.innerHTML = `
-            <i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>
-            SUBMITTING...
-        `;
-
-        lucide.createIcons();
-
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-
-        console.log('SUBMIT RESPONSE:', result);
-
-        if (!result.success) {
-            throw new Error(result.message || 'Gagal menyimpan data.');
         }
 
-        showToast('Activity berhasil disimpan.');
 
-        document.getElementById('mechanicActivityForm').reset();
+        if (!remarkSelect) {
 
-        // Set tanggal kembali ke hari ini
-        const today = new Date();
+            console.error(
+                'ERROR: activityRemark tidak ditemukan.'
+            );
 
-        const localDate = new Date(
-            today.getTime() - today.getTimezoneOffset() * 60000
-        )
-        .toISOString()
-        .split('T')[0];
+            return;
 
-        document.getElementById('activityDate').value = localDate;
+        }
 
-    } catch (error) {
 
-        console.error('SUBMIT ERROR:', error);
+        if (!lotoSelect) {
 
-        showToast('Gagal menyimpan activity.');
+            console.error(
+                'ERROR: activityLoto tidak ditemukan.'
+            );
 
-    } finally {
+            return;
 
-        submitBtn.disabled = false;
+        }
 
-        submitBtn.innerHTML = `
-            <i data-lucide="send" class="w-5 h-5"></i>
-            SUBMIT ACTIVITY
-        `;
 
-        lucide.createIcons();
+        try {
+
+            /*
+             * LOADING STATE
+             */
+
+            unitSelect.innerHTML =
+                '<option value="">Memuat unit...</option>';
+
+            remarkSelect.innerHTML =
+                '<option value="">Memuat data...</option>';
+
+            lotoSelect.innerHTML =
+                '<option value="">Memuat status...</option>';
+
+
+            if (preventiveContainer) {
+
+                preventiveContainer.innerHTML = `
+
+                    <div
+                        class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 text-sm text-slate-400"
+                    >
+                        Memuat data preventive...
+                    </div>
+
+                `;
+
+            }
+
+
+            if (repairedByContainer) {
+
+                repairedByContainer.innerHTML = `
+
+                    <div
+                        class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 text-sm text-slate-400"
+                    >
+                        Memuat mechanic...
+                    </div>
+
+                `;
+
+            }
+
+
+            /*
+             * FETCH
+             */
+
+            const response =
+                await fetch(
+                    API_URL + '?action=master',
+                    {
+                        method: 'GET',
+                        cache: 'no-store'
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    'HTTP Error ' +
+                    response.status
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            console.log(
+                'MASTER DATA:',
+                data
+            );
+
+
+            if (
+                !data ||
+                typeof data !== 'object'
+            ) {
+
+                throw new Error(
+                    'Response master data kosong/tidak valid.'
+                );
+
+            }
+
+
+            /*
+             * =========================================
+             * UNIT
+             * =========================================
+             */
+
+            const units =
+                safeArray(data.units);
+
+
+            unitSelect.innerHTML =
+                '<option value="">Pilih Unit</option>';
+
+
+            units.forEach(unit => {
+
+                if (
+                    unit === null ||
+                    unit === undefined ||
+                    String(unit).trim() === ''
+                ) {
+                    return;
+                }
+
+
+                const option =
+                    document.createElement(
+                        'option'
+                    );
+
+                option.value =
+                    String(unit);
+
+                option.textContent =
+                    String(unit);
+
+                unitSelect.appendChild(option);
+
+            });
+
+
+            /*
+             * =========================================
+             * PREVENTIVE
+             * OPTIONAL + MULTIPLE
+             * =========================================
+             */
+
+            const preventive =
+                safeArray(
+                    data.preventive ??
+                    data.preventives ??
+                    data.Preventive
+                );
+
+
+            renderMultiCheckboxes(
+                'preventiveContainer',
+                preventive,
+                'preventive-checkbox'
+            );
+
+
+            /*
+             * =========================================
+             * REMARK
+             * =========================================
+             */
+
+            const remarks =
+                safeArray(
+                    data.remarks ??
+                    data.remark ??
+                    data.Remark
+                );
+
+
+            remarkSelect.innerHTML =
+                '<option value="">Pilih Remark</option>';
+
+
+            remarks.forEach(item => {
+
+                if (
+                    item === null ||
+                    item === undefined ||
+                    String(item).trim() === ''
+                ) {
+                    return;
+                }
+
+
+                const option =
+                    document.createElement(
+                        'option'
+                    );
+
+                option.value =
+                    String(item);
+
+                option.textContent =
+                    String(item);
+
+                remarkSelect.appendChild(
+                    option
+                );
+
+            });
+
+
+            /*
+             * =========================================
+             * REPAIRED BY
+             * OPTIONAL + MULTIPLE
+             * =========================================
+             */
+
+            const repairedBy =
+                safeArray(
+                    data.repairedBy ??
+                    data.repairedby ??
+                    data.mechanics ??
+                    data.mechanic ??
+                    data.RepairedBy
+                );
+
+
+            renderMultiCheckboxes(
+                'repairedByContainer',
+                repairedBy,
+                'repaired-by-checkbox'
+            );
+
+
+            /*
+             * =========================================
+             * LOTO
+             * =========================================
+             */
+
+            const loto =
+                safeArray(
+                    data.loto ??
+                    data.LOTO ??
+                    data.statusLoto
+                );
+
+
+            lotoSelect.innerHTML =
+                '<option value="">Pilih Status LOTO</option>';
+
+
+            loto.forEach(item => {
+
+                if (
+                    item === null ||
+                    item === undefined ||
+                    String(item).trim() === ''
+                ) {
+                    return;
+                }
+
+
+                const option =
+                    document.createElement(
+                        'option'
+                    );
+
+                option.value =
+                    String(item);
+
+                option.textContent =
+                    String(item);
+
+                lotoSelect.appendChild(
+                    option
+                );
+
+            });
+
+
+            /*
+             * =========================================
+             * DEBUG
+             * =========================================
+             */
+
+            console.log(
+                'Jumlah Unit:',
+                units.length
+            );
+
+            console.log(
+                'Jumlah Preventive:',
+                preventive.length
+            );
+
+            console.log(
+                'Jumlah Remark:',
+                remarks.length
+            );
+
+            console.log(
+                'Jumlah Mechanic:',
+                repairedBy.length
+            );
+
+            console.log(
+                'Jumlah LOTO:',
+                loto.length
+            );
+
+
+            console.log(
+                'Master data berhasil dimuat.'
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                'Gagal memuat master data:',
+                error
+            );
+
+
+            /*
+             * ERROR STATE
+             */
+
+            if (unitSelect) {
+
+                unitSelect.innerHTML =
+                    '<option value="">Gagal memuat unit</option>';
+
+            }
+
+
+            if (remarkSelect) {
+
+                remarkSelect.innerHTML =
+                    '<option value="">Gagal memuat data</option>';
+
+            }
+
+
+            if (lotoSelect) {
+
+                lotoSelect.innerHTML =
+                    '<option value="">Gagal memuat status</option>';
+
+            }
+
+
+            if (preventiveContainer) {
+
+                preventiveContainer.innerHTML = `
+
+                    <div
+                        class="p-4 rounded-2xl bg-red-50 border-2 border-red-100 text-sm text-red-500"
+                    >
+                        Gagal memuat data preventive.
+                    </div>
+
+                `;
+
+            }
+
+
+            if (repairedByContainer) {
+
+                repairedByContainer.innerHTML = `
+
+                    <div
+                        class="p-4 rounded-2xl bg-red-50 border-2 border-red-100 text-sm text-red-500"
+                    >
+                        Gagal memuat data mechanic.
+                    </div>
+
+                `;
+
+            }
+
+
+            showToast(
+                'Gagal mengambil master data dari server.'
+            );
+
+        }
+
     }
 
-});
-        window.onload = () => {
-    lucide.createIcons();
-    showHome();
-};
+
+    /* =====================================================
+       SUBMIT MECHANIC ACTIVITY
+    ===================================================== */
+
+    const mechanicActivityForm =
+        document.getElementById(
+            'mechanicActivityForm'
+        );
+
+
+    if (mechanicActivityForm) {
+
+        mechanicActivityForm.addEventListener(
+            'submit',
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const submitBtn =
+                    document.getElementById(
+                        'submitActivityBtn'
+                    );
+
+
+                /*
+                 * AMBIL PREVENTIVE
+                 */
+
+                const selectedPreventive =
+                    getSelectedValues(
+                        'preventive-checkbox'
+                    );
+
+
+                /*
+                 * AMBIL MECHANIC
+                 */
+
+                const selectedMechanics =
+                    getSelectedValues(
+                        'repaired-by-checkbox'
+                    );
+
+
+                /*
+                 * PAYLOAD
+                 */
+
+                const payload = {
+
+                    action: 'submitActivity',
+
+                    date:
+                        document.getElementById(
+                            'activityDate'
+                        ).value,
+
+                    unit:
+                        document.getElementById(
+                            'activityUnit'
+                        ).value,
+
+                    preventive:
+                        selectedPreventive.join(', '),
+
+                    trouble:
+                        document.getElementById(
+                            'activityTrouble'
+                        ).value.trim(),
+
+                    remark:
+                        document.getElementById(
+                            'activityRemark'
+                        ).value,
+
+                    repairedBy:
+                        selectedMechanics.join(', '),
+
+                    shift:
+                        document.getElementById(
+                            'activityShift'
+                        ).value,
+
+                    loto:
+                        document.getElementById(
+                            'activityLoto'
+                        ).value
+
+                };
+
+
+                console.log(
+                    '================================'
+                );
+
+                console.log(
+                    'SUBMIT PAYLOAD:'
+                );
+
+                console.log(
+                    payload
+                );
+
+                console.log(
+                    '================================'
+                );
+
+
+                try {
+
+                    submitBtn.disabled = true;
+
+
+                    submitBtn.innerHTML = `
+
+                        <i
+                            data-lucide="loader-2"
+                            class="w-5 h-5 animate-spin"
+                        ></i>
+
+                        SUBMITTING...
+
+                    `;
+
+
+                    if (window.lucide) {
+                        lucide.createIcons();
+                    }
+
+
+                    /*
+                     * POST KE GOOGLE APPS SCRIPT
+                     */
+
+                    const response =
+                        await fetch(
+                            API_URL,
+                            {
+                                method: 'POST',
+                                body: JSON.stringify(
+                                    payload
+                                )
+                            }
+                        );
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            'HTTP Error ' +
+                            response.status
+                        );
+
+                    }
+
+
+                    const result =
+                        await response.json();
+
+
+                    console.log(
+                        'SUBMIT RESPONSE:',
+                        result
+                    );
+
+
+                    if (
+                        !result ||
+                        result.success !== true
+                    ) {
+
+                        throw new Error(
+                            result?.message ||
+                            'Gagal menyimpan data.'
+                        );
+
+                    }
+
+
+                    /*
+                     * BERHASIL
+                     */
+
+                    showToast(
+                        'Activity berhasil disimpan.'
+                    );
+
+
+                    /*
+                     * RESET FORM
+                     */
+
+                    mechanicActivityForm.reset();
+
+
+                    /*
+                     * KEMBALIKAN TANGGAL
+                     */
+
+                    document.getElementById(
+                        'activityDate'
+                    ).value =
+                        getTodayLocalDate();
+
+
+                    /*
+                     * RELOAD MASTER DATA
+                     * supaya checkbox kembali bersih
+                     */
+
+                    await loadMechanicMasterData();
+
+
+                } catch (error) {
+
+                    console.error(
+                        'SUBMIT ERROR:',
+                        error
+                    );
+
+
+                    showToast(
+                        'Gagal menyimpan activity: ' +
+                        error.message
+                    );
+
+
+                } finally {
+
+                    submitBtn.disabled = false;
+
+
+                    submitBtn.innerHTML = `
+
+                        <i
+                            data-lucide="send"
+                            class="w-5 h-5"
+                        ></i>
+
+                        SUBMIT ACTIVITY
+
+                    `;
+
+
+                    if (window.lucide) {
+                        lucide.createIcons();
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       INITIALIZATION
+    ===================================================== */
+
+    window.onload = () => {
+
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        showHome();
+
+    };
+
 </script>
 
 </body>
