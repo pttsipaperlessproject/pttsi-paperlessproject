@@ -3,456 +3,2863 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>PAPERLESS PROJECT - PT TSI</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        body {
+            font-family: 'Inter', sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fafc 0%,
+                    #f1f5f9 100%
+                );
+
             min-height: 100vh;
+
             color: #1e293b;
         }
-        
-        .color-primary { background-color: #1E3A8A; }
-        .text-primary { color: #1E3A8A; }
-        
-        .fade-in { 
-            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+
+
+        .color-primary {
+            background-color: #1E3A8A;
         }
-        
+
+
+        .text-primary {
+            color: #1E3A8A;
+        }
+
+
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
+
+        .fade-in {
+            animation:
+                fadeIn
+                0.5s
+                cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
         }
 
-        .menu-item {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border-left: 5px solid #D97706;
-            background: #ffffff;
-        }
-        
-        .menu-item:hover {
-            background-color: #fffbeb;
-            transform: translateX(5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+
+        .slide-up {
+            animation:
+                slideUp
+                0.45s
+                cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .menu-item-restricted {
-            border-left: 5px solid #dc2626 !important;
-            background: #fef2f2 !important;
-        }
-        
-        .menu-item-restricted:hover {
-            background-color: #fee2e2 !important;
+
+        @keyframes slideUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
         }
 
-        .submenu-link {
-            transition: all 0.2s ease;
-        }
-        
-        .submenu-link:hover {
-            background-color: #FCD34D;
-            color: #1E3A8A !important;
-            padding-left: 1rem;
-        }
+
+        /* =====================================================
+           GLASS PANEL
+        ===================================================== */
 
         .glass-panel {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            background:
+                rgba(255, 255, 255, 0.95);
+
+            backdrop-filter:
+                blur(10px);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.2);
         }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
 
         .logo-wrapper {
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            transition:
+                transform
+                0.4s
+                cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        
+
+
         .logo-wrapper:hover {
-            transform: scale(1.08) rotate(2deg);
+
+            transform:
+                scale(1.08)
+                rotate(2deg);
         }
+
 
         .logo-shadow {
-            filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+
+            filter:
+                drop-shadow(
+                    0 10px 8px
+                    rgba(0, 0, 0, 0.04)
+                )
+                drop-shadow(
+                    0 4px 3px
+                    rgba(0, 0, 0, 0.1)
+                );
         }
+
+
+        /* =====================================================
+           MAIN MENU CARD
+        ===================================================== */
+
+        .main-menu-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition:
+                all
+                0.3s
+                cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+
+        .main-menu-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 20px 30px -10px
+                rgba(15, 23, 42, 0.15);
+        }
+
+
+        .main-menu-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 140px;
+            height: 140px;
+
+            right: -45px;
+            top: -45px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           MENU ITEM
+        ===================================================== */
+
+        .menu-item {
+
+            position: relative;
+
+            transition:
+                all
+                0.25s
+                cubic-bezier(0.4, 0, 0.2, 1);
+
+            cursor: pointer;
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            border-left:
+                5px solid
+                #D97706;
+        }
+
+
+        .menu-item:hover {
+
+            transform:
+                translateX(5px);
+
+            background:
+                #fffbeb;
+
+            border-color:
+                #fde68a;
+
+            box-shadow:
+                0 12px 20px -8px
+                rgba(0, 0, 0, 0.10);
+        }
+
+
+        .menu-item-restricted {
+
+            border-left:
+                5px solid
+                #dc2626 !important;
+
+            background:
+                #fffafa !important;
+        }
+
+
+        .menu-item-restricted:hover {
+
+            background:
+                #fef2f2 !important;
+
+            border-color:
+                #fecaca !important;
+        }
+
+
+        /* =====================================================
+           SUBMENU
+        ===================================================== */
+
+        .submenu-wrapper {
+
+            animation:
+                submenuOpen
+                0.25s
+                ease;
+        }
+
+
+        @keyframes submenuOpen {
+
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .submenu-link {
+
+            transition:
+                all
+                0.2s
+                ease;
+        }
+
+
+        .submenu-link:hover {
+
+            background:
+                #fef3c7;
+
+            color:
+                #1E3A8A !important;
+
+            padding-left:
+                1.1rem;
+
+            border-color:
+                #fde68a;
+        }
+
+
+        /* =====================================================
+           CATEGORY ICON
+        ===================================================== */
+
+        .category-icon {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                12px;
+
+            flex-shrink:
+                0;
+        }
+
+
+        /* =====================================================
+           WORKSHOP
+        ===================================================== */
+
+        .workshop-card {
+
+            transition:
+                all
+                0.3s
+                ease;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+        }
+
+
+        .workshop-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 25px -10px
+                rgba(15, 23, 42, 0.25);
+        }
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .modal-box {
+
+            animation:
+                modalIn
+                0.3s
+                cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+
+        @keyframes modalIn {
+
+            from {
+
+                opacity:
+                    0;
+
+                transform:
+                    translateY(15px)
+                    scale(0.97);
+            }
+
+            to {
+
+                opacity:
+                    1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
 
         #toast {
-            visibility: hidden;
-            min-width: 300px;
-            background-color: #1e293b;
-            color: #fff;
-            text-align: center;
-            border-radius: 12px;
-            padding: 16px;
-            position: fixed;
-            z-index: 100;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            border: 1px solid #334155;
+
+            visibility:
+                hidden;
+
+            min-width:
+                300px;
+
+            background:
+                #1e293b;
+
+            color:
+                #ffffff;
+
+            text-align:
+                center;
+
+            border-radius:
+                12px;
+
+            padding:
+                16px;
+
+            position:
+                fixed;
+
+            z-index:
+                100;
+
+            left:
+                50%;
+
+            bottom:
+                30px;
+
+            transform:
+                translateX(-50%);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,0.2);
+
+            border:
+                1px solid
+                #334155;
         }
+
 
         #toast.show {
-            visibility: visible;
-            animation: fadein_toast 0.5s, fadeout_toast 0.5s 2.5s;
+
+            visibility:
+                visible;
+
+            animation:
+                fadein_toast
+                0.5s,
+
+                fadeout_toast
+                0.5s
+                2.5s;
         }
+
 
         @keyframes fadein_toast {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
+
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+
         }
+
 
         @keyframes fadeout_toast {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
+
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+
         }
+
+
+        /* =====================================================
+           SCROLLBAR
+        ===================================================== */
+
+        ::-webkit-scrollbar {
+
+            width:
+                8px;
+
+            height:
+                8px;
+        }
+
+
+        ::-webkit-scrollbar-track {
+
+            background:
+                #f1f5f9;
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            background:
+                #cbd5e1;
+
+            border-radius:
+                999px;
+        }
+
+
+        ::-webkit-scrollbar-thumb:hover {
+
+            background:
+                #94a3b8;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
 
         @media (max-width: 640px) {
-            .glass-panel { padding: 1.5rem !important; }
+
+            .glass-panel {
+
+                padding:
+                    1.25rem !important;
+
+                border-radius:
+                    1.5rem !important;
+            }
+
+
+            #toast {
+
+                min-width:
+                    260px;
+
+                max-width:
+                    calc(100vw - 30px);
+            }
+
         }
+
     </style>
 </head>
+
+
 <body class="flex flex-col items-center p-4 sm:p-8">
 
-    <main class="w-full max-w-4xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in">
-        <!-- Header -->
-        <header id="mainHeader" class="w-full mb-10 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
+
+    <!-- =====================================================
+         MAIN CONTAINER
+    ===================================================== -->
+
+    <main
+        class="
+            w-full
+            max-w-5xl
+            flex-grow
+            glass-panel
+            p-6
+            sm:p-10
+            rounded-3xl
+            shadow-2xl
+            relative
+            fade-in
+        "
+    >
+
+
+        <!-- =====================================================
+             HEADER
+        ===================================================== -->
+
+        <header
+            id="mainHeader"
+            class="
+                w-full
+                mb-8
+                pb-6
+                border-b-2
+                border-slate-100
+                flex
+                flex-col
+                items-center
+            "
+        >
+
+
+            <!-- LOGO -->
+
             <div class="mb-4 logo-wrapper">
-                <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-                    <img src="default_logo.png" alt="Logo PT TSI" class="w-full h-full object-contain" id="companyLogo" onerror="handleLogoError()">
-                    <div id="logoFallback" class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white">
-                        <span class="font-black text-2xl">TSI</span>
+
+                <div
+                    class="
+                        w-24
+                        h-24
+                        flex
+                        items-center
+                        justify-center
+                        bg-white
+                        rounded-2xl
+                        logo-shadow
+                        overflow-hidden
+                        p-2
+                    "
+                >
+
+                    <img
+                        src="default_logo.png"
+                        alt="Logo PT TSI"
+                        class="
+                            w-full
+                            h-full
+                            object-contain
+                        "
+                        id="companyLogo"
+                        onerror="handleLogoError()"
+                    >
+
+
+                    <div
+                        id="logoFallback"
+                        class="
+                            hidden
+                            flex
+                            flex-col
+                            items-center
+                            justify-center
+                            bg-blue-900
+                            w-full
+                            h-full
+                            text-white
+                        "
+                    >
+
+                        <span
+                            class="
+                                font-black
+                                text-2xl
+                            "
+                        >
+                            TSI
+                        </span>
+
                     </div>
+
                 </div>
+
             </div>
-            <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
-                <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+
+
+            <!-- COMPANY TITLE -->
+
+            <div
+                class="
+                    color-primary
+                    text-white
+                    px-7
+                    sm:px-10
+                    py-4
+                    rounded-2xl
+                    shadow-lg
+                    flex
+                    flex-col
+                    items-center
+                    gap-1
+                    max-w-full
+                "
+            >
+
+                <h1
+                    class="
+                        text-xl
+                        sm:text-2xl
+                        font-black
+                        uppercase
+                        tracking-[0.1em]
+                        text-center
+                    "
+                >
                     PAPERLESS PROJECT
                 </h1>
-                <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-                <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+
+
+                <div
+                    class="
+                        h-0.5
+                        w-16
+                        bg-amber-500
+                        rounded-full
+                        my-1
+                    "
+                ></div>
+
+
+                <h2
+                    class="
+                        text-sm
+                        sm:text-lg
+                        font-bold
+                        uppercase
+                        tracking-widest
+                        text-blue-100
+                        text-center
+                    "
+                >
                     PT TATSUMI SERUNI INDONESIA
                 </h2>
+
             </div>
-            <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
+
+
+            <div
+                class="
+                    mt-3
+                    text-[10px]
+                    font-bold
+                    text-slate-400
+                    tracking-[0.3em]
+                    uppercase
+                "
+            >
                 Digitalization Initiative v2.0
             </div>
+
         </header>
 
-        <!-- 1. HOME SCREEN -->
-        <div id="homeScreen" class="space-y-6 flex flex-col items-center text-center fade-in">
-            <div class="space-y-2 mb-4">
-                <h2 class="text-3xl font-extrabold text-slate-800 tracking-tight">Portal Layanan Digital</h2>
-                <p class="text-slate-500 font-medium">Sistem Digitalisasi Data Operasional Terpadu.</p>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-                <!-- FORM MENU -->
-                <button onclick="showFormMenu()" class="group bg-blue-800 text-white font-bold py-10 px-6 rounded-2xl shadow-xl hover:bg-blue-700 transition-all duration-300 flex flex-col items-center justify-center space-y-4 border-b-8 border-blue-950 active:scale-95">
-                    <i data-lucide="file-text" class="w-12 h-12 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xl tracking-wide uppercase">Menu Formulir</span>
-                </button>
-                
-                <!-- NEW REPORT MENU LINK -->
-                <button onclick="checkAuth(() => openLink('https://pttsipaperlessproject2-report.netlify.app/', false))" class="group bg-amber-600 text-white font-bold py-10 px-6 rounded-2xl shadow-xl hover:bg-amber-500 transition-all duration-300 flex flex-col items-center justify-center space-y-4 border-b-8 border-amber-800 active:scale-95">
-                    <i data-lucide="bar-chart-3" class="w-12 h-12 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xl tracking-wide uppercase">Menu Laporan</span>
-                </button>
-            </div>
+        <!-- =====================================================
+             HOME SCREEN
+        ===================================================== -->
 
-            <!-- NEW WORKSHOP MONITOR LINK -->
-            <button onclick="openLink('https://pttsipaperlessproject2-workshop.netlify.app/', false)" class="w-full group bg-slate-800 text-white font-bold p-6 rounded-2xl shadow-lg hover:bg-slate-700 transition-all duration-300 flex flex-col sm:flex-row items-center justify-center gap-4 active:scale-95 text-center sm:text-left">
-                <div class="bg-slate-700 text-amber-400 p-3 rounded-xl group-hover:scale-110 transition-transform border border-slate-600">
-                    <i data-lucide="monitor" class="w-8 h-8"></i>
+        <div
+            id="homeScreen"
+            class="
+                space-y-6
+                flex
+                flex-col
+                items-center
+                text-center
+                fade-in
+            "
+        >
+
+
+            <!-- PAGE TITLE -->
+
+            <div
+                class="
+                    space-y-2
+                    mb-3
+                "
+            >
+
+                <div
+                    class="
+                        inline-flex
+                        items-center
+                        gap-2
+                        bg-blue-50
+                        text-blue-800
+                        px-4
+                        py-2
+                        rounded-full
+                        text-[10px]
+                        font-black
+                        uppercase
+                        tracking-[0.15em]
+                        border
+                        border-blue-100
+                    "
+                >
+
+                    <i
+                        data-lucide="layout-dashboard"
+                        class="w-4 h-4"
+                    ></i>
+
+                    Digital Portal
+
                 </div>
-                <div>
-                    <span class="text-xl block font-black uppercase tracking-wider">Workshop Live Monitor</span>
-                    <span class="text-[10px] sm:text-xs font-medium text-slate-300 italic block mt-1">
-                        Pantau status pengerjaan unit dan aktivitas workshop secara real-time.
-                    </span>
-                </div>
-            </button>
-        </div>
 
-        <!-- 2. FORM MENU SCREEN -->
-        <div id="formMenuScreen" class="space-y-6 hidden fade-in">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-bold text-primary flex items-center gap-2">
-                    <i data-lucide="clipboard-list"></i> Digital Form Repository
+
+                <h2
+                    class="
+                        text-3xl
+                        sm:text-4xl
+                        font-extrabold
+                        text-slate-800
+                        tracking-tight
+                    "
+                >
+                    Portal Layanan Digital
                 </h2>
-                <button onclick="showHome()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm">
-                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali
+
+
+                <p
+                    class="
+                        text-slate-500
+                        font-medium
+                        text-sm
+                        max-w-xl
+                        mx-auto
+                    "
+                >
+                    Sistem Digitalisasi Data Operasional Terpadu
+                    PT Tatsumi Seruni Indonesia.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 MAIN SERVICES
+            ================================================= -->
+
+            <div
+                class="
+                    grid
+                    grid-cols-1
+                    md:grid-cols-2
+                    gap-5
+                    w-full
+                "
+            >
+
+
+                <!-- FORM -->
+
+                <button
+                    onclick="showFormMenu()"
+                    class="
+                        main-menu-card
+                        group
+                        bg-blue-800
+                        text-white
+                        font-bold
+                        p-7
+                        sm:p-9
+                        rounded-2xl
+                        shadow-lg
+                        flex
+                        flex-col
+                        items-center
+                        justify-center
+                        gap-4
+                        border-b-8
+                        border-blue-950
+                        active:scale-[0.98]
+                    "
+                >
+
+                    <div
+                        class="
+                            bg-blue-700/60
+                            p-4
+                            rounded-2xl
+                            border
+                            border-blue-500/30
+                        "
+                    >
+
+                        <i
+                            data-lucide="file-text"
+                            class="
+                                w-11
+                                h-11
+                                group-hover:scale-110
+                                transition-transform
+                            "
+                        ></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span
+                            class="
+                                text-xl
+                                block
+                                tracking-wide
+                                uppercase
+                            "
+                        >
+                            Menu Formulir
+                        </span>
+
+
+                        <span
+                            class="
+                                text-[10px]
+                                text-blue-200
+                                font-medium
+                                block
+                                mt-1
+                                tracking-wider
+                                uppercase
+                            "
+                        >
+                            Digital Form Repository
+                        </span>
+
+                    </div>
+
                 </button>
+
+
+                <!-- REPORT -->
+
+                <button
+                    onclick="checkAuth(() => openLink('https://pttsipaperlessproject2-report.netlify.app/', false))"
+                    class="
+                        main-menu-card
+                        group
+                        bg-amber-600
+                        text-white
+                        font-bold
+                        p-7
+                        sm:p-9
+                        rounded-2xl
+                        shadow-lg
+                        flex
+                        flex-col
+                        items-center
+                        justify-center
+                        gap-4
+                        border-b-8
+                        border-amber-800
+                        active:scale-[0.98]
+                    "
+                >
+
+                    <div
+                        class="
+                            bg-amber-500/60
+                            p-4
+                            rounded-2xl
+                            border
+                            border-amber-300/30
+                        "
+                    >
+
+                        <i
+                            data-lucide="bar-chart-3"
+                            class="
+                                w-11
+                                h-11
+                                group-hover:scale-110
+                                transition-transform
+                            "
+                        ></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span
+                            class="
+                                text-xl
+                                block
+                                tracking-wide
+                                uppercase
+                            "
+                        >
+                            Menu Laporan
+                        </span>
+
+
+                        <span
+                            class="
+                                text-[10px]
+                                text-amber-100
+                                font-medium
+                                block
+                                mt-1
+                                tracking-wider
+                                uppercase
+                            "
+                        >
+                            Integrated Data Reports
+                        </span>
+
+                    </div>
+
+                </button>
+
             </div>
 
-            <div class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4">
-                <div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0">
-                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+
+            <!-- =================================================
+                 WORKSHOP MONITOR
+            ================================================= -->
+
+            <button
+                onclick="openLink('https://pttsipaperlessproject2-workshop.netlify.app/', false)"
+                class="
+                    workshop-card
+                    w-full
+                    group
+                    bg-slate-800
+                    text-white
+                    font-bold
+                    p-5
+                    sm:p-6
+                    rounded-2xl
+                    shadow-lg
+                    flex
+                    flex-col
+                    sm:flex-row
+                    items-center
+                    justify-center
+                    gap-4
+                    active:scale-[0.99]
+                    text-center
+                    sm:text-left
+                    border
+                    border-slate-700
+                "
+            >
+
+                <div
+                    class="
+                        bg-slate-700
+                        text-amber-400
+                        p-3.5
+                        rounded-xl
+                        group-hover:scale-110
+                        transition-transform
+                        border
+                        border-slate-600
+                        shrink-0
+                    "
+                >
+
+                    <i
+                        data-lucide="monitor"
+                        class="w-8 h-8"
+                    ></i>
+
                 </div>
-                <div class="space-y-1">
-                    <h4 class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]">Protokol Keselamatan Kerja (K3L)</h4>
-                    <p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">
-                        Seluruh personel operasional <b>diwajibkan</b> untuk senantiasa menegakkan standar K3, mematuhi Prosedur Operasional Standar (SOP), serta Instruksi Kerja yang telah dilegalisasi dalam kerangka <b>SMK3 Perusahaan</b> guna menjamin keamanan dan keberlanjutan kerja.
-                    </p>
+
+
+                <div class="flex-1">
+
+                    <span
+                        class="
+                            text-lg
+                            sm:text-xl
+                            block
+                            font-black
+                            uppercase
+                            tracking-wider
+                        "
+                    >
+                        Workshop Live Monitor
+                    </span>
+
+
+                    <span
+                        class="
+                            text-[10px]
+                            sm:text-xs
+                            font-medium
+                            text-slate-300
+                            italic
+                            block
+                            mt-1
+                        "
+                    >
+                        Pantau status pengerjaan unit dan aktivitas
+                        workshop secara real-time.
+                    </span>
+
                 </div>
+
+
+                <i
+                    data-lucide="arrow-up-right"
+                    class="
+                        w-5
+                        h-5
+                        text-slate-500
+                        group-hover:text-amber-400
+                        transition
+                    "
+                ></i>
+
+            </button>
+
+
+            <!-- SYSTEM INFO -->
+
+            <div
+                class="
+                    w-full
+                    flex
+                    flex-col
+                    sm:flex-row
+                    items-center
+                    justify-center
+                    gap-3
+                    text-[10px]
+                    text-slate-400
+                    font-semibold
+                    uppercase
+                    tracking-wider
+                    pt-2
+                "
+            >
+
+                <span class="flex items-center gap-1.5">
+
+                    <span
+                        class="
+                            w-2
+                            h-2
+                            rounded-full
+                            bg-emerald-500
+                        "
+                    ></span>
+
+                    System Online
+
+                </span>
+
+
+                <span class="hidden sm:block text-slate-300">
+                    •
+                </span>
+
+
+                <span>
+                    Integrated Digital Platform
+                </span>
+
             </div>
 
-            <div id="formMenuContainer" class="space-y-4"></div>
         </div>
 
-        <!-- AUTH MODAL -->
-        <div id="authModal" class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center p-4 z-50 backdrop-blur-sm">
-            <div class="bg-white p-8 rounded-3xl shadow-2xl max-sm w-full text-center space-y-6 border-t-8 border-amber-600 fade-in">
-                <div class="mx-auto w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center">
-                    <i data-lucide="lock" class="w-8 h-8 text-amber-600"></i>
-                </div>
+
+        <!-- =====================================================
+             FORM MENU SCREEN
+        ===================================================== -->
+
+        <div
+            id="formMenuScreen"
+            class="
+                space-y-6
+                hidden
+                fade-in
+            "
+        >
+
+
+            <!-- TITLE -->
+
+            <div
+                class="
+                    flex
+                    flex-col
+                    sm:flex-row
+                    sm:justify-between
+                    sm:items-center
+                    gap-4
+                    mb-4
+                "
+            >
+
                 <div>
-                    <h3 class="text-2xl font-bold text-slate-800 uppercase tracking-tight">Endpoint Restricted</h3>
-                    <p class="text-slate-500 text-sm mt-1">Otoritas diperlukan untuk akses data.</p>
+
+                    <div
+                        class="
+                            flex
+                            items-center
+                            gap-3
+                        "
+                    >
+
+                        <span
+                            class="
+                                bg-blue-900
+                                text-white
+                                p-3
+                                rounded-xl
+                                shadow-md
+                            "
+                        >
+
+                            <i
+                                data-lucide="clipboard-list"
+                                class="w-6 h-6"
+                            ></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <h2
+                                class="
+                                    text-2xl
+                                    sm:text-3xl
+                                    font-extrabold
+                                    text-slate-800
+                                    tracking-tight
+                                "
+                            >
+                                Digital Form Repository
+                            </h2>
+
+
+                            <p
+                                class="
+                                    text-xs
+                                    text-slate-500
+                                    font-medium
+                                    mt-1
+                                "
+                            >
+                                Akses seluruh formulir digital operasional.
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
+
+                <button
+                    onclick="showHome()"
+                    class="
+                        bg-slate-100
+                        hover:bg-slate-200
+                        text-slate-600
+                        font-bold
+                        py-3
+                        px-4
+                        rounded-xl
+                        transition
+                        flex
+                        items-center
+                        justify-center
+                        gap-2
+                        border
+                        border-slate-200
+                        text-sm
+                    "
+                >
+
+                    <i
+                        data-lucide="arrow-left"
+                        class="w-4 h-4"
+                    ></i>
+
+                    Kembali
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 K3 INFORMATION
+            ================================================= -->
+
+            <div
+                class="
+                    mb-6
+                    p-5
+                    rounded-2xl
+                    bg-emerald-50
+                    border
+                    border-emerald-100
+                    shadow-sm
+                    flex
+                    flex-col
+                    sm:flex-row
+                    items-start
+                    gap-4
+                "
+            >
+
+                <div
+                    class="
+                        bg-emerald-600
+                        p-2.5
+                        rounded-xl
+                        text-white
+                        shrink-0
+                    "
+                >
+
+                    <i
+                        data-lucide="shield-check"
+                        class="w-6 h-6"
+                    ></i>
+
+                </div>
+
+
+                <div class="space-y-1">
+
+                    <h4
+                        class="
+                            font-bold
+                            text-emerald-900
+                            text-[11px]
+                            sm:text-xs
+                            uppercase
+                            tracking-[0.15em]
+                        "
+                    >
+                        Protokol Keselamatan Kerja (K3L)
+                    </h4>
+
+
+                    <p
+                        class="
+                            text-emerald-800
+                            text-[10px]
+                            sm:text-xs
+                            leading-relaxed
+                            font-medium
+                        "
+                    >
+                        Seluruh personel operasional
+                        <b>diwajibkan</b> untuk senantiasa menegakkan
+                        standar K3, mematuhi Prosedur Operasional Standar
+                        (SOP), serta Instruksi Kerja yang telah dilegalisasi
+                        dalam kerangka <b>SMK3 Perusahaan</b> guna menjamin
+                        keamanan dan keberlanjutan kerja.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FORM LIST
+            ================================================= -->
+
+            <div
+                id="formMenuContainer"
+                class="space-y-3"
+            ></div>
+
+        </div>
+
+
+        <!-- =====================================================
+             AUTH MODAL
+        ===================================================== -->
+
+        <div
+            id="authModal"
+            class="
+                fixed
+                inset-0
+                bg-slate-900/60
+                hidden
+                items-center
+                justify-center
+                p-4
+                z-50
+                backdrop-blur-sm
+            "
+        >
+
+            <div
+                class="
+                    modal-box
+                    bg-white
+                    p-7
+                    sm:p-8
+                    rounded-3xl
+                    shadow-2xl
+                    max-w-sm
+                    w-full
+                    text-center
+                    space-y-6
+                    border-t-8
+                    border-amber-600
+                "
+            >
+
+                <div
+                    class="
+                        mx-auto
+                        w-16
+                        h-16
+                        bg-amber-50
+                        rounded-2xl
+                        flex
+                        items-center
+                        justify-center
+                    "
+                >
+
+                    <i
+                        data-lucide="lock-keyhole"
+                        class="
+                            w-8
+                            h-8
+                            text-amber-600
+                        "
+                    ></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3
+                        class="
+                            text-2xl
+                            font-bold
+                            text-slate-800
+                            uppercase
+                            tracking-tight
+                        "
+                    >
+                        Endpoint Restricted
+                    </h3>
+
+
+                    <p
+                        class="
+                            text-slate-500
+                            text-sm
+                            mt-1
+                        "
+                    >
+                        Otoritas diperlukan untuk mengakses data.
+                    </p>
+
+                </div>
+
+
                 <div class="space-y-3">
-                    <input type="password" id="passwordInput" placeholder="Access Token" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center text-lg font-bold focus:border-amber-500 outline-none transition-all">
-                    <div id="passwordError" class="hidden text-[10px] text-red-600 font-bold bg-red-50 p-3 rounded-xl border border-red-100 uppercase">
+
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        placeholder="Access Token"
+                        class="
+                            w-full
+                            p-4
+                            bg-slate-50
+                            border-2
+                            border-slate-200
+                            rounded-2xl
+                            text-center
+                            text-lg
+                            font-bold
+                            focus:border-amber-500
+                            outline-none
+                            transition-all
+                        "
+                    >
+
+
+                    <div
+                        id="passwordError"
+                        class="
+                            hidden
+                            text-[10px]
+                            text-red-600
+                            font-bold
+                            bg-red-50
+                            p-3
+                            rounded-xl
+                            border
+                            border-red-100
+                            uppercase
+                        "
+                    >
                         ACCESS DENIED: Kode akses tidak valid!
                     </div>
+
                 </div>
+
+
                 <div class="flex gap-3">
-                    <button onclick="closeAuth()" class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition">Batal</button>
-                    <button onclick="confirmAuth()" class="flex-1 bg-blue-800 text-white font-bold py-3 rounded-xl hover:bg-blue-900 shadow-lg shadow-blue-200 transition">Authorize</button>
+
+                    <button
+                        onclick="closeAuth()"
+                        class="
+                            flex-1
+                            bg-slate-100
+                            text-slate-500
+                            font-bold
+                            py-3
+                            rounded-xl
+                            hover:bg-slate-200
+                            transition
+                        "
+                    >
+                        Batal
+                    </button>
+
+
+                    <button
+                        onclick="confirmAuth()"
+                        class="
+                            flex-1
+                            bg-blue-800
+                            text-white
+                            font-bold
+                            py-3
+                            rounded-xl
+                            hover:bg-blue-900
+                            shadow-lg
+                            shadow-blue-200
+                            transition
+                        "
+                    >
+                        Authorize
+                    </button>
+
                 </div>
+
             </div>
+
         </div>
 
-        <!-- THANK YOU / NEXT FORM MODAL -->
-        <div id="thanksModal" class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center p-4 z-50 backdrop-blur-sm">
-            <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center space-y-6 border-t-8 border-emerald-600 fade-in">
-                <div class="mx-auto w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center">
-                    <i data-lucide="check-circle" class="w-8 h-8 text-emerald-600"></i>
+
+        <!-- =====================================================
+             THANK YOU MODAL
+        ===================================================== -->
+
+        <div
+            id="thanksModal"
+            class="
+                fixed
+                inset-0
+                bg-slate-900/60
+                hidden
+                items-center
+                justify-center
+                p-4
+                z-50
+                backdrop-blur-sm
+            "
+        >
+
+            <div
+                class="
+                    modal-box
+                    bg-white
+                    p-7
+                    sm:p-8
+                    rounded-3xl
+                    shadow-2xl
+                    max-w-sm
+                    w-full
+                    text-center
+                    space-y-6
+                    border-t-8
+                    border-emerald-600
+                "
+            >
+
+                <div
+                    class="
+                        mx-auto
+                        w-16
+                        h-16
+                        bg-emerald-50
+                        rounded-2xl
+                        flex
+                        items-center
+                        justify-center
+                    "
+                >
+
+                    <i
+                        data-lucide="check-circle"
+                        class="
+                            w-8
+                            h-8
+                            text-emerald-600
+                        "
+                    ></i>
+
                 </div>
+
+
                 <div>
-                    <h3 class="text-2xl font-bold text-slate-800 uppercase tracking-tight">Terima Kasih!</h3>
-                    <p class="text-slate-500 text-sm mt-1">Data formulir Anda telah dikirim ke tab baru.</p>
+
+                    <h3
+                        class="
+                            text-2xl
+                            font-bold
+                            text-slate-800
+                            uppercase
+                            tracking-tight
+                        "
+                    >
+                        Terima Kasih!
+                    </h3>
+
+
+                    <p
+                        class="
+                            text-slate-500
+                            text-sm
+                            mt-1
+                        "
+                    >
+                        Data formulir Anda telah dikirim ke tab baru.
+                    </p>
+
                 </div>
-                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p class="text-slate-700 font-semibold text-sm">Apakah Anda ingin mengisi formulir digital lainnya?</p>
+
+
+                <div
+                    class="
+                        p-4
+                        bg-slate-50
+                        rounded-2xl
+                        border
+                        border-slate-100
+                    "
+                >
+
+                    <p
+                        class="
+                            text-slate-700
+                            font-semibold
+                            text-sm
+                        "
+                    >
+                        Apakah Anda ingin mengisi formulir digital lainnya?
+                    </p>
+
                 </div>
+
+
                 <div class="flex gap-3">
-                    <button onclick="closeWindow()" class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition">Tutup Tab</button>
-                    <button onclick="closeThanks()" class="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 shadow-lg shadow-emerald-100 transition">Ya, Lanjut</button>
+
+                    <button
+                        onclick="closeWindow()"
+                        class="
+                            flex-1
+                            bg-slate-100
+                            text-slate-500
+                            font-bold
+                            py-3
+                            rounded-xl
+                            hover:bg-slate-200
+                            transition
+                        "
+                    >
+                        Tutup Tab
+                    </button>
+
+
+                    <button
+                        onclick="closeThanks()"
+                        class="
+                            flex-1
+                            bg-emerald-600
+                            text-white
+                            font-bold
+                            py-3
+                            rounded-xl
+                            hover:bg-emerald-700
+                            shadow-lg
+                            shadow-emerald-100
+                            transition
+                        "
+                    >
+                        Ya, Lanjut
+                    </button>
+
                 </div>
+
             </div>
+
         </div>
 
-        <!-- TOAST MESSAGE -->
-        <div id="toast" class="flex items-center gap-3">
-            <i data-lucide="info" class="text-amber-400 w-5 h-5"></i>
+
+        <!-- =====================================================
+             TOAST
+        ===================================================== -->
+
+        <div
+            id="toast"
+            class="
+                flex
+                items-center
+                gap-3
+            "
+        >
+
+            <i
+                data-lucide="info"
+                class="
+                    text-amber-400
+                    w-5
+                    h-5
+                "
+            ></i>
+
             <span id="toastMsg"></span>
+
         </div>
+
     </main>
 
-    <footer class="mt-8 text-center text-slate-400 px-4 pb-8">
-        <p class="font-bold text-slate-500 tracking-tight uppercase">&copy; 2026 Paperless Project - PT TSI. All rights reserved.</p>
-        <p class="text-[10px] mt-1">System Architecture by: <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span> | <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span></p>
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer
+        class="
+            mt-8
+            text-center
+            text-slate-400
+            px-4
+            pb-8
+        "
+    >
+
+        <p
+            class="
+                font-bold
+                text-slate-500
+                tracking-tight
+                uppercase
+            "
+        >
+            &copy; 2026 Paperless Project - PT TSI.
+            All rights reserved.
+        </p>
+
+
+        <p class="text-[10px] mt-1">
+
+            System Architecture by:
+
+            <span
+                class="
+                    text-slate-600
+                    font-semibold
+                    uppercase
+                "
+            >
+                Imam Wahyu Ramadhan, S.T.
+            </span>
+
+            |
+
+            <span
+                class="
+                    text-amber-600
+                    font-bold
+                    uppercase
+                    tracking-tighter
+                "
+            >
+                Project 2.0
+            </span>
+
+        </p>
+
     </footer>
 
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
     <script>
+
+
+        /* =====================================================
+           AUTHENTICATION
+        ===================================================== */
+
         const SECRET_CODE = '3978128';
+
         let pendingAction = null;
 
+
+        /* =====================================================
+           FORM DATA
+        ===================================================== */
+
         const FORM_DATA = [
-            { id: "dmt", title: "DAILY MEETING", icon: "users", children: [
-                { name: "Mechanic Activity", link: "https://mechanic-activity.netlify.app/" },
-                { name: "Breakdown Information", link: "#" }
-            ]},
-            { id: "lph", title: "Laporan Pemeriksaan Harian (LPH)", icon: "truck", children: [
-                { name: "LPH Wheel Loader", link: "https://forms.gle/YzV3hmmFSSiUAZkJ9" },
-                { name: "LPH Forklift", link: "https://forms.gle/E6btWm7G5YxrQkyt8" },
-                { name: "LPH Dumptruck", link: "https://forms.gle/57WPzJ2LUxqCPtXMA" },
-                { name: "LPH Excavator", link: "https://forms.gle/G7uFHthvNmU6ubNP8" }
-            ]},
-            { id: "rjo", title: "Repair Job Order (RJO)", icon: "wrench", children: [
-                { name: "Buka Form RJO", link: "https://forms.gle/FrSktMFs83bHhPZ39" }
-            ]},
-            { id: "ciu", title: "Checklist Inspection Unit", icon: "clipboard-check", children: [
-                { name: "CIU Dumptruck", link: "https://forms.gle/2wLcpNpDGGmeWpZy8" },
-                { name: "CIU Excavator", link: "https://forms.gle/DXk1yQVa4rns8p6h9" },
-                { name: "CIU Forklift", link: "https://forms.gle/4G3usE7nUZyq9xNe8" },
-                { name: "CIU Wheel Loader", link: "https://forms.gle/vGaa6pGjcM16MWqk7" }
-            ]},
-            { id: "cps", title: "Checklist Periodic Service", icon: "calendar-clock", children: [
-                { name: "CPS Dumptruck", link: "https://docs.google.com/forms/d/e/1FAIpQLSehLV9Z9ppLAuyWTHd_RpS9OgxXwz7cH6Jv4m3Ov6QeV0ccRA/viewform" },
-                { name: "CPS Excavator", link: "https://docs.google.com/forms/d/e/1FAIpQLScZVERcQ1GFS29_DTR3YkNiGUqf99O-u-On0PG24hrfFojs-g/viewform" },
-                { name: "CPS Forklift", link: "https://docs.google.com/forms/d/e/1FAIpQLScXX5R0rOsJxX0kNKEY1pxTRVOQh6lD3YsBjguf53I1pLo7Bw/viewform" },
-                { name: "CPS Wheel Loader", link: "https://docs.google.com/forms/d/e/1FAIpQLScOD63w9xuMoalEdYcU6YiQIUHbtkBNUT8Me8TpujUrO9jnNg/viewform" }
-            ]},
-            { id: "cim", title: "Checklist Inspection Machine", icon: "settings", children: [
-                { name: "CIM Compressor", link: "https://docs.google.com/forms/d/e/1FAIpQLSfyypoY9V594bImNv6T8HWWBcyG2JS57-p5UTASWKikPOr5rQ/viewform" },
-                { name: "CIM Crane", link: "https://docs.google.com/forms/d/e/1FAIpQLSfSHoHSzp5iQGtbVtym4ziVhKhdbxpmViC096GAUZhL_pRQKg/viewform" },
-                { name: "CIM Grinding Machine", link: "https://docs.google.com/forms/d/e/1FAIpQLSeI5LUWrA4UgcozFcHS55CoPXlhwZZZxtLrm66CGM6YVEuBlQ/viewform" },
-                { name: "CIM Tabung Bertekanan", link: "https://docs.google.com/forms/d/e/1FAIpQLSe7_60xawLnhab7h9kbxleRyQgYvfWSalDuoujIbrudiChTXA/viewform" },
-                { name: "CIM Welding Machine", link: "https://docs.google.com/forms/d/e/1FAIpQLSejNr0h2V1w6cjxFRkvj4p7kJ7EKGWWRzVBreuxkPMpy2cbUQ/viewform" }
-            ]},
-            { id: "usa", title: "Usage & Activity", icon: "history", children: [
-                { name: "Checklist Oil Usage", link: "https://docs.google.com/forms/d/e/1FAIpQLSfIV1S2Ax2uicpA5AqRDoOPuw0m4lo9VKXP2nS7jtvoB_JMpQ/viewform" },
-                { name: "Greasing Activity", link: "https://docs.google.com/forms/d/e/1FAIpQLSeeLpDCfQ2Vj6Wjkx4JCj0sjM2wFSQGb40LqlO6z0YccAMMdw/viewform" }
-            ]},
-            { id: "etr", title: "Emergency Trouble Report (ETR)", icon: "alert-octagon", restricted: true, 
-              description: "Form repair unit kerusakan fatal/berbahaya.", 
-              children: [{ name: "Buka Form ETR", link: "https://forms.gle/7U7vn9yzpCDWP3nW7" }]
+
+            {
+                id: "dmt",
+                title: "DAILY MEETING",
+                icon: "users",
+
+                children: [
+
+                    {
+                        name: "Mechanic Activity",
+                        link: "https://mechanic-activity.netlify.app/"
+                    },
+
+                    {
+                        name: "Breakdown Information",
+                        link: "#"
+                    }
+
+                ]
+            },
+
+
+            {
+                id: "lph",
+                title: "Laporan Pemeriksaan Harian (LPH)",
+                icon: "truck",
+
+                children: [
+
+                    {
+                        name: "LPH Wheel Loader",
+                        link: "https://forms.gle/YzV3hmmFSSiUAZkJ9"
+                    },
+
+                    {
+                        name: "LPH Forklift",
+                        link: "https://forms.gle/E6btWm7G5YxrQkyt8"
+                    },
+
+                    {
+                        name: "LPH Dumptruck",
+                        link: "https://forms.gle/57WPzJ2LUxqCPtXMA"
+                    },
+
+                    {
+                        name: "LPH Excavator",
+                        link: "https://forms.gle/G7uFHthvNmU6ubNP8"
+                    }
+
+                ]
+            },
+
+
+            {
+                id: "rjo",
+                title: "Repair Job Order (RJO)",
+                icon: "wrench",
+
+                children: [
+
+                    {
+                        name: "Buka Form RJO",
+                        link: "https://forms.gle/FrSktMFs83bHhPZ39"
+                    }
+
+                ]
+            },
+
+
+            {
+                id: "ciu",
+                title: "Checklist Inspection Unit",
+                icon: "clipboard-check",
+
+                children: [
+
+                    {
+                        name: "CIU Dumptruck",
+                        link: "https://forms.gle/2wLcpNpDGGmeWpZy8"
+                    },
+
+                    {
+                        name: "CIU Excavator",
+                        link: "https://forms.gle/DXk1yQVa4rns8p6h9"
+                    },
+
+                    {
+                        name: "CIU Forklift",
+                        link: "https://forms.gle/4G3usE7nUZyq9xNe8"
+                    },
+
+                    {
+                        name: "CIU Wheel Loader",
+                        link: "https://forms.gle/vGaa6pGjcM16MWqk7"
+                    }
+
+                ]
+            },
+
+
+            {
+                id: "cps",
+                title: "Checklist Periodic Service",
+                icon: "calendar-clock",
+
+                children: [
+
+                    {
+                        name: "CPS Dumptruck",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLSehLV9Z9ppLAuyWTHd_RpS9OgxXwz7cH6Jv4m3Ov6QeV0ccRA/viewform"
+                    },
+
+                    {
+                        name: "CPS Excavator",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLScZVERcQ1GFS29_DTR3yKNiGUqf99O-u-On0PG24hrfFojs-g/viewform"
+                    },
+
+                    {
+                        name: "CPS Forklift",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLScXX5R0rOsJxX0kNKEY1pxTRVOQh6lD3YsBjguf53I1pLo7Bw/viewform"
+                    },
+
+                    {
+                        name: "CPS Wheel Loader",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLScOD63w9xuMoalEdYcU6YiQIUHbtkBNUT8Me8TpujUrO9jnNg/viewform"
+                    }
+
+                ]
+            },
+
+
+            {
+                id: "cim",
+                title: "Checklist Inspection Machine",
+                icon: "settings",
+
+                children: [
+
+                    {
+                        name: "CIM Compressor",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLSfyypoY9V594bImNv6T8HWWBcyG2JS57-p5UTASWKikPOr5rQ/viewform"
+                    },
+
+                    {
+                        name: "CIM Crane",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLSfSHoHSzp5iQGtbVtym4ziVhKhdbxpmViC096GAUZhL_pRQKg/viewform"
+                    },
+
+                    {
+                        name: "CIM Grinding Machine",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLSeI5LUWrA4UgcozFcHS55CoPXlhwZZZxtLrm66CGM6YVEuBlQ/viewform"
+                    },
+
+                    {
+                        name: "CIM Tabung Bertekanan",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLSe7_60xawLnhab7h9kbxleRyQgYvfWSalDuoujIbrudiChTXA/viewform"
+                    },
+
+                    {
+                        name: "CIM Welding Machine",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLSejNr0h2V1w6cjxFRkvj4p7kJ7EKGWWRzVBreuxkPMpy2cbUQ/viewform"
+                    }
+
+                ]
+            },
+
+
+            {
+                id: "usa",
+                title: "Usage & Activity",
+                icon: "history",
+
+                children: [
+
+                    {
+                        name: "Checklist Oil Usage",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLSfIV1S2Ax2uicpA5AqRDoOPuw0m4lo9VKXP2nS7jtvoB_JMpQ/viewform"
+                    },
+
+                    {
+                        name: "Greasing Activity",
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLSeeLpDCfQ2Vj6Wjkx4JCj0sjM2wFSQGb40LqlO6z0YccAMMdw/viewform"
+                    }
+
+                ]
+            },
+
+
+            {
+                id: "etr",
+                title: "Emergency Trouble Report (ETR)",
+                icon: "alert-octagon",
+                restricted: true,
+
+                description:
+                    "Form repair unit kerusakan fatal/berbahaya.",
+
+                children: [
+
+                    {
+                        name: "Buka Form ETR",
+                        link: "https://forms.gle/7U7vn9yzpCDWP3nW7"
+                    }
+
+                ]
             }
+
         ];
 
+
+        /* =====================================================
+           LOGO FALLBACK
+        ===================================================== */
+
         function handleLogoError() {
-            document.getElementById('companyLogo').classList.add('hidden');
-            document.getElementById('logoFallback').classList.remove('hidden');
+
+            document
+                .getElementById('companyLogo')
+                .classList.add('hidden');
+
+
+            document
+                .getElementById('logoFallback')
+                .classList.remove('hidden');
+
         }
+
+
+        /* =====================================================
+           HOME
+        ===================================================== */
 
         function showHome() {
-            document.querySelectorAll('#homeScreen, #formMenuScreen').forEach(s => s.classList.add('hidden'));
-            document.getElementById('homeScreen').classList.remove('hidden');
+
+            document
+                .querySelectorAll(
+                    '#homeScreen, #formMenuScreen'
+                )
+                .forEach(
+                    screen =>
+                        screen.classList.add('hidden')
+                );
+
+
+            document
+                .getElementById('homeScreen')
+                .classList.remove('hidden');
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+
+            lucide.createIcons();
+
         }
+
+
+        /* =====================================================
+           FORM MENU
+        ===================================================== */
 
         function showFormMenu() {
-            document.querySelectorAll('#homeScreen').forEach(s => s.classList.add('hidden'));
-            document.getElementById('formMenuScreen').classList.remove('hidden');
+
+            document
+                .getElementById('homeScreen')
+                .classList.add('hidden');
+
+
+            document
+                .getElementById('formMenuScreen')
+                .classList.remove('hidden');
+
+
             renderForms();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
         }
+
+
+        /* =====================================================
+           RENDER FORM MENU
+        ===================================================== */
 
         function renderForms() {
-            const container = document.getElementById('formMenuContainer');
+
+            const container =
+                document.getElementById(
+                    'formMenuContainer'
+                );
+
+
             container.innerHTML = '';
-            FORM_DATA.forEach(group => {
-                const div = document.createElement('div');
-                div.className = `menu-item p-5 rounded-2xl shadow-sm border border-slate-100 ${group.restricted ? 'menu-item-restricted' : ''}`;
-                div.innerHTML = `
-                    <div class="flex justify-between items-center font-bold text-primary uppercase tracking-wide">
-                        <div class="flex items-center gap-3 text-sm sm:text-base pr-2">
-                            <i data-lucide="${group.icon}" class="w-5 h-5 shrink-0 ${group.restricted ? 'text-red-600' : 'text-amber-600'}"></i>
-                            <div class="flex flex-col">
-                                <span class="${group.restricted ? 'text-red-700' : ''}">${group.title}</span>
-                                ${group.description ? `<p class="text-[10px] font-medium italic opacity-60 normal-case mt-1 leading-tight">${group.description}</p>` : ''}
+
+
+            FORM_DATA.forEach(
+                (group, index) => {
+
+                    const div =
+                        document.createElement('div');
+
+
+                    div.className =
+                        `
+                        menu-item
+                        p-4
+                        sm:p-5
+                        rounded-2xl
+                        shadow-sm
+                        ${group.restricted
+                            ? 'menu-item-restricted'
+                            : ''}
+                        `;
+
+
+                    const iconColor =
+                        group.restricted
+                            ? 'text-red-600'
+                            : 'text-amber-600';
+
+
+                    const titleColor =
+                        group.restricted
+                            ? 'text-red-700'
+                            : 'text-primary';
+
+
+                    div.innerHTML = `
+
+                        <div
+                            class="
+                                flex
+                                justify-between
+                                items-center
+                                gap-3
+                            "
+                        >
+
+                            <div
+                                class="
+                                    flex
+                                    items-center
+                                    gap-3
+                                    min-w-0
+                                "
+                            >
+
+                                <div
+                                    class="
+                                        category-icon
+                                        ${group.restricted
+                                            ? 'bg-red-50'
+                                            : 'bg-amber-50'}
+                                    "
+                                >
+
+                                    <i
+                                        data-lucide="${group.icon}"
+                                        class="
+                                            w-5
+                                            h-5
+                                            ${iconColor}
+                                        "
+                                    ></i>
+
+                                </div>
+
+
+                                <div
+                                    class="
+                                        flex
+                                        flex-col
+                                        min-w-0
+                                    "
+                                >
+
+                                    <span
+                                        class="
+                                            ${titleColor}
+                                            text-sm
+                                            sm:text-base
+                                            font-extrabold
+                                            uppercase
+                                            tracking-wide
+                                        "
+                                    >
+                                        ${group.title}
+                                    </span>
+
+
+                                    ${
+                                        group.description
+                                        ?
+                                        `
+                                        <p
+                                            class="
+                                                text-[10px]
+                                                font-medium
+                                                italic
+                                                text-slate-400
+                                                mt-1
+                                                leading-tight
+                                            "
+                                        >
+                                            ${group.description}
+                                        </p>
+                                        `
+                                        :
+                                        `
+                                        <p
+                                            class="
+                                                text-[9px]
+                                                font-semibold
+                                                text-slate-400
+                                                mt-1
+                                                uppercase
+                                                tracking-wider
+                                            "
+                                        >
+                                            ${group.children.length}
+                                            pilihan formulir
+                                        </p>
+                                        `
+                                    }
+
+                                </div>
+
                             </div>
+
+
+                            <div
+                                class="
+                                    shrink-0
+                                    bg-slate-50
+                                    p-2
+                                    rounded-lg
+                                    border
+                                    border-slate-100
+                                "
+                            >
+
+                                <i
+                                    id="icon-${group.id}"
+                                    data-lucide="chevron-down"
+                                    class="
+                                        w-4
+                                        h-4
+                                        text-slate-400
+                                        transition-transform
+                                    "
+                                ></i>
+
+                            </div>
+
                         </div>
-                        <i id="icon-${group.id}" data-lucide="chevron-down" class="w-5 h-5 opacity-40 transition-transform shrink-0"></i>
-                    </div>
-                    <div id="sub-${group.id}" class="hidden mt-4 space-y-2 border-t border-slate-100 pt-4"></div>
-                `;
-                const sub = div.querySelector(`#sub-${group.id}`);
-                group.children.forEach(item => {
-                    const btn = document.createElement('button');
-                    btn.className = "submenu-link block w-full text-left p-3 rounded-xl text-slate-600 font-semibold flex items-center gap-3 bg-slate-50 border border-transparent text-sm";
-                    btn.innerHTML = `<i data-lucide="arrow-right-circle" class="w-4 h-4 text-amber-500 shrink-0"></i> <span>${item.name}</span>`;
-                    btn.onclick = (e) => {
-                        e.stopPropagation();
-                        if (item.name === "Breakdown Information" && item.link === "#") {
-                            showToast("Formulir masih dalam pekerjaan, silahkan hubungi system engineer");
-                        } else if (group.restricted) {
-                            checkAuth(() => openLink(item.link, true));
-                        } else {
-                            openLink(item.link, true);
+
+
+                        <div
+                            id="sub-${group.id}"
+                            class="
+                                hidden
+                                mt-4
+                                space-y-2
+                                border-t
+                                border-slate-100
+                                pt-4
+                                submenu-wrapper
+                            "
+                        ></div>
+
+                    `;
+
+
+                    const sub =
+                        div.querySelector(
+                            `#sub-${group.id}`
+                        );
+
+
+                    group.children.forEach(
+                        item => {
+
+                            const btn =
+                                document.createElement(
+                                    'button'
+                                );
+
+
+                            btn.className =
+                                `
+                                submenu-link
+                                block
+                                w-full
+                                text-left
+                                p-3
+                                rounded-xl
+                                text-slate-600
+                                font-semibold
+                                flex
+                                items-center
+                                gap-3
+                                bg-slate-50
+                                border
+                                border-transparent
+                                text-sm
+                                group
+                                `;
+
+
+                            btn.innerHTML = `
+
+                                <span
+                                    class="
+                                        bg-white
+                                        p-1.5
+                                        rounded-lg
+                                        border
+                                        border-slate-100
+                                    "
+                                >
+
+                                    <i
+                                        data-lucide="arrow-right"
+                                        class="
+                                            w-3.5
+                                            h-3.5
+                                            text-amber-500
+                                        "
+                                    ></i>
+
+                                </span>
+
+                                <span class="flex-1">
+                                    ${item.name}
+                                </span>
+
+                                <i
+                                    data-lucide="external-link"
+                                    class="
+                                        w-3.5
+                                        h-3.5
+                                        text-slate-300
+                                    "
+                                ></i>
+
+                            `;
+
+
+                            btn.onclick =
+                                (e) => {
+
+                                    e.stopPropagation();
+
+
+                                    if (
+                                        item.name ===
+                                        "Breakdown Information"
+                                        &&
+                                        item.link === "#"
+                                    ) {
+
+                                        showToast(
+                                            "Formulir masih dalam pekerjaan, silahkan hubungi system engineer"
+                                        );
+
+                                    }
+
+                                    else if (
+                                        group.restricted
+                                    ) {
+
+                                        checkAuth(
+                                            () =>
+                                                openLink(
+                                                    item.link,
+                                                    true
+                                                )
+                                        );
+
+                                    }
+
+                                    else {
+
+                                        openLink(
+                                            item.link,
+                                            true
+                                        );
+
+                                    }
+
+                                };
+
+
+                            sub.appendChild(btn);
+
                         }
+                    );
+
+
+                    div.onclick = () => {
+
+                        const isHidden =
+                            sub.classList.contains(
+                                'hidden'
+                            );
+
+
+                        document
+                            .querySelectorAll(
+                                '#formMenuContainer [id^="sub-"]'
+                            )
+                            .forEach(
+                                el =>
+                                    el.classList.add(
+                                        'hidden'
+                                    )
+                            );
+
+
+                        document
+                            .querySelectorAll(
+                                '#formMenuContainer [id^="icon-"]'
+                            )
+                            .forEach(
+                                el =>
+                                    el.style.transform =
+                                        'rotate(0deg)'
+                            );
+
+
+                        if (isHidden) {
+
+                            sub.classList.remove(
+                                'hidden'
+                            );
+
+
+                            document
+                                .getElementById(
+                                    `icon-${group.id}`
+                                )
+                                .style.transform =
+                                'rotate(180deg)';
+
+                        }
+
                     };
-                    sub.appendChild(btn);
-                });
-                div.onclick = () => {
-                    const isHidden = sub.classList.contains('hidden');
-                    document.querySelectorAll('#formMenuContainer [id^="sub-"]').forEach(el => el.classList.add('hidden'));
-                    document.querySelectorAll('#formMenuContainer [id^="icon-"]').forEach(el => el.style.transform = 'rotate(0deg)');
-                    if (isHidden) {
-                        sub.classList.remove('hidden');
-                        document.getElementById(`icon-${group.id}`).style.transform = 'rotate(180deg)';
-                    }
-                };
-                container.appendChild(div);
-            });
+
+
+                    container.appendChild(div);
+
+                }
+            );
+
+
             lucide.createIcons();
+
         }
 
-        /**
-         * opens a link.
-         * @param {string} link - The URL to open.
-         * @param {boolean} isForm - If true, opens in new tab and shows thank you modal.
-         */
-        function openLink(link, isForm = false) {
-            if (!link || link === '#') {
-                showToast("Data sedang disinkronisasi.");
+
+        /* =====================================================
+           OPEN LINK
+        ===================================================== */
+
+        function openLink(
+            link,
+            isForm = false
+        ) {
+
+            if (
+                !link ||
+                link === '#'
+            ) {
+
+                showToast(
+                    "Data sedang disinkronisasi."
+                );
+
                 return;
+
             }
+
 
             if (isForm) {
-                // Open in NEW tab
-                window.open(link, '_blank');
-                // Show the "Thank you / Next?" modal
+
+                window.open(
+                    link,
+                    '_blank'
+                );
+
+
                 showThanks();
-            } else {
-                // Open in CURRENT tab (for Reports/Monitor)
-                window.location.href = link;
+
             }
+
+            else {
+
+                window.location.href =
+                    link;
+
+            }
+
         }
+
+
+        /* =====================================================
+           THANK YOU
+        ===================================================== */
 
         function showThanks() {
-            const modal = document.getElementById('thanksModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+
+            const modal =
+                document.getElementById(
+                    'thanksModal'
+                );
+
+
+            modal.classList.remove(
+                'hidden'
+            );
+
+
+            modal.classList.add(
+                'flex'
+            );
+
+
+            lucide.createIcons();
+
         }
+
 
         function closeThanks() {
-            const modal = document.getElementById('thanksModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
+
+            const modal =
+                document.getElementById(
+                    'thanksModal'
+                );
+
+
+            modal.classList.add(
+                'hidden'
+            );
+
+
+            modal.classList.remove(
+                'flex'
+            );
+
         }
+
+
+        /* =====================================================
+           CLOSE WINDOW
+        ===================================================== */
 
         function closeWindow() {
-            // Note: browser policy usually prevents closing a window that wasn't opened by script,
-            // but in many mobile environments this will just act as a way to back out or prompt.
-            // As a fallback, we redirect to home if window.close is blocked.
+
             window.close();
-            setTimeout(() => {
-                closeThanks();
-                showHome();
-            }, 500);
+
+
+            setTimeout(
+                () => {
+
+                    closeThanks();
+
+                    showHome();
+
+                },
+                500
+            );
+
         }
 
-        function showToast(message) {
-            const t = document.getElementById("toast");
-            document.getElementById("toastMsg").innerText = message;
-            t.classList.add("show");
-            setTimeout(() => t.classList.remove("show"), 3000);
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        function showToast(
+            message
+        ) {
+
+            const toast =
+                document.getElementById(
+                    'toast'
+                );
+
+
+            document.getElementById(
+                'toastMsg'
+            ).innerText =
+                message;
+
+
+            toast.classList.add(
+                'show'
+            );
+
+
+            setTimeout(
+                () => {
+
+                    toast.classList.remove(
+                        'show'
+                    );
+
+                },
+                3000
+            );
+
         }
 
-        function checkAuth(cb) {
-            pendingAction = cb;
-            document.getElementById('authModal').classList.remove('hidden');
-            document.getElementById('authModal').classList.add('flex');
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordInput').focus();
+
+        /* =====================================================
+           AUTH MODAL
+        ===================================================== */
+
+        function checkAuth(
+            cb
+        ) {
+
+            pendingAction =
+                cb;
+
+
+            const modal =
+                document.getElementById(
+                    'authModal'
+                );
+
+
+            modal.classList.remove(
+                'hidden'
+            );
+
+
+            modal.classList.add(
+                'flex'
+            );
+
+
+            document.getElementById(
+                'passwordInput'
+            ).value = '';
+
+
+            document.getElementById(
+                'passwordError'
+            ).classList.add(
+                'hidden'
+            );
+
+
+            setTimeout(
+                () => {
+
+                    document
+                        .getElementById(
+                            'passwordInput'
+                        )
+                        .focus();
+
+                },
+                100
+            );
+
+
+            lucide.createIcons();
+
         }
+
 
         function closeAuth() {
-            document.getElementById('authModal').classList.add('hidden');
-            document.getElementById('authModal').classList.remove('flex');
+
+            const modal =
+                document.getElementById(
+                    'authModal'
+                );
+
+
+            modal.classList.add(
+                'hidden'
+            );
+
+
+            modal.classList.remove(
+                'flex'
+            );
+
+
+            pendingAction =
+                null;
+
         }
+
+
+        /* =====================================================
+           CONFIRM AUTH
+        ===================================================== */
 
         function confirmAuth() {
-            if (document.getElementById('passwordInput').value === SECRET_CODE) {
-                const action = pendingAction;
+
+            const input =
+                document.getElementById(
+                    'passwordInput'
+                );
+
+
+            if (
+                input.value ===
+                SECRET_CODE
+            ) {
+
+                const action =
+                    pendingAction;
+
+
                 closeAuth();
-                if (action) action();
-            } else {
-                const err = document.getElementById('passwordError');
-                err.classList.remove('hidden');
-                setTimeout(() => err.classList.add('hidden'), 2000);
+
+
+                if (action) {
+
+                    action();
+
+                }
+
             }
+
+            else {
+
+                const error =
+                    document.getElementById(
+                        'passwordError'
+                    );
+
+
+                error.classList.remove(
+                    'hidden'
+                );
+
+
+                input.value = '';
+
+
+                input.focus();
+
+
+                setTimeout(
+                    () => {
+
+                        error.classList.add(
+                            'hidden'
+                        );
+
+                    },
+                    2000
+                );
+
+            }
+
         }
 
-        document.getElementById('passwordInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') confirmAuth(); });
+
+        /* =====================================================
+           ENTER KEY AUTH
+        ===================================================== */
+
+        document
+            .getElementById(
+                'passwordInput'
+            )
+            .addEventListener(
+                'keydown',
+                (e) => {
+
+                    if (
+                        e.key === 'Enter'
+                    ) {
+
+                        confirmAuth();
+
+                    }
+
+                }
+            );
+
+
+        /* =====================================================
+           ESC KEY
+        ===================================================== */
+
+        document.addEventListener(
+            'keydown',
+            (e) => {
+
+                if (
+                    e.key === 'Escape'
+                ) {
+
+                    closeAuth();
+
+                    closeThanks();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           INITIALIZE
+        ===================================================== */
 
         window.onload = () => {
+
             lucide.createIcons();
+
             showHome();
+
         };
+
     </script>
+
 </body>
 </html>
