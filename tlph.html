@@ -1,0 +1,4290 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=1200"
+>
+
+<title>History LPH - PT TSI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    min-width:1100px;
+}
+
+body{
+
+    margin:0;
+
+    font-family:'Inter',sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #eef2f7
+        );
+
+    color:#1e293b;
+
+}
+
+
+/* =========================================================
+   COLOR
+========================================================= */
+
+.color-primary{
+    background:#1E3A8A;
+}
+
+.text-primary{
+    color:#1E3A8A;
+}
+
+
+/* =========================================================
+   GLASS
+========================================================= */
+
+.glass-panel{
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(10px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+.fade-in{
+
+    animation:
+        fadeIn
+        .5s
+        cubic-bezier(.4,0,.2,1);
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-wrapper{
+
+    transition:
+        transform
+        .4s
+        cubic-bezier(
+            .175,
+            .885,
+            .32,
+            1.275
+        );
+
+}
+
+.logo-wrapper:hover{
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+
+}
+
+.logo-shadow{
+
+    filter:
+        drop-shadow(
+            0 10px 8px
+            rgba(0,0,0,.04)
+        )
+        drop-shadow(
+            0 4px 3px
+            rgba(0,0,0,.1)
+        );
+
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.page-title{
+
+    font-size:30px;
+
+    font-weight:900;
+
+    color:#1e293b;
+
+    letter-spacing:-.025em;
+
+}
+
+.page-subtitle{
+
+    font-size:13px;
+
+    color:#64748b;
+
+    font-weight:500;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.back-button{
+
+    background:#1e3a8a;
+
+    color:#fff;
+
+    border-radius:12px;
+
+    padding:
+        11px
+        17px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:
+        .2s ease;
+
+    box-shadow:
+        0 5px 12px
+        rgba(30,58,138,.18);
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+.back-button:hover{
+
+    background:#1d4ed8;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(30,58,138,.25);
+
+}
+
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.stat-card{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:17px;
+
+    padding:17px;
+
+    transition:
+        .25s ease;
+
+}
+
+.stat-card:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 20px
+        rgba(15,23,42,.07);
+
+}
+
+
+/* =========================================================
+   TABLE PANEL
+========================================================= */
+
+.table-panel{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 4px 12px
+        rgba(15,23,42,.04);
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+table{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+}
+
+thead{
+
+    background:#f8fafc;
+
+}
+
+thead th{
+
+    padding:
+        0;
+
+    border-bottom:
+        2px solid
+        #e2e8f0;
+
+    color:#475569;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    white-space:nowrap;
+
+    text-align:left;
+
+}
+
+
+/* =========================================================
+   SORT HEADER
+========================================================= */
+
+.sort-button{
+
+    width:100%;
+
+    padding:
+        14px
+        14px;
+
+    background:transparent;
+
+    border:none;
+
+    color:#475569;
+
+    font-family:inherit;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    transition:
+        .2s ease;
+
+    text-align:left;
+
+}
+
+.sort-button:hover{
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+}
+
+.sort-button.active{
+
+    color:#1e3a8a;
+
+    background:#eff6ff;
+
+}
+
+.sort-icon{
+
+    width:14px;
+
+    height:14px;
+
+    flex-shrink:0;
+
+    opacity:.35;
+
+    transition:.2s ease;
+
+}
+
+.sort-button:hover .sort-icon{
+
+    opacity:.8;
+
+}
+
+.sort-button.active .sort-icon{
+
+    opacity:1;
+
+}
+
+
+tbody td{
+
+    padding:
+        13px
+        14px;
+
+    border-bottom:
+        1px solid
+        #f1f5f9;
+
+    color:#334155;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    vertical-align:middle;
+
+}
+
+tbody tr{
+
+    transition:
+        background
+        .15s ease;
+
+}
+
+tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+
+/* =========================================================
+   UNIT BADGE
+========================================================= */
+
+.unit-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:58px;
+
+    padding:
+        5px
+        9px;
+
+    border-radius:8px;
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+
+/* =========================================================
+   UNIT TYPE BADGES
+========================================================= */
+
+.type-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+        5px
+        9px;
+
+    border-radius:8px;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.03em;
+
+}
+
+.type-forklift{
+
+    background:#fff7ed;
+
+    color:#c2410c;
+
+    border:
+        1px solid
+        #fed7aa;
+
+}
+
+.type-wheelloader{
+
+    background:#eff6ff;
+
+    color:#1d4ed8;
+
+    border:
+        1px solid
+        #bfdbfe;
+
+}
+
+.type-dumptruck{
+
+    background:#fff1f2;
+
+    color:#be123c;
+
+    border:
+        1px solid
+        #fecdd3;
+
+}
+
+.type-excavator{
+
+    background:#ecfdf5;
+
+    color:#047857;
+
+    border:
+        1px solid
+        #a7f3d0;
+
+}
+
+.type-unknown{
+
+    background:#f1f5f9;
+
+    color:#64748b;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+.status-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:
+        6px
+        10px;
+
+    border-radius:999px;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+}
+
+.status-open{
+
+    background:#fff7ed;
+
+    color:#c2410c;
+
+    border:
+        1px solid
+        #fed7aa;
+
+}
+
+.status-close{
+
+    background:#ecfdf5;
+
+    color:#047857;
+
+    border:
+        1px solid
+        #a7f3d0;
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.filter-input{
+
+    width:100%;
+
+    background:#f8fafc;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:11px;
+
+    padding:
+        10px
+        12px;
+
+    color:#334155;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    outline:none;
+
+    transition:
+        .2s ease;
+
+}
+
+.filter-input:focus{
+
+    background:#fff;
+
+    border-color:#93c5fd;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.10);
+
+}
+
+select.filter-input{
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination-button{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:9px;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    background:#fff;
+
+    color:#475569;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+.pagination-button:hover:not(:disabled){
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+    border-color:#bfdbfe;
+
+}
+
+.pagination-button.active{
+
+    background:#1e3a8a;
+
+    color:#fff;
+
+    border-color:#1e3a8a;
+
+}
+
+.pagination-button:disabled{
+
+    opacity:.4;
+
+    cursor:not-allowed;
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loading{
+
+    min-height:350px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+#tableContent{
+
+    display:none;
+
+}
+
+#tableContent.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+#emptyState{
+
+    display:none;
+
+}
+
+#emptyState.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   MOBILE FALLBACK
+========================================================= */
+
+@media(max-width:1100px){
+
+    html{
+
+        min-width:0;
+
+    }
+
+    body{
+
+        min-width:1100px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body
+    class="
+        flex
+        flex-col
+        items-center
+        p-4
+        sm:p-8
+    "
+>
+
+
+<main
+    class="
+        w-full
+        max-w-7xl
+        flex-grow
+        glass-panel
+        p-6
+        sm:p-10
+        rounded-3xl
+        shadow-2xl
+        fade-in
+    "
+>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header
+    class="
+        w-full
+        mb-8
+        pb-6
+        border-b-2
+        border-slate-100
+        flex
+        flex-col
+        items-center
+    "
+>
+
+
+    <div class="mb-4 logo-wrapper">
+
+        <div
+            class="
+                w-24
+                h-24
+                flex
+                items-center
+                justify-center
+                bg-white
+                rounded-2xl
+                logo-shadow
+                overflow-hidden
+                p-2
+            "
+        >
+
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="
+                    w-full
+                    h-full
+                    object-contain
+                "
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+
+
+            <div
+                id="logoFallback"
+                class="
+                    hidden
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    bg-blue-900
+                    w-full
+                    h-full
+                    text-white
+                "
+            >
+
+                <span
+                    class="
+                        font-black
+                        text-2xl
+                    "
+                >
+                    TSI
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="
+            color-primary
+            text-white
+            px-8
+            py-4
+            rounded-2xl
+            shadow-lg
+            flex
+            flex-col
+            items-center
+            gap-1
+        "
+    >
+
+        <h1
+            class="
+                text-xl
+                sm:text-2xl
+                font-black
+                uppercase
+                tracking-[0.1em]
+                text-center
+            "
+        >
+            PAPERLESS PROJECT
+        </h1>
+
+
+        <div
+            class="
+                h-0.5
+                w-16
+                bg-amber-500
+                rounded-full
+                my-1
+            "
+        ></div>
+
+
+        <h2
+            class="
+                text-sm
+                sm:text-lg
+                font-bold
+                uppercase
+                tracking-widest
+                text-blue-100
+                text-center
+            "
+        >
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+
+    </div>
+
+
+    <div
+        class="
+            mt-3
+            text-[10px]
+            font-bold
+            text-slate-400
+            tracking-[0.3em]
+            uppercase
+        "
+    >
+        Digitalization Initiative v2.0
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     PAGE TITLE
+===================================================== -->
+
+<section>
+
+
+    <div
+        class="
+            flex
+            items-center
+            justify-between
+            gap-5
+            mb-6
+        "
+    >
+
+
+        <div>
+
+            <h2
+                class="
+                    page-title
+                    flex
+                    items-center
+                    gap-3
+                "
+            >
+
+                <span
+                    class="
+                        bg-blue-900
+                        text-white
+                        p-3
+                        rounded-xl
+                        shadow-md
+                    "
+                >
+
+                    <i
+                        data-lucide="wrench"
+                        class="w-6 h-6"
+                    ></i>
+
+                </span>
+
+                History LPH
+
+            </h2>
+
+
+            <p
+                class="
+                    page-subtitle
+                    mt-2
+                    ml-1
+                "
+            >
+
+                Daftar seluruh aktivitas LPH
+                yang tersimpan pada database Google Sheet.
+
+            </p>
+
+        </div>
+
+
+        <button
+            onclick="goToDashboard()"
+            class="back-button"
+        >
+
+            <i
+                data-lucide="arrow-left"
+                class="w-4 h-4"
+            ></i>
+
+            Kembali
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =================================================
+         LOADING
+    ================================================= -->
+
+    <div id="loading">
+
+        <i
+            data-lucide="loader-circle"
+            class="
+                w-9
+                h-9
+                animate-spin
+                text-amber-500
+            "
+        ></i>
+
+
+        <p
+            class="
+                font-semibold
+                text-sm
+                text-slate-400
+                mt-3
+            "
+        >
+            Memuat data LPH...
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         TABLE CONTENT
+    ================================================= -->
+
+    <div id="tableContent">
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
+
+        <div
+            class="
+                grid
+                grid-cols-5
+                gap-4
+                mb-6
+            "
+        >
+
+
+            <!-- TOTAL -->
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Total Activity
+                </p>
+
+
+                <p
+                    id="totalData"
+                    class="
+                        text-3xl
+                        font-black
+                        text-blue-900
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- FORKLIFT -->
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Forklift
+                </p>
+
+
+                <div
+                    class="
+                        flex
+                        items-end
+                        gap-2
+                        mt-2
+                    "
+                >
+
+                    <p
+                        id="forkliftTotal"
+                        class="
+                            text-3xl
+                            font-black
+                            text-orange-600
+                        "
+                    >
+                        -
+                    </p>
+
+
+                    <span
+                        class="
+                            mb-1
+                            text-[11px]
+                            font-black
+                            text-slate-400
+                        "
+                    >
+                        F
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- WHEELLOADER -->
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Wheelloader
+                </p>
+
+
+                <div
+                    class="
+                        flex
+                        items-end
+                        gap-2
+                        mt-2
+                    "
+                >
+
+                    <p
+                        id="wheelloaderTotal"
+                        class="
+                            text-3xl
+                            font-black
+                            text-indigo-600
+                        "
+                    >
+                        -
+                    </p>
+
+
+                    <span
+                        class="
+                            mb-1
+                            text-[11px]
+                            font-black
+                            text-slate-400
+                        "
+                    >
+                        W
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- DUMPTRUCK -->
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Dumptruck
+                </p>
+
+
+                <div
+                    class="
+                        flex
+                        items-end
+                        gap-2
+                        mt-2
+                    "
+                >
+
+                    <p
+                        id="dumptruckTotal"
+                        class="
+                            text-3xl
+                            font-black
+                            text-rose-600
+                        "
+                    >
+                        -
+                    </p>
+
+
+                    <span
+                        class="
+                            mb-1
+                            text-[11px]
+                            font-black
+                            text-slate-400
+                        "
+                    >
+                        D
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXCAVATOR -->
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Excavator
+                </p>
+
+
+                <div
+                    class="
+                        flex
+                        items-end
+                        gap-2
+                        mt-2
+                    "
+                >
+
+                    <p
+                        id="excavatorTotal"
+                        class="
+                            text-3xl
+                            font-black
+                            text-emerald-600
+                        "
+                    >
+                        -
+                    </p>
+
+
+                    <span
+                        class="
+                            mb-1
+                            text-[11px]
+                            font-black
+                            text-slate-400
+                        "
+                    >
+                        E
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             FILTER PANEL
+        ================================================= -->
+
+        <div
+            class="
+                bg-white
+                border
+                border-slate-200
+                rounded-2xl
+                p-5
+                mb-5
+                shadow-sm
+            "
+        >
+
+
+            <div
+                class="
+                    flex
+                    items-center
+                    gap-3
+                    mb-4
+                "
+            >
+
+                <span
+                    class="
+                        bg-blue-100
+                        text-blue-700
+                        p-2
+                        rounded-lg
+                    "
+                >
+
+                    <i
+                        data-lucide="filter"
+                        class="w-4 h-4"
+                    ></i>
+
+                </span>
+
+
+                <div>
+
+                    <h3
+                        class="
+                            text-sm
+                            font-black
+                            text-slate-700
+                        "
+                    >
+                        Filter Data
+                    </h3>
+
+
+                    <p
+                        class="
+                            text-[10px]
+                            text-slate-400
+                            font-medium
+                        "
+                    >
+                        Gunakan filter untuk mencari data tertentu.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="
+                    grid
+                    grid-cols-4
+                    gap-4
+                "
+            >
+
+
+                <!-- SEARCH -->
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Cari Data
+                    </label>
+
+
+                    <div class="relative">
+
+                        <i
+                            data-lucide="search"
+                            class="
+                                absolute
+                                left-3
+                                top-1/2
+                                -translate-y-1/2
+                                w-4
+                                h-4
+                                text-slate-400
+                            "
+                        ></i>
+
+
+                        <input
+                            id="searchInput"
+                            type="text"
+                            placeholder="Unit, problem..."
+                            class="
+                                filter-input
+                                pl-10
+                            "
+                            oninput="applyFilters()"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- UNIT TYPE -->
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Jenis Unit
+                    </label>
+
+
+                    <select
+                        id="unitTypeFilter"
+                        class="filter-input"
+                        onchange="applyFilters()"
+                    >
+
+                        <option value="">
+                            Semua Unit
+                        </option>
+
+                        <option value="F">
+                            Forklift
+                        </option>
+
+                        <option value="W">
+                            Wheelloader
+                        </option>
+
+                        <option value="D">
+                            Dumptruck
+                        </option>
+
+                        <option value="E">
+                            Excavator
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Status
+                    </label>
+
+
+                    <select
+                        id="statusFilter"
+                        class="filter-input"
+                        onchange="applyFilters()"
+                    >
+
+                        <option value="">
+                            Semua Status
+                        </option>
+
+                        <option value="OPEN">
+                            Open
+                        </option>
+
+                        <option value="CLOSE">
+                            Close
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- RESET -->
+
+                <div
+                    class="
+                        flex
+                        items-end
+                    "
+                >
+
+                    <button
+                        onclick="resetFilters()"
+                        class="
+                            w-full
+                            h-[38px]
+                            rounded-xl
+                            border
+                            border-slate-200
+                            bg-slate-50
+                            hover:bg-slate-100
+                            text-slate-600
+                            font-bold
+                            text-[11px]
+                            transition
+                            flex
+                            items-center
+                            justify-center
+                            gap-2
+                        "
+                    >
+
+                        <i
+                            data-lucide="rotate-ccw"
+                            class="w-4 h-4"
+                        ></i>
+
+                        Reset Filter
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TABLE
+        ================================================= -->
+
+        <div class="table-panel">
+
+
+            <!-- TABLE HEADER -->
+
+            <div
+                class="
+                    px-5
+                    py-4
+                    border-b
+                    border-slate-100
+                    flex
+                    items-center
+                    justify-between
+                "
+            >
+
+                <div>
+
+                    <h3
+                        class="
+                            font-black
+                            text-slate-700
+                            text-sm
+                        "
+                    >
+                        Daftar Aktivitas LPH
+                    </h3>
+
+
+                    <p
+                        id="resultInfo"
+                        class="
+                            text-[10px]
+                            text-slate-400
+                            mt-1
+                            font-medium
+                        "
+                    >
+                        -
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="
+                        flex
+                        items-center
+                        gap-2
+                        text-[10px]
+                        text-slate-400
+                        font-semibold
+                    "
+                >
+
+                    <i
+                        data-lucide="refresh-cw"
+                        class="w-3.5 h-3.5"
+                    ></i>
+
+                    Data langsung dari Google Sheet
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div
+                class="overflow-x-auto"
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th
+                                style="width:50px"
+                            >
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('number')"
+                                    data-sort-key="number"
+                                >
+
+                                    <span>No</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('unit')"
+                                    data-sort-key="unit"
+                                >
+
+                                    <span>Unit</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('problem')"
+                                    data-sort-key="problem"
+                                >
+
+                                    <span>Problem</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('startDate')"
+                                    data-sort-key="startDate"
+                                >
+
+                                    <span>Start Date</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('finishDate')"
+                                    data-sort-key="finishDate"
+                                >
+
+                                    <span>Finish Date</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('status')"
+                                    data-sort-key="status"
+                                >
+
+                                    <span>Status</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- EMPTY -->
+
+            <div
+                id="emptyState"
+            >
+
+                <div
+                    class="
+                        py-16
+                        text-center
+                    "
+                >
+
+                    <div
+                        class="
+                            inline-flex
+                            items-center
+                            justify-center
+                            bg-slate-100
+                            text-slate-400
+                            p-4
+                            rounded-full
+                        "
+                    >
+
+                        <i
+                            data-lucide="search-x"
+                            class="w-8 h-8"
+                        ></i>
+
+                    </div>
+
+
+                    <h3
+                        class="
+                            font-bold
+                            text-slate-600
+                            mt-4
+                        "
+                    >
+                        Data tidak ditemukan
+                    </h3>
+
+
+                    <p
+                        class="
+                            text-xs
+                            text-slate-400
+                            mt-1
+                        "
+                    >
+                        Coba ubah kata pencarian atau filter.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PAGINATION
+            ================================================= -->
+
+            <div
+                class="
+                    px-5
+                    py-4
+                    border-t
+                    border-slate-100
+                    flex
+                    items-center
+                    justify-between
+                "
+            >
+
+                <div
+                    id="paginationInfo"
+                    class="
+                        text-[10px]
+                        font-semibold
+                        text-slate-400
+                    "
+                >
+                    -
+                </div>
+
+
+                <div
+                    id="pagination"
+                    class="
+                        flex
+                        items-center
+                        gap-1
+                    "
+                >
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer
+    class="
+        mt-8
+        text-center
+        text-slate-400
+        px-4
+        pb-8
+    "
+>
+
+    <p
+        class="
+            font-bold
+            text-slate-500
+            tracking-tight
+            uppercase
+        "
+    >
+
+        &copy; 2026 Paperless Project - PT TSI.
+        All rights reserved.
+
+    </p>
+
+
+    <p
+        class="
+            text-[10px]
+            mt-1
+        "
+    >
+
+        System Architecture by:
+
+        <span
+            class="
+                text-slate-600
+                font-semibold
+                uppercase
+            "
+        >
+            Imam Wahyu Ramadhan, S.T.
+        </span>
+
+        |
+
+        <span
+            class="
+                text-amber-600
+                font-bold
+                uppercase
+                tracking-tighter
+            "
+        >
+            Project 2.0
+        </span>
+
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const API_URL =
+'https://script.google.com/macros/s/AKfycbw8ZzXABtXrKNLM3vHvfM5NblG3Eu-eXkRCPX9CTU-7pQP9zD8aOflVn4c-x0nY_sj1Sw/exec';
+
+
+const DASHBOARD_URL =
+'tlph-dashboard.html';
+
+
+const ROWS_PER_PAGE = 15;
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let apiData = null;
+
+let allData = [];
+
+let filteredData = [];
+
+let currentPage = 1;
+
+
+/*
+   Sorting state.
+
+   sortKey:
+   null
+   number
+   unit
+   problem
+   startDate
+   finishDate
+   status
+
+   sortDirection:
+   null
+   asc
+   desc
+*/
+
+let sortKey = null;
+
+let sortDirection = null;
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goToDashboard(){
+
+    window.location.href =
+        DASHBOARD_URL;
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+function handleLogoError(){
+
+    document
+        .getElementById(
+            'companyLogo'
+        )
+        .classList
+        .add('hidden');
+
+
+    document
+        .getElementById(
+            'logoFallback'
+        )
+        .classList
+        .remove('hidden');
+
+}
+
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
+
+async function loadTable(){
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method:'GET',
+                    cache:'no-store'
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                `HTTP Error ${response.status}`
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        apiData =
+            result;
+
+
+        if(
+            Array.isArray(result)
+        ){
+
+            allData =
+                result;
+
+        }
+
+        else if(
+            Array.isArray(result.data)
+        ){
+
+            allData =
+                result.data;
+
+        }
+
+        else{
+
+            allData = [];
+
+        }
+
+
+        updateStatistics(
+            allData
+        );
+
+
+        filteredData =
+            [...allData];
+
+
+        currentPage = 1;
+
+
+        /*
+           Reset sorting ketika
+           data pertama kali dimuat.
+        */
+
+        sortKey = null;
+
+        sortDirection = null;
+
+
+        renderTable();
+
+
+        document
+            .getElementById(
+                'loading'
+            )
+            .style
+            .display =
+                'none';
+
+
+        document
+            .getElementById(
+                'tableContent'
+            )
+            .classList
+            .add('show');
+
+
+    }
+    catch(error){
+
+        console.error(
+            'LPH API Error:',
+            error
+        );
+
+
+        document
+            .getElementById(
+                'loading'
+            )
+            .innerHTML = `
+
+                <div class="text-center">
+
+                    <div
+                        class="
+                            bg-red-50
+                            text-red-600
+                            p-4
+                            rounded-full
+                            inline-flex
+                        "
+                    >
+
+                        <i
+                            data-lucide="alert-circle"
+                            class="w-8 h-8"
+                        ></i>
+
+                    </div>
+
+
+                    <h3
+                        class="
+                            font-bold
+                            text-red-700
+                            mt-3
+                        "
+                    >
+                        Gagal memuat data
+                    </h3>
+
+
+                    <p
+                        class="
+                            text-xs
+                            text-slate-500
+                            mt-2
+                            max-w-md
+                        "
+                    >
+                        ${escapeHtml(
+                            error.message
+                        )}
+                    </p>
+
+
+                    <button
+                        onclick="loadTable()"
+                        class="
+                            mt-4
+                            bg-blue-800
+                            hover:bg-blue-700
+                            text-white
+                            font-bold
+                            px-5
+                            py-2.5
+                            rounded-xl
+                            text-sm
+                        "
+                    >
+
+                        Coba Lagi
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+        lucide.createIcons();
+
+    }
+
+}
+
+
+/* =========================================================
+   NORMALIZE UNIT
+========================================================= */
+
+function normalizeUnit(
+    value
+){
+
+    return String(
+        value ?? ''
+    )
+    .trim()
+    .toUpperCase();
+
+}
+
+
+/* =========================================================
+   GET UNIT TYPE
+========================================================= */
+
+function getUnitType(
+    unit
+){
+
+    const value =
+        normalizeUnit(
+            unit
+        );
+
+
+    if(
+        value.startsWith('F')
+    ){
+
+        return 'F';
+
+    }
+
+
+    if(
+        value.startsWith('W')
+    ){
+
+        return 'W';
+
+    }
+
+
+    if(
+        value.startsWith('D')
+    ){
+
+        return 'D';
+
+    }
+
+
+    if(
+        value.startsWith('E')
+    ){
+
+        return 'E';
+
+    }
+
+
+    return '';
+
+}
+
+
+/* =========================================================
+   GET UNIT TYPE NAME
+========================================================= */
+
+function getUnitTypeName(
+    unit
+){
+
+    const type =
+        getUnitType(
+            unit
+        );
+
+
+    switch(type){
+
+        case 'F':
+            return 'Forklift';
+
+        case 'W':
+            return 'Wheelloader';
+
+        case 'D':
+            return 'Dumptruck';
+
+        case 'E':
+            return 'Excavator';
+
+        default:
+            return 'Unknown';
+
+    }
+
+}
+
+
+/* =========================================================
+   GET UNIT COUNTS
+========================================================= */
+
+function getUnitCounts(
+    data
+){
+
+    const counts = {
+
+        F:0,
+
+        W:0,
+
+        D:0,
+
+        E:0
+
+    };
+
+
+    if(
+        !Array.isArray(data)
+    ){
+
+        return counts;
+
+    }
+
+
+    data.forEach(
+        row=>{
+
+            const unit =
+                normalizeUnit(
+                    row.unit
+                );
+
+
+            if(!unit){
+
+                return;
+
+            }
+
+
+            const type =
+                getUnitType(
+                    unit
+                );
+
+
+            if(
+                type &&
+                counts[type] !== undefined
+            ){
+
+                counts[type]++;
+
+            }
+
+        }
+    );
+
+
+    return counts;
+
+}
+
+
+/* =========================================================
+   UPDATE STATISTICS
+========================================================= */
+
+function updateStatistics(
+    data
+){
+
+    const counts =
+        getUnitCounts(
+            data
+        );
+
+
+    document
+        .getElementById(
+            'totalData'
+        )
+        .textContent =
+            Array.isArray(data)
+            ? data.length
+            : 0;
+
+
+    document
+        .getElementById(
+            'forkliftTotal'
+        )
+        .textContent =
+            counts.F;
+
+
+    document
+        .getElementById(
+            'wheelloaderTotal'
+        )
+        .textContent =
+            counts.W;
+
+
+    document
+        .getElementById(
+            'dumptruckTotal'
+        )
+        .textContent =
+            counts.D;
+
+
+    document
+        .getElementById(
+            'excavatorTotal'
+        )
+        .textContent =
+            counts.E;
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function applyFilters(){
+
+    const search =
+        document
+            .getElementById(
+                'searchInput'
+            )
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    const unitType =
+        document
+            .getElementById(
+                'unitTypeFilter'
+            )
+            .value
+            .toUpperCase();
+
+
+    const status =
+        document
+            .getElementById(
+                'statusFilter'
+            )
+            .value
+            .toUpperCase();
+
+
+    filteredData =
+        allData.filter(
+            row=>{
+
+                const searchable = [
+
+                    row.unit,
+
+                    row.problem,
+
+                    row.startDate,
+
+                    row.finishDate,
+
+                    row.status
+
+                ]
+                .join(' ')
+                .toLowerCase();
+
+
+                const matchSearch =
+                    !search ||
+                    searchable.includes(
+                        search
+                    );
+
+
+                const matchUnitType =
+                    !unitType ||
+                    getUnitType(
+                        row.unit
+                    ) === unitType;
+
+
+                const matchStatus =
+                    !status ||
+                    String(
+                        row.status || ''
+                    )
+                    .trim()
+                    .toUpperCase()
+                    ===
+                    status;
+
+
+                return (
+
+                    matchSearch &&
+
+                    matchUnitType &&
+
+                    matchStatus
+
+                );
+
+            }
+        );
+
+
+    currentPage = 1;
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   RESET FILTER
+========================================================= */
+
+function resetFilters(){
+
+    document
+        .getElementById(
+            'searchInput'
+        )
+        .value =
+            '';
+
+
+    document
+        .getElementById(
+            'unitTypeFilter'
+        )
+        .value =
+            '';
+
+
+    document
+        .getElementById(
+            'statusFilter'
+        )
+        .value =
+            '';
+
+
+    filteredData =
+        [...allData];
+
+
+    currentPage = 1;
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+/*
+   Siklus sorting:
+
+   klik pertama
+   ASC
+
+   klik kedua
+   DESC
+
+   klik ketiga
+   kembali ke default
+*/
+
+function sortBy(
+    key
+){
+
+    if(
+        sortKey !== key
+    ){
+
+        sortKey =
+            key;
+
+        sortDirection =
+            'asc';
+
+    }
+
+    else if(
+        sortDirection === 'asc'
+    ){
+
+        sortDirection =
+            'desc';
+
+    }
+
+    else{
+
+        sortKey =
+            null;
+
+        sortDirection =
+            null;
+
+    }
+
+
+    currentPage = 1;
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   SORT DATA
+========================================================= */
+
+function getSortedData(
+    data
+){
+
+    const result =
+        [...data];
+
+
+    if(
+        !sortKey ||
+        !sortDirection
+    ){
+
+        return result;
+
+    }
+
+
+    result.sort(
+        (
+            a,
+            b
+        )=>{
+
+            let valueA;
+
+            let valueB;
+
+
+            switch(sortKey){
+
+                case 'number':
+
+                    valueA =
+                        allData.indexOf(a);
+
+                    valueB =
+                        allData.indexOf(b);
+
+                    break;
+
+
+                case 'unit':
+
+                    valueA =
+                        normalizeUnit(
+                            a.unit
+                        );
+
+                    valueB =
+                        normalizeUnit(
+                            b.unit
+                        );
+
+                    break;
+
+
+                case 'problem':
+
+                    valueA =
+                        String(
+                            a.problem ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    valueB =
+                        String(
+                            b.problem ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    break;
+
+
+                case 'startDate':
+
+                    valueA =
+                        getDateSortValue(
+                            a.startDate
+                        );
+
+                    valueB =
+                        getDateSortValue(
+                            b.startDate
+                        );
+
+                    break;
+
+
+                case 'finishDate':
+
+                    valueA =
+                        getDateSortValue(
+                            a.finishDate
+                        );
+
+                    valueB =
+                        getDateSortValue(
+                            b.finishDate
+                        );
+
+                    break;
+
+
+                case 'status':
+
+                    valueA =
+                        String(
+                            a.status ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    valueB =
+                        String(
+                            b.status ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    break;
+
+
+                default:
+
+                    return 0;
+
+            }
+
+
+            /*
+               Tanggal kosong diletakkan
+               di bagian bawah.
+            */
+
+            const emptyA =
+                valueA === '' ||
+                valueA === null ||
+                valueA === undefined;
+
+            const emptyB =
+                valueB === '' ||
+                valueB === null ||
+                valueB === undefined;
+
+
+            if(emptyA && emptyB){
+
+                return 0;
+
+            }
+
+
+            if(emptyA){
+
+                return 1;
+
+            }
+
+
+            if(emptyB){
+
+                return -1;
+
+            }
+
+
+            let comparison = 0;
+
+
+            if(
+                typeof valueA === 'number' &&
+                typeof valueB === 'number'
+            ){
+
+                comparison =
+                    valueA - valueB;
+
+            }
+
+            else{
+
+                comparison =
+                    String(valueA)
+                    .localeCompare(
+                        String(valueB),
+                        'id',
+                        {
+                            numeric:true,
+                            sensitivity:'base'
+                        }
+                    );
+
+            }
+
+
+            return sortDirection === 'asc'
+                ? comparison
+                : -comparison;
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   GET DATE SORT VALUE
+========================================================= */
+
+function getDateSortValue(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ''
+    ){
+
+        return '';
+
+    }
+
+
+    const text =
+        String(
+            value
+        )
+        .trim();
+
+
+    const date =
+        parseDateOnly(
+            text
+        );
+
+
+    if(!date){
+
+        return '';
+
+    }
+
+
+    return date.getTime();
+
+}
+
+
+/* =========================================================
+   UPDATE SORT INDICATORS
+========================================================= */
+
+function updateSortIndicators(){
+
+    const buttons =
+        document.querySelectorAll(
+            '[data-sort-key]'
+        );
+
+
+    buttons.forEach(
+        button=>{
+
+            const key =
+                button.getAttribute(
+                    'data-sort-key'
+                );
+
+
+            const icon =
+                button.querySelector(
+                    '.sort-icon'
+                );
+
+
+            button.classList.remove(
+                'active'
+            );
+
+
+            if(!icon){
+
+                return;
+
+            }
+
+
+            icon.setAttribute(
+                'data-lucide',
+                'chevrons-up-down'
+            );
+
+
+            if(
+                sortKey === key &&
+                sortDirection === 'asc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-up'
+                );
+
+            }
+
+
+            else if(
+                sortKey === key &&
+                sortDirection === 'desc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-down'
+                );
+
+            }
+
+        }
+    );
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ''
+    ){
+
+        return '-';
+
+    }
+
+
+    const text =
+        String(
+            value
+        ).trim();
+
+
+    const match =
+        text.match(
+            /^(\d{4})-(\d{2})-(\d{2})/
+        );
+
+
+    if(match){
+
+        return `
+            ${escapeHtml(
+                match[3]
+            )}/
+            ${escapeHtml(
+                match[2]
+            )}/
+            ${escapeHtml(
+                match[1]
+            )}
+        `;
+
+    }
+
+
+    const date =
+        new Date(
+            text
+        );
+
+
+    if(
+        !isNaN(
+            date.getTime()
+        )
+    ){
+
+        const day =
+            String(
+                date.getDate()
+            )
+            .padStart(
+                2,
+                '0'
+            );
+
+
+        const month =
+            String(
+                date.getMonth() + 1
+            )
+            .padStart(
+                2,
+                '0'
+            );
+
+
+        const year =
+            date.getFullYear();
+
+
+        return `
+            ${day}/${month}/${year}
+        `;
+
+    }
+
+
+    return escapeHtml(
+        text
+    );
+
+}
+
+
+/* =========================================================
+   CALCULATE DURATION
+========================================================= */
+
+function calculateDuration(
+    startDate,
+    finishDate
+){
+
+    if(
+        !startDate
+    ){
+
+        return '-';
+
+    }
+
+
+    if(
+        !finishDate
+    ){
+
+        return `
+            <span
+                class="
+                    text-orange-600
+                    font-bold
+                "
+            >
+                Berjalan
+            </span>
+        `;
+
+    }
+
+
+    const start =
+        parseDateOnly(
+            startDate
+        );
+
+
+    const finish =
+        parseDateOnly(
+            finishDate
+        );
+
+
+    if(
+        !start ||
+        !finish
+    ){
+
+        return '-';
+
+    }
+
+
+    const diff =
+        finish.getTime() -
+        start.getTime();
+
+
+    const days =
+        Math.round(
+            diff /
+            (
+                1000 *
+                60 *
+                60 *
+                24
+            )
+        );
+
+
+    if(days < 0){
+
+        return '-';
+
+    }
+
+
+    return `
+        <span
+            class="
+                font-bold
+                text-slate-600
+            "
+        >
+            ${days} hari
+        </span>
+    `;
+
+}
+
+
+/* =========================================================
+   PARSE DATE ONLY
+========================================================= */
+
+function parseDateOnly(
+    value
+){
+
+    const text =
+        String(
+            value ?? ''
+        )
+        .trim();
+
+
+    const match =
+        text.match(
+            /^(\d{4})-(\d{2})-(\d{2})/
+        );
+
+
+    if(!match){
+
+        return null;
+
+    }
+
+
+    const year =
+        Number(
+            match[1]
+        );
+
+
+    const month =
+        Number(
+            match[2]
+        );
+
+
+    const day =
+        Number(
+            match[3]
+        );
+
+
+    return new Date(
+        year,
+        month - 1,
+        day
+    );
+
+}
+
+
+/* =========================================================
+   GET UNIT BADGE
+========================================================= */
+
+function getUnitBadge(
+    unit
+){
+
+    const value =
+        normalizeUnit(
+            unit
+        );
+
+
+    if(!value){
+
+        return `
+            <span
+                class="
+                    text-slate-300
+                "
+            >
+                -
+            </span>
+        `;
+
+    }
+
+
+    return `
+
+        <span
+            class="
+                unit-badge
+            "
+        >
+            ${escapeHtml(
+                value
+            )}
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   GET UNIT TYPE BADGE
+========================================================= */
+
+function getUnitTypeBadge(
+    unit
+){
+
+    const type =
+        getUnitType(
+            unit
+        );
+
+
+    const name =
+        getUnitTypeName(
+            unit
+        );
+
+
+    let cls =
+        'type-badge type-unknown';
+
+
+    if(type === 'F'){
+
+        cls =
+            'type-badge type-forklift';
+
+    }
+
+    else if(type === 'W'){
+
+        cls =
+            'type-badge type-wheelloader';
+
+    }
+
+    else if(type === 'D'){
+
+        cls =
+            'type-badge type-dumptruck';
+
+    }
+
+    else if(type === 'E'){
+
+        cls =
+            'type-badge type-excavator';
+
+    }
+
+
+    return `
+
+        <span
+            class="${cls}"
+        >
+
+            ${escapeHtml(
+                name
+            )}
+
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   GET STATUS BADGE
+========================================================= */
+
+function getStatusBadge(
+    status
+){
+
+    const value =
+        String(
+            status ?? ''
+        )
+        .trim()
+        .toUpperCase();
+
+
+    if(
+        value === 'OPEN'
+    ){
+
+        return `
+
+            <span
+                class="
+                    status-badge
+                    status-open
+                "
+            >
+
+                <i
+                    data-lucide="circle-dot"
+                    class="w-3 h-3"
+                ></i>
+
+                OPEN
+
+            </span>
+
+        `;
+
+    }
+
+
+    if(
+        value === 'CLOSE'
+    ){
+
+        return `
+
+            <span
+                class="
+                    status-badge
+                    status-close
+                "
+            >
+
+                <i
+                    data-lucide="circle-check"
+                    class="w-3 h-3"
+                ></i>
+
+                CLOSE
+
+            </span>
+
+        `;
+
+    }
+
+
+    return `
+
+        <span
+            class="
+                status-badge
+                type-unknown
+            "
+        >
+            ${escapeHtml(
+                value || '-'
+            )}
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderTable(){
+
+    const tbody =
+        document
+            .getElementById(
+                'tableBody'
+            );
+
+
+    const emptyState =
+        document
+            .getElementById(
+                'emptyState'
+            );
+
+
+    tbody.innerHTML =
+        '';
+
+
+    /*
+       Terapkan sorting sebelum
+       menentukan data pagination.
+    */
+
+    const sortedData =
+        getSortedData(
+            filteredData
+        );
+
+
+    const total =
+        sortedData.length;
+
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                total /
+                ROWS_PER_PAGE
+            )
+        );
+
+
+    if(
+        currentPage >
+        totalPages
+    ){
+
+        currentPage =
+            totalPages;
+
+    }
+
+
+    const start =
+        (
+            currentPage - 1
+        ) *
+        ROWS_PER_PAGE;
+
+
+    const end =
+        Math.min(
+            start +
+            ROWS_PER_PAGE,
+            total
+        );
+
+
+    const pageData =
+        sortedData.slice(
+            start,
+            end
+        );
+
+
+    if(
+        !pageData.length
+    ){
+
+        emptyState
+            .classList
+            .add('show');
+
+    }
+
+    else{
+
+        emptyState
+            .classList
+            .remove('show');
+
+
+        pageData.forEach(
+            (
+                row,
+                index
+            )=>{
+
+                const tr =
+                    document
+                        .createElement(
+                            'tr'
+                        );
+
+
+                const number =
+                    start +
+                    index +
+                    1;
+
+
+                tr.innerHTML = `
+
+                    <!-- NO -->
+
+                    <td
+                        class="
+                            text-center
+                            font-bold
+                            text-slate-400
+                        "
+                    >
+
+                        ${number}
+
+                    </td>
+
+
+                    <!-- UNIT -->
+
+                    <td>
+
+                        ${getUnitBadge(
+                            row.unit
+                        )}
+
+                    </td>
+
+
+                    <!-- PROBLEM -->
+
+                    <td
+                        class="
+                            max-w-[360px]
+                        "
+                    >
+
+                        <div
+                            class="
+                                font-semibold
+                                text-slate-700
+                                max-w-[360px]
+                                truncate
+                            "
+                            title="${escapeHtml(
+                                row.problem
+                            )}"
+                        >
+
+                            ${
+                                escapeHtml(
+                                    row.problem
+                                )
+                                ||
+                                '<span class="text-slate-300">-</span>'
+                            }
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- START DATE -->
+
+                    <td
+                        class="
+                            whitespace-nowrap
+                        "
+                    >
+
+                        ${formatDate(
+                            row.startDate
+                        )}
+
+                    </td>
+
+
+                    <!-- FINISH DATE -->
+
+                    <td
+                        class="
+                            whitespace-nowrap
+                        "
+                    >
+
+                        ${
+                            row.finishDate
+                            ?
+                            formatDate(
+                                row.finishDate
+                            )
+                            :
+                            `
+                                <span
+                                    class="
+                                        text-orange-500
+                                        font-bold
+                                    "
+                                >
+                                    -
+                                </span>
+                            `
+                        }
+
+                    </td>
+
+
+                    <!-- STATUS -->
+
+                    <td>
+
+                        ${getStatusBadge(
+                            row.status
+                        )}
+
+                    </td>
+
+                `;
+
+
+                tbody.appendChild(
+                    tr
+                );
+
+            }
+        );
+
+    }
+
+
+    updateResultInfo(
+        total,
+        start,
+        end
+    );
+
+
+    renderPagination(
+        totalPages
+    );
+
+
+    updateSortIndicators();
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   RESULT INFO
+========================================================= */
+
+function updateResultInfo(
+    total,
+    start,
+    end
+){
+
+    const resultInfo =
+        document
+            .getElementById(
+                'resultInfo'
+            );
+
+
+    const paginationInfo =
+        document
+            .getElementById(
+                'paginationInfo'
+            );
+
+
+    if(
+        total === 0
+    ){
+
+        resultInfo.textContent =
+            'Tidak ada data yang sesuai filter.';
+
+
+        paginationInfo.textContent =
+            '0 data';
+
+
+        return;
+
+    }
+
+
+    resultInfo.textContent =
+        `Menampilkan ${start + 1}–${end} dari ${total} aktivitas`;
+
+
+    paginationInfo.textContent =
+        `${total} aktivitas ditemukan`;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination(
+    totalPages
+){
+
+    const container =
+        document
+            .getElementById(
+                'pagination'
+            );
+
+
+    container.innerHTML =
+        '';
+
+
+    if(
+        filteredData.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       PREVIOUS
+    ===================================================== */
+
+    const prev =
+        document.createElement(
+            'button'
+        );
+
+
+    prev.className =
+        'pagination-button';
+
+
+    prev.innerHTML = `
+
+        <i
+            data-lucide="chevron-left"
+            class="w-4 h-4"
+        ></i>
+
+    `;
+
+
+    prev.disabled =
+        currentPage === 1;
+
+
+    prev.onclick = ()=>{
+
+        if(
+            currentPage > 1
+        ){
+
+            currentPage--;
+
+            renderTable();
+
+        }
+
+    };
+
+
+    container.appendChild(
+        prev
+    );
+
+
+    /* =====================================================
+       PAGE NUMBERS
+    ===================================================== */
+
+    const pages =
+        getPaginationPages(
+            currentPage,
+            totalPages
+        );
+
+
+    pages.forEach(
+        page=>{
+
+            if(
+                page === '...'
+            ){
+
+                const span =
+                    document.createElement(
+                        'span'
+                    );
+
+
+                span.className =
+                    'px-2 text-slate-400 text-xs';
+
+
+                span.textContent =
+                    '...';
+
+
+                container.appendChild(
+                    span
+                );
+
+
+                return;
+
+            }
+
+
+            const button =
+                document.createElement(
+                    'button'
+                );
+
+
+            button.className =
+                'pagination-button' +
+                (
+                    page === currentPage
+                    ? ' active'
+                    : ''
+                );
+
+
+            button.textContent =
+                page;
+
+
+            button.onclick = ()=>{
+
+                currentPage =
+                    page;
+
+
+                renderTable();
+
+            };
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       NEXT
+    ===================================================== */
+
+    const next =
+        document.createElement(
+            'button'
+        );
+
+
+    next.className =
+        'pagination-button';
+
+
+    next.innerHTML = `
+
+        <i
+            data-lucide="chevron-right"
+            class="w-4 h-4"
+        ></i>
+
+    `;
+
+
+    next.disabled =
+        currentPage === totalPages;
+
+
+    next.onclick = ()=>{
+
+        if(
+            currentPage <
+            totalPages
+        ){
+
+            currentPage++;
+
+            renderTable();
+
+        }
+
+    };
+
+
+    container.appendChild(
+        next
+    );
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   PAGINATION RANGE
+========================================================= */
+
+function getPaginationPages(
+    current,
+    total
+){
+
+    if(
+        total <= 7
+    ){
+
+        return Array.from(
+            {
+                length:total
+            },
+            (
+                _,
+                i
+            ) =>
+                i + 1
+        );
+
+    }
+
+
+    const pages = [];
+
+
+    pages.push(1);
+
+
+    if(
+        current > 4
+    ){
+
+        pages.push(
+            '...'
+        );
+
+    }
+
+
+    const start =
+        Math.max(
+            2,
+            current - 1
+        );
+
+
+    const end =
+        Math.min(
+            total - 1,
+            current + 1
+        );
+
+
+    for(
+        let i = start;
+        i <= end;
+        i++
+    ){
+
+        pages.push(i);
+
+    }
+
+
+    if(
+        current <
+        total - 3
+    ){
+
+        pages.push(
+            '...'
+        );
+
+    }
+
+
+    pages.push(
+        total
+    );
+
+
+    return pages;
+
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+function escapeHtml(
+    value
+){
+
+    return String(
+        value ?? ''
+    )
+    .replace(
+        /&/g,
+        '&amp;'
+    )
+    .replace(
+        /</g,
+        '&lt;'
+    )
+    .replace(
+        />/g,
+        '&gt;'
+    )
+    .replace(
+        /"/g,
+        '&quot;'
+    )
+    .replace(
+        /'/g,
+        '&#039;'
+    );
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+window.addEventListener(
+    'load',
+    ()=>{
+
+        lucide.createIcons();
+
+        loadTable();
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    'keydown',
+    event=>{
+
+        if(
+            event.key === 'Escape'
+        ){
+
+            document
+                .activeElement
+                ?.blur();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
