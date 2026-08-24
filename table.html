@@ -371,6 +371,65 @@ tbody tr:last-child td{
 
 
 /* =========================================================
+   PAP LINK
+========================================================= */
+
+.pap-link{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+    padding:
+        6px
+        10px;
+
+    border-radius:8px;
+
+    background:#eff6ff;
+
+    color:#1d4ed8;
+
+    border:
+        1px solid
+        #dbeafe;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+    text-decoration:none;
+
+    transition:
+        .2s ease;
+
+}
+
+.pap-link:hover{
+
+    background:#dbeafe;
+
+    border-color:#bfdbfe;
+
+    color:#1e40af;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 3px 8px
+        rgba(37,99,235,.12);
+
+}
+
+
+/* =========================================================
    TABLE BADGES
 ========================================================= */
 
@@ -2312,7 +2371,8 @@ async function loadTable(){
 
         document
             .getElementById('loading')
-            .style.display='none';
+            .style
+            .display='none';
 
 
         document
@@ -2777,7 +2837,7 @@ function renderTable(){
 
 
                     <td>
-                        ${escapeHtml(row.pap) || '<span class="text-slate-300">-</span>'}
+                        ${getPapLink(row.pap)}
                     </td>
 
                 `;
@@ -2804,6 +2864,91 @@ function renderTable(){
 
 
     lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   PAP LINK
+========================================================= */
+
+function getPapLink(pap){
+
+    const value =
+        String(pap || '').trim();
+
+
+    if(!value){
+
+        return `
+            <span class="text-slate-300">
+                -
+            </span>
+        `;
+
+    }
+
+
+    let url;
+
+    try{
+
+        url =
+            new URL(value);
+
+    }
+    catch(error){
+
+        return `
+            <span
+                class="
+                    text-slate-400
+                    text-[10px]
+                    font-medium
+                "
+                title="${escapeHtml(value)}"
+            >
+                ${escapeHtml(value)}
+            </span>
+        `;
+
+    }
+
+
+    if(
+        url.protocol !== 'http:' &&
+        url.protocol !== 'https:'
+    ){
+
+        return `
+            <span class="text-slate-400">
+                -
+            </span>
+        `;
+
+    }
+
+
+    return `
+
+        <a
+            href="${escapeHtml(url.href)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="pap-link"
+            title="Lihat gambar PAP"
+        >
+
+            <i
+                data-lucide="image"
+                class="w-3.5 h-3.5"
+            ></i>
+
+            Lihat PAP
+
+        </a>
+
+    `;
 
 }
 
