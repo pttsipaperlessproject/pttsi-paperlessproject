@@ -1,0 +1,3693 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Dashboard Greasing - PT TSI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+
+    margin:0;
+
+    min-width:320px;
+
+    min-height:100vh;
+
+    font-family:'Inter',sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #eef2f7
+        );
+
+    color:#1e293b;
+
+}
+
+
+/* =========================================================
+   GLOBAL UTILITIES
+========================================================= */
+
+.color-primary{
+    background:#1E3A8A;
+}
+
+.text-primary{
+    color:#1E3A8A;
+}
+
+.fade-in{
+
+    animation:
+        fadeIn
+        .5s
+        cubic-bezier(.4,0,.2,1);
+
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.glass-panel{
+
+    background:
+        rgba(255,255,255,.95);
+
+    backdrop-filter:
+        blur(10px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+}
+
+.logo-wrapper{
+
+    transition:
+        transform
+        .4s
+        cubic-bezier(
+            .175,
+            .885,
+            .32,
+            1.275
+        );
+
+}
+
+.logo-wrapper:hover{
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+
+}
+
+.logo-shadow{
+
+    filter:
+        drop-shadow(
+            0 10px 8px
+            rgba(0,0,0,.04)
+        )
+        drop-shadow(
+            0 4px 3px
+            rgba(0,0,0,.1)
+        );
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation-button{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    border-radius:12px;
+
+    padding:
+        11px
+        17px;
+
+    transition:
+        all
+        .2s
+        ease;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+}
+
+.navigation-button:hover{
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.stat-card{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    transition:
+        .25s ease;
+
+    box-shadow:
+        0 4px 12px
+        rgba(15,23,42,.04);
+
+}
+
+.stat-card:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 20px
+        rgba(15,23,42,.08);
+
+}
+
+
+/* =========================================================
+   STAT ICON
+========================================================= */
+
+.stat-icon{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:12px;
+
+}
+
+
+/* =========================================================
+   CHART CARDS
+========================================================= */
+
+.chart-card{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(15,23,42,.04);
+
+    transition:
+        .25s ease;
+
+}
+
+.chart-card:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(15,23,42,.08);
+
+}
+
+.chart-title{
+
+    font-size:14px;
+
+    font-weight:900;
+
+    color:#334155;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+}
+
+.chart-subtitle{
+
+    font-size:10px;
+
+    color:#94a3b8;
+
+    font-weight:600;
+
+    margin-top:4px;
+
+}
+
+.chart-wrapper{
+
+    position:relative;
+
+    height:300px;
+
+    margin-top:15px;
+
+}
+
+
+/* =========================================================
+   MECHANIC TABLE
+========================================================= */
+
+.performance-table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    margin-top:18px;
+
+}
+
+.performance-table{
+
+    width:100%;
+
+    min-width:720px;
+
+    border-collapse:separate;
+
+    border-spacing:0 7px;
+
+}
+
+.performance-table th{
+
+    padding:
+        9px
+        12px;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    color:#94a3b8;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    text-align:center;
+
+    white-space:nowrap;
+
+}
+
+.performance-table th:first-child{
+
+    text-align:left;
+
+}
+
+.performance-table td{
+
+    padding:
+        12px;
+
+    background:#f8fafc;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:#475569;
+
+    text-align:center;
+
+    border-top:
+        1px solid
+        #f1f5f9;
+
+    border-bottom:
+        1px solid
+        #f1f5f9;
+
+}
+
+.performance-table td:first-child{
+
+    text-align:left;
+
+    border-left:
+        1px solid
+        #f1f5f9;
+
+    border-radius:
+        12px 0 0 12px;
+
+}
+
+.performance-table td:last-child{
+
+    border-right:
+        1px solid
+        #f1f5f9;
+
+    border-radius:
+        0 12px 12px 0;
+
+}
+
+.performance-name{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    min-width:180px;
+
+}
+
+.performance-rank{
+
+    width:30px;
+
+    height:30px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    background:#e2e8f0;
+
+    color:#475569;
+
+    flex-shrink:0;
+
+}
+
+.performance-rank.rank-1{
+
+    background:#fbbf24;
+
+    color:#78350f;
+
+}
+
+.performance-rank.rank-2{
+
+    background:#cbd5e1;
+
+    color:#334155;
+
+}
+
+.performance-rank.rank-3{
+
+    background:#fdba74;
+
+    color:#7c2d12;
+
+}
+
+.performance-name-text{
+
+    font-size:11px;
+
+    font-weight:900;
+
+    color:#334155;
+
+    white-space:nowrap;
+
+}
+
+.performance-total{
+
+    font-size:12px;
+
+    font-weight:900;
+
+    color:#1e3a8a;
+
+}
+
+.performance-percentage{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+        5px
+        9px;
+
+    border-radius:999px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+
+/* =========================================================
+   FLOATING LEADERBOARD
+========================================================= */
+
+#leaderboardButton{
+
+    position:fixed;
+
+    right:28px;
+
+    bottom:28px;
+
+    z-index:90;
+
+    width:68px;
+
+    height:68px;
+
+    border-radius:20px;
+
+    background:#1e3a8a;
+
+    color:#fff;
+
+    border:
+        2px solid
+        rgba(255,255,255,.45);
+
+    box-shadow:
+        0 12px 30px
+        rgba(15,23,42,.25);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:
+        transform
+        .25s
+        ease,
+
+        box-shadow
+        .25s
+        ease;
+
+}
+
+#leaderboardButton:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.06);
+
+    box-shadow:
+        0 16px 35px
+        rgba(15,23,42,.30),
+
+        0 0 22px
+        rgba(30,58,138,.28);
+
+}
+
+
+/* =========================================================
+   LEADERBOARD PULSE
+========================================================= */
+
+#leaderboardButton.leader-pulse{
+
+    animation:
+        leaderPulse
+        1.8s
+        cubic-bezier(.4,0,.2,1);
+
+}
+
+@keyframes leaderPulse{
+
+    0%{
+
+        transform:scale(1);
+
+        box-shadow:
+            0 12px 30px
+            rgba(15,23,42,.25);
+
+    }
+
+    18%{
+
+        transform:scale(1.16);
+
+        box-shadow:
+            0 16px 35px
+            rgba(15,23,42,.28),
+
+            0 0 0 9px
+            rgba(30,58,138,.12),
+
+            0 0 28px
+            rgba(30,58,138,.35);
+
+    }
+
+    35%{
+
+        transform:scale(1.08);
+
+        box-shadow:
+            0 16px 35px
+            rgba(15,23,42,.28),
+
+            0 0 0 17px
+            rgba(30,58,138,.06),
+
+            0 0 34px
+            rgba(30,58,138,.25);
+
+    }
+
+    52%{
+
+        transform:scale(1.13);
+
+        box-shadow:
+            0 16px 35px
+            rgba(15,23,42,.28),
+
+            0 0 0 8px
+            rgba(30,58,138,.10),
+
+            0 0 30px
+            rgba(30,58,138,.30);
+
+    }
+
+    72%{
+
+        transform:scale(1.04);
+
+        box-shadow:
+            0 13px 30px
+            rgba(15,23,42,.25),
+
+            0 0 0 16px
+            rgba(30,58,138,.03);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        box-shadow:
+            0 12px 30px
+            rgba(15,23,42,.25);
+
+    }
+
+}
+
+
+/* =========================================================
+   TOOLTIP
+========================================================= */
+
+.leader-tooltip{
+
+    position:absolute;
+
+    right:0;
+
+    bottom:78px;
+
+    white-space:nowrap;
+
+    background:#0f172a;
+
+    color:#fff;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    padding:
+        7px
+        10px;
+
+    border-radius:8px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:
+        translateY(5px);
+
+    transition:.2s;
+
+}
+
+#leaderboardButton:hover
+.leader-tooltip{
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   LEADERBOARD OVERLAY
+========================================================= */
+
+#leaderboardOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:95;
+
+    background:
+        rgba(15,23,42,.28);
+
+    backdrop-filter:
+        blur(3px);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+}
+
+#leaderboardOverlay.show{
+
+    display:flex;
+
+}
+
+#leaderboardModal{
+
+    width:
+        min(
+            430px,
+            100%
+        );
+
+    max-height:80vh;
+
+    overflow:hidden;
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:22px;
+
+    box-shadow:
+        0 25px 60px
+        rgba(15,23,42,.25);
+
+    animation:
+        leaderModalIn
+        .25s
+        ease;
+
+}
+
+@keyframes leaderModalIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(12px)
+            scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   LEADERBOARD ROW
+========================================================= */
+
+.leader-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:
+        12px
+        14px;
+
+    border-radius:14px;
+
+    margin-bottom:7px;
+
+    background:#f8fafc;
+
+    border:
+        1px solid
+        #f1f5f9;
+
+}
+
+.leader-row.top-1{
+
+    background:#fffbeb;
+
+    border-color:#fde68a;
+
+}
+
+.leader-row.top-2{
+
+    background:#f8fafc;
+
+    border-color:#cbd5e1;
+
+}
+
+.leader-row.top-3{
+
+    background:#fff7ed;
+
+    border-color:#fed7aa;
+
+}
+
+.leader-rank{
+
+    width:30px;
+
+    height:30px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    background:#e2e8f0;
+
+    color:#475569;
+
+    flex-shrink:0;
+
+}
+
+.top-1 .leader-rank{
+
+    background:#fbbf24;
+
+    color:#78350f;
+
+}
+
+.top-2 .leader-rank{
+
+    background:#cbd5e1;
+
+    color:#334155;
+
+}
+
+.top-3 .leader-rank{
+
+    background:#fdba74;
+
+    color:#7c2d12;
+
+}
+
+.leader-name{
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:#334155;
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+.leader-count{
+
+    font-size:11px;
+
+    font-weight:900;
+
+    color:#1e3a8a;
+
+    background:#dbeafe;
+
+    padding:
+        5px
+        9px;
+
+    border-radius:999px;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loading{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:400px;
+
+}
+
+#dashboard{
+
+    display:none;
+
+}
+
+#dashboard.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    body{
+
+        padding:
+            10px !important;
+
+    }
+
+    main{
+
+        padding:
+            22px !important;
+
+        border-radius:
+            22px !important;
+
+    }
+
+    .logo-wrapper > div{
+
+        width:
+            82px !important;
+
+        height:
+            82px !important;
+
+    }
+
+    .color-primary{
+
+        width:auto;
+
+        max-width:100%;
+
+        padding:
+            14px
+            20px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+    .color-primary h1{
+
+        font-size:
+            17px !important;
+
+        letter-spacing:
+            .08em !important;
+
+    }
+
+    .color-primary h2{
+
+        font-size:
+            11px !important;
+
+    }
+
+    section h2{
+
+        font-size:
+            22px;
+
+    }
+
+    .stat-card{
+
+        padding:
+            16px;
+
+    }
+
+    .chart-card{
+
+        padding:
+            17px;
+
+        border-radius:
+            18px;
+
+    }
+
+    .chart-title{
+
+        font-size:
+            13px;
+
+    }
+
+    .chart-subtitle{
+
+        font-size:
+            9px;
+
+    }
+
+    .chart-wrapper{
+
+        height:
+            280px;
+
+    }
+
+    #leaderboardButton{
+
+        right:
+            18px;
+
+        bottom:
+            18px;
+
+        width:
+            62px;
+
+        height:
+            62px;
+
+        border-radius:
+            19px;
+
+    }
+
+    .leader-tooltip{
+
+        display:none;
+
+    }
+
+    .navigation-button{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:375px){
+
+    body{
+
+        padding:
+            7px !important;
+
+    }
+
+    main{
+
+        padding:
+            16px !important;
+
+        border-radius:
+            18px !important;
+
+    }
+
+    .chart-card{
+
+        padding:
+            14px;
+
+    }
+
+    .chart-wrapper{
+
+        height:
+            260px;
+
+    }
+
+    .color-primary h1{
+
+        font-size:
+            14px !important;
+
+    }
+
+    .color-primary h2{
+
+        font-size:
+            9px !important;
+
+    }
+
+    #leaderboardButton{
+
+        right:
+            14px;
+
+        bottom:
+            14px;
+
+        width:
+            58px;
+
+        height:
+            58px;
+
+        border-radius:
+            17px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body class="flex flex-col items-center p-4 sm:p-8">
+
+
+<main
+    class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in"
+>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header
+    class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
+>
+
+
+    <div class="mb-4 logo-wrapper">
+
+        <div
+            class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
+        >
+
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="w-full h-full object-contain"
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+
+            <div
+                id="logoFallback"
+                class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+            >
+
+                <span class="font-black text-2xl">
+                    TSI
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
+    >
+
+        <h1
+            class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
+        >
+            PAPERLESS PROJECT
+        </h1>
+
+        <div
+            class="h-0.5 w-16 bg-amber-500 rounded-full my-1"
+        ></div>
+
+        <h2
+            class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
+        >
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+
+    </div>
+
+
+    <div
+        class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase"
+    >
+        Digitalization Initiative v2.0
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     TITLE / NAVIGATION
+===================================================== -->
+
+<section>
+
+<div
+    class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6"
+>
+
+
+    <div>
+
+        <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3"
+        >
+
+            <span
+                class="bg-blue-900 text-white p-3 rounded-xl shadow-md shrink-0"
+            >
+
+                <i
+                    data-lucide="droplets"
+                    class="w-6 h-6"
+                ></i>
+
+            </span>
+
+            Dashboard Greasing
+
+        </h2>
+
+
+        <p
+            class="text-slate-500 font-medium text-sm mt-2 ml-1"
+        >
+            Monitoring dan analisis aktivitas greasing secara terintegrasi.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         NAVIGATION
+    ================================================= -->
+
+    <div
+        class="flex flex-col sm:flex-row gap-2 w-full lg:w-auto"
+    >
+
+
+        <!-- HOME -->
+
+        <button
+            type="button"
+            onclick="goToHome()"
+            class="navigation-button bg-slate-100 hover:bg-slate-200 text-slate-700 shadow-sm"
+        >
+
+            <i
+                data-lucide="house"
+                class="w-4 h-4"
+            ></i>
+
+            Kembali ke Home
+
+        </button>
+
+
+        <!-- TABLE GREASING -->
+
+        <button
+            type="button"
+            onclick="goToTable()"
+            class="navigation-button bg-blue-800 hover:bg-blue-700 text-white shadow-md"
+        >
+
+            <i
+                data-lucide="table-2"
+                class="w-4 h-4"
+            ></i>
+
+            Lihat Data
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     INFO
+===================================================== -->
+
+<div
+    class="mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-start gap-4"
+>
+
+
+    <div
+        class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0"
+    >
+
+        <i
+            data-lucide="database"
+            class="w-6 h-6"
+        ></i>
+
+    </div>
+
+
+    <div class="space-y-1">
+
+        <h4
+            class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]"
+        >
+            Dashboard Terintegrasi
+        </h4>
+
+
+        <p
+            class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium"
+        >
+
+            Data diperbarui langsung berdasarkan
+            <b>Google Sheet</b>
+            melalui sistem API
+            <b>Greasing</b>.
+
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div id="loading">
+
+    <i
+        data-lucide="loader-circle"
+        class="w-9 h-9 animate-spin text-amber-500"
+    ></i>
+
+    <p
+        class="font-semibold text-sm text-slate-400 mt-3"
+    >
+        Memuat dashboard...
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<div id="dashboard">
+
+
+<!-- =====================================================
+     STATISTICS
+===================================================== -->
+
+<div
+    class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-6"
+>
+
+
+    <!-- TOTAL -->
+
+    <div class="stat-card">
+
+        <div
+            class="stat-icon bg-blue-100 text-blue-700"
+        >
+
+            <i
+                data-lucide="activity"
+                class="w-5 h-5"
+            ></i>
+
+        </div>
+
+        <p
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+        >
+            Total Activity
+        </p>
+
+        <p
+            id="totalJobs"
+            class="text-3xl font-black text-blue-900 mt-2"
+        >
+            -
+        </p>
+
+    </div>
+
+
+    <!-- WHEELLOADER -->
+
+    <div class="stat-card">
+
+        <div
+            class="stat-icon bg-sky-100 text-sky-700"
+        >
+
+            <i
+                data-lucide="loader"
+                class="w-5 h-5"
+            ></i>
+
+        </div>
+
+        <p
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+        >
+            Wheelloader
+        </p>
+
+        <p
+            id="totalW"
+            class="text-3xl font-black text-sky-600 mt-2"
+        >
+            -
+        </p>
+
+    </div>
+
+
+    <!-- FORKLIFT -->
+
+    <div class="stat-card">
+
+        <div
+            class="stat-icon bg-violet-100 text-violet-700"
+        >
+
+            <i
+                data-lucide="forklift"
+                class="w-5 h-5"
+            ></i>
+
+        </div>
+
+        <p
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+        >
+            Forklift
+        </p>
+
+        <p
+            id="totalFD"
+            class="text-3xl font-black text-violet-600 mt-2"
+        >
+            -
+        </p>
+
+    </div>
+
+
+    <!-- DUMPTRUCK -->
+
+    <div class="stat-card">
+
+        <div
+            class="stat-icon bg-orange-100 text-orange-700"
+        >
+
+            <i
+                data-lucide="truck"
+                class="w-5 h-5"
+            ></i>
+
+        </div>
+
+        <p
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+        >
+            Dumptruck
+        </p>
+
+        <p
+            id="totalD"
+            class="text-3xl font-black text-orange-600 mt-2"
+        >
+            -
+        </p>
+
+    </div>
+
+
+    <!-- EXCAVATOR -->
+
+    <div class="stat-card">
+
+        <div
+            class="stat-icon bg-emerald-100 text-emerald-700"
+        >
+
+            <i
+                data-lucide="construction"
+                class="w-5 h-5"
+            ></i>
+
+        </div>
+
+        <p
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+        >
+            Excavator
+        </p>
+
+        <p
+            id="totalE"
+            class="text-3xl font-black text-emerald-600 mt-2"
+        >
+            -
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     ACTIVITY TREND
+===================================================== -->
+
+<div class="chart-card mb-5">
+
+
+    <div class="chart-title">
+
+        <span
+            class="bg-violet-100 text-violet-700 p-2 rounded-lg"
+        >
+
+            <i
+                data-lucide="trending-up"
+                class="w-4 h-4"
+            ></i>
+
+        </span>
+
+        Activity Trend
+
+    </div>
+
+
+    <p class="chart-subtitle">
+        Jumlah aktivitas greasing berdasarkan bulan
+    </p>
+
+
+    <div
+        class="chart-wrapper"
+        style="height:320px"
+    >
+
+        <canvas id="trendChart"></canvas>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     ROW 1
+===================================================== -->
+
+<div
+    class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5"
+>
+
+
+<!-- ACTIVITY BY UNIT TYPE -->
+
+<div class="chart-card">
+
+
+    <div class="chart-title">
+
+        <span
+            class="bg-blue-100 text-blue-700 p-2 rounded-lg"
+        >
+
+            <i
+                data-lucide="bar-chart-3"
+                class="w-4 h-4"
+            ></i>
+
+        </span>
+
+        Activity by Unit Type
+
+    </div>
+
+
+    <p class="chart-subtitle">
+        Jumlah aktivitas berdasarkan jenis alat
+    </p>
+
+
+    <div class="chart-wrapper">
+
+        <canvas id="unitTypeChart"></canvas>
+
+    </div>
+
+
+</div>
+
+
+<!-- ACTIVITY BY SHIFT -->
+
+<div class="chart-card">
+
+
+    <div class="chart-title">
+
+        <span
+            class="bg-amber-100 text-amber-700 p-2 rounded-lg"
+        >
+
+            <i
+                data-lucide="clock-3"
+                class="w-4 h-4"
+            ></i>
+
+        </span>
+
+        Activity by Shift
+
+    </div>
+
+
+    <p class="chart-subtitle">
+        Distribusi aktivitas berdasarkan shift
+    </p>
+
+
+    <div class="chart-wrapper">
+
+        <canvas id="shiftChart"></canvas>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     PIC PERFORMANCE
+===================================================== -->
+
+<div class="chart-card mb-5">
+
+
+    <div class="chart-title">
+
+        <span
+            class="bg-purple-100 text-purple-700 p-2 rounded-lg"
+        >
+
+            <i
+                data-lucide="users"
+                class="w-4 h-4"
+            ></i>
+
+        </span>
+
+        PIC Performance
+
+    </div>
+
+
+    <p class="chart-subtitle">
+        Jumlah aktivitas greasing yang ditangani masing-masing PIC
+    </p>
+
+
+    <div
+        class="chart-wrapper"
+        style="height:320px"
+    >
+
+        <canvas id="mechanicChart"></canvas>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     MECHANIC PERFORMANCE TABLE
+===================================================== -->
+
+<div class="chart-card mb-2">
+
+
+    <div class="chart-title">
+
+        <span
+            class="bg-amber-100 text-amber-700 p-2 rounded-lg"
+        >
+
+            <i
+                data-lucide="trophy"
+                class="w-4 h-4"
+            ></i>
+
+        </span>
+
+        Mechanic Performance
+
+    </div>
+
+
+    <p class="chart-subtitle">
+        Detail aktivitas berdasarkan mekanik dan jenis unit
+    </p>
+
+
+    <div
+        class="performance-table-wrapper"
+    >
+
+        <table class="performance-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Mechanic
+                    </th>
+
+                    <th>
+                        Activity
+                    </th>
+
+                    <th>
+                        W
+                    </th>
+
+                    <th>
+                        FD
+                    </th>
+
+                    <th>
+                        D
+                    </th>
+
+                    <th>
+                        E
+                    </th>
+
+                    <th>
+                        Other
+                    </th>
+
+                    <th>
+                        Performance
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="mechanicTableBody"
+            >
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer
+    class="mt-8 text-center text-slate-400 px-4 pb-8"
+>
+
+    <p
+        class="font-bold text-slate-500 tracking-tight uppercase"
+    >
+
+        &copy; 2026 Paperless Project - PT TSI.
+        All rights reserved.
+
+    </p>
+
+
+    <p class="text-[10px] mt-1">
+
+        System Architecture by:
+
+        <span
+            class="text-slate-600 font-semibold uppercase"
+        >
+            Imam Wahyu Ramadhan, S.T.
+        </span>
+
+        |
+
+        <span
+            class="text-amber-600 font-bold uppercase tracking-tighter"
+        >
+            Project 2.0
+        </span>
+
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     FLOATING LEADERBOARD
+===================================================== -->
+
+<button
+    id="leaderboardButton"
+    type="button"
+    onclick="openLeaderboard()"
+    aria-label="Leaderboard Mekanik"
+>
+
+    <i
+        data-lucide="trophy"
+        class="w-7 h-7"
+    ></i>
+
+    <span class="leader-tooltip">
+        Leaderboard Mekanik
+    </span>
+
+</button>
+
+
+<!-- =====================================================
+     LEADERBOARD POPUP
+===================================================== -->
+
+<div
+    id="leaderboardOverlay"
+    onclick="closeLeaderboardOutside(event)"
+>
+
+
+    <div id="leaderboardModal">
+
+
+        <div
+            class="px-5 py-4 border-b border-slate-100 flex items-center justify-between"
+        >
+
+
+            <div>
+
+                <h3
+                    class="font-black text-slate-800 flex items-center gap-2"
+                >
+
+                    <span
+                        class="bg-amber-100 text-amber-600 p-2 rounded-xl"
+                    >
+
+                        <i
+                            data-lucide="trophy"
+                            class="w-5 h-5"
+                        ></i>
+
+                    </span>
+
+                    Leaderboard Mekanik
+
+                </h3>
+
+
+                <p
+                    class="text-[10px] text-slate-400 font-medium mt-1"
+                >
+                    Berdasarkan total aktivitas greasing
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                onclick="closeLeaderboard()"
+                class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
+                aria-label="Tutup leaderboard"
+            >
+
+                <i
+                    data-lucide="x"
+                    class="w-5 h-5"
+                ></i>
+
+            </button>
+
+
+        </div>
+
+
+        <div
+            id="leaderboardList"
+            class="p-5 overflow-y-auto max-h-[60vh]"
+        >
+
+            <div
+                class="text-center text-slate-400 text-sm py-6"
+            >
+                Memuat leaderboard...
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const API_URL =
+    'https://script.google.com/macros/s/AKfycbxaigiQMvkAzZ-Gue2R68z2eTJlAU7pe-O3D2XJ_D4mkd2K3EDqpyLKiw4FcyXzq90Y/exec';
+
+
+/*
+   Semua halaman diasumsikan berada
+   pada folder/deployment yang sama.
+*/
+
+const HOME_URL =
+    'index.html';
+
+const TABLE_URL =
+    'tgreasing.html';
+
+
+let apiData = null;
+
+let charts = {};
+
+let isLoading = false;
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goToHome(){
+
+    window.location.href =
+        HOME_URL;
+
+}
+
+
+function goToTable(){
+
+    window.location.href =
+        TABLE_URL;
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+function handleLogoError(){
+
+    const logo =
+        document.getElementById(
+            'companyLogo'
+        );
+
+
+    const fallback =
+        document.getElementById(
+            'logoFallback'
+        );
+
+
+    if(logo){
+
+        logo.classList.add(
+            'hidden'
+        );
+
+    }
+
+
+    if(fallback){
+
+        fallback.classList.remove(
+            'hidden'
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   NUMBER HELPER
+========================================================= */
+
+function toNumber(value){
+
+    const number =
+        Number(value);
+
+    return Number.isFinite(number)
+        ? number
+        : 0;
+
+}
+
+
+/* =========================================================
+   ARRAY HELPER
+========================================================= */
+
+function safeArray(value){
+
+    return Array.isArray(value)
+        ? value
+        : [];
+
+}
+
+
+/* =========================================================
+   OBJECT HELPER
+========================================================= */
+
+function safeObject(value){
+
+    if(
+        value &&
+        typeof value === 'object' &&
+        !Array.isArray(value)
+    ){
+
+        return value;
+
+    }
+
+    return {};
+
+}
+
+
+/* =========================================================
+   CHART DEFAULT
+========================================================= */
+
+Chart.defaults.font.family =
+    'Inter';
+
+Chart.defaults.font.size =
+    11;
+
+Chart.defaults.color =
+    '#64748b';
+
+Chart.defaults.plugins.legend.labels.usePointStyle =
+    true;
+
+Chart.defaults.plugins.legend.labels.boxWidth =
+    10;
+
+
+/* =========================================================
+   DESTROY CHARTS
+========================================================= */
+
+function destroyCharts(){
+
+    Object.values(
+        charts
+    )
+    .forEach(
+        chart => {
+
+            if(
+                chart &&
+                typeof chart.destroy === 'function'
+            ){
+
+                chart.destroy();
+
+            }
+
+        }
+    );
+
+
+    charts = {};
+
+}
+
+
+/* =========================================================
+   LOAD API
+========================================================= */
+
+async function loadDashboard(){
+
+    if(isLoading){
+
+        return;
+
+    }
+
+
+    isLoading = true;
+
+
+    showLoading();
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method:'GET',
+
+                    cache:'no-store',
+
+                    headers:{
+                        'Accept':
+                            'application/json'
+                    }
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                `HTTP Error ${response.status}`
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if(
+            !result ||
+            typeof result !== 'object'
+        ){
+
+            throw new Error(
+                'Response API tidak valid.'
+            );
+
+        }
+
+
+        apiData =
+            result;
+
+
+        updateStatistics(
+            result.dashboard
+        );
+
+
+        createCharts(
+            result.dashboard
+        );
+
+
+        updateMechanicTable(
+            result.dashboard
+        );
+
+
+        updateLeaderboard(
+            result.dashboard
+        );
+
+
+        document
+            .getElementById('loading')
+            .style.display =
+                'none';
+
+
+        document
+            .getElementById('dashboard')
+            .classList.add(
+                'show'
+            );
+
+
+        isLoading = false;
+
+    }
+
+
+    catch(error){
+
+        isLoading = false;
+
+        showError(
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+function showLoading(){
+
+    const loading =
+        document.getElementById(
+            'loading'
+        );
+
+
+    if(!loading){
+
+        return;
+
+    }
+
+
+    loading.style.display =
+        'flex';
+
+
+    loading.innerHTML = `
+
+        <i
+            data-lucide="loader-circle"
+            class="w-9 h-9 animate-spin text-amber-500"
+        ></i>
+
+        <p
+            class="font-semibold text-sm text-slate-400 mt-3"
+        >
+            Memuat dashboard...
+        </p>
+
+    `;
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function showError(error){
+
+    const loading =
+        document.getElementById(
+            'loading'
+        );
+
+
+    const message =
+        error?.message ||
+        'Terjadi kesalahan saat mengambil data.';
+
+
+    loading.style.display =
+        'flex';
+
+
+    loading.innerHTML = `
+
+        <div class="text-center">
+
+            <div
+                class="bg-red-50 text-red-600 p-4 rounded-full inline-flex"
+            >
+
+                <i
+                    data-lucide="alert-circle"
+                    class="w-8 h-8"
+                ></i>
+
+            </div>
+
+
+            <h3
+                class="font-bold text-red-700 mt-3"
+            >
+                Gagal memuat dashboard
+            </h3>
+
+
+            <p
+                class="text-xs text-slate-500 mt-2 max-w-md"
+            >
+                ${escapeHtml(message)}
+            </p>
+
+
+            <button
+                type="button"
+                onclick="loadDashboard()"
+                class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
+            >
+
+                Coba Lagi
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+function updateStatistics(dashboard){
+
+    const summary =
+        safeObject(
+            dashboard?.summary
+        );
+
+
+    setText(
+        'totalJobs',
+        toNumber(
+            summary.totalJobs
+        )
+    );
+
+
+    setText(
+        'totalW',
+        toNumber(
+            summary.W
+        )
+    );
+
+
+    setText(
+        'totalFD',
+        toNumber(
+            summary.FD
+        )
+    );
+
+
+    setText(
+        'totalD',
+        toNumber(
+            summary.D
+        )
+    );
+
+
+    setText(
+        'totalE',
+        toNumber(
+            summary.E
+        )
+    );
+
+}
+
+
+/* =========================================================
+   SET TEXT
+========================================================= */
+
+function setText(
+    id,
+    value
+){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if(element){
+
+        element.textContent =
+            Number(value).toLocaleString(
+                'id-ID'
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   CREATE CHARTS
+========================================================= */
+
+function createCharts(dashboard){
+
+    destroyCharts();
+
+
+    const data =
+        safeObject(
+            dashboard
+        );
+
+
+    createTrendChart(
+        safeArray(
+            data.trend
+        )
+    );
+
+
+    createUnitTypeChart(
+        safeArray(
+            data.unitTypes
+        )
+    );
+
+
+    createShiftChart(
+        safeArray(
+            data.shifts
+        )
+    );
+
+
+    createMechanicChart(
+        safeArray(
+            data.mechanics
+        )
+    );
+
+}
+
+
+/* =========================================================
+   TREND CHART
+========================================================= */
+
+function createTrendChart(data){
+
+    if(!data.length){
+
+        return;
+
+    }
+
+
+    const sorted =
+        [...data]
+        .sort(
+            (a,b) =>
+                String(a.month)
+                    .localeCompare(
+                        String(b.month)
+                    )
+        );
+
+
+    const monthNames =
+        [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'Mei',
+            'Jun',
+            'Jul',
+            'Agu',
+            'Sep',
+            'Okt',
+            'Nov',
+            'Des'
+        ];
+
+
+    const labels =
+        sorted.map(
+            item => {
+
+                const parts =
+                    String(
+                        item.month
+                    )
+                    .split('-');
+
+
+                if(
+                    parts.length !== 2
+                ){
+
+                    return String(
+                        item.month
+                    );
+
+                }
+
+
+                const monthIndex =
+                    toNumber(
+                        parts[1]
+                    ) - 1;
+
+
+                return `${
+                    monthNames[
+                        monthIndex
+                    ] || parts[1]
+                } ${parts[0]}`;
+
+            }
+        );
+
+
+    const values =
+        sorted.map(
+            item =>
+                toNumber(
+                    item.jobs
+                )
+        );
+
+
+    charts.trend =
+        new Chart(
+
+            document.getElementById(
+                'trendChart'
+            ),
+
+            {
+
+                type:'line',
+
+
+                data:{
+
+                    labels:labels,
+
+
+                    datasets:[
+
+                        {
+
+                            label:
+                                'Jumlah Activity',
+
+                            data:values,
+
+                            borderColor:
+                                '#7C3AED',
+
+                            backgroundColor:
+                                'rgba(124,58,237,.10)',
+
+                            fill:true,
+
+                            tension:.35,
+
+                            pointRadius:4,
+
+                            pointHoverRadius:6
+
+                        }
+
+                    ]
+
+                },
+
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+
+                    plugins:{
+
+                        legend:{
+                            display:false
+                        }
+
+                    },
+
+
+                    scales:{
+
+                        y:{
+
+                            beginAtZero:true,
+
+                            ticks:{
+                                precision:0
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        );
+
+}
+
+
+/* =========================================================
+   UNIT TYPE CHART
+========================================================= */
+
+function createUnitTypeChart(data){
+
+    if(!data.length){
+
+        return;
+
+    }
+
+
+    const labels =
+        data.map(
+            item =>
+                String(
+                    item.label ??
+                    item.type ??
+                    'Other'
+                )
+        );
+
+
+    const values =
+        data.map(
+            item =>
+                toNumber(
+                    item.jobs
+                )
+        );
+
+
+    charts.unitType =
+        new Chart(
+
+            document.getElementById(
+                'unitTypeChart'
+            ),
+
+            {
+
+                type:'bar',
+
+
+                data:{
+
+                    labels:labels,
+
+
+                    datasets:[
+
+                        {
+
+                            label:
+                                'Activity',
+
+                            data:values,
+
+                            backgroundColor:[
+
+                                '#0EA5E9',
+                                '#8B5CF6',
+                                '#F97316',
+                                '#10B981',
+                                '#64748B'
+
+                            ],
+
+                            borderRadius:7
+
+                        }
+
+                    ]
+
+                },
+
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+
+                    plugins:{
+
+                        legend:{
+                            display:false
+                        }
+
+                    },
+
+
+                    scales:{
+
+                        y:{
+
+                            beginAtZero:true,
+
+                            ticks:{
+                                precision:0
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        );
+
+}
+
+
+/* =========================================================
+   SHIFT CHART
+========================================================= */
+
+function createShiftChart(data){
+
+    if(!data.length){
+
+        return;
+
+    }
+
+
+    const labels =
+        data.map(
+            item =>
+                String(
+                    item.shift ??
+                    'Unknown'
+                )
+        );
+
+
+    const values =
+        data.map(
+            item =>
+                toNumber(
+                    item.jobs
+                )
+        );
+
+
+    charts.shift =
+        new Chart(
+
+            document.getElementById(
+                'shiftChart'
+            ),
+
+            {
+
+                type:'doughnut',
+
+
+                data:{
+
+                    labels:labels,
+
+
+                    datasets:[
+
+                        {
+
+                            data:values,
+
+                            backgroundColor:[
+
+                                '#1E3A8A',
+                                '#F59E0B',
+                                '#10B981',
+                                '#7C3AED',
+                                '#0EA5E9'
+
+                            ],
+
+                            borderWidth:3,
+
+                            borderColor:'#fff'
+
+                        }
+
+                    ]
+
+                },
+
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    cutout:'60%',
+
+
+                    plugins:{
+
+                        legend:{
+                            position:'bottom'
+                        }
+
+                    }
+
+                }
+
+            }
+
+        );
+
+}
+
+
+/* =========================================================
+   MECHANIC CHART
+========================================================= */
+
+function createMechanicChart(data){
+
+    if(!data.length){
+
+        return;
+
+    }
+
+
+    const sorted =
+        [...data]
+        .sort(
+            (a,b) =>
+                toNumber(
+                    b.jobs
+                ) -
+                toNumber(
+                    a.jobs
+                )
+        );
+
+
+    const labels =
+        sorted.map(
+            item =>
+                String(
+                    item.name ??
+                    'Tanpa Nama'
+                )
+        );
+
+
+    const values =
+        sorted.map(
+            item =>
+                toNumber(
+                    item.jobs
+                )
+        );
+
+
+    charts.mechanic =
+        new Chart(
+
+            document.getElementById(
+                'mechanicChart'
+            ),
+
+            {
+
+                type:'bar',
+
+
+                data:{
+
+                    labels:labels,
+
+
+                    datasets:[
+
+                        {
+
+                            label:
+                                'Activity',
+
+                            data:values,
+
+                            backgroundColor:
+                                '#7C3AED',
+
+                            borderRadius:7
+
+                        }
+
+                    ]
+
+                },
+
+
+                options:{
+
+                    indexAxis:'y',
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+
+                    plugins:{
+
+                        legend:{
+                            display:false
+                        }
+
+                    },
+
+
+                    scales:{
+
+                        x:{
+
+                            beginAtZero:true,
+
+                            ticks:{
+                                precision:0
+                            }
+
+                        },
+
+
+                        y:{
+
+                            ticks:{
+
+                                font:{
+
+                                    size:10,
+
+                                    weight:'600'
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        );
+
+}
+
+
+/* =========================================================
+   MECHANIC TABLE
+========================================================= */
+
+function updateMechanicTable(dashboard){
+
+    const tbody =
+        document.getElementById(
+            'mechanicTableBody'
+        );
+
+
+    if(!tbody){
+
+        return;
+
+    }
+
+
+    const mechanics =
+        safeArray(
+            dashboard?.mechanics
+        );
+
+
+    if(!mechanics.length){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="text-center"
+                >
+
+                    Belum ada data mekanik.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    const sorted =
+        [...mechanics]
+        .sort(
+            (a,b) =>
+                toNumber(
+                    a.rank
+                ) -
+                toNumber(
+                    b.rank
+                )
+        );
+
+
+    tbody.innerHTML =
+        sorted
+        .map(
+            mechanic => {
+
+                const rank =
+                    toNumber(
+                        mechanic.rank
+                    );
+
+
+                const rankClass =
+                    rank <= 3
+                        ? `rank-${rank}`
+                        : '';
+
+
+                const medal =
+                    rank === 1
+                        ? '🥇'
+                        : rank === 2
+                            ? '🥈'
+                            : rank === 3
+                                ? '🥉'
+                                : rank;
+
+
+                return `
+
+                    <tr>
+
+                        <td>
+
+                            <div
+                                class="performance-name"
+                            >
+
+                                <div
+                                    class="performance-rank ${rankClass}"
+                                >
+                                    ${medal}
+                                </div>
+
+
+                                <div
+                                    class="performance-name-text"
+                                >
+                                    ${escapeHtml(
+                                        mechanic.name ??
+                                        'Tanpa Nama'
+                                    )}
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="performance-total"
+                            >
+                                ${toNumber(
+                                    mechanic.jobs
+                                )}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+                            ${toNumber(
+                                mechanic.W
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${toNumber(
+                                mechanic.FD
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${toNumber(
+                                mechanic.D
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${toNumber(
+                                mechanic.E
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${toNumber(
+                                mechanic.Other
+                            )}
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="performance-percentage"
+                            >
+
+                                ${toNumber(
+                                    mechanic.percentage
+                                ).toFixed(2)}%
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        )
+        .join('');
+
+}
+
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+function updateLeaderboard(dashboard){
+
+    const list =
+        document.getElementById(
+            'leaderboardList'
+        );
+
+
+    if(!list){
+
+        return;
+
+    }
+
+
+    const mechanics =
+        safeArray(
+            dashboard?.mechanics
+        );
+
+
+    if(!mechanics.length){
+
+        list.innerHTML = `
+
+            <div
+                class="text-center text-slate-400 text-sm py-6"
+            >
+                Belum ada data mekanik.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const ranking =
+        [...mechanics]
+        .sort(
+            (a,b) =>
+                toNumber(
+                    b.jobs
+                ) -
+                toNumber(
+                    a.jobs
+                )
+        );
+
+
+    list.innerHTML =
+        ranking
+        .map(
+            (mechanic,index) => {
+
+                const rank =
+                    index + 1;
+
+
+                const cls =
+                    rank <= 3
+                        ? `top-${rank}`
+                        : '';
+
+
+                const medal =
+                    rank === 1
+                        ? '🥇'
+                        : rank === 2
+                            ? '🥈'
+                            : rank === 3
+                                ? '🥉'
+                                : rank;
+
+
+                const name =
+                    escapeHtml(
+                        mechanic.name ??
+                        'Tanpa Nama'
+                    );
+
+
+                const count =
+                    toNumber(
+                        mechanic.jobs
+                    );
+
+
+                return `
+
+                    <div
+                        class="leader-row ${cls}"
+                    >
+
+                        <div
+                            class="leader-rank"
+                        >
+                            ${medal}
+                        </div>
+
+
+                        <div
+                            class="leader-name truncate"
+                        >
+                            ${name}
+                        </div>
+
+
+                        <div
+                            class="leader-count"
+                        >
+                            ${count} aktivitas
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join('');
+
+}
+
+
+/* =========================================================
+   OPEN LEADERBOARD
+========================================================= */
+
+function openLeaderboard(){
+
+    if(
+        apiData?.dashboard?.mechanics
+    ){
+
+        updateLeaderboard(
+            apiData.dashboard
+        );
+
+    }
+
+
+    document
+        .getElementById(
+            'leaderboardOverlay'
+        )
+        .classList.add(
+            'show'
+        );
+
+
+    document.body.style.overflow =
+        'hidden';
+
+}
+
+
+/* =========================================================
+   CLOSE LEADERBOARD
+========================================================= */
+
+function closeLeaderboard(){
+
+    document
+        .getElementById(
+            'leaderboardOverlay'
+        )
+        .classList.remove(
+            'show'
+        );
+
+
+    document.body.style.overflow =
+        '';
+
+}
+
+
+/* =========================================================
+   CLOSE OUTSIDE
+========================================================= */
+
+function closeLeaderboardOutside(
+    event
+){
+
+    const overlay =
+        document.getElementById(
+            'leaderboardOverlay'
+        );
+
+
+    if(
+        event.target ===
+        overlay
+    ){
+
+        closeLeaderboard();
+
+    }
+
+}
+
+
+/* =========================================================
+   LEADERBOARD PULSE
+========================================================= */
+
+function scheduleLeaderboardPulse(){
+
+    const button =
+        document.getElementById(
+            'leaderboardButton'
+        );
+
+
+    if(!button){
+
+        return;
+
+    }
+
+
+    const delay =
+        9000 +
+        Math.random() *
+        10000;
+
+
+    setTimeout(
+
+        () => {
+
+            const overlay =
+                document.getElementById(
+                    'leaderboardOverlay'
+                );
+
+
+            if(
+                overlay &&
+                !overlay.classList.contains(
+                    'show'
+                )
+            ){
+
+                button.classList.remove(
+                    'leader-pulse'
+                );
+
+
+                void button.offsetWidth;
+
+
+                button.classList.add(
+                    'leader-pulse'
+                );
+
+            }
+
+
+            scheduleLeaderboardPulse();
+
+        },
+
+        delay
+
+    );
+
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+function escapeHtml(value){
+
+    return String(
+        value ?? ''
+    )
+
+    .replace(
+        /&/g,
+        '&amp;'
+    )
+
+    .replace(
+        /</g,
+        '&lt;'
+    )
+
+    .replace(
+        />/g,
+        '&gt;'
+    )
+
+    .replace(
+        /"/g,
+        '&quot;'
+    )
+
+    .replace(
+        /'/g,
+        '&#039;'
+    );
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+window.addEventListener(
+    'load',
+    () => {
+
+        lucide.createIcons();
+
+        loadDashboard();
+
+        scheduleLeaderboardPulse();
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    'keydown',
+    event => {
+
+        if(
+            event.key === 'Escape'
+        ){
+
+            closeLeaderboard();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
