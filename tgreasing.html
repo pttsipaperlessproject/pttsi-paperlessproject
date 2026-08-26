@@ -20,7 +20,6 @@
     rel="stylesheet"
 >
 
-
 <style>
 
 /* =========================================================
@@ -142,11 +141,11 @@ body{
     filter:
         drop-shadow(
             0 10px 8px
-            rgba(0,0,0,.04)
+            rgba(0,0,.04)
         )
         drop-shadow(
             0 4px 3px
-            rgba(0,0,0,.1)
+            rgba(0,0,.1)
         );
 
 }
@@ -329,6 +328,98 @@ thead th{
     text-align:left;
 
 }
+
+
+/* =========================================================
+   SORTABLE HEADER
+========================================================= */
+
+.sortable-header{
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:
+        background .15s ease,
+        color .15s ease;
+
+}
+
+.sortable-header:hover{
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+}
+
+.sort-header-content{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+}
+
+.sort-icon{
+
+    width:14px;
+
+    height:14px;
+
+    color:#94a3b8;
+
+    flex-shrink:0;
+
+    transition:
+        color .15s ease,
+        transform .15s ease;
+
+}
+
+.sortable-header:hover .sort-icon{
+
+    color:#3b82f6;
+
+}
+
+.sortable-header.sort-asc{
+
+    color:#1e3a8a;
+
+    background:#eff6ff;
+
+}
+
+.sortable-header.sort-asc .sort-icon{
+
+    color:#1e3a8a;
+
+}
+
+.sortable-header.sort-desc{
+
+    color:#1e3a8a;
+
+    background:#eff6ff;
+
+}
+
+.sortable-header.sort-desc .sort-icon{
+
+    color:#1e3a8a;
+
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
 
 tbody td{
 
@@ -1057,7 +1148,6 @@ select.filter-input{
     "
 >
 
-
     <div class="mb-4 logo-wrapper">
 
         <div
@@ -1195,7 +1285,6 @@ select.filter-input{
 
 <section>
 
-
     <div
         class="
             flex
@@ -1205,7 +1294,6 @@ select.filter-input{
             mb-6
         "
     >
-
 
         <div>
 
@@ -1247,10 +1335,8 @@ select.filter-input{
                     ml-1
                 "
             >
-
                 Daftar seluruh aktivitas greasing
                 yang tersimpan pada database.
-
             </p>
 
         </div>
@@ -1270,13 +1356,10 @@ select.filter-input{
 
         </button>
 
-
     </div>
 
 
-    <!-- =================================================
-         LOADING
-    ================================================= -->
+    <!-- LOADING -->
 
     <div id="loading">
 
@@ -1304,16 +1387,11 @@ select.filter-input{
     </div>
 
 
-    <!-- =================================================
-         TABLE CONTENT
-    ================================================= -->
+    <!-- TABLE CONTENT -->
 
     <div id="tableContent">
 
-
-        <!-- =================================================
-             STATISTICS
-        ================================================= -->
+        <!-- STATISTICS -->
 
         <div
             class="
@@ -1323,9 +1401,6 @@ select.filter-input{
                 mb-6
             "
         >
-
-
-            <!-- TOTAL ACTIVITY -->
 
             <div class="stat-card">
 
@@ -1355,8 +1430,6 @@ select.filter-input{
 
             </div>
 
-
-            <!-- WHEELLOADER -->
 
             <div class="stat-card">
 
@@ -1408,8 +1481,6 @@ select.filter-input{
             </div>
 
 
-            <!-- FORKLIFT -->
-
             <div class="stat-card">
 
                 <p
@@ -1459,8 +1530,6 @@ select.filter-input{
 
             </div>
 
-
-            <!-- DUMPTRUCK -->
 
             <div class="stat-card">
 
@@ -1512,8 +1581,6 @@ select.filter-input{
             </div>
 
 
-            <!-- EXCAVATOR -->
-
             <div class="stat-card">
 
                 <p
@@ -1563,13 +1630,10 @@ select.filter-input{
 
             </div>
 
-
         </div>
 
 
-        <!-- =================================================
-             FILTER PANEL
-        ================================================= -->
+        <!-- FILTER -->
 
         <div
             class="
@@ -1582,7 +1646,6 @@ select.filter-input{
                 shadow-sm
             "
         >
-
 
             <div
                 class="
@@ -1645,9 +1708,6 @@ select.filter-input{
                 "
             >
 
-
-                <!-- SEARCH -->
-
                 <div>
 
                     <label
@@ -1694,8 +1754,6 @@ select.filter-input{
 
                 </div>
 
-
-                <!-- JENIS UNIT -->
 
                 <div>
 
@@ -1744,8 +1802,6 @@ select.filter-input{
                 </div>
 
 
-                <!-- RESET -->
-
                 <div
                     class="
                         flex
@@ -1785,20 +1841,14 @@ select.filter-input{
 
                 </div>
 
-
             </div>
 
         </div>
 
 
-        <!-- =================================================
-             TABLE
-        ================================================= -->
+        <!-- TABLE -->
 
         <div class="table-panel">
-
-
-            <!-- TABLE HEADER -->
 
             <div
                 class="
@@ -1862,11 +1912,7 @@ select.filter-input{
             </div>
 
 
-            <!-- TABLE SCROLL -->
-
-            <div
-                class="overflow-x-auto"
-            >
+            <div class="overflow-x-auto">
 
                 <table>
 
@@ -1874,34 +1920,126 @@ select.filter-input{
 
                         <tr>
 
+                            <th style="width:50px">
+
+                                <div class="sort-header-content">
+                                    <span>No</span>
+                                </div>
+
+                            </th>
+
+
                             <th
-                                style="width:50px"
+                                class="sortable-header"
+                                data-sort="tanggal"
+                                onclick="handleSort('tanggal')"
                             >
-                                No
+
+                                <div class="sort-header-content">
+
+                                    <span>Tanggal</span>
+
+                                    <i
+                                        id="sortIcon-tanggal"
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </div>
+
                             </th>
 
-                            <th>
-                                Tanggal
+
+                            <th
+                                class="sortable-header"
+                                data-sort="shift"
+                                onclick="handleSort('shift')"
+                            >
+
+                                <div class="sort-header-content">
+
+                                    <span>Shift</span>
+
+                                    <i
+                                        id="sortIcon-shift"
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </div>
+
                             </th>
 
-                            <th>
-                                Shift
+
+                            <th
+                                class="sortable-header"
+                                data-sort="pic"
+                                onclick="handleSort('pic')"
+                            >
+
+                                <div class="sort-header-content">
+
+                                    <span>PIC</span>
+
+                                    <i
+                                        id="sortIcon-pic"
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </div>
+
                             </th>
 
-                            <th>
-                                PIC
+
+                            <th
+                                class="sortable-header"
+                                data-sort="codeUnit"
+                                onclick="handleSort('codeUnit')"
+                            >
+
+                                <div class="sort-header-content">
+
+                                    <span>Code Unit</span>
+
+                                    <i
+                                        id="sortIcon-codeUnit"
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </div>
+
                             </th>
 
-                            <th>
-                                Code Unit
+
+                            <th
+                                class="sortable-header"
+                                data-sort="deskripsi"
+                                onclick="handleSort('deskripsi')"
+                            >
+
+                                <div class="sort-header-content">
+
+                                    <span>Deskripsi Foto Kerusakan</span>
+
+                                    <i
+                                        id="sortIcon-deskripsi"
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </div>
+
                             </th>
 
-                            <th>
-                                Deskripsi Foto Kerusakan
-                            </th>
 
                             <th>
-                                PAP
+
+                                <div class="sort-header-content">
+                                    <span>PAP</span>
+                                </div>
+
                             </th>
 
                         </tr>
@@ -1909,9 +2047,7 @@ select.filter-input{
                     </thead>
 
 
-                    <tbody id="tableBody">
-
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
 
                 </table>
 
@@ -1976,9 +2112,7 @@ select.filter-input{
             </div>
 
 
-            <!-- =================================================
-                 PAGINATION
-            ================================================= -->
+            <!-- PAGINATION -->
 
             <div
                 class="
@@ -2011,26 +2145,20 @@ select.filter-input{
                         items-center
                         gap-1
                     "
-                >
-                </div>
+                ></div>
 
             </div>
 
-
         </div>
-
 
     </div>
 
 </section>
 
-
 </main>
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- FOOTER -->
 
 <footer
     class="
@@ -2055,12 +2183,7 @@ select.filter-input{
     </p>
 
 
-    <p
-        class="
-            text-[10px]
-            mt-1
-        "
-    >
+    <p class="text-[10px] mt-1">
 
         System Architecture by:
 
@@ -2092,9 +2215,7 @@ select.filter-input{
 </footer>
 
 
-<!-- =====================================================
-     FLOATING LEADERBOARD
-===================================================== -->
+<!-- FLOATING LEADERBOARD -->
 
 <button
     id="leaderboardButton"
@@ -2107,28 +2228,21 @@ select.filter-input{
         class="w-7 h-7"
     ></i>
 
-
-    <span
-        class="leader-tooltip"
-    >
+    <span class="leader-tooltip">
         Leaderboard PIC
     </span>
 
 </button>
 
 
-<!-- =====================================================
-     LEADERBOARD POPUP
-===================================================== -->
+<!-- LEADERBOARD -->
 
 <div
     id="leaderboardOverlay"
     onclick="closeLeaderboardOutside(event)"
 >
 
-
     <div id="leaderboardModal">
-
 
         <div
             class="
@@ -2141,7 +2255,6 @@ select.filter-input{
                 justify-between
             "
         >
-
 
             <div>
 
@@ -2161,7 +2274,7 @@ select.filter-input{
                             text-amber-600
                             p-2
                             rounded-xl
-                    "
+                        "
                     >
 
                         <i
@@ -2174,7 +2287,6 @@ select.filter-input{
                     Leaderboard PIC
 
                 </h3>
-
 
                 <p
                     class="
@@ -2234,7 +2346,6 @@ select.filter-input{
 
         </div>
 
-
     </div>
 
 </div>
@@ -2246,17 +2357,9 @@ select.filter-input{
    CONFIGURATION
 ========================================================= */
 
-/*
-   GREASING API
-*/
-
 const API_URL =
 'https://script.google.com/macros/s/AKfycbxaigiQMvkAzZ-Gue2R68z2eTJlAU7pe-O3D2XJ_D4mkd2K3EDqpyLKiw4FcyXzq90Y/exec';
 
-
-/*
-   Kembali ke halaman greasing.html
-*/
 
 const DASHBOARD_URL =
 'greasing.html';
@@ -2265,6 +2368,10 @@ const DASHBOARD_URL =
 const ROWS_PER_PAGE = 15;
 
 
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
+
 let apiData = null;
 
 let allData = [];
@@ -2272,6 +2379,26 @@ let allData = [];
 let filteredData = [];
 
 let currentPage = 1;
+
+
+/*
+   ==========================================================
+   SORT STATE
+
+   direction:
+
+   null = ORIGINAL
+   asc  = ASCENDING
+   desc = DESCENDING
+*/
+
+let sortState = {
+
+    column:null,
+
+    direction:null
+
+};
 
 
 /* =========================================================
@@ -2341,31 +2468,35 @@ async function loadTable(){
             result;
 
 
+        /*
+           Simpan index original.
+
+           Ini sangat penting untuk mode:
+           ORIGINAL
+
+           sehingga ketika klik ke-3,
+           data benar-benar kembali ke
+           urutan database/API.
+        */
+
         allData =
             Array.isArray(result.data)
-            ? result.data
+            ? result.data.map(
+                (row,index)=>({
+
+                    ...row,
+
+                    __originalIndex:index
+
+                })
+            )
             : [];
 
-
-        /*
-           Statistik sekarang dihitung
-           langsung dari codeUnit.
-        */
 
         updateStatistics(
             allData
         );
 
-
-                /*
-           Leaderboard PIC.
-           Data diambil langsung dari
-           kolom PIC pada setiap row.
-
-           Perhitungan menggunakan jumlah
-           unit pada CODE UNIT agar konsisten
-           dengan Total Activity.
-        */
 
         updateLeaderboardFromData(
             allData
@@ -2474,35 +2605,715 @@ async function loadTable(){
 
 
 /* =========================================================
-   PARSE CODE UNIT
+   SORTING
 ========================================================= */
 
 /*
+   SISTEM SORTING 3 STATE
+
+   Klik 1:
+   ORIGINAL -> ASC
+
+   Klik 2:
+   ASC -> DESC
+
+   Klik 3:
+   DESC -> ORIGINAL
+
+   Klik 4:
+   ORIGINAL -> ASC
+*/
+
+
+function handleSort(column){
+
+    /*
+       Jika klik kolom yang sama,
+       ubah arah sorting.
+    */
+
+    if(
+        sortState.column === column
+    ){
+
+        if(
+            sortState.direction === null
+        ){
+
+            sortState.direction =
+                'asc';
+
+        }
+        else if(
+            sortState.direction === 'asc'
+        ){
+
+            sortState.direction =
+                'desc';
+
+        }
+        else{
+
+            /*
+               DESC -> ORIGINAL
+            */
+
+            sortState.column =
+                null;
+
+            sortState.direction =
+                null;
+
+        }
+
+    }
+    else{
+
+        /*
+           Klik kolom baru:
+           langsung ASC.
+        */
+
+        sortState.column =
+            column;
+
+        sortState.direction =
+            'asc';
+
+    }
+
+
+    /*
+       Kembali ke halaman pertama
+       setiap kali sorting berubah.
+    */
+
+    currentPage = 1;
+
+
+    /*
+       Terapkan sorting.
+    */
+
+    applyCurrentSort();
+
+
+    /*
+       Update tampilan icon.
+    */
+
+    updateSortIndicators();
+
+
+    /*
+       Render ulang.
+    */
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   APPLY CURRENT SORT
+========================================================= */
+
+function applyCurrentSort(){
+
+    /*
+       Jangan mengubah allData.
+
+       filteredData selalu dibuat sebagai
+       salinan sehingga urutan database
+       asli tetap aman.
+    */
+
+    if(
+        !sortState.column ||
+        !sortState.direction
+    ){
+
+        /*
+           ORIGINAL ORDER
+        */
+
+        filteredData =
+            [...filteredData]
+            .sort(
+                (
+                    a,
+                    b
+                )=>
+                    getOriginalIndex(a) -
+                    getOriginalIndex(b)
+            );
+
+        return;
+
+    }
+
+
+    const column =
+        sortState.column;
+
+
+    const direction =
+        sortState.direction === 'asc'
+        ? 1
+        : -1;
+
+
+    filteredData =
+        [...filteredData]
+        .sort(
+            (a,b)=>{
+
+                const result =
+                    compareSortValues(
+                        a[column],
+                        b[column],
+                        column
+                    );
+
+
+                /*
+                   Jika nilai sama,
+                   pertahankan urutan
+                   database asli.
+
+                   Ini membuat sorting stabil.
+                */
+
+                if(result === 0){
+
+                    return (
+                        getOriginalIndex(a) -
+                        getOriginalIndex(b)
+                    );
+
+                }
+
+
+                return result * direction;
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   ORIGINAL INDEX
+========================================================= */
+
+function getOriginalIndex(row){
+
+    const index =
+        Number(
+            row.__originalIndex
+        );
+
+
+    return Number.isFinite(index)
+        ? index
+        : 0;
+
+}
+
+
+/* =========================================================
+   COMPARE SORT VALUES
+========================================================= */
+
+function compareSortValues(
+    valueA,
+    valueB,
+    column
+){
+
+    /*
+       TANGGAL MENGGUNAKAN
+       SORTING KHUSUS.
+    */
+
+    if(
+        column === 'tanggal'
+    ){
+
+        return compareDatesByDay(
+            valueA,
+            valueB
+        );
+
+    }
+
+
+    /*
+       Semua kolom teks:
+       sorting berdasarkan alfabet.
+    */
+
+    const a =
+        String(
+            valueA ?? ''
+        )
+        .trim()
+        .toLowerCase();
+
+
+    const b =
+        String(
+            valueB ?? ''
+        )
+        .trim()
+        .toLowerCase();
+
+
+    /*
+       Data kosong diletakkan
+       di bagian bawah.
+    */
+
+    if(!a && !b){
+
+        return 0;
+
+    }
+
+    if(!a){
+
+        return 1;
+
+    }
+
+    if(!b){
+
+        return -1;
+
+    }
+
+
+    return a.localeCompare(
+        b,
+        'id',
+        {
+            numeric:true,
+            sensitivity:'base'
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DATE SORT
+========================================================= */
+
+/*
+   Sorting tanggal TIDAK menggunakan
+   perbandingan string.
+
    Contoh:
 
-   "W-19, W-21, W-27, FD100-15, FD70-18, D-10, E-10"
+   1/8/2026
+   2/8/2026
+   10/8/2026
 
    akan menjadi:
 
-   W  = 3
-   FD = 2
-   D  = 1
-   E  = 1
+   1
+   2
+   10
 
-   Satu unit = satu activity.
+   Bukan:
+
+   1
+   10
+   2
+
+   Prioritas:
+
+   1. angka hari
+   2. bulan
+   3. tahun
+
+   Jadi angka tanggal tetap menjadi
+   dasar utama sorting.
 */
 
+
+function compareDatesByDay(
+    valueA,
+    valueB
+){
+
+    const dateA =
+        parseDateValue(
+            valueA
+        );
+
+
+    const dateB =
+        parseDateValue(
+            valueB
+        );
+
+
+    /*
+       Jika keduanya tidak valid.
+    */
+
+    if(
+        !dateA &&
+        !dateB
+    ){
+
+        return 0;
+
+    }
+
+
+    /*
+       Data kosong / invalid
+       diletakkan di bawah.
+    */
+
+    if(!dateA){
+
+        return 1;
+
+    }
+
+
+    if(!dateB){
+
+        return -1;
+
+    }
+
+
+    /*
+       UTAMA:
+       angka hari.
+    */
+
+    if(
+        dateA.day !==
+        dateB.day
+    ){
+
+        return (
+            dateA.day -
+            dateB.day
+        );
+
+    }
+
+
+    /*
+       Jika angka hari sama,
+       bandingkan bulan.
+    */
+
+    if(
+        dateA.month !==
+        dateB.month
+    ){
+
+        return (
+            dateA.month -
+            dateB.month
+        );
+
+    }
+
+
+    /*
+       Jika bulan sama,
+       bandingkan tahun.
+    */
+
+    return (
+        dateA.year -
+        dateB.year
+    );
+
+}
+
+
+/* =========================================================
+   PARSE DATE
+========================================================= */
+
+function parseDateValue(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return null;
+
+    }
+
+
+    const text =
+        String(value)
+        .trim();
+
+
+    if(!text){
+
+        return null;
+
+    }
+
+
+    /*
+       FORMAT:
+
+       DD/MM/YYYY
+       DD-MM-YYYY
+       DD.MM.YYYY
+    */
+
+    let match =
+        text.match(
+            /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
+        );
+
+
+    if(match){
+
+        const day =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]);
+
+        const year =
+            Number(match[3]);
+
+
+        if(
+            day >= 1 &&
+            day <= 31 &&
+            month >= 1 &&
+            month <= 12
+        ){
+
+            return {
+                day,
+                month,
+                year
+            };
+
+        }
+
+    }
+
+
+    /*
+       FORMAT:
+
+       YYYY/MM/DD
+       YYYY-MM-DD
+    */
+
+    match =
+        text.match(
+            /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
+        );
+
+
+    if(match){
+
+        const year =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]);
+
+        const day =
+            Number(match[3]);
+
+
+        if(
+            day >= 1 &&
+            day <= 31 &&
+            month >= 1 &&
+            month <= 12
+        ){
+
+            return {
+                day,
+                month,
+                year
+            };
+
+        }
+
+    }
+
+
+    /*
+       FORMAT:
+
+       Date object / ISO
+       / timestamp
+    */
+
+    const parsed =
+        new Date(value);
+
+
+    if(
+        !Number.isNaN(
+            parsed.getTime()
+        )
+    ){
+
+        return {
+
+            day:
+                parsed.getDate(),
+
+            month:
+                parsed.getMonth() + 1,
+
+            year:
+                parsed.getFullYear()
+
+        };
+
+    }
+
+
+    /*
+       Tidak dikenali.
+    */
+
+    return null;
+
+}
+
+
+/* =========================================================
+   SORT INDICATORS
+========================================================= */
+
+function updateSortIndicators(){
+
+    const columns = [
+
+        'tanggal',
+        'shift',
+        'pic',
+        'codeUnit',
+        'deskripsi'
+
+    ];
+
+
+    columns.forEach(
+        column=>{
+
+            const header =
+                document.querySelector(
+                    `[data-sort="${column}"]`
+                );
+
+
+            const icon =
+                document.getElementById(
+                    `sortIcon-${column}`
+                );
+
+
+            if(!header || !icon){
+
+                return;
+
+            }
+
+
+            /*
+               Reset class.
+            */
+
+            header.classList.remove(
+                'sort-asc',
+                'sort-desc'
+            );
+
+
+            /*
+               Jika bukan kolom aktif,
+               tampilkan icon netral.
+            */
+
+            if(
+                sortState.column !== column ||
+                !sortState.direction
+            ){
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevrons-up-down'
+                );
+
+                return;
+
+            }
+
+
+            if(
+                sortState.direction === 'asc'
+            ){
+
+                header.classList.add(
+                    'sort-asc'
+                );
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-up'
+                );
+
+            }
+            else{
+
+                header.classList.add(
+                    'sort-desc'
+                );
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-down'
+                );
+
+            }
+
+        }
+    );
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   PARSE CODE UNIT
+========================================================= */
 
 function getUnitCounts(data){
 
     const counts = {
 
         W:0,
-
         FD:0,
-
         D:0,
-
         E:0
 
     };
@@ -2524,10 +3335,6 @@ function getUnitCounts(data){
         }
 
 
-        /*
-           Pecah berdasarkan koma.
-        */
-
         const units =
             codeUnit
                 .split(',')
@@ -2541,12 +3348,6 @@ function getUnitCounts(data){
 
 
         units.forEach(unit=>{
-
-            /*
-               FD harus dicek lebih dahulu
-               karena sama-sama memiliki
-               karakter D.
-            */
 
             if(
                 unit.startsWith('FD')
@@ -2588,7 +3389,7 @@ function getUnitCounts(data){
 
 
 /* =========================================================
-   TOTAL ACTIVITY
+   STATISTICS
 ========================================================= */
 
 function updateStatistics(data){
@@ -2605,41 +3406,31 @@ function updateStatistics(data){
 
 
     document
-        .getElementById(
-            'totalData'
-        )
+        .getElementById('totalData')
         .textContent =
             totalActivity;
 
 
     document
-        .getElementById(
-            'wheelloaderTotal'
-        )
+        .getElementById('wheelloaderTotal')
         .textContent =
             counts.W;
 
 
     document
-        .getElementById(
-            'forkliftTotal'
-        )
+        .getElementById('forkliftTotal')
         .textContent =
             counts.FD;
 
 
     document
-        .getElementById(
-            'dumptruckTotal'
-        )
+        .getElementById('dumptruckTotal')
         .textContent =
             counts.D;
 
 
     document
-        .getElementById(
-            'excavatorTotal'
-        )
+        .getElementById('excavatorTotal')
         .textContent =
             counts.E;
 
@@ -2654,9 +3445,7 @@ function applyFilters(){
 
     const search =
         document
-            .getElementById(
-                'searchInput'
-            )
+            .getElementById('searchInput')
             .value
             .trim()
             .toLowerCase();
@@ -2664,9 +3453,7 @@ function applyFilters(){
 
     const unitType =
         document
-            .getElementById(
-                'unitTypeFilter'
-            )
+            .getElementById('unitTypeFilter')
             .value
             .toUpperCase();
 
@@ -2677,15 +3464,10 @@ function applyFilters(){
             const searchable = [
 
                 row.tanggal,
-
                 row.shift,
-
                 row.pic,
-
                 row.codeUnit,
-
                 row.deskripsi,
-
                 row.pap
 
             ]
@@ -2697,30 +3479,6 @@ function applyFilters(){
                 !search ||
                 searchable.includes(search);
 
-
-            /*
-               Filter jenis unit.
-
-               Contoh:
-
-               pilih W
-
-               maka baris yang memiliki:
-
-               W-19
-               W-21
-
-               akan ditampilkan.
-
-               Sedangkan:
-
-               FD100
-               D-10
-               E-10
-
-               tidak akan menjadi alasan
-               baris tersebut lolos.
-            */
 
             const matchUnitType =
                 !unitType ||
@@ -2740,6 +3498,18 @@ function applyFilters(){
 
     currentPage = 1;
 
+
+    /*
+       Setelah filtering,
+       sorting yang sedang aktif
+       tetap diterapkan.
+
+       Jika mode ORIGINAL,
+       data kembali mengikuti urutan
+       database.
+    */
+
+    applyCurrentSort();
 
     renderTable();
 
@@ -2786,16 +3556,12 @@ function rowContainsUnitType(
 function resetFilters(){
 
     document
-        .getElementById(
-            'searchInput'
-        )
+        .getElementById('searchInput')
         .value='';
 
 
     document
-        .getElementById(
-            'unitTypeFilter'
-        )
+        .getElementById('unitTypeFilter')
         .value='';
 
 
@@ -2803,8 +3569,21 @@ function resetFilters(){
         [...allData];
 
 
+    /*
+       Sorting tidak dihapus.
+
+       Artinya jika user sedang ASC,
+       reset filter tetap mempertahankan ASC.
+
+       Jika ingin kembali ke database,
+       cukup klik sorting 2x lagi sampai
+       mode ORIGINAL.
+    */
+
     currentPage = 1;
 
+
+    applyCurrentSort();
 
     renderTable();
 
@@ -2819,16 +3598,12 @@ function renderTable(){
 
     const tbody =
         document
-            .getElementById(
-                'tableBody'
-            );
+            .getElementById('tableBody');
 
 
     const emptyState =
         document
-            .getElementById(
-                'emptyState'
-            );
+            .getElementById('emptyState');
 
 
     tbody.innerHTML='';
@@ -2901,8 +3676,9 @@ function renderTable(){
             (row,index)=>{
 
                 const tr =
-                    document
-                        .createElement('tr');
+                    document.createElement(
+                        'tr'
+                    );
 
 
                 const number =
@@ -2923,9 +3699,11 @@ function renderTable(){
 
 
                     <td class="whitespace-nowrap">
+
                         ${escapeHtml(
                             row.tanggal
                         )}
+
                     </td>
 
 
@@ -2955,11 +3733,7 @@ function renderTable(){
                     </td>
 
 
-                    <td
-                        class="
-                            max-w-[380px]
-                        "
-                    >
+                    <td class="max-w-[380px]">
 
                         ${getUnitBadges(
                             row.codeUnit
@@ -2999,7 +3773,9 @@ function renderTable(){
                 `;
 
 
-                tbody.appendChild(tr);
+                tbody.appendChild(
+                    tr
+                );
 
             }
         );
@@ -3109,6 +3885,7 @@ function getPapLink(pap){
 
     let url;
 
+
     try{
 
         url =
@@ -3124,13 +3901,9 @@ function getPapLink(pap){
                     text-[10px]
                     font-medium
                 "
-                title="${escapeHtml(
-                    value
-                )}"
+                title="${escapeHtml(value)}"
             >
-                ${escapeHtml(
-                    value
-                )}
+                ${escapeHtml(value)}
             </span>
         `;
 
@@ -3154,9 +3927,7 @@ function getPapLink(pap){
     return `
 
         <a
-            href="${escapeHtml(
-                url.href
-            )}"
+            href="${escapeHtml(url.href)}"
             target="_blank"
             rel="noopener noreferrer"
             class="pap-link"
@@ -3189,16 +3960,12 @@ function updateResultInfo(
 
     const resultInfo =
         document
-            .getElementById(
-                'resultInfo'
-            );
+            .getElementById('resultInfo');
 
 
     const paginationInfo =
         document
-            .getElementById(
-                'paginationInfo'
-            );
+            .getElementById('paginationInfo');
 
 
     if(total === 0){
@@ -3235,9 +4002,7 @@ function renderPagination(
 
     const container =
         document
-            .getElementById(
-                'pagination'
-            );
+            .getElementById('pagination');
 
 
     container.innerHTML='';
@@ -3252,12 +4017,8 @@ function renderPagination(
     }
 
 
-    /* PREVIOUS */
-
     const prev =
-        document.createElement(
-            'button'
-        );
+        document.createElement('button');
 
 
     prev.className =
@@ -3296,8 +4057,6 @@ function renderPagination(
     );
 
 
-    /* PAGE NUMBERS */
-
     const pages =
         getPaginationPages(
             currentPage,
@@ -3312,9 +4071,7 @@ function renderPagination(
         ){
 
             const span =
-                document.createElement(
-                    'span'
-                );
+                document.createElement('span');
 
 
             span.className =
@@ -3336,9 +4093,7 @@ function renderPagination(
 
 
         const button =
-            document.createElement(
-                'button'
-            );
+            document.createElement('button');
 
 
         button.className =
@@ -3372,12 +4127,8 @@ function renderPagination(
     });
 
 
-    /* NEXT */
-
     const next =
-        document.createElement(
-            'button'
-        );
+        document.createElement('button');
 
 
     next.className =
@@ -3495,9 +4246,7 @@ function getPaginationPages(
     }
 
 
-    pages.push(
-        total
-    );
+    pages.push(total);
 
 
     return pages;
@@ -3508,25 +4257,6 @@ function getPaginationPages(
 /* =========================================================
    LEADERBOARD
 ========================================================= */
-
-/*
-   Leaderboard dihitung langsung dari:
-
-   kolom C = PIC
-   kolom D = CODE UNIT
-
-   Setiap unit dihitung sebagai 1 aktivitas.
-
-   Contoh:
-
-   PIC  : Budi
-   UNIT : W-01, W-02, FD-01
-
-   Maka Budi mendapatkan:
-
-   3 aktivitas
-*/
-
 
 function updateLeaderboardFromData(
     data
@@ -3539,17 +4269,8 @@ function updateLeaderboardFromData(
             );
 
 
-    /*
-       Object untuk menyimpan
-       total aktivitas setiap PIC.
-    */
-
     const picCounts = {};
 
-
-    /*
-       Pastikan data tersedia.
-    */
 
     if(
         !Array.isArray(data) ||
@@ -3576,15 +4297,7 @@ function updateLeaderboardFromData(
     }
 
 
-    /*
-       Loop seluruh data.
-    */
-
     data.forEach(row=>{
-
-        /*
-           Ambil PIC dari kolom C.
-        */
 
         const pic =
             String(
@@ -3593,11 +4306,6 @@ function updateLeaderboardFromData(
             .trim();
 
 
-        /*
-           Jika PIC kosong,
-           jangan masukkan ke leaderboard.
-        */
-
         if(!pic){
 
             return;
@@ -3605,20 +4313,12 @@ function updateLeaderboardFromData(
         }
 
 
-        /*
-           Ambil CODE UNIT dari kolom D.
-        */
-
         const codeUnit =
             String(
                 row.codeUnit || ''
             )
             .trim();
 
-
-        /*
-           Pecah CODE UNIT berdasarkan koma.
-        */
 
         const units =
             codeUnit
@@ -3632,26 +4332,9 @@ function updateLeaderboardFromData(
                 : [];
 
 
-        /*
-           Jumlah aktivitas untuk PIC.
-
-           Jika ada:
-
-           W-01, W-02, W-03
-
-           maka = 3 aktivitas.
-
-           Jika CODE UNIT kosong,
-           satu row tidak dihitung.
-        */
-
         const activityCount =
             units.length;
 
-
-        /*
-           Inisialisasi PIC.
-        */
 
         if(
             !picCounts[pic]
@@ -3662,34 +4345,21 @@ function updateLeaderboardFromData(
         }
 
 
-        /*
-           Tambahkan jumlah unit
-           ke PIC tersebut.
-        */
-
         picCounts[pic] +=
             activityCount;
 
     });
 
 
-    /*
-       Ubah object menjadi array
-       agar mudah di-sort.
-    */
-
     const ranking =
         Object.entries(
             picCounts
         )
         .map(
-            (
-                [name,count]
-            )=>({
+            ([name,count])=>({
 
-                name:name,
-
-                count:count
+                name,
+                count
 
             })
         )
@@ -3703,11 +4373,6 @@ function updateLeaderboardFromData(
                 a.count
         );
 
-
-    /*
-       Jika tidak ada PIC
-       yang memiliki aktivitas.
-    */
 
     if(
         ranking.length === 0
@@ -3733,17 +4398,10 @@ function updateLeaderboardFromData(
     }
 
 
-    /*
-       Render leaderboard.
-    */
-
     list.innerHTML =
         ranking
             .map(
-                (
-                    person,
-                    index
-                )=>{
+                (person,index)=>{
 
                     const rank =
                         index + 1;
@@ -3819,13 +4477,6 @@ function updateLeaderboardFromData(
 ========================================================= */
 
 function openLeaderboard(){
-
-    /*
-       Selalu hitung ulang dari allData.
-
-       Dengan demikian leaderboard mengikuti
-       data yang benar-benar diterima dari Database.
-    */
 
     updateLeaderboardFromData(
         allData
@@ -3946,9 +4597,7 @@ function scheduleLeaderboardPulse(){
    SECURITY
 ========================================================= */
 
-function escapeHtml(
-    value
-){
+function escapeHtml(value){
 
     return String(
         value ?? ''
@@ -4015,7 +4664,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 </html>
