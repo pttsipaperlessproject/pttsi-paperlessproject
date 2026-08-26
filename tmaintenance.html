@@ -1,0 +1,4897 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=1200"
+>
+
+<title>Data Maintenance Unit - PT TSI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    min-width:1100px;
+}
+
+body{
+
+    margin:0;
+
+    font-family:'Inter',sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #eef2f7
+        );
+
+    color:#1e293b;
+
+}
+
+.color-primary{
+    background:#1E3A8A;
+}
+
+.text-primary{
+    color:#1E3A8A;
+}
+
+
+/* =========================================================
+   GLASS
+========================================================= */
+
+.glass-panel{
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(10px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+.fade-in{
+
+    animation:
+        fadeIn
+        .5s
+        cubic-bezier(.4,0,.2,1);
+
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-wrapper{
+
+    transition:
+        transform
+        .4s
+        cubic-bezier(
+            .175,
+            .885,
+            .32,
+            1.275
+        );
+
+}
+
+.logo-wrapper:hover{
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+
+}
+
+.logo-shadow{
+
+    filter:
+        drop-shadow(
+            0 10px 8px
+            rgba(0,0,0,.04)
+        )
+        drop-shadow(
+            0 4px 3px
+            rgba(0,0,0,.1)
+        );
+
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.page-title{
+
+    font-size:30px;
+
+    font-weight:900;
+
+    color:#1e293b;
+
+    letter-spacing:-.025em;
+
+}
+
+.page-subtitle{
+
+    font-size:13px;
+
+    color:#64748b;
+
+    font-weight:500;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.back-button{
+
+    background:#1e3a8a;
+
+    color:#fff;
+
+    border-radius:12px;
+
+    padding:
+        11px
+        17px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:.2s ease;
+
+    box-shadow:
+        0 5px 12px
+        rgba(30,58,138,.18);
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+.back-button:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.stat-card{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:17px;
+
+    padding:17px;
+
+    transition:.25s ease;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 20px
+        rgba(15,23,42,.07);
+
+}
+
+
+/* =========================================================
+   TABLE PANEL
+========================================================= */
+
+.table-panel{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 4px 12px
+        rgba(15,23,42,.04);
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+table{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+    table-layout:fixed;
+
+}
+
+thead{
+
+    background:#f8fafc;
+
+}
+
+thead th{
+
+    padding:0;
+
+    border-bottom:
+        2px solid
+        #e2e8f0;
+
+    color:#475569;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    white-space:nowrap;
+
+    text-align:left;
+
+}
+
+
+/* =========================================================
+   SORT BUTTON
+========================================================= */
+
+.sort-button{
+
+    width:100%;
+
+    padding:14px;
+
+    background:transparent;
+
+    border:none;
+
+    color:#475569;
+
+    font-family:inherit;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+    text-align:left;
+
+}
+
+.sort-button:hover{
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+}
+
+.sort-button.active{
+
+    color:#1e3a8a;
+
+    background:#eff6ff;
+
+}
+
+.sort-icon{
+
+    width:14px;
+
+    height:14px;
+
+    flex-shrink:0;
+
+    opacity:.35;
+
+}
+
+.sort-button:hover .sort-icon{
+
+    opacity:.8;
+
+}
+
+.sort-button.active .sort-icon{
+
+    opacity:1;
+
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+tbody td{
+
+    padding:
+        13px
+        14px;
+
+    border-bottom:
+        1px solid
+        #f1f5f9;
+
+    color:#334155;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    vertical-align:middle;
+
+    overflow:hidden;
+
+}
+
+tbody tr{
+
+    transition:
+        background
+        .15s ease;
+
+}
+
+tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+
+/* =========================================================
+   UNIT
+========================================================= */
+
+.unit-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:64px;
+
+    padding:
+        5px
+        9px;
+
+    border-radius:8px;
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:
+        6px
+        10px;
+
+    border-radius:999px;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+}
+
+.status-open{
+
+    background:#fff7ed;
+
+    color:#c2410c;
+
+    border:
+        1px solid
+        #fed7aa;
+
+}
+
+.status-close{
+
+    background:#ecfdf5;
+
+    color:#047857;
+
+    border:
+        1px solid
+        #a7f3d0;
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.filter-input{
+
+    width:100%;
+
+    background:#f8fafc;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:11px;
+
+    padding:
+        10px
+        12px;
+
+    color:#334155;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    outline:none;
+
+    transition:.2s ease;
+
+}
+
+.filter-input:focus{
+
+    background:#fff;
+
+    border-color:#93c5fd;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.10);
+
+}
+
+select.filter-input{
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination-button{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:9px;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    background:#fff;
+
+    color:#475569;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+.pagination-button:hover:not(:disabled){
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+    border-color:#bfdbfe;
+
+}
+
+.pagination-button.active{
+
+    background:#1e3a8a;
+
+    color:#fff;
+
+    border-color:#1e3a8a;
+
+}
+
+.pagination-button:disabled{
+
+    opacity:.4;
+
+    cursor:not-allowed;
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loading{
+
+    min-height:350px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+#tableContent{
+
+    display:none;
+
+}
+
+#tableContent.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-wrapper{
+
+    width:420px;
+
+    max-width:90%;
+
+    margin-top:22px;
+
+}
+
+.progress-track{
+
+    width:100%;
+
+    height:10px;
+
+    background:#e2e8f0;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1e3a8a,
+            #2563eb
+        );
+
+    border-radius:999px;
+
+    transition:
+        width
+        .35s
+        ease;
+
+}
+
+.progress-percent{
+
+    margin-top:9px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    color:#1e3a8a;
+
+}
+
+
+/* =========================================================
+   BACKGROUND LOADING
+========================================================= */
+
+#backgroundLoading{
+
+    display:none;
+
+}
+
+#backgroundLoading.show{
+
+    display:flex;
+
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+#emptyState{
+
+    display:none;
+
+}
+
+#emptyState.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   MAINTENANCE COLUMN
+========================================================= */
+
+.maintenance-cell{
+
+    width:100%;
+
+    max-width:300px;
+
+    line-height:1.5;
+
+    word-break:break-word;
+
+}
+
+
+/* =========================================================
+   MOBILE FALLBACK
+========================================================= */
+
+@media(max-width:1100px){
+
+    html{
+        min-width:0;
+    }
+
+    body{
+        min-width:1100px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body
+    class="
+        flex
+        flex-col
+        items-center
+        p-4
+        sm:p-8
+    "
+>
+
+
+<main
+    class="
+        w-full
+        max-w-7xl
+        flex-grow
+        glass-panel
+        p-6
+        sm:p-10
+        rounded-3xl
+        shadow-2xl
+        fade-in
+    "
+>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header
+    class="
+        w-full
+        mb-8
+        pb-6
+        border-b-2
+        border-slate-100
+        flex
+        flex-col
+        items-center
+    "
+>
+
+    <div class="mb-4 logo-wrapper">
+
+        <div
+            class="
+                w-24
+                h-24
+                flex
+                items-center
+                justify-center
+                bg-white
+                rounded-2xl
+                logo-shadow
+                overflow-hidden
+                p-2
+            "
+        >
+
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="
+                    w-full
+                    h-full
+                    object-contain
+                "
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+
+            <div
+                id="logoFallback"
+                class="
+                    hidden
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    bg-blue-900
+                    w-full
+                    h-full
+                    text-white
+                "
+            >
+
+                <span
+                    class="
+                        font-black
+                        text-2xl
+                    "
+                >
+                    TSI
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="
+            color-primary
+            text-white
+            px-8
+            py-4
+            rounded-2xl
+            shadow-lg
+            flex
+            flex-col
+            items-center
+            gap-1
+        "
+    >
+
+        <h1
+            class="
+                text-xl
+                sm:text-2xl
+                font-black
+                uppercase
+                tracking-[0.1em]
+                text-center
+            "
+        >
+            PAPERLESS PROJECT
+        </h1>
+
+
+        <div
+            class="
+                h-0.5
+                w-16
+                bg-amber-500
+                rounded-full
+                my-1
+            "
+        ></div>
+
+
+        <h2
+            class="
+                text-sm
+                sm:text-lg
+                font-bold
+                uppercase
+                tracking-widest
+                text-blue-100
+                text-center
+            "
+        >
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+
+    </div>
+
+
+    <div
+        class="
+            mt-3
+            text-[10px]
+            font-bold
+            text-slate-400
+            tracking-[0.3em]
+            uppercase
+        "
+    >
+        Digitalization Initiative v2.0
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     PAGE TITLE
+===================================================== -->
+
+<section>
+
+    <div
+        class="
+            flex
+            items-center
+            justify-between
+            gap-5
+            mb-6
+        "
+    >
+
+        <div>
+
+            <h2
+                class="
+                    page-title
+                    flex
+                    items-center
+                    gap-3
+                "
+            >
+
+                <span
+                    class="
+                        bg-blue-900
+                        text-white
+                        p-3
+                        rounded-xl
+                        shadow-md
+                    "
+                >
+
+                    <i
+                        data-lucide="wrench"
+                        class="w-6 h-6"
+                    ></i>
+
+                </span>
+
+                Data Maintenance Unit
+
+            </h2>
+
+
+            <p
+                class="
+                    page-subtitle
+                    mt-2
+                    ml-1
+                "
+            >
+
+                Daftar seluruh aktivitas maintenance unit yang tersimpan pada database.
+
+            </p>
+
+        </div>
+
+
+        <button
+            onclick="goToDashboard()"
+            class="back-button"
+        >
+
+            <i
+                data-lucide="arrow-left"
+                class="w-4 h-4"
+            ></i>
+
+            Kembali
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         INITIAL LOADING
+    ================================================= -->
+
+    <div id="loading">
+
+        <i
+            data-lucide="database"
+            class="
+                w-9
+                h-9
+                text-blue-700
+                animate-pulse
+            "
+        ></i>
+
+
+        <p
+            class="
+                font-bold
+                text-sm
+                text-slate-500
+                mt-3
+            "
+        >
+            Memuat data maintenance...
+        </p>
+
+
+        <p
+            class="
+                text-[11px]
+                text-slate-400
+                mt-1
+            "
+        >
+            Data sedang diproses
+        </p>
+
+
+        <div class="progress-wrapper">
+
+            <div class="progress-track">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+
+            <div
+                id="progressPercent"
+                class="progress-percent"
+            >
+                0%
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         TABLE CONTENT
+    ================================================= -->
+
+    <div id="tableContent">
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
+
+        <div
+            class="
+                grid
+                grid-cols-5
+                gap-4
+                mb-6
+            "
+        >
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Total Activity
+                </p>
+
+                <p
+                    id="totalData"
+                    class="
+                        text-3xl
+                        font-black
+                        text-blue-900
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Forklift
+                </p>
+
+                <p
+                    id="forkliftTotal"
+                    class="
+                        text-3xl
+                        font-black
+                        text-orange-600
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Wheelloader
+                </p>
+
+                <p
+                    id="wheelloaderTotal"
+                    class="
+                        text-3xl
+                        font-black
+                        text-indigo-600
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Dumptruck
+                </p>
+
+                <p
+                    id="dumptruckTotal"
+                    class="
+                        text-3xl
+                        font-black
+                        text-rose-600
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Excavator
+                </p>
+
+                <p
+                    id="excavatorTotal"
+                    class="
+                        text-3xl
+                        font-black
+                        text-emerald-600
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FILTER
+        ================================================= -->
+
+        <div
+            class="
+                bg-white
+                border
+                border-slate-200
+                rounded-2xl
+                p-5
+                mb-5
+                shadow-sm
+            "
+        >
+
+            <div
+                class="
+                    flex
+                    items-center
+                    gap-3
+                    mb-4
+                "
+            >
+
+                <span
+                    class="
+                        bg-blue-100
+                        text-blue-700
+                        p-2
+                        rounded-lg
+                    "
+                >
+
+                    <i
+                        data-lucide="filter"
+                        class="w-4 h-4"
+                    ></i>
+
+                </span>
+
+
+                <div>
+
+                    <h3
+                        class="
+                            text-sm
+                            font-black
+                            text-slate-700
+                        "
+                    >
+                        Filter Data
+                    </h3>
+
+
+                    <p
+                        class="
+                            text-[10px]
+                            text-slate-400
+                            font-medium
+                        "
+                    >
+                        Gunakan filter untuk mencari data tertentu.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="
+                    grid
+                    grid-cols-4
+                    gap-4
+                "
+            >
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Cari Data
+                    </label>
+
+
+                    <div class="relative">
+
+                        <i
+                            data-lucide="search"
+                            class="
+                                absolute
+                                left-3
+                                top-1/2
+                                -translate-y-1/2
+                                w-4
+                                h-4
+                                text-slate-400
+                            "
+                        ></i>
+
+
+                        <input
+                            id="searchInput"
+                            type="text"
+                            placeholder="Unit, maintenance..."
+                            class="
+                                filter-input
+                                pl-10
+                            "
+                            oninput="applyFilters()"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Jenis Unit
+                    </label>
+
+
+                    <select
+                        id="unitTypeFilter"
+                        class="filter-input"
+                        onchange="applyFilters()"
+                    >
+
+                        <option value="">
+                            Semua Unit
+                        </option>
+
+                        <option value="F">
+                            Forklift
+                        </option>
+
+                        <option value="W">
+                            Wheeloader
+                        </option>
+
+                        <option value="D">
+                            Dumptruck
+                        </option>
+
+                        <option value="E">
+                            Excavator
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Status
+                    </label>
+
+
+                    <select
+                        id="statusFilter"
+                        class="filter-input"
+                        onchange="applyFilters()"
+                    >
+
+                        <option value="">
+                            Semua Status
+                        </option>
+
+                        <option value="OPEN">
+                            Open
+                        </option>
+
+                        <option value="CLOSE">
+                            Close
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="flex items-end">
+
+                    <button
+                        onclick="resetFilters()"
+                        class="
+                            w-full
+                            h-[38px]
+                            rounded-xl
+                            border
+                            border-slate-200
+                            bg-slate-50
+                            hover:bg-slate-100
+                            text-slate-600
+                            font-bold
+                            text-[11px]
+                            transition
+                            flex
+                            items-center
+                            justify-center
+                            gap-2
+                        "
+                    >
+
+                        <i
+                            data-lucide="rotate-ccw"
+                            class="w-4 h-4"
+                        ></i>
+
+                        Reset Filter
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TABLE
+        ================================================= -->
+
+        <div class="table-panel">
+
+
+            <div
+                class="
+                    px-5
+                    py-4
+                    border-b
+                    border-slate-100
+                    flex
+                    items-center
+                    justify-between
+                "
+            >
+
+                <div>
+
+                    <h3
+                        class="
+                            font-black
+                            text-slate-700
+                            text-sm
+                        "
+                    >
+                        Daftar Maintenance Unit
+                    </h3>
+
+
+                    <p
+                        id="resultInfo"
+                        class="
+                            text-[10px]
+                            text-slate-400
+                            mt-1
+                            font-medium
+                        "
+                    >
+                        -
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="backgroundLoading"
+                    class="
+                        items-center
+                        gap-2
+                        text-[10px]
+                        font-bold
+                        text-blue-600
+                    "
+                >
+
+                    <i
+                        data-lucide="loader-circle"
+                        class="
+                            w-3.5
+                            h-3.5
+                            animate-spin
+                        "
+                    ></i>
+
+                    Memuat data...
+
+                </div>
+
+
+                <div
+                    id="databaseStatus"
+                    class="
+                        flex
+                        items-center
+                        gap-2
+                        text-[10px]
+                        text-slate-400
+                        font-semibold
+                    "
+                >
+
+                    <i
+                        data-lucide="database"
+                        class="w-3.5 h-3.5"
+                    ></i>
+
+                    Data langsung dari Database
+
+                </div>
+
+            </div>
+
+
+            <div class="overflow-x-auto">
+
+                <table>
+
+                    <colgroup>
+
+                        <col style="width:60px">
+
+                        <col style="width:145px">
+
+                        <col style="width:140px">
+
+                        <col style="width:290px">
+
+                        <col style="width:180px">
+
+                        <col style="width:120px">
+
+                    </colgroup>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('number')"
+                                    data-sort-key="number"
+                                >
+
+                                    <span>No</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('date')"
+                                    data-sort-key="date"
+                                >
+
+                                    <span>Date</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('unit')"
+                                    data-sort-key="unit"
+                                >
+
+                                    <span>Unit</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('maintenance')"
+                                    data-sort-key="maintenance"
+                                >
+
+                                    <span>Maintenance</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('periodicService')"
+                                    data-sort-key="periodicService"
+                                >
+
+                                    <span>Periodic Service</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('status')"
+                                    data-sort-key="status"
+                                >
+
+                                    <span>Status</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tableBody"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div id="emptyState">
+
+                <div class="py-16 text-center">
+
+                    <div
+                        class="
+                            inline-flex
+                            items-center
+                            justify-center
+                            bg-slate-100
+                            text-slate-400
+                            p-4
+                            rounded-full
+                        "
+                    >
+
+                        <i
+                            data-lucide="search-x"
+                            class="w-8 h-8"
+                        ></i>
+
+                    </div>
+
+
+                    <h3
+                        class="
+                            font-bold
+                            text-slate-600
+                            mt-4
+                        "
+                    >
+                        Data tidak ditemukan
+                    </h3>
+
+
+                    <p
+                        class="
+                            text-xs
+                            text-slate-400
+                            mt-1
+                        "
+                    >
+                        Coba ubah kata pencarian atau filter.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="
+                    px-5
+                    py-4
+                    border-t
+                    border-slate-100
+                    flex
+                    items-center
+                    justify-between
+                "
+            >
+
+                <div
+                    id="paginationInfo"
+                    class="
+                        text-[10px]
+                        font-semibold
+                        text-slate-400
+                    "
+                >
+                    -
+                </div>
+
+
+                <div
+                    id="pagination"
+                    class="
+                        flex
+                        items-center
+                        gap-1
+                    "
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer
+    class="
+        mt-8
+        text-center
+        text-slate-400
+        px-4
+        pb-8
+    "
+>
+
+    <p
+        class="
+            font-bold
+            text-slate-500
+            tracking-tight
+            uppercase
+        "
+    >
+        &copy; 2026 Paperless Project - PT TSI.
+        All rights reserved.
+    </p>
+
+
+    <p class="text-[10px] mt-1">
+
+        System Architecture by:
+
+        <span
+            class="
+                text-slate-600
+                font-semibold
+                uppercase
+            "
+        >
+            Imam Wahyu Ramadhan, S.T.
+        </span>
+
+        |
+
+        <span
+            class="
+                text-amber-600
+                font-bold
+                uppercase
+            "
+        >
+            Project 2.0
+        </span>
+
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const API_URL =
+'https://script.google.com/macros/s/AKfycbzh2-mDdddGc9t2r971AywK4nz73IGttt76X0ATZKRrOq452knKIOVh0WreAGrxU71e/exec';
+
+
+const DASHBOARD_URL =
+'maintenance.html';
+
+
+const ROWS_PER_PAGE =
+15;
+
+
+const API_PAGE_SIZE =
+1000;
+
+
+const DB_NAME =
+'PTTSI_MAINTENANCE_CACHE';
+
+
+const DB_VERSION =
+1;
+
+
+const DB_STORE =
+'maintenance';
+
+
+const CACHE_KEY =
+'maintenance_state';
+
+
+const MAX_RETRIES =
+5;
+
+
+const REQUEST_TIMEOUT =
+30000;
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let apiData = null;
+
+let allData = [];
+
+let filteredData = [];
+
+let currentPage = 1;
+
+let totalServerRows = 0;
+
+let nextRowToLoad = 3;
+
+let loadingFinished = false;
+
+let backgroundLoading = false;
+
+let initialLoaded = false;
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+let sortKey = null;
+
+let sortDirection = null;
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goToDashboard(){
+
+    window.location.href =
+        DASHBOARD_URL;
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+function handleLogoError(){
+
+    document
+        .getElementById('companyLogo')
+        .classList
+        .add('hidden');
+
+
+    document
+        .getElementById('logoFallback')
+        .classList
+        .remove('hidden');
+
+}
+
+
+/* =========================================================
+   INDEXED DB
+========================================================= */
+
+function openDatabase(){
+
+    return new Promise(
+        (
+            resolve,
+            reject
+        )=>{
+
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
+                );
+
+
+            request.onupgradeneeded =
+                event=>{
+
+                    const db =
+                        event.target.result;
+
+
+                    if(
+                        !db.objectStoreNames.contains(
+                            DB_STORE
+                        )
+                    ){
+
+                        db.createObjectStore(
+                            DB_STORE
+                        );
+
+                    }
+
+                };
+
+
+            request.onsuccess =
+                ()=>{
+
+                    resolve(
+                        request.result
+                    );
+
+                };
+
+
+            request.onerror =
+                ()=>{
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SAVE CACHE
+========================================================= */
+
+async function saveCache(){
+
+    try{
+
+        const db =
+            await openDatabase();
+
+
+        return new Promise(
+            (
+                resolve,
+                reject
+            )=>{
+
+                const transaction =
+                    db.transaction(
+                        DB_STORE,
+                        'readwrite'
+                    );
+
+
+                const store =
+                    transaction.objectStore(
+                        DB_STORE
+                    );
+
+
+                store.put(
+                    {
+                        data:allData,
+                        nextRow:nextRowToLoad,
+                        totalRows:totalServerRows,
+                        finished:loadingFinished,
+                        timestamp:Date.now()
+                    },
+                    CACHE_KEY
+                );
+
+
+                transaction.oncomplete =
+                    ()=>{
+
+                        db.close();
+
+                        resolve();
+
+                    };
+
+
+                transaction.onerror =
+                    ()=>{
+
+                        db.close();
+
+                        reject(
+                            transaction.error
+                        );
+
+                    };
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            'Cache save failed:',
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD CACHE
+========================================================= */
+
+async function loadCache(){
+
+    try{
+
+        const db =
+            await openDatabase();
+
+
+        return new Promise(
+            (
+                resolve,
+                reject
+            )=>{
+
+                const transaction =
+                    db.transaction(
+                        DB_STORE,
+                        'readonly'
+                    );
+
+
+                const store =
+                    transaction.objectStore(
+                        DB_STORE
+                    );
+
+
+                const request =
+                    store.get(
+                        CACHE_KEY
+                    );
+
+
+                request.onsuccess =
+                    ()=>{
+
+                        db.close();
+
+                        resolve(
+                            request.result ||
+                            null
+                        );
+
+                    };
+
+
+                request.onerror =
+                    ()=>{
+
+                        db.close();
+
+                        reject(
+                            request.error
+                        );
+
+                    };
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            'Cache load failed:',
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   CLEAR CACHE
+========================================================= */
+
+async function clearCache(){
+
+    try{
+
+        const db =
+            await openDatabase();
+
+
+        return new Promise(
+            (
+                resolve,
+                reject
+            )=>{
+
+                const transaction =
+                    db.transaction(
+                        DB_STORE,
+                        'readwrite'
+                    );
+
+
+                transaction
+                    .objectStore(DB_STORE)
+                    .delete(
+                        CACHE_KEY
+                    );
+
+
+                transaction.oncomplete =
+                    ()=>{
+
+                        db.close();
+
+                        resolve();
+
+                    };
+
+
+                transaction.onerror =
+                    ()=>{
+
+                        db.close();
+
+                        reject(
+                            transaction.error
+                        );
+
+                    };
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            'Cache clear failed:',
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress(){
+
+    let percent = 0;
+
+
+    if(
+        totalServerRows > 0
+    ){
+
+        percent =
+            Math.round(
+                Math.min(
+                    100,
+                    (
+                        allData.length /
+                        totalServerRows
+                    ) * 100
+                )
+            );
+
+    }
+
+
+    if(
+        loadingFinished
+    ){
+
+        percent = 100;
+
+    }
+
+
+    document
+        .getElementById(
+            'progressBar'
+        )
+        .style
+        .width =
+            percent + '%';
+
+
+    document
+        .getElementById(
+            'progressPercent'
+        )
+        .textContent =
+            percent + '%';
+
+}
+
+
+/* =========================================================
+   REQUEST WITH RETRY
+========================================================= */
+
+async function fetchWithRetry(
+    url,
+    attempt = 1
+){
+
+    let controller = null;
+
+    let timeoutId = null;
+
+
+    try{
+
+        controller =
+            new AbortController();
+
+
+        timeoutId =
+            setTimeout(
+                ()=>{
+                    controller.abort();
+                },
+                REQUEST_TIMEOUT
+            );
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method:'GET',
+                    cache:'no-store',
+                    signal:
+                        controller.signal
+                }
+            );
+
+
+        clearTimeout(
+            timeoutId
+        );
+
+
+        if(
+            !response.ok
+        ){
+
+            throw new Error(
+                `HTTP Error ${response.status}`
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        return result;
+
+    }
+    catch(error){
+
+        if(
+            timeoutId
+        ){
+
+            clearTimeout(
+                timeoutId
+            );
+
+        }
+
+
+        console.warn(
+            `Request attempt ${attempt} failed:`,
+            error.message
+        );
+
+
+        if(
+            attempt >= MAX_RETRIES
+        ){
+
+            throw error;
+
+        }
+
+
+        const delay =
+            Math.min(
+                15000,
+                1500 *
+                Math.pow(
+                    2,
+                    attempt - 1
+                )
+            );
+
+
+        await sleep(
+            delay
+        );
+
+
+        return fetchWithRetry(
+            url,
+            attempt + 1
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SLEEP
+========================================================= */
+
+function sleep(
+    milliseconds
+){
+
+    return new Promise(
+        resolve=>
+            setTimeout(
+                resolve,
+                milliseconds
+            )
+    );
+
+}
+
+
+/* =========================================================
+   API URL
+========================================================= */
+
+function getApiUrl(
+    startRow
+){
+
+    return (
+        API_URL +
+        '?startRow=' +
+        encodeURIComponent(
+            startRow
+        )
+    );
+
+}
+
+
+/* =========================================================
+   LOAD FIRST BATCH
+========================================================= */
+
+async function loadInitialData(){
+
+    try{
+
+        const cache =
+            await loadCache();
+
+
+        if(
+            cache &&
+            Array.isArray(
+                cache.data
+            ) &&
+            cache.data.length > 0
+        ){
+
+            console.log(
+                'Restoring cached data:',
+                cache.data.length
+            );
+
+
+            allData =
+                cache.data;
+
+
+            filteredData =
+                [...allData];
+
+
+            nextRowToLoad =
+                cache.nextRow ||
+                3;
+
+
+            totalServerRows =
+                cache.totalRows ||
+                0;
+
+
+            loadingFinished =
+                cache.finished === true;
+
+
+            updateProgress();
+
+
+            updateStatistics(
+                allData
+            );
+
+
+            renderTable();
+
+
+            document
+                .getElementById(
+                    'loading'
+                )
+                .style
+                .display =
+                    'none';
+
+
+            document
+                .getElementById(
+                    'tableContent'
+                )
+                .classList
+                .add('show');
+
+
+            initialLoaded =
+                true;
+
+
+            if(
+                !loadingFinished
+            ){
+
+                loadRemainingData();
+
+            }
+
+
+            return;
+
+        }
+
+
+        const result =
+            await fetchWithRetry(
+                getApiUrl(3)
+            );
+
+
+        validateApiResult(
+            result
+        );
+
+
+        apiData =
+            result;
+
+
+        totalServerRows =
+            Number(
+                result.totalRows || 0
+            );
+
+
+        allData =
+            convertApiData(
+                result.data
+            );
+
+
+        nextRowToLoad =
+            result.nextRow;
+
+
+        loadingFinished =
+            !result.hasMore;
+
+
+        filteredData =
+            [...allData];
+
+
+        updateProgress();
+
+
+        updateStatistics(
+            allData
+        );
+
+
+        renderTable();
+
+
+        document
+            .getElementById(
+                'loading'
+            )
+            .style
+            .display =
+                'none';
+
+
+        document
+            .getElementById(
+                'tableContent'
+            )
+            .classList
+            .add('show');
+
+
+        initialLoaded =
+            true;
+
+
+        await saveCache();
+
+
+        if(
+            !loadingFinished
+        ){
+
+            loadRemainingData();
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            'Initial loading error:',
+            error
+        );
+
+
+        showLoadingError(
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD REMAINING DATA
+========================================================= */
+
+async function loadRemainingData(){
+
+    if(
+        backgroundLoading ||
+        loadingFinished
+    ){
+
+        return;
+
+    }
+
+
+    backgroundLoading =
+        true;
+
+
+    showBackgroundLoading(
+        true
+    );
+
+
+    try{
+
+        while(
+            !loadingFinished &&
+            nextRowToLoad
+        ){
+
+            console.log(
+                'Loading background from row:',
+                nextRowToLoad
+            );
+
+
+            const result =
+                await fetchWithRetry(
+                    getApiUrl(
+                        nextRowToLoad
+                    )
+                );
+
+
+            validateApiResult(
+                result
+            );
+
+
+            const newData =
+                convertApiData(
+                    result.data
+                );
+
+
+            if(
+                newData.length > 0
+            ){
+
+                allData.push(
+                    ...newData
+                );
+
+            }
+
+
+            totalServerRows =
+                Number(
+                    result.totalRows ||
+                    totalServerRows
+                );
+
+
+            nextRowToLoad =
+                result.nextRow;
+
+
+            loadingFinished =
+                !result.hasMore;
+
+
+            await saveCache();
+
+
+            updateStatistics(
+                allData
+            );
+
+
+            applyFilters(
+                false
+            );
+
+
+            updateProgress();
+
+
+            await sleep(
+                50
+            );
+
+        }
+
+
+        loadingFinished =
+            true;
+
+
+        updateProgress();
+
+
+        await saveCache();
+
+    }
+    catch(error){
+
+        console.error(
+            'Background loading stopped:',
+            error
+        );
+
+
+        showBackgroundError(
+            error
+        );
+
+    }
+    finally{
+
+        backgroundLoading =
+            false;
+
+
+        showBackgroundLoading(
+            false
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   RETRY BACKGROUND
+========================================================= */
+
+async function retryBackgroundLoading(){
+
+    hideBackgroundError();
+
+    await sleep(
+        300
+    );
+
+    loadRemainingData();
+
+}
+
+
+/* =========================================================
+   VALIDATE API
+========================================================= */
+
+function validateApiResult(
+    result
+){
+
+    if(
+        !result ||
+        result.success !== true
+    ){
+
+        throw new Error(
+            result?.error ||
+            'API mengembalikan status tidak berhasil.'
+        );
+
+    }
+
+
+    if(
+        !Array.isArray(
+            result.data
+        )
+    ){
+
+        throw new Error(
+            'Format data API tidak valid.'
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CONVERT API DATA
+========================================================= */
+
+function convertApiData(
+    data
+){
+
+    if(
+        !Array.isArray(
+            data
+        )
+    ){
+
+        return [];
+
+    }
+
+
+    return data.map(
+        row=>{
+
+            return {
+
+                date:
+                    row[0] ?? '',
+
+                unit:
+                    row[1] ?? '',
+
+                maintenance:
+                    row[2] ?? '',
+
+                periodicService:
+                    row[3] ?? '',
+
+                status:
+                    row[4] ?? ''
+
+            };
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   BACKGROUND LOADING UI
+========================================================= */
+
+function showBackgroundLoading(
+    show
+){
+
+    const loading =
+        document.getElementById(
+            'backgroundLoading'
+        );
+
+
+    const status =
+        document.getElementById(
+            'databaseStatus'
+        );
+
+
+    if(show){
+
+        loading
+            .classList
+            .add('show');
+
+
+        status
+            .classList
+            .add('hidden');
+
+    }
+
+    else{
+
+        loading
+            .classList
+            .remove('show');
+
+
+        status
+            .classList
+            .remove('hidden');
+
+    }
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   BACKGROUND ERROR
+========================================================= */
+
+function showBackgroundError(
+    error
+){
+
+    const loading =
+        document.getElementById(
+            'backgroundLoading'
+        );
+
+
+    loading.innerHTML = `
+
+        <div
+            class="
+                flex
+                items-center
+                gap-2
+            "
+        >
+
+            <i
+                data-lucide="alert-triangle"
+                class="
+                    w-3.5
+                    h-3.5
+                "
+            ></i>
+
+
+            <span>
+                Memuat terhenti
+            </span>
+
+
+            <button
+                onclick="retryBackgroundLoading()"
+                class="
+                    ml-1
+                    px-2
+                    py-1
+                    rounded-md
+                    bg-blue-100
+                    hover:bg-blue-200
+                    text-blue-700
+                    font-black
+                "
+            >
+                Lanjutkan
+            </button>
+
+        </div>
+
+    `;
+
+
+    loading
+        .classList
+        .add('show');
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   HIDE BACKGROUND ERROR
+========================================================= */
+
+function hideBackgroundError(){
+
+    const loading =
+        document.getElementById(
+            'backgroundLoading'
+        );
+
+
+    loading.innerHTML = `
+
+        <i
+            data-lucide="loader-circle"
+            class="
+                w-3.5
+                h-3.5
+                animate-spin
+            "
+        ></i>
+
+        Memuat data...
+
+    `;
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   LOADING ERROR
+========================================================= */
+
+function showLoadingError(
+    error
+){
+
+    document
+        .getElementById(
+            'loading'
+        )
+        .innerHTML = `
+
+            <div class="text-center">
+
+                <div
+                    class="
+                        bg-red-50
+                        text-red-600
+                        p-4
+                        rounded-full
+                        inline-flex
+                    "
+                >
+
+                    <i
+                        data-lucide="alert-circle"
+                        class="w-8 h-8"
+                    ></i>
+
+                </div>
+
+
+                <h3
+                    class="
+                        font-bold
+                        text-red-700
+                        mt-3
+                    "
+                >
+                    Gagal memuat data
+                </h3>
+
+
+                <p
+                    class="
+                        text-xs
+                        text-slate-500
+                        mt-2
+                        max-w-md
+                    "
+                >
+                    ${escapeHtml(
+                        error.message
+                    )}
+                </p>
+
+
+                <button
+                    onclick="loadInitialData()"
+                    class="
+                        mt-4
+                        bg-blue-800
+                        hover:bg-blue-700
+                        text-white
+                        font-bold
+                        px-5
+                        py-2.5
+                        rounded-xl
+                        text-sm
+                    "
+                >
+                    Coba Lagi
+                </button>
+
+            </div>
+
+        `;
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   NORMALIZE UNIT
+========================================================= */
+
+function normalizeUnit(
+    value
+){
+
+    return String(
+        value ?? ''
+    )
+    .trim()
+    .toUpperCase();
+
+}
+
+
+/* =========================================================
+   UNIT TYPE
+========================================================= */
+
+function getUnitType(
+    unit
+){
+
+    const value =
+        normalizeUnit(
+            unit
+        );
+
+
+    if(
+        value.startsWith('F')
+    ){
+
+        return 'F';
+
+    }
+
+
+    if(
+        value.startsWith('W') ||
+        value.startsWith('ZW')
+    ){
+
+        return 'W';
+
+    }
+
+
+    if(
+        value.startsWith('D')
+    ){
+
+        return 'D';
+
+    }
+
+
+    if(
+        value.startsWith('E')
+    ){
+
+        return 'E';
+
+    }
+
+
+    return '';
+
+}
+
+
+/* =========================================================
+   UNIT COUNTS
+========================================================= */
+
+function getUnitCounts(
+    data
+){
+
+    const counts = {
+
+        F:0,
+        W:0,
+        D:0,
+        E:0
+
+    };
+
+
+    if(
+        !Array.isArray(
+            data
+        )
+    ){
+
+        return counts;
+
+    }
+
+
+    data.forEach(
+        row=>{
+
+            const type =
+                getUnitType(
+                    row.unit
+                );
+
+
+            if(
+                type &&
+                counts[type] !== undefined
+            ){
+
+                counts[type]++;
+
+            }
+
+        }
+    );
+
+
+    return counts;
+
+}
+
+
+/* =========================================================
+   UPDATE STATISTICS
+========================================================= */
+
+function updateStatistics(
+    data
+){
+
+    const counts =
+        getUnitCounts(
+            data
+        );
+
+
+    document
+        .getElementById(
+            'totalData'
+        )
+        .textContent =
+            Array.isArray(data)
+            ? data.length
+            : 0;
+
+
+    document
+        .getElementById(
+            'forkliftTotal'
+        )
+        .textContent =
+            counts.F;
+
+
+    document
+        .getElementById(
+            'wheelloaderTotal'
+        )
+        .textContent =
+            counts.W;
+
+
+    document
+        .getElementById(
+            'dumptruckTotal'
+        )
+        .textContent =
+            counts.D;
+
+
+    document
+        .getElementById(
+            'excavatorTotal'
+        )
+        .textContent =
+            counts.E;
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function applyFilters(
+    resetPage = true
+){
+
+    const search =
+        document
+            .getElementById(
+                'searchInput'
+            )
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    const unitType =
+        document
+            .getElementById(
+                'unitTypeFilter'
+            )
+            .value
+            .toUpperCase();
+
+
+    const status =
+        document
+            .getElementById(
+                'statusFilter'
+            )
+            .value
+            .toUpperCase();
+
+
+    filteredData =
+        allData.filter(
+            row=>{
+
+                const searchable = [
+
+                    row.date,
+                    row.unit,
+                    row.maintenance,
+                    row.periodicService,
+                    row.status
+
+                ]
+                .join(' ')
+                .toLowerCase();
+
+
+                const matchSearch =
+                    !search ||
+                    searchable.includes(
+                        search
+                    );
+
+
+                const matchUnitType =
+                    !unitType ||
+                    getUnitType(
+                        row.unit
+                    ) === unitType;
+
+
+                const matchStatus =
+                    !status ||
+                    String(
+                        row.status || ''
+                    )
+                    .trim()
+                    .toUpperCase()
+                    === status;
+
+
+                return (
+                    matchSearch &&
+                    matchUnitType &&
+                    matchStatus
+                );
+
+            }
+        );
+
+
+    if(
+        resetPage
+    ){
+
+        currentPage =
+            1;
+
+    }
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   RESET FILTER
+========================================================= */
+
+function resetFilters(){
+
+    document
+        .getElementById(
+            'searchInput'
+        )
+        .value = '';
+
+
+    document
+        .getElementById(
+            'unitTypeFilter'
+        )
+        .value = '';
+
+
+    document
+        .getElementById(
+            'statusFilter'
+        )
+        .value = '';
+
+
+    filteredData =
+        [...allData];
+
+
+    currentPage =
+        1;
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+function sortBy(
+    key
+){
+
+    if(
+        sortKey !== key
+    ){
+
+        sortKey =
+            key;
+
+        sortDirection =
+            'asc';
+
+    }
+
+    else if(
+        sortDirection === 'asc'
+    ){
+
+        sortDirection =
+            'desc';
+
+    }
+
+    else{
+
+        sortKey =
+            null;
+
+        sortDirection =
+            null;
+
+    }
+
+
+    currentPage =
+        1;
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   SORT DATA
+========================================================= */
+
+function getSortedData(
+    data
+){
+
+    const result =
+        [...data];
+
+
+    if(
+        !sortKey ||
+        !sortDirection
+    ){
+
+        return result;
+
+    }
+
+
+    result.sort(
+        (
+            a,
+            b
+        )=>{
+
+            let valueA;
+
+            let valueB;
+
+
+            switch(sortKey){
+
+                case 'number':
+
+                    valueA =
+                        allData.indexOf(a);
+
+                    valueB =
+                        allData.indexOf(b);
+
+                    break;
+
+
+                case 'date':
+
+                    valueA =
+                        getDateSortValue(
+                            a.date
+                        );
+
+                    valueB =
+                        getDateSortValue(
+                            b.date
+                        );
+
+                    break;
+
+
+                case 'unit':
+
+                    valueA =
+                        normalizeUnit(
+                            a.unit
+                        );
+
+                    valueB =
+                        normalizeUnit(
+                            b.unit
+                        );
+
+                    break;
+
+
+                case 'maintenance':
+
+                    valueA =
+                        String(
+                            a.maintenance ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    valueB =
+                        String(
+                            b.maintenance ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    break;
+
+
+                case 'periodicService':
+
+                    valueA =
+                        String(
+                            a.periodicService ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    valueB =
+                        String(
+                            b.periodicService ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    break;
+
+
+                case 'status':
+
+                    valueA =
+                        String(
+                            a.status ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    valueB =
+                        String(
+                            b.status ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    break;
+
+
+                default:
+
+                    return 0;
+
+            }
+
+
+            const emptyA =
+                valueA === '' ||
+                valueA === null ||
+                valueA === undefined;
+
+
+            const emptyB =
+                valueB === '' ||
+                valueB === null ||
+                valueB === undefined;
+
+
+            if(
+                emptyA &&
+                emptyB
+            ){
+
+                return 0;
+
+            }
+
+
+            if(emptyA){
+
+                return 1;
+
+            }
+
+
+            if(emptyB){
+
+                return -1;
+
+            }
+
+
+            let comparison;
+
+
+            if(
+                typeof valueA === 'number' &&
+                typeof valueB === 'number'
+            ){
+
+                comparison =
+                    valueA -
+                    valueB;
+
+            }
+
+            else{
+
+                comparison =
+                    String(valueA)
+                    .localeCompare(
+                        String(valueB),
+                        'id',
+                        {
+                            numeric:true,
+                            sensitivity:'base'
+                        }
+                    );
+
+            }
+
+
+            return (
+                sortDirection === 'asc'
+                ? comparison
+                : -comparison
+            );
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   DATE SORT
+========================================================= */
+
+function getDateSortValue(
+    value
+){
+
+    if(
+        !value
+    ){
+
+        return '';
+
+    }
+
+
+    const date =
+        new Date(
+            String(value).trim()
+        );
+
+
+    if(
+        isNaN(
+            date.getTime()
+        )
+    ){
+
+        return '';
+
+    }
+
+
+    return date.getTime();
+
+}
+
+
+/* =========================================================
+   SORT INDICATORS
+========================================================= */
+
+function updateSortIndicators(){
+
+    const buttons =
+        document.querySelectorAll(
+            '[data-sort-key]'
+        );
+
+
+    buttons.forEach(
+        button=>{
+
+            const key =
+                button.getAttribute(
+                    'data-sort-key'
+                );
+
+
+            const icon =
+                button.querySelector(
+                    '.sort-icon'
+                );
+
+
+            button.classList.remove(
+                'active'
+            );
+
+
+            if(!icon){
+
+                return;
+
+            }
+
+
+            icon.setAttribute(
+                'data-lucide',
+                'chevrons-up-down'
+            );
+
+
+            if(
+                sortKey === key &&
+                sortDirection === 'asc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-up'
+                );
+
+            }
+
+
+            else if(
+                sortKey === key &&
+                sortDirection === 'desc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-down'
+                );
+
+            }
+
+        }
+    );
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(
+    value
+){
+
+    if(
+        !value
+    ){
+
+        return `
+
+            <span class="text-slate-300">
+                -
+            </span>
+
+        `;
+
+    }
+
+
+    const date =
+        new Date(
+            String(value).trim()
+        );
+
+
+    if(
+        isNaN(
+            date.getTime()
+        )
+    ){
+
+        return escapeHtml(
+            String(value)
+        );
+
+    }
+
+
+    const day =
+        String(
+            date.getDate()
+        )
+        .padStart(2,'0');
+
+
+    const month =
+        String(
+            date.getMonth()+1
+        )
+        .padStart(2,'0');
+
+
+    const year =
+        date.getFullYear();
+
+
+    return `
+
+        <span
+            class="
+                font-semibold
+                text-slate-600
+            "
+        >
+            ${day}/${month}/${year}
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   UNIT BADGE
+========================================================= */
+
+function getUnitBadge(
+    unit
+){
+
+    const value =
+        normalizeUnit(
+            unit
+        );
+
+
+    if(!value){
+
+        return `
+
+            <span class="text-slate-300">
+                -
+            </span>
+
+        `;
+
+    }
+
+
+    return `
+
+        <span
+            class="unit-badge"
+        >
+            ${escapeHtml(value)}
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+function getStatusBadge(
+    status
+){
+
+    const value =
+        String(
+            status ?? ''
+        )
+        .trim()
+        .toUpperCase();
+
+
+    if(
+        value === 'OPEN'
+    ){
+
+        return `
+
+            <span
+                class="
+                    status-badge
+                    status-open
+                "
+            >
+
+                <i
+                    data-lucide="circle-dot"
+                    class="w-3 h-3"
+                ></i>
+
+                OPEN
+
+            </span>
+
+        `;
+
+    }
+
+
+    if(
+        value === 'CLOSE'
+    ){
+
+        return `
+
+            <span
+                class="
+                    status-badge
+                    status-close
+                "
+            >
+
+                <i
+                    data-lucide="circle-check"
+                    class="w-3 h-3"
+                ></i>
+
+                CLOSE
+
+            </span>
+
+        `;
+
+    }
+
+
+    return `
+
+        <span
+            class="
+                status-badge
+                bg-slate-100
+                text-slate-500
+                border
+                border-slate-200
+            "
+        >
+
+            ${escapeHtml(
+                value || '-'
+            )}
+
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   MULTILINE
+========================================================= */
+
+function formatMultilineText(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ''
+    ){
+
+        return `
+
+            <span class="text-slate-300">
+                -
+            </span>
+
+        `;
+
+    }
+
+
+    const text =
+        String(value).trim();
+
+
+    return text
+        .split('\n')
+        .map(
+            line=>
+                escapeHtml(
+                    line.trim()
+                )
+        )
+        .join('<br>');
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderTable(){
+
+    const tbody =
+        document.getElementById(
+            'tableBody'
+        );
+
+
+    const emptyState =
+        document.getElementById(
+            'emptyState'
+        );
+
+
+    tbody.innerHTML =
+        '';
+
+
+    const sortedData =
+        getSortedData(
+            filteredData
+        );
+
+
+    const total =
+        sortedData.length;
+
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                total /
+                ROWS_PER_PAGE
+            )
+        );
+
+
+    if(
+        currentPage >
+        totalPages
+    ){
+
+        currentPage =
+            totalPages;
+
+    }
+
+
+    const start =
+        (
+            currentPage - 1
+        ) *
+        ROWS_PER_PAGE;
+
+
+    const end =
+        Math.min(
+            start +
+            ROWS_PER_PAGE,
+            total
+        );
+
+
+    const pageData =
+        sortedData.slice(
+            start,
+            end
+        );
+
+
+    if(
+        !pageData.length
+    ){
+
+        emptyState
+            .classList
+            .add('show');
+
+    }
+
+    else{
+
+        emptyState
+            .classList
+            .remove('show');
+
+
+        pageData.forEach(
+            (
+                row,
+                index
+            )=>{
+
+                const tr =
+                    document.createElement(
+                        'tr'
+                    );
+
+
+                const number =
+                    start +
+                    index +
+                    1;
+
+
+                tr.innerHTML = `
+
+                    <td
+                        class="
+                            text-center
+                            font-bold
+                            text-slate-400
+                        "
+                    >
+                        ${number}
+                    </td>
+
+
+                    <td
+                        class="whitespace-nowrap"
+                    >
+
+                        ${formatDate(
+                            row.date
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        ${getUnitBadge(
+                            row.unit
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        <div
+                            class="
+                                maintenance-cell
+                                font-semibold
+                                text-slate-700
+                            "
+                            title="${escapeHtml(
+                                row.maintenance
+                            )}"
+                        >
+
+                            ${formatMultilineText(
+                                row.maintenance
+                            )}
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        <div
+                            class="
+                                text-[10px]
+                                font-bold
+                                text-slate-500
+                            "
+                        >
+
+                            ${
+                                row.periodicService
+                                ?
+                                escapeHtml(
+                                    row.periodicService
+                                )
+                                :
+                                `
+                                    <span
+                                        class="
+                                            text-slate-300
+                                        "
+                                    >
+                                        -
+                                    </span>
+                                `
+                            }
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        ${getStatusBadge(
+                            row.status
+                        )}
+
+                    </td>
+
+                `;
+
+
+                tbody.appendChild(
+                    tr
+                );
+
+            }
+        );
+
+    }
+
+
+    updateResultInfo(
+        total,
+        start,
+        end
+    );
+
+
+    renderPagination(
+        totalPages
+    );
+
+
+    updateSortIndicators();
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   RESULT INFO
+========================================================= */
+
+function updateResultInfo(
+    total,
+    start,
+    end
+){
+
+    const resultInfo =
+        document.getElementById(
+            'resultInfo'
+        );
+
+
+    const paginationInfo =
+        document.getElementById(
+            'paginationInfo'
+        );
+
+
+    if(
+        total === 0
+    ){
+
+        resultInfo.textContent =
+            'Tidak ada data yang sesuai filter.';
+
+
+        paginationInfo.textContent =
+            '0 data';
+
+
+        return;
+
+    }
+
+
+    let suffix =
+        '';
+
+
+    if(
+        !loadingFinished
+    ){
+
+        suffix =
+            ' • Data masih dimuat di background';
+
+    }
+
+
+    resultInfo.textContent =
+        `Menampilkan ${start+1}–${end} dari ${total} aktivitas${suffix}`;
+
+
+    paginationInfo.textContent =
+        `${total} aktivitas ditemukan`;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination(
+    totalPages
+){
+
+    const container =
+        document.getElementById(
+            'pagination'
+        );
+
+
+    container.innerHTML =
+        '';
+
+
+    if(
+        filteredData.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    const prev =
+        document.createElement(
+            'button'
+        );
+
+
+    prev.className =
+        'pagination-button';
+
+
+    prev.innerHTML = `
+
+        <i
+            data-lucide="chevron-left"
+            class="w-4 h-4"
+        ></i>
+
+    `;
+
+
+    prev.disabled =
+        currentPage === 1;
+
+
+    prev.onclick =
+        ()=>{
+
+            if(
+                currentPage > 1
+            ){
+
+                currentPage--;
+
+                renderTable();
+
+            }
+
+        };
+
+
+    container.appendChild(
+        prev
+    );
+
+
+    const pages =
+        getPaginationPages(
+            currentPage,
+            totalPages
+        );
+
+
+    pages.forEach(
+        page=>{
+
+            if(
+                page === '...'
+            ){
+
+                const span =
+                    document.createElement(
+                        'span'
+                    );
+
+
+                span.className =
+                    'px-2 text-slate-400 text-xs';
+
+
+                span.textContent =
+                    '...';
+
+
+                container.appendChild(
+                    span
+                );
+
+
+                return;
+
+            }
+
+
+            const button =
+                document.createElement(
+                    'button'
+                );
+
+
+            button.className =
+                'pagination-button' +
+                (
+                    page === currentPage
+                    ? ' active'
+                    : ''
+                );
+
+
+            button.textContent =
+                page;
+
+
+            button.onclick =
+                ()=>{
+
+                    currentPage =
+                        page;
+
+                    renderTable();
+
+                };
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    const next =
+        document.createElement(
+            'button'
+        );
+
+
+    next.className =
+        'pagination-button';
+
+
+    next.innerHTML = `
+
+        <i
+            data-lucide="chevron-right"
+            class="w-4 h-4"
+        ></i>
+
+    `;
+
+
+    next.disabled =
+        currentPage === totalPages;
+
+
+    next.onclick =
+        ()=>{
+
+            if(
+                currentPage <
+                totalPages
+            ){
+
+                currentPage++;
+
+                renderTable();
+
+            }
+
+        };
+
+
+    container.appendChild(
+        next
+    );
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   PAGINATION RANGE
+========================================================= */
+
+function getPaginationPages(
+    current,
+    total
+){
+
+    if(
+        total <= 7
+    ){
+
+        return Array.from(
+            {
+                length:total
+            },
+            (
+                _,
+                i
+            )=>i+1
+        );
+
+    }
+
+
+    const pages = [];
+
+
+    pages.push(1);
+
+
+    if(
+        current > 4
+    ){
+
+        pages.push('...');
+
+    }
+
+
+    const start =
+        Math.max(
+            2,
+            current - 1
+        );
+
+
+    const end =
+        Math.min(
+            total - 1,
+            current + 1
+        );
+
+
+    for(
+        let i=start;
+        i<=end;
+        i++
+    ){
+
+        pages.push(i);
+
+    }
+
+
+    if(
+        current <
+        total - 3
+    ){
+
+        pages.push('...');
+
+    }
+
+
+    pages.push(total);
+
+
+    return pages;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(
+    value
+){
+
+    return String(
+        value ?? ''
+    )
+    .replace(
+        /&/g,
+        '&amp;'
+    )
+    .replace(
+        /</g,
+        '&lt;'
+    )
+    .replace(
+        />/g,
+        '&gt;'
+    )
+    .replace(
+        /"/g,
+        '&quot;'
+    )
+    .replace(
+        /'/g,
+        '&#039;'
+    );
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+window.addEventListener(
+    'load',
+    ()=>{
+
+        lucide.createIcons();
+
+        loadInitialData();
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    'keydown',
+    event=>{
+
+        if(
+            event.key === 'Escape'
+        ){
+
+            document
+                .activeElement
+                ?.blur();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,5064 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=1200"
+>
+
+<title>Maintenance Dashboard - PT TSI</title>
+
+
+<!-- =====================================================
+     TAILWIND
+===================================================== -->
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+<!-- =====================================================
+     LUCIDE
+===================================================== -->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+
+<!-- =====================================================
+     CHART JS
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<!-- =====================================================
+     FONT
+===================================================== -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    min-width:1100px;
+}
+
+body{
+
+    margin:0;
+
+    font-family:'Inter',sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #eef2f7
+        );
+
+    color:#1e293b;
+
+}
+
+
+.color-primary{
+    background:#1E3A8A;
+}
+
+
+.text-primary{
+    color:#1E3A8A;
+}
+
+
+/* =========================================================
+   GLASS
+========================================================= */
+
+.glass-panel{
+
+    background:
+        rgba(255,255,255,.96);
+
+    backdrop-filter:
+        blur(10px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.4);
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+.fade-in{
+
+    animation:
+        fadeIn
+        .5s
+        cubic-bezier(.4,0,.2,1);
+
+}
+
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-wrapper{
+
+    transition:
+        transform
+        .4s
+        cubic-bezier(
+            .175,
+            .885,
+            .32,
+            1.275
+        );
+
+}
+
+
+.logo-wrapper:hover{
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+
+}
+
+
+.logo-shadow{
+
+    filter:
+        drop-shadow(
+            0 10px 8px
+            rgba(0,0,0,.04)
+        )
+        drop-shadow(
+            0 4px 3px
+            rgba(0,0,0,.1)
+        );
+
+}
+
+
+/* =========================================================
+   DASHBOARD BUTTON
+========================================================= */
+
+.dashboard-button{
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:
+        10px
+        15px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+    white-space:nowrap;
+
+}
+
+
+.dashboard-button:hover{
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   DASHBOARD TITLE
+========================================================= */
+
+.page-title{
+
+    font-size:30px;
+
+    font-weight:900;
+
+    color:#1e293b;
+
+    letter-spacing:-.025em;
+
+}
+
+
+.page-subtitle{
+
+    font-size:13px;
+
+    color:#64748b;
+
+    font-weight:500;
+
+}
+
+
+/* =========================================================
+   KPI CARD
+========================================================= */
+
+.stat-card{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:17px;
+
+    padding:19px;
+
+    min-height:125px;
+
+    transition:.25s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.stat-card:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 24px
+        rgba(15,23,42,.08);
+
+}
+
+
+.stat-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-25px;
+
+    bottom:-35px;
+
+    width:100px;
+
+    height:100px;
+
+    border-radius:50%;
+
+    background:
+        rgba(30,58,138,.04);
+
+}
+
+
+/* =========================================================
+   CHART CARD
+========================================================= */
+
+.chart-card{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(15,23,42,.035);
+
+}
+
+
+.chart-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:16px;
+
+}
+
+
+.chart-title{
+
+    font-size:14px;
+
+    font-weight:900;
+
+    color:#334155;
+
+}
+
+
+.chart-description{
+
+    font-size:10px;
+
+    color:#94a3b8;
+
+    font-weight:500;
+
+    margin-top:4px;
+
+}
+
+
+.chart-wrapper{
+
+    position:relative;
+
+    height:300px;
+
+}
+
+
+.chart-wrapper.small{
+
+    height:270px;
+
+}
+
+
+/* =========================================================
+   YEAR SELECT
+========================================================= */
+
+.year-select{
+
+    background:#f8fafc;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:10px;
+
+    padding:
+        8px
+        12px;
+
+    color:#334155;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    outline:none;
+
+    cursor:pointer;
+
+}
+
+
+.year-select:focus{
+
+    border-color:#93c5fd;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.1);
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-card{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 4px 12px
+        rgba(15,23,42,.035);
+
+}
+
+
+table{
+
+    width:100%;
+
+    border-collapse:
+        collapse;
+
+}
+
+
+thead{
+
+    background:#f8fafc;
+
+}
+
+
+thead th{
+
+    padding:
+        13px
+        15px;
+
+    border-bottom:
+        2px solid
+        #e2e8f0;
+
+    color:#475569;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    text-align:left;
+
+}
+
+
+tbody td{
+
+    padding:
+        12px
+        15px;
+
+    border-bottom:
+        1px solid
+        #f1f5f9;
+
+    color:#334155;
+
+    font-size:10px;
+
+    font-weight:500;
+
+    vertical-align:middle;
+
+}
+
+
+tbody tr{
+
+    transition:
+        background
+        .15s ease;
+
+}
+
+
+tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+
+/* =========================================================
+   UNIT BADGE
+========================================================= */
+
+.unit-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:62px;
+
+    padding:
+        5px
+        9px;
+
+    border-radius:8px;
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+    font-size:9px;
+
+    font-weight:900;
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:
+        5px
+        9px;
+
+    border-radius:999px;
+
+    font-size:8px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+}
+
+
+.status-open{
+
+    background:#fff7ed;
+
+    color:#c2410c;
+
+    border:
+        1px solid
+        #fed7aa;
+
+}
+
+
+.status-close{
+
+    background:#ecfdf5;
+
+    color:#047857;
+
+    border:
+        1px solid
+        #a7f3d0;
+
+}
+
+
+/* =========================================================
+   MAINTENANCE TEXT
+========================================================= */
+
+.maintenance-cell{
+
+    max-width:420px;
+
+    line-height:1.5;
+
+    word-break:break-word;
+
+    font-weight:700;
+
+    color:#334155;
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loading{
+
+    min-height:400px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+#dashboardContent{
+
+    display:none;
+
+}
+
+
+#dashboardContent.show{
+
+    display:block;
+
+}
+
+
+.progress-wrapper{
+
+    width:420px;
+
+    max-width:90%;
+
+    margin-top:22px;
+
+}
+
+
+.progress-track{
+
+    width:100%;
+
+    height:10px;
+
+    background:#e2e8f0;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1e3a8a,
+            #2563eb
+        );
+
+    border-radius:999px;
+
+    transition:
+        width
+        .35s
+        ease;
+
+}
+
+
+.progress-percent{
+
+    margin-top:9px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    color:#1e3a8a;
+
+}
+
+
+/* =========================================================
+   BACKGROUND LOADING
+========================================================= */
+
+#backgroundLoading{
+
+    display:none;
+
+}
+
+
+#backgroundLoading.show{
+
+    display:flex;
+
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-table{
+
+    padding:45px;
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+   MOBILE FALLBACK
+========================================================= */
+
+@media(max-width:1100px){
+
+    html{
+
+        min-width:0;
+
+    }
+
+    body{
+
+        min-width:1100px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body
+    class="
+        flex
+        flex-col
+        items-center
+        p-4
+        sm:p-8
+    "
+>
+
+
+<main
+    class="
+        w-full
+        max-w-7xl
+        flex-grow
+        glass-panel
+        p-6
+        sm:p-10
+        rounded-3xl
+        shadow-2xl
+        fade-in
+    "
+>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header
+    class="
+        w-full
+        mb-8
+        pb-6
+        border-b-2
+        border-slate-100
+        flex
+        flex-col
+        items-center
+    "
+>
+
+
+    <div class="mb-4 logo-wrapper">
+
+        <div
+            class="
+                w-24
+                h-24
+                flex
+                items-center
+                justify-center
+                bg-white
+                rounded-2xl
+                logo-shadow
+                overflow-hidden
+                p-2
+            "
+        >
+
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="
+                    w-full
+                    h-full
+                    object-contain
+                "
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+
+
+            <div
+                id="logoFallback"
+                class="
+                    hidden
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    bg-blue-900
+                    w-full
+                    h-full
+                    text-white
+                "
+            >
+
+                <span
+                    class="
+                        font-black
+                        text-2xl
+                    "
+                >
+                    TSI
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="
+            color-primary
+            text-white
+            px-8
+            py-4
+            rounded-2xl
+            shadow-lg
+            flex
+            flex-col
+            items-center
+            gap-1
+        "
+    >
+
+        <h1
+            class="
+                text-xl
+                sm:text-2xl
+                font-black
+                uppercase
+                tracking-[0.1em]
+                text-center
+            "
+        >
+            PAPERLESS PROJECT
+        </h1>
+
+
+        <div
+            class="
+                h-0.5
+                w-16
+                bg-amber-500
+                rounded-full
+                my-1
+            "
+        ></div>
+
+
+        <h2
+            class="
+                text-sm
+                sm:text-lg
+                font-bold
+                uppercase
+                tracking-widest
+                text-blue-100
+                text-center
+            "
+        >
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+
+    </div>
+
+
+    <div
+        class="
+            mt-3
+            text-[10px]
+            font-bold
+            text-slate-400
+            tracking-[0.3em]
+            uppercase
+        "
+    >
+        Digitalization Initiative v2.0
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     DASHBOARD HEADER
+===================================================== -->
+
+<section class="mb-7">
+
+    <div
+        class="
+            flex
+            items-center
+            justify-between
+            gap-5
+            flex-wrap
+        "
+    >
+
+
+        <!-- TITLE -->
+
+        <div>
+
+            <h2
+                class="
+                    page-title
+                    flex
+                    items-center
+                    gap-3
+                "
+            >
+
+                <span
+                    class="
+                        bg-blue-900
+                        text-white
+                        p-3
+                        rounded-xl
+                        shadow-md
+                    "
+                >
+
+                    <i
+                        data-lucide="layout-dashboard"
+                        class="w-6 h-6"
+                    ></i>
+
+                </span>
+
+                Maintenance Dashboard
+
+            </h2>
+
+
+            <p
+                class="
+                    page-subtitle
+                    mt-2
+                    ml-1
+                "
+            >
+                Monitoring dan analisis data aktivitas maintenance unit secara terintegrasi.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================= -->
+
+        <div
+            class="
+                flex
+                flex-col
+                sm:flex-row
+                gap-2
+                w-full
+                lg:w-auto
+            "
+        >
+
+
+            <!-- HOME -->
+
+            <button
+                type="button"
+                onclick="goToHome()"
+                class="
+                    dashboard-button
+                    bg-slate-100
+                    hover:bg-slate-200
+                    text-slate-700
+                    shadow-sm
+                "
+            >
+
+                <i
+                    data-lucide="house"
+                    class="w-4 h-4"
+                ></i>
+
+                Kembali ke Home
+
+            </button>
+
+
+            <!-- LIHAT DATA -->
+
+            <button
+                type="button"
+                onclick="goToTable()"
+                class="
+                    dashboard-button
+                    bg-blue-800
+                    hover:bg-blue-700
+                    text-white
+                    shadow-md
+                "
+            >
+
+                <i
+                    data-lucide="table-2"
+                    class="w-4 h-4"
+                ></i>
+
+                Lihat Data
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div id="loading">
+
+    <i
+        data-lucide="database"
+        class="
+            w-10
+            h-10
+            text-blue-700
+            animate-pulse
+        "
+    ></i>
+
+
+    <p
+        class="
+            font-bold
+            text-sm
+            text-slate-500
+            mt-3
+        "
+    >
+        Memuat dashboard maintenance...
+    </p>
+
+
+    <p
+        class="
+            text-[11px]
+            text-slate-400
+            mt-1
+        "
+    >
+        Data sedang diproses
+    </p>
+
+
+    <div class="progress-wrapper">
+
+        <div class="progress-track">
+
+            <div
+                id="progressBar"
+                class="progress-bar"
+            ></div>
+
+        </div>
+
+
+        <div
+            id="progressPercent"
+            class="progress-percent"
+        >
+            0%
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD CONTENT
+===================================================== -->
+
+<div id="dashboardContent">
+
+
+<!-- =====================================================
+     KPI CARDS
+===================================================== -->
+
+<div
+    class="
+        grid
+        grid-cols-3
+        gap-4
+        mb-6
+    "
+>
+
+
+    <!-- TOTAL -->
+
+    <div class="stat-card">
+
+        <div
+            class="
+                flex
+                items-center
+                justify-between
+            "
+        >
+
+            <p
+                class="
+                    text-[10px]
+                    font-bold
+                    text-slate-400
+                    uppercase
+                    tracking-wider
+                "
+            >
+                Total Maintenance
+            </p>
+
+
+            <span
+                class="
+                    bg-blue-100
+                    text-blue-700
+                    p-2
+                    rounded-lg
+                "
+            >
+
+                <i
+                    data-lucide="wrench"
+                    class="w-4 h-4"
+                ></i>
+
+            </span>
+
+        </div>
+
+
+        <p
+            id="totalMaintenance"
+            class="
+                text-3xl
+                font-black
+                text-blue-900
+                mt-3
+            "
+        >
+            0
+        </p>
+
+
+        <p
+            class="
+                text-[10px]
+                text-slate-400
+                mt-1
+                font-medium
+            "
+        >
+            Seluruh aktivitas
+        </p>
+
+    </div>
+
+
+    <!-- THIS MONTH -->
+
+    <div class="stat-card">
+
+        <div
+            class="
+                flex
+                items-center
+                justify-between
+            "
+        >
+
+            <p
+                class="
+                    text-[10px]
+                    font-bold
+                    text-slate-400
+                    uppercase
+                    tracking-wider
+                "
+            >
+                Bulan Ini
+            </p>
+
+
+            <span
+                class="
+                    bg-indigo-100
+                    text-indigo-700
+                    p-2
+                    rounded-lg
+                "
+            >
+
+                <i
+                    data-lucide="calendar-days"
+                    class="w-4 h-4"
+                ></i>
+
+            </span>
+
+        </div>
+
+
+        <p
+            id="monthMaintenance"
+            class="
+                text-3xl
+                font-black
+                text-indigo-600
+                mt-3
+            "
+        >
+            0
+        </p>
+
+
+        <p
+            id="currentMonthLabel"
+            class="
+                text-[10px]
+                text-slate-400
+                mt-1
+                font-medium
+            "
+        >
+            -
+        </p>
+
+    </div>
+
+
+    <!-- OPEN -->
+
+    <div class="stat-card">
+
+        <div
+            class="
+                flex
+                items-center
+                justify-between
+            "
+        >
+
+            <p
+                class="
+                    text-[10px]
+                    font-bold
+                    text-slate-400
+                    uppercase
+                    tracking-wider
+                "
+            >
+                Open Maintenance
+            </p>
+
+
+            <span
+                class="
+                    bg-orange-100
+                    text-orange-700
+                    p-2
+                    rounded-lg
+                "
+            >
+
+                <i
+                    data-lucide="circle-dot"
+                    class="w-4 h-4"
+                ></i>
+
+            </span>
+
+        </div>
+
+
+        <p
+            id="openMaintenance"
+            class="
+                text-3xl
+                font-black
+                text-orange-600
+                mt-3
+            "
+        >
+            0
+        </p>
+
+
+        <p
+            class="
+                text-[10px]
+                text-slate-400
+                mt-1
+                font-medium
+            "
+        >
+            Masih berjalan
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     UNIT SUMMARY
+===================================================== -->
+
+<div
+    class="
+        grid
+        grid-cols-4
+        gap-4
+        mb-6
+    "
+>
+
+
+    <div class="stat-card">
+
+        <p
+            class="
+                text-[10px]
+                font-bold
+                text-slate-400
+                uppercase
+                tracking-wider
+            "
+        >
+            Forklift
+        </p>
+
+
+        <p
+            id="forkliftTotal"
+            class="
+                text-2xl
+                font-black
+                text-orange-600
+                mt-2
+            "
+        >
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <p
+            class="
+                text-[10px]
+                font-bold
+                text-slate-400
+                uppercase
+                tracking-wider
+            "
+        >
+            Wheeloader
+        </p>
+
+
+        <p
+            id="wheelloaderTotal"
+            class="
+                text-2xl
+                font-black
+                text-indigo-600
+                mt-2
+            "
+        >
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <p
+            class="
+                text-[10px]
+                font-bold
+                text-slate-400
+                uppercase
+                tracking-wider
+            "
+        >
+            Dumptruck
+        </p>
+
+
+        <p
+            id="dumptruckTotal"
+            class="
+                text-2xl
+                font-black
+                text-rose-600
+                mt-2
+            "
+        >
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <p
+            class="
+                text-[10px]
+                font-bold
+                text-slate-400
+                uppercase
+                tracking-wider
+            "
+        >
+            Excavator
+        </p>
+
+
+        <p
+            id="excavatorTotal"
+            class="
+                text-2xl
+                font-black
+                text-emerald-600
+                mt-2
+            "
+        >
+            0
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     ROW 1
+===================================================== -->
+
+<div
+    class="
+        grid
+        grid-cols-2
+        gap-5
+        mb-5
+    "
+>
+
+
+    <!-- STATUS -->
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+
+            <div>
+
+                <h3 class="chart-title">
+                    Status Maintenance
+                </h3>
+
+                <p class="chart-description">
+                    Perbandingan Open dan Close.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-wrapper small">
+
+            <canvas
+                id="statusChart"
+            ></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- UNIT -->
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+
+            <div>
+
+                <h3 class="chart-title">
+                    Maintenance per Jenis Unit
+                </h3>
+
+                <p class="chart-description">
+                    Distribusi maintenance berdasarkan jenis unit.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-wrapper small">
+
+            <canvas
+                id="unitChart"
+            ></canvas>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     TREND
+===================================================== -->
+
+<div class="chart-card mb-5">
+
+    <div class="chart-header">
+
+
+        <div>
+
+            <h3 class="chart-title">
+                Trend Maintenance
+            </h3>
+
+            <p class="chart-description">
+                Perkembangan jumlah maintenance berdasarkan waktu.
+            </p>
+
+        </div>
+
+
+        <!-- YEAR DROPDOWN -->
+
+        <select
+            id="trendYear"
+            class="year-select"
+            onchange="updateTrendChart()"
+        >
+
+        </select>
+
+
+    </div>
+
+
+    <div class="chart-wrapper">
+
+        <canvas
+            id="trendChart"
+        ></canvas>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOP 10
+===================================================== -->
+
+<div
+    class="
+        grid
+        grid-cols-2
+        gap-5
+        mb-5
+    "
+>
+
+
+    <!-- TOP MAINTENANCE -->
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+
+            <div>
+
+                <h3 class="chart-title">
+                    Top 10 Maintenance
+                </h3>
+
+                <p class="chart-description">
+                    Jenis maintenance yang paling sering dilakukan berdasarkan kategori.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-wrapper">
+
+            <canvas
+                id="maintenanceChart"
+            ></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOP UNIT -->
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+
+            <div>
+
+                <h3 class="chart-title">
+                    Top 10 Unit
+                </h3>
+
+                <p class="chart-description">
+                    Unit dengan aktivitas maintenance terbanyak.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-wrapper">
+
+            <canvas
+                id="topUnitChart"
+            ></canvas>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     OPEN MAINTENANCE
+===================================================== -->
+
+<div class="table-card">
+
+
+    <div
+        class="
+            px-5
+            py-4
+            border-b
+            border-slate-100
+            flex
+            items-center
+            justify-between
+        "
+    >
+
+
+        <div>
+
+            <h3
+                class="
+                    font-black
+                    text-slate-700
+                    text-sm
+                "
+            >
+                Open Maintenance
+            </h3>
+
+
+            <p
+                class="
+                    text-[10px]
+                    text-slate-400
+                    mt-1
+                    font-medium
+                "
+            >
+                Aktivitas maintenance yang belum selesai.
+            </p>
+
+        </div>
+
+
+        <div
+            class="
+                bg-orange-50
+                border
+                border-orange-200
+                text-orange-700
+                px-3
+                py-2
+                rounded-xl
+                text-[10px]
+                font-black
+            "
+        >
+
+            <span id="openTableCount">
+                0
+            </span>
+
+            Open
+
+        </div>
+
+    </div>
+
+
+    <div class="overflow-x-auto">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th style="width:60px">
+                        No
+                    </th>
+
+                    <th style="width:140px">
+                        Unit
+                    </th>
+
+                    <th>
+                        Maintenance
+                    </th>
+
+                    <th style="width:140px">
+                        Tanggal
+                    </th>
+
+                    <th style="width:140px">
+                        Jenis Unit
+                    </th>
+
+                    <th style="width:120px">
+                        Status
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="openTableBody"></tbody>
+
+        </table>
+
+
+        <div
+            id="openEmpty"
+            class="empty-table"
+        >
+
+            <i
+                data-lucide="circle-check"
+                class="
+                    w-8
+                    h-8
+                    mx-auto
+                    mb-3
+                    text-emerald-500
+                "
+            ></i>
+
+            Tidak ada maintenance yang masih open.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BACKGROUND STATUS
+===================================================== -->
+
+<div
+    class="
+        mt-4
+        flex
+        items-center
+        justify-between
+        text-[10px]
+        text-slate-400
+        font-semibold
+    "
+>
+
+    <div
+        id="backgroundLoading"
+        class="
+            items-center
+            gap-2
+        "
+    >
+
+        <i
+            data-lucide="loader-circle"
+            class="
+                w-3.5
+                h-3.5
+                animate-spin
+            "
+        ></i>
+
+        Memuat data...
+
+    </div>
+
+
+    <div id="databaseStatus">
+
+        Data langsung dari Database
+
+    </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer
+    class="
+        mt-8
+        text-center
+        text-slate-400
+        px-4
+        pb-8
+    "
+>
+
+    <p
+        class="
+            font-bold
+            text-slate-500
+            tracking-tight
+            uppercase
+        "
+    >
+
+        &copy; 2026 Paperless Project - PT TSI.
+        All rights reserved.
+
+    </p>
+
+
+    <p class="text-[10px] mt-1">
+
+        System Architecture by:
+
+        <span
+            class="
+                text-slate-600
+                font-semibold
+                uppercase
+            "
+        >
+            Imam Wahyu Ramadhan, S.T.
+        </span>
+
+        |
+
+        <span
+            class="
+                text-amber-600
+                font-bold
+                uppercase
+            "
+        >
+            Project 2.0
+        </span>
+
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const API_URL =
+'https://script.google.com/macros/s/AKfycbzh2-mDdddGc9t2r971AywK4nz73IGttt76X0ATZKRrOq452knKIOVh0WreAGrxU71e/exec';
+
+
+const HOME_URL =
+'index.html';
+
+
+const TABLE_URL =
+'tmaintenance.html';
+
+
+const DB_NAME =
+'PTTSI_MAINTENANCE_CACHE';
+
+
+const DB_VERSION =
+1;
+
+
+const DB_STORE =
+'maintenance';
+
+
+const CACHE_KEY =
+'maintenance_state';
+
+
+const MAX_RETRIES =
+5;
+
+
+const REQUEST_TIMEOUT =
+30000;
+
+
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
+
+let allData = [];
+
+let totalServerRows = 0;
+
+let nextRowToLoad = 3;
+
+let loadingFinished = false;
+
+let backgroundLoading = false;
+
+
+/* =========================================================
+   CHART INSTANCES
+========================================================= */
+
+let statusChart = null;
+
+let unitChart = null;
+
+let trendChart = null;
+
+let maintenanceChart = null;
+
+let topUnitChart = null;
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goToHome(){
+
+    window.location.href =
+        HOME_URL;
+
+}
+
+
+function goToTable(){
+
+    window.location.href =
+        TABLE_URL;
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+function handleLogoError(){
+
+    document
+        .getElementById(
+            'companyLogo'
+        )
+        .classList
+        .add('hidden');
+
+
+    document
+        .getElementById(
+            'logoFallback'
+        )
+        .classList
+        .remove('hidden');
+
+}
+
+
+/* =========================================================
+   INDEXED DB
+========================================================= */
+
+function openDatabase(){
+
+    return new Promise(
+        (
+            resolve,
+            reject
+        )=>{
+
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
+                );
+
+
+            request.onupgradeneeded =
+                event=>{
+
+                    const db =
+                        event.target.result;
+
+
+                    if(
+                        !db.objectStoreNames.contains(
+                            DB_STORE
+                        )
+                    ){
+
+                        db.createObjectStore(
+                            DB_STORE
+                        );
+
+                    }
+
+                };
+
+
+            request.onsuccess =
+                ()=>{
+
+                    resolve(
+                        request.result
+                    );
+
+                };
+
+
+            request.onerror =
+                ()=>{
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SAVE CACHE
+========================================================= */
+
+async function saveCache(){
+
+    try{
+
+        const db =
+            await openDatabase();
+
+
+        return new Promise(
+            (
+                resolve,
+                reject
+            )=>{
+
+                const transaction =
+                    db.transaction(
+                        DB_STORE,
+                        'readwrite'
+                    );
+
+
+                transaction
+                    .objectStore(DB_STORE)
+                    .put(
+                        {
+                            data:allData,
+                            nextRow:nextRowToLoad,
+                            totalRows:totalServerRows,
+                            finished:loadingFinished,
+                            timestamp:Date.now()
+                        },
+                        CACHE_KEY
+                    );
+
+
+                transaction.oncomplete =
+                    ()=>{
+
+                        db.close();
+
+                        resolve();
+
+                    };
+
+
+                transaction.onerror =
+                    ()=>{
+
+                        db.close();
+
+                        reject(
+                            transaction.error
+                        );
+
+                    };
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            'Cache save failed:',
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD CACHE
+========================================================= */
+
+async function loadCache(){
+
+    try{
+
+        const db =
+            await openDatabase();
+
+
+        return new Promise(
+            (
+                resolve,
+                reject
+            )=>{
+
+                const transaction =
+                    db.transaction(
+                        DB_STORE,
+                        'readonly'
+                    );
+
+
+                const request =
+                    transaction
+                        .objectStore(DB_STORE)
+                        .get(
+                            CACHE_KEY
+                        );
+
+
+                request.onsuccess =
+                    ()=>{
+
+                        db.close();
+
+                        resolve(
+                            request.result ||
+                            null
+                        );
+
+                    };
+
+
+                request.onerror =
+                    ()=>{
+
+                        db.close();
+
+                        reject(
+                            request.error
+                        );
+
+                    };
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            'Cache load failed:',
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress(){
+
+    let percent = 0;
+
+
+    if(
+        totalServerRows > 0
+    ){
+
+        percent =
+            Math.round(
+                Math.min(
+                    100,
+                    (
+                        allData.length /
+                        totalServerRows
+                    ) * 100
+                )
+            );
+
+    }
+
+
+    if(
+        loadingFinished
+    ){
+
+        percent = 100;
+
+    }
+
+
+    document
+        .getElementById(
+            'progressBar'
+        )
+        .style
+        .width =
+            percent + '%';
+
+
+    document
+        .getElementById(
+            'progressPercent'
+        )
+        .textContent =
+            percent + '%';
+
+}
+
+
+/* =========================================================
+   FETCH
+========================================================= */
+
+async function fetchWithRetry(
+    url,
+    attempt = 1
+){
+
+    let controller = null;
+
+    let timeoutId = null;
+
+
+    try{
+
+        controller =
+            new AbortController();
+
+
+        timeoutId =
+            setTimeout(
+                ()=>{
+                    controller.abort();
+                },
+                REQUEST_TIMEOUT
+            );
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method:'GET',
+                    cache:'no-store',
+                    signal:
+                        controller.signal
+                }
+            );
+
+
+        clearTimeout(
+            timeoutId
+        );
+
+
+        if(
+            !response.ok
+        ){
+
+            throw new Error(
+                `HTTP Error ${response.status}`
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        return result;
+
+    }
+    catch(error){
+
+        if(
+            timeoutId
+        ){
+
+            clearTimeout(
+                timeoutId
+            );
+
+        }
+
+
+        console.warn(
+            `Request attempt ${attempt} failed:`,
+            error.message
+        );
+
+
+        if(
+            attempt >= MAX_RETRIES
+        ){
+
+            throw error;
+
+        }
+
+
+        const delay =
+            Math.min(
+                15000,
+                1500 *
+                Math.pow(
+                    2,
+                    attempt - 1
+                )
+            );
+
+
+        await sleep(
+            delay
+        );
+
+
+        return fetchWithRetry(
+            url,
+            attempt + 1
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SLEEP
+========================================================= */
+
+function sleep(
+    milliseconds
+){
+
+    return new Promise(
+        resolve=>
+            setTimeout(
+                resolve,
+                milliseconds
+            )
+    );
+
+}
+
+
+/* =========================================================
+   API URL
+========================================================= */
+
+function getApiUrl(
+    startRow
+){
+
+    return (
+        API_URL +
+        '?startRow=' +
+        encodeURIComponent(
+            startRow
+        )
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+async function loadInitialData(){
+
+    try{
+
+        const cache =
+            await loadCache();
+
+
+        if(
+            cache &&
+            Array.isArray(
+                cache.data
+            ) &&
+            cache.data.length > 0
+        ){
+
+            console.log(
+                'Restoring cached data:',
+                cache.data.length
+            );
+
+
+            allData =
+                cache.data;
+
+
+            nextRowToLoad =
+                cache.nextRow ||
+                3;
+
+
+            totalServerRows =
+                cache.totalRows ||
+                0;
+
+
+            loadingFinished =
+                cache.finished === true;
+
+
+            updateProgress();
+
+
+            showDashboard();
+
+
+            updateDashboard();
+
+
+            if(
+                !loadingFinished
+            ){
+
+                loadRemainingData();
+
+            }
+
+
+            return;
+
+        }
+
+
+        const result =
+            await fetchWithRetry(
+                getApiUrl(3)
+            );
+
+
+        validateApiResult(
+            result
+        );
+
+
+        totalServerRows =
+            Number(
+                result.totalRows ||
+                0
+            );
+
+
+        allData =
+            convertApiData(
+                result.data
+            );
+
+
+        nextRowToLoad =
+            result.nextRow;
+
+
+        loadingFinished =
+            !result.hasMore;
+
+
+        updateProgress();
+
+
+        showDashboard();
+
+
+        updateDashboard();
+
+
+        await saveCache();
+
+
+        if(
+            !loadingFinished
+        ){
+
+            loadRemainingData();
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            'Initial loading error:',
+            error
+        );
+
+
+        showLoadingError(
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   BACKGROUND LOAD
+========================================================= */
+
+async function loadRemainingData(){
+
+    if(
+        backgroundLoading ||
+        loadingFinished
+    ){
+
+        return;
+
+    }
+
+
+    backgroundLoading =
+        true;
+
+
+    showBackgroundLoading(
+        true
+    );
+
+
+    try{
+
+        while(
+            !loadingFinished &&
+            nextRowToLoad
+        ){
+
+            const result =
+                await fetchWithRetry(
+                    getApiUrl(
+                        nextRowToLoad
+                    )
+                );
+
+
+            validateApiResult(
+                result
+            );
+
+
+            const newData =
+                convertApiData(
+                    result.data
+                );
+
+
+            if(
+                newData.length > 0
+            ){
+
+                allData.push(
+                    ...newData
+                );
+
+            }
+
+
+            totalServerRows =
+                Number(
+                    result.totalRows ||
+                    totalServerRows
+                );
+
+
+            nextRowToLoad =
+                result.nextRow;
+
+
+            loadingFinished =
+                !result.hasMore;
+
+
+            await saveCache();
+
+
+            updateProgress();
+
+
+            updateDashboard();
+
+
+            await sleep(50);
+
+        }
+
+
+        loadingFinished =
+            true;
+
+
+        updateProgress();
+
+
+        updateDashboard();
+
+
+        await saveCache();
+
+    }
+    catch(error){
+
+        console.error(
+            'Background loading stopped:',
+            error
+        );
+
+    }
+    finally{
+
+        backgroundLoading =
+            false;
+
+
+        showBackgroundLoading(
+            false
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   VALIDATE API
+========================================================= */
+
+function validateApiResult(
+    result
+){
+
+    if(
+        !result ||
+        result.success !== true
+    ){
+
+        throw new Error(
+            result?.error ||
+            'API mengembalikan status tidak berhasil.'
+        );
+
+    }
+
+
+    if(
+        !Array.isArray(
+            result.data
+        )
+    ){
+
+        throw new Error(
+            'Format data API tidak valid.'
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CONVERT API DATA
+========================================================= */
+
+function convertApiData(
+    data
+){
+
+    if(
+        !Array.isArray(
+            data
+        )
+    ){
+
+        return [];
+
+    }
+
+
+    return data.map(
+        row=>{
+
+            return {
+
+                date:
+                    row[0] ?? '',
+
+                unit:
+                    row[1] ?? '',
+
+                maintenance:
+                    row[2] ?? '',
+
+                periodicService:
+                    row[3] ?? '',
+
+                status:
+                    row[4] ?? ''
+
+            };
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SHOW DASHBOARD
+========================================================= */
+
+function showDashboard(){
+
+    document
+        .getElementById(
+            'loading'
+        )
+        .style
+        .display =
+            'none';
+
+
+    document
+        .getElementById(
+            'dashboardContent'
+        )
+        .classList
+        .add('show');
+
+}
+
+
+/* =========================================================
+   UPDATE DASHBOARD
+========================================================= */
+
+function updateDashboard(){
+
+    updateStatistics();
+
+    updateStatusChart();
+
+    updateUnitChart();
+
+    updateYearDropdown();
+
+    updateTrendChart();
+
+    updateTopMaintenanceChart();
+
+    updateTopUnitChart();
+
+    updateOpenTable();
+
+}
+
+
+/* =========================================================
+   NORMALIZE
+========================================================= */
+
+function normalize(
+    value
+){
+
+    return String(
+        value ?? ''
+    )
+    .trim()
+    .toUpperCase();
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function getStatus(
+    value
+){
+
+    return normalize(
+        value
+    );
+
+}
+
+
+/* =========================================================
+   UNIT TYPE
+========================================================= */
+
+function getUnitType(
+    unit
+){
+
+    const value =
+        normalize(
+            unit
+        );
+
+
+    if(
+        value.startsWith('ZW') ||
+        value.startsWith('W')
+    ){
+
+        return 'W';
+
+    }
+
+
+    if(
+        value.startsWith('F')
+    ){
+
+        return 'F';
+
+    }
+
+
+    if(
+        value.startsWith('D')
+    ){
+
+        return 'D';
+
+    }
+
+
+    if(
+        value.startsWith('E')
+    ){
+
+        return 'E';
+
+    }
+
+
+    return '';
+
+}
+
+
+/* =========================================================
+   UNIT TYPE LABEL
+========================================================= */
+
+function getUnitTypeLabel(
+    unit
+){
+
+    const type =
+        getUnitType(
+            unit
+        );
+
+
+    const labels = {
+
+        F:'Forklift',
+
+        W:'Wheelloader',
+
+        D:'Dumptruck',
+
+        E:'Excavator'
+
+    };
+
+
+    return labels[type] || '-';
+
+}
+
+
+/* =========================================================
+   DATE PARSER
+========================================================= */
+
+function parseDate(
+    value
+){
+
+    if(
+        !value
+    ){
+
+        return null;
+
+    }
+
+
+    const date =
+        new Date(
+            String(value).trim()
+        );
+
+
+    if(
+        !isNaN(
+            date.getTime()
+        )
+    ){
+
+        return date;
+
+    }
+
+
+    const text =
+        String(value).trim();
+
+
+    const match =
+        text.match(
+            /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/
+        );
+
+
+    if(match){
+
+        const day =
+            Number(
+                match[1]
+            );
+
+
+        const month =
+            Number(
+                match[2]
+            ) - 1;
+
+
+        const year =
+            Number(
+                match[3]
+            );
+
+
+        const result =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+
+        if(
+            !isNaN(
+                result.getTime()
+            )
+        ){
+
+            return result;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+function updateStatistics(){
+
+    const total =
+        allData.length;
+
+
+    let open = 0;
+
+
+    const unitCounts = {
+
+        F:0,
+        W:0,
+        D:0,
+        E:0
+
+    };
+
+
+    allData.forEach(
+        row=>{
+
+            const status =
+                getStatus(
+                    row.status
+                );
+
+
+            if(
+                status === 'OPEN'
+            ){
+
+                open++;
+
+            }
+
+
+            const type =
+                getUnitType(
+                    row.unit
+                );
+
+
+            if(
+                unitCounts[type] !== undefined
+            ){
+
+                unitCounts[type]++;
+
+            }
+
+        }
+    );
+
+
+    const now =
+        new Date();
+
+
+    const currentMonth =
+        now.getMonth();
+
+
+    const currentYear =
+        now.getFullYear();
+
+
+    const monthTotal =
+        allData.filter(
+            row=>{
+
+                const date =
+                    parseDate(
+                        row.date
+                    );
+
+
+                return (
+                    date &&
+                    date.getMonth() === currentMonth &&
+                    date.getFullYear() === currentYear
+                );
+
+            }
+        ).length;
+
+
+    const monthName =
+        now.toLocaleDateString(
+            'id-ID',
+            {
+                month:'short',
+                year:'numeric'
+            }
+        );
+
+
+    document
+        .getElementById(
+            'totalMaintenance'
+        )
+        .textContent =
+            total.toLocaleString('id-ID');
+
+
+    document
+        .getElementById(
+            'monthMaintenance'
+        )
+        .textContent =
+            monthTotal.toLocaleString('id-ID');
+
+
+    document
+        .getElementById(
+            'currentMonthLabel'
+        )
+        .textContent =
+            monthName;
+
+
+    document
+        .getElementById(
+            'openMaintenance'
+        )
+        .textContent =
+            open.toLocaleString('id-ID');
+
+
+    document
+        .getElementById(
+            'forkliftTotal'
+        )
+        .textContent =
+            unitCounts.F.toLocaleString('id-ID');
+
+
+    document
+        .getElementById(
+            'wheelloaderTotal'
+        )
+        .textContent =
+            unitCounts.W.toLocaleString('id-ID');
+
+
+    document
+        .getElementById(
+            'dumptruckTotal'
+        )
+        .textContent =
+            unitCounts.D.toLocaleString('id-ID');
+
+
+    document
+        .getElementById(
+            'excavatorTotal'
+        )
+        .textContent =
+            unitCounts.E.toLocaleString('id-ID');
+
+}
+
+
+/* =========================================================
+   CHART DEFAULT
+========================================================= */
+
+function chartDefaults(){
+
+    Chart.defaults.font.family =
+        'Inter';
+
+    Chart.defaults.font.size =
+        10;
+
+    Chart.defaults.color =
+        '#64748b';
+
+}
+
+
+/* =========================================================
+   STATUS CHART
+========================================================= */
+
+function updateStatusChart(){
+
+    let open = 0;
+
+    let close = 0;
+
+
+    allData.forEach(
+        row=>{
+
+            const status =
+                getStatus(
+                    row.status
+                );
+
+
+            if(
+                status === 'OPEN'
+            ){
+
+                open++;
+
+            }
+
+
+            if(
+                status === 'CLOSE'
+            ){
+
+                close++;
+
+            }
+
+        }
+    );
+
+
+    const ctx =
+        document
+            .getElementById(
+                'statusChart'
+            );
+
+
+    if(
+        statusChart
+    ){
+
+        statusChart.destroy();
+
+    }
+
+
+    statusChart =
+        new Chart(
+            ctx,
+            {
+
+                type:'doughnut',
+
+                data:{
+
+                    labels:[
+                        'Open',
+                        'Close'
+                    ],
+
+                    datasets:[{
+
+                        data:[
+                            open,
+                            close
+                        ],
+
+                        backgroundColor:[
+                            '#f97316',
+                            '#10b981'
+                        ],
+
+                        borderWidth:0,
+
+                        hoverOffset:8
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    cutout:'68%',
+
+                    plugins:{
+
+                        legend:{
+
+                            position:'bottom',
+
+                            labels:{
+
+                                usePointStyle:true,
+
+                                padding:18,
+
+                                font:{
+                                    weight:'700'
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   UNIT CHART
+========================================================= */
+
+function updateUnitChart(){
+
+    const counts = {
+
+        Forklift:0,
+
+        Wheelloader:0,
+
+        Dumptruck:0,
+
+        Excavator:0
+
+    };
+
+
+    allData.forEach(
+        row=>{
+
+            const type =
+                getUnitType(
+                    row.unit
+                );
+
+
+            if(type === 'F')
+                counts.Forklift++;
+
+
+            if(type === 'W')
+                counts.Wheelloader++;
+
+
+            if(type === 'D')
+                counts.Dumptruck++;
+
+
+            if(type === 'E')
+                counts.Excavator++;
+
+        }
+    );
+
+
+    const ctx =
+        document
+            .getElementById(
+                'unitChart'
+            );
+
+
+    if(
+        unitChart
+    ){
+
+        unitChart.destroy();
+
+    }
+
+
+    unitChart =
+        new Chart(
+            ctx,
+            {
+
+                type:'bar',
+
+                data:{
+
+                    labels:[
+                        'Forklift',
+                        'Wheelloader',
+                        'Dumptruck',
+                        'Excavator'
+                    ],
+
+                    datasets:[{
+
+                        label:
+                            'Maintenance',
+
+                        data:[
+                            counts.Forklift,
+                            counts.Wheelloader,
+                            counts.Dumptruck,
+                            counts.Excavator
+                        ],
+
+                        backgroundColor:[
+                            '#f97316',
+                            '#6366f1',
+                            '#f43f5e',
+                            '#10b981'
+                        ],
+
+                        borderRadius:8,
+
+                        borderSkipped:false
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    plugins:{
+
+                        legend:{
+                            display:false
+                        }
+
+                    },
+
+                    scales:{
+
+                        y:{
+
+                            beginAtZero:true,
+
+                            ticks:{
+                                precision:0
+                            },
+
+                            grid:{
+                                color:'#f1f5f9'
+                            }
+
+                        },
+
+                        x:{
+
+                            grid:{
+                                display:false
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   YEARS
+========================================================= */
+
+function getAvailableYears(){
+
+    const years =
+        new Set();
+
+
+    allData.forEach(
+        row=>{
+
+            const date =
+                parseDate(
+                    row.date
+                );
+
+
+            if(date){
+
+                years.add(
+                    date.getFullYear()
+                );
+
+            }
+
+        }
+    );
+
+
+    return Array.from(
+        years
+    ).sort(
+        (a,b)=>b-a
+    );
+
+}
+
+
+/* =========================================================
+   YEAR DROPDOWN
+========================================================= */
+
+function updateYearDropdown(){
+
+    const select =
+        document.getElementById(
+            'trendYear'
+        );
+
+
+    const years =
+        getAvailableYears();
+
+
+    const currentValue =
+        select.value;
+
+
+    select.innerHTML =
+        '';
+
+
+    if(
+        years.length === 0
+    ){
+
+        const option =
+            document.createElement(
+                'option'
+            );
+
+
+        option.value =
+            new Date().getFullYear();
+
+
+        option.textContent =
+            new Date().getFullYear();
+
+
+        select.appendChild(
+            option
+        );
+
+
+        return;
+
+    }
+
+
+    years.forEach(
+        year=>{
+
+            const option =
+                document.createElement(
+                    'option'
+                );
+
+
+            option.value =
+                year;
+
+
+            option.textContent =
+                year;
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    const currentYear =
+        new Date()
+            .getFullYear();
+
+
+    if(
+        years.includes(
+            Number(currentValue)
+        )
+    ){
+
+        select.value =
+            currentValue;
+
+    }
+
+    else if(
+        years.includes(
+            currentYear
+        )
+    ){
+
+        select.value =
+            currentYear;
+
+    }
+
+    else{
+
+        select.value =
+            years[0];
+
+    }
+
+}
+
+
+/* =========================================================
+   TREND CHART
+========================================================= */
+
+function updateTrendChart(){
+
+    const select =
+        document.getElementById(
+            'trendYear'
+        );
+
+
+    const year =
+        Number(
+            select.value
+        );
+
+
+    const monthlyCounts =
+        Array(12).fill(0);
+
+
+    allData.forEach(
+        row=>{
+
+            const date =
+                parseDate(
+                    row.date
+                );
+
+
+            if(
+                date &&
+                date.getFullYear() === year
+            ){
+
+                monthlyCounts[
+                    date.getMonth()
+                ]++;
+
+            }
+
+        }
+    );
+
+
+    const monthLabels = [
+
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+
+    ];
+
+
+    const ctx =
+        document
+            .getElementById(
+                'trendChart'
+            );
+
+
+    if(
+        trendChart
+    ){
+
+        trendChart.destroy();
+
+    }
+
+
+    trendChart =
+        new Chart(
+            ctx,
+            {
+
+                type:'line',
+
+                data:{
+
+                    labels:
+                        monthLabels,
+
+                    datasets:[{
+
+                        label:
+                            `Maintenance ${year}`,
+
+                        data:
+                            monthlyCounts,
+
+                        borderColor:
+                            '#1e3a8a',
+
+                        backgroundColor:
+                            'rgba(30,58,138,.10)',
+
+                        fill:true,
+
+                        tension:.35,
+
+                        borderWidth:3,
+
+                        pointRadius:4,
+
+                        pointHoverRadius:6,
+
+                        pointBackgroundColor:
+                            '#1e3a8a'
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    interaction:{
+
+                        intersect:false,
+
+                        mode:'index'
+
+                    },
+
+                    plugins:{
+
+                        legend:{
+                            display:false
+                        }
+
+                    },
+
+                    scales:{
+
+                        y:{
+
+                            beginAtZero:true,
+
+                            ticks:{
+                                precision:0
+                            },
+
+                            grid:{
+                                color:'#f1f5f9'
+                            }
+
+                        },
+
+                        x:{
+
+                            grid:{
+                                display:false
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   TOP MAINTENANCE CATEGORY
+========================================================= */
+
+const MAINTENANCE_CATEGORIES = [
+
+    {
+        key:'tyre',
+        label:'Tyre'
+    },
+
+    {
+        key:'oil',
+        label:'Oil'
+    },
+
+    {
+        key:'brake',
+        label:'Brake'
+    },
+
+    {
+        key:'lamp',
+        label:'Lamp'
+    },
+
+    {
+        key:'engine',
+        label:'Engine'
+    },
+
+    {
+        key:'cylinder',
+        label:'Cylinder'
+    },
+
+    {
+        key:'ac',
+        label:'AC'
+    },
+
+    {
+        key:'bucket',
+        label:'Bucket'
+    },
+
+    {
+        key:'hose',
+        label:'Hose'
+    },
+
+    {
+        key:'hidrolik',
+        label:'Hidrolik / Hydraulic'
+    }
+
+];
+
+
+/* =========================================================
+   CATEGORY DETECTION
+========================================================= */
+
+function getMaintenanceCategory(
+    text
+){
+
+    const value =
+        String(
+            text ?? ''
+        )
+        .toLowerCase();
+
+
+    /*
+       Prioritas kategori.
+       Jika sebuah cell mengandung lebih dari satu
+       keyword, kategori pertama yang ditemukan
+       akan digunakan.
+    */
+
+    for(
+        const category of
+        MAINTENANCE_CATEGORIES
+    ){
+
+        if(
+            value.includes(
+                category.key
+            )
+        ){
+
+            return category.label;
+
+        }
+
+    }
+
+
+    /*
+       Hydraulic ditangani khusus
+       karena kategorinya adalah
+       Hidrolik / Hydraulic.
+    */
+
+    if(
+        value.includes(
+            'hydraulic'
+        )
+    ){
+
+        return 'Hidrolik / Hydraulic';
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   TOP MAINTENANCE CHART
+========================================================= */
+
+function updateTopMaintenanceChart(){
+
+    const counts = {};
+
+
+    MAINTENANCE_CATEGORIES.forEach(
+        category=>{
+
+            counts[
+                category.label
+            ] = 0;
+
+        }
+    );
+
+
+    allData.forEach(
+        row=>{
+
+            /*
+               Yang dianalisis adalah
+               cell Maintenance saja.
+            */
+
+            const category =
+                getMaintenanceCategory(
+                    row.maintenance
+                );
+
+
+            if(category){
+
+                counts[
+                    category
+                ]++;
+
+            }
+
+        }
+    );
+
+
+    const sorted =
+        Object.entries(
+            counts
+        )
+        .sort(
+            (
+                a,
+                b
+            ) =>
+                b[1] -
+                a[1]
+        )
+        .slice(
+            0,
+            10
+        );
+
+
+    const labels =
+        sorted.map(
+            item=>item[0]
+        );
+
+
+    const values =
+        sorted.map(
+            item=>item[1]
+        );
+
+
+    const ctx =
+        document
+            .getElementById(
+                'maintenanceChart'
+            );
+
+
+    if(
+        maintenanceChart
+    ){
+
+        maintenanceChart.destroy();
+
+    }
+
+
+    maintenanceChart =
+        new Chart(
+            ctx,
+            {
+
+                type:'bar',
+
+                data:{
+
+                    labels,
+
+                    datasets:[{
+
+                        label:
+                            'Jumlah',
+
+                        data:
+                            values,
+
+                        backgroundColor:
+                            '#2563eb',
+
+                        borderRadius:7,
+
+                        borderSkipped:false
+
+                    }]
+
+                },
+
+                options:{
+
+                    indexAxis:'y',
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    plugins:{
+
+                        legend:{
+                            display:false
+                        }
+
+                    },
+
+                    scales:{
+
+                        x:{
+
+                            beginAtZero:true,
+
+                            ticks:{
+                                precision:0
+                            },
+
+                            grid:{
+                                color:'#f1f5f9'
+                            }
+
+                        },
+
+                        y:{
+
+                            grid:{
+                                display:false
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   TOP 10 UNIT
+========================================================= */
+
+function updateTopUnitChart(){
+
+    const counts = {};
+
+
+    allData.forEach(
+        row=>{
+
+            const unit =
+                String(
+                    row.unit ?? ''
+                )
+                .trim()
+                .toUpperCase();
+
+
+            if(
+                !unit
+            ){
+
+                return;
+
+            }
+
+
+            if(
+                !counts[unit]
+            ){
+
+                counts[unit] =
+                    0;
+
+            }
+
+
+            counts[unit]++;
+
+        }
+    );
+
+
+    const sorted =
+        Object.entries(
+            counts
+        )
+        .sort(
+            (
+                a,
+                b
+            ) =>
+                b[1] -
+                a[1]
+        )
+        .slice(
+            0,
+            10
+        );
+
+
+    const labels =
+        sorted.map(
+            item=>item[0]
+        );
+
+
+    const values =
+        sorted.map(
+            item=>item[1]
+        );
+
+
+    const ctx =
+        document
+            .getElementById(
+                'topUnitChart'
+            );
+
+
+    if(
+        topUnitChart
+    ){
+
+        topUnitChart.destroy();
+
+    }
+
+
+    topUnitChart =
+        new Chart(
+            ctx,
+            {
+
+                type:'bar',
+
+                data:{
+
+                    labels,
+
+                    datasets:[{
+
+                        label:
+                            'Aktivitas',
+
+                        data:
+                            values,
+
+                        backgroundColor:
+                            '#6366f1',
+
+                        borderRadius:7,
+
+                        borderSkipped:false
+
+                    }]
+
+                },
+
+                options:{
+
+                    indexAxis:'y',
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    plugins:{
+
+                        legend:{
+                            display:false
+                        }
+
+                    },
+
+                    scales:{
+
+                        x:{
+
+                            beginAtZero:true,
+
+                            ticks:{
+                                precision:0
+                            },
+
+                            grid:{
+                                color:'#f1f5f9'
+                            }
+
+                        },
+
+                        y:{
+
+                            grid:{
+                                display:false
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   OPEN TABLE
+========================================================= */
+
+function updateOpenTable(){
+
+    const tbody =
+        document.getElementById(
+            'openTableBody'
+        );
+
+
+    const empty =
+        document.getElementById(
+            'openEmpty'
+        );
+
+
+    tbody.innerHTML =
+        '';
+
+
+    const openData =
+        allData.filter(
+            row=>
+                getStatus(
+                    row.status
+                ) === 'OPEN'
+        );
+
+
+    document
+        .getElementById(
+            'openTableCount'
+        )
+        .textContent =
+            openData.length;
+
+
+    if(
+        openData.length === 0
+    ){
+
+        empty.style.display =
+            'block';
+
+        return;
+
+    }
+
+
+    empty.style.display =
+        'none';
+
+
+    /*
+       Tampilkan yang terbaru lebih dahulu.
+    */
+
+    const sorted =
+        [...openData]
+        .sort(
+            (
+                a,
+                b
+            )=>{
+
+                const dateA =
+                    parseDate(
+                        a.date
+                    );
+
+
+                const dateB =
+                    parseDate(
+                        b.date
+                    );
+
+
+                if(
+                    !dateA &&
+                    !dateB
+                ){
+
+                    return 0;
+
+                }
+
+
+                if(!dateA)
+                    return 1;
+
+
+                if(!dateB)
+                    return -1;
+
+
+                return (
+                    dateB -
+                    dateA
+                );
+
+            }
+        );
+
+
+    sorted.forEach(
+        (
+            row,
+            index
+        )=>{
+
+            const tr =
+                document.createElement(
+                    'tr'
+                );
+
+
+            tr.innerHTML = `
+
+                <td
+                    class="
+                        font-bold
+                        text-slate-400
+                    "
+                >
+                    ${index + 1}
+                </td>
+
+
+                <td>
+
+                    <span
+                        class="unit-badge"
+                    >
+                        ${escapeHtml(
+                            String(
+                                row.unit ?? ''
+                            )
+                            .trim()
+                            .toUpperCase()
+                        )}
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <div
+                        class="maintenance-cell"
+                    >
+
+                        ${formatMultilineText(
+                            row.maintenance
+                        )}
+
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    ${formatDate(
+                        row.date
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <span
+                        class="
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                        "
+                    >
+
+                        ${getUnitTypeLabel(
+                            row.unit
+                        )}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${getStatusBadge(
+                        row.status
+                    )}
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   DATE FORMAT
+========================================================= */
+
+function formatDate(
+    value
+){
+
+    const date =
+        parseDate(
+            value
+        );
+
+
+    if(
+        !date
+    ){
+
+        return `
+
+            <span
+                class="text-slate-300"
+            >
+                -
+            </span>
+
+        `;
+
+    }
+
+
+    const day =
+        String(
+            date.getDate()
+        )
+        .padStart(
+            2,
+            '0'
+        );
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        )
+        .padStart(
+            2,
+            '0'
+        );
+
+
+    const year =
+        date.getFullYear();
+
+
+    return `
+
+        <span
+            class="
+                font-semibold
+                text-slate-600
+            "
+        >
+            ${day}/${month}/${year}
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+function getStatusBadge(
+    status
+){
+
+    const value =
+        getStatus(
+            status
+        );
+
+
+    if(
+        value === 'OPEN'
+    ){
+
+        return `
+
+            <span
+                class="
+                    status-badge
+                    status-open
+                "
+            >
+
+                <i
+                    data-lucide="circle-dot"
+                    class="w-3 h-3"
+                ></i>
+
+                OPEN
+
+            </span>
+
+        `;
+
+    }
+
+
+    if(
+        value === 'CLOSE'
+    ){
+
+        return `
+
+            <span
+                class="
+                    status-badge
+                    status-close
+                "
+            >
+
+                <i
+                    data-lucide="circle-check"
+                    class="w-3 h-3"
+                ></i>
+
+                CLOSE
+
+            </span>
+
+        `;
+
+    }
+
+
+    return `
+
+        <span
+            class="
+                status-badge
+                bg-slate-100
+                text-slate-500
+                border
+                border-slate-200
+            "
+        >
+
+            ${escapeHtml(
+                value || '-'
+            )}
+
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   MULTILINE
+========================================================= */
+
+function formatMultilineText(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ''
+    ){
+
+        return `
+
+            <span class="text-slate-300">
+                -
+            </span>
+
+        `;
+
+    }
+
+
+    return String(
+        value
+    )
+    .trim()
+    .split('\n')
+    .map(
+        line=>
+            escapeHtml(
+                line.trim()
+            )
+    )
+    .join('<br>');
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(
+    value
+){
+
+    return String(
+        value ?? ''
+    )
+    .replace(
+        /&/g,
+        '&amp;'
+    )
+    .replace(
+        /</g,
+        '&lt;'
+    )
+    .replace(
+        />/g,
+        '&gt;'
+    )
+    .replace(
+        /"/g,
+        '&quot;'
+    )
+    .replace(
+        /'/g,
+        '&#039;'
+    );
+
+}
+
+
+/* =========================================================
+   BACKGROUND LOADING UI
+========================================================= */
+
+function showBackgroundLoading(
+    show
+){
+
+    const element =
+        document.getElementById(
+            'backgroundLoading'
+        );
+
+
+    if(show){
+
+        element.classList.add(
+            'show'
+        );
+
+    }
+
+    else{
+
+        element.classList.remove(
+            'show'
+        );
+
+    }
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   LOADING ERROR
+========================================================= */
+
+function showLoadingError(
+    error
+){
+
+    document
+        .getElementById(
+            'loading'
+        )
+        .innerHTML = `
+
+            <div class="text-center">
+
+                <div
+                    class="
+                        bg-red-50
+                        text-red-600
+                        p-4
+                        rounded-full
+                        inline-flex
+                    "
+                >
+
+                    <i
+                        data-lucide="alert-circle"
+                        class="w-8 h-8"
+                    ></i>
+
+                </div>
+
+
+                <h3
+                    class="
+                        font-bold
+                        text-red-700
+                        mt-3
+                    "
+                >
+                    Gagal memuat data
+                </h3>
+
+
+                <p
+                    class="
+                        text-xs
+                        text-slate-500
+                        mt-2
+                        max-w-md
+                    "
+                >
+                    ${escapeHtml(
+                        error.message
+                    )}
+                </p>
+
+
+                <button
+                    onclick="loadInitialData()"
+                    class="
+                        mt-4
+                        bg-blue-800
+                        hover:bg-blue-700
+                        text-white
+                        font-bold
+                        px-5
+                        py-2.5
+                        rounded-xl
+                        text-sm
+                    "
+                >
+                    Coba Lagi
+                </button>
+
+            </div>
+
+        `;
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+window.addEventListener(
+    'load',
+    ()=>{
+
+        chartDefaults();
+
+        lucide.createIcons();
+
+        loadInitialData();
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    'keydown',
+    event=>{
+
+        if(
+            event.key === 'Escape'
+        ){
+
+            document
+                .activeElement
+                ?.blur();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
