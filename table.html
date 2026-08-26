@@ -19,12 +19,7 @@
     rel="stylesheet"
 >
 
-
 <style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
 
 *{
     box-sizing:border-box;
@@ -35,26 +30,16 @@ html{
 }
 
 body{
-
     margin:0;
-
     font-family:'Inter',sans-serif;
-
     background:
         linear-gradient(
             135deg,
             #f8fafc,
             #eef2f7
         );
-
     color:#1e293b;
-
 }
-
-
-/* =========================================================
-   COLOR
-========================================================= */
 
 .color-primary{
     background:#1E3A8A;
@@ -64,35 +49,17 @@ body{
     color:#1E3A8A;
 }
 
-
-/* =========================================================
-   GLASS
-========================================================= */
-
 .glass-panel{
-
     background:rgba(255,255,255,.95);
-
     backdrop-filter:blur(10px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
+    border:1px solid rgba(255,255,255,.3);
 }
 
-
-/* =========================================================
-   ANIMATION
-========================================================= */
-
 .fade-in{
-
     animation:
         fadeIn
         .5s
         cubic-bezier(.4,0,.2,1);
-
 }
 
 @keyframes fadeIn{
@@ -109,13 +76,7 @@ body{
 
 }
 
-
-/* =========================================================
-   LOGO
-========================================================= */
-
 .logo-wrapper{
-
     transition:
         transform
         .4s
@@ -125,19 +86,15 @@ body{
             .32,
             1.275
         );
-
 }
 
 .logo-wrapper:hover{
-
     transform:
         scale(1.08)
         rotate(2deg);
-
 }
 
 .logo-shadow{
-
     filter:
         drop-shadow(
             0 10px 8px
@@ -147,173 +104,106 @@ body{
             0 4px 3px
             rgba(0,0,0,.1)
         );
-
 }
 
-
-/* =========================================================
-   PAGE TITLE
-========================================================= */
-
 .page-title{
-
     font-size:30px;
-
     font-weight:900;
-
     color:#1e293b;
-
     letter-spacing:-.025em;
-
 }
 
 .page-subtitle{
-
     font-size:13px;
-
     color:#64748b;
-
     font-weight:500;
-
 }
 
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
 .back-button{
-
     background:#1e3a8a;
-
     color:#fff;
-
     border-radius:12px;
-
-    padding:
-        11px
-        17px;
-
+    padding:11px 17px;
     font-size:12px;
-
     font-weight:800;
-
     display:flex;
-
     align-items:center;
-
     gap:8px;
-
-    transition:
-        .2s ease;
-
+    transition:.2s ease;
     box-shadow:
         0 5px 12px
         rgba(30,58,138,.18);
-
 }
 
 .back-button:hover{
-
     background:#1d4ed8;
-
-    transform:
-        translateY(-2px);
-
+    transform:translateY(-2px);
     box-shadow:
         0 8px 18px
         rgba(30,58,138,.25);
-
 }
 
-
-/* =========================================================
-   STAT CARDS
-========================================================= */
-
 .stat-card{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:17px;
-
     padding:17px;
-
-    transition:
-        .25s ease;
-
+    transition:.25s ease;
 }
 
 .stat-card:hover{
-
-    transform:
-        translateY(-2px);
-
+    transform:translateY(-2px);
     box-shadow:
         0 10px 20px
         rgba(15,23,42,.07);
-
 }
 
-
-/* =========================================================
-   TABLE PANEL
-========================================================= */
-
 .table-panel{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:20px;
-
     overflow:hidden;
-
     box-shadow:
         0 4px 12px
         rgba(15,23,42,.04);
-
 }
 
-
-/* =========================================================
-   TABLE
-========================================================= */
-
 table{
-
     width:100%;
-
     border-collapse:separate;
-
     border-spacing:0;
-
 }
 
 thead{
-
     background:#f8fafc;
-
 }
 
 thead th{
+    padding:0;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    white-space:nowrap;
+    text-align:left;
+}
+
+.sort-button{
+
+    width:100%;
 
     padding:
-        14px
         14px;
 
-    border-bottom:
-        2px solid
-        #e2e8f0;
+    background:transparent;
+
+    border:none;
 
     color:#475569;
+
+    font-family:inherit;
 
     font-size:10px;
 
@@ -323,780 +213,472 @@ thead th{
 
     letter-spacing:.08em;
 
-    white-space:nowrap;
-
     text-align:left;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    gap:7px;
+
+    cursor:pointer;
+
+    transition:.18s ease;
+
+}
+
+.sort-button:hover{
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+}
+
+.sort-icon{
+
+    width:14px;
+
+    height:14px;
+
+    flex-shrink:0;
+
+    color:#94a3b8;
+
+    transition:.18s ease;
+
+}
+
+.sort-button.sort-active{
+
+    color:#1e3a8a;
+
+    background:#eff6ff;
+
+}
+
+.sort-button.sort-active .sort-icon{
+
+    color:#1e3a8a;
+
+}
+
+.sort-button.sort-normal .sort-icon{
+
+    opacity:.45;
 
 }
 
 tbody td{
-
-    padding:
-        13px
-        14px;
-
-    border-bottom:
-        1px solid
-        #f1f5f9;
-
+    padding:13px 14px;
+    border-bottom:1px solid #f1f5f9;
     color:#334155;
-
     font-size:11px;
-
     font-weight:500;
-
     vertical-align:middle;
-
 }
 
 tbody tr{
-
-    transition:
-        background
-        .15s ease;
-
+    transition:background .15s ease;
 }
 
 tbody tr:hover{
-
     background:#f8fafc;
-
 }
 
 tbody tr:last-child td{
-
     border-bottom:none;
-
 }
 
-
-/* =========================================================
-   PAP LINK
-========================================================= */
-
 .pap-link{
-
     display:inline-flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:6px;
-
-    padding:
-        6px
-        10px;
-
+    padding:6px 10px;
     border-radius:8px;
-
     background:#eff6ff;
-
     color:#1d4ed8;
-
-    border:
-        1px solid
-        #dbeafe;
-
+    border:1px solid #dbeafe;
     font-size:10px;
-
     font-weight:800;
-
     white-space:nowrap;
-
     text-decoration:none;
-
-    transition:
-        .2s ease;
-
+    transition:.2s ease;
 }
 
 .pap-link:hover{
-
     background:#dbeafe;
-
     border-color:#bfdbfe;
-
     color:#1e40af;
-
-    transform:
-        translateY(-1px);
-
+    transform:translateY(-1px);
     box-shadow:
         0 3px 8px
         rgba(37,99,235,.12);
-
 }
 
-
-/* =========================================================
-   TABLE BADGES
-========================================================= */
-
 .service-badge{
-
     display:inline-flex;
-
     align-items:center;
-
-    padding:
-        5px
-        9px;
-
+    padding:5px 9px;
     border-radius:999px;
-
     font-size:9px;
-
     font-weight:800;
-
     white-space:nowrap;
-
 }
 
 .service-periodic{
-
     background:#dbeafe;
-
     color:#1e40af;
-
 }
 
 .service-general{
-
     background:#fef3c7;
-
     color:#92400e;
-
 }
 
 .service-other{
-
     background:#e2e8f0;
-
     color:#475569;
-
 }
 
-
 .status-badge{
-
     display:inline-flex;
-
     align-items:center;
-
     gap:5px;
-
-    padding:
-        5px
-        9px;
-
+    padding:5px 9px;
     border-radius:999px;
-
     font-size:9px;
-
     font-weight:800;
-
     white-space:nowrap;
-
 }
 
 .status-good{
-
     background:#dcfce7;
-
     color:#166534;
-
 }
 
 .status-bad{
-
     background:#fee2e2;
-
     color:#991b1b;
-
 }
 
 .status-other{
-
     background:#e2e8f0;
-
     color:#475569;
-
 }
-
-
-/* =========================================================
-   UNIT BADGE
-========================================================= */
 
 .unit-badge{
-
     display:inline-flex;
-
     align-items:center;
-
     justify-content:center;
-
     min-width:50px;
-
-    padding:
-        5px
-        8px;
-
+    padding:5px 8px;
     border-radius:8px;
-
     background:#eff6ff;
-
     color:#1e3a8a;
-
     font-size:10px;
-
     font-weight:900;
-
 }
 
-
-/* =========================================================
-   FILTER
-========================================================= */
-
 .filter-input{
-
     width:100%;
-
     background:#f8fafc;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:11px;
-
-    padding:
-        10px
-        12px;
-
+    padding:10px 12px;
     color:#334155;
-
     font-size:11px;
-
     font-weight:600;
-
     outline:none;
-
-    transition:
-        .2s ease;
-
+    transition:.2s ease;
 }
 
 .filter-input:focus{
-
     background:#fff;
-
     border-color:#93c5fd;
-
     box-shadow:
         0 0 0 3px
         rgba(59,130,246,.10);
-
 }
 
 select.filter-input{
-
     cursor:pointer;
-
 }
 
-
-/* =========================================================
-   PAGINATION
-========================================================= */
-
 .pagination-button{
-
     width:34px;
-
     height:34px;
-
     border-radius:9px;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     background:#fff;
-
     color:#475569;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:11px;
-
     font-weight:800;
-
     cursor:pointer;
-
     transition:.2s ease;
-
 }
 
 .pagination-button:hover:not(:disabled){
-
     background:#eff6ff;
-
     color:#1e3a8a;
-
     border-color:#bfdbfe;
-
 }
 
 .pagination-button.active{
-
     background:#1e3a8a;
-
     color:#fff;
-
     border-color:#1e3a8a;
-
 }
 
 .pagination-button:disabled{
-
     opacity:.4;
-
     cursor:not-allowed;
-
 }
 
-
-/* =========================================================
-   EMPTY / LOADING
-========================================================= */
-
 #loading{
-
     min-height:350px;
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     justify-content:center;
-
 }
 
 #tableContent{
-
     display:none;
-
 }
 
 #tableContent.show{
-
     display:block;
-
 }
 
-
-/* =========================================================
-   LEADERBOARD
-========================================================= */
-
 #leaderboardButton{
-
     position:fixed;
-
     right:28px;
-
     bottom:28px;
-
     z-index:90;
-
     width:68px;
-
     height:68px;
-
     border-radius:20px;
-
     background:#1e3a8a;
-
     color:#fff;
-
-    border:
-        2px solid
-        rgba(255,255,255,.45);
-
+    border:2px solid rgba(255,255,255,.45);
     box-shadow:
         0 12px 30px
         rgba(15,23,42,.28);
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     cursor:pointer;
-
     transition:
         transform .25s ease,
         box-shadow .25s ease;
-
 }
 
 #leaderboardButton:hover{
-
     transform:
         translateY(-4px)
         scale(1.05);
-
     box-shadow:
         0 18px 38px
         rgba(15,23,42,.34);
-
 }
 
 #leaderboardButton.leader-pulse{
-
     animation:
         leaderPulse
         1.5s
         ease-in-out;
-
 }
 
 @keyframes leaderPulse{
 
     0%{
-
         transform:scale(1);
-
         box-shadow:
             0 12px 30px
             rgba(15,23,42,.28);
-
     }
 
     20%{
-
-        transform:
-            scale(1.18);
-
+        transform:scale(1.18);
         box-shadow:
             0 0 0 12px
             rgba(30,58,138,.12),
             0 16px 38px
             rgba(15,23,42,.32);
-
     }
 
     40%{
-
-        transform:
-            scale(.98);
-
+        transform:scale(.98);
     }
 
     60%{
-
-        transform:
-            scale(1.12);
-
+        transform:scale(1.12);
         box-shadow:
             0 0 0 8px
             rgba(30,58,138,.10),
             0 16px 38px
             rgba(15,23,42,.32);
-
     }
 
     100%{
-
         transform:scale(1);
-
         box-shadow:
             0 12px 30px
             rgba(15,23,42,.28);
-
     }
 
 }
 
 .leader-tooltip{
-
     position:absolute;
-
     right:0;
-
     bottom:78px;
-
     white-space:nowrap;
-
     background:#0f172a;
-
     color:#fff;
-
     font-size:10px;
-
     font-weight:700;
-
-    padding:
-        7px
-        10px;
-
+    padding:7px 10px;
     border-radius:8px;
-
     opacity:0;
-
     pointer-events:none;
-
-    transform:
-        translateY(5px);
-
+    transform:translateY(5px);
     transition:.2s;
-
 }
 
-#leaderboardButton:hover
-.leader-tooltip{
-
+#leaderboardButton:hover .leader-tooltip{
     opacity:1;
-
-    transform:
-        translateY(0);
-
+    transform:translateY(0);
 }
-
-
-/* =========================================================
-   LEADERBOARD OVERLAY
-========================================================= */
 
 #leaderboardOverlay{
-
     position:fixed;
-
     inset:0;
-
     z-index:95;
-
-    background:
-        rgba(15,23,42,.28);
-
-    backdrop-filter:
-        blur(3px);
-
+    background:rgba(15,23,42,.28);
+    backdrop-filter:blur(3px);
     display:none;
-
     align-items:center;
-
     justify-content:center;
-
     padding:20px;
-
 }
 
 #leaderboardOverlay.show{
-
     display:flex;
-
 }
 
-
 #leaderboardModal{
-
-    width:
-        min(430px,100%);
-
+    width:min(430px,100%);
     max-height:80vh;
-
     overflow:hidden;
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:22px;
-
     box-shadow:
         0 25px 60px
         rgba(15,23,42,.25);
-
     animation:
         leaderModalIn
         .25s ease;
-
 }
 
 @keyframes leaderModalIn{
 
     from{
-
         opacity:0;
-
         transform:
             translateY(12px)
             scale(.97);
-
     }
 
     to{
-
         opacity:1;
-
         transform:
             translateY(0)
             scale(1);
-
     }
 
 }
 
-
 .leader-row{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
-    padding:
-        12px
-        14px;
-
+    padding:12px 14px;
     border-radius:14px;
-
     margin-bottom:7px;
-
     background:#f8fafc;
-
-    border:
-        1px solid
-        #f1f5f9;
-
+    border:1px solid #f1f5f9;
 }
 
 .leader-row.top-1{
-
     background:#fffbeb;
-
     border-color:#fde68a;
-
 }
 
 .leader-row.top-2{
-
     background:#f8fafc;
-
     border-color:#cbd5e1;
-
 }
 
 .leader-row.top-3{
-
     background:#fff7ed;
-
     border-color:#fed7aa;
-
 }
 
 .leader-rank{
-
     width:30px;
-
     height:30px;
-
     border-radius:10px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:12px;
-
     font-weight:900;
-
     background:#e2e8f0;
-
     color:#475569;
-
     flex-shrink:0;
-
 }
 
 .top-1 .leader-rank{
-
     background:#fbbf24;
-
     color:#78350f;
-
 }
 
 .top-2 .leader-rank{
-
     background:#cbd5e1;
-
     color:#334155;
-
 }
 
 .top-3 .leader-rank{
-
     background:#fdba74;
-
     color:#7c2d12;
-
 }
 
 .leader-name{
-
     font-size:12px;
-
     font-weight:800;
-
     color:#334155;
-
     flex:1;
-
     min-width:0;
-
 }
 
 .leader-count{
-
     font-size:11px;
-
     font-weight:900;
-
     color:#1e3a8a;
-
     background:#dbeafe;
-
-    padding:
-        5px
-        9px;
-
+    padding:5px 9px;
     border-radius:999px;
-
     white-space:nowrap;
-
 }
-
-
-/* =========================================================
-   MOBILE FALLBACK
-========================================================= */
 
 @media(max-width:1100px){
 
@@ -1114,11 +696,9 @@ select.filter-input{
 
 </head>
 
-
 <body
     class="flex flex-col items-center p-4 sm:p-8"
 >
-
 
 <main
     class="
@@ -1134,11 +714,6 @@ select.filter-input{
     "
 >
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header
     class="
         w-full
@@ -1151,7 +726,6 @@ select.filter-input{
         items-center
     "
 >
-
 
     <div class="mb-4 logo-wrapper">
 
@@ -1173,11 +747,7 @@ select.filter-input{
             <img
                 src="default_logo.png"
                 alt="Logo PT TSI"
-                class="
-                    w-full
-                    h-full
-                    object-contain
-                "
+                class="w-full h-full object-contain"
                 id="companyLogo"
                 onerror="handleLogoError()"
             >
@@ -1197,12 +767,7 @@ select.filter-input{
                 "
             >
 
-                <span
-                    class="
-                        font-black
-                        text-2xl
-                    "
-                >
+                <span class="font-black text-2xl">
                     TSI
                 </span>
 
@@ -1211,7 +776,6 @@ select.filter-input{
         </div>
 
     </div>
-
 
     <div
         class="
@@ -1267,7 +831,6 @@ select.filter-input{
 
     </div>
 
-
     <div
         class="
             mt-3
@@ -1283,13 +846,7 @@ select.filter-input{
 
 </header>
 
-
-<!-- =====================================================
-     PAGE TITLE
-===================================================== -->
-
 <section>
-
 
     <div
         class="
@@ -1300,7 +857,6 @@ select.filter-input{
             mb-6
         "
     >
-
 
         <div>
 
@@ -1334,7 +890,6 @@ select.filter-input{
 
             </h2>
 
-
             <p
                 class="
                     page-subtitle
@@ -1342,14 +897,11 @@ select.filter-input{
                     ml-1
                 "
             >
-
                 Daftar seluruh aktivitas periodic service
                 yang tersimpan pada database.
-
             </p>
 
         </div>
-
 
         <button
             onclick="goToDashboard()"
@@ -1365,13 +917,7 @@ select.filter-input{
 
         </button>
 
-
     </div>
-
-
-    <!-- =================================================
-         LOADING
-    ================================================= -->
 
     <div id="loading">
 
@@ -1398,17 +944,7 @@ select.filter-input{
 
     </div>
 
-
-    <!-- =================================================
-         TABLE CONTENT
-    ================================================= -->
-
     <div id="tableContent">
-
-
-        <!-- =================================================
-             STATISTICS
-        ================================================= -->
 
         <div
             class="
@@ -1418,7 +954,6 @@ select.filter-input{
                 mb-6
             "
         >
-
 
             <div class="stat-card">
 
@@ -1448,7 +983,6 @@ select.filter-input{
 
             </div>
 
-
             <div class="stat-card">
 
                 <p
@@ -1477,7 +1011,6 @@ select.filter-input{
 
             </div>
 
-
             <div class="stat-card">
 
                 <p
@@ -1505,7 +1038,6 @@ select.filter-input{
                 </p>
 
             </div>
-
 
             <div class="stat-card">
 
@@ -1537,11 +1069,6 @@ select.filter-input{
 
         </div>
 
-
-        <!-- =================================================
-             FILTER PANEL
-        ================================================= -->
-
         <div
             class="
                 bg-white
@@ -1553,7 +1080,6 @@ select.filter-input{
                 shadow-sm
             "
         >
-
 
             <div
                 class="
@@ -1579,7 +1105,6 @@ select.filter-input{
                     ></i>
 
                 </span>
-
 
                 <div>
 
@@ -1607,7 +1132,6 @@ select.filter-input{
 
             </div>
 
-
             <div
                 class="
                     grid
@@ -1615,9 +1139,6 @@ select.filter-input{
                     gap-4
                 "
             >
-
-
-                <!-- SEARCH -->
 
                 <div>
 
@@ -1654,19 +1175,13 @@ select.filter-input{
                             id="searchInput"
                             type="text"
                             placeholder="Unit, PIC, remark..."
-                            class="
-                                filter-input
-                                pl-10
-                            "
+                            class="filter-input pl-10"
                             oninput="applyFilters()"
                         >
 
                     </div>
 
                 </div>
-
-
-                <!-- SERVICE -->
 
                 <div>
 
@@ -1706,9 +1221,6 @@ select.filter-input{
 
                 </div>
 
-
-                <!-- STATUS -->
-
                 <div>
 
                     <label
@@ -1747,15 +1259,7 @@ select.filter-input{
 
                 </div>
 
-
-                <!-- RESET -->
-
-                <div
-                    class="
-                        flex
-                        items-end
-                    "
-                >
+                <div class="flex items-end">
 
                     <button
                         onclick="resetFilters()"
@@ -1793,15 +1297,7 @@ select.filter-input{
 
         </div>
 
-
-        <!-- =================================================
-             TABLE
-        ================================================= -->
-
         <div class="table-panel">
-
-
-            <!-- TABLE HEADER -->
 
             <div
                 class="
@@ -1841,7 +1337,6 @@ select.filter-input{
 
                 </div>
 
-
                 <div
                     class="
                         flex
@@ -1864,12 +1359,7 @@ select.filter-input{
 
             </div>
 
-
-            <!-- TABLE SCROLL -->
-
-            <div
-                class="overflow-x-auto"
-            >
+            <div class="overflow-x-auto">
 
                 <table>
 
@@ -1877,75 +1367,190 @@ select.filter-input{
 
                         <tr>
 
-                            <th
-                                style="width:50px"
-                            >
-                                No
+                            <th style="width:50px">
+
+                                <div class="sort-button">
+                                    No
+                                </div>
+
                             </th>
 
                             <th>
-                                Tanggal
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="tanggal"
+                                    onclick="toggleSort('tanggal')"
+                                >
+
+                                    Tanggal
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
                             </th>
 
                             <th>
-                                Unit
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="unit"
+                                    onclick="toggleSort('unit')"
+                                >
+
+                                    Unit
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
                             </th>
 
                             <th>
-                                HM
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="hm"
+                                    onclick="toggleSort('hm')"
+                                >
+
+                                    HM
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
                             </th>
 
                             <th>
-                                Service
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="service"
+                                    onclick="toggleSort('service')"
+                                >
+
+                                    Service
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
                             </th>
 
                             <th>
-                                Status
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="status"
+                                    onclick="toggleSort('status')"
+                                >
+
+                                    Status
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
                             </th>
 
                             <th>
-                                PIC / Mekanik
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="pic"
+                                    onclick="toggleSort('pic')"
+                                >
+
+                                    PIC / Mekanik
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
                             </th>
 
                             <th>
-                                Item Rusak
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="itemRusak"
+                                    onclick="toggleSort('itemRusak')"
+                                >
+
+                                    Item Rusak
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
                             </th>
 
                             <th>
-                                Remark
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="remark"
+                                    onclick="toggleSort('remark')"
+                                >
+
+                                    Remark
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
                             </th>
 
                             <th>
-                                PAP
+
+                                <div class="sort-button">
+                                    PAP
+                                </div>
+
                             </th>
 
                         </tr>
 
                     </thead>
 
-
-                    <tbody id="tableBody">
-
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
 
                 </table>
 
             </div>
-
-
-            <!-- EMPTY -->
 
             <div
                 id="emptyState"
                 class="hidden"
             >
 
-                <div
-                    class="
-                        py-16
-                        text-center
-                    "
-                >
+                <div class="py-16 text-center">
 
                     <div
                         class="
@@ -1990,11 +1595,6 @@ select.filter-input{
 
             </div>
 
-
-            <!-- =================================================
-                 PAGINATION
-            ================================================= -->
-
             <div
                 class="
                     px-5
@@ -2018,7 +1618,6 @@ select.filter-input{
                     -
                 </div>
 
-
                 <div
                     id="pagination"
                     class="
@@ -2026,26 +1625,17 @@ select.filter-input{
                         items-center
                         gap-1
                     "
-                >
-                </div>
+                ></div>
 
             </div>
 
-
         </div>
-
 
     </div>
 
 </section>
 
-
 </main>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer
     class="
@@ -2069,13 +1659,7 @@ select.filter-input{
         All rights reserved.
     </p>
 
-
-    <p
-        class="
-            text-[10px]
-            mt-1
-        "
-    >
+    <p class="text-[10px] mt-1">
 
         System Architecture by:
 
@@ -2106,11 +1690,6 @@ select.filter-input{
 
 </footer>
 
-
-<!-- =====================================================
-     FLOATING LEADERBOARD
-===================================================== -->
-
 <button
     id="leaderboardButton"
     onclick="openLeaderboard()"
@@ -2122,28 +1701,18 @@ select.filter-input{
         class="w-7 h-7"
     ></i>
 
-
-    <span
-        class="leader-tooltip"
-    >
+    <span class="leader-tooltip">
         Leaderboard Mekanik
     </span>
 
 </button>
-
-
-<!-- =====================================================
-     LEADERBOARD POPUP
-===================================================== -->
 
 <div
     id="leaderboardOverlay"
     onclick="closeLeaderboardOutside(event)"
 >
 
-
     <div id="leaderboardModal">
-
 
         <div
             class="
@@ -2156,7 +1725,6 @@ select.filter-input{
                 justify-between
             "
         >
-
 
             <div>
 
@@ -2190,7 +1758,6 @@ select.filter-input{
 
                 </h3>
 
-
                 <p
                     class="
                         text-[10px]
@@ -2203,7 +1770,6 @@ select.filter-input{
                 </p>
 
             </div>
-
 
             <button
                 onclick="closeLeaderboard()"
@@ -2225,7 +1791,6 @@ select.filter-input{
             </button>
 
         </div>
-
 
         <div
             id="leaderboardList"
@@ -2249,11 +1814,9 @@ select.filter-input{
 
         </div>
 
-
     </div>
 
 </div>
-
 
 <script>
 
@@ -2264,11 +1827,16 @@ select.filter-input{
 const API_URL =
 'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
 
-const DASHBOARD_URL = 'periodic.html';
+const DASHBOARD_URL =
+'periodic.html';
+
+const ROWS_PER_PAGE =
+15;
 
 
-const ROWS_PER_PAGE = 15;
-
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
 
 let apiData = null;
 
@@ -2277,6 +1845,38 @@ let allData = [];
 let filteredData = [];
 
 let currentPage = 1;
+
+
+/*
+    SORT STATE
+
+    direction:
+        0 = normal/original
+        1 = ascending
+        -1 = descending
+
+    Contoh:
+
+    klik pertama:
+        0 -> 1
+
+    klik kedua:
+        1 -> -1
+
+    klik ketiga:
+        -1 -> 0
+
+    klik keempat:
+        0 -> 1
+*/
+
+let sortState = {
+
+    key:null,
+
+    direction:0
+
+};
 
 
 /* =========================================================
@@ -2301,7 +1901,6 @@ function handleLogoError(){
         .getElementById('companyLogo')
         .classList
         .add('hidden');
-
 
     document
         .getElementById('logoFallback')
@@ -2328,7 +1927,6 @@ async function loadTable(){
                 }
             );
 
-
         if(!response.ok){
 
             throw new Error(
@@ -2337,49 +1935,67 @@ async function loadTable(){
 
         }
 
-
         const result =
             await response.json();
 
-
-        apiData = result;
-
+        apiData =
+            result;
 
         allData =
             Array.isArray(result.data)
-            ? result.data
+            ? result.data.map(
+                (row,index)=>({
+
+                    ...row,
+
+                    /*
+                        Menyimpan posisi asli dari
+                        Google Sheet.
+                    */
+
+                    _originalIndex:index
+
+                })
+            )
             : [];
 
-
         updateStatistics(result);
-
 
         updateLeaderboardFromData(
             result.chart?.mechanic || []
         );
 
-
         filteredData =
             [...allData];
 
-
         currentPage = 1;
 
+        /*
+            Reset sorting ketika data baru
+            pertama kali dimuat.
+        */
+
+        sortState = {
+
+            key:null,
+
+            direction:0
+
+        };
+
+        updateSortHeaders();
 
         renderTable();
-
 
         document
             .getElementById('loading')
             .style
             .display='none';
 
-
         document
             .getElementById('tableContent')
             .classList
             .add('show');
-
 
     }
     catch(error){
@@ -2407,7 +2023,6 @@ async function loadTable(){
 
                     </div>
 
-
                     <h3
                         class="
                             font-bold
@@ -2417,7 +2032,6 @@ async function loadTable(){
                     >
                         Gagal memuat data
                     </h3>
-
 
                     <p
                         class="
@@ -2429,7 +2043,6 @@ async function loadTable(){
                     >
                         ${escapeHtml(error.message)}
                     </p>
-
 
                     <button
                         onclick="loadTable()"
@@ -2452,7 +2065,6 @@ async function loadTable(){
 
             `;
 
-
         lucide.createIcons();
 
     }
@@ -2469,10 +2081,8 @@ function updateStatistics(result){
     const data =
         result.data || [];
 
-
     const chart =
         result.chart || {};
-
 
     const total =
         data.length ||
@@ -2483,7 +2093,6 @@ function updateStatistics(result){
             (a,b)=>a+Number(b),
             0
         );
-
 
     const periodic =
         Object.entries(
@@ -2501,7 +2110,6 @@ function updateStatistics(result){
             0
         );
 
-
     const general =
         Object.entries(
             chart.serviceByType || {}
@@ -2518,30 +2126,25 @@ function updateStatistics(result){
             0
         );
 
-
     const baik =
         Number(
             chart.status?.Baik || 0
         );
-
 
     document
         .getElementById('totalData')
         .textContent =
             total;
 
-
     document
         .getElementById('periodicTotal')
         .textContent =
             periodic;
 
-
     document
         .getElementById('generalTotal')
         .textContent =
             general;
-
 
     document
         .getElementById('baikTotal')
@@ -2564,18 +2167,15 @@ function applyFilters(){
             .trim()
             .toLowerCase();
 
-
     const service =
         document
             .getElementById('serviceFilter')
             .value;
 
-
     const status =
         document
             .getElementById('statusFilter')
             .value;
-
 
     filteredData =
         allData.filter(row=>{
@@ -2604,11 +2204,9 @@ function applyFilters(){
             .join(' ')
             .toLowerCase();
 
-
             const matchSearch =
                 !search ||
                 searchable.includes(search);
-
 
             const matchService =
                 !service ||
@@ -2618,7 +2216,6 @@ function applyFilters(){
                     ===
                 service.toLowerCase();
 
-
             const matchStatus =
                 !status ||
                 String(row.status || '')
@@ -2626,7 +2223,6 @@ function applyFilters(){
                     .toLowerCase()
                     ===
                 status.toLowerCase();
-
 
             return (
                 matchSearch &&
@@ -2636,9 +2232,17 @@ function applyFilters(){
 
         });
 
-
     currentPage = 1;
 
+    /*
+        Jangan menghilangkan sorting ketika
+        filter digunakan.
+
+        Jika sedang sorting tanggal ASC,
+        setelah filter data tetap tanggal ASC.
+    */
+
+    applyCurrentSort();
 
     renderTable();
 
@@ -2655,25 +2259,743 @@ function resetFilters(){
         .getElementById('searchInput')
         .value='';
 
-
     document
         .getElementById('serviceFilter')
         .value='';
-
 
     document
         .getElementById('statusFilter')
         .value='';
 
-
     filteredData =
         [...allData];
 
+    currentPage = 1;
+
+    /*
+        Sorting tetap dipertahankan.
+    */
+
+    applyCurrentSort();
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   SORTING
+========================================================= */
+
+/*
+    Fungsi utama ketika header kolom diklik.
+
+    1x = ASC
+    2x = DESC
+    3x = NORMAL
+*/
+
+function toggleSort(key){
+
+    /*
+        Jika klik kolom yang sama
+    */
+
+    if(sortState.key === key){
+
+        if(sortState.direction === 0){
+
+            sortState.direction = 1;
+
+        }
+        else if(sortState.direction === 1){
+
+            sortState.direction = -1;
+
+        }
+        else{
+
+            sortState.direction = 0;
+
+        }
+
+    }
+
+    /*
+        Jika pindah ke kolom lain,
+        selalu mulai dari ASC.
+    */
+
+    else{
+
+        sortState.key =
+            key;
+
+        sortState.direction =
+            1;
+
+    }
+
+    /*
+        Jika kembali ke NORMAL,
+        jangan ubah key.
+        Yang penting direction = 0.
+    */
+
+    applyCurrentSort();
 
     currentPage = 1;
 
+    updateSortHeaders();
 
     renderTable();
+
+}
+
+
+/* =========================================================
+   APPLY CURRENT SORT
+========================================================= */
+
+function applyCurrentSort(){
+
+    /*
+        NORMAL
+
+        Kembalikan ke urutan asli Google Sheet.
+    */
+
+    if(
+        !sortState.key ||
+        sortState.direction === 0
+    ){
+
+        filteredData.sort(
+            (a,b)=>
+                Number(a._originalIndex || 0) -
+                Number(b._originalIndex || 0)
+        );
+
+        return;
+
+    }
+
+    const key =
+        sortState.key;
+
+    const direction =
+        sortState.direction;
+
+    filteredData.sort(
+        (a,b)=>{
+
+            const comparison =
+                compareRows(
+                    a,
+                    b,
+                    key
+                );
+
+            /*
+                Jika nilainya sama,
+                gunakan posisi asli
+                sebagai tie breaker.
+
+                Ini membuat sorting stabil.
+            */
+
+            if(comparison === 0){
+
+                return (
+                    Number(a._originalIndex || 0) -
+                    Number(b._originalIndex || 0)
+                );
+
+            }
+
+            return comparison * direction;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   COMPARE ROWS
+========================================================= */
+
+function compareRows(
+    rowA,
+    rowB,
+    key
+){
+
+    /*
+        KHUSUS TANGGAL
+
+        Tidak menggunakan perbandingan string.
+
+        Kita convert ke timestamp.
+    */
+
+    if(key === 'tanggal'){
+
+        const dateA =
+            parseIndonesianDate(
+                rowA.tanggal
+            );
+
+        const dateB =
+            parseIndonesianDate(
+                rowB.tanggal
+            );
+
+        /*
+            Data tanggal kosong
+            diletakkan di bawah.
+        */
+
+        if(dateA === null && dateB === null){
+
+            return 0;
+
+        }
+
+        if(dateA === null){
+
+            return 1;
+
+        }
+
+        if(dateB === null){
+
+            return -1;
+
+        }
+
+        if(dateA < dateB){
+
+            return -1;
+
+        }
+
+        if(dateA > dateB){
+
+            return 1;
+
+        }
+
+        return 0;
+
+    }
+
+
+    /*
+        KHUSUS HM
+
+        Dibandingkan sebagai angka.
+    */
+
+    if(key === 'hm'){
+
+        const numA =
+            parseNumber(
+                rowA.hm
+            );
+
+        const numB =
+            parseNumber(
+                rowB.hm
+            );
+
+        if(numA === null && numB === null){
+
+            return 0;
+
+        }
+
+        if(numA === null){
+
+            return 1;
+
+        }
+
+        if(numB === null){
+
+            return -1;
+
+        }
+
+        return numA - numB;
+
+    }
+
+
+    /*
+        KOLOM TEXT
+    */
+
+    const valueA =
+        String(
+            rowA[key] ?? ''
+        )
+        .trim()
+        .toLowerCase();
+
+    const valueB =
+        String(
+            rowB[key] ?? ''
+        )
+        .trim()
+        .toLowerCase();
+
+    /*
+        Kosong selalu diletakkan paling bawah.
+    */
+
+    if(!valueA && !valueB){
+
+        return 0;
+
+    }
+
+    if(!valueA){
+
+        return 1;
+
+    }
+
+    if(!valueB){
+
+        return -1;
+
+    }
+
+    return valueA.localeCompare(
+        valueB,
+        'id',
+        {
+            numeric:true,
+            sensitivity:'base'
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DATE PARSER
+========================================================= */
+
+/*
+    Fungsi ini dibuat khusus supaya tanggal
+    tidak lagi dianggap sebagai text.
+
+    Mendukung format:
+
+        DD/MM/YYYY
+        DD-MM-YYYY
+        DD.MM.YYYY
+
+        YYYY/MM/DD
+        YYYY-MM-DD
+        YYYY.MM.DD
+
+    Contoh:
+
+        02/08/2026
+        15/07/2026
+        28/06/2026
+
+    akan menjadi:
+
+        2026-08-02
+        2026-07-15
+        2026-06-28
+
+    sehingga sorting benar-benar berdasarkan
+    tanggal sebenarnya.
+*/
+
+function parseIndonesianDate(value){
+
+    if(value === null || value === undefined){
+
+        return null;
+
+    }
+
+    /*
+        Jika API memberikan Date object.
+    */
+
+    if(value instanceof Date){
+
+        const timestamp =
+            value.getTime();
+
+        return Number.isNaN(timestamp)
+            ? null
+            : timestamp;
+
+    }
+
+    let text =
+        String(value)
+            .trim();
+
+    if(!text){
+
+        return null;
+
+    }
+
+    /*
+        Buang bagian jam jika ada.
+    */
+
+    text =
+        text
+            .replace(
+                /T\d{1,2}:\d{2}(:\d{2})?.*$/,
+                ''
+            )
+            .trim();
+
+    /*
+        FORMAT:
+        DD/MM/YYYY
+        DD-MM-YYYY
+        DD.MM.YYYY
+    */
+
+    let match =
+        text.match(
+            /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
+        );
+
+    if(match){
+
+        const first =
+            Number(match[1]);
+
+        const second =
+            Number(match[2]);
+
+        const year =
+            Number(match[3]);
+
+        /*
+            Jika tahun berada di belakang,
+            kita anggap format Indonesia:
+
+                DD/MM/YYYY
+        */
+
+        const day =
+            first;
+
+        const month =
+            second;
+
+        return createValidDate(
+            year,
+            month,
+            day
+        );
+
+    }
+
+    /*
+        FORMAT:
+        YYYY/MM/DD
+        YYYY-MM-DD
+        YYYY.MM.DD
+    */
+
+    match =
+        text.match(
+            /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
+        );
+
+    if(match){
+
+        const year =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]);
+
+        const day =
+            Number(match[3]);
+
+        return createValidDate(
+            year,
+            month,
+            day
+        );
+
+    }
+
+    /*
+        FORMAT ANGKA SERIAL DATE GOOGLE SHEETS
+
+        Jika suatu saat API mengirim angka
+        seperti 45900, kita coba konversi.
+    */
+
+    if(
+        /^\d+(\.\d+)?$/.test(text)
+    ){
+
+        const numeric =
+            Number(text);
+
+        /*
+            Serial date Google Sheets
+            dihitung dari 1899-12-30.
+        */
+
+        if(
+            numeric > 20000 &&
+            numeric < 100000
+        ){
+
+            return Date.UTC(
+                1899,
+                11,
+                30
+            ) +
+            numeric *
+            24 *
+            60 *
+            60 *
+            1000;
+
+        }
+
+    }
+
+    /*
+        Fallback terakhir.
+
+        Hanya digunakan jika format API
+        ternyata ISO lengkap.
+    */
+
+    const fallback =
+        new Date(text);
+
+    if(!Number.isNaN(fallback.getTime())){
+
+        return fallback.getTime();
+
+    }
+
+    return null;
+
+}
+
+
+/* =========================================================
+   CREATE VALID DATE
+========================================================= */
+
+function createValidDate(
+    year,
+    month,
+    day
+){
+
+    /*
+        Gunakan UTC supaya tidak terkena
+        masalah timezone / perubahan hari.
+    */
+
+    const date =
+        new Date(
+            Date.UTC(
+                year,
+                month - 1,
+                day
+            )
+        );
+
+    /*
+        Validasi ulang.
+
+        Contoh:
+
+        31/02/2026
+
+        tidak boleh dianggap sebagai tanggal
+        valid.
+    */
+
+    if(
+        date.getUTCFullYear() !== year ||
+        date.getUTCMonth() !== month - 1 ||
+        date.getUTCDate() !== day
+    ){
+
+        return null;
+
+    }
+
+    return date.getTime();
+
+}
+
+
+/* =========================================================
+   NUMBER PARSER
+========================================================= */
+
+function parseNumber(value){
+
+    if(
+        value === null ||
+        value === undefined ||
+        String(value).trim() === ''
+    ){
+
+        return null;
+
+    }
+
+    let text =
+        String(value)
+            .trim()
+            .replace(/\s/g,'');
+
+    /*
+        Menghilangkan pemisah ribuan.
+    */
+
+    text =
+        text.replace(
+            /,/g,
+            ''
+        );
+
+    const number =
+        Number(text);
+
+    if(Number.isNaN(number)){
+
+        return null;
+
+    }
+
+    return number;
+
+}
+
+
+/* =========================================================
+   UPDATE SORT HEADERS
+========================================================= */
+
+function updateSortHeaders(){
+
+    const buttons =
+        document.querySelectorAll(
+            '.sort-button[data-sort-key]'
+        );
+
+    buttons.forEach(button=>{
+
+        const key =
+            button.dataset.sortKey;
+
+        const icon =
+            button.querySelector(
+                '.sort-icon'
+            );
+
+        /*
+            Reset
+        */
+
+        button.classList.remove(
+            'sort-active'
+        );
+
+        button.classList.add(
+            'sort-normal'
+        );
+
+        if(icon){
+
+            icon.setAttribute(
+                'data-lucide',
+                'arrow-up-down'
+            );
+
+        }
+
+        /*
+            Jika ini adalah kolom aktif
+        */
+
+        if(
+            sortState.key === key &&
+            sortState.direction !== 0
+        ){
+
+            button.classList.remove(
+                'sort-normal'
+            );
+
+            button.classList.add(
+                'sort-active'
+            );
+
+            if(
+                sortState.direction === 1
+            ){
+
+                if(icon){
+
+                    icon.setAttribute(
+                        'data-lucide',
+                        'arrow-up'
+                    );
+
+                }
+
+                button.title =
+                    'Urutan naik (ASC)';
+
+            }
+            else{
+
+                if(icon){
+
+                    icon.setAttribute(
+                        'data-lucide',
+                        'arrow-down'
+                    );
+
+                }
+
+                button.title =
+                    'Urutan turun (DESC)';
+
+            }
+
+        }
+        else{
+
+            button.title =
+                'Klik: ASC → DESC → Urutan Normal';
+
+        }
+
+    });
+
+    lucide.createIcons();
 
 }
 
@@ -2686,20 +3008,20 @@ function renderTable(){
 
     const tbody =
         document
-            .getElementById('tableBody');
-
+            .getElementById(
+                'tableBody'
+            );
 
     const emptyState =
         document
-            .getElementById('emptyState');
-
+            .getElementById(
+                'emptyState'
+            );
 
     tbody.innerHTML='';
 
-
     const total =
         filteredData.length;
-
 
     const totalPages =
         Math.max(
@@ -2710,7 +3032,6 @@ function renderTable(){
             )
         );
 
-
     if(currentPage > totalPages){
 
         currentPage =
@@ -2718,11 +3039,9 @@ function renderTable(){
 
     }
 
-
     const start =
         (currentPage - 1) *
         ROWS_PER_PAGE;
-
 
     const end =
         Math.min(
@@ -2730,13 +3049,11 @@ function renderTable(){
             total
         );
 
-
     const pageData =
         filteredData.slice(
             start,
             end
         );
-
 
     if(!pageData.length){
 
@@ -2751,7 +3068,6 @@ function renderTable(){
             .classList
             .add('hidden');
 
-
         pageData.forEach(
             (row,index)=>{
 
@@ -2759,10 +3075,8 @@ function renderTable(){
                     document
                         .createElement('tr');
 
-
                 const number =
                     start + index + 1;
-
 
                 tr.innerHTML = `
 
@@ -2774,18 +3088,15 @@ function renderTable(){
                         ${number}
                     </td>
 
-
                     <td class="whitespace-nowrap">
                         ${escapeHtml(row.tanggal)}
                     </td>
-
 
                     <td>
                         <span class="unit-badge">
                             ${escapeHtml(row.unit)}
                         </span>
                     </td>
-
 
                     <td class="
                         whitespace-nowrap
@@ -2795,16 +3106,13 @@ function renderTable(){
                         ${escapeHtml(row.hm)}
                     </td>
 
-
                     <td>
                         ${getServiceBadge(row.service)}
                     </td>
 
-
                     <td>
                         ${getStatusBadge(row.status)}
                     </td>
-
 
                     <td class="
                         font-semibold
@@ -2813,7 +3121,6 @@ function renderTable(){
                         ${escapeHtml(row.pic)}
                     </td>
 
-
                     <td
                         class="
                             max-w-[180px]
@@ -2821,9 +3128,12 @@ function renderTable(){
                         "
                         title="${escapeHtml(row.itemRusak)}"
                     >
-                        ${escapeHtml(row.itemRusak) || '<span class="text-slate-300">-</span>'}
+                        ${
+                            escapeHtml(row.itemRusak)
+                            ||
+                            '<span class="text-slate-300">-</span>'
+                        }
                     </td>
-
 
                     <td
                         class="
@@ -2832,16 +3142,18 @@ function renderTable(){
                         "
                         title="${escapeHtml(row.remark)}"
                     >
-                        ${escapeHtml(row.remark) || '<span class="text-slate-300">-</span>'}
+                        ${
+                            escapeHtml(row.remark)
+                            ||
+                            '<span class="text-slate-300">-</span>'
+                        }
                     </td>
-
 
                     <td>
                         ${getPapLink(row.pap)}
                     </td>
 
                 `;
-
 
                 tbody.appendChild(tr);
 
@@ -2850,18 +3162,15 @@ function renderTable(){
 
     }
 
-
     updateResultInfo(
         total,
         start,
         end
     );
 
-
     renderPagination(
         totalPages
     );
-
 
     lucide.createIcons();
 
@@ -2877,7 +3186,6 @@ function getPapLink(pap){
     const value =
         String(pap || '').trim();
 
-
     if(!value){
 
         return `
@@ -2887,7 +3195,6 @@ function getPapLink(pap){
         `;
 
     }
-
 
     let url;
 
@@ -2914,7 +3221,6 @@ function getPapLink(pap){
 
     }
 
-
     if(
         url.protocol !== 'http:' &&
         url.protocol !== 'https:'
@@ -2927,7 +3233,6 @@ function getPapLink(pap){
         `;
 
     }
-
 
     return `
 
@@ -2962,14 +3267,11 @@ function getServiceBadge(service){
     const value =
         String(service || '').trim();
 
-
     const lower =
         value.toLowerCase();
 
-
     let cls =
         'service-other';
-
 
     if(
         lower.includes('periodic')
@@ -2987,7 +3289,6 @@ function getServiceBadge(service){
             'service-general';
 
     }
-
 
     return `
 
@@ -3014,18 +3315,14 @@ function getStatusBadge(status){
     const value =
         String(status || '').trim();
 
-
     const lower =
         value.toLowerCase();
-
 
     let cls =
         'status-other';
 
-
     let icon =
         'circle';
-
 
     if(lower === 'baik'){
 
@@ -3047,7 +3344,6 @@ function getStatusBadge(status){
             'circle-alert';
 
     }
-
 
     return `
 
@@ -3088,19 +3384,16 @@ function updateResultInfo(
                 'resultInfo'
             );
 
-
     const paginationInfo =
         document
             .getElementById(
                 'paginationInfo'
             );
 
-
     if(total === 0){
 
         resultInfo.textContent =
             'Tidak ada data yang sesuai filter.';
-
 
         paginationInfo.textContent =
             '0 data';
@@ -3109,10 +3402,8 @@ function updateResultInfo(
 
     }
 
-
     resultInfo.textContent =
         `Menampilkan ${start + 1}–${end} dari ${total} data`;
-
 
     paginationInfo.textContent =
         `${total} data ditemukan`;
@@ -3134,9 +3425,7 @@ function renderPagination(
                 'pagination'
             );
 
-
     container.innerHTML='';
-
 
     if(
         filteredData.length === 0
@@ -3146,16 +3435,11 @@ function renderPagination(
 
     }
 
-
-    /* PREVIOUS */
-
     const prev =
         document.createElement('button');
 
-
     prev.className =
         'pagination-button';
-
 
     prev.innerHTML = `
         <i
@@ -3164,10 +3448,8 @@ function renderPagination(
         ></i>
     `;
 
-
     prev.disabled =
         currentPage === 1;
-
 
     prev.onclick = ()=>{
 
@@ -3181,18 +3463,13 @@ function renderPagination(
 
     };
 
-
     container.appendChild(prev);
-
-
-    /* PAGE NUMBERS */
 
     const pages =
         getPaginationPages(
             currentPage,
             totalPages
         );
-
 
     pages.forEach(page=>{
 
@@ -3213,10 +3490,8 @@ function renderPagination(
 
         }
 
-
         const button =
             document.createElement('button');
-
 
         button.className =
             'pagination-button' +
@@ -3226,10 +3501,8 @@ function renderPagination(
                 : ''
             );
 
-
         button.textContent =
             page;
-
 
         button.onclick = ()=>{
 
@@ -3240,21 +3513,15 @@ function renderPagination(
 
         };
 
-
         container.appendChild(button);
 
     });
 
-
-    /* NEXT */
-
     const next =
         document.createElement('button');
 
-
     next.className =
         'pagination-button';
-
 
     next.innerHTML = `
         <i
@@ -3263,10 +3530,8 @@ function renderPagination(
         ></i>
     `;
 
-
     next.disabled =
         currentPage === totalPages;
-
 
     next.onclick = ()=>{
 
@@ -3283,9 +3548,7 @@ function renderPagination(
 
     };
 
-
     container.appendChild(next);
-
 
     lucide.createIcons();
 
@@ -3312,12 +3575,9 @@ function getPaginationPages(
 
     }
 
-
     const pages = [];
 
-
     pages.push(1);
-
 
     if(current > 4){
 
@@ -3325,20 +3585,17 @@ function getPaginationPages(
 
     }
 
-
     const start =
         Math.max(
             2,
             current - 1
         );
 
-
     const end =
         Math.min(
             total - 1,
             current + 1
         );
-
 
     for(
         let i=start;
@@ -3350,16 +3607,13 @@ function getPaginationPages(
 
     }
 
-
     if(current < total - 3){
 
         pages.push('...');
 
     }
 
-
     pages.push(total);
-
 
     return pages;
 
@@ -3379,7 +3633,6 @@ function updateLeaderboardFromData(
             .getElementById(
                 'leaderboardList'
             );
-
 
     if(!data.length){
 
@@ -3402,14 +3655,12 @@ function updateLeaderboardFromData(
 
     }
 
-
     const ranking =
         [...data].sort(
             (a,b)=>
                 Number(b.count || 0) -
                 Number(a.count || 0)
         );
-
 
     list.innerHTML =
         ranking
@@ -3419,12 +3670,10 @@ function updateLeaderboardFromData(
                     const rank =
                         index + 1;
 
-
                     const cls =
                         rank <= 3
                         ? `top-${rank}`
                         : '';
-
 
                     const medal =
                         rank === 1
@@ -3434,7 +3683,6 @@ function updateLeaderboardFromData(
                         : rank === 3
                         ? '🥉'
                         : rank;
-
 
                     return `
 
@@ -3451,7 +3699,6 @@ function updateLeaderboardFromData(
                                 ${medal}
                             </div>
 
-
                             <div
                                 class="
                                     leader-name
@@ -3462,7 +3709,6 @@ function updateLeaderboardFromData(
                                     mechanic.name
                                 )}
                             </div>
-
 
                             <div
                                 class="leader-count"
@@ -3500,14 +3746,12 @@ function openLeaderboard(){
 
     }
 
-
     document
         .getElementById(
             'leaderboardOverlay'
         )
         .classList
         .add('show');
-
 
     document.body.style.overflow =
         'hidden';
@@ -3527,7 +3771,6 @@ function closeLeaderboard(){
         )
         .classList
         .remove('show');
-
 
     document.body.style.overflow =
         '';
@@ -3568,11 +3811,9 @@ function scheduleLeaderboardPulse(){
             'leaderboardButton'
         );
 
-
     const delay =
         12000 +
         Math.random() * 14000;
-
 
     setTimeout(()=>{
 
@@ -3580,7 +3821,6 @@ function scheduleLeaderboardPulse(){
             document.getElementById(
                 'leaderboardOverlay'
             );
-
 
         if(
             !overlay.classList.contains(
@@ -3592,9 +3832,7 @@ function scheduleLeaderboardPulse(){
                 'leader-pulse'
             );
 
-
             void button.offsetWidth;
-
 
             button.classList.add(
                 'leader-pulse'
@@ -3602,9 +3840,7 @@ function scheduleLeaderboardPulse(){
 
         }
 
-
         scheduleLeaderboardPulse();
-
 
     },delay);
 
@@ -3682,7 +3918,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 </html>
