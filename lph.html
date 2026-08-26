@@ -227,57 +227,6 @@ body{
 
 
 /* =========================================================
-   FILTER PANEL
-========================================================= */
-
-.filter-input{
-
-    width:100%;
-
-    background:#f8fafc;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:11px;
-
-    padding:
-        10px
-        12px;
-
-    color:#334155;
-
-    font-size:11px;
-
-    font-weight:600;
-
-    outline:none;
-
-    transition:.2s ease;
-
-}
-
-.filter-input:focus{
-
-    background:#fff;
-
-    border-color:#93c5fd;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(59,130,246,.10);
-
-}
-
-select.filter-input{
-
-    cursor:pointer;
-
-}
-
-
-/* =========================================================
    OPEN LPH
 ========================================================= */
 
@@ -719,7 +668,7 @@ select.filter-input{
 
                 </span>
 
-                LPH Dashboard
+                Dashboard LPH
 
             </h2>
 
@@ -734,27 +683,78 @@ select.filter-input{
                 "
             >
 
-                Monitoring dan analisis aktivitas LPH
-                berdasarkan data Google Sheet.
+                Monitoring dan analisis data laporan kerusakan unit pada LPH secara terintegrasi.
 
             </p>
 
         </div>
 
 
-        <button
-            onclick="goToHistory()"
-            class="dashboard-button"
+        <!-- =================================================
+             NAVIGATION
+        ================================================= -->
+
+        <div
+            class="
+                flex
+                flex-col
+                sm:flex-row
+                gap-2
+                w-full
+                lg:w-auto
+            "
         >
 
-            <i
-                data-lucide="history"
-                class="w-4 h-4"
-            ></i>
 
-            History LPH
+            <!-- HOME -->
 
-        </button>
+            <button
+                type="button"
+                onclick="goToHome()"
+                class="
+                    dashboard-button
+                    bg-slate-100
+                    hover:bg-slate-200
+                    text-slate-700
+                    shadow-sm
+                "
+            >
+
+                <i
+                    data-lucide="house"
+                    class="w-4 h-4"
+                ></i>
+
+                Kembali ke Home
+
+            </button>
+
+
+            <!-- LIHAT DATA -->
+
+            <button
+                type="button"
+                onclick="goToTable()"
+                class="
+                    dashboard-button
+                    bg-blue-800
+                    hover:bg-blue-700
+                    text-white
+                    shadow-md
+                "
+            >
+
+                <i
+                    data-lucide="table-2"
+                    class="w-4 h-4"
+                ></i>
+
+                Lihat Data
+
+            </button>
+
+
+        </div>
 
 
     </div>
@@ -799,265 +799,13 @@ select.filter-input{
 
 
         <!-- =================================================
-             FILTER
-        ================================================= -->
-
-        <div
-            class="
-                bg-white
-                border
-                border-slate-200
-                rounded-2xl
-                p-5
-                mb-6
-                shadow-sm
-            "
-        >
-
-            <div
-                class="
-                    flex
-                    items-center
-                    gap-3
-                    mb-4
-                "
-            >
-
-                <span
-                    class="
-                        bg-blue-100
-                        text-blue-700
-                        p-2
-                        rounded-lg
-                    "
-                >
-
-                    <i
-                        data-lucide="filter"
-                        class="w-4 h-4"
-                    ></i>
-
-                </span>
-
-
-                <div>
-
-                    <h3
-                        class="
-                            text-sm
-                            font-black
-                            text-slate-700
-                        "
-                    >
-                        Dashboard Filter
-                    </h3>
-
-
-                    <p
-                        class="
-                            text-[10px]
-                            text-slate-400
-                            font-medium
-                        "
-                    >
-                        Filter akan mempengaruhi seluruh statistik dan chart.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div
-                class="
-                    grid
-                    grid-cols-4
-                    gap-4
-                "
-            >
-
-
-                <!-- PERIOD -->
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Periode
-                    </label>
-
-
-                    <select
-                        id="periodFilter"
-                        class="filter-input"
-                        onchange="applyFilters()"
-                    >
-
-                        <option value="">
-                            Semua Periode
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- UNIT -->
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Jenis Unit
-                    </label>
-
-
-                    <select
-                        id="unitTypeFilter"
-                        class="filter-input"
-                        onchange="applyFilters()"
-                    >
-
-                        <option value="">
-                            Semua Unit
-                        </option>
-
-                        <option value="F">
-                            Forklift
-                        </option>
-
-                        <option value="W">
-                            Wheelloader
-                        </option>
-
-                        <option value="D">
-                            Dumptruck
-                        </option>
-
-                        <option value="E">
-                            Excavator
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- STATUS -->
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Status
-                    </label>
-
-
-                    <select
-                        id="statusFilter"
-                        class="filter-input"
-                        onchange="applyFilters()"
-                    >
-
-                        <option value="">
-                            Semua Status
-                        </option>
-
-                        <option value="OPEN">
-                            Open
-                        </option>
-
-                        <option value="CLOSE">
-                            Close
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- RESET -->
-
-                <div
-                    class="
-                        flex
-                        items-end
-                    "
-                >
-
-                    <button
-                        onclick="resetFilters()"
-                        class="
-                            w-full
-                            h-[38px]
-                            rounded-xl
-                            border
-                            border-slate-200
-                            bg-slate-50
-                            hover:bg-slate-100
-                            text-slate-600
-                            font-bold
-                            text-[11px]
-                            transition
-                            flex
-                            items-center
-                            justify-center
-                            gap-2
-                        "
-                    >
-
-                        <i
-                            data-lucide="rotate-ccw"
-                            class="w-4 h-4"
-                        ></i>
-
-                        Reset Filter
-
-                    </button>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
              KPI CARDS
         ================================================= -->
 
         <div
             class="
                 grid
-                grid-cols-4
+                grid-cols-3
                 gap-4
                 mb-6
             "
@@ -1193,6 +941,55 @@ select.filter-input{
             </div>
 
 
+        </div>
+
+
+        <!-- =================================================
+             UNIT KPI
+        ================================================= -->
+
+        <div
+            class="
+                grid
+                grid-cols-4
+                gap-4
+                mb-6
+            "
+        >
+
+
+            <!-- WHEELLOADER -->
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Wheelloader
+                </p>
+
+
+                <p
+                    id="wheelloaderKpi"
+                    class="
+                        text-3xl
+                        font-black
+                        text-indigo-600
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+
             <!-- FORKLIFT -->
 
             <div class="stat-card">
@@ -1236,52 +1033,7 @@ select.filter-input{
             </div>
 
 
-        </div>
-
-
-        <!-- =================================================
-             UNIT KPI
-        ================================================= -->
-
-        <div
-            class="
-                grid
-                grid-cols-3
-                gap-4
-                mb-6
-            "
-        >
-
-
-            <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Wheelloader
-                </p>
-
-
-                <p
-                    id="wheelloaderKpi"
-                    class="
-                        text-3xl
-                        font-black
-                        text-indigo-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-            </div>
-
+            <!-- DUMPTRUCK -->
 
             <div class="stat-card">
 
@@ -1312,6 +1064,8 @@ select.filter-input{
 
             </div>
 
+
+            <!-- EXCAVATOR -->
 
             <div class="stat-card">
 
@@ -1851,8 +1605,12 @@ const API_URL =
 'https://script.google.com/macros/s/AKfycbw8ZzXABtXrKNLM3vHvfM5NblG3Eu-eXkRCPX9CTU-7pQP9zD8aOflVn4c-x0nY_sj1Sw/exec';
 
 
-const HISTORY_URL =
-'tlph-history.html';
+const TABLE_URL =
+'tlph.html';
+
+
+const HOME_URL =
+'index.html';
 
 
 /* =========================================================
@@ -1870,10 +1628,18 @@ let charts = {};
    NAVIGATION
 ========================================================= */
 
-function goToHistory(){
+function goToTable(){
 
     window.location.href =
-        HISTORY_URL;
+        TABLE_URL;
+
+}
+
+
+function goToHome(){
+
+    window.location.href =
+        HOME_URL;
 
 }
 
@@ -1932,16 +1698,6 @@ function getUnitType(
             unit
         );
 
-
-    /*
-       Forklift:
-
-       F3-17
-       F7-19
-       F10-09
-
-       Semua dimulai dengan F.
-    */
 
     if(
         value.startsWith('F')
@@ -2222,81 +1978,6 @@ function getMonthLabel(
 
 
 /* =========================================================
-   POPULATE PERIOD FILTER
-========================================================= */
-
-function populatePeriodFilter(){
-
-    const select =
-        document
-            .getElementById(
-                'periodFilter'
-            );
-
-
-    const months =
-        new Set();
-
-
-    allData.forEach(
-        row=>{
-
-            const key =
-                getMonthKey(
-                    row.startDate
-                );
-
-
-            if(key){
-
-                months.add(
-                    key
-                );
-
-            }
-
-        }
-    );
-
-
-    const sorted =
-        Array.from(
-            months
-        )
-        .sort()
-        .reverse();
-
-
-    sorted.forEach(
-        key=>{
-
-            const option =
-                document.createElement(
-                    'option'
-                );
-
-
-            option.value =
-                key;
-
-
-            option.textContent =
-                getMonthLabel(
-                    key
-                );
-
-
-            select.appendChild(
-                option
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
    LOAD DATA
 ========================================================= */
 
@@ -2358,9 +2039,6 @@ async function loadDashboard(){
 
         filteredData =
             [...allData];
-
-
-        populatePeriodFilter();
 
 
         updateDashboard();
@@ -2462,6 +2140,7 @@ async function loadDashboard(){
 
                     </button>
 
+
                 </div>
 
             `;
@@ -2470,130 +2149,6 @@ async function loadDashboard(){
         lucide.createIcons();
 
     }
-
-}
-
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-function applyFilters(){
-
-    const period =
-        document
-            .getElementById(
-                'periodFilter'
-            )
-            .value;
-
-
-    const unitType =
-        document
-            .getElementById(
-                'unitTypeFilter'
-            )
-            .value;
-
-
-    const status =
-        document
-            .getElementById(
-                'statusFilter'
-            )
-            .value;
-
-
-    filteredData =
-        allData.filter(
-            row=>{
-
-                const rowPeriod =
-                    getMonthKey(
-                        row.startDate
-                    );
-
-
-                const rowType =
-                    getUnitType(
-                        row.unit
-                    );
-
-
-                const rowStatus =
-                    String(
-                        row.status ?? ''
-                    )
-                    .trim()
-                    .toUpperCase();
-
-
-                const matchPeriod =
-                    !period ||
-                    rowPeriod === period;
-
-
-                const matchUnit =
-                    !unitType ||
-                    rowType === unitType;
-
-
-                const matchStatus =
-                    !status ||
-                    rowStatus === status;
-
-
-                return (
-
-                    matchPeriod &&
-
-                    matchUnit &&
-
-                    matchStatus
-
-                );
-
-            }
-        );
-
-
-    updateDashboard();
-
-}
-
-
-/* =========================================================
-   RESET FILTER
-========================================================= */
-
-function resetFilters(){
-
-    document
-        .getElementById(
-            'periodFilter'
-        )
-        .value = '';
-
-
-    document
-        .getElementById(
-            'unitTypeFilter'
-        )
-        .value = '';
-
-
-    document
-        .getElementById(
-            'statusFilter'
-        )
-        .value = '';
-
-
-    filteredData =
-        [...allData];
-
-
-    updateDashboard();
 
 }
 
@@ -3486,12 +3041,6 @@ function updateTopProblemChart(){
             }
 
 
-            /*
-               Untuk sementara problem
-               dianggap sebagai kategori
-               berdasarkan teks yang sama.
-            */
-
             counts[problem] =
                 (
                     counts[problem] ||
@@ -4003,7 +3552,7 @@ function updateOpenTable(){
                     Open LPH.
 
                     <button
-                        onclick="goToHistory()"
+                        onclick="goToTable()"
                         class="
                             text-blue-700
                             font-black
