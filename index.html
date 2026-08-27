@@ -263,8 +263,214 @@ body{
 
 
 /* =========================================================
+   DASHBOARD CARDS
+========================================================= */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+}
+
+.dashboard-card{
+    position:relative;
+    overflow:hidden;
+    min-height:190px;
+    border-radius:24px;
+    padding:24px;
+    cursor:pointer;
+    color:white;
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow:
+        0 12px 30px rgba(15,23,42,.10),
+        inset 0 1px 0 rgba(255,255,255,.18);
+
+    transition:
+        transform .35s cubic-bezier(.175,.885,.32,1.275),
+        box-shadow .35s ease,
+        filter .35s ease;
+}
+
+.dashboard-card::before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:rgba(255,255,255,.10);
+    top:-70px;
+    right:-55px;
+    transition:all .5s ease;
+}
+
+.dashboard-card::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    background:linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255,255,255,.14) 45%,
+        transparent 70%
+    );
+    transform:translateX(-120%);
+    transition:transform .65s ease;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-8px) scale(1.015);
+    box-shadow:
+        0 24px 45px rgba(15,23,42,.18),
+        0 0 0 1px rgba(255,255,255,.25);
+    filter:saturate(1.08);
+}
+
+.dashboard-card:hover::before{
+    width:230px;
+    height:230px;
+    top:-100px;
+    right:-90px;
+}
+
+.dashboard-card:hover::after{
+    transform:translateX(120%);
+}
+
+.dashboard-card:active{
+    transform:translateY(-2px) scale(.985);
+}
+
+.dashboard-card-content{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.dashboard-icon{
+    width:58px;
+    height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:18px;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.22);
+    backdrop-filter:blur(8px);
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.12),
+        inset 0 1px 0 rgba(255,255,255,.18);
+
+    transition:
+        transform .35s ease,
+        background .35s ease;
+}
+
+.dashboard-card:hover .dashboard-icon{
+    transform:scale(1.12) rotate(-4deg);
+    background:rgba(255,255,255,.22);
+}
+
+.dashboard-icon i{
+    width:28px;
+    height:28px;
+    transition:transform .35s ease;
+}
+
+.dashboard-card:hover .dashboard-icon i{
+    transform:scale(1.08);
+}
+
+.dashboard-title{
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    line-height:1.35;
+    text-shadow:0 2px 5px rgba(0,0,0,.14);
+}
+
+.dashboard-arrow{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    opacity:.65;
+
+    transition:
+        transform .3s ease,
+        opacity .3s ease,
+        background .3s ease;
+}
+
+.dashboard-card:hover .dashboard-arrow{
+    transform:translateX(5px);
+    opacity:1;
+    background:rgba(255,255,255,.22);
+}
+
+
+/* =========================================================
+   DASHBOARD COLORS
+========================================================= */
+
+.dashboard-blue{
+    background:linear-gradient(135deg,#2563eb,#1e3a8a);
+}
+
+.dashboard-cyan{
+    background:linear-gradient(135deg,#0891b2,#155e75);
+}
+
+.dashboard-indigo{
+    background:linear-gradient(135deg,#6366f1,#3730a3);
+}
+
+.dashboard-emerald{
+    background:linear-gradient(135deg,#059669,#065f46);
+}
+
+.dashboard-amber{
+    background:linear-gradient(135deg,#f59e0b,#b45309);
+}
+
+.dashboard-violet{
+    background:linear-gradient(135deg,#8b5cf6,#5b21b6);
+}
+
+.dashboard-rose{
+    background:linear-gradient(135deg,#f43f5e,#9f1239);
+}
+
+.dashboard-slate{
+    background:linear-gradient(135deg,#475569,#1e293b);
+}
+
+.dashboard-teal{
+    background:linear-gradient(135deg,#14b8a6,#115e59);
+}
+
+
+/* =========================================================
    MOBILE
 ========================================================= */
+
+@media(max-width:900px){
+
+    .dashboard-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+}
 
 @media(max-width:640px){
 
@@ -286,6 +492,26 @@ body{
         max-width:max-content!important;
         flex:none!important;
         align-self:flex-start!important;
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+        gap:14px;
+    }
+
+    .dashboard-card{
+        min-height:150px;
+        padding:20px;
+    }
+
+    .dashboard-icon{
+        width:52px;
+        height:52px;
+        border-radius:16px;
+    }
+
+    .dashboard-title{
+        font-size:13px;
     }
 
 }
@@ -445,7 +671,7 @@ body{
 
         <button
             type="button"
-            onclick="openPeriodic()"
+            onclick="showReportMenu()"
             class="main-menu-card menu-amber text-white font-bold p-7 sm:p-9 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-4 border-b-4 border-amber-800"
         >
 
@@ -555,6 +781,79 @@ body{
         </p>
 
     </div>
+
+</div>
+
+
+<!-- =========================================================
+     REPORT MENU
+========================================================= -->
+
+<div
+    id="reportMenuScreen"
+    class="hidden fade-in"
+>
+
+    <!-- HEADER REPORT -->
+
+    <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7"
+    >
+
+        <div>
+
+            <h2
+                class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3"
+            >
+
+                <span
+                    class="bg-amber-600 text-white p-3 rounded-xl shadow-md"
+                >
+
+                    <i
+                        data-lucide="layout-dashboard"
+                        class="w-6 h-6"
+                    ></i>
+
+                </span>
+
+                Dashboard Laporan
+
+            </h2>
+
+        </div>
+
+
+        <!-- KEMBALI -->
+
+        <button
+            type="button"
+            onclick="showHome()"
+            class="back-button w-fit max-w-max self-start shrink-0 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2.5 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm whitespace-nowrap"
+        >
+
+            <i
+                data-lucide="arrow-left"
+                class="w-4 h-4 shrink-0"
+            ></i>
+
+            <span>
+                Kembali
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         DASHBOARD GRID
+    ====================================================== -->
+
+    <div
+        id="dashboardGrid"
+        class="dashboard-grid"
+    ></div>
 
 </div>
 
@@ -1038,22 +1337,22 @@ const FORM_DATA = [
 
             {
                 name:"CPS Dumptruck",
-                link:"https://forms.gle/nLJAPSSsYV9LhBU26"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLSehLV9Z9ppLAuyWTHd_RpS9OgxXwz7cH6Jv4m3Ov6QeV0ccRA/viewform"
             },
 
             {
                 name:"CPS Excavator",
-                link:"https://forms.gle/SbhBWLcCeFNfhuHd7"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLScZVERcQ1GFS29_DTR3YkNiGUqf99O-u-On0PG24hrfFojs-g/viewform"
             },
 
             {
                 name:"CPS Forklift",
-                link:"https://forms.gle/a7Jc7ftTzzhdEeYV6"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLScXX5R0rOsJX0kNKEY1pxTRVOQh6lD3YsBjguf53I1pLo7Bw/viewform"
             },
 
             {
                 name:"CPS Wheel Loader",
-                link:"https://forms.gle/LzMVNkScBnVmdb5K9"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLScOD63w9xuMoalEdYcU6YiQIUHbtkBNUT8Me8TpujUrO9jnNg/viewform"
             }
 
         ]
@@ -1069,27 +1368,27 @@ const FORM_DATA = [
 
             {
                 name:"CIM Compressor",
-                link:"https://forms.gle/AQJvYtzJoXTPKQ5k7"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLSfyypoY9V594bImNv6T8HWWBcyG2JS57-p5UTASWKikPOr5rQ/viewform"
             },
 
             {
                 name:"CIM Crane",
-                link:"https://forms.gle/MEP1Kzaoui1TcBFR9"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLSfSHoHSzp5iQGtbVtym4ziVhKhdbxpmViC096GAUZhL_pRQKg/viewform"
             },
 
             {
                 name:"CIM Grinding Machine",
-                link:"https://forms.gle/e24N2JAjPVx6jadH8"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLSeI5LUWrA4UgcozFcHS55CoPXlhwZZZxtLrm66CGM6YVEuBlQ/viewform"
             },
 
             {
                 name:"CIM Tabung Bertekanan",
-                link:"https://forms.gle/MZLtPqcnrWybdGcd7"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLSe7_60xawLnhab7h9kbxleRyQgYvfWSalDuoujIbrudiChTXA/viewform"
             },
 
             {
                 name:"CIM Welding Machine",
-                link:"https://forms.gle/9kqcsRFWPnrVJqED6"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLSejNr0h2V1w6cjxFRkvj4p7kJ7EKGWWRzVBreuxkPMpy2cbUQ/viewform"
             }
 
         ]
@@ -1105,12 +1404,12 @@ const FORM_DATA = [
 
             {
                 name:"Checklist Oil Usage",
-                link:"https://forms.gle/6Pwag93frDXtb16w5"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLSfIV1S2Ax2uicpA5AqRDoOPuw0m4lo9VKXP2nS7jtvoB_JMpQ/viewform"
             },
 
             {
                 name:"Greasing Activity",
-                link:"https://forms.gle/6gEzVfRnWeD7gdG2A"
+                link:"https://docs.google.com/forms/d/e/1FAIpQLSeeLpDCfQ2Vj6Wjkx4JCj0sjM2wFSQGb40LqlO6z0YccAMMdw/viewform"
             }
 
         ]
@@ -1132,6 +1431,78 @@ const FORM_DATA = [
             }
 
         ]
+    }
+
+];
+
+
+/* =========================================================
+   DASHBOARD DATA
+========================================================= */
+
+const DASHBOARD_DATA = [
+
+    {
+        title:"Dashboard Periodic Service",
+        icon:"calendar-check-2",
+        link:"periodic.html",
+        theme:"dashboard-blue"
+    },
+
+    {
+        title:"Dashboard Laporan Kerusakan pada LPH",
+        icon:"clipboard-x",
+        link:"lph.html",
+        theme:"dashboard-cyan"
+    },
+
+    {
+        title:"Dashboard Maintenance",
+        icon:"wrench",
+        link:"maintenance.html",
+        theme:"dashboard-indigo"
+    },
+
+    {
+        title:"Dashboard Greasing Activity",
+        icon:"droplets",
+        link:"greasing.html",
+        theme:"dashboard-emerald"
+    },
+
+    {
+        title:"Dashboard Oil Usage",
+        icon:"fuel",
+        link:"oil.html",
+        theme:"dashboard-amber"
+    },
+
+    {
+        title:"Dashboard Man Power",
+        icon:"users",
+        link:"shift.html",
+        theme:"dashboard-violet"
+    },
+
+    {
+        title:"Dashboard Breakdown Unit",
+        icon:"triangle-alert",
+        link:"bd.html",
+        theme:"dashboard-rose"
+    },
+
+    {
+        title:"Dashboard Availability",
+        icon:"activity",
+        link:"availability.html",
+        theme:"dashboard-teal"
+    },
+
+    {
+        title:"Dashboard Populasi Unit",
+        icon:"truck",
+        link:"armada.html",
+        theme:"dashboard-slate"
     }
 
 ];
@@ -1173,10 +1544,15 @@ function showHome(){
     const formMenuScreen =
         document.getElementById('formMenuScreen');
 
+    const reportMenuScreen =
+        document.getElementById('reportMenuScreen');
+
 
     homeScreen.classList.remove('hidden');
 
     formMenuScreen.classList.add('hidden');
+
+    reportMenuScreen.classList.add('hidden');
 
 
     window.scrollTo({
@@ -1199,8 +1575,13 @@ function showFormMenu(){
     const formMenuScreen =
         document.getElementById('formMenuScreen');
 
+    const reportMenuScreen =
+        document.getElementById('reportMenuScreen');
+
 
     homeScreen.classList.add('hidden');
+
+    reportMenuScreen.classList.add('hidden');
 
     formMenuScreen.classList.remove('hidden');
 
@@ -1217,15 +1598,136 @@ function showFormMenu(){
 
 
 /* =========================================================
-   LAPORAN
-   index.html
-        ↓
-   periodic.html
+   REPORT MENU
 ========================================================= */
 
-function openPeriodic(){
+function showReportMenu(){
 
-    window.location.href = 'periodic.html';
+    const homeScreen =
+        document.getElementById('homeScreen');
+
+    const formMenuScreen =
+        document.getElementById('formMenuScreen');
+
+    const reportMenuScreen =
+        document.getElementById('reportMenuScreen');
+
+
+    homeScreen.classList.add('hidden');
+
+    formMenuScreen.classList.add('hidden');
+
+    reportMenuScreen.classList.remove('hidden');
+
+
+    renderDashboards();
+
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+
+}
+
+
+/* =========================================================
+   RENDER DASHBOARD
+========================================================= */
+
+function renderDashboards(){
+
+    const container =
+        document.getElementById('dashboardGrid');
+
+
+    if(!container){
+        return;
+    }
+
+
+    container.innerHTML = '';
+
+
+    DASHBOARD_DATA.forEach((dashboard,index)=>{
+
+        const card =
+            document.createElement('button');
+
+
+        card.type = 'button';
+
+
+        card.className = `
+            dashboard-card
+            ${dashboard.theme}
+            slide-in
+        `;
+
+
+        card.style.animationDelay =
+            `${index * 60}ms`;
+
+
+        card.innerHTML = `
+
+            <div class="dashboard-card-content">
+
+                <div class="flex items-start justify-between">
+
+                    <div class="dashboard-icon">
+
+                        <i
+                            data-lucide="${dashboard.icon}"
+                        ></i>
+
+                    </div>
+
+                    <div class="dashboard-arrow">
+
+                        <i
+                            data-lucide="arrow-up-right"
+                            class="w-5 h-5"
+                        ></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="flex items-end justify-between gap-3 mt-8">
+
+                    <span class="dashboard-title">
+                        ${escapeHtml(dashboard.title)}
+                    </span>
+
+                    <span
+                        class="text-[10px] font-black opacity-40 tracking-widest"
+                    >
+                        ${String(index + 1).padStart(2,'0')}
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        card.onclick = ()=>{
+
+            window.location.href =
+                dashboard.link;
+
+        };
+
+
+        container.appendChild(card);
+
+    });
+
+
+    lucide.createIcons();
 
 }
 
