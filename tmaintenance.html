@@ -222,6 +222,72 @@ body{
 
 
 /* =========================================================
+   LOAD REMAINING BUTTON
+========================================================= */
+
+.load-more-button{
+
+    background:
+        linear-gradient(
+            135deg,
+            #1e3a8a,
+            #2563eb
+        );
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:
+        10px
+        16px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+    box-shadow:
+        0 6px 14px
+        rgba(37,99,235,.20);
+
+}
+
+.load-more-button:hover:not(:disabled){
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 9px 18px
+        rgba(37,99,235,.28);
+
+}
+
+.load-more-button:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+
+/* =========================================================
    STAT CARDS
 ========================================================= */
 
@@ -653,7 +719,7 @@ select.filter-input{
 
 
 /* =========================================================
-   LOADING
+   INITIAL LOADING
 ========================================================= */
 
 #loading{
@@ -684,7 +750,7 @@ select.filter-input{
 
 
 /* =========================================================
-   PROGRESS
+   INITIAL PROGRESS
 ========================================================= */
 
 .progress-wrapper{
@@ -749,18 +815,260 @@ select.filter-input{
 
 
 /* =========================================================
-   BACKGROUND LOADING
+   FLOATING DATA LOADING PANEL
 ========================================================= */
 
-#backgroundLoading{
+#floatingLoader{
+
+    position:fixed;
+
+    right:24px;
+
+    bottom:24px;
+
+    width:360px;
+
+    max-width:calc(100vw - 48px);
+
+    background:
+        rgba(255,255,255,.97);
+
+    border:
+        1px solid
+        #dbeafe;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 20px 45px
+        rgba(15,23,42,.18);
+
+    padding:18px;
+
+    z-index:9999;
 
     display:none;
 
+    backdrop-filter:blur(12px);
+
 }
 
-#backgroundLoading.show{
+#floatingLoader.show{
+
+    display:block;
+
+    animation:
+        floatingIn
+        .25s
+        ease;
+
+}
+
+@keyframes floatingIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(12px)
+            scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+.floating-header{
 
     display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+}
+
+.floating-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+}
+
+.floating-icon{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:10px;
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.floating-title-text{
+
+    font-size:11px;
+
+    font-weight:900;
+
+    color:#334155;
+
+}
+
+.floating-status{
+
+    font-size:9px;
+
+    color:#64748b;
+
+    margin-top:2px;
+
+    font-weight:600;
+
+}
+
+.floating-close{
+
+    width:28px;
+
+    height:28px;
+
+    border:none;
+
+    background:#f8fafc;
+
+    color:#64748b;
+
+    border-radius:8px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+}
+
+.floating-close:hover{
+
+    background:#f1f5f9;
+
+    color:#1e293b;
+
+}
+
+.floating-progress-track{
+
+    width:100%;
+
+    height:9px;
+
+    background:#e2e8f0;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    margin-top:15px;
+
+}
+
+.floating-progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1e3a8a,
+            #2563eb
+        );
+
+    border-radius:999px;
+
+    transition:
+        width
+        .35s
+        ease;
+
+}
+
+.floating-progress-info{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-top:9px;
+
+}
+
+.floating-count{
+
+    font-size:10px;
+
+    color:#64748b;
+
+    font-weight:700;
+
+}
+
+.floating-percent{
+
+    font-size:12px;
+
+    color:#1e3a8a;
+
+    font-weight:900;
+
+}
+
+.floating-detail{
+
+    margin-top:10px;
+
+    padding-top:10px;
+
+    border-top:
+        1px solid
+        #f1f5f9;
+
+    font-size:9px;
+
+    color:#94a3b8;
+
+    line-height:1.5;
 
 }
 
@@ -1576,6 +1884,7 @@ select.filter-input{
                     flex
                     items-center
                     justify-between
+                    gap-4
                 "
             >
 
@@ -1607,51 +1916,23 @@ select.filter-input{
                 </div>
 
 
-                <div
-                    id="backgroundLoading"
-                    class="
-                        items-center
-                        gap-2
-                        text-[10px]
-                        font-bold
-                        text-blue-600
-                    "
+                <button
+                    id="loadRemainingButton"
+                    onclick="startManualLoading()"
+                    class="load-more-button"
                 >
 
                     <i
-                        data-lucide="loader-circle"
-                        class="
-                            w-3.5
-                            h-3.5
-                            animate-spin
-                        "
+                        data-lucide="download"
+                        class="w-4 h-4"
                     ></i>
 
-                    Memuat data...
+                    <span id="loadRemainingButtonText">
+                        Muat Sisa Data
+                    </span>
 
-                </div>
+                </button>
 
-
-                <div
-                    id="databaseStatus"
-                    class="
-                        flex
-                        items-center
-                        gap-2
-                        text-[10px]
-                        text-slate-400
-                        font-semibold
-                    "
-                >
-
-                    <i
-                        data-lucide="database"
-                        class="w-3.5 h-3.5"
-                    ></i>
-
-                    Data langsung dari Database
-
-                </div>
 
             </div>
 
@@ -1960,45 +2241,110 @@ select.filter-input{
 </footer>
 
 
+<!-- =====================================================
+     FLOATING LOADER
+===================================================== -->
+
+<div
+    id="floatingLoader"
+>
+
+    <div class="floating-header">
+
+        <div class="floating-title">
+
+            <div class="floating-icon">
+
+                <i
+                    id="floatingIcon"
+                    data-lucide="download"
+                    class="w-4 h-4"
+                ></i>
+
+            </div>
+
+            <div>
+
+                <div
+                    id="floatingTitle"
+                    class="floating-title-text"
+                >
+                    Mengambil data maintenance
+                </div>
+
+                <div
+                    id="floatingStatus"
+                    class="floating-status"
+                >
+                    Mempersiapkan proses...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            onclick="hideFloatingLoader()"
+            class="floating-close"
+            title="Tutup"
+        >
+
+            <i
+                data-lucide="x"
+                class="w-4 h-4"
+            ></i>
+
+        </button>
+
+    </div>
+
+
+    <div class="floating-progress-track">
+
+        <div
+            id="floatingProgressBar"
+            class="floating-progress-bar"
+        ></div>
+
+    </div>
+
+
+    <div class="floating-progress-info">
+
+        <span
+            id="floatingCount"
+            class="floating-count"
+        >
+            0 / 0 data
+        </span>
+
+
+        <span
+            id="floatingPercent"
+            class="floating-percent"
+        >
+            0%
+        </span>
+
+    </div>
+
+
+    <div
+        id="floatingDetail"
+        class="floating-detail"
+    >
+        Data yang telah berhasil diambil akan disimpan ke cache browser.
+    </div>
+
+</div>
+
+
 <script>
 
 /* =========================================================
    CONFIGURATION
 ========================================================= */
-
-/*
-    GOOGLE APPS SCRIPT WEB APP API
-
-    FORMAT API BARU:
-
-    {
-        success: true,
-        title: "HISTORI MAINTENANCE UNIT",
-        headers: [
-            "DATE",
-            "UNIT",
-            "MAINTENANCE",
-            "PERIODIC SERVICE",
-            "STATUS"
-        ],
-        total: 14391,
-        dataStartRow: 3,
-        page: 1,
-        limit: 5,
-        totalPages: 2879,
-        startRow: 3,
-        endRow: 7,
-        data: [...]
-    }
-
-    DATA:
-
-    A = DATE
-    B = UNIT
-    C = MAINTENANCE
-    D = PERIODIC SERVICE
-    E = STATUS
-*/
 
 const API_URL =
 'https://script.google.com/macros/s/AKfycby2DRub26paNPyOjiJXSWIRP6d8ConfgMl-i7y4IIhy6FJ6TdyHzUkPNfarePCCfarz/exec';
@@ -2018,18 +2364,23 @@ const ROWS_PER_PAGE =
 
 
 /*
-    Jumlah data yang diminta
-    dari API setiap request.
+    Ukuran batch API.
 
-    API baru menggunakan parameter:
-    limit
-
-    Kita gunakan 1000 agar jumlah
-    request ke Apps Script efisien.
+    Sengaja dibuat 500 agar lebih aman
+    terhadap timeout Google Apps Script.
 */
 
 const API_PAGE_SIZE =
-1000;
+500;
+
+
+/*
+    Data dimulai dari row 3
+    pada Google Sheet.
+*/
+
+const DATA_START_ROW =
+3;
 
 
 /*
@@ -2082,7 +2433,7 @@ let currentApiPage = 1;
 
 let totalApiPages = 0;
 
-let nextRowToLoad = 3;
+let nextRowToLoad = DATA_START_ROW;
 
 let loadingFinished = false;
 
@@ -2236,12 +2587,23 @@ async function saveCache(){
                 store.put(
                     {
                         data:allData,
+
                         nextRow:nextRowToLoad,
-                        currentApiPage:currentApiPage,
-                        totalRows:totalServerRows,
-                        totalApiPages:totalApiPages,
-                        finished:loadingFinished,
-                        timestamp:Date.now()
+
+                        currentApiPage:
+                            currentApiPage,
+
+                        totalRows:
+                            totalServerRows,
+
+                        totalApiPages:
+                            totalApiPages,
+
+                        finished:
+                            loadingFinished,
+
+                        timestamp:
+                            Date.now()
                     },
                     CACHE_KEY
                 );
@@ -2436,27 +2798,35 @@ async function clearCache(){
    PROGRESS
 ========================================================= */
 
-function updateProgress(){
-
-    let percent = 0;
-
+function calculateProgress(){
 
     if(
-        totalServerRows > 0
+        totalServerRows <= 0
     ){
 
-        percent =
-            Math.round(
-                Math.min(
-                    100,
-                    (
-                        allData.length /
-                        totalServerRows
-                    ) * 100
-                )
-            );
+        return 0;
 
     }
+
+
+    return Math.round(
+        Math.min(
+            100,
+            (
+                allData.length /
+                totalServerRows
+            ) *
+            100
+        )
+    );
+
+}
+
+
+function updateProgress(){
+
+    let percent =
+        calculateProgress();
 
 
     if(
@@ -2494,6 +2864,206 @@ function updateProgress(){
             percent + '%';
 
     }
+
+
+    updateFloatingProgress();
+
+}
+
+
+/* =========================================================
+   FLOATING LOADER
+========================================================= */
+
+function showFloatingLoader(){
+
+    document
+        .getElementById(
+            'floatingLoader'
+        )
+        .classList
+        .add('show');
+
+
+    lucide.createIcons();
+
+}
+
+
+function hideFloatingLoader(){
+
+    document
+        .getElementById(
+            'floatingLoader'
+        )
+        .classList
+        .remove('show');
+
+}
+
+
+function updateFloatingProgress(){
+
+    const percent =
+        loadingFinished
+        ? 100
+        : calculateProgress();
+
+
+    const bar =
+        document.getElementById(
+            'floatingProgressBar'
+        );
+
+
+    const percentElement =
+        document.getElementById(
+            'floatingPercent'
+        );
+
+
+    const countElement =
+        document.getElementById(
+            'floatingCount'
+        );
+
+
+    if(bar){
+
+        bar.style.width =
+            percent + '%';
+
+    }
+
+
+    if(percentElement){
+
+        percentElement.textContent =
+            percent + '%';
+
+    }
+
+
+    if(countElement){
+
+        countElement.textContent =
+            `${allData.length.toLocaleString('id-ID')} / ${totalServerRows.toLocaleString('id-ID')} data`;
+
+    }
+
+}
+
+
+function setFloatingStatus(
+    title,
+    status,
+    detail
+){
+
+    const titleElement =
+        document.getElementById(
+            'floatingTitle'
+        );
+
+
+    const statusElement =
+        document.getElementById(
+            'floatingStatus'
+        );
+
+
+    const detailElement =
+        document.getElementById(
+            'floatingDetail'
+        );
+
+
+    if(titleElement){
+
+        titleElement.textContent =
+            title;
+
+    }
+
+
+    if(statusElement){
+
+        statusElement.textContent =
+            status;
+
+    }
+
+
+    if(detailElement){
+
+        detailElement.textContent =
+            detail;
+
+    }
+
+}
+
+
+function showFloatingComplete(){
+
+    const icon =
+        document.getElementById(
+            'floatingIcon'
+        );
+
+
+    if(icon){
+
+        icon.setAttribute(
+            'data-lucide',
+            'circle-check'
+        );
+
+    }
+
+
+    setFloatingStatus(
+        'Pengambilan selesai',
+        'Seluruh data berhasil dimuat.',
+        `${allData.length.toLocaleString('id-ID')} aktivitas telah tersedia di webapp.`
+    );
+
+
+    updateFloatingProgress();
+
+    lucide.createIcons();
+
+}
+
+
+function showFloatingError(
+    error
+){
+
+    const icon =
+        document.getElementById(
+            'floatingIcon'
+        );
+
+
+    if(icon){
+
+        icon.setAttribute(
+            'data-lucide',
+            'alert-triangle'
+        );
+
+    }
+
+
+    setFloatingStatus(
+        'Pengambilan terhenti',
+        'Sebagian data berhasil disimpan.',
+        `Posisi terakhir: ${allData.length.toLocaleString('id-ID')} dari ${totalServerRows.toLocaleString('id-ID')} data. Tekan "Lanjutkan Pengambilan" untuk mencoba lagi.`
+    );
+
+
+    lucide.createIcons();
 
 }
 
@@ -2639,19 +3209,6 @@ function sleep(
    API URL
 ========================================================= */
 
-/*
-    API BARU MENGGUNAKAN:
-
-    startRow
-    limit
-
-    Contoh:
-
-    ?startRow=3&limit=1000
-
-    Row 3 adalah data pertama.
-*/
-
 function getApiUrl(
     startRow
 ){
@@ -2674,20 +3231,22 @@ function getApiUrl(
 
 
 /* =========================================================
-   LOAD FIRST BATCH
+   LOAD INITIAL DATA
 ========================================================= */
 
 async function loadInitialData(){
 
     try{
 
-        /*
-            Coba gunakan cache terlebih dahulu.
-        */
-
         const cache =
             await loadCache();
 
+
+        /*
+            =================================================
+            CACHE TERSEDIA
+            =================================================
+        */
 
         if(
             cache &&
@@ -2714,7 +3273,7 @@ async function loadInitialData(){
             nextRowToLoad =
                 Number(
                     cache.nextRow ||
-                    3
+                    DATA_START_ROW
                 );
 
 
@@ -2744,6 +3303,24 @@ async function loadInitialData(){
 
             loadingFinished =
                 cache.finished === true;
+
+
+            /*
+                Jika cache ternyata lebih sedikit
+                dari total server, jangan percaya
+                flag finished lama.
+            */
+
+            if(
+                totalServerRows > 0 &&
+                allData.length <
+                totalServerRows
+            ){
+
+                loadingFinished =
+                    false;
+
+            }
 
 
             updateProgress();
@@ -2778,18 +3355,7 @@ async function loadInitialData(){
                 true;
 
 
-            /*
-                Jika cache belum lengkap,
-                lanjutkan mengambil data.
-            */
-
-            if(
-                !loadingFinished
-            ){
-
-                loadRemainingData();
-
-            }
+            updateLoadButton();
 
 
             return;
@@ -2798,13 +3364,16 @@ async function loadInitialData(){
 
 
         /*
-            Tidak ada cache.
-            Ambil batch pertama.
+            =================================================
+            TIDAK ADA CACHE
+            =================================================
         */
 
         const result =
             await fetchWithRetry(
-                getApiUrl(3)
+                getApiUrl(
+                    DATA_START_ROW
+                )
             );
 
 
@@ -2816,15 +3385,6 @@ async function loadInitialData(){
         apiData =
             result;
 
-
-        /*
-            API BARU:
-
-            total
-            totalPages
-            startRow
-            endRow
-        */
 
         totalServerRows =
             Number(
@@ -2856,33 +3416,35 @@ async function loadInitialData(){
 
 
         /*
-            Baris berikutnya dimulai
-            setelah endRow.
+            Row berikutnya.
 
-            Contoh:
-
-            startRow = 3
-            endRow   = 1002
-
-            berikutnya:
-
-            1003
+            Jika response memberi endRow,
+            gunakan itu sebagai sumber utama.
         */
 
-        nextRowToLoad =
-            Number(
-                result.endRow ||
-                (
-                    3 +
-                    allData.length
+        if(
+            Number.isFinite(
+                Number(
+                    result.endRow
                 )
-            ) + 1;
+            )
+        ){
 
+            nextRowToLoad =
+                Number(
+                    result.endRow
+                ) + 1;
 
-        /*
-            Tentukan apakah masih
-            ada data.
-        */
+        }
+
+        else{
+
+            nextRowToLoad =
+                DATA_START_ROW +
+                allData.length;
+
+        }
+
 
         loadingFinished =
             (
@@ -2892,6 +3454,9 @@ async function loadInitialData(){
             (
                 !result.data ||
                 result.data.length === 0
+            ) ||
+            (
+                result.hasMore === false
             );
 
 
@@ -2934,18 +3499,7 @@ async function loadInitialData(){
         await saveCache();
 
 
-        /*
-            Setelah batch pertama berhasil,
-            lanjutkan loading background.
-        */
-
-        if(
-            !loadingFinished
-        ){
-
-            loadRemainingData();
-
-        }
+        updateLoadButton();
 
     }
     catch(error){
@@ -2966,15 +3520,60 @@ async function loadInitialData(){
 
 
 /* =========================================================
+   MANUAL LOAD BUTTON
+========================================================= */
+
+async function startManualLoading(){
+
+    if(
+        backgroundLoading
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        loadingFinished
+    ){
+
+        showFloatingLoader();
+
+
+        showFloatingComplete();
+
+
+        return;
+
+    }
+
+
+    await loadRemainingData();
+
+}
+
+
+/* =========================================================
    LOAD REMAINING DATA
 ========================================================= */
 
 async function loadRemainingData(){
 
     if(
-        backgroundLoading ||
+        backgroundLoading
+    ){
+
+        return;
+
+    }
+
+
+    if(
         loadingFinished
     ){
+
+        updateLoadButton();
 
         return;
 
@@ -2985,28 +3584,61 @@ async function loadRemainingData(){
         true;
 
 
-    showBackgroundLoading(
-        true
+    const button =
+        document.getElementById(
+            'loadRemainingButton'
+        );
+
+
+    if(button){
+
+        button.disabled =
+            true;
+
+    }
+
+
+    showFloatingLoader();
+
+
+    setFloatingStatus(
+        'Mengambil sisa data',
+        'Menghubungi database...',
+        'Data diambil secara bertahap dan disimpan otomatis ke cache browser.'
     );
 
 
     try{
 
         while(
-            !loadingFinished &&
-            nextRowToLoad
+            !loadingFinished
         ){
 
+            /*
+                Tampilkan posisi request.
+            */
+
+            setFloatingStatus(
+                'Mengambil sisa data',
+                `Mengambil data mulai dari row ${nextRowToLoad.toLocaleString('id-ID')}...`,
+                `Data yang sudah tersimpan: ${allData.length.toLocaleString('id-ID')} dari ${totalServerRows.toLocaleString('id-ID')}.`
+            );
+
+
             console.log(
-                'Loading background from row:',
+                'Loading from row:',
                 nextRowToLoad
             );
+
+
+            const requestStartRow =
+                nextRowToLoad;
 
 
             const result =
                 await fetchWithRetry(
                     getApiUrl(
-                        nextRowToLoad
+                        requestStartRow
                     )
                 );
 
@@ -3022,13 +3654,65 @@ async function loadRemainingData(){
                 );
 
 
+            /*
+                Update total dari server.
+            */
+
+            if(
+                Number.isFinite(
+                    Number(
+                        result.total
+                    )
+                )
+            ){
+
+                totalServerRows =
+                    Number(
+                        result.total
+                    );
+
+            }
+
+
+            if(
+                Number.isFinite(
+                    Number(
+                        result.totalPages
+                    )
+                )
+            ){
+
+                totalApiPages =
+                    Number(
+                        result.totalPages
+                    );
+
+            }
+
+
+            if(
+                Number.isFinite(
+                    Number(
+                        result.page
+                    )
+                )
+            ){
+
+                currentApiPage =
+                    Number(
+                        result.page
+                    );
+
+            }
+
+
+            /*
+                Tambahkan data baru.
+            */
+
             if(
                 newData.length > 0
             ){
-
-                /*
-                    Tambahkan data baru.
-                */
 
                 allData.push(
                     ...newData
@@ -3038,32 +3722,7 @@ async function loadRemainingData(){
 
 
             /*
-                Update metadata API.
-            */
-
-            totalServerRows =
-                Number(
-                    result.total ||
-                    totalServerRows
-                );
-
-
-            totalApiPages =
-                Number(
-                    result.totalPages ||
-                    totalApiPages
-                );
-
-
-            currentApiPage =
-                Number(
-                    result.page ||
-                    currentApiPage + 1
-                );
-
-
-            /*
-                Hitung row berikutnya.
+                Cari row berikutnya.
             */
 
             if(
@@ -3074,44 +3733,112 @@ async function loadRemainingData(){
                 )
             ){
 
-                nextRowToLoad =
+                const newNextRow =
                     Number(
                         result.endRow
                     ) + 1;
+
+
+                /*
+                    Safety check.
+
+                    Jika API mengembalikan
+                    endRow yang tidak bergerak,
+                    jangan sampai infinite loop.
+                */
+
+                if(
+                    newNextRow <=
+                    requestStartRow
+                ){
+
+                    throw new Error(
+                        'Posisi row API tidak bergerak. Proses dihentikan untuk mencegah pengulangan request.'
+                    );
+
+                }
+
+
+                nextRowToLoad =
+                    newNextRow;
 
             }
 
             else{
 
                 nextRowToLoad =
-                    nextRowToLoad +
+                    requestStartRow +
                     newData.length;
 
             }
 
 
             /*
-                Jika jumlah data sudah
-                mencapai total API,
-                berarti selesai.
+                Tentukan selesai.
             */
 
-            loadingFinished =
-                (
-                    allData.length >=
-                    totalServerRows
-                ) ||
-                (
-                    newData.length === 0
-                ) ||
-                (
-                    result.hasMore === false
-                ) ||
-                (
-                    Number(result.page || 0) >=
-                    Number(result.totalPages || Infinity)
-                );
+            if(
+                allData.length >=
+                totalServerRows
+            ){
 
+                loadingFinished =
+                    true;
+
+            }
+
+
+            else if(
+                newData.length === 0
+            ){
+
+                loadingFinished =
+                    true;
+
+            }
+
+
+            else if(
+                result.hasMore === false
+            ){
+
+                loadingFinished =
+                    true;
+
+            }
+
+
+            else if(
+                Number.isFinite(
+                    Number(
+                        result.totalPages
+                    )
+                ) &&
+                Number.isFinite(
+                    Number(
+                        result.page
+                    )
+                ) &&
+                Number(
+                    result.page
+                ) >=
+                Number(
+                    result.totalPages
+                )
+            ){
+
+                loadingFinished =
+                    true;
+
+            }
+
+
+            /*
+                Simpan setiap batch.
+
+                Jadi apabila request berikutnya
+                gagal, data sebelumnya tidak hilang.
+            */
 
             await saveCache();
 
@@ -3121,11 +3848,6 @@ async function loadRemainingData(){
             );
 
 
-            /*
-                Terapkan filter kembali
-                tanpa reset halaman.
-            */
-
             applyFilters(
                 false
             );
@@ -3134,8 +3856,13 @@ async function loadRemainingData(){
             updateProgress();
 
 
+            /*
+                Beri browser waktu untuk
+                memperbarui UI.
+            */
+
             await sleep(
-                50
+                80
             );
 
         }
@@ -3145,17 +3872,24 @@ async function loadRemainingData(){
             true;
 
 
+        await saveCache();
+
+
         updateProgress();
 
 
-        await saveCache();
+        updateLoadButton();
+
+
+        showFloatingComplete();
 
 
         updateResultInfo(
             filteredData.length,
             (
                 currentPage - 1
-            ) * ROWS_PER_PAGE,
+            ) *
+            ROWS_PER_PAGE,
             Math.min(
                 currentPage *
                 ROWS_PER_PAGE,
@@ -3167,12 +3901,31 @@ async function loadRemainingData(){
     catch(error){
 
         console.error(
-            'Background loading stopped:',
+            'Data loading stopped:',
             error
         );
 
 
-        showBackgroundError(
+        /*
+            Sangat penting:
+
+            cache sudah disimpan setiap batch,
+            sehingga ketika error,
+            nextRowToLoad masih menunjuk
+            ke posisi berikutnya.
+        */
+
+        loadingFinished =
+            false;
+
+
+        await saveCache();
+
+
+        updateLoadButton();
+
+
+        showFloatingError(
             error
         );
 
@@ -3183,9 +3936,15 @@ async function loadRemainingData(){
             false;
 
 
-        showBackgroundLoading(
-            false
-        );
+        if(button){
+
+            button.disabled =
+                false;
+
+        }
+
+
+        updateLoadButton();
 
     }
 
@@ -3193,18 +3952,106 @@ async function loadRemainingData(){
 
 
 /* =========================================================
-   RETRY BACKGROUND
+   UPDATE LOAD BUTTON
 ========================================================= */
 
-async function retryBackgroundLoading(){
+function updateLoadButton(){
 
-    hideBackgroundError();
+    const button =
+        document.getElementById(
+            'loadRemainingButton'
+        );
 
-    await sleep(
-        300
-    );
 
-    loadRemainingData();
+    const text =
+        document.getElementById(
+            'loadRemainingButtonText'
+        );
+
+
+    if(
+        !button ||
+        !text
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        backgroundLoading
+    ){
+
+        button.disabled =
+            true;
+
+
+        text.textContent =
+            'Sedang Memuat...';
+
+
+        return;
+
+    }
+
+
+    if(
+        loadingFinished
+    ){
+
+        button.disabled =
+            false;
+
+
+        text.textContent =
+            'Semua Data Dimuat';
+
+
+        button.innerHTML = `
+
+            <i
+                data-lucide="circle-check"
+                class="w-4 h-4"
+            ></i>
+
+            <span>
+                Semua Data Dimuat
+            </span>
+
+        `;
+
+
+        lucide.createIcons();
+
+        return;
+
+    }
+
+
+    button.disabled =
+        false;
+
+
+    button.innerHTML = `
+
+        <i
+            data-lucide="download"
+            class="w-4 h-4"
+        ></i>
+
+        <span>
+            ${
+                allData.length > 0
+                ? 'Lanjutkan Pengambilan'
+                : 'Muat Sisa Data'
+            }
+        </span>
+
+    `;
+
+
+    lucide.createIcons();
 
 }
 
@@ -3243,11 +4090,6 @@ function validateApiResult(
     }
 
 
-    /*
-        API baru minimal harus memiliki
-        total dan data.
-    */
-
     if(
         result.total === undefined
     ){
@@ -3264,16 +4106,6 @@ function validateApiResult(
 /* =========================================================
    CONVERT API DATA
 ========================================================= */
-
-/*
-    API:
-
-    row[0] = DATE
-    row[1] = UNIT
-    row[2] = MAINTENANCE
-    row[3] = PERIODIC SERVICE
-    row[4] = STATUS
-*/
 
 function convertApiData(
     data
@@ -3314,160 +4146,6 @@ function convertApiData(
 
         }
     );
-
-}
-
-
-/* =========================================================
-   BACKGROUND LOADING UI
-========================================================= */
-
-function showBackgroundLoading(
-    show
-){
-
-    const loading =
-        document.getElementById(
-            'backgroundLoading'
-        );
-
-
-    const status =
-        document.getElementById(
-            'databaseStatus'
-        );
-
-
-    if(show){
-
-        loading
-            .classList
-            .add('show');
-
-
-        status
-            .classList
-            .add('hidden');
-
-    }
-
-    else{
-
-        loading
-            .classList
-            .remove('show');
-
-
-        status
-            .classList
-            .remove('hidden');
-
-    }
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   BACKGROUND ERROR
-========================================================= */
-
-function showBackgroundError(
-    error
-){
-
-    const loading =
-        document.getElementById(
-            'backgroundLoading'
-        );
-
-
-    loading.innerHTML = `
-
-        <div
-            class="
-                flex
-                items-center
-                gap-2
-            "
-        >
-
-            <i
-                data-lucide="alert-triangle"
-                class="
-                    w-3.5
-                    h-3.5
-                "
-            ></i>
-
-
-            <span>
-                Memuat terhenti
-            </span>
-
-
-            <button
-                onclick="retryBackgroundLoading()"
-                class="
-                    ml-1
-                    px-2
-                    py-1
-                    rounded-md
-                    bg-blue-100
-                    hover:bg-blue-200
-                    text-blue-700
-                    font-black
-                "
-            >
-                Lanjutkan
-            </button>
-
-        </div>
-
-    `;
-
-
-    loading
-        .classList
-        .add('show');
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   HIDE BACKGROUND ERROR
-========================================================= */
-
-function hideBackgroundError(){
-
-    const loading =
-        document.getElementById(
-            'backgroundLoading'
-        );
-
-
-    loading.innerHTML = `
-
-        <i
-            data-lucide="loader-circle"
-            class="
-                w-3.5
-                h-3.5
-                animate-spin
-            "
-        ></i>
-
-        Memuat data...
-
-    `;
-
-
-    lucide.createIcons();
 
 }
 
@@ -3532,7 +4210,7 @@ function showLoadingError(
 
 
                 <button
-                    onclick="loadInitialData()"
+                    onclick="location.reload()"
                     class="
                         mt-4
                         bg-blue-800
@@ -3589,14 +4267,6 @@ function getUnitType(
         );
 
 
-    /*
-        Forklift:
-
-        F3-17
-        F10-7
-        dst.
-    */
-
     if(
         value.startsWith('F')
     ){
@@ -3605,15 +4275,6 @@ function getUnitType(
 
     }
 
-
-    /*
-        Wheelloader:
-
-        W-26
-        W-21
-        ZW140-1
-        dst.
-    */
 
     if(
         value.startsWith('W') ||
@@ -3625,10 +4286,6 @@ function getUnitType(
     }
 
 
-    /*
-        Dumptruck
-    */
-
     if(
         value.startsWith('D')
     ){
@@ -3637,10 +4294,6 @@ function getUnitType(
 
     }
 
-
-    /*
-        Excavator
-    */
 
     if(
         value.startsWith('E')
@@ -4848,7 +5501,7 @@ function updateResultInfo(
     ){
 
         suffix =
-            ' • Data masih dimuat di background';
+            ` • ${allData.length.toLocaleString('id-ID')} dari ${totalServerRows.toLocaleString('id-ID')} data database telah dimuat`;
 
     }
 
