@@ -1052,9 +1052,7 @@ select.filter-input{
                     ml-1
                 "
             >
-
                 Daftar seluruh aktivitas maintenance unit yang tersimpan pada database.
-
             </p>
 
         </div>
@@ -1971,20 +1969,35 @@ select.filter-input{
 /*
     GOOGLE APPS SCRIPT WEB APP API
 
-    Sheet:
-    W
+    FORMAT API BARU:
 
-    Columns:
-    A:E
+    {
+        success: true,
+        title: "HISTORI MAINTENANCE UNIT",
+        headers: [
+            "DATE",
+            "UNIT",
+            "MAINTENANCE",
+            "PERIODIC SERVICE",
+            "STATUS"
+        ],
+        total: 14391,
+        dataStartRow: 3,
+        page: 1,
+        limit: 5,
+        totalPages: 2879,
+        startRow: 3,
+        endRow: 7,
+        data: [...]
+    }
 
-    Row 1:
-    Title
+    DATA:
 
-    Row 2:
-    Header
-
-    Row 3+:
-    Data
+    A = DATE
+    B = UNIT
+    C = MAINTENANCE
+    D = PERIODIC SERVICE
+    E = STATUS
 */
 
 const API_URL =
@@ -1997,7 +2010,7 @@ const DASHBOARD_URL =
 
 /*
     Jumlah baris yang ditampilkan
-    dalam satu halaman tabel.
+    pada tabel webapp.
 */
 
 const ROWS_PER_PAGE =
@@ -2005,11 +2018,14 @@ const ROWS_PER_PAGE =
 
 
 /*
-    Ukuran batch yang diambil
-    oleh Apps Script.
+    Jumlah data yang diminta
+    dari API setiap request.
 
-    Apps Script saat ini menggunakan
-    PAGE_SIZE = 1000.
+    API baru menggunakan parameter:
+    limit
+
+    Kita gunakan 1000 agar jumlah
+    request ke Apps Script efisien.
 */
 
 const API_PAGE_SIZE =
@@ -2025,7 +2041,7 @@ const DB_NAME =
 
 
 const DB_VERSION =
-1;
+2;
 
 
 const DB_STORE =
@@ -2061,6 +2077,10 @@ let filteredData = [];
 let currentPage = 1;
 
 let totalServerRows = 0;
+
+let currentApiPage = 1;
+
+let totalApiPages = 0;
 
 let nextRowToLoad = 3;
 
@@ -2217,7 +2237,9 @@ async function saveCache(){
                     {
                         data:allData,
                         nextRow:nextRowToLoad,
+                        currentApiPage:currentApiPage,
                         totalRows:totalServerRows,
+                        totalApiPages:totalApiPages,
                         finished:loadingFinished,
                         timestamp:Date.now()
                     },
@@ -2617,6 +2639,19 @@ function sleep(
    API URL
 ========================================================= */
 
+/*
+    API BARU MENGGUNAKAN:
+
+    startRow
+    limit
+
+    Contoh:
+
+    ?startRow=3&limit=1000
+
+    Row 3 adalah data pertama.
+*/
+
 function getApiUrl(
     startRow
 ){
@@ -2626,6 +2661,10 @@ function getApiUrl(
         '?startRow=' +
         encodeURIComponent(
             startRow
+        ) +
+        '&limit=' +
+        encodeURIComponent(
+            API_PAGE_SIZE
         ) +
         '&_=' +
         Date.now()
@@ -2673,13 +2712,34 @@ async function loadInitialData(){
 
 
             nextRowToLoad =
-                cache.nextRow ||
-                3;
+                Number(
+                    cache.nextRow ||
+                    3
+                );
+
+
+            currentApiPage =
+                Number(
+                    cache.currentApiPage ||
+                    1
+                );
 
 
             totalServerRows =
-                cache.totalRows ||
-                0;
+                Number(
+                    cache.totalRows ||
+                    allData.length
+                );
+
+
+            totalApiPages =
+                Number(
+                    cache.totalApiPages ||
+                    Math.ceil(
+                        totalServerRows /
+                        API_PAGE_SIZE
+                    )
+                );
 
 
             loadingFinished =
@@ -2739,8 +2799,7 @@ async function loadInitialData(){
 
         /*
             Tidak ada cache.
-            Ambil batch pertama
-            mulai dari baris 3.
+            Ambil batch pertama.
         */
 
         const result =
@@ -2758,9 +2817,35 @@ async function loadInitialData(){
             result;
 
 
+        /*
+            API BARU:
+
+            total
+            totalPages
+            startRow
+            endRow
+        */
+
         totalServerRows =
             Number(
-                result.totalRows || 0
+                result.total || 0
+            );
+
+
+        totalApiPages =
+            Number(
+                result.totalPages ||
+                Math.ceil(
+                    totalServerRows /
+                    API_PAGE_SIZE
+                )
+            );
+
+
+        currentApiPage =
+            Number(
+                result.page ||
+                1
             );
 
 
@@ -2770,12 +2855,44 @@ async function loadInitialData(){
             );
 
 
-        nextRowToLoad =
-            result.nextRow;
+        /*
+            Baris berikutnya dimulai
+            setelah endRow.
 
+            Contoh:
+
+            startRow = 3
+            endRow   = 1002
+
+            berikutnya:
+
+            1003
+        */
+
+        nextRowToLoad =
+            Number(
+                result.endRow ||
+                (
+                    3 +
+                    allData.length
+                )
+            ) + 1;
+
+
+        /*
+            Tentukan apakah masih
+            ada data.
+        */
 
         loadingFinished =
-            result.hasMore !== true;
+            (
+                allData.length >=
+                totalServerRows
+            ) ||
+            (
+                !result.data ||
+                result.data.length === 0
+            );
 
 
         filteredData =
@@ -2819,7 +2936,7 @@ async function loadInitialData(){
 
         /*
             Setelah batch pertama berhasil,
-            lanjutkan loading di background.
+            lanjutkan loading background.
         */
 
         if(
@@ -2909,6 +3026,10 @@ async function loadRemainingData(){
                 newData.length > 0
             ){
 
+                /*
+                    Tambahkan data baru.
+                */
+
                 allData.push(
                     ...newData
                 );
@@ -2916,19 +3037,80 @@ async function loadRemainingData(){
             }
 
 
+            /*
+                Update metadata API.
+            */
+
             totalServerRows =
                 Number(
-                    result.totalRows ||
+                    result.total ||
                     totalServerRows
                 );
 
 
-            nextRowToLoad =
-                result.nextRow;
+            totalApiPages =
+                Number(
+                    result.totalPages ||
+                    totalApiPages
+                );
 
+
+            currentApiPage =
+                Number(
+                    result.page ||
+                    currentApiPage + 1
+                );
+
+
+            /*
+                Hitung row berikutnya.
+            */
+
+            if(
+                Number.isFinite(
+                    Number(
+                        result.endRow
+                    )
+                )
+            ){
+
+                nextRowToLoad =
+                    Number(
+                        result.endRow
+                    ) + 1;
+
+            }
+
+            else{
+
+                nextRowToLoad =
+                    nextRowToLoad +
+                    newData.length;
+
+            }
+
+
+            /*
+                Jika jumlah data sudah
+                mencapai total API,
+                berarti selesai.
+            */
 
             loadingFinished =
-                result.hasMore !== true;
+                (
+                    allData.length >=
+                    totalServerRows
+                ) ||
+                (
+                    newData.length === 0
+                ) ||
+                (
+                    result.hasMore === false
+                ) ||
+                (
+                    Number(result.page || 0) >=
+                    Number(result.totalPages || Infinity)
+                );
 
 
             await saveCache();
@@ -2938,6 +3120,11 @@ async function loadRemainingData(){
                 allData
             );
 
+
+            /*
+                Terapkan filter kembali
+                tanpa reset halaman.
+            */
 
             applyFilters(
                 false
@@ -2962,6 +3149,19 @@ async function loadRemainingData(){
 
 
         await saveCache();
+
+
+        updateResultInfo(
+            filteredData.length,
+            (
+                currentPage - 1
+            ) * ROWS_PER_PAGE,
+            Math.min(
+                currentPage *
+                ROWS_PER_PAGE,
+                filteredData.length
+            )
+        );
 
     }
     catch(error){
@@ -3037,22 +3237,23 @@ function validateApiResult(
     ){
 
         throw new Error(
-            'Format data API tidak valid.'
+            'Format data API tidak valid. Field "data" harus berupa array.'
         );
 
     }
 
 
     /*
-        API baru wajib memiliki totalRows.
+        API baru minimal harus memiliki
+        total dan data.
     */
 
     if(
-        result.totalRows === undefined
+        result.total === undefined
     ){
 
         console.warn(
-            'API tidak mengirim totalRows.'
+            'API tidak mengirim field "total".'
         );
 
     }
@@ -3063,6 +3264,16 @@ function validateApiResult(
 /* =========================================================
    CONVERT API DATA
 ========================================================= */
+
+/*
+    API:
+
+    row[0] = DATE
+    row[1] = UNIT
+    row[2] = MAINTENANCE
+    row[3] = PERIODIC SERVICE
+    row[4] = STATUS
+*/
 
 function convertApiData(
     data
@@ -3378,6 +3589,14 @@ function getUnitType(
         );
 
 
+    /*
+        Forklift:
+
+        F3-17
+        F10-7
+        dst.
+    */
+
     if(
         value.startsWith('F')
     ){
@@ -3386,6 +3605,15 @@ function getUnitType(
 
     }
 
+
+    /*
+        Wheelloader:
+
+        W-26
+        W-21
+        ZW140-1
+        dst.
+    */
 
     if(
         value.startsWith('W') ||
@@ -3397,6 +3625,10 @@ function getUnitType(
     }
 
 
+    /*
+        Dumptruck
+    */
+
     if(
         value.startsWith('D')
     ){
@@ -3405,6 +3637,10 @@ function getUnitType(
 
     }
 
+
+    /*
+        Excavator
+    */
 
     if(
         value.startsWith('E')
