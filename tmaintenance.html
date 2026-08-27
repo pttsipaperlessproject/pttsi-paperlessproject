@@ -10,7 +10,7 @@
     content="width=1200"
 >
 
-<title>Data Maintenance Unit - PT TSI</title>
+<title>Data Kerusakan Maintenance Unit - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -20,6 +20,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
 >
+
 
 <style>
 
@@ -51,6 +52,11 @@ body{
     color:#1e293b;
 
 }
+
+
+/* =========================================================
+   COLOR
+========================================================= */
 
 .color-primary{
     background:#1E3A8A;
@@ -94,13 +100,21 @@ body{
 @keyframes fadeIn{
 
     from{
+
         opacity:0;
-        transform:translateY(12px);
+
+        transform:
+            translateY(12px);
+
     }
 
     to{
+
         opacity:1;
-        transform:translateY(0);
+
+        transform:
+            translateY(0);
+
     }
 
 }
@@ -200,7 +214,8 @@ body{
 
     gap:8px;
 
-    transition:.2s ease;
+    transition:
+        .2s ease;
 
     box-shadow:
         0 5px 12px
@@ -216,73 +231,63 @@ body{
 
     background:#1d4ed8;
 
-    transform:translateY(-2px);
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(30,58,138,.25);
 
 }
 
 
 /* =========================================================
-   LOAD REMAINING BUTTON
+   YEAR SELECTOR
 ========================================================= */
 
-.load-more-button{
+.year-selector{
 
-    background:
-        linear-gradient(
-            135deg,
-            #1e3a8a,
-            #2563eb
-        );
+    background:#fff;
 
-    color:#fff;
-
-    border:none;
+    border:
+        1px solid
+        #dbe3ee;
 
     border-radius:12px;
 
     padding:
         10px
-        16px;
+        14px;
 
-    font-size:11px;
+    color:#1e3a8a;
+
+    font-size:12px;
 
     font-weight:900;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
+    outline:none;
 
     cursor:pointer;
 
     transition:.2s ease;
 
-    box-shadow:
-        0 6px 14px
-        rgba(37,99,235,.20);
+    min-width:150px;
 
 }
 
-.load-more-button:hover:not(:disabled){
+.year-selector:hover{
 
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 9px 18px
-        rgba(37,99,235,.28);
+    border-color:#93c5fd;
 
 }
 
-.load-more-button:disabled{
+.year-selector:focus{
 
-    opacity:.6;
+    border-color:#60a5fa;
 
-    cursor:not-allowed;
-
-    transform:none;
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.10);
 
 }
 
@@ -303,13 +308,15 @@ body{
 
     padding:17px;
 
-    transition:.25s ease;
+    transition:
+        .25s ease;
 
 }
 
 .stat-card:hover{
 
-    transform:translateY(-2px);
+    transform:
+        translateY(-2px);
 
     box-shadow:
         0 10px 20px
@@ -353,8 +360,6 @@ table{
 
     border-spacing:0;
 
-    table-layout:fixed;
-
 }
 
 thead{
@@ -388,15 +393,12 @@ thead th{
 }
 
 
-/* =========================================================
-   SORT BUTTON
-========================================================= */
-
 .sort-button{
 
     width:100%;
 
-    padding:14px;
+    padding:
+        14px;
 
     background:transparent;
 
@@ -456,6 +458,8 @@ thead th{
 
     opacity:.35;
 
+    transition:.2s ease;
+
 }
 
 .sort-button:hover .sort-icon{
@@ -470,10 +474,6 @@ thead th{
 
 }
 
-
-/* =========================================================
-   TABLE BODY
-========================================================= */
 
 tbody td{
 
@@ -492,8 +492,6 @@ tbody td{
     font-weight:500;
 
     vertical-align:middle;
-
-    overflow:hidden;
 
 }
 
@@ -519,7 +517,7 @@ tbody tr:last-child td{
 
 
 /* =========================================================
-   UNIT
+   UNIT BADGE
 ========================================================= */
 
 .unit-badge{
@@ -550,7 +548,7 @@ tbody tr:last-child td{
 
 
 /* =========================================================
-   STATUS
+   STATUS BADGE
 ========================================================= */
 
 .status-badge{
@@ -598,6 +596,41 @@ tbody tr:last-child td{
     border:
         1px solid
         #a7f3d0;
+
+}
+
+
+/* =========================================================
+   PERIODIC SERVICE
+========================================================= */
+
+.periodic-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+        5px
+        9px;
+
+    border-radius:8px;
+
+    background:#f8fafc;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    color:#64748b;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    letter-spacing:.03em;
 
 }
 
@@ -719,7 +752,7 @@ select.filter-input{
 
 
 /* =========================================================
-   INITIAL LOADING
+   LOADING
 ========================================================= */
 
 #loading{
@@ -750,330 +783,6 @@ select.filter-input{
 
 
 /* =========================================================
-   INITIAL PROGRESS
-========================================================= */
-
-.progress-wrapper{
-
-    width:420px;
-
-    max-width:90%;
-
-    margin-top:22px;
-
-}
-
-.progress-track{
-
-    width:100%;
-
-    height:10px;
-
-    background:#e2e8f0;
-
-    border-radius:999px;
-
-    overflow:hidden;
-
-}
-
-.progress-bar{
-
-    width:0%;
-
-    height:100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #1e3a8a,
-            #2563eb
-        );
-
-    border-radius:999px;
-
-    transition:
-        width
-        .35s
-        ease;
-
-}
-
-.progress-percent{
-
-    margin-top:9px;
-
-    text-align:center;
-
-    font-size:12px;
-
-    font-weight:900;
-
-    color:#1e3a8a;
-
-}
-
-
-/* =========================================================
-   FLOATING DATA LOADING PANEL
-========================================================= */
-
-#floatingLoader{
-
-    position:fixed;
-
-    right:24px;
-
-    bottom:24px;
-
-    width:360px;
-
-    max-width:calc(100vw - 48px);
-
-    background:
-        rgba(255,255,255,.97);
-
-    border:
-        1px solid
-        #dbeafe;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 20px 45px
-        rgba(15,23,42,.18);
-
-    padding:18px;
-
-    z-index:9999;
-
-    display:none;
-
-    backdrop-filter:blur(12px);
-
-}
-
-#floatingLoader.show{
-
-    display:block;
-
-    animation:
-        floatingIn
-        .25s
-        ease;
-
-}
-
-@keyframes floatingIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(12px)
-            scale(.97);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
-}
-
-.floating-header{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:12px;
-
-}
-
-.floating-title{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-}
-
-.floating-icon{
-
-    width:34px;
-
-    height:34px;
-
-    border-radius:10px;
-
-    background:#eff6ff;
-
-    color:#1e3a8a;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-.floating-title-text{
-
-    font-size:11px;
-
-    font-weight:900;
-
-    color:#334155;
-
-}
-
-.floating-status{
-
-    font-size:9px;
-
-    color:#64748b;
-
-    margin-top:2px;
-
-    font-weight:600;
-
-}
-
-.floating-close{
-
-    width:28px;
-
-    height:28px;
-
-    border:none;
-
-    background:#f8fafc;
-
-    color:#64748b;
-
-    border-radius:8px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-}
-
-.floating-close:hover{
-
-    background:#f1f5f9;
-
-    color:#1e293b;
-
-}
-
-.floating-progress-track{
-
-    width:100%;
-
-    height:9px;
-
-    background:#e2e8f0;
-
-    border-radius:999px;
-
-    overflow:hidden;
-
-    margin-top:15px;
-
-}
-
-.floating-progress-bar{
-
-    width:0%;
-
-    height:100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #1e3a8a,
-            #2563eb
-        );
-
-    border-radius:999px;
-
-    transition:
-        width
-        .35s
-        ease;
-
-}
-
-.floating-progress-info{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-top:9px;
-
-}
-
-.floating-count{
-
-    font-size:10px;
-
-    color:#64748b;
-
-    font-weight:700;
-
-}
-
-.floating-percent{
-
-    font-size:12px;
-
-    color:#1e3a8a;
-
-    font-weight:900;
-
-}
-
-.floating-detail{
-
-    margin-top:10px;
-
-    padding-top:10px;
-
-    border-top:
-        1px solid
-        #f1f5f9;
-
-    font-size:9px;
-
-    color:#94a3b8;
-
-    line-height:1.5;
-
-}
-
-
-/* =========================================================
    EMPTY
 ========================================================= */
 
@@ -1091,34 +800,21 @@ select.filter-input{
 
 
 /* =========================================================
-   MAINTENANCE COLUMN
-========================================================= */
-
-.maintenance-cell{
-
-    width:100%;
-
-    max-width:300px;
-
-    line-height:1.5;
-
-    word-break:break-word;
-
-}
-
-
-/* =========================================================
    MOBILE FALLBACK
 ========================================================= */
 
 @media(max-width:1100px){
 
     html{
+
         min-width:0;
+
     }
 
     body{
+
         min-width:1100px;
+
     }
 
 }
@@ -1171,6 +867,7 @@ select.filter-input{
     "
 >
 
+
     <div class="mb-4 logo-wrapper">
 
         <div
@@ -1199,6 +896,7 @@ select.filter-input{
                 id="companyLogo"
                 onerror="handleLogoError()"
             >
+
 
             <div
                 id="logoFallback"
@@ -1310,6 +1008,7 @@ select.filter-input{
 
 <section>
 
+
     <div
         class="
             flex
@@ -1319,6 +1018,7 @@ select.filter-input{
             mb-6
         "
     >
+
 
         <div>
 
@@ -1360,89 +1060,137 @@ select.filter-input{
                     ml-1
                 "
             >
-                Daftar seluruh aktivitas maintenance unit yang tersimpan pada database.
+
+                Daftar seluruh histori maintenance unit
+                yang tersimpan pada database.
+
             </p>
 
         </div>
 
 
-        <button
-            onclick="goToDashboard()"
-            class="back-button"
-        >
+        <div class="flex items-center gap-3">
 
-            <i
-                data-lucide="arrow-left"
-                class="w-4 h-4"
-            ></i>
+            <!-- YEAR -->
 
-            Kembali
+            <div
+                class="
+                    flex
+                    items-center
+                    gap-2
+                "
+            >
 
-        </button>
+                <span
+                    class="
+                        text-[10px]
+                        font-black
+                        uppercase
+                        tracking-wider
+                        text-slate-400
+                    "
+                >
+                    Tahun
+                </span>
+
+
+                <select
+                    id="yearSelector"
+                    class="year-selector"
+                    onchange="changeYear()"
+                >
+
+                    <option value="2026">
+                        2026
+                    </option>
+
+                    <option value="2025">
+                        2025
+                    </option>
+
+                    <option value="2024">
+                        2024
+                    </option>
+
+                    <option value="2023">
+                        2023
+                    </option>
+
+                    <option value="2022">
+                        2022
+                    </option>
+
+                    <option value="2021">
+                        2021
+                    </option>
+
+                    <option value="2020">
+                        2020
+                    </option>
+
+                    <option value="2019">
+                        2019
+                    </option>
+
+                    <!-- SELURUH DATA PALING BAWAH -->
+
+                    <option value="ALL">
+                        Seluruh Data
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                onclick="goToDashboard()"
+                class="back-button"
+            >
+
+                <i
+                    data-lucide="arrow-left"
+                    class="w-4 h-4"
+                ></i>
+
+                Kembali
+
+            </button>
+
+        </div>
+
 
     </div>
 
 
     <!-- =================================================
-         INITIAL LOADING
+         LOADING
     ================================================= -->
 
     <div id="loading">
 
         <i
-            data-lucide="database"
+            data-lucide="loader-circle"
             class="
                 w-9
                 h-9
-                text-blue-700
-                animate-pulse
+                animate-spin
+                text-amber-500
             "
         ></i>
 
 
         <p
+            id="loadingText"
             class="
-                font-bold
+                font-semibold
                 text-sm
-                text-slate-500
+                text-slate-400
                 mt-3
             "
         >
             Memuat data maintenance...
         </p>
-
-
-        <p
-            class="
-                text-[11px]
-                text-slate-400
-                mt-1
-            "
-        >
-            Data sedang diproses
-        </p>
-
-
-        <div class="progress-wrapper">
-
-            <div class="progress-track">
-
-                <div
-                    id="progressBar"
-                    class="progress-bar"
-                ></div>
-
-            </div>
-
-
-            <div
-                id="progressPercent"
-                class="progress-percent"
-            >
-                0%
-            </div>
-
-        </div>
 
     </div>
 
@@ -1467,6 +1215,9 @@ select.filter-input{
             "
         >
 
+
+            <!-- TOTAL -->
+
             <div class="stat-card">
 
                 <p
@@ -1481,6 +1232,7 @@ select.filter-input{
                     Total Activity
                 </p>
 
+
                 <p
                     id="totalData"
                     class="
@@ -1493,8 +1245,23 @@ select.filter-input{
                     -
                 </p>
 
+
+                <p
+                    id="selectedYearLabel"
+                    class="
+                        text-[9px]
+                        text-slate-400
+                        font-bold
+                        mt-1
+                    "
+                >
+                    Tahun 2026
+                </p>
+
             </div>
 
+
+            <!-- FORKLIFT -->
 
             <div class="stat-card">
 
@@ -1510,20 +1277,45 @@ select.filter-input{
                     Forklift
                 </p>
 
-                <p
-                    id="forkliftTotal"
+
+                <div
                     class="
-                        text-3xl
-                        font-black
-                        text-orange-600
+                        flex
+                        items-end
+                        gap-2
                         mt-2
                     "
                 >
-                    -
-                </p>
+
+                    <p
+                        id="forkliftTotal"
+                        class="
+                            text-3xl
+                            font-black
+                            text-orange-600
+                        "
+                    >
+                        -
+                    </p>
+
+
+                    <span
+                        class="
+                            mb-1
+                            text-[11px]
+                            font-black
+                            text-slate-400
+                        "
+                    >
+                        F
+                    </span>
+
+                </div>
 
             </div>
 
+
+            <!-- WHEELLOADER -->
 
             <div class="stat-card">
 
@@ -1539,20 +1331,45 @@ select.filter-input{
                     Wheelloader
                 </p>
 
-                <p
-                    id="wheelloaderTotal"
+
+                <div
                     class="
-                        text-3xl
-                        font-black
-                        text-indigo-600
+                        flex
+                        items-end
+                        gap-2
                         mt-2
                     "
                 >
-                    -
-                </p>
+
+                    <p
+                        id="wheelloaderTotal"
+                        class="
+                            text-3xl
+                            font-black
+                            text-indigo-600
+                        "
+                    >
+                        -
+                    </p>
+
+
+                    <span
+                        class="
+                            mb-1
+                            text-[11px]
+                            font-black
+                            text-slate-400
+                        "
+                    >
+                        W
+                    </span>
+
+                </div>
 
             </div>
 
+
+            <!-- DUMPTRUCK -->
 
             <div class="stat-card">
 
@@ -1568,20 +1385,45 @@ select.filter-input{
                     Dumptruck
                 </p>
 
-                <p
-                    id="dumptruckTotal"
+
+                <div
                     class="
-                        text-3xl
-                        font-black
-                        text-rose-600
+                        flex
+                        items-end
+                        gap-2
                         mt-2
                     "
                 >
-                    -
-                </p>
+
+                    <p
+                        id="dumptruckTotal"
+                        class="
+                            text-3xl
+                            font-black
+                            text-rose-600
+                        "
+                    >
+                        -
+                    </p>
+
+
+                    <span
+                        class="
+                            mb-1
+                            text-[11px]
+                            font-black
+                            text-slate-400
+                        "
+                    >
+                        D
+                    </span>
+
+                </div>
 
             </div>
 
+
+            <!-- EXCAVATOR -->
 
             <div class="stat-card">
 
@@ -1597,25 +1439,49 @@ select.filter-input{
                     Excavator
                 </p>
 
-                <p
-                    id="excavatorTotal"
+
+                <div
                     class="
-                        text-3xl
-                        font-black
-                        text-emerald-600
+                        flex
+                        items-end
+                        gap-2
                         mt-2
                     "
                 >
-                    -
-                </p>
+
+                    <p
+                        id="excavatorTotal"
+                        class="
+                            text-3xl
+                            font-black
+                            text-emerald-600
+                        "
+                    >
+                        -
+                    </p>
+
+
+                    <span
+                        class="
+                            mb-1
+                            text-[11px]
+                            font-black
+                            text-slate-400
+                        "
+                    >
+                        E
+                    </span>
+
+                </div>
 
             </div>
+
 
         </div>
 
 
         <!-- =================================================
-             FILTER
+             FILTER PANEL
         ================================================= -->
 
         <div
@@ -1629,6 +1495,7 @@ select.filter-input{
                 shadow-sm
             "
         >
+
 
             <div
                 class="
@@ -1692,6 +1559,9 @@ select.filter-input{
                 "
             >
 
+
+                <!-- SEARCH -->
+
                 <div>
 
                     <label
@@ -1741,6 +1611,8 @@ select.filter-input{
                 </div>
 
 
+                <!-- UNIT TYPE -->
+
                 <div>
 
                     <label
@@ -1773,7 +1645,7 @@ select.filter-input{
                         </option>
 
                         <option value="W">
-                            Wheeloader
+                            Wheelloader
                         </option>
 
                         <option value="D">
@@ -1788,6 +1660,8 @@ select.filter-input{
 
                 </div>
 
+
+                <!-- STATUS -->
 
                 <div>
 
@@ -1829,7 +1703,14 @@ select.filter-input{
                 </div>
 
 
-                <div class="flex items-end">
+                <!-- RESET -->
+
+                <div
+                    class="
+                        flex
+                        items-end
+                    "
+                >
 
                     <button
                         onclick="resetFilters()"
@@ -1863,6 +1744,7 @@ select.filter-input{
 
                 </div>
 
+
             </div>
 
         </div>
@@ -1875,6 +1757,8 @@ select.filter-input{
         <div class="table-panel">
 
 
+            <!-- TABLE HEADER -->
+
             <div
                 class="
                     px-5
@@ -1884,7 +1768,6 @@ select.filter-input{
                     flex
                     items-center
                     justify-between
-                    gap-4
                 "
             >
 
@@ -1897,7 +1780,7 @@ select.filter-input{
                             text-sm
                         "
                     >
-                        Daftar Maintenance Unit
+                        Histori Maintenance
                     </h3>
 
 
@@ -1916,53 +1799,60 @@ select.filter-input{
                 </div>
 
 
-                <button
-                    id="loadRemainingButton"
-                    onclick="startManualLoading()"
-                    class="load-more-button"
+                <div
+                    class="
+                        flex
+                        items-center
+                        gap-2
+                        text-[10px]
+                        text-slate-400
+                        font-semibold
+                    "
                 >
 
                     <i
-                        data-lucide="download"
-                        class="w-4 h-4"
+                        data-lucide="database"
+                        class="w-3.5 h-3.5"
                     ></i>
 
-                    <span id="loadRemainingButtonText">
-                        Muat Sisa Data
+                    Database Spreadsheet
+
+                    <span
+                        id="activeYearBadge"
+                        class="
+                            bg-blue-50
+                            text-blue-700
+                            px-2
+                            py-1
+                            rounded-md
+                            font-black
+                        "
+                    >
+                        2026
                     </span>
 
-                </button>
-
+                </div>
 
             </div>
 
 
-            <div class="overflow-x-auto">
+            <!-- TABLE -->
+
+            <div
+                class="overflow-x-auto"
+            >
 
                 <table>
-
-                    <colgroup>
-
-                        <col style="width:60px">
-
-                        <col style="width:145px">
-
-                        <col style="width:140px">
-
-                        <col style="width:290px">
-
-                        <col style="width:180px">
-
-                        <col style="width:120px">
-
-                    </colgroup>
-
 
                     <thead>
 
                         <tr>
 
-                            <th>
+                            <!-- NUMBER -->
+
+                            <th
+                                style="width:55px"
+                            >
 
                                 <button
                                     class="sort-button"
@@ -1982,7 +1872,11 @@ select.filter-input{
                             </th>
 
 
-                            <th>
+                            <!-- DATE -->
+
+                            <th
+                                style="width:150px"
+                            >
 
                                 <button
                                     class="sort-button"
@@ -2002,7 +1896,11 @@ select.filter-input{
                             </th>
 
 
-                            <th>
+                            <!-- UNIT -->
+
+                            <th
+                                style="width:120px"
+                            >
 
                                 <button
                                     class="sort-button"
@@ -2021,6 +1919,8 @@ select.filter-input{
 
                             </th>
 
+
+                            <!-- MAINTENANCE -->
 
                             <th>
 
@@ -2042,12 +1942,16 @@ select.filter-input{
                             </th>
 
 
-                            <th>
+                            <!-- PERIODIC -->
+
+                            <th
+                                style="width:160px"
+                            >
 
                                 <button
                                     class="sort-button"
-                                    onclick="sortBy('periodicService')"
-                                    data-sort-key="periodicService"
+                                    onclick="sortBy('periodic')"
+                                    data-sort-key="periodic"
                                 >
 
                                     <span>Periodic Service</span>
@@ -2062,7 +1966,11 @@ select.filter-input{
                             </th>
 
 
-                            <th>
+                            <!-- STATUS -->
+
+                            <th
+                                style="width:120px"
+                            >
 
                                 <button
                                     class="sort-button"
@@ -2093,9 +2001,18 @@ select.filter-input{
             </div>
 
 
-            <div id="emptyState">
+            <!-- EMPTY -->
 
-                <div class="py-16 text-center">
+            <div
+                id="emptyState"
+            >
+
+                <div
+                    class="
+                        py-16
+                        text-center
+                    "
+                >
 
                     <div
                         class="
@@ -2143,6 +2060,8 @@ select.filter-input{
             </div>
 
 
+            <!-- PAGINATION -->
+
             <div
                 class="
                     px-5
@@ -2174,18 +2093,26 @@ select.filter-input{
                         items-center
                         gap-1
                     "
-                ></div>
+                >
+                </div>
 
             </div>
 
+
         </div>
+
 
     </div>
 
 </section>
 
+
 </main>
 
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer
     class="
@@ -2205,12 +2132,19 @@ select.filter-input{
             uppercase
         "
     >
+
         &copy; 2026 Paperless Project - PT TSI.
         All rights reserved.
+
     </p>
 
 
-    <p class="text-[10px] mt-1">
+    <p
+        class="
+            text-[10px]
+            mt-1
+        "
+    >
 
         System Architecture by:
 
@@ -2231,6 +2165,7 @@ select.filter-input{
                 text-amber-600
                 font-bold
                 uppercase
+                tracking-tighter
             "
         >
             Project 2.0
@@ -2241,105 +2176,6 @@ select.filter-input{
 </footer>
 
 
-<!-- =====================================================
-     FLOATING LOADER
-===================================================== -->
-
-<div
-    id="floatingLoader"
->
-
-    <div class="floating-header">
-
-        <div class="floating-title">
-
-            <div class="floating-icon">
-
-                <i
-                    id="floatingIcon"
-                    data-lucide="download"
-                    class="w-4 h-4"
-                ></i>
-
-            </div>
-
-            <div>
-
-                <div
-                    id="floatingTitle"
-                    class="floating-title-text"
-                >
-                    Mengambil data maintenance
-                </div>
-
-                <div
-                    id="floatingStatus"
-                    class="floating-status"
-                >
-                    Mempersiapkan proses...
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <button
-            onclick="hideFloatingLoader()"
-            class="floating-close"
-            title="Tutup"
-        >
-
-            <i
-                data-lucide="x"
-                class="w-4 h-4"
-            ></i>
-
-        </button>
-
-    </div>
-
-
-    <div class="floating-progress-track">
-
-        <div
-            id="floatingProgressBar"
-            class="floating-progress-bar"
-        ></div>
-
-    </div>
-
-
-    <div class="floating-progress-info">
-
-        <span
-            id="floatingCount"
-            class="floating-count"
-        >
-            0 / 0 data
-        </span>
-
-
-        <span
-            id="floatingPercent"
-            class="floating-percent"
-        >
-            0%
-        </span>
-
-    </div>
-
-
-    <div
-        id="floatingDetail"
-        class="floating-detail"
-    >
-        Data yang telah berhasil diambil akan disimpan ke cache browser.
-    </div>
-
-</div>
-
-
 <script>
 
 /* =========================================================
@@ -2347,72 +2183,14 @@ select.filter-input{
 ========================================================= */
 
 const API_URL =
-'https://script.google.com/macros/s/AKfycby2DRub26paNPyOjiJXSWIRP6d8ConfgMl-i7y4IIhy6FJ6TdyHzUkPNfarePCCfarz/exec';
+'https://script.google.com/macros/s/AKfycbzOF2dJ29DEp2opZ41wz-2zpG0BJXYprI5AkgSdmeipmYeCnqWrjigS_GYl1Olx1HuRfQ/exec';
 
 
 const DASHBOARD_URL =
-'maintenance.html';
+'lph.html';
 
 
-/*
-    Jumlah baris yang ditampilkan
-    pada tabel webapp.
-*/
-
-const ROWS_PER_PAGE =
-15;
-
-
-/*
-    Ukuran batch API.
-
-    Sengaja dibuat 500 agar lebih aman
-    terhadap timeout Google Apps Script.
-*/
-
-const API_PAGE_SIZE =
-500;
-
-
-/*
-    Data dimulai dari row 3
-    pada Google Sheet.
-*/
-
-const DATA_START_ROW =
-3;
-
-
-/*
-    IndexedDB
-*/
-
-const DB_NAME =
-'PTTSI_MAINTENANCE_CACHE';
-
-
-const DB_VERSION =
-2;
-
-
-const DB_STORE =
-'maintenance';
-
-
-const CACHE_KEY =
-'maintenance_state';
-
-
-/*
-    Retry & timeout
-*/
-
-const MAX_RETRIES =
-5;
-
-
-const REQUEST_TIMEOUT =
-30000;
+const ROWS_PER_PAGE = 15;
 
 
 /* =========================================================
@@ -2427,28 +2205,18 @@ let filteredData = [];
 
 let currentPage = 1;
 
-let totalServerRows = 0;
-
-let currentApiPage = 1;
-
-let totalApiPages = 0;
-
-let nextRowToLoad = DATA_START_ROW;
-
-let loadingFinished = false;
-
-let backgroundLoading = false;
-
-let initialLoaded = false;
+let currentYear = '2026';
 
 
-/* =========================================================
-   SORT
-========================================================= */
+/*
+   DEFAULT SORTING
 
-let sortKey = null;
+   Date terbaru -> terlama
+*/
 
-let sortDirection = null;
+let sortKey = 'date';
+
+let sortDirection = 'desc';
 
 
 /* =========================================================
@@ -2469,654 +2237,151 @@ function goToDashboard(){
 
 function handleLogoError(){
 
-    document
-        .getElementById(
+    const logo =
+        document.getElementById(
             'companyLogo'
-        )
-        .classList
-        .add('hidden');
+        );
 
 
-    document
-        .getElementById(
+    const fallback =
+        document.getElementById(
             'logoFallback'
-        )
-        .classList
-        .remove('hidden');
+        );
+
+
+    if(logo){
+
+        logo.classList.add(
+            'hidden'
+        );
+
+    }
+
+
+    if(fallback){
+
+        fallback.classList.remove(
+            'hidden'
+        );
+
+        fallback.classList.add(
+            'flex'
+        );
+
+    }
 
 }
 
 
 /* =========================================================
-   INDEXED DB
+   CHANGE YEAR
 ========================================================= */
 
-function openDatabase(){
+function changeYear(){
 
-    return new Promise(
-        (
-            resolve,
-            reject
-        )=>{
-
-            const request =
-                indexedDB.open(
-                    DB_NAME,
-                    DB_VERSION
-                );
+    const selector =
+        document.getElementById(
+            'yearSelector'
+        );
 
 
-            request.onupgradeneeded =
-                event=>{
-
-                    const db =
-                        event.target.result;
+    const year =
+        selector.value;
 
 
-                    if(
-                        !db.objectStoreNames.contains(
-                            DB_STORE
-                        )
-                    ){
+    loadYearData(
+        year
+    );
 
-                        db.createObjectStore(
-                            DB_STORE
-                        );
-
-                    }
-
-                };
+}
 
 
-            request.onsuccess =
-                ()=>{
+/* =========================================================
+   LOAD YEAR DATA
+========================================================= */
 
-                    resolve(
-                        request.result
-                    );
+async function loadYearData(
+    year
+){
 
-                };
+    currentYear =
+        String(year);
 
 
-            request.onerror =
-                ()=>{
+    /*
+       Tampilkan loading.
+    */
 
-                    reject(
-                        request.error
-                    );
+    showLoading(
+        currentYear === 'ALL'
+            ?
+            'Memuat seluruh data maintenance...'
+            :
+            `Memuat data maintenance ${currentYear}...`
+    );
 
-                };
+
+    /*
+       Reset data sementara.
+    */
+
+    allData = [];
+
+    filteredData = [];
+
+    currentPage = 1;
+
+
+    /*
+       DEFAULT SORTING:
+       Date terbaru -> terlama
+    */
+
+    sortKey = 'date';
+
+    sortDirection = 'desc';
+
+
+    try{
+
+        let requestUrl;
+
+
+        /*
+           Jika ALL:
+
+           Ambil seluruh data dari API
+           tanpa parameter year.
+        */
+
+        if(
+            currentYear === 'ALL'
+        ){
+
+            requestUrl =
+                API_URL;
 
         }
-    );
 
-}
+        else{
 
+            requestUrl =
+                `${API_URL}?year=${encodeURIComponent(currentYear)}`;
 
-/* =========================================================
-   SAVE CACHE
-========================================================= */
-
-async function saveCache(){
-
-    try{
-
-        const db =
-            await openDatabase();
-
-
-        return new Promise(
-            (
-                resolve,
-                reject
-            )=>{
-
-                const transaction =
-                    db.transaction(
-                        DB_STORE,
-                        'readwrite'
-                    );
-
-
-                const store =
-                    transaction.objectStore(
-                        DB_STORE
-                    );
-
-
-                store.put(
-                    {
-                        data:allData,
-
-                        nextRow:nextRowToLoad,
-
-                        currentApiPage:
-                            currentApiPage,
-
-                        totalRows:
-                            totalServerRows,
-
-                        totalApiPages:
-                            totalApiPages,
-
-                        finished:
-                            loadingFinished,
-
-                        timestamp:
-                            Date.now()
-                    },
-                    CACHE_KEY
-                );
-
-
-                transaction.oncomplete =
-                    ()=>{
-
-                        db.close();
-
-                        resolve();
-
-                    };
-
-
-                transaction.onerror =
-                    ()=>{
-
-                        db.close();
-
-                        reject(
-                            transaction.error
-                        );
-
-                    };
-
-            }
-        );
-
-    }
-    catch(error){
-
-        console.warn(
-            'Cache save failed:',
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD CACHE
-========================================================= */
-
-async function loadCache(){
-
-    try{
-
-        const db =
-            await openDatabase();
-
-
-        return new Promise(
-            (
-                resolve,
-                reject
-            )=>{
-
-                const transaction =
-                    db.transaction(
-                        DB_STORE,
-                        'readonly'
-                    );
-
-
-                const store =
-                    transaction.objectStore(
-                        DB_STORE
-                    );
-
-
-                const request =
-                    store.get(
-                        CACHE_KEY
-                    );
-
-
-                request.onsuccess =
-                    ()=>{
-
-                        db.close();
-
-                        resolve(
-                            request.result ||
-                            null
-                        );
-
-                    };
-
-
-                request.onerror =
-                    ()=>{
-
-                        db.close();
-
-                        reject(
-                            request.error
-                        );
-
-                    };
-
-            }
-        );
-
-    }
-    catch(error){
-
-        console.warn(
-            'Cache load failed:',
-            error
-        );
-
-        return null;
-
-    }
-
-}
-
-
-/* =========================================================
-   CLEAR CACHE
-========================================================= */
-
-async function clearCache(){
-
-    try{
-
-        const db =
-            await openDatabase();
-
-
-        return new Promise(
-            (
-                resolve,
-                reject
-            )=>{
-
-                const transaction =
-                    db.transaction(
-                        DB_STORE,
-                        'readwrite'
-                    );
-
-
-                transaction
-                    .objectStore(DB_STORE)
-                    .delete(
-                        CACHE_KEY
-                    );
-
-
-                transaction.oncomplete =
-                    ()=>{
-
-                        db.close();
-
-                        resolve();
-
-                    };
-
-
-                transaction.onerror =
-                    ()=>{
-
-                        db.close();
-
-                        reject(
-                            transaction.error
-                        );
-
-                    };
-
-            }
-        );
-
-    }
-    catch(error){
-
-        console.warn(
-            'Cache clear failed:',
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-function calculateProgress(){
-
-    if(
-        totalServerRows <= 0
-    ){
-
-        return 0;
-
-    }
-
-
-    return Math.round(
-        Math.min(
-            100,
-            (
-                allData.length /
-                totalServerRows
-            ) *
-            100
-        )
-    );
-
-}
-
-
-function updateProgress(){
-
-    let percent =
-        calculateProgress();
-
-
-    if(
-        loadingFinished
-    ){
-
-        percent = 100;
-
-    }
-
-
-    const progressBar =
-        document.getElementById(
-            'progressBar'
-        );
-
-
-    const progressPercent =
-        document.getElementById(
-            'progressPercent'
-        );
-
-
-    if(progressBar){
-
-        progressBar.style.width =
-            percent + '%';
-
-    }
-
-
-    if(progressPercent){
-
-        progressPercent.textContent =
-            percent + '%';
-
-    }
-
-
-    updateFloatingProgress();
-
-}
-
-
-/* =========================================================
-   FLOATING LOADER
-========================================================= */
-
-function showFloatingLoader(){
-
-    document
-        .getElementById(
-            'floatingLoader'
-        )
-        .classList
-        .add('show');
-
-
-    lucide.createIcons();
-
-}
-
-
-function hideFloatingLoader(){
-
-    document
-        .getElementById(
-            'floatingLoader'
-        )
-        .classList
-        .remove('show');
-
-}
-
-
-function updateFloatingProgress(){
-
-    const percent =
-        loadingFinished
-        ? 100
-        : calculateProgress();
-
-
-    const bar =
-        document.getElementById(
-            'floatingProgressBar'
-        );
-
-
-    const percentElement =
-        document.getElementById(
-            'floatingPercent'
-        );
-
-
-    const countElement =
-        document.getElementById(
-            'floatingCount'
-        );
-
-
-    if(bar){
-
-        bar.style.width =
-            percent + '%';
-
-    }
-
-
-    if(percentElement){
-
-        percentElement.textContent =
-            percent + '%';
-
-    }
-
-
-    if(countElement){
-
-        countElement.textContent =
-            `${allData.length.toLocaleString('id-ID')} / ${totalServerRows.toLocaleString('id-ID')} data`;
-
-    }
-
-}
-
-
-function setFloatingStatus(
-    title,
-    status,
-    detail
-){
-
-    const titleElement =
-        document.getElementById(
-            'floatingTitle'
-        );
-
-
-    const statusElement =
-        document.getElementById(
-            'floatingStatus'
-        );
-
-
-    const detailElement =
-        document.getElementById(
-            'floatingDetail'
-        );
-
-
-    if(titleElement){
-
-        titleElement.textContent =
-            title;
-
-    }
-
-
-    if(statusElement){
-
-        statusElement.textContent =
-            status;
-
-    }
-
-
-    if(detailElement){
-
-        detailElement.textContent =
-            detail;
-
-    }
-
-}
-
-
-function showFloatingComplete(){
-
-    const icon =
-        document.getElementById(
-            'floatingIcon'
-        );
-
-
-    if(icon){
-
-        icon.setAttribute(
-            'data-lucide',
-            'circle-check'
-        );
-
-    }
-
-
-    setFloatingStatus(
-        'Pengambilan selesai',
-        'Seluruh data berhasil dimuat.',
-        `${allData.length.toLocaleString('id-ID')} aktivitas telah tersedia di webapp.`
-    );
-
-
-    updateFloatingProgress();
-
-    lucide.createIcons();
-
-}
-
-
-function showFloatingError(
-    error
-){
-
-    const icon =
-        document.getElementById(
-            'floatingIcon'
-        );
-
-
-    if(icon){
-
-        icon.setAttribute(
-            'data-lucide',
-            'alert-triangle'
-        );
-
-    }
-
-
-    setFloatingStatus(
-        'Pengambilan terhenti',
-        'Sebagian data berhasil disimpan.',
-        `Posisi terakhir: ${allData.length.toLocaleString('id-ID')} dari ${totalServerRows.toLocaleString('id-ID')} data. Tekan "Lanjutkan Pengambilan" untuk mencoba lagi.`
-    );
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   REQUEST WITH RETRY
-========================================================= */
-
-async function fetchWithRetry(
-    url,
-    attempt = 1
-){
-
-    let controller = null;
-
-    let timeoutId = null;
-
-
-    try{
-
-        controller =
-            new AbortController();
-
-
-        timeoutId =
-            setTimeout(
-                ()=>{
-                    controller.abort();
-                },
-                REQUEST_TIMEOUT
-            );
+        }
 
 
         const response =
             await fetch(
-                url,
+                requestUrl,
                 {
                     method:'GET',
-                    cache:'no-store',
-                    signal:
-                        controller.signal
+                    cache:'no-store'
                 }
             );
 
 
-        clearTimeout(
-            timeoutId
-        );
-
-
-        if(
-            !response.ok
-        ){
+        if(!response.ok){
 
             throw new Error(
                 `HTTP Error ${response.status}`
@@ -3129,337 +2394,179 @@ async function fetchWithRetry(
             await response.json();
 
 
-        return result;
-
-    }
-    catch(error){
-
         if(
-            timeoutId
+            !result ||
+            result.success !== true
         ){
 
-            clearTimeout(
-                timeoutId
+            throw new Error(
+                result?.error ||
+                'API mengembalikan response tidak valid.'
             );
 
         }
-
-
-        console.warn(
-            `Request attempt ${attempt} failed:`,
-            error.message
-        );
-
-
-        if(
-            attempt >= MAX_RETRIES
-        ){
-
-            throw error;
-
-        }
-
-
-        const delay =
-            Math.min(
-                15000,
-                1500 *
-                Math.pow(
-                    2,
-                    attempt - 1
-                )
-            );
-
-
-        await sleep(
-            delay
-        );
-
-
-        return fetchWithRetry(
-            url,
-            attempt + 1
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   SLEEP
-========================================================= */
-
-function sleep(
-    milliseconds
-){
-
-    return new Promise(
-        resolve=>
-            setTimeout(
-                resolve,
-                milliseconds
-            )
-    );
-
-}
-
-
-/* =========================================================
-   API URL
-========================================================= */
-
-function getApiUrl(startRow){
-
-    return (
-        API_URL +
-        '?action=data' +
-        '&startRow=' +
-        encodeURIComponent(startRow) +
-        '&limit=' +
-        encodeURIComponent(API_PAGE_SIZE) +
-        '&_=' +
-        Date.now()
-    );
-
-}
-
-
-/* =========================================================
-   LOAD INITIAL DATA
-========================================================= */
-
-async function loadInitialData(){
-
-    try{
-
-        const cache =
-            await loadCache();
-
-
-        /*
-            =================================================
-            CACHE TERSEDIA
-            =================================================
-        */
-
-        if(
-            cache &&
-            Array.isArray(
-                cache.data
-            ) &&
-            cache.data.length > 0
-        ){
-
-            console.log(
-                'Restoring cached data:',
-                cache.data.length
-            );
-
-
-            allData =
-                cache.data;
-
-
-            filteredData =
-                [...allData];
-
-
-            nextRowToLoad =
-                Number(
-                    cache.nextRow ||
-                    DATA_START_ROW
-                );
-
-
-            currentApiPage =
-                Number(
-                    cache.currentApiPage ||
-                    1
-                );
-
-
-            totalServerRows =
-                Number(
-                    cache.totalRows ||
-                    allData.length
-                );
-
-
-            totalApiPages =
-                Number(
-                    cache.totalApiPages ||
-                    Math.ceil(
-                        totalServerRows /
-                        API_PAGE_SIZE
-                    )
-                );
-
-
-            loadingFinished =
-                cache.finished === true;
-
-
-            /*
-                Jika cache ternyata lebih sedikit
-                dari total server, jangan percaya
-                flag finished lama.
-            */
-
-            if(
-                totalServerRows > 0 &&
-                allData.length <
-                totalServerRows
-            ){
-
-                loadingFinished =
-                    false;
-
-            }
-
-
-            updateProgress();
-
-
-            updateStatistics(
-                allData
-            );
-
-
-            renderTable();
-
-
-            document
-                .getElementById(
-                    'loading'
-                )
-                .style
-                .display =
-                    'none';
-
-
-            document
-                .getElementById(
-                    'tableContent'
-                )
-                .classList
-                .add('show');
-
-
-            initialLoaded =
-                true;
-
-
-            updateLoadButton();
-
-
-            return;
-
-        }
-
-
-        /*
-            =================================================
-            TIDAK ADA CACHE
-            =================================================
-        */
-
-        const result =
-            await fetchWithRetry(
-                getApiUrl(
-                    DATA_START_ROW
-                )
-            );
-
-
-        validateApiResult(
-            result
-        );
 
 
         apiData =
             result;
 
 
-        totalServerRows =
-            Number(
-                result.total || 0
-            );
-
-
-        totalApiPages =
-            Number(
-                result.totalPages ||
-                Math.ceil(
-                    totalServerRows /
-                    API_PAGE_SIZE
-                )
-            );
-
-
-        currentApiPage =
-            Number(
-                result.page ||
-                1
-            );
-
-
-        allData =
-            convertApiData(
-                result.data
-            );
-
-
         /*
-            Row berikutnya.
-
-            Jika response memberi endRow,
-            gunakan itu sebagai sumber utama.
+           =================================================
+           MODE SELURUH DATA
+           =================================================
         */
 
         if(
-            Number.isFinite(
-                Number(
-                    result.endRow
-                )
-            )
+            currentYear === 'ALL'
         ){
 
-            nextRowToLoad =
-                Number(
-                    result.endRow
-                ) + 1;
+            const sheets =
+                result.sheets || {};
+
+
+            const years =
+                Object.keys(
+                    sheets
+                );
+
+
+            years.forEach(
+                yearKey=>{
+
+                    const sheet =
+                        sheets[
+                            yearKey
+                        ];
+
+
+                    if(
+                        !sheet ||
+                        !Array.isArray(
+                            sheet.data
+                        )
+                    ){
+
+                        return;
+
+                    }
+
+
+                    sheet.data.forEach(
+                        (
+                            row,
+                            index
+                        )=>{
+
+                            /*
+                               Tambahkan sourceYear
+                               untuk mengetahui data
+                               berasal dari sheet mana.
+                            */
+
+                            allData.push({
+
+                                originalIndex:
+                                    allData.length,
+
+                                sourceYear:
+                                    yearKey,
+
+                                date:
+                                    row[0] ?? '',
+
+                                unit:
+                                    row[1] ?? '',
+
+                                maintenance:
+                                    row[2] ?? '',
+
+                                periodic:
+                                    row[3] ?? '',
+
+                                status:
+                                    row[4] ?? ''
+
+                            });
+
+                        }
+                    );
+
+                }
+            );
 
         }
+
+
+        /*
+           =================================================
+           MODE TAHUN TERTENTU
+           =================================================
+        */
 
         else{
 
-            nextRowToLoad =
-                DATA_START_ROW +
-                allData.length;
+            const sheet =
+                result.sheets?.[
+                    currentYear
+                ];
+
+
+            if(!sheet){
+
+                throw new Error(
+                    `Data sheet ${currentYear} tidak ditemukan.`
+                );
+
+            }
+
+
+            const rows =
+                Array.isArray(
+                    sheet.data
+                )
+                ?
+                sheet.data
+                :
+                [];
+
+
+            allData =
+                rows.map(
+                    (
+                        row,
+                        index
+                    )=>({
+
+                        originalIndex:
+                            index,
+
+                        sourceYear:
+                            currentYear,
+
+                        date:
+                            row[0] ?? '',
+
+                        unit:
+                            row[1] ?? '',
+
+                        maintenance:
+                            row[2] ?? '',
+
+                        periodic:
+                            row[3] ?? '',
+
+                        status:
+                            row[4] ?? ''
+
+                    })
+                );
 
         }
-
-
-        loadingFinished =
-            (
-                allData.length >=
-                totalServerRows
-            ) ||
-            (
-                !result.data ||
-                result.data.length === 0
-            ) ||
-            (
-                result.hasMore === false
-            );
 
 
         filteredData =
             [...allData];
-
-
-        updateProgress();
 
 
         updateStatistics(
@@ -3467,46 +2574,31 @@ async function loadInitialData(){
         );
 
 
+        updateYearUI(
+            currentYear
+        );
+
+
+        clearFilters();
+
+
         renderTable();
 
 
-        document
-            .getElementById(
-                'loading'
-            )
-            .style
-            .display =
-                'none';
+        hideLoading();
 
-
-        document
-            .getElementById(
-                'tableContent'
-            )
-            .classList
-            .add('show');
-
-
-        initialLoaded =
-            true;
-
-
-        await saveCache();
-
-
-        updateLoadButton();
 
     }
     catch(error){
 
         console.error(
-            'Initial loading error:',
+            'Maintenance API Error:',
             error
         );
 
 
-        showLoadingError(
-            error
+        showError(
+            error.message
         );
 
     }
@@ -3515,431 +2607,53 @@ async function loadInitialData(){
 
 
 /* =========================================================
-   MANUAL LOAD BUTTON
+   SHOW LOADING
 ========================================================= */
 
-async function startManualLoading(){
+function showLoading(
+    message
+){
 
-    if(
-        backgroundLoading
-    ){
-
-        return;
-
-    }
-
-
-    if(
-        loadingFinished
-    ){
-
-        showFloatingLoader();
-
-
-        showFloatingComplete();
-
-
-        return;
-
-    }
-
-
-    await loadRemainingData();
-
-}
-
-
-/* =========================================================
-   LOAD REMAINING DATA
-========================================================= */
-
-async function loadRemainingData(){
-
-    if(
-        backgroundLoading
-    ){
-
-        return;
-
-    }
-
-
-    if(
-        loadingFinished
-    ){
-
-        updateLoadButton();
-
-        return;
-
-    }
-
-
-    backgroundLoading =
-        true;
-
-
-    const button =
+    const loading =
         document.getElementById(
-            'loadRemainingButton'
+            'loading'
         );
 
 
-    if(button){
+    const tableContent =
+        document.getElementById(
+            'tableContent'
+        );
 
-        button.disabled =
-            true;
+
+    const loadingText =
+        document.getElementById(
+            'loadingText'
+        );
+
+
+    if(loadingText){
+
+        loadingText.textContent =
+            message ||
+            'Memuat data...';
 
     }
 
 
-    showFloatingLoader();
+    if(loading){
 
-
-    setFloatingStatus(
-        'Mengambil sisa data',
-        'Menghubungi database...',
-        'Data diambil secara bertahap dan disimpan otomatis ke cache browser.'
-    );
-
-
-    try{
-
-        while(
-            !loadingFinished
-        ){
-
-            /*
-                Tampilkan posisi request.
-            */
-
-            setFloatingStatus(
-                'Mengambil sisa data',
-                `Mengambil data mulai dari row ${nextRowToLoad.toLocaleString('id-ID')}...`,
-                `Data yang sudah tersimpan: ${allData.length.toLocaleString('id-ID')} dari ${totalServerRows.toLocaleString('id-ID')}.`
-            );
-
-
-            console.log(
-                'Loading from row:',
-                nextRowToLoad
-            );
-
-
-            const requestStartRow =
-                nextRowToLoad;
-
-
-            const result =
-                await fetchWithRetry(
-                    getApiUrl(
-                        requestStartRow
-                    )
-                );
-
-
-            validateApiResult(
-                result
-            );
-
-
-            const newData =
-                convertApiData(
-                    result.data
-                );
-
-
-            /*
-                Update total dari server.
-            */
-
-            if(
-                Number.isFinite(
-                    Number(
-                        result.total
-                    )
-                )
-            ){
-
-                totalServerRows =
-                    Number(
-                        result.total
-                    );
-
-            }
-
-
-            if(
-                Number.isFinite(
-                    Number(
-                        result.totalPages
-                    )
-                )
-            ){
-
-                totalApiPages =
-                    Number(
-                        result.totalPages
-                    );
-
-            }
-
-
-            if(
-                Number.isFinite(
-                    Number(
-                        result.page
-                    )
-                )
-            ){
-
-                currentApiPage =
-                    Number(
-                        result.page
-                    );
-
-            }
-
-
-            /*
-                Tambahkan data baru.
-            */
-
-            if(
-                newData.length > 0
-            ){
-
-                allData.push(
-                    ...newData
-                );
-
-            }
-
-
-            /*
-                Cari row berikutnya.
-            */
-
-            if(
-                Number.isFinite(
-                    Number(
-                        result.endRow
-                    )
-                )
-            ){
-
-                const newNextRow =
-                    Number(
-                        result.endRow
-                    ) + 1;
-
-
-                /*
-                    Safety check.
-
-                    Jika API mengembalikan
-                    endRow yang tidak bergerak,
-                    jangan sampai infinite loop.
-                */
-
-                if(
-                    newNextRow <=
-                    requestStartRow
-                ){
-
-                    throw new Error(
-                        'Posisi row API tidak bergerak. Proses dihentikan untuk mencegah pengulangan request.'
-                    );
-
-                }
-
-
-                nextRowToLoad =
-                    newNextRow;
-
-            }
-
-            else{
-
-                nextRowToLoad =
-                    requestStartRow +
-                    newData.length;
-
-            }
-
-
-            /*
-                Tentukan selesai.
-            */
-
-            if(
-                allData.length >=
-                totalServerRows
-            ){
-
-                loadingFinished =
-                    true;
-
-            }
-
-
-            else if(
-                newData.length === 0
-            ){
-
-                loadingFinished =
-                    true;
-
-            }
-
-
-            else if(
-                result.hasMore === false
-            ){
-
-                loadingFinished =
-                    true;
-
-            }
-
-
-            else if(
-                Number.isFinite(
-                    Number(
-                        result.totalPages
-                    )
-                ) &&
-                Number.isFinite(
-                    Number(
-                        result.page
-                    )
-                ) &&
-                Number(
-                    result.page
-                ) >=
-                Number(
-                    result.totalPages
-                )
-            ){
-
-                loadingFinished =
-                    true;
-
-            }
-
-
-            /*
-                Simpan setiap batch.
-
-                Jadi apabila request berikutnya
-                gagal, data sebelumnya tidak hilang.
-            */
-
-            await saveCache();
-
-
-            updateStatistics(
-                allData
-            );
-
-
-            applyFilters(
-                false
-            );
-
-
-            updateProgress();
-
-
-            /*
-                Beri browser waktu untuk
-                memperbarui UI.
-            */
-
-            await sleep(
-                80
-            );
-
-        }
-
-
-        loadingFinished =
-            true;
-
-
-        await saveCache();
-
-
-        updateProgress();
-
-
-        updateLoadButton();
-
-
-        showFloatingComplete();
-
-
-        updateResultInfo(
-            filteredData.length,
-            (
-                currentPage - 1
-            ) *
-            ROWS_PER_PAGE,
-            Math.min(
-                currentPage *
-                ROWS_PER_PAGE,
-                filteredData.length
-            )
-        );
+        loading.style.display =
+            'flex';
 
     }
-    catch(error){
 
-        console.error(
-            'Data loading stopped:',
-            error
+
+    if(tableContent){
+
+        tableContent.classList.remove(
+            'show'
         );
-
-
-        /*
-            Sangat penting:
-
-            cache sudah disimpan setiap batch,
-            sehingga ketika error,
-            nextRowToLoad masih menunjuk
-            ke posisi berikutnya.
-        */
-
-        loadingFinished =
-            false;
-
-
-        await saveCache();
-
-
-        updateLoadButton();
-
-
-        showFloatingError(
-            error
-        );
-
-    }
-    finally{
-
-        backgroundLoading =
-            false;
-
-
-        if(button){
-
-            button.disabled =
-                false;
-
-        }
-
-
-        updateLoadButton();
 
     }
 
@@ -3947,101 +2661,135 @@ async function loadRemainingData(){
 
 
 /* =========================================================
-   UPDATE LOAD BUTTON
+   HIDE LOADING
 ========================================================= */
 
-function updateLoadButton(){
+function hideLoading(){
 
-    const button =
+    const loading =
         document.getElementById(
-            'loadRemainingButton'
+            'loading'
         );
 
 
-    const text =
+    const tableContent =
         document.getElementById(
-            'loadRemainingButtonText'
+            'tableContent'
         );
 
 
-    if(
-        !button ||
-        !text
-    ){
+    if(loading){
+
+        loading.style.display =
+            'none';
+
+    }
+
+
+    if(tableContent){
+
+        tableContent.classList.add(
+            'show'
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SHOW ERROR
+========================================================= */
+
+function showError(
+    message
+){
+
+    const loading =
+        document.getElementById(
+            'loading'
+        );
+
+
+    if(!loading){
 
         return;
 
     }
 
 
-    if(
-        backgroundLoading
-    ){
-
-        button.disabled =
-            true;
+    loading.style.display =
+        'flex';
 
 
-        text.textContent =
-            'Sedang Memuat...';
+    loading.innerHTML = `
+
+        <div class="text-center">
+
+            <div
+                class="
+                    bg-red-50
+                    text-red-600
+                    p-4
+                    rounded-full
+                    inline-flex
+                "
+            >
+
+                <i
+                    data-lucide="alert-circle"
+                    class="w-8 h-8"
+                ></i>
+
+            </div>
 
 
-        return;
-
-    }
-
-
-    if(
-        loadingFinished
-    ){
-
-        button.disabled =
-            false;
+            <h3
+                class="
+                    font-bold
+                    text-red-700
+                    mt-3
+                "
+            >
+                Gagal memuat data
+            </h3>
 
 
-        text.textContent =
-            'Semua Data Dimuat';
+            <p
+                class="
+                    text-xs
+                    text-slate-500
+                    mt-2
+                    max-w-lg
+                    mx-auto
+                "
+            >
+                ${escapeHtml(
+                    message
+                )}
+            </p>
 
 
-        button.innerHTML = `
+            <button
+                onclick="loadYearData(currentYear)"
+                class="
+                    mt-4
+                    bg-blue-800
+                    hover:bg-blue-700
+                    text-white
+                    font-bold
+                    px-5
+                    py-2.5
+                    rounded-xl
+                    text-sm
+                "
+            >
 
-            <i
-                data-lucide="circle-check"
-                class="w-4 h-4"
-            ></i>
+                Coba Lagi
 
-            <span>
-                Semua Data Dimuat
-            </span>
+            </button>
 
-        `;
-
-
-        lucide.createIcons();
-
-        return;
-
-    }
-
-
-    button.disabled =
-        false;
-
-
-    button.innerHTML = `
-
-        <i
-            data-lucide="download"
-            class="w-4 h-4"
-        ></i>
-
-        <span>
-            ${
-                allData.length > 0
-                ? 'Lanjutkan Pengambilan'
-                : 'Muat Sisa Data'
-            }
-        </span>
+        </div>
 
     `;
 
@@ -4052,181 +2800,68 @@ function updateLoadButton(){
 
 
 /* =========================================================
-   VALIDATE API
+   UPDATE YEAR UI
 ========================================================= */
 
-function validateApiResult(
-    result
+function updateYearUI(
+    year
 ){
 
-    if(
-        !result ||
-        result.success !== true
-    ){
-
-        throw new Error(
-            result?.error ||
-            'API mengembalikan status tidak berhasil.'
+    const label =
+        document.getElementById(
+            'selectedYearLabel'
         );
 
-    }
 
-
-    if(
-        !Array.isArray(
-            result.data
-        )
-    ){
-
-        throw new Error(
-            'Format data API tidak valid. Field "data" harus berupa array.'
+    const badge =
+        document.getElementById(
+            'activeYearBadge'
         );
 
+
+    const displayYear =
+        year === 'ALL'
+            ?
+            'Seluruh Data'
+            :
+            year;
+
+
+    if(label){
+
+        label.textContent =
+            displayYear === 'Seluruh Data'
+                ?
+                displayYear
+                :
+                `Tahun ${displayYear}`;
+
     }
 
 
-    if(
-        result.total === undefined
-    ){
+    if(badge){
 
-        console.warn(
-            'API tidak mengirim field "total".'
+        badge.textContent =
+            displayYear;
+
+    }
+
+
+    const selector =
+        document.getElementById(
+            'yearSelector'
         );
 
-    }
-
-}
-
-
-/* =========================================================
-   CONVERT API DATA
-========================================================= */
-
-function convertApiData(
-    data
-){
 
     if(
-        !Array.isArray(
-            data
-        )
+        selector &&
+        selector.value !== String(year)
     ){
 
-        return [];
+        selector.value =
+            String(year);
 
     }
-
-
-    return data.map(
-        row=>{
-
-            return {
-
-                date:
-                    row[0] ?? '',
-
-                unit:
-                    row[1] ?? '',
-
-                maintenance:
-                    row[2] ?? '',
-
-                periodicService:
-                    row[3] ?? '',
-
-                status:
-                    row[4] ?? ''
-
-            };
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   LOADING ERROR
-========================================================= */
-
-function showLoadingError(
-    error
-){
-
-    document
-        .getElementById(
-            'loading'
-        )
-        .innerHTML = `
-
-            <div class="text-center">
-
-                <div
-                    class="
-                        bg-red-50
-                        text-red-600
-                        p-4
-                        rounded-full
-                        inline-flex
-                    "
-                >
-
-                    <i
-                        data-lucide="alert-circle"
-                        class="w-8 h-8"
-                    ></i>
-
-                </div>
-
-
-                <h3
-                    class="
-                        font-bold
-                        text-red-700
-                        mt-3
-                    "
-                >
-                    Gagal memuat data
-                </h3>
-
-
-                <p
-                    class="
-                        text-xs
-                        text-slate-500
-                        mt-2
-                        max-w-md
-                    "
-                >
-                    ${escapeHtml(
-                        error.message
-                    )}
-                </p>
-
-
-                <button
-                    onclick="location.reload()"
-                    class="
-                        mt-4
-                        bg-blue-800
-                        hover:bg-blue-700
-                        text-white
-                        font-bold
-                        px-5
-                        py-2.5
-                        rounded-xl
-                        text-sm
-                    "
-                >
-                    Coba Lagi
-                </button>
-
-            </div>
-
-        `;
-
-
-    lucide.createIcons();
 
 }
 
@@ -4249,7 +2884,7 @@ function normalizeUnit(
 
 
 /* =========================================================
-   UNIT TYPE
+   GET UNIT TYPE
 ========================================================= */
 
 function getUnitType(
@@ -4272,8 +2907,7 @@ function getUnitType(
 
 
     if(
-        value.startsWith('W') ||
-        value.startsWith('ZW')
+        value.startsWith('W')
     ){
 
         return 'W';
@@ -4305,32 +2939,24 @@ function getUnitType(
 
 
 /* =========================================================
-   UNIT COUNTS
+   UPDATE STATISTICS
 ========================================================= */
 
-function getUnitCounts(
+function updateStatistics(
     data
 ){
 
     const counts = {
 
         F:0,
+
         W:0,
+
         D:0,
+
         E:0
 
     };
-
-
-    if(
-        !Array.isArray(
-            data
-        )
-    ){
-
-        return counts;
-
-    }
 
 
     data.forEach(
@@ -4343,7 +2969,6 @@ function getUnitCounts(
 
 
             if(
-                type &&
                 counts[type] !== undefined
             ){
 
@@ -4355,33 +2980,14 @@ function getUnitCounts(
     );
 
 
-    return counts;
-
-}
-
-
-/* =========================================================
-   UPDATE STATISTICS
-========================================================= */
-
-function updateStatistics(
-    data
-){
-
-    const counts =
-        getUnitCounts(
-            data
-        );
-
-
     document
         .getElementById(
             'totalData'
         )
         .textContent =
-            Array.isArray(data)
-            ? data.length.toLocaleString('id-ID')
-            : 0;
+            data.length.toLocaleString(
+                'id-ID'
+            );
 
 
     document
@@ -4389,7 +2995,9 @@ function updateStatistics(
             'forkliftTotal'
         )
         .textContent =
-            counts.F.toLocaleString('id-ID');
+            counts.F.toLocaleString(
+                'id-ID'
+            );
 
 
     document
@@ -4397,7 +3005,9 @@ function updateStatistics(
             'wheelloaderTotal'
         )
         .textContent =
-            counts.W.toLocaleString('id-ID');
+            counts.W.toLocaleString(
+                'id-ID'
+            );
 
 
     document
@@ -4405,7 +3015,9 @@ function updateStatistics(
             'dumptruckTotal'
         )
         .textContent =
-            counts.D.toLocaleString('id-ID');
+            counts.D.toLocaleString(
+                'id-ID'
+            );
 
 
     document
@@ -4413,18 +3025,18 @@ function updateStatistics(
             'excavatorTotal'
         )
         .textContent =
-            counts.E.toLocaleString('id-ID');
+            counts.E.toLocaleString(
+                'id-ID'
+            );
 
 }
 
 
 /* =========================================================
-   FILTER
+   APPLY FILTERS
 ========================================================= */
 
-function applyFilters(
-    resetPage = true
-){
+function applyFilters(){
 
     const search =
         document
@@ -4461,10 +3073,16 @@ function applyFilters(
                 const searchable = [
 
                     row.date,
+
                     row.unit,
+
                     row.maintenance,
-                    row.periodicService,
-                    row.status
+
+                    row.periodic,
+
+                    row.status,
+
+                    row.sourceYear
 
                 ]
                 .join(' ')
@@ -4492,30 +3110,75 @@ function applyFilters(
                     )
                     .trim()
                     .toUpperCase()
-                    === status;
+                    ===
+                    status;
 
 
                 return (
+
                     matchSearch &&
+
                     matchUnitType &&
+
                     matchStatus
+
                 );
 
             }
         );
 
 
-    if(
-        resetPage
-    ){
+    currentPage = 1;
 
-        currentPage =
-            1;
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   CLEAR FILTERS
+========================================================= */
+
+function clearFilters(){
+
+    const search =
+        document.getElementById(
+            'searchInput'
+        );
+
+
+    const unitType =
+        document.getElementById(
+            'unitTypeFilter'
+        );
+
+
+    const status =
+        document.getElementById(
+            'statusFilter'
+        );
+
+
+    if(search){
+
+        search.value = '';
 
     }
 
 
-    renderTable();
+    if(unitType){
+
+        unitType.value = '';
+
+    }
+
+
+    if(status){
+
+        status.value = '';
+
+    }
 
 }
 
@@ -4526,33 +3189,14 @@ function applyFilters(
 
 function resetFilters(){
 
-    document
-        .getElementById(
-            'searchInput'
-        )
-        .value = '';
-
-
-    document
-        .getElementById(
-            'unitTypeFilter'
-        )
-        .value = '';
-
-
-    document
-        .getElementById(
-            'statusFilter'
-        )
-        .value = '';
+    clearFilters();
 
 
     filteredData =
         [...allData];
 
 
-    currentPage =
-        1;
+    currentPage = 1;
 
 
     renderTable();
@@ -4568,6 +3212,11 @@ function sortBy(
     key
 ){
 
+    /*
+       Jika klik kolom yang berbeda,
+       mulai dari ASC.
+    */
+
     if(
         sortKey !== key
     ){
@@ -4580,6 +3229,10 @@ function sortBy(
 
     }
 
+    /*
+       Jika ASC -> DESC
+    */
+
     else if(
         sortDirection === 'asc'
     ){
@@ -4589,19 +3242,39 @@ function sortBy(
 
     }
 
+    /*
+       Jika DESC -> kembali ke
+       default sorting.
+    */
+
     else{
 
-        sortKey =
-            null;
+        if(
+            key === 'date'
+        ){
 
-        sortDirection =
-            null;
+            sortKey =
+                'date';
+
+            sortDirection =
+                'desc';
+
+        }
+
+        else{
+
+            sortKey =
+                null;
+
+            sortDirection =
+                null;
+
+        }
 
     }
 
 
-    currentPage =
-        1;
+    currentPage = 1;
 
 
     renderTable();
@@ -4610,7 +3283,7 @@ function sortBy(
 
 
 /* =========================================================
-   SORT DATA
+   GET SORTED DATA
 ========================================================= */
 
 function getSortedData(
@@ -4647,10 +3320,10 @@ function getSortedData(
                 case 'number':
 
                     valueA =
-                        allData.indexOf(a);
+                        a.originalIndex;
 
                     valueB =
-                        allData.indexOf(b);
+                        b.originalIndex;
 
                     break;
 
@@ -4704,18 +3377,18 @@ function getSortedData(
                     break;
 
 
-                case 'periodicService':
+                case 'periodic':
 
                     valueA =
                         String(
-                            a.periodicService ?? ''
+                            a.periodic ?? ''
                         )
                         .trim()
                         .toLowerCase();
 
                     valueB =
                         String(
-                            b.periodicService ?? ''
+                            b.periodic ?? ''
                         )
                         .trim()
                         .toLowerCase();
@@ -4785,7 +3458,7 @@ function getSortedData(
             }
 
 
-            let comparison;
+            let comparison = 0;
 
 
             if(
@@ -4802,9 +3475,13 @@ function getSortedData(
             else{
 
                 comparison =
-                    String(valueA)
+                    String(
+                        valueA
+                    )
                     .localeCompare(
-                        String(valueB),
+                        String(
+                            valueB
+                        ),
                         'id',
                         {
                             numeric:true,
@@ -4815,11 +3492,9 @@ function getSortedData(
             }
 
 
-            return (
-                sortDirection === 'asc'
+            return sortDirection === 'asc'
                 ? comparison
-                : -comparison
-            );
+                : -comparison;
 
         }
     );
@@ -4831,33 +3506,20 @@ function getSortedData(
 
 
 /* =========================================================
-   DATE SORT
+   DATE SORT VALUE
 ========================================================= */
 
 function getDateSortValue(
     value
 ){
 
-    if(
-        !value
-    ){
-
-        return '';
-
-    }
-
-
     const date =
-        new Date(
-            String(value).trim()
+        parseDate(
+            value
         );
 
 
-    if(
-        isNaN(
-            date.getTime()
-        )
-    ){
+    if(!date){
 
         return '';
 
@@ -4870,90 +3532,162 @@ function getDateSortValue(
 
 
 /* =========================================================
-   SORT INDICATORS
+   PARSE DATE
 ========================================================= */
 
-function updateSortIndicators(){
+function parseDate(
+    value
+){
 
-    const buttons =
-        document.querySelectorAll(
-            '[data-sort-key]'
+    const text =
+        String(
+            value ?? ''
+        )
+        .trim();
+
+
+    if(!text){
+
+        return null;
+
+    }
+
+
+    /*
+       Format:
+
+       1 February 2019
+       12 March 2026
+    */
+
+    const match =
+        text.match(
+            /^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/i
         );
 
 
-    buttons.forEach(
-        button=>{
+    if(match){
 
-            const key =
-                button.getAttribute(
-                    'data-sort-key'
-                );
-
-
-            const icon =
-                button.querySelector(
-                    '.sort-icon'
-                );
-
-
-            button.classList.remove(
-                'active'
+        const day =
+            Number(
+                match[1]
             );
 
 
-            if(!icon){
-
-                return;
-
-            }
+        const monthName =
+            match[2]
+                .toLowerCase();
 
 
-            icon.setAttribute(
-                'data-lucide',
-                'chevrons-up-down'
+        const year =
+            Number(
+                match[3]
             );
 
 
-            if(
-                sortKey === key &&
-                sortDirection === 'asc'
-            ){
+        const months = {
 
-                button.classList.add(
-                    'active'
-                );
+            january:0,
+            february:1,
+            march:2,
+            april:3,
+            may:4,
+            june:5,
+            july:6,
+            august:7,
+            september:8,
+            october:9,
+            november:10,
+            december:11
 
-
-                icon.setAttribute(
-                    'data-lucide',
-                    'chevron-up'
-                );
-
-            }
-
-
-            else if(
-                sortKey === key &&
-                sortDirection === 'desc'
-            ){
-
-                button.classList.add(
-                    'active'
-                );
+        };
 
 
-                icon.setAttribute(
-                    'data-lucide',
-                    'chevron-down'
-                );
+        if(
+            months[
+                monthName
+            ] !== undefined
+        ){
 
-            }
+            return new Date(
+                year,
+                months[
+                    monthName
+                ],
+                day
+            );
 
         }
-    );
+
+    }
 
 
-    lucide.createIcons();
+    /*
+       Format:
+
+       DD/MM/YYYY
+    */
+
+    const dmy =
+        text.match(
+            /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
+        );
+
+
+    if(dmy){
+
+        return new Date(
+            Number(dmy[3]),
+            Number(dmy[2]) - 1,
+            Number(dmy[1])
+        );
+
+    }
+
+
+    /*
+       Format YYYY-MM-DD
+    */
+
+    const iso =
+        text.match(
+            /^(\d{4})-(\d{2})-(\d{2})/
+        );
+
+
+    if(iso){
+
+        return new Date(
+            Number(iso[1]),
+            Number(iso[2]) - 1,
+            Number(iso[3])
+        );
+
+    }
+
+
+    /*
+       Fallback
+    */
+
+    const fallback =
+        new Date(
+            text
+        );
+
+
+    if(
+        !isNaN(
+            fallback.getTime()
+        )
+    ){
+
+        return fallback;
+
+    }
+
+
+    return null;
 
 }
 
@@ -4967,34 +3701,28 @@ function formatDate(
 ){
 
     if(
-        !value
+        value === null ||
+        value === undefined ||
+        value === ''
     ){
 
-        return `
-
-            <span class="text-slate-300">
-                -
-            </span>
-
-        `;
+        return '-';
 
     }
 
 
     const date =
-        new Date(
-            String(value).trim()
+        parseDate(
+            value
         );
 
 
-    if(
-        isNaN(
-            date.getTime()
-        )
-    ){
+    if(!date){
 
         return escapeHtml(
-            String(value)
+            String(
+                value
+            )
         );
 
     }
@@ -5004,38 +3732,38 @@ function formatDate(
         String(
             date.getDate()
         )
-        .padStart(2,'0');
+        .padStart(
+            2,
+            '0'
+        );
 
 
     const month =
         String(
-            date.getMonth()+1
+            date.getMonth() + 1
         )
-        .padStart(2,'0');
+        .padStart(
+            2,
+            '0'
+        );
 
 
     const year =
         date.getFullYear();
 
 
-    return `
-
-        <span
-            class="
-                font-semibold
-                text-slate-600
-            "
-        >
-            ${day}/${month}/${year}
-        </span>
-
-    `;
+    return `${day}/${month}/${year}`;
 
 }
 
 
 /* =========================================================
-   UNIT BADGE
+   UNIT DISPLAY
+=========================================================
+
+   Badge jenis unit DIHAPUS.
+
+   Yang ditampilkan hanya nomor unit.
 ========================================================= */
 
 function getUnitBadge(
@@ -5052,7 +3780,12 @@ function getUnitBadge(
 
         return `
 
-            <span class="text-slate-300">
+            <span
+                class="
+                    text-slate-300
+                    font-semibold
+                "
+            >
                 -
             </span>
 
@@ -5064,9 +3797,17 @@ function getUnitBadge(
     return `
 
         <span
-            class="unit-badge"
+            class="
+                font-black
+                text-blue-900
+                tracking-wide
+            "
         >
-            ${escapeHtml(value)}
+
+            ${escapeHtml(
+                value
+            )}
+
         </span>
 
     `;
@@ -5149,17 +3890,12 @@ function getStatusBadge(
         <span
             class="
                 status-badge
-                bg-slate-100
-                text-slate-500
-                border
-                border-slate-200
+                type-unknown
             "
         >
-
             ${escapeHtml(
                 value || '-'
             )}
-
         </span>
 
     `;
@@ -5168,22 +3904,27 @@ function getStatusBadge(
 
 
 /* =========================================================
-   MULTILINE
+   PERIODIC BADGE
 ========================================================= */
 
-function formatMultilineText(
+function getPeriodicBadge(
     value
 ){
 
-    if(
-        value === null ||
-        value === undefined ||
-        value === ''
-    ){
+    const text =
+        String(
+            value ?? ''
+        )
+        .trim();
+
+
+    if(!text){
 
         return `
 
-            <span class="text-slate-300">
+            <span
+                class="text-slate-300"
+            >
                 -
             </span>
 
@@ -5192,19 +3933,20 @@ function formatMultilineText(
     }
 
 
-    const text =
-        String(value).trim();
+    return `
 
+        <span
+            class="periodic-badge"
+            title="${escapeHtml(text)}"
+        >
 
-    return text
-        .split('\n')
-        .map(
-            line=>
-                escapeHtml(
-                    line.trim()
-                )
-        )
-        .join('<br>');
+            ${escapeHtml(
+                text
+            )}
+
+        </span>
+
+    `;
 
 }
 
@@ -5321,6 +4063,8 @@ function renderTable(){
 
                 tr.innerHTML = `
 
+                    <!-- NO -->
+
                     <td
                         class="
                             text-center
@@ -5328,20 +4072,48 @@ function renderTable(){
                             text-slate-400
                         "
                     >
+
                         ${number}
+
                     </td>
 
+
+                    <!-- DATE -->
 
                     <td
-                        class="whitespace-nowrap"
+                        class="
+                            whitespace-nowrap
+                            font-semibold
+                        "
                     >
 
-                        ${formatDate(
-                            row.date
-                        )}
+                        <div
+                            class="
+                                flex
+                                items-center
+                                gap-2
+                            "
+                        >
+
+                            <i
+                                data-lucide="calendar-days"
+                                class="
+                                    w-3.5
+                                    h-3.5
+                                    text-slate-400
+                                "
+                            ></i>
+
+                            ${formatDate(
+                                row.date
+                            )}
+
+                        </div>
 
                     </td>
 
+
+                    <!-- UNIT -->
 
                     <td>
 
@@ -5352,60 +4124,51 @@ function renderTable(){
                     </td>
 
 
-                    <td>
+                    <!-- MAINTENANCE -->
+
+                    <td
+                        class="
+                            max-w-[420px]
+                        "
+                    >
 
                         <div
                             class="
-                                maintenance-cell
                                 font-semibold
                                 text-slate-700
+                                max-w-[420px]
+                                leading-relaxed
                             "
                             title="${escapeHtml(
                                 row.maintenance
                             )}"
                         >
 
-                            ${formatMultilineText(
-                                row.maintenance
-                            )}
-
-                        </div>
-
-                    </td>
-
-
-                    <td>
-
-                        <div
-                            class="
-                                text-[10px]
-                                font-bold
-                                text-slate-500
-                            "
-                        >
-
                             ${
-                                row.periodicService
-                                ?
                                 escapeHtml(
-                                    row.periodicService
+                                    row.maintenance
                                 )
-                                :
-                                `
-                                    <span
-                                        class="
-                                            text-slate-300
-                                        "
-                                    >
-                                        -
-                                    </span>
-                                `
+                                ||
+                                '<span class="text-slate-300">-</span>'
                             }
 
                         </div>
 
                     </td>
 
+
+                    <!-- PERIODIC -->
+
+                    <td>
+
+                        ${getPeriodicBadge(
+                            row.periodic
+                        )}
+
+                    </td>
+
+
+                    <!-- STATUS -->
 
                     <td>
 
@@ -5487,22 +4250,8 @@ function updateResultInfo(
     }
 
 
-    let suffix =
-        '';
-
-
-    if(
-        !loadingFinished
-    ){
-
-        suffix =
-            ` • ${allData.length.toLocaleString('id-ID')} dari ${totalServerRows.toLocaleString('id-ID')} data database telah dimuat`;
-
-    }
-
-
     resultInfo.textContent =
-        `Menampilkan ${start+1}–${end} dari ${total.toLocaleString('id-ID')} aktivitas${suffix}`;
+        `Menampilkan ${start + 1}–${end} dari ${total.toLocaleString('id-ID')} aktivitas`;
 
 
     paginationInfo.textContent =
@@ -5538,6 +4287,8 @@ function renderPagination(
     }
 
 
+    /* PREVIOUS */
+
     const prev =
         document.createElement(
             'button'
@@ -5562,26 +4313,27 @@ function renderPagination(
         currentPage === 1;
 
 
-    prev.onclick =
-        ()=>{
+    prev.onclick = ()=>{
 
-            if(
-                currentPage > 1
-            ){
+        if(
+            currentPage > 1
+        ){
 
-                currentPage--;
+            currentPage--;
 
-                renderTable();
+            renderTable();
 
-            }
+        }
 
-        };
+    };
 
 
     container.appendChild(
         prev
     );
 
+
+    /* PAGE NUMBERS */
 
     const pages =
         getPaginationPages(
@@ -5640,15 +4392,15 @@ function renderPagination(
                 page;
 
 
-            button.onclick =
-                ()=>{
+            button.onclick = ()=>{
 
-                    currentPage =
-                        page;
+                currentPage =
+                    page;
 
-                    renderTable();
 
-                };
+                renderTable();
+
+            };
 
 
             container.appendChild(
@@ -5658,6 +4410,8 @@ function renderPagination(
         }
     );
 
+
+    /* NEXT */
 
     const next =
         document.createElement(
@@ -5683,21 +4437,20 @@ function renderPagination(
         currentPage === totalPages;
 
 
-    next.onclick =
-        ()=>{
+    next.onclick = ()=>{
 
-            if(
-                currentPage <
-                totalPages
-            ){
+        if(
+            currentPage <
+            totalPages
+        ){
 
-                currentPage++;
+            currentPage++;
 
-                renderTable();
+            renderTable();
 
-            }
+        }
 
-        };
+    };
 
 
     container.appendChild(
@@ -5730,7 +4483,8 @@ function getPaginationPages(
             (
                 _,
                 i
-            )=>i+1
+            ) =>
+                i + 1
         );
 
     }
@@ -5746,7 +4500,9 @@ function getPaginationPages(
         current > 4
     ){
 
-        pages.push('...');
+        pages.push(
+            '...'
+        );
 
     }
 
@@ -5766,8 +4522,8 @@ function getPaginationPages(
 
 
     for(
-        let i=start;
-        i<=end;
+        let i = start;
+        i <= end;
         i++
     ){
 
@@ -5781,15 +4537,108 @@ function getPaginationPages(
         total - 3
     ){
 
-        pages.push('...');
+        pages.push(
+            '...'
+        );
 
     }
 
 
-    pages.push(total);
+    pages.push(
+        total
+    );
 
 
     return pages;
+
+}
+
+
+/* =========================================================
+   SORT INDICATORS
+========================================================= */
+
+function updateSortIndicators(){
+
+    const buttons =
+        document.querySelectorAll(
+            '[data-sort-key]'
+        );
+
+
+    buttons.forEach(
+        button=>{
+
+            const key =
+                button.getAttribute(
+                    'data-sort-key'
+                );
+
+
+            const icon =
+                button.querySelector(
+                    '.sort-icon'
+                );
+
+
+            button.classList.remove(
+                'active'
+            );
+
+
+            if(!icon){
+
+                return;
+
+            }
+
+
+            icon.setAttribute(
+                'data-lucide',
+                'chevrons-up-down'
+            );
+
+
+            if(
+                sortKey === key &&
+                sortDirection === 'asc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-up'
+                );
+
+            }
+
+
+            else if(
+                sortKey === key &&
+                sortDirection === 'desc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-down'
+                );
+
+            }
+
+        }
+    );
+
+
+    lucide.createIcons();
 
 }
 
@@ -5830,7 +4679,7 @@ function escapeHtml(
 
 
 /* =========================================================
-   START
+   START APPLICATION
 ========================================================= */
 
 window.addEventListener(
@@ -5839,7 +4688,17 @@ window.addEventListener(
 
         lucide.createIcons();
 
-        loadInitialData();
+
+        /*
+           Default:
+
+           Sheet 2026
+           Date terbaru -> terlama
+        */
+
+        loadYearData(
+            '2026'
+        );
 
     }
 );
@@ -5867,6 +4726,7 @@ document.addEventListener(
 );
 
 </script>
+
 
 </body>
 
