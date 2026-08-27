@@ -1968,21 +1968,57 @@ select.filter-input{
    CONFIGURATION
 ========================================================= */
 
+/*
+    GOOGLE APPS SCRIPT WEB APP API
+
+    Sheet:
+    W
+
+    Columns:
+    A:E
+
+    Row 1:
+    Title
+
+    Row 2:
+    Header
+
+    Row 3+:
+    Data
+*/
+
 const API_URL =
-'https://script.google.com/macros/s/AKfycbzh2-mDdddGc9t2r971AywK4nz73IGttt76X0ATZKRrOq452knKIOVh0WreAGrxU71e/exec';
+'https://script.google.com/macros/s/AKfycby2DRub26paNPyOjiJXSWIRP6d8ConfgMl-i7y4IIhy6FJ6TdyHzUkPNfarePCCfarz/exec';
 
 
 const DASHBOARD_URL =
 'maintenance.html';
 
 
+/*
+    Jumlah baris yang ditampilkan
+    dalam satu halaman tabel.
+*/
+
 const ROWS_PER_PAGE =
 15;
 
 
+/*
+    Ukuran batch yang diambil
+    oleh Apps Script.
+
+    Apps Script saat ini menggunakan
+    PAGE_SIZE = 1000.
+*/
+
 const API_PAGE_SIZE =
 1000;
 
+
+/*
+    IndexedDB
+*/
 
 const DB_NAME =
 'PTTSI_MAINTENANCE_CACHE';
@@ -1999,6 +2035,10 @@ const DB_STORE =
 const CACHE_KEY =
 'maintenance_state';
 
+
+/*
+    Retry & timeout
+*/
 
 const MAX_RETRIES =
 5;
@@ -2059,13 +2099,17 @@ function goToDashboard(){
 function handleLogoError(){
 
     document
-        .getElementById('companyLogo')
+        .getElementById(
+            'companyLogo'
+        )
         .classList
         .add('hidden');
 
 
     document
-        .getElementById('logoFallback')
+        .getElementById(
+            'logoFallback'
+        )
         .classList
         .remove('hidden');
 
@@ -2402,21 +2446,32 @@ function updateProgress(){
     }
 
 
-    document
-        .getElementById(
+    const progressBar =
+        document.getElementById(
             'progressBar'
-        )
-        .style
-        .width =
-            percent + '%';
+        );
 
 
-    document
-        .getElementById(
+    const progressPercent =
+        document.getElementById(
             'progressPercent'
-        )
-        .textContent =
+        );
+
+
+    if(progressBar){
+
+        progressBar.style.width =
             percent + '%';
+
+    }
+
+
+    if(progressPercent){
+
+        progressPercent.textContent =
+            percent + '%';
+
+    }
 
 }
 
@@ -2571,7 +2626,9 @@ function getApiUrl(
         '?startRow=' +
         encodeURIComponent(
             startRow
-        )
+        ) +
+        '&_=' +
+        Date.now()
     );
 
 }
@@ -2584,6 +2641,10 @@ function getApiUrl(
 async function loadInitialData(){
 
     try{
+
+        /*
+            Coba gunakan cache terlebih dahulu.
+        */
 
         const cache =
             await loadCache();
@@ -2657,6 +2718,11 @@ async function loadInitialData(){
                 true;
 
 
+            /*
+                Jika cache belum lengkap,
+                lanjutkan mengambil data.
+            */
+
             if(
                 !loadingFinished
             ){
@@ -2670,6 +2736,12 @@ async function loadInitialData(){
 
         }
 
+
+        /*
+            Tidak ada cache.
+            Ambil batch pertama
+            mulai dari baris 3.
+        */
 
         const result =
             await fetchWithRetry(
@@ -2703,7 +2775,7 @@ async function loadInitialData(){
 
 
         loadingFinished =
-            !result.hasMore;
+            result.hasMore !== true;
 
 
         filteredData =
@@ -2744,6 +2816,11 @@ async function loadInitialData(){
 
         await saveCache();
 
+
+        /*
+            Setelah batch pertama berhasil,
+            lanjutkan loading di background.
+        */
 
         if(
             !loadingFinished
@@ -2851,7 +2928,7 @@ async function loadRemainingData(){
 
 
             loadingFinished =
-                !result.hasMore;
+                result.hasMore !== true;
 
 
             await saveCache();
@@ -2961,6 +3038,21 @@ function validateApiResult(
 
         throw new Error(
             'Format data API tidak valid.'
+        );
+
+    }
+
+
+    /*
+        API baru wajib memiliki totalRows.
+    */
+
+    if(
+        result.totalRows === undefined
+    ){
+
+        console.warn(
+            'API tidak mengirim totalRows.'
         );
 
     }
@@ -3404,7 +3496,7 @@ function updateStatistics(
         )
         .textContent =
             Array.isArray(data)
-            ? data.length
+            ? data.length.toLocaleString('id-ID')
             : 0;
 
 
@@ -3413,7 +3505,7 @@ function updateStatistics(
             'forkliftTotal'
         )
         .textContent =
-            counts.F;
+            counts.F.toLocaleString('id-ID');
 
 
     document
@@ -3421,7 +3513,7 @@ function updateStatistics(
             'wheelloaderTotal'
         )
         .textContent =
-            counts.W;
+            counts.W.toLocaleString('id-ID');
 
 
     document
@@ -3429,7 +3521,7 @@ function updateStatistics(
             'dumptruckTotal'
         )
         .textContent =
-            counts.D;
+            counts.D.toLocaleString('id-ID');
 
 
     document
@@ -3437,7 +3529,7 @@ function updateStatistics(
             'excavatorTotal'
         )
         .textContent =
-            counts.E;
+            counts.E.toLocaleString('id-ID');
 
 }
 
@@ -4526,11 +4618,11 @@ function updateResultInfo(
 
 
     resultInfo.textContent =
-        `Menampilkan ${start+1}–${end} dari ${total} aktivitas${suffix}`;
+        `Menampilkan ${start+1}–${end} dari ${total.toLocaleString('id-ID')} aktivitas${suffix}`;
 
 
     paginationInfo.textContent =
-        `${total} aktivitas ditemukan`;
+        `${total.toLocaleString('id-ID')} aktivitas ditemukan`;
 
 }
 
