@@ -3209,20 +3209,15 @@ function sleep(
    API URL
 ========================================================= */
 
-function getApiUrl(
-    startRow
-){
+function getApiUrl(startRow){
 
     return (
         API_URL +
-        '?startRow=' +
-        encodeURIComponent(
-            startRow
-        ) +
+        '?action=data' +
+        '&startRow=' +
+        encodeURIComponent(startRow) +
         '&limit=' +
-        encodeURIComponent(
-            API_PAGE_SIZE
-        ) +
+        encodeURIComponent(API_PAGE_SIZE) +
         '&_=' +
         Date.now()
     );
