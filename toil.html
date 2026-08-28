@@ -1,0 +1,4957 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=1200"
+>
+
+<title>Data Oil Usage Unit - PT TSI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    min-width:1100px;
+}
+
+body{
+
+    margin:0;
+
+    font-family:'Inter',sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #eef2f7
+        );
+
+    color:#1e293b;
+
+}
+
+
+/* =========================================================
+   COLOR
+========================================================= */
+
+.color-primary{
+    background:#1E3A8A;
+}
+
+.text-primary{
+    color:#1E3A8A;
+}
+
+
+/* =========================================================
+   GLASS
+========================================================= */
+
+.glass-panel{
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(10px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+.fade-in{
+
+    animation:
+        fadeIn
+        .5s
+        cubic-bezier(.4,0,.2,1);
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-wrapper{
+
+    transition:
+        transform
+        .4s
+        cubic-bezier(
+            .175,
+            .885,
+            .32,
+            1.275
+        );
+
+}
+
+.logo-wrapper:hover{
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+
+}
+
+.logo-shadow{
+
+    filter:
+        drop-shadow(
+            0 10px 8px
+            rgba(0,0,0,.04)
+        )
+        drop-shadow(
+            0 4px 3px
+            rgba(0,0,0,.1)
+        );
+
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.page-title{
+
+    font-size:30px;
+
+    font-weight:900;
+
+    color:#1e293b;
+
+    letter-spacing:-.025em;
+
+}
+
+.page-subtitle{
+
+    font-size:13px;
+
+    color:#64748b;
+
+    font-weight:500;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.back-button{
+
+    background:#1e3a8a;
+
+    color:#fff;
+
+    border-radius:12px;
+
+    padding:
+        11px
+        17px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:
+        .2s ease;
+
+    box-shadow:
+        0 5px 12px
+        rgba(30,58,138,.18);
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+.back-button:hover{
+
+    background:#1d4ed8;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(30,58,138,.25);
+
+}
+
+
+/* =========================================================
+   YEAR SELECTOR
+========================================================= */
+
+.year-selector{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #dbe3ee;
+
+    border-radius:12px;
+
+    padding:
+        10px
+        14px;
+
+    color:#1e3a8a;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    outline:none;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+    min-width:150px;
+
+}
+
+.year-selector:hover{
+
+    border-color:#93c5fd;
+
+}
+
+.year-selector:focus{
+
+    border-color:#60a5fa;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.10);
+
+}
+
+
+/* =========================================================
+   STAT GRID
+========================================================= */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:14px;
+
+    margin-bottom:24px;
+
+}
+
+
+/* =========================================================
+   STAT CARD
+========================================================= */
+
+.stat-card{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:17px;
+
+    padding:17px;
+
+    transition:
+        .25s ease;
+
+    min-height:120px;
+
+}
+
+.stat-card:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 20px
+        rgba(15,23,42,.07);
+
+}
+
+
+/* =========================================================
+   STAT BRAND COLORS
+========================================================= */
+
+.brand-med{
+    color:#2563eb;
+}
+
+.brand-dte{
+    color:#7c3aed;
+}
+
+.brand-atf{
+    color:#dc2626;
+}
+
+.brand-apm{
+    color:#059669;
+}
+
+.brand-lub{
+    color:#d97706;
+}
+
+.brand-axo{
+    color:#0891b2;
+}
+
+.brand-flui{
+    color:#4f46e5;
+}
+
+.brand-delvac{
+    color:#be123c;
+}
+
+.brand-other{
+    color:#64748b;
+}
+
+
+/* =========================================================
+   TABLE PANEL
+========================================================= */
+
+.table-panel{
+
+    background:#fff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 4px 12px
+        rgba(15,23,42,.04);
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+table{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+    table-layout:fixed;
+
+}
+
+thead{
+
+    background:#f8fafc;
+
+}
+
+thead th{
+
+    padding:0;
+
+    border-bottom:
+        2px solid
+        #e2e8f0;
+
+    color:#475569;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    white-space:nowrap;
+
+    text-align:left;
+
+}
+
+
+/*
+   PROPORSI KOLOM
+
+   DATE          14%
+   UNIT          13%
+   OIL           18%
+   PART          40%
+   QTY           15%
+*/
+
+.col-date{
+    width:14%;
+}
+
+.col-unit{
+    width:13%;
+}
+
+.col-oil{
+    width:18%;
+}
+
+.col-part{
+    width:40%;
+}
+
+.col-qty{
+    width:15%;
+}
+
+
+.sort-button{
+
+    width:100%;
+
+    padding:
+        14px;
+
+    background:transparent;
+
+    border:none;
+
+    color:#475569;
+
+    font-family:inherit;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+    text-align:left;
+
+}
+
+.sort-button:hover{
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+}
+
+.sort-button.active{
+
+    color:#1e3a8a;
+
+    background:#eff6ff;
+
+}
+
+.sort-icon{
+
+    width:14px;
+
+    height:14px;
+
+    flex-shrink:0;
+
+    opacity:.35;
+
+    transition:.2s ease;
+
+}
+
+.sort-button:hover .sort-icon{
+
+    opacity:.8;
+
+}
+
+.sort-button.active .sort-icon{
+
+    opacity:1;
+
+}
+
+
+tbody td{
+
+    padding:
+        13px
+        14px;
+
+    border-bottom:
+        1px solid
+        #f1f5f9;
+
+    color:#334155;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    vertical-align:middle;
+
+    overflow:hidden;
+
+}
+
+tbody tr{
+
+    transition:
+        background
+        .15s ease;
+
+}
+
+tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+
+/* =========================================================
+   OIL CELL
+========================================================= */
+
+.oil-cell{
+
+    color:#334155;
+
+    font-weight:500;
+
+}
+
+
+/* =========================================================
+   UNIT
+========================================================= */
+
+.unit-text{
+
+    font-weight:900;
+
+    color:#1e3a8a;
+
+    letter-spacing:.03em;
+
+}
+
+
+/* =========================================================
+   QTY
+========================================================= */
+
+.qty-cell{
+
+    font-weight:900;
+
+    color:#1e293b;
+
+    text-align:right;
+
+}
+
+.qty-unit{
+
+    font-size:9px;
+
+    color:#94a3b8;
+
+    font-weight:700;
+
+    margin-left:4px;
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.filter-input{
+
+    width:100%;
+
+    background:#f8fafc;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:11px;
+
+    padding:
+        10px
+        12px;
+
+    color:#334155;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    outline:none;
+
+    transition:.2s ease;
+
+}
+
+.filter-input:focus{
+
+    background:#fff;
+
+    border-color:#93c5fd;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.10);
+
+}
+
+select.filter-input{
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination-button{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:9px;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    background:#fff;
+
+    color:#475569;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+.pagination-button:hover:not(:disabled){
+
+    background:#eff6ff;
+
+    color:#1e3a8a;
+
+    border-color:#bfdbfe;
+
+}
+
+.pagination-button.active{
+
+    background:#1e3a8a;
+
+    color:#fff;
+
+    border-color:#1e3a8a;
+
+}
+
+.pagination-button:disabled{
+
+    opacity:.4;
+
+    cursor:not-allowed;
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loading{
+
+    min-height:350px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+#tableContent{
+
+    display:none;
+
+}
+
+#tableContent.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+#emptyState{
+
+    display:none;
+
+}
+
+#emptyState.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error-box{
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+
+/* =========================================================
+   MOBILE FALLBACK
+========================================================= */
+
+@media(max-width:1100px){
+
+    html{
+
+        min-width:0;
+
+    }
+
+    body{
+
+        min-width:1100px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body
+    class="
+        flex
+        flex-col
+        items-center
+        p-4
+        sm:p-8
+    "
+>
+
+
+<main
+    class="
+        w-full
+        max-w-7xl
+        flex-grow
+        glass-panel
+        p-6
+        sm:p-10
+        rounded-3xl
+        shadow-2xl
+        fade-in
+    "
+>
+
+
+<header
+    class="
+        w-full
+        mb-8
+        pb-6
+        border-b-2
+        border-slate-100
+        flex
+        flex-col
+        items-center
+    "
+>
+
+    <div class="mb-4 logo-wrapper">
+
+        <div
+            class="
+                w-24
+                h-24
+                flex
+                items-center
+                justify-center
+                bg-white
+                rounded-2xl
+                logo-shadow
+                overflow-hidden
+                p-2
+            "
+        >
+
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="
+                    w-full
+                    h-full
+                    object-contain
+                "
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+
+            <div
+                id="logoFallback"
+                class="
+                    hidden
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    bg-blue-900
+                    w-full
+                    h-full
+                    text-white
+                "
+            >
+
+                <span
+                    class="
+                        font-black
+                        text-2xl
+                    "
+                >
+                    TSI
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="
+            color-primary
+            text-white
+            px-8
+            py-4
+            rounded-2xl
+            shadow-lg
+            flex
+            flex-col
+            items-center
+            gap-1
+        "
+    >
+
+        <h1
+            class="
+                text-xl
+                sm:text-2xl
+                font-black
+                uppercase
+                tracking-[0.1em]
+                text-center
+            "
+        >
+            PAPERLESS PROJECT
+        </h1>
+
+        <div
+            class="
+                h-0.5
+                w-16
+                bg-amber-500
+                rounded-full
+                my-1
+            "
+        ></div>
+
+        <h2
+            class="
+                text-sm
+                sm:text-lg
+                font-bold
+                uppercase
+                tracking-widest
+                text-blue-100
+                text-center
+            "
+        >
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+
+    </div>
+
+
+    <div
+        class="
+            mt-3
+            text-[10px]
+            font-bold
+            text-slate-400
+            tracking-[0.3em]
+            uppercase
+        "
+    >
+        Digitalization Initiative v2.0
+    </div>
+
+</header>
+
+
+<section>
+
+
+    <div
+        class="
+            flex
+            items-center
+            justify-between
+            gap-5
+            mb-6
+        "
+    >
+
+        <div>
+
+            <h2
+                class="
+                    page-title
+                    flex
+                    items-center
+                    gap-3
+                "
+            >
+
+                <span
+                    class="
+                        bg-blue-900
+                        text-white
+                        p-3
+                        rounded-xl
+                        shadow-md
+                    "
+                >
+
+                    <i
+                        data-lucide="droplets"
+                        class="w-6 h-6"
+                    ></i>
+
+                </span>
+
+                Data Penggunaan Oli
+
+            </h2>
+
+
+            <p
+                class="
+                    page-subtitle
+                    mt-2
+                    ml-1
+                "
+            >
+
+                Daftar seluruh histori penggunaan oli unit yang tersimpan pada database.
+
+            </p>
+
+        </div>
+
+
+        <div class="flex items-center gap-3">
+
+
+            <div
+                class="
+                    flex
+                    items-center
+                    gap-2
+                "
+            >
+
+                <span
+                    class="
+                        text-[10px]
+                        font-black
+                        uppercase
+                        tracking-wider
+                        text-slate-400
+                    "
+                >
+                    Tahun
+                </span>
+
+
+                <select
+                    id="yearSelector"
+                    class="year-selector"
+                    onchange="changeYear()"
+                >
+
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+
+                    <option value="ALL">
+                        Seluruh Data
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                onclick="goToDashboard()"
+                class="back-button"
+            >
+
+                <i
+                    data-lucide="arrow-left"
+                    class="w-4 h-4"
+                ></i>
+
+                Kembali
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="loading">
+
+        <i
+            data-lucide="loader-circle"
+            class="
+                w-9
+                h-9
+                animate-spin
+                text-amber-500
+            "
+        ></i>
+
+
+        <p
+            id="loadingText"
+            class="
+                font-semibold
+                text-sm
+                text-slate-400
+                mt-3
+            "
+        >
+            Memuat data oil usage...
+        </p>
+
+    </div>
+
+
+    <div id="tableContent">
+
+
+        <div
+            id="statsGrid"
+            class="stats-grid"
+        >
+        </div>
+
+
+        <div
+            class="
+                bg-white
+                border
+                border-slate-200
+                rounded-2xl
+                p-5
+                mb-5
+                shadow-sm
+            "
+        >
+
+
+            <div
+                class="
+                    flex
+                    items-center
+                    gap-3
+                    mb-4
+                "
+            >
+
+                <span
+                    class="
+                        bg-blue-100
+                        text-blue-700
+                        p-2
+                        rounded-lg
+                    "
+                >
+
+                    <i
+                        data-lucide="filter"
+                        class="w-4 h-4"
+                    ></i>
+
+                </span>
+
+
+                <div>
+
+                    <h3
+                        class="
+                            text-sm
+                            font-black
+                            text-slate-700
+                        "
+                    >
+                        Filter Data
+                    </h3>
+
+
+                    <p
+                        class="
+                            text-[10px]
+                            text-slate-400
+                            font-medium
+                        "
+                    >
+                        Filter berdasarkan unit, jenis oli, dan merk oli.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="
+                    grid
+                    grid-cols-4
+                    gap-4
+                "
+            >
+
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Cari Data
+                    </label>
+
+
+                    <div class="relative">
+
+                        <i
+                            data-lucide="search"
+                            class="
+                                absolute
+                                left-3
+                                top-1/2
+                                -translate-y-1/2
+                                w-4
+                                h-4
+                                text-slate-400
+                            "
+                        ></i>
+
+
+                        <input
+                            id="searchInput"
+                            type="text"
+                            placeholder="Date, unit, oil, part..."
+                            class="
+                                filter-input
+                                pl-10
+                            "
+                            oninput="applyFilters()"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Jenis Unit
+                    </label>
+
+
+                    <select
+                        id="unitTypeFilter"
+                        class="filter-input"
+                        onchange="applyFilters()"
+                    >
+
+                        <option value="">
+                            Semua Unit
+                        </option>
+
+                        <option value="F">
+                            Forklift
+                        </option>
+
+                        <option value="W">
+                            Wheelloader
+                        </option>
+
+                        <option value="D">
+                            Dumptruck
+                        </option>
+
+                        <option value="E">
+                            Excavator
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Jenis Oli
+                    </label>
+
+
+                    <select
+                        id="oilTypeFilter"
+                        class="filter-input"
+                        onchange="applyFilters()"
+                    >
+
+                        <option value="">
+                            Semua Jenis Oli
+                        </option>
+
+                        <option value="ENGINE">
+                            Oil Engine
+                        </option>
+
+                        <option value="HYDRAULIC">
+                            Oil Hydraulic
+                        </option>
+
+                        <option value="TRANSMISSION">
+                            Oil Transmission
+                        </option>
+
+                        <option value="DIFFERENTIAL">
+                            Oil Differential
+                        </option>
+
+                        <option value="OTHER">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Merk Oli
+                    </label>
+
+
+                    <select
+                        id="oilBrandFilter"
+                        class="filter-input"
+                        onchange="applyFilters()"
+                    >
+
+                        <option value="">
+                            Semua Merk Oli
+                        </option>
+
+                        <option value="MEDITRAN">
+                            MEDITRAN 15W-40
+                        </option>
+
+                        <option value="DTE">
+                            DTE 25
+                        </option>
+
+                        <option value="ATF">
+                            ATF D3
+                        </option>
+
+                        <option value="APMS">
+                            APMS 310
+                        </option>
+
+                        <option value="LUBE">
+                            LUBE HD80W-90
+                        </option>
+
+                        <option value="AXO">
+                            AXO 80
+                        </option>
+
+                        <option value="FLUID">
+                            FLUID 424
+                        </option>
+
+                        <option value="DELVAC">
+                            DELVAC SAE30
+                        </option>
+
+                        <option value="OTHER">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="mt-4 flex justify-end">
+
+                <button
+                    onclick="resetFilters()"
+                    class="
+                        rounded-xl
+                        border
+                        border-slate-200
+                        bg-slate-50
+                        hover:bg-slate-100
+                        text-slate-600
+                        font-bold
+                        text-[11px]
+                        transition
+                        flex
+                        items-center
+                        justify-center
+                        gap-2
+                        px-5
+                        py-2.5
+                    "
+                >
+
+                    <i
+                        data-lucide="rotate-ccw"
+                        class="w-4 h-4"
+                    ></i>
+
+                    Reset Filter
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-panel">
+
+
+            <div
+                class="
+                    px-5
+                    py-4
+                    border-b
+                    border-slate-100
+                    flex
+                    items-center
+                    justify-between
+                "
+            >
+
+                <div>
+
+                    <h3
+                        class="
+                            font-black
+                            text-slate-700
+                            text-sm
+                        "
+                    >
+                        Histori Oil Usage
+                    </h3>
+
+
+                    <p
+                        id="resultInfo"
+                        class="
+                            text-[10px]
+                            text-slate-400
+                            mt-1
+                            font-medium
+                        "
+                    >
+                        -
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="
+                        flex
+                        items-center
+                        gap-2
+                        text-[10px]
+                        text-slate-400
+                        font-semibold
+                    "
+                >
+
+                    <i
+                        data-lucide="database"
+                        class="w-3.5 h-3.5"
+                    ></i>
+
+                    Database Spreadsheet
+
+                    <span
+                        id="activeYearBadge"
+                        class="
+                            bg-blue-50
+                            text-blue-700
+                            px-2
+                            py-1
+                            rounded-md
+                            font-black
+                        "
+                    >
+                        2026
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="overflow-x-auto"
+            >
+
+                <table>
+
+                    <colgroup>
+
+                        <col class="col-date">
+
+                        <col class="col-unit">
+
+                        <col class="col-oil">
+
+                        <col class="col-part">
+
+                        <col class="col-qty">
+
+                    </colgroup>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('date')"
+                                    data-sort-key="date"
+                                >
+
+                                    <span>DATE</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('unit')"
+                                    data-sort-key="unit"
+                                >
+
+                                    <span>UNIT</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('oil')"
+                                    data-sort-key="oil"
+                                >
+
+                                    <span>OIL</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('part')"
+                                    data-sort-key="part"
+                                >
+
+                                    <span>PART</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button"
+                                    onclick="sortBy('qty')"
+                                    data-sort-key="qty"
+                                >
+
+                                    <span>QTY</span>
+
+                                    <i
+                                        data-lucide="chevrons-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tableBody"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                id="emptyState"
+            >
+
+                <div
+                    class="
+                        py-16
+                        text-center
+                    "
+                >
+
+                    <div
+                        class="
+                            inline-flex
+                            items-center
+                            justify-center
+                            bg-slate-100
+                            text-slate-400
+                            p-4
+                            rounded-full
+                        "
+                    >
+
+                        <i
+                            data-lucide="search-x"
+                            class="w-8 h-8"
+                        ></i>
+
+                    </div>
+
+
+                    <h3
+                        class="
+                            font-bold
+                            text-slate-600
+                            mt-4
+                        "
+                    >
+                        Data tidak ditemukan
+                    </h3>
+
+
+                    <p
+                        class="
+                            text-xs
+                            text-slate-400
+                            mt-1
+                        "
+                    >
+                        Coba ubah kata pencarian atau filter.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="
+                    px-5
+                    py-4
+                    border-t
+                    border-slate-100
+                    flex
+                    items-center
+                    justify-between
+                "
+            >
+
+                <div
+                    id="paginationInfo"
+                    class="
+                        text-[10px]
+                        font-semibold
+                        text-slate-400
+                    "
+                >
+                    -
+                </div>
+
+
+                <div
+                    id="pagination"
+                    class="
+                        flex
+                        items-center
+                        gap-1
+                    "
+                >
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer
+    class="
+        mt-8
+        text-center
+        text-slate-400
+        px-4
+        pb-8
+    "
+>
+
+    <p
+        class="
+            font-bold
+            text-slate-500
+            tracking-tight
+            uppercase
+        "
+    >
+
+        &copy; 2026 Paperless Project - PT TSI.
+        All rights reserved.
+
+    </p>
+
+
+    <p
+        class="
+            text-[10px]
+            mt-1
+        "
+    >
+
+        System Architecture by:
+
+        <span
+            class="
+                text-slate-600
+                font-semibold
+                uppercase
+            "
+        >
+            Imam Wahyu Ramadhan, S.T.
+        </span>
+
+        |
+
+        <span
+            class="
+                text-amber-600
+                font-bold
+                uppercase
+                tracking-tighter
+            "
+        >
+            Project 2.0
+        </span>
+
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const API_URL =
+'https://script.google.com/macros/s/AKfycbywlDfMcpKc3QsRb2pRBgTi0rmxVAdgCXtf1SbrV3xEHOtGb9lqLUzDFS_ppxjxLq5C/exec';
+
+
+const DASHBOARD_URL =
+'oil.html';
+
+
+const ROWS_PER_PAGE = 15;
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let apiData = null;
+
+let allData = [];
+
+let filteredData = [];
+
+let currentPage = 1;
+
+let currentYear = '2026';
+
+let sortKey = 'date';
+
+let sortDirection = 'desc';
+
+
+/* =========================================================
+   OIL BRAND DEFINITIONS
+========================================================= */
+
+const OIL_BRANDS = [
+
+    {
+        key:'MEDITRAN',
+        label:'MEDITRAN 15W-40',
+        contains:'med',
+        className:'brand-med'
+    },
+
+    {
+        key:'DTE',
+        label:'DTE 25',
+        contains:'dte',
+        className:'brand-dte'
+    },
+
+    {
+        key:'ATF',
+        label:'ATF D3',
+        contains:'atf',
+        className:'brand-atf'
+    },
+
+    {
+        key:'APMS',
+        label:'APMS 310',
+        contains:'apm',
+        className:'brand-apm'
+    },
+
+    {
+        key:'LUBE',
+        label:'LUBE HD80W-90',
+        contains:'lub',
+        className:'brand-lub'
+    },
+
+    {
+        key:'AXO',
+        label:'AXO 80',
+        contains:'axo',
+        className:'brand-axo'
+    },
+
+    {
+        key:'FLUID',
+        label:'FLUID 424',
+        contains:'flui',
+        className:'brand-flui'
+    },
+
+    {
+        key:'DELVAC',
+        label:'DELVAC SAE30',
+        contains:'delvac',
+        className:'brand-delvac'
+    }
+
+];
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goToDashboard(){
+
+    window.location.href =
+        DASHBOARD_URL;
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+function handleLogoError(){
+
+    const logo =
+        document.getElementById(
+            'companyLogo'
+        );
+
+    const fallback =
+        document.getElementById(
+            'logoFallback'
+        );
+
+    if(logo){
+
+        logo.classList.add(
+            'hidden'
+        );
+
+    }
+
+    if(fallback){
+
+        fallback.classList.remove(
+            'hidden'
+        );
+
+        fallback.classList.add(
+            'flex'
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CHANGE YEAR
+========================================================= */
+
+function changeYear(){
+
+    const selector =
+        document.getElementById(
+            'yearSelector'
+        );
+
+    const year =
+        selector.value;
+
+    loadYearData(
+        year
+    );
+
+}
+
+
+/* =========================================================
+   NORMALIZE TEXT
+========================================================= */
+
+function normalizeContains(
+    value
+){
+
+    return String(
+        value ?? ''
+    )
+    .toLowerCase()
+    .replace(
+        /\s+/g,
+        ''
+    )
+    .trim();
+
+}
+
+
+/* =========================================================
+   CONTAINS
+========================================================= */
+
+function containsText(
+    value,
+    keyword
+){
+
+    return normalizeContains(
+        value
+    ).includes(
+        normalizeContains(
+            keyword
+        )
+    );
+
+}
+
+
+/* =========================================================
+   PARSE NUMBER
+========================================================= */
+
+function parseQty(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return 0;
+
+    }
+
+    let text =
+        String(
+            value
+        )
+        .trim();
+
+    if(!text){
+
+        return 0;
+
+    }
+
+    text =
+        text
+        .replace(
+            /[^\d,.-]/g,
+            ''
+        );
+
+    if(
+        text.includes(',') &&
+        !text.includes('.')
+    ){
+
+        text =
+            text.replace(
+                ',',
+                '.'
+            );
+
+    }
+
+    else if(
+        text.includes('.') &&
+        text.includes(',')
+    ){
+
+        text =
+            text
+            .replace(
+                /\./g,
+                ''
+            )
+            .replace(
+                ',',
+                '.'
+            );
+
+    }
+
+    const number =
+        parseFloat(
+            text
+        );
+
+    return Number.isFinite(
+        number
+    )
+        ?
+        number
+        :
+        0;
+
+}
+
+
+/* =========================================================
+   FORMAT NUMBER
+========================================================= */
+
+function formatNumber(
+    value
+){
+
+    return Math.round(
+        Number(
+            value || 0
+        )
+    ).toLocaleString(
+        'id-ID'
+    );
+
+}
+
+
+/* =========================================================
+   LOAD YEAR DATA
+========================================================= */
+
+async function loadYearData(
+    year
+){
+
+    currentYear =
+        String(
+            year
+        );
+
+    showLoading(
+
+        currentYear === 'ALL'
+            ?
+            'Memuat seluruh data oil usage...'
+            :
+            `Memuat data oil usage ${currentYear}...`
+
+    );
+
+    allData = [];
+
+    filteredData = [];
+
+    currentPage = 1;
+
+    sortKey =
+        'date';
+
+    sortDirection =
+        'desc';
+
+
+    try{
+
+        let requestUrl;
+
+        if(
+            currentYear === 'ALL'
+        ){
+
+            requestUrl =
+                API_URL;
+
+        }
+
+        else{
+
+            requestUrl =
+                `${API_URL}?year=${encodeURIComponent(currentYear)}`;
+
+        }
+
+
+        console.log(
+            'Fetching:',
+            requestUrl
+        );
+
+
+        const response =
+            await fetch(
+                requestUrl,
+                {
+                    method:'GET',
+                    cache:'no-store'
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                `HTTP Error ${response.status}`
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            'API Response:',
+            result
+        );
+
+
+        if(
+            !result ||
+            result.success !== true
+        ){
+
+            throw new Error(
+                result?.error ||
+                'API mengembalikan response tidak valid.'
+            );
+
+        }
+
+
+        apiData =
+            result;
+
+
+        if(
+            currentYear === 'ALL'
+        ){
+
+            const allSheets =
+                result.data || {};
+
+
+            Object.keys(
+                allSheets
+            )
+            .forEach(
+                yearKey=>{
+
+                    const sheetData =
+                        allSheets[
+                            yearKey
+                        ];
+
+
+                    if(
+                        !sheetData ||
+                        !Array.isArray(
+                            sheetData.rows
+                        )
+                    ){
+
+                        return;
+
+                    }
+
+
+                    sheetData.rows.forEach(
+                        (
+                            row,
+                            index
+                        )=>{
+
+                            allData.push(
+                                createDataObject(
+                                    row,
+                                    yearKey,
+                                    allData.length
+                                )
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+
+        else{
+
+            const sheetData =
+                result.data;
+
+
+            if(
+                !sheetData
+            ){
+
+                throw new Error(
+                    `Response data untuk tahun ${currentYear} tidak ditemukan.`
+                );
+
+            }
+
+
+            const rows =
+                Array.isArray(
+                    sheetData.rows
+                )
+                ?
+                sheetData.rows
+                :
+                [];
+
+
+            allData =
+                rows.map(
+                    (
+                        row,
+                        index
+                    )=>{
+
+                        return createDataObject(
+                            row,
+                            currentYear,
+                            index
+                        );
+
+                    }
+                );
+
+        }
+
+
+        filteredData =
+            [
+                ...allData
+            ];
+
+
+        updateStatistics(
+            allData
+        );
+
+
+        updateYearUI(
+            currentYear
+        );
+
+
+        clearFilters();
+
+
+        renderTable();
+
+
+        hideLoading();
+
+
+    }
+    catch(error){
+
+        console.error(
+            'Oil Usage API Error:',
+            error
+        );
+
+
+        showError(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CREATE DATA OBJECT
+========================================================= */
+
+function createDataObject(
+    row,
+    sourceYear,
+    index
+){
+
+    const date =
+        row?.[0] ?? '';
+
+    const unit =
+        row?.[1] ?? '';
+
+    const oil =
+        row?.[2] ?? '';
+
+    const part =
+        row?.[3] ?? '';
+
+    const qtyRaw =
+        row?.[4] ?? '';
+
+    const qtyExtra =
+        row?.[5] ?? '';
+
+
+    return {
+
+        originalIndex:
+            index,
+
+        sourceYear:
+            sourceYear,
+
+        date:
+            date,
+
+        unit:
+            unit,
+
+        oil:
+            oil,
+
+        part:
+            part,
+
+        qtyRaw:
+            qtyRaw,
+
+        qtyExtra:
+            qtyExtra,
+
+        qty:
+            parseQty(
+                qtyRaw
+            )
+
+    };
+
+}
+
+
+/* =========================================================
+   SHOW LOADING
+========================================================= */
+
+function showLoading(
+    message
+){
+
+    const loading =
+        document.getElementById(
+            'loading'
+        );
+
+    const tableContent =
+        document.getElementById(
+            'tableContent'
+        );
+
+    const loadingText =
+        document.getElementById(
+            'loadingText'
+        );
+
+
+    if(loadingText){
+
+        loadingText.textContent =
+            message ||
+            'Memuat data...';
+
+    }
+
+
+    if(loading){
+
+        loading.style.display =
+            'flex';
+
+        loading.innerHTML = `
+
+            <i
+                data-lucide="loader-circle"
+                class="
+                    w-9
+                    h-9
+                    animate-spin
+                    text-amber-500
+                "
+            ></i>
+
+            <p
+                id="loadingText"
+                class="
+                    font-semibold
+                    text-sm
+                    text-slate-400
+                    mt-3
+                "
+            >
+                ${escapeHtml(
+                    message ||
+                    'Memuat data...'
+                )}
+            </p>
+
+        `;
+
+    }
+
+
+    if(tableContent){
+
+        tableContent.classList.remove(
+            'show'
+        );
+
+    }
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   HIDE LOADING
+========================================================= */
+
+function hideLoading(){
+
+    const loading =
+        document.getElementById(
+            'loading'
+        );
+
+    const tableContent =
+        document.getElementById(
+            'tableContent'
+        );
+
+
+    if(loading){
+
+        loading.style.display =
+            'none';
+
+    }
+
+
+    if(tableContent){
+
+        tableContent.classList.add(
+            'show'
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SHOW ERROR
+========================================================= */
+
+function showError(
+    message
+){
+
+    const loading =
+        document.getElementById(
+            'loading'
+        );
+
+
+    if(!loading){
+
+        return;
+
+    }
+
+
+    loading.style.display =
+        'flex';
+
+
+    loading.innerHTML = `
+
+        <div
+            class="
+                error-box
+                text-center
+            "
+        >
+
+            <div
+                class="
+                    bg-red-50
+                    text-red-600
+                    p-4
+                    rounded-full
+                    inline-flex
+                "
+            >
+
+                <i
+                    data-lucide="alert-circle"
+                    class="w-8 h-8"
+                ></i>
+
+            </div>
+
+
+            <h3
+                class="
+                    font-bold
+                    text-red-700
+                    mt-3
+                "
+            >
+                Gagal memuat data
+            </h3>
+
+
+            <p
+                class="
+                    text-xs
+                    text-slate-500
+                    mt-2
+                    max-w-lg
+                    mx-auto
+                    break-words
+                "
+            >
+                ${escapeHtml(
+                    message
+                )}
+            </p>
+
+
+            <p
+                class="
+                    text-[10px]
+                    text-slate-400
+                    mt-3
+                "
+            >
+                Pastikan Deployment Apps Script menggunakan
+                akses <b>Anyone</b>.
+            </p>
+
+
+            <button
+                onclick="loadYearData(currentYear)"
+                class="
+                    mt-4
+                    bg-blue-800
+                    hover:bg-blue-700
+                    text-white
+                    font-bold
+                    px-5
+                    py-2.5
+                    rounded-xl
+                    text-sm
+                "
+            >
+
+                Coba Lagi
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   UPDATE YEAR UI
+========================================================= */
+
+function updateYearUI(
+    year
+){
+
+    const label =
+        document.getElementById(
+            'selectedYearLabel'
+        );
+
+
+    const badge =
+        document.getElementById(
+            'activeYearBadge'
+        );
+
+
+    const displayYear =
+        year === 'ALL'
+            ?
+            'Seluruh Data'
+            :
+            year;
+
+
+    if(label){
+
+        label.textContent =
+            displayYear === 'Seluruh Data'
+                ?
+                displayYear
+                :
+                `Tahun ${displayYear}`;
+
+    }
+
+
+    if(badge){
+
+        badge.textContent =
+            displayYear;
+
+    }
+
+
+    const selector =
+        document.getElementById(
+            'yearSelector'
+        );
+
+
+    if(
+        selector &&
+        selector.value !== String(year)
+    ){
+
+        selector.value =
+            String(year);
+
+    }
+
+}
+
+
+/* =========================================================
+   NORMALIZE UNIT
+========================================================= */
+
+function normalizeUnit(
+    value
+){
+
+    return String(
+        value ?? ''
+    )
+    .trim()
+    .toUpperCase();
+
+}
+
+
+/* =========================================================
+   GET UNIT TYPE
+========================================================= */
+
+function getUnitType(
+    unit
+){
+
+    const value =
+        normalizeContains(
+            unit
+        );
+
+
+    if(
+        value.includes('f')
+    ){
+
+        return 'F';
+
+    }
+
+
+    if(
+        value.includes('w')
+    ){
+
+        return 'W';
+
+    }
+
+
+    if(
+        value.includes('d')
+    ){
+
+        return 'D';
+
+    }
+
+
+    if(
+        value.includes('e')
+    ){
+
+        return 'E';
+
+    }
+
+
+    return '';
+
+}
+
+
+/* =========================================================
+   GET OIL TYPE
+========================================================= */
+
+function getOilType(
+    oil
+){
+
+    const value =
+        normalizeContains(
+            oil
+        );
+
+
+    if(
+        value.includes('eng')
+    ){
+
+        return 'ENGINE';
+
+    }
+
+
+    if(
+        value.includes('lic')
+    ){
+
+        return 'HYDRAULIC';
+
+    }
+
+
+    if(
+        value.includes('tra')
+    ){
+
+        return 'TRANSMISSION';
+
+    }
+
+
+    if(
+        value.includes('dif')
+    ){
+
+        return 'DIFFERENTIAL';
+
+    }
+
+
+    return 'OTHER';
+
+}
+
+
+/* =========================================================
+   GET OIL BRAND
+========================================================= */
+
+function getOilBrand(
+    oil
+){
+
+    const value =
+        normalizeContains(
+            oil
+        );
+
+
+    for(
+        const brand of OIL_BRANDS
+    ){
+
+        if(
+            value.includes(
+                normalizeContains(
+                    brand.contains
+                )
+            )
+        ){
+
+            return brand.key;
+
+        }
+
+    }
+
+
+    return 'OTHER';
+
+}
+
+
+/* =========================================================
+   GET BRAND OBJECT
+========================================================= */
+
+function getBrandObject(
+    key
+){
+
+    return OIL_BRANDS.find(
+        brand =>
+            brand.key === key
+    );
+
+}
+
+
+/* =========================================================
+   SUM TOTAL QTY
+========================================================= */
+
+function sumQty(
+    data
+){
+
+    return data.reduce(
+        (
+            total,
+            row
+        )=>{
+
+            return total +
+                parseQty(
+                    row.qty
+                );
+
+        },
+        0
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE STATISTICS
+========================================================= */
+
+function updateStatistics(
+    data
+){
+
+    const statsGrid =
+        document.getElementById(
+            'statsGrid'
+        );
+
+
+    if(!statsGrid){
+
+        return;
+
+    }
+
+
+    /*
+       TOTAL OIL USAGE
+       Selalu mengikuti data
+       yang sedang ditampilkan.
+    */
+
+    const totalQty =
+        sumQty(
+            data
+        );
+
+
+    let cards = [];
+
+
+    cards.push({
+
+        key:'TOTAL',
+
+        label:'Total Oil Usage',
+
+        value:
+            Math.round(
+                totalQty
+            ),
+
+        className:'text-blue-900',
+
+        icon:'droplets',
+
+        subtitle:
+            currentYear === 'ALL'
+                ?
+                'Seluruh Data'
+                :
+                `Tahun ${currentYear}`
+
+    });
+
+
+    /*
+       PANEL BRAND
+       
+       Jika memilih tahun tertentu:
+       subtitle = Usage YYYY
+
+       Jika memilih Seluruh Data:
+       subtitle = Total Usage
+    */
+
+    OIL_BRANDS.forEach(
+        brand=>{
+
+            const brandData =
+                data.filter(
+                    row =>
+                        getOilBrand(
+                            row.part
+                        ) ===
+                        brand.key
+                );
+
+
+            const total =
+                sumQty(
+                    brandData
+                );
+
+
+            if(
+                Math.round(total) <= 0
+            ){
+
+                return;
+
+            }
+
+
+            cards.push({
+
+                key:
+                    brand.key,
+
+                label:
+                    brand.label,
+
+                value:
+                    Math.round(
+                        total
+                    ),
+
+                className:
+                    brand.className,
+
+                icon:
+                    'droplet',
+
+                /*
+                   PERUBAHAN UTAMA:
+                   
+                   ALL  -> Total Usage
+                   2026 -> Usage 2026
+                   2025 -> Usage 2025
+                   dst.
+                */
+
+                subtitle:
+                    currentYear === 'ALL'
+                        ?
+                        'Total Usage'
+                        :
+                        `Usage ${currentYear}`
+
+            });
+
+        }
+    );
+
+
+    /*
+       BRAND OTHER
+    */
+
+    const otherBrandData =
+        data.filter(
+            row =>
+                getOilBrand(
+                    row.part
+                ) ===
+                'OTHER'
+        );
+
+
+    const otherTotal =
+        sumQty(
+            otherBrandData
+        );
+
+
+    if(
+        Math.round(otherTotal) > 0
+    ){
+
+        cards.push({
+
+            key:'OTHER',
+
+            label:'Other',
+
+            value:
+                Math.round(
+                    otherTotal
+                ),
+
+            className:'brand-other',
+
+            icon:'circle-help',
+
+            subtitle:
+                currentYear === 'ALL'
+                    ?
+                    'Other Brand'
+                    :
+                    `Other • ${currentYear}`
+
+        });
+
+    }
+
+
+    /*
+       RENDER CARD
+    */
+
+    statsGrid.innerHTML =
+        cards
+        .map(
+            card => `
+
+                <div
+                    class="
+                        stat-card
+                        ${card.className}
+                    "
+                >
+
+                    <div
+                        class="
+                            flex
+                            items-center
+                            justify-between
+                            gap-3
+                        "
+                    >
+
+                        <p
+                            class="
+                                text-[10px]
+                                font-bold
+                                text-slate-400
+                                uppercase
+                                tracking-wider
+                            "
+                        >
+                            ${escapeHtml(
+                                card.label
+                            )}
+                        </p>
+
+
+                        <div
+                            class="
+                                bg-slate-50
+                                rounded-lg
+                                p-2
+                            "
+                        >
+
+                            <i
+                                data-lucide="${card.icon}"
+                                class="
+                                    w-4
+                                    h-4
+                                "
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="
+                            flex
+                            items-end
+                            gap-2
+                            mt-3
+                        "
+                    >
+
+                        <p
+                            class="
+                                text-3xl
+                                font-black
+                            "
+                        >
+                            ${formatNumber(
+                                card.value
+                            )}
+                        </p>
+
+
+                        <span
+                            class="
+                                mb-1
+                                text-[10px]
+                                font-black
+                                text-slate-400
+                            "
+                        >
+                            LITER
+                        </span>
+
+                    </div>
+
+
+                    <p
+                        class="
+                            text-[9px]
+                            text-slate-400
+                            font-bold
+                            mt-1
+                        "
+                    >
+                        ${escapeHtml(
+                            card.subtitle
+                        )}
+                    </p>
+
+                </div>
+
+            `
+        )
+        .join('');
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   APPLY FILTERS
+========================================================= */
+
+function applyFilters(){
+
+    const searchElement =
+        document.getElementById(
+            'searchInput'
+        );
+
+
+    const unitElement =
+        document.getElementById(
+            'unitTypeFilter'
+        );
+
+
+    const oilTypeElement =
+        document.getElementById(
+            'oilTypeFilter'
+        );
+
+
+    const oilBrandElement =
+        document.getElementById(
+            'oilBrandFilter'
+        );
+
+
+    const search =
+        normalizeContains(
+            searchElement?.value || ''
+        );
+
+
+    const unitType =
+        String(
+            unitElement?.value || ''
+        )
+        .toUpperCase();
+
+
+    const oilType =
+        String(
+            oilTypeElement?.value || ''
+        )
+        .toUpperCase();
+
+
+    const oilBrand =
+        String(
+            oilBrandElement?.value || ''
+        )
+        .toUpperCase();
+
+
+    filteredData =
+        allData.filter(
+            row=>{
+
+                const searchable = [
+
+                    row.date,
+
+                    row.unit,
+
+                    row.oil,
+
+                    row.part,
+
+                    row.qtyRaw,
+
+                    row.qtyExtra,
+
+                    row.sourceYear
+
+                ]
+                .join(' ');
+
+
+                const matchSearch =
+                    !search ||
+                    normalizeContains(
+                        searchable
+                    )
+                    .includes(
+                        search
+                    );
+
+
+                const matchUnit =
+                    !unitType ||
+                    getUnitType(
+                        row.unit
+                    ) ===
+                    unitType;
+
+
+                const matchOilType =
+                    !oilType ||
+                    getOilType(
+                        row.oil
+                    ) ===
+                    oilType;
+
+
+                const matchOilBrand =
+                    !oilBrand ||
+                    getOilBrand(
+                        row.part
+                    ) ===
+                    oilBrand;
+
+
+                return (
+
+                    matchSearch &&
+
+                    matchUnit &&
+
+                    matchOilType &&
+
+                    matchOilBrand
+
+                );
+
+            }
+        );
+
+
+    currentPage = 1;
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   CLEAR FILTERS
+========================================================= */
+
+function clearFilters(){
+
+    const search =
+        document.getElementById(
+            'searchInput'
+        );
+
+
+    const unitType =
+        document.getElementById(
+            'unitTypeFilter'
+        );
+
+
+    const oilType =
+        document.getElementById(
+            'oilTypeFilter'
+        );
+
+
+    const oilBrand =
+        document.getElementById(
+            'oilBrandFilter'
+        );
+
+
+    if(search){
+
+        search.value =
+            '';
+
+    }
+
+
+    if(unitType){
+
+        unitType.value =
+            '';
+
+    }
+
+
+    if(oilType){
+
+        oilType.value =
+            '';
+
+    }
+
+
+    if(oilBrand){
+
+        oilBrand.value =
+            '';
+
+    }
+
+}
+
+
+/* =========================================================
+   RESET FILTER
+========================================================= */
+
+function resetFilters(){
+
+    clearFilters();
+
+
+    filteredData =
+        [
+            ...allData
+        ];
+
+
+    currentPage = 1;
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+function sortBy(
+    key
+){
+
+    if(
+        sortKey !== key
+    ){
+
+        sortKey =
+            key;
+
+        sortDirection =
+            'asc';
+
+    }
+
+    else if(
+        sortDirection === 'asc'
+    ){
+
+        sortDirection =
+            'desc';
+
+    }
+
+    else{
+
+        sortKey =
+            'date';
+
+        sortDirection =
+            'desc';
+
+    }
+
+
+    currentPage = 1;
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   GET SORTED DATA
+========================================================= */
+
+function getSortedData(
+    data
+){
+
+    const result =
+        [
+            ...data
+        ];
+
+
+    if(
+        !sortKey ||
+        !sortDirection
+    ){
+
+        return result;
+
+    }
+
+
+    result.sort(
+        (
+            a,
+            b
+        )=>{
+
+            let valueA;
+
+            let valueB;
+
+
+            switch(sortKey){
+
+                case 'date':
+
+                    valueA =
+                        getDateSortValue(
+                            a.date
+                        );
+
+                    valueB =
+                        getDateSortValue(
+                            b.date
+                        );
+
+                    break;
+
+
+                case 'unit':
+
+                    valueA =
+                        normalizeUnit(
+                            a.unit
+                        );
+
+                    valueB =
+                        normalizeUnit(
+                            b.unit
+                        );
+
+                    break;
+
+
+                case 'oil':
+
+                    valueA =
+                        String(
+                            a.oil ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    valueB =
+                        String(
+                            b.oil ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    break;
+
+
+                case 'part':
+
+                    valueA =
+                        String(
+                            a.part ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    valueB =
+                        String(
+                            b.part ?? ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+                    break;
+
+
+                case 'qty':
+
+                    valueA =
+                        parseQty(
+                            a.qty
+                        );
+
+                    valueB =
+                        parseQty(
+                            b.qty
+                        );
+
+                    break;
+
+
+                default:
+
+                    return 0;
+
+            }
+
+
+            const emptyA =
+                valueA === '' ||
+                valueA === null ||
+                valueA === undefined;
+
+
+            const emptyB =
+                valueB === '' ||
+                valueB === null ||
+                valueB === undefined;
+
+
+            if(
+                emptyA &&
+                emptyB
+            ){
+
+                return 0;
+
+            }
+
+
+            if(emptyA){
+
+                return 1;
+
+            }
+
+
+            if(emptyB){
+
+                return -1;
+
+            }
+
+
+            let comparison =
+                0;
+
+
+            if(
+                typeof valueA === 'number' &&
+                typeof valueB === 'number'
+            ){
+
+                comparison =
+                    valueA -
+                    valueB;
+
+            }
+
+            else{
+
+                comparison =
+                    String(
+                        valueA
+                    )
+                    .localeCompare(
+                        String(
+                            valueB
+                        ),
+                        'id',
+                        {
+                            numeric:true,
+                            sensitivity:'base'
+                        }
+                    );
+
+            }
+
+
+            return sortDirection === 'asc'
+                ?
+                comparison
+                :
+                -comparison;
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   DATE SORT VALUE
+========================================================= */
+
+function getDateSortValue(
+    value
+){
+
+    const date =
+        parseDate(
+            value
+        );
+
+
+    if(!date){
+
+        return -Infinity;
+
+    }
+
+
+    return date.getTime();
+
+}
+
+
+/* =========================================================
+   PARSE DATE
+========================================================= */
+
+function parseDate(
+    value
+){
+
+    const text =
+        String(
+            value ?? ''
+        )
+        .trim();
+
+
+    if(!text){
+
+        return null;
+
+    }
+
+
+    const match =
+        text.match(
+            /^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/i
+        );
+
+
+    if(match){
+
+        const day =
+            Number(
+                match[1]
+            );
+
+
+        const monthName =
+            match[2]
+            .toLowerCase();
+
+
+        const year =
+            Number(
+                match[3]
+            );
+
+
+        const months = {
+
+            january:0,
+            february:1,
+            march:2,
+            april:3,
+            may:4,
+            june:5,
+            july:6,
+            august:7,
+            september:8,
+            october:9,
+            november:10,
+            december:11,
+
+            januari:0,
+            februari:1,
+            maret:2,
+            april:3,
+            mei:4,
+            juni:5,
+            juli:6,
+            agustus:7,
+            september:8,
+            oktober:9,
+            november:10,
+            desember:11
+
+        };
+
+
+        if(
+            months[
+                monthName
+            ] !== undefined
+        ){
+
+            return new Date(
+                year,
+                months[
+                    monthName
+                ],
+                day
+            );
+
+        }
+
+    }
+
+
+    const dmy =
+        text.match(
+            /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
+        );
+
+
+    if(dmy){
+
+        return new Date(
+            Number(
+                dmy[3]
+            ),
+            Number(
+                dmy[2]
+            ) - 1,
+            Number(
+                dmy[1]
+            )
+        );
+
+    }
+
+
+    const iso =
+        text.match(
+            /^(\d{4})-(\d{2})-(\d{2})/
+        );
+
+
+    if(iso){
+
+        return new Date(
+            Number(
+                iso[1]
+            ),
+            Number(
+                iso[2]
+            ) - 1,
+            Number(
+                iso[3]
+            )
+        );
+
+    }
+
+
+    const fallback =
+        new Date(
+            text
+        );
+
+
+    if(
+        !isNaN(
+            fallback.getTime()
+        )
+    ){
+
+        return fallback;
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ''
+    ){
+
+        return '-';
+
+    }
+
+
+    const date =
+        parseDate(
+            value
+        );
+
+
+    if(!date){
+
+        return escapeHtml(
+            String(
+                value
+            )
+        );
+
+    }
+
+
+    const day =
+        String(
+            date.getDate()
+        )
+        .padStart(
+            2,
+            '0'
+        );
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        )
+        .padStart(
+            2,
+            '0'
+        );
+
+
+    const year =
+        date.getFullYear();
+
+
+    return `${day}/${month}/${year}`;
+
+}
+
+
+/* =========================================================
+   FORMAT QTY DISPLAY
+========================================================= */
+
+function formatQtyCell(
+    row
+){
+
+    const qty =
+        Math.round(
+            parseQty(
+                row.qty
+            )
+        );
+
+
+    const extra =
+        String(
+            row.qtyExtra ?? ''
+        )
+        .trim();
+
+
+    if(extra){
+
+        return `
+
+            <span>
+                ${formatNumber(qty)}
+            </span>
+
+            <span
+                class="
+                    qty-unit
+                "
+            >
+                ${escapeHtml(extra)}
+            </span>
+
+        `;
+
+    }
+
+
+    return `
+
+        <span>
+            ${formatNumber(qty)}
+        </span>
+
+        <span
+            class="
+                qty-unit
+            "
+        >
+            L
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderTable(){
+
+    const tbody =
+        document.getElementById(
+            'tableBody'
+        );
+
+
+    const emptyState =
+        document.getElementById(
+            'emptyState'
+        );
+
+
+    if(!tbody){
+
+        return;
+
+    }
+
+
+    tbody.innerHTML =
+        '';
+
+
+    const sortedData =
+        getSortedData(
+            filteredData
+        );
+
+
+    const total =
+        sortedData.length;
+
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                total /
+                ROWS_PER_PAGE
+            )
+        );
+
+
+    if(
+        currentPage >
+        totalPages
+    ){
+
+        currentPage =
+            totalPages;
+
+    }
+
+
+    const start =
+        (
+            currentPage - 1
+        ) *
+        ROWS_PER_PAGE;
+
+
+    const end =
+        Math.min(
+            start +
+            ROWS_PER_PAGE,
+            total
+        );
+
+
+    const pageData =
+        sortedData.slice(
+            start,
+            end
+        );
+
+
+    if(
+        !pageData.length
+    ){
+
+        emptyState
+            .classList
+            .add(
+                'show'
+            );
+
+    }
+
+    else{
+
+        emptyState
+            .classList
+            .remove(
+                'show'
+            );
+
+
+        pageData.forEach(
+            row=>{
+
+                const tr =
+                    document.createElement(
+                        'tr'
+                    );
+
+
+                tr.innerHTML = `
+
+                    <td
+                        class="
+                            whitespace-nowrap
+                            font-semibold
+                        "
+                    >
+
+                        <div
+                            class="
+                                flex
+                                items-center
+                                gap-2
+                            "
+                        >
+
+                            <i
+                                data-lucide="calendar-days"
+                                class="
+                                    w-3.5
+                                    h-3.5
+                                    text-slate-400
+                                "
+                            ></i>
+
+                            ${formatDate(
+                                row.date
+                            )}
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        <span
+                            class="
+                                unit-text
+                            "
+                        >
+                            ${escapeHtml(
+                                normalizeUnit(
+                                    row.unit
+                                )
+                            ) || '-'}
+                        </span>
+
+                    </td>
+
+
+                    <td
+                        class="
+                            oil-cell
+                        "
+                    >
+
+                        ${
+                            escapeHtml(
+                                row.oil
+                            )
+                            ||
+                            '<span class="text-slate-300">-</span>'
+                        }
+
+                    </td>
+
+
+                    <td>
+
+                        <div
+                            class="
+                                font-semibold
+                                text-slate-700
+                                leading-relaxed
+                                truncate
+                            "
+                            title="${escapeHtml(
+                                row.part
+                            )}"
+                        >
+
+                            ${
+                                escapeHtml(
+                                    row.part
+                                )
+                                ||
+                                '<span class="text-slate-300">-</span>'
+                            }
+
+                        </div>
+
+                    </td>
+
+
+                    <td
+                        class="
+                            qty-cell
+                        "
+                    >
+
+                        ${formatQtyCell(
+                            row
+                        )}
+
+                    </td>
+
+                `;
+
+
+                tbody.appendChild(
+                    tr
+                );
+
+            }
+        );
+
+    }
+
+
+    updateResultInfo(
+        total,
+        start,
+        end
+    );
+
+
+    renderPagination(
+        totalPages
+    );
+
+
+    updateSortIndicators();
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   RESULT INFO
+========================================================= */
+
+function updateResultInfo(
+    total,
+    start,
+    end
+){
+
+    const resultInfo =
+        document.getElementById(
+            'resultInfo'
+        );
+
+
+    const paginationInfo =
+        document.getElementById(
+            'paginationInfo'
+        );
+
+
+    if(
+        total === 0
+    ){
+
+        resultInfo.textContent =
+            'Tidak ada data yang sesuai filter.';
+
+
+        paginationInfo.textContent =
+            '0 data';
+
+
+        return;
+
+    }
+
+
+    resultInfo.textContent =
+        `Menampilkan ${start + 1}–${end} dari ${total.toLocaleString('id-ID')} aktivitas`;
+
+
+    paginationInfo.textContent =
+        `${total.toLocaleString('id-ID')} aktivitas ditemukan`;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination(
+    totalPages
+){
+
+    const container =
+        document.getElementById(
+            'pagination'
+        );
+
+
+    container.innerHTML =
+        '';
+
+
+    if(
+        filteredData.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    const prev =
+        document.createElement(
+            'button'
+        );
+
+
+    prev.className =
+        'pagination-button';
+
+
+    prev.innerHTML = `
+
+        <i
+            data-lucide="chevron-left"
+            class="w-4 h-4"
+        ></i>
+
+    `;
+
+
+    prev.disabled =
+        currentPage === 1;
+
+
+    prev.onclick = ()=>{
+
+        if(
+            currentPage > 1
+        ){
+
+            currentPage--;
+
+            renderTable();
+
+        }
+
+    };
+
+
+    container.appendChild(
+        prev
+    );
+
+
+    const pages =
+        getPaginationPages(
+            currentPage,
+            totalPages
+        );
+
+
+    pages.forEach(
+        page=>{
+
+            if(
+                page === '...'
+            ){
+
+                const span =
+                    document.createElement(
+                        'span'
+                    );
+
+
+                span.className =
+                    'px-2 text-slate-400 text-xs';
+
+
+                span.textContent =
+                    '...';
+
+
+                container.appendChild(
+                    span
+                );
+
+
+                return;
+
+            }
+
+
+            const button =
+                document.createElement(
+                    'button'
+                );
+
+
+            button.className =
+                'pagination-button' +
+                (
+                    page === currentPage
+                    ?
+                    ' active'
+                    :
+                    ''
+                );
+
+
+            button.textContent =
+                page;
+
+
+            button.onclick = ()=>{
+
+                currentPage =
+                    page;
+
+
+                renderTable();
+
+            };
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    const next =
+        document.createElement(
+            'button'
+        );
+
+
+    next.className =
+        'pagination-button';
+
+
+    next.innerHTML = `
+
+        <i
+            data-lucide="chevron-right"
+            class="w-4 h-4"
+        ></i>
+
+    `;
+
+
+    next.disabled =
+        currentPage === totalPages;
+
+
+    next.onclick = ()=>{
+
+        if(
+            currentPage <
+            totalPages
+        ){
+
+            currentPage++;
+
+            renderTable();
+
+        }
+
+    };
+
+
+    container.appendChild(
+        next
+    );
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   PAGINATION RANGE
+========================================================= */
+
+function getPaginationPages(
+    current,
+    total
+){
+
+    if(
+        total <= 7
+    ){
+
+        return Array.from(
+            {
+                length:
+                    total
+            },
+            (
+                _,
+                i
+            ) =>
+                i + 1
+        );
+
+    }
+
+
+    const pages = [];
+
+
+    pages.push(
+        1
+    );
+
+
+    if(
+        current > 4
+    ){
+
+        pages.push(
+            '...'
+        );
+
+    }
+
+
+    const start =
+        Math.max(
+            2,
+            current - 1
+        );
+
+
+    const end =
+        Math.min(
+            total - 1,
+            current + 1
+        );
+
+
+    for(
+        let i = start;
+        i <= end;
+        i++
+    ){
+
+        pages.push(
+            i
+        );
+
+    }
+
+
+    if(
+        current <
+        total - 3
+    ){
+
+        pages.push(
+            '...'
+        );
+
+    }
+
+
+    pages.push(
+        total
+    );
+
+
+    return pages;
+
+}
+
+
+/* =========================================================
+   SORT INDICATORS
+========================================================= */
+
+function updateSortIndicators(){
+
+    const buttons =
+        document.querySelectorAll(
+            '[data-sort-key]'
+        );
+
+
+    buttons.forEach(
+        button=>{
+
+            const key =
+                button.getAttribute(
+                    'data-sort-key'
+                );
+
+
+            const icon =
+                button.querySelector(
+                    '.sort-icon'
+                );
+
+
+            button.classList.remove(
+                'active'
+            );
+
+
+            if(!icon){
+
+                return;
+
+            }
+
+
+            icon.setAttribute(
+                'data-lucide',
+                'chevrons-up-down'
+            );
+
+
+            if(
+                sortKey === key &&
+                sortDirection === 'asc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-up'
+                );
+
+            }
+
+
+            else if(
+                sortKey === key &&
+                sortDirection === 'desc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-down'
+                );
+
+            }
+
+        }
+    );
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(
+    value
+){
+
+    return String(
+        value ?? ''
+    )
+    .replace(
+        /&/g,
+        '&amp;'
+    )
+    .replace(
+        /</g,
+        '&lt;'
+    )
+    .replace(
+        />/g,
+        '&gt;'
+    )
+    .replace(
+        /"/g,
+        '&quot;'
+    )
+    .replace(
+        /'/g,
+        '&#039;'
+    );
+
+}
+
+
+/* =========================================================
+   START APPLICATION
+========================================================= */
+
+window.addEventListener(
+    'load',
+    ()=>{
+
+        lucide.createIcons();
+
+
+        loadYearData(
+            '2026'
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    'keydown',
+    event=>{
+
+        if(
+            event.key === 'Escape'
+        ){
+
+            document
+                .activeElement
+                ?.blur();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
+
