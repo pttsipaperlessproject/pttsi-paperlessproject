@@ -1,4577 +1,1668 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Data Periodic Service - PT TSI</title>
-
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+*{box-sizing:border-box}
+html{width:100%;min-height:100%}
+body{margin:0;min-width:320px;font-family:Inter,sans-serif;background:linear-gradient(135deg,#f8fafc,#eef2f7);color:#1e293b;min-height:100vh}
+.color-primary{background:#1e3a8a}.text-primary{color:#1e3a8a}
+.glass-panel{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3)}
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-/* =========================================================
-   GLOBAL
-========================================================= */
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
+.logo-shadow{filter:drop-shadow(0 10px 8px rgba(0,0,0,.04)) drop-shadow(0 4px 3px rgba(0,0,0,.1))}
+.page-title{font-size:30px;font-weight:900;color:#1e293b;letter-spacing:-.025em}
+.page-subtitle{font-size:13px;color:#64748b;font-weight:500}
 
-*{
-    box-sizing:border-box;
+.back-button{background:#1e3a8a;color:#fff;border:0;border-radius:12px;padding:11px 17px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s ease;box-shadow:0 5px 12px rgba(30,58,138,.18);cursor:pointer;white-space:nowrap}
+.back-button:hover{background:#1d4ed8;transform:translateY(-2px);box-shadow:0 8px 18px rgba(30,58,138,.25)}
+
+.stat-card{background:#fff;border:1px solid #e2e8f0;border-radius:17px;padding:17px;transition:.25s ease}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(15,23,42,.07)}
+
+.table-panel{background:#fff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden;box-shadow:0 4px 12px rgba(15,23,42,.04)}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:separate;border-spacing:0;min-width:950px}
+thead{background:#f8fafc}
+thead th{padding:0;border-bottom:2px solid #e2e8f0;color:#475569;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;text-align:left}
+.sort-button{width:100%;padding:14px;background:transparent;border:0;color:#475569;font-family:inherit;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;text-align:left;display:flex;align-items:center;gap:7px;cursor:pointer;transition:.18s ease}
+.sort-button:hover,.sort-button.sort-active{background:#eff6ff;color:#1e3a8a}
+.sort-icon{width:14px;height:14px;flex-shrink:0;color:#94a3b8;transition:.18s ease}
+.sort-button.sort-active .sort-icon{color:#1e3a8a}
+.sort-button.sort-normal .sort-icon{opacity:.45}
+tbody td{padding:13px 14px;border-bottom:1px solid #f1f5f9;color:#334155;font-size:11px;font-weight:500;vertical-align:middle}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:#f8fafc}
+tbody tr:last-child td{border-bottom:0}
+
+.pap-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:6px 10px;border-radius:8px;background:#eff6ff;color:#1d4ed8;border:1px solid #dbeafe;font-size:10px;font-weight:800;white-space:nowrap;text-decoration:none;transition:.2s ease}
+.pap-link:hover{background:#dbeafe;border-color:#bfdbfe;color:#1e40af;transform:translateY(-1px);box-shadow:0 3px 8px rgba(37,99,235,.12)}
+
+.service-badge,.status-badge{display:inline-flex;align-items:center;border-radius:999px;font-weight:800;white-space:nowrap}
+.service-badge{padding:5px 9px;font-size:9px}
+.service-periodic{background:#dbeafe;color:#1e40af}.service-general{background:#fef3c7;color:#92400e}.service-other{background:#e2e8f0;color:#475569}
+.status-badge{gap:5px;padding:5px 9px;font-size:9px}
+.status-good{background:#dcfce7;color:#166534}.status-bad{background:#fee2e2;color:#991b1b}.status-other{background:#e2e8f0;color:#475569}
+.unit-badge{display:inline-flex;align-items:center;justify-content:center;min-width:50px;padding:5px 8px;border-radius:8px;background:#eff6ff;color:#1e3a8a;font-size:10px;font-weight:900}
+
+.filter-input{width:100%;background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:10px 12px;color:#334155;font-size:11px;font-weight:600;outline:0;transition:.2s ease}
+.filter-input:focus{background:#fff;border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+select.filter-input{cursor:pointer}
+
+.pagination-button{width:34px;height:34px;border-radius:9px;border:1px solid #e2e8f0;background:#fff;color:#475569;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;cursor:pointer;transition:.2s ease}
+.pagination-button:hover:not(:disabled){background:#eff6ff;color:#1e3a8a;border-color:#bfdbfe}
+.pagination-button.active{background:#1e3a8a;color:#fff;border-color:#1e3a8a}
+.pagination-button:disabled{opacity:.4;cursor:not-allowed}
+
+#loading{min-height:350px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#tableContent{display:none}#tableContent.show{display:block}
+
+/* MOBILE DATA */
+.mobile-data-list{display:none}
+.mobile-data-card{background:#fff;border:1px solid #e2e8f0;border-radius:17px;padding:15px;margin-bottom:10px;box-shadow:0 3px 10px rgba(15,23,42,.035)}
+.mobile-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #f1f5f9}
+.mobile-unit{font-size:16px;font-weight:900;color:#1e3a8a}
+.mobile-date{font-size:10px;font-weight:700;color:#64748b;margin-top:3px}
+.mobile-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px 14px}
+.mobile-field{min-width:0}.mobile-field.full{grid-column:1/-1}
+.mobile-label{font-size:8px;font-weight:900;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.mobile-value{font-size:11px;font-weight:600;color:#334155;word-break:break-word}
+.mobile-remark{background:#f8fafc;border-radius:10px;padding:9px 10px;color:#475569;font-size:10px;line-height:1.5}
+.mobile-pap{margin-top:12px;padding-top:12px;border-top:1px solid #f1f5f9}
+.mobile-number{display:inline-flex;align-items:center;justify-content:center;min-width:27px;height:27px;padding:0 7px;border-radius:8px;background:#f1f5f9;color:#64748b;font-size:9px;font-weight:900}
+
+/* LEADERBOARD */
+#leaderboardButton{position:fixed;right:28px;bottom:28px;z-index:90;width:68px;height:68px;border-radius:20px;background:#1e3a8a;color:#fff;border:2px solid rgba(255,255,255,.45);box-shadow:0 12px 30px rgba(15,23,42,.28);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+#leaderboardButton:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 18px 38px rgba(15,23,42,.34)}
+#leaderboardButton.leader-pulse{animation:leaderPulse 1.5s ease-in-out}
+@keyframes leaderPulse{
+0%,100%{transform:scale(1);box-shadow:0 12px 30px rgba(15,23,42,.28)}
+20%{transform:scale(1.18);box-shadow:0 0 0 12px rgba(30,58,138,.12),0 16px 38px rgba(15,23,42,.32)}
+40%{transform:scale(.98)}
+60%{transform:scale(1.12);box-shadow:0 0 0 8px rgba(30,58,138,.1),0 16px 38px rgba(15,23,42,.32)}
+}
+.leader-tooltip{position:absolute;right:0;bottom:78px;white-space:nowrap;background:#0f172a;color:#fff;font-size:10px;font-weight:700;padding:7px 10px;border-radius:8px;opacity:0;pointer-events:none;transform:translateY(5px);transition:.2s}
+#leaderboardButton:hover .leader-tooltip{opacity:1;transform:translateY(0)}
+#leaderboardOverlay{position:fixed;inset:0;z-index:95;background:rgba(15,23,42,.28);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px}
+#leaderboardOverlay.show{display:flex}
+#leaderboardModal{width:min(430px,100%);max-height:80vh;overflow:hidden;background:#fff;border:1px solid #e2e8f0;border-radius:22px;box-shadow:0 25px 60px rgba(15,23,42,.25);animation:leaderModalIn .25s ease}
+@keyframes leaderModalIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.leader-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;margin-bottom:7px;background:#f8fafc;border:1px solid #f1f5f9}
+.leader-row.top-1{background:#fffbeb;border-color:#fde68a}.leader-row.top-2{border-color:#cbd5e1}.leader-row.top-3{background:#fff7ed;border-color:#fed7aa}
+.leader-rank{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;background:#e2e8f0;color:#475569;flex-shrink:0}
+.top-1 .leader-rank{background:#fbbf24;color:#78350f}.top-2 .leader-rank{background:#cbd5e1;color:#334155}.top-3 .leader-rank{background:#fdba74;color:#7c2d12}
+.leader-name{font-size:12px;font-weight:800;color:#334155;flex:1;min-width:0}
+.leader-count{font-size:11px;font-weight:900;color:#1e3a8a;background:#dbeafe;padding:5px 9px;border-radius:999px;white-space:nowrap}
+
+/* RESPONSIVE MOBILE */
+@media(max-width:767px){
+body{padding:10px!important;background:#f1f5f9}
+main{padding:18px!important;border-radius:22px!important}
+footer{margin-top:20px!important;padding-bottom:90px!important}
+header{margin-bottom:20px!important;padding-bottom:18px!important}
+.logo-wrapper{margin-bottom:12px!important}
+.logo-wrapper>div{width:78px!important;height:78px!important}
+
+.color-primary{width:100%;padding:13px 15px!important;border-radius:15px!important}
+.color-primary h1{font-size:15px!important;letter-spacing:.06em!important}
+.color-primary h2{font-size:10px!important;letter-spacing:.12em!important}
+header>div:last-child{font-size:8px!important;letter-spacing:.2em!important}
+
+section>div:first-child{align-items:flex-start!important}
+.page-title{font-size:20px!important;line-height:1.3;gap:9px!important}
+.page-title span{padding:9px!important}
+.page-title svg{width:18px!important;height:18px!important}
+.page-subtitle{font-size:10px!important;line-height:1.5;margin-top:7px!important}
+
+.back-button{padding:9px 11px!important;font-size:10px!important;border-radius:10px!important}
+.back-button svg{width:14px!important;height:14px!important}
+
+#tableContent>div:first-child{
+grid-template-columns:1fr 1fr!important;
+gap:9px!important;
+margin-bottom:12px!important
 }
 
-html{
-    min-width:0;
+.stat-card{padding:13px!important;border-radius:14px!important}
+.stat-card p:first-child{font-size:8px!important}
+.stat-card p:last-child{font-size:23px!important;margin-top:5px!important}
+
+#tableContent>div:nth-child(2){
+padding:13px!important;
+border-radius:15px!important;
+margin-bottom:12px!important
 }
 
-body{
-    margin:0;
-    font-family:'Inter',sans-serif;
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #eef2f7
-        );
-    color:#1e293b;
-    min-height:100vh;
+#tableContent>div:nth-child(2)>div:first-child{margin-bottom:12px!important}
+#tableContent>div:nth-child(2)>div:first-child span{padding:7px!important}
+#tableContent>div:nth-child(2)>div:first-child svg{width:14px!important;height:14px!important}
+#tableContent>div:nth-child(2)>div:first-child h3{font-size:12px!important}
+#tableContent>div:nth-child(2)>div:first-child p{font-size:8px!important}
+
+#tableContent>div:nth-child(2)>div:last-child{
+grid-template-columns:1fr!important;
+gap:10px!important
 }
 
-.color-primary{
-    background:#1E3A8A;
+#tableContent>div:nth-child(2) label{
+font-size:8px!important;
+margin-bottom:5px!important
 }
 
-.text-primary{
-    color:#1E3A8A;
+.filter-input{font-size:10px!important;padding:10px!important}
+
+.table-panel{border-radius:16px!important}
+.table-panel>div:first-child{padding:13px!important}
+.table-panel>div:first-child h3{font-size:11px!important}
+.table-panel>div:first-child p{font-size:8px!important}
+.table-panel>div:first-child>div:last-child{display:none!important}
+
+/* Sembunyikan tabel desktop */
+.table-scroll{display:none}
+
+/* Tampilkan kartu mobile */
+.mobile-data-list{
+display:block;
+padding:10px;
+background:#f8fafc
 }
 
-.glass-panel{
-    background:rgba(255,255,255,.95);
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,.3);
+.table-panel>div:last-child{
+padding:10px!important;
+gap:8px
 }
 
-.fade-in{
-    animation:
-        fadeIn
-        .5s
-        cubic-bezier(.4,0,.2,1);
+#paginationInfo{
+font-size:8px!important;
+white-space:nowrap
 }
 
-@keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
+#pagination{
+gap:3px!important;
+overflow-x:auto;
+max-width:65%;
+padding-bottom:2px
 }
-
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo-wrapper{
-    transition:
-        transform
-        .4s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        );
-}
-
-.logo-wrapper:hover{
-    transform:
-        scale(1.08)
-        rotate(2deg);
-}
-
-.logo-shadow{
-    filter:
-        drop-shadow(
-            0 10px 8px
-            rgba(0,0,0,.04)
-        )
-        drop-shadow(
-            0 4px 3px
-            rgba(0,0,0,.1)
-        );
-}
-
-
-/* =========================================================
-   TITLE
-========================================================= */
-
-.page-title{
-    font-size:30px;
-    font-weight:900;
-    color:#1e293b;
-    letter-spacing:-.025em;
-}
-
-.page-subtitle{
-    font-size:13px;
-    color:#64748b;
-    font-weight:500;
-}
-
-
-/* =========================================================
-   BACK BUTTON
-========================================================= */
-
-.back-button{
-    background:#1e3a8a;
-    color:#fff;
-    border-radius:12px;
-    padding:11px 17px;
-    font-size:12px;
-    font-weight:800;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    transition:.2s ease;
-    box-shadow:
-        0 5px 12px
-        rgba(30,58,138,.18);
-    border:none;
-    cursor:pointer;
-    white-space:nowrap;
-}
-
-.back-button:hover{
-    background:#1d4ed8;
-    transform:translateY(-2px);
-    box-shadow:
-        0 8px 18px
-        rgba(30,58,138,.25);
-}
-
-
-/* =========================================================
-   STAT CARD
-========================================================= */
-
-.stat-card{
-    background:#fff;
-    border:1px solid #e2e8f0;
-    border-radius:17px;
-    padding:17px;
-    transition:.25s ease;
-}
-
-.stat-card:hover{
-    transform:translateY(-2px);
-    box-shadow:
-        0 10px 20px
-        rgba(15,23,42,.07);
-}
-
-
-/* =========================================================
-   TABLE
-========================================================= */
-
-.table-panel{
-    background:#fff;
-    border:1px solid #e2e8f0;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.04);
-}
-
-.table-scroll{
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-}
-
-table{
-    width:100%;
-    border-collapse:separate;
-    border-spacing:0;
-    min-width:950px;
-}
-
-thead{
-    background:#f8fafc;
-}
-
-thead th{
-    padding:0;
-    border-bottom:2px solid #e2e8f0;
-    color:#475569;
-    font-size:10px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    white-space:nowrap;
-    text-align:left;
-}
-
-.sort-button{
-
-    width:100%;
-
-    padding:
-        14px;
-
-    background:transparent;
-
-    border:none;
-
-    color:#475569;
-
-    font-family:inherit;
-
-    font-size:10px;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-
-    letter-spacing:.08em;
-
-    text-align:left;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:flex-start;
-
-    gap:7px;
-
-    cursor:pointer;
-
-    transition:.18s ease;
-
-}
-
-.sort-button:hover{
-
-    background:#eff6ff;
-
-    color:#1e3a8a;
-
-}
-
-.sort-icon{
-
-    width:14px;
-
-    height:14px;
-
-    flex-shrink:0;
-
-    color:#94a3b8;
-
-    transition:.18s ease;
-
-}
-
-.sort-button.sort-active{
-
-    color:#1e3a8a;
-
-    background:#eff6ff;
-
-}
-
-.sort-button.sort-active .sort-icon{
-
-    color:#1e3a8a;
-
-}
-
-.sort-button.sort-normal .sort-icon{
-
-    opacity:.45;
-
-}
-
-tbody td{
-    padding:13px 14px;
-    border-bottom:1px solid #f1f5f9;
-    color:#334155;
-    font-size:11px;
-    font-weight:500;
-    vertical-align:middle;
-}
-
-tbody tr{
-    transition:background .15s ease;
-}
-
-tbody tr:hover{
-    background:#f8fafc;
-}
-
-tbody tr:last-child td{
-    border-bottom:none;
-}
-
-
-/* =========================================================
-   PAP
-========================================================= */
-
-.pap-link{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-    padding:6px 10px;
-    border-radius:8px;
-    background:#eff6ff;
-    color:#1d4ed8;
-    border:1px solid #dbeafe;
-    font-size:10px;
-    font-weight:800;
-    white-space:nowrap;
-    text-decoration:none;
-    transition:.2s ease;
-}
-
-.pap-link:hover{
-    background:#dbeafe;
-    border-color:#bfdbfe;
-    color:#1e40af;
-    transform:translateY(-1px);
-    box-shadow:
-        0 3px 8px
-        rgba(37,99,235,.12);
-}
-
-
-/* =========================================================
-   BADGES
-========================================================= */
-
-.service-badge{
-    display:inline-flex;
-    align-items:center;
-    padding:5px 9px;
-    border-radius:999px;
-    font-size:9px;
-    font-weight:800;
-    white-space:nowrap;
-}
-
-.service-periodic{
-    background:#dbeafe;
-    color:#1e40af;
-}
-
-.service-general{
-    background:#fef3c7;
-    color:#92400e;
-}
-
-.service-other{
-    background:#e2e8f0;
-    color:#475569;
-}
-
-.status-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-    padding:5px 9px;
-    border-radius:999px;
-    font-size:9px;
-    font-weight:800;
-    white-space:nowrap;
-}
-
-.status-good{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.status-bad{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-.status-other{
-    background:#e2e8f0;
-    color:#475569;
-}
-
-.unit-badge{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:50px;
-    padding:5px 8px;
-    border-radius:8px;
-    background:#eff6ff;
-    color:#1e3a8a;
-    font-size:10px;
-    font-weight:900;
-}
-
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-.filter-input{
-    width:100%;
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-    border-radius:11px;
-    padding:10px 12px;
-    color:#334155;
-    font-size:11px;
-    font-weight:600;
-    outline:none;
-    transition:.2s ease;
-}
-
-.filter-input:focus{
-    background:#fff;
-    border-color:#93c5fd;
-    box-shadow:
-        0 0 0 3px
-        rgba(59,130,246,.10);
-}
-
-select.filter-input{
-    cursor:pointer;
-}
-
-
-/* =========================================================
-   PAGINATION
-========================================================= */
 
 .pagination-button{
-    width:34px;
-    height:34px;
-    border-radius:9px;
-    border:1px solid #e2e8f0;
-    background:#fff;
-    color:#475569;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:11px;
-    font-weight:800;
-    cursor:pointer;
-    transition:.2s ease;
+width:30px!important;
+height:30px!important;
+min-width:30px!important;
+font-size:9px!important
 }
-
-.pagination-button:hover:not(:disabled){
-    background:#eff6ff;
-    color:#1e3a8a;
-    border-color:#bfdbfe;
-}
-
-.pagination-button.active{
-    background:#1e3a8a;
-    color:#fff;
-    border-color:#1e3a8a;
-}
-
-.pagination-button:disabled{
-    opacity:.4;
-    cursor:not-allowed;
-}
-
-
-/* =========================================================
-   LOADING
-========================================================= */
-
-#loading{
-    min-height:350px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-}
-
-#tableContent{
-    display:none;
-}
-
-#tableContent.show{
-    display:block;
-}
-
-
-/* =========================================================
-   MOBILE CARD
-========================================================= */
-
-.mobile-data-list{
-    display:none;
-}
-
-.mobile-data-card{
-    background:#fff;
-    border:1px solid #e2e8f0;
-    border-radius:17px;
-    padding:15px;
-    margin-bottom:10px;
-    box-shadow:
-        0 3px 10px
-        rgba(15,23,42,.035);
-}
-
-.mobile-card-header{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:12px;
-    padding-bottom:12px;
-    margin-bottom:12px;
-    border-bottom:1px solid #f1f5f9;
-}
-
-.mobile-unit{
-    font-size:16px;
-    font-weight:900;
-    color:#1e3a8a;
-}
-
-.mobile-date{
-    font-size:10px;
-    font-weight:700;
-    color:#64748b;
-    margin-top:3px;
-}
-
-.mobile-card-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:11px 14px;
-}
-
-.mobile-field{
-    min-width:0;
-}
-
-.mobile-field.full{
-    grid-column:1 / -1;
-}
-
-.mobile-label{
-    font-size:8px;
-    font-weight:900;
-    color:#94a3b8;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    margin-bottom:4px;
-}
-
-.mobile-value{
-    font-size:11px;
-    font-weight:600;
-    color:#334155;
-    word-break:break-word;
-}
-
-.mobile-remark{
-    background:#f8fafc;
-    border-radius:10px;
-    padding:9px 10px;
-    color:#475569;
-    font-size:10px;
-    line-height:1.5;
-}
-
-.mobile-pap{
-    margin-top:12px;
-    padding-top:12px;
-    border-top:1px solid #f1f5f9;
-}
-
-.mobile-number{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:27px;
-    height:27px;
-    padding:0 7px;
-    border-radius:8px;
-    background:#f1f5f9;
-    color:#64748b;
-    font-size:9px;
-    font-weight:900;
-}
-
-
-/* =========================================================
-   LEADERBOARD BUTTON
-========================================================= */
 
 #leaderboardButton{
-    position:fixed;
-    right:28px;
-    bottom:28px;
-    z-index:90;
-    width:68px;
-    height:68px;
-    border-radius:20px;
-    background:#1e3a8a;
-    color:#fff;
-    border:2px solid rgba(255,255,255,.45);
-    box-shadow:
-        0 12px 30px
-        rgba(15,23,42,.28);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+width:55px;
+height:55px;
+right:16px;
+bottom:16px;
+border-radius:17px
 }
 
-#leaderboardButton:hover{
-    transform:
-        translateY(-4px)
-        scale(1.05);
-    box-shadow:
-        0 18px 38px
-        rgba(15,23,42,.34);
-}
+#leaderboardButton svg{width:23px;height:23px}
+.leader-tooltip{display:none}
 
-#leaderboardButton.leader-pulse{
-    animation:
-        leaderPulse
-        1.5s
-        ease-in-out;
-}
-
-@keyframes leaderPulse{
-
-    0%{
-        transform:scale(1);
-        box-shadow:
-            0 12px 30px
-            rgba(15,23,42,.28);
-    }
-
-    20%{
-        transform:scale(1.18);
-        box-shadow:
-            0 0 0 12px
-            rgba(30,58,138,.12),
-            0 16px 38px
-            rgba(15,23,42,.32);
-    }
-
-    40%{
-        transform:scale(.98);
-    }
-
-    60%{
-        transform:scale(1.12);
-        box-shadow:
-            0 0 0 8px
-            rgba(30,58,138,.10),
-            0 16px 38px
-            rgba(15,23,42,.32);
-    }
-
-    100%{
-        transform:scale(1);
-        box-shadow:
-            0 12px 30px
-            rgba(15,23,42,.28);
-    }
-
-}
-
-.leader-tooltip{
-    position:absolute;
-    right:0;
-    bottom:78px;
-    white-space:nowrap;
-    background:#0f172a;
-    color:#fff;
-    font-size:10px;
-    font-weight:700;
-    padding:7px 10px;
-    border-radius:8px;
-    opacity:0;
-    pointer-events:none;
-    transform:translateY(5px);
-    transition:.2s;
-}
-
-#leaderboardButton:hover .leader-tooltip{
-    opacity:1;
-    transform:translateY(0);
-}
-
-
-/* =========================================================
-   LEADERBOARD MODAL
-========================================================= */
-
-#leaderboardOverlay{
-    position:fixed;
-    inset:0;
-    z-index:95;
-    background:rgba(15,23,42,.28);
-    backdrop-filter:blur(3px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-#leaderboardOverlay.show{
-    display:flex;
-}
-
+#leaderboardOverlay{padding:10px}
 #leaderboardModal{
-    width:min(430px,100%);
-    max-height:80vh;
-    overflow:hidden;
-    background:#fff;
-    border:1px solid #e2e8f0;
-    border-radius:22px;
-    box-shadow:
-        0 25px 60px
-        rgba(15,23,42,.25);
-    animation:
-        leaderModalIn
-        .25s ease;
+width:100%;
+max-height:85vh;
+border-radius:18px
 }
 
-@keyframes leaderModalIn{
-
-    from{
-        opacity:0;
-        transform:
-            translateY(12px)
-            scale(.97);
-    }
-
-    to{
-        opacity:1;
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
+#leaderboardList{padding:12px!important}
+.leader-row{padding:10px}
+.leader-name{font-size:11px}
+.leader-count{font-size:9px;padding:4px 7px}
 }
 
-.leader-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:12px 14px;
-    border-radius:14px;
-    margin-bottom:7px;
-    background:#f8fafc;
-    border:1px solid #f1f5f9;
-}
-
-.leader-row.top-1{
-    background:#fffbeb;
-    border-color:#fde68a;
-}
-
-.leader-row.top-2{
-    background:#f8fafc;
-    border-color:#cbd5e1;
-}
-
-.leader-row.top-3{
-    background:#fff7ed;
-    border-color:#fed7aa;
-}
-
-.leader-rank{
-    width:30px;
-    height:30px;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
-    font-weight:900;
-    background:#e2e8f0;
-    color:#475569;
-    flex-shrink:0;
-}
-
-.top-1 .leader-rank{
-    background:#fbbf24;
-    color:#78350f;
-}
-
-.top-2 .leader-rank{
-    background:#cbd5e1;
-    color:#334155;
-}
-
-.top-3 .leader-rank{
-    background:#fdba74;
-    color:#7c2d12;
-}
-
-.leader-name{
-    font-size:12px;
-    font-weight:800;
-    color:#334155;
-    flex:1;
-    min-width:0;
-}
-
-.leader-count{
-    font-size:11px;
-    font-weight:900;
-    color:#1e3a8a;
-    background:#dbeafe;
-    padding:5px 9px;
-    border-radius:999px;
-    white-space:nowrap;
-}
-
-
-/* =========================================================
-   MOBILE RESPONSIVE
-========================================================= */
-
-@media(max-width:767px){
-
-    body{
-        padding:10px !important;
-        background:#f1f5f9;
-    }
-
-    main{
-        padding:18px !important;
-        border-radius:22px !important;
-    }
-
-    footer{
-        margin-top:20px !important;
-        padding-bottom:90px !important;
-    }
-
-
-    /* -----------------------------------------
-       HEADER
-    ----------------------------------------- */
-
-    header{
-        margin-bottom:20px !important;
-        padding-bottom:18px !important;
-    }
-
-    .logo-wrapper{
-        margin-bottom:12px !important;
-    }
-
-    .logo-wrapper > div{
-        width:78px !important;
-        height:78px !important;
-    }
-
-    .color-primary{
-        width:100%;
-        padding:13px 15px !important;
-        border-radius:15px !important;
-    }
-
-    .color-primary h1{
-        font-size:15px !important;
-        letter-spacing:.06em !important;
-    }
-
-    .color-primary h2{
-        font-size:10px !important;
-        letter-spacing:.12em !important;
-    }
-
-    header > div:last-child{
-        font-size:8px !important;
-        letter-spacing:.2em !important;
-    }
-
-
-    /* -----------------------------------------
-       PAGE TITLE
-    ----------------------------------------- */
-
-    section > div:first-child{
-        align-items:flex-start !important;
-    }
-
-    .page-title{
-        font-size:20px !important;
-        line-height:1.3;
-        gap:9px !important;
-    }
-
-    .page-title span{
-        padding:9px !important;
-    }
-
-    .page-title svg{
-        width:18px !important;
-        height:18px !important;
-    }
-
-    .page-subtitle{
-        font-size:10px !important;
-        line-height:1.5;
-        margin-top:7px !important;
-    }
-
-    .back-button{
-        padding:9px 11px !important;
-        font-size:10px !important;
-        border-radius:10px !important;
-    }
-
-    .back-button svg{
-        width:14px !important;
-        height:14px !important;
-    }
-
-
-    /* -----------------------------------------
-       STATISTICS
-    ----------------------------------------- */
-
-    #tableContent > div:first-child{
-        grid-template-columns:1fr 1fr !important;
-        gap:9px !important;
-        margin-bottom:12px !important;
-    }
-
-    .stat-card{
-        padding:13px !important;
-        border-radius:14px !important;
-    }
-
-    .stat-card p:first-child{
-        font-size:8px !important;
-    }
-
-    .stat-card p:last-child{
-        font-size:23px !important;
-        margin-top:5px !important;
-    }
-
-
-    /* -----------------------------------------
-       FILTER
-    ----------------------------------------- */
-
-    #tableContent > div:nth-child(2){
-        padding:13px !important;
-        border-radius:15px !important;
-        margin-bottom:12px !important;
-    }
-
-    #tableContent > div:nth-child(2) > div:first-child{
-        margin-bottom:12px !important;
-    }
-
-    #tableContent > div:nth-child(2) > div:first-child span{
-        padding:7px !important;
-    }
-
-    #tableContent > div:nth-child(2) > div:first-child svg{
-        width:14px !important;
-        height:14px !important;
-    }
-
-    #tableContent > div:nth-child(2) > div:first-child h3{
-        font-size:12px !important;
-    }
-
-    #tableContent > div:nth-child(2) > div:first-child p{
-        font-size:8px !important;
-    }
-
-    #tableContent > div:nth-child(2) > div:last-child{
-        grid-template-columns:1fr !important;
-        gap:10px !important;
-    }
-
-    #tableContent > div:nth-child(2) label{
-        font-size:8px !important;
-        margin-bottom:5px !important;
-    }
-
-    .filter-input{
-        font-size:10px !important;
-        padding:10px !important;
-    }
-
-
-    /* -----------------------------------------
-       TABLE HEADER
-    ----------------------------------------- */
-
-    .table-panel{
-        border-radius:16px !important;
-    }
-
-    .table-panel > div:first-child{
-        padding:13px !important;
-    }
-
-    .table-panel > div:first-child h3{
-        font-size:11px !important;
-    }
-
-    .table-panel > div:first-child p{
-        font-size:8px !important;
-    }
-
-    .table-panel > div:first-child > div:last-child{
-        display:none !important;
-    }
-
-
-    /* -----------------------------------------
-       HIDE DESKTOP TABLE
-    ----------------------------------------- */
-
-    .table-scroll{
-        display:none;
-    }
-
-
-    /* -----------------------------------------
-       SHOW MOBILE CARDS
-    ----------------------------------------- */
-
-    .mobile-data-list{
-        display:block;
-        padding:10px;
-        background:#f8fafc;
-    }
-
-
-    /* -----------------------------------------
-       PAGINATION
-    ----------------------------------------- */
-
-    .table-panel > div:last-child{
-        padding:10px !important;
-        gap:8px;
-    }
-
-    #paginationInfo{
-        font-size:8px !important;
-        white-space:nowrap;
-    }
-
-    #pagination{
-        gap:3px !important;
-        overflow-x:auto;
-        max-width:65%;
-        padding-bottom:2px;
-    }
-
-    .pagination-button{
-        width:30px !important;
-        height:30px !important;
-        min-width:30px !important;
-        font-size:9px !important;
-    }
-
-
-    /* -----------------------------------------
-       LEADERBOARD BUTTON
-    ----------------------------------------- */
-
-    #leaderboardButton{
-        width:55px;
-        height:55px;
-        right:16px;
-        bottom:16px;
-        border-radius:17px;
-    }
-
-    #leaderboardButton svg{
-        width:23px;
-        height:23px;
-    }
-
-    .leader-tooltip{
-        display:none;
-    }
-
-
-    /* -----------------------------------------
-       LEADERBOARD MODAL
-    ----------------------------------------- */
-
-    #leaderboardOverlay{
-        padding:10px;
-    }
-
-    #leaderboardModal{
-        width:100%;
-        max-height:85vh;
-        border-radius:18px;
-    }
-
-    #leaderboardList{
-        padding:12px !important;
-    }
-
-    .leader-row{
-        padding:10px;
-    }
-
-    .leader-name{
-        font-size:11px;
-    }
-
-    .leader-count{
-        font-size:9px;
-        padding:4px 7px;
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL PHONE
-========================================================= */
-
+/* HP SANGAT KECIL */
 @media(max-width:380px){
-
-    body{
-        padding:6px !important;
-    }
-
-    main{
-        padding:13px !important;
-    }
-
-    .page-title{
-        font-size:18px !important;
-    }
-
-    .back-button{
-        padding:8px !important;
-    }
-
-    .back-button span{
-        display:none;
-    }
-
-    .mobile-card-grid{
-        grid-template-columns:1fr;
-    }
-
-    .mobile-field.full{
-        grid-column:auto;
-    }
-
-    #pagination{
-        max-width:58%;
-    }
-
+body{padding:6px!important}
+main{padding:13px!important}
+.page-title{font-size:18px!important}
+.back-button{padding:8px!important}
+.back-button span{display:none}
+.mobile-card-grid{grid-template-columns:1fr}
+.mobile-field.full{grid-column:auto}
+#pagination{max-width:58%}
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media(
-    min-width:768px
-) and (
-    max-width:1100px
-){
-
-    main{
-        padding:25px !important;
-    }
-
-    .page-title{
-        font-size:25px;
-    }
-
-    #tableContent > div:first-child{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    #tableContent > div:nth-child(2) > div:last-child{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
+/* TABLET */
+@media(min-width:768px) and (max-width:1100px){
+main{padding:25px!important}
+.page-title{font-size:25px}
+#tableContent>div:first-child{grid-template-columns:repeat(2,1fr)}
+#tableContent>div:nth-child(2)>div:last-child{grid-template-columns:repeat(2,1fr)}
 }
-
 </style>
-
 </head>
 
+<body class="flex flex-col items-center p-4 sm:p-8">
 
-<body
-    class="
-        flex
-        flex-col
-        items-center
-        p-4
-        sm:p-8
-    "
->
+<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-<main
-    class="
-        w-full
-        max-w-7xl
-        flex-grow
-        glass-panel
-        p-6
-        sm:p-10
-        rounded-3xl
-        shadow-2xl
-        fade-in
-    "
->
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
-<header
-    class="
-        w-full
-        mb-8
-        pb-6
-        border-b-2
-        border-slate-100
-        flex
-        flex-col
-        items-center
-    "
->
+<div class="mb-4 logo-wrapper">
+<div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
 
-    <div class="mb-4 logo-wrapper">
+<img src="default_logo.png" alt="Logo PT TSI" class="w-full h-full object-contain" id="companyLogo" onerror="handleLogoError">
 
-        <div
-            class="
-                w-24
-                h-24
-                flex
-                items-center
-                justify-center
-                bg-white
-                rounded-2xl
-                logo-shadow
-                overflow-hidden
-                p-2
-            "
-        >
+<div id="logoFallback" class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white">
+<span class="font-black text-2xl">TSI</span>
+</div>
 
-            <img
-                src="default_logo.png"
-                alt="Logo PT TSI"
-                class="w-full h-full object-contain"
-                id="companyLogo"
-                onerror="handleLogoError()"
-            >
+</div>
+</div>
 
-            <div
-                id="logoFallback"
-                class="
-                    hidden
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    bg-blue-900
-                    w-full
-                    h-full
-                    text-white
-                "
-            >
+<div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
 
-                <span class="font-black text-2xl">
-                    TSI
-                </span>
+<h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+PAPERLESS PROJECT
+</h1>
 
-            </div>
+<div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
 
-        </div>
+<h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+PT TATSUMI SERUNI INDONESIA
+</h2>
 
-    </div>
+</div>
 
-
-    <div
-        class="
-            color-primary
-            text-white
-            px-8
-            py-4
-            rounded-2xl
-            shadow-lg
-            flex
-            flex-col
-            items-center
-            gap-1
-        "
-    >
-
-        <h1
-            class="
-                text-xl
-                sm:text-2xl
-                font-black
-                uppercase
-                tracking-[0.1em]
-                text-center
-            "
-        >
-            PAPERLESS PROJECT
-        </h1>
-
-        <div
-            class="
-                h-0.5
-                w-16
-                bg-amber-500
-                rounded-full
-                my-1
-            "
-        ></div>
-
-        <h2
-            class="
-                text-sm
-                sm:text-lg
-                font-bold
-                uppercase
-                tracking-widest
-                text-blue-100
-                text-center
-            "
-        >
-            PT TATSUMI SERUNI INDONESIA
-        </h2>
-
-    </div>
-
-
-    <div
-        class="
-            mt-3
-            text-[10px]
-            font-bold
-            text-slate-400
-            tracking-[0.3em]
-            uppercase
-        "
-    >
-        Digitalization Initiative v2.0
-    </div>
+<div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
+Digitalization Initiative v2.0
+</div>
 
 </header>
 
-
 <section>
 
-    <div
-        class="
-            flex
-            items-center
-            justify-between
-            gap-5
-            mb-6
-        "
-    >
-
-        <div>
-
-            <h2
-                class="
-                    page-title
-                    flex
-                    items-center
-                    gap-3
-                "
-            >
-
-                <span
-                    class="
-                        bg-blue-900
-                        text-white
-                        p-3
-                        rounded-xl
-                        shadow-md
-                    "
-                >
-
-                    <i
-                        data-lucide="database"
-                        class="w-6 h-6"
-                    ></i>
-
-                </span>
-
-                Data Periodic Service
-
-            </h2>
-
-            <p
-                class="
-                    page-subtitle
-                    mt-2
-                    ml-1
-                "
-            >
-                Daftar seluruh aktivitas periodic service
-                yang tersimpan pada database.
-            </p>
-
-        </div>
-
-
-        <button
-            onclick="goToDashboard()"
-            class="back-button"
-        >
-
-            <i
-                data-lucide="arrow-left"
-                class="w-4 h-4"
-            ></i>
-
-            <span>Kembali</span>
-
-        </button>
-
-    </div>
-
-
-    <div id="loading">
-
-        <i
-            data-lucide="loader-circle"
-            class="
-                w-9
-                h-9
-                animate-spin
-                text-amber-500
-            "
-        ></i>
-
-        <p
-            class="
-                font-semibold
-                text-sm
-                text-slate-400
-                mt-3
-            "
-        >
-            Memuat data...
-        </p>
-
-    </div>
-
-
-    <div id="tableContent">
-
+<div class="flex items-center justify-between gap-5 mb-6">
 
-        <!-- =================================================
-             STATISTICS
-        ================================================= -->
-
-        <div
-            class="
-                grid
-                grid-cols-4
-                gap-4
-                mb-6
-            "
-        >
-
-            <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Total Data
-                </p>
-
-                <p
-                    id="totalData"
-                    class="
-                        text-3xl
-                        font-black
-                        text-blue-900
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Periodic Service
-                </p>
-
-                <p
-                    id="periodicTotal"
-                    class="
-                        text-3xl
-                        font-black
-                        text-indigo-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    General Service
-                </p>
-
-                <p
-                    id="generalTotal"
-                    class="
-                        text-3xl
-                        font-black
-                        text-amber-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Status Baik
-                </p>
-
-                <p
-                    id="baikTotal"
-                    class="
-                        text-3xl
-                        font-black
-                        text-emerald-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             FILTER
-        ================================================= -->
-
-        <div
-            class="
-                bg-white
-                border
-                border-slate-200
-                rounded-2xl
-                p-5
-                mb-5
-                shadow-sm
-            "
-        >
-
-            <div
-                class="
-                    flex
-                    items-center
-                    gap-3
-                    mb-4
-                "
-            >
-
-                <span
-                    class="
-                        bg-blue-100
-                        text-blue-700
-                        p-2
-                        rounded-lg
-                    "
-                >
-
-                    <i
-                        data-lucide="filter"
-                        class="w-4 h-4"
-                    ></i>
-
-                </span>
-
-                <div>
-
-                    <h3
-                        class="
-                            text-sm
-                            font-black
-                            text-slate-700
-                        "
-                    >
-                        Filter Data
-                    </h3>
-
-                    <p
-                        class="
-                            text-[10px]
-                            text-slate-400
-                            font-medium
-                        "
-                    >
-                        Gunakan filter untuk mencari data tertentu.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div
-                class="
-                    grid
-                    grid-cols-4
-                    gap-4
-                "
-            >
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Cari Data
-                    </label>
-
-                    <div class="relative">
-
-                        <i
-                            data-lucide="search"
-                            class="
-                                absolute
-                                left-3
-                                top-1/2
-                                -translate-y-1/2
-                                w-4
-                                h-4
-                                text-slate-400
-                            "
-                        ></i>
-
-                        <input
-                            id="searchInput"
-                            type="text"
-                            placeholder="Unit, PIC, remark..."
-                            class="filter-input pl-10"
-                            oninput="applyFilters()"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Jenis Service
-                    </label>
-
-                    <select
-                        id="serviceFilter"
-                        class="filter-input"
-                        onchange="applyFilters()"
-                    >
-
-                        <option value="">
-                            Semua Service
-                        </option>
-
-                        <option value="Periodic Service">
-                            Periodic Service
-                        </option>
-
-                        <option value="General Service">
-                            General Service
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Status
-                    </label>
-
-                    <select
-                        id="statusFilter"
-                        class="filter-input"
-                        onchange="applyFilters()"
-                    >
-
-                        <option value="">
-                            Semua Status
-                        </option>
-
-                        <option value="Baik">
-                            Baik
-                        </option>
-
-                        <option value="Rusak">
-                            Rusak
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="flex items-end">
-
-                    <button
-                        onclick="resetFilters()"
-                        class="
-                            w-full
-                            h-[38px]
-                            rounded-xl
-                            border
-                            border-slate-200
-                            bg-slate-50
-                            hover:bg-slate-100
-                            text-slate-600
-                            font-bold
-                            text-[11px]
-                            transition
-                            flex
-                            items-center
-                            justify-center
-                            gap-2
-                        "
-                    >
-
-                        <i
-                            data-lucide="rotate-ccw"
-                            class="w-4 h-4"
-                        ></i>
-
-                        Reset Filter
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             DATA PANEL
-        ================================================= -->
-
-        <div class="table-panel">
-
-
-            <!-- TABLE HEADER -->
-
-            <div
-                class="
-                    px-5
-                    py-4
-                    border-b
-                    border-slate-100
-                    flex
-                    items-center
-                    justify-between
-                "
-            >
-
-                <div>
-
-                    <h3
-                        class="
-                            font-black
-                            text-slate-700
-                            text-sm
-                        "
-                    >
-                        Daftar Aktivitas Periodic Service
-                    </h3>
-
-                    <p
-                        id="resultInfo"
-                        class="
-                            text-[10px]
-                            text-slate-400
-                            mt-1
-                            font-medium
-                        "
-                    >
-                        -
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="
-                        flex
-                        items-center
-                        gap-2
-                        text-[10px]
-                        text-slate-400
-                        font-semibold
-                    "
-                >
-
-                    <i
-                        data-lucide="refresh-cw"
-                        class="w-3.5 h-3.5"
-                    ></i>
-
-                    Data langsung dari Database
-
-                </div>
-
-            </div>
-
-
-            <!-- =================================================
-                 DESKTOP TABLE
-            ================================================= -->
-
-            <div class="table-scroll">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th style="width:50px">
-
-                                <div class="sort-button">
-                                    No
-                                </div>
-
-                            </th>
-
-
-                            <th>
-
-                                <button
-                                    class="sort-button sort-normal"
-                                    data-sort-key="tanggal"
-                                    onclick="toggleSort('tanggal')"
-                                >
-
-                                    Tanggal
-
-                                    <i
-                                        data-lucide="arrow-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </button>
-
-                            </th>
-
-
-                            <th>
-
-                                <button
-                                    class="sort-button sort-normal"
-                                    data-sort-key="unit"
-                                    onclick="toggleSort('unit')"
-                                >
-
-                                    Unit
-
-                                    <i
-                                        data-lucide="arrow-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </button>
-
-                            </th>
-
-
-                            <th>
-
-                                <button
-                                    class="sort-button sort-normal"
-                                    data-sort-key="hm"
-                                    onclick="toggleSort('hm')"
-                                >
-
-                                    HM
-
-                                    <i
-                                        data-lucide="arrow-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </button>
-
-                            </th>
-
-
-                            <th>
-
-                                <button
-                                    class="sort-button sort-normal"
-                                    data-sort-key="service"
-                                    onclick="toggleSort('service')"
-                                >
-
-                                    Service
-
-                                    <i
-                                        data-lucide="arrow-up-down"
-                                        class="sort-icon"
-                                    ></i>
+<div>
 
-                                </button>
+<h2 class="page-title flex items-center gap-3">
 
-                            </th>
+<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+<i data-lucide="database" class="w-6 h-6"></i>
+</span>
 
+Data Periodic Service
 
-                            <th>
+</h2>
 
-                                <button
-                                    class="sort-button sort-normal"
-                                    data-sort-key="status"
-                                    onclick="toggleSort('status')"
-                                >
+<p class="page-subtitle mt-2 ml-1">
+Daftar seluruh aktivitas periodic service yang tersimpan pada database.
+</p>
 
-                                    Status
+</div>
 
-                                    <i
-                                        data-lucide="arrow-up-down"
-                                        class="sort-icon"
-                                    ></i>
+<button onclick="goToDashboard()" class="back-button">
+<i data-lucide="arrow-left" class="w-4 h-4"></i>
+<span>Kembali</span>
+</button>
 
-                                </button>
+</div>
 
-                            </th>
+<div id="loading">
 
+<i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
 
-                            <th>
+<p class="font-semibold text-sm text-slate-400 mt-3">
+Memuat data...
+</p>
 
-                                <button
-                                    class="sort-button sort-normal"
-                                    data-sort-key="pic"
-                                    onclick="toggleSort('pic')"
-                                >
+</div>
 
-                                    PIC / Mekanik
+<div id="tableContent">
 
-                                    <i
-                                        data-lucide="arrow-up-down"
-                                        class="sort-icon"
-                                    ></i>
+<div class="grid grid-cols-4 gap-4 mb-6">
 
-                                </button>
+<div class="stat-card">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Data</p>
+<p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
+</div>
 
-                            </th>
+<div class="stat-card">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Periodic Service</p>
+<p id="periodicTotal" class="text-3xl font-black text-indigo-600 mt-2">-</p>
+</div>
 
+<div class="stat-card">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">General Service</p>
+<p id="generalTotal" class="text-3xl font-black text-amber-600 mt-2">-</p>
+</div>
 
-                            <th>
+<div class="stat-card">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Status Baik</p>
+<p id="baikTotal" class="text-3xl font-black text-emerald-600 mt-2">-</p>
+</div>
 
-                                <button
-                                    class="sort-button sort-normal"
-                                    data-sort-key="itemRusak"
-                                    onclick="toggleSort('itemRusak')"
-                                >
+</div>
 
-                                    Item Rusak
+<div class="bg-white border border-slate-200 rounded-2xl p-5 mb-5 shadow-sm">
 
-                                    <i
-                                        data-lucide="arrow-up-down"
-                                        class="sort-icon"
-                                    ></i>
+<div class="flex items-center gap-3 mb-4">
 
-                                </button>
-
-                            </th>
-
-
-                            <th>
-
-                                <button
-                                    class="sort-button sort-normal"
-                                    data-sort-key="remark"
-                                    onclick="toggleSort('remark')"
-                                >
+<span class="bg-blue-100 text-blue-700 p-2 rounded-lg">
+<i data-lucide="filter" class="w-4 h-4"></i>
+</span>
 
-                                    Remark
+<div>
+<h3 class="text-sm font-black text-slate-700">Filter Data</h3>
+<p class="text-[10px] text-slate-400 font-medium">
+Gunakan filter untuk mencari data tertentu.
+</p>
+</div>
 
-                                    <i
-                                        data-lucide="arrow-up-down"
-                                        class="sort-icon"
-                                    ></i>
+</div>
 
-                                </button>
-
-                            </th>
-
-
-                            <th>
-
-                                <div class="sort-button">
-                                    PAP
-                                </div>
-
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="tableBody"></tbody>
-
-                </table>
-
-            </div>
-
-
-            <!-- =================================================
-                 MOBILE CARD LIST
-            ================================================= -->
-
-            <div
-                id="mobileDataList"
-                class="mobile-data-list"
-            ></div>
-
-
-            <!-- =================================================
-                 EMPTY STATE
-            ================================================= -->
-
-            <div
-                id="emptyState"
-                class="hidden"
-            >
-
-                <div class="py-16 text-center">
-
-                    <div
-                        class="
-                            inline-flex
-                            items-center
-                            justify-center
-                            bg-slate-100
-                            text-slate-400
-                            p-4
-                            rounded-full
-                        "
-                    >
-
-                        <i
-                            data-lucide="search-x"
-                            class="w-8 h-8"
-                        ></i>
-
-                    </div>
-
-                    <h3
-                        class="
-                            font-bold
-                            text-slate-600
-                            mt-4
-                        "
-                    >
-                        Data tidak ditemukan
-                    </h3>
-
-                    <p
-                        class="
-                            text-xs
-                            text-slate-400
-                            mt-1
-                        "
-                    >
-                        Coba ubah kata pencarian atau filter.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- =================================================
-                 PAGINATION
-            ================================================= -->
-
-            <div
-                class="
-                    px-5
-                    py-4
-                    border-t
-                    border-slate-100
-                    flex
-                    items-center
-                    justify-between
-                "
-            >
-
-                <div
-                    id="paginationInfo"
-                    class="
-                        text-[10px]
-                        font-semibold
-                        text-slate-400
-                    "
-                >
-                    -
-                </div>
-
-                <div
-                    id="pagination"
-                    class="
-                        flex
-                        items-center
-                        gap-1
-                    "
-                ></div>
-
-            </div>
-
-        </div>
-
-    </div>
+<div class="grid grid-cols-4 gap-4">
+
+<div>
+
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+Cari Data
+</label>
+
+<div class="relative">
+
+<i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
+
+<input
+id="searchInput"
+type="text"
+placeholder="Unit, PIC, remark..."
+class="filter-input pl-10"
+oninput="applyFilters()"
+>
+
+</div>
+</div>
+
+<div>
+
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+Jenis Service
+</label>
+
+<select id="serviceFilter" class="filter-input" onchange="applyFilters()">
+<option value="">Semua Service</option>
+<option value="Periodic Service">Periodic Service</option>
+<option value="General Service">General Service</option>
+</select>
+
+</div>
+
+<div>
+
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+Status
+</label>
+
+<select id="statusFilter" class="filter-input" onchange="applyFilters()">
+<option value="">Semua Status</option>
+<option value="Baik">Baik</option>
+<option value="Rusak">Rusak</option>
+</select>
+
+</div>
+
+<div class="flex items-end">
+
+<button
+onclick="resetFilters()"
+class="w-full h-[38px] rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold text-[11px] transition flex items-center justify-center gap-2"
+>
+
+<i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+Reset Filter
+
+</button>
+
+</div>
+
+</div>
+</div>
+
+<div class="table-panel">
+
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+
+<div>
+
+<h3 class="font-black text-slate-700 text-sm">
+Daftar Aktivitas Periodic Service
+</h3>
+
+<p id="resultInfo" class="text-[10px] text-slate-400 mt-1 font-medium">
+-
+</p>
+
+</div>
+
+<div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
+
+<i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+Data langsung dari Database
+
+</div>
+
+</div>
+
+<div class="table-scroll">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="width:50px">
+<div class="sort-button">No</div>
+</th>
+
+<th>
+<button class="sort-button sort-normal" data-sort-key="tanggal" onclick="toggleSort('tanggal')">
+Tanggal
+<i data-lucide="arrow-up-down" class="sort-icon"></i>
+</button>
+</th>
+
+<th>
+<button class="sort-button sort-normal" data-sort-key="unit" onclick="toggleSort('unit')">
+Unit
+<i data-lucide="arrow-up-down" class="sort-icon"></i>
+</button>
+</th>
+
+<th>
+<button class="sort-button sort-normal" data-sort-key="hm" onclick="toggleSort('hm')">
+HM
+<i data-lucide="arrow-up-down" class="sort-icon"></i>
+</button>
+</th>
+
+<th>
+<button class="sort-button sort-normal" data-sort-key="service" onclick="toggleSort('service')">
+Service
+<i data-lucide="arrow-up-down" class="sort-icon"></i>
+</button>
+</th>
+
+<th>
+<button class="sort-button sort-normal" data-sort-key="status" onclick="toggleSort('status')">
+Status
+<i data-lucide="arrow-up-down" class="sort-icon"></i>
+</button>
+</th>
+
+<th>
+<button class="sort-button sort-normal" data-sort-key="pic" onclick="toggleSort('pic')">
+PIC / Mekanik
+<i data-lucide="arrow-up-down" class="sort-icon"></i>
+</button>
+</th>
+
+<th>
+<button class="sort-button sort-normal" data-sort-key="itemRusak" onclick="toggleSort('itemRusak')">
+Item Rusak
+<i data-lucide="arrow-up-down" class="sort-icon"></i>
+</button>
+</th>
+
+<th>
+<button class="sort-button sort-normal" data-sort-key="remark" onclick="toggleSort('remark')">
+Remark
+<i data-lucide="arrow-up-down" class="sort-icon"></i>
+</button>
+</th>
+
+<th>
+<div class="sort-button">PAP</div>
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+<div id="mobileDataList" class="mobile-data-list"></div>
+
+<div id="emptyState" class="hidden">
+
+<div class="py-16 text-center">
+
+<div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
+
+<i data-lucide="search-x" class="w-8 h-8"></i>
+
+</div>
+
+<h3 class="font-bold text-slate-600 mt-4">
+Data tidak ditemukan
+</h3>
+
+<p class="text-xs text-slate-400 mt-1">
+Coba ubah kata pencarian atau filter.
+</p>
+
+</div>
+
+</div>
+
+<div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
+
+<div id="paginationInfo" class="text-[10px] font-semibold text-slate-400">
+-
+</div>
+
+<div id="pagination" class="flex items-center gap-1"></div>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 </main>
 
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
+<p class="font-bold text-slate-500 tracking-tight uppercase">
+&copy; 2026 Paperless Project - PT TSI. All rights reserved.
+</p>
 
-<footer
-    class="
-        mt-8
-        text-center
-        text-slate-400
-        px-4
-        pb-8
-    "
->
+<p class="text-[10px] mt-1">
 
-    <p
-        class="
-            font-bold
-            text-slate-500
-            tracking-tight
-            uppercase
-        "
-    >
-        &copy; 2026 Paperless Project - PT TSI.
-        All rights reserved.
-    </p>
+System Architecture by:
 
-    <p class="text-[10px] mt-1">
+<span class="text-slate-600 font-semibold uppercase">
+Imam Wahyu Ramadhan, S.T.
+</span>
 
-        System Architecture by:
+|
 
-        <span
-            class="
-                text-slate-600
-                font-semibold
-                uppercase
-            "
-        >
-            Imam Wahyu Ramadhan, S.T.
-        </span>
+<span class="text-amber-600 font-bold uppercase tracking-tighter">
+Project 2.0
+</span>
 
-        |
-
-        <span
-            class="
-                text-amber-600
-                font-bold
-                uppercase
-                tracking-tighter
-            "
-        >
-            Project 2.0
-        </span>
-
-    </p>
+</p>
 
 </footer>
 
-
-<!-- =========================================================
-     LEADERBOARD BUTTON
-========================================================= -->
-
 <button
-    id="leaderboardButton"
-    onclick="openLeaderboard()"
-    aria-label="Leaderboard"
+id="leaderboardButton"
+onclick="openLeaderboard()"
+aria-label="Leaderboard"
 >
 
-    <i
-        data-lucide="trophy"
-        class="w-7 h-7"
-    ></i>
+<i data-lucide="trophy" class="w-7 h-7"></i>
 
-    <span class="leader-tooltip">
-        Leaderboard Mekanik
-    </span>
+<span class="leader-tooltip">
+Leaderboard Mekanik
+</span>
 
 </button>
 
+<div id="leaderboardOverlay" onclick="closeLeaderboardOutside(event)">
 
-<!-- =========================================================
-     LEADERBOARD MODAL
-========================================================= -->
+<div id="leaderboardModal">
 
-<div
-    id="leaderboardOverlay"
-    onclick="closeLeaderboardOutside(event)"
->
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
 
-    <div id="leaderboardModal">
+<div>
 
-        <div
-            class="
-                px-5
-                py-4
-                border-b
-                border-slate-100
-                flex
-                items-center
-                justify-between
-            "
-        >
+<h3 class="font-black text-slate-800 flex items-center gap-2">
 
-            <div>
+<span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
 
-                <h3
-                    class="
-                        font-black
-                        text-slate-800
-                        flex
-                        items-center
-                        gap-2
-                    "
-                >
+<i data-lucide="trophy" class="w-5 h-5"></i>
 
-                    <span
-                        class="
-                            bg-amber-100
-                            text-amber-600
-                            p-2
-                            rounded-xl
-                        "
-                    >
+</span>
 
-                        <i
-                            data-lucide="trophy"
-                            class="w-5 h-5"
-                        ></i>
+Leaderboard Mekanik
 
-                    </span>
+</h3>
 
-                    Leaderboard Mekanik
-
-                </h3>
-
-                <p
-                    class="
-                        text-[10px]
-                        text-slate-400
-                        font-medium
-                        mt-1
-                    "
-                >
-                    Berdasarkan total aktivitas periodic service
-                </p>
-
-            </div>
-
-
-            <button
-                onclick="closeLeaderboard()"
-                class="
-                    text-slate-400
-                    hover:text-slate-700
-                    hover:bg-slate-100
-                    p-2
-                    rounded-xl
-                    transition
-                "
-            >
-
-                <i
-                    data-lucide="x"
-                    class="w-5 h-5"
-                ></i>
-
-            </button>
-
-        </div>
-
-
-        <div
-            id="leaderboardList"
-            class="
-                p-5
-                overflow-y-auto
-                max-h-[60vh]
-            "
-        >
-
-            <div
-                class="
-                    text-center
-                    text-slate-400
-                    text-sm
-                    py-6
-                "
-            >
-                Memuat leaderboard...
-            </div>
-
-        </div>
-
-    </div>
+<p class="text-[10px] text-slate-400 font-medium mt-1">
+Berdasarkan total aktivitas periodic service
+</p>
 
 </div>
 
+<button
+onclick="closeLeaderboard()"
+class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
+>
+
+<i data-lucide="x" class="w-5 h-5"></i>
+
+</button>
+
+</div>
+
+<div id="leaderboardList" class="p-5 overflow-y-auto max-h-[60vh]">
+
+<div class="text-center text-slate-400 text-sm py-6">
+Memuat leaderboard...
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 <script>
 
-/* =========================================================
-   CONFIGURATION
-========================================================= */
+const API_URL='https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec',
+DASHBOARD_URL='periodic.html',
+ROWS_PER_PAGE=15;
 
-const API_URL =
-'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
+let apiData=null,allData=[],filteredData=[],currentPage=1,sortState={key:null,direction:0};
 
-const DASHBOARD_URL =
-'periodic.html';
+const $=id=>document.getElementById(id);
 
-const ROWS_PER_PAGE =
-15;
-
-
-/* =========================================================
-   GLOBAL DATA
-========================================================= */
-
-let apiData = null;
-
-let allData = [];
-
-let filteredData = [];
-
-let currentPage = 1;
-
-let sortState = {
-
-    key:null,
-
-    direction:0
-
-};
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
+const safe=v=>String(v??'').replace(/[&<>"']/g,m=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+}[m]));
 
 function goToDashboard(){
-
-    window.location.href =
-        DASHBOARD_URL;
-
+location.href=DASHBOARD_URL
 }
-
-
-/* =========================================================
-   LOGO
-========================================================= */
 
 function handleLogoError(){
-
-    document
-        .getElementById('companyLogo')
-        .classList
-        .add('hidden');
-
-    document
-        .getElementById('logoFallback')
-        .classList
-        .remove('hidden');
-
+$('companyLogo').classList.add('hidden');
+$('logoFallback').classList.remove('hidden')
 }
-
-
-/* =========================================================
-   LOAD DATA
-========================================================= */
 
 async function loadTable(){
 
-    try{
+try{
 
-        const response =
-            await fetch(
-                API_URL,
-                {
-                    method:'GET',
-                    cache:'no-store'
-                }
-            );
+const r=await fetch(API_URL,{method:'GET',cache:'no-store'});
 
-        if(!response.ok){
+if(!r.ok)throw Error(`HTTP Error ${r.status}`);
 
-            throw new Error(
-                `HTTP Error ${response.status}`
-            );
+const result=await r.json();
 
-        }
+apiData=result;
 
-        const result =
-            await response.json();
+allData=Array.isArray(result.data)
+?result.data.map((row,index)=>({...row,_originalIndex:index}))
+:[];
 
-        apiData =
-            result;
+updateStatistics(result);
 
-        allData =
-            Array.isArray(result.data)
-            ? result.data.map(
-                (row,index)=>({
+updateLeaderboardFromData(result.chart?.mechanic||[]);
 
-                    ...row,
+filteredData=[...allData];
 
-                    _originalIndex:index
+currentPage=1;
 
-                })
-            )
-            : [];
+sortState={key:null,direction:0};
 
-        updateStatistics(result);
+updateSortHeaders();
 
-        updateLeaderboardFromData(
-            result.chart?.mechanic || []
-        );
+renderTable();
 
-        filteredData =
-            [...allData];
+$('loading').style.display='none';
 
-        currentPage = 1;
+$('tableContent').classList.add('show');
 
-        sortState = {
+}catch(error){
 
-            key:null,
+$('loading').innerHTML=`
 
-            direction:0
+<div class="text-center">
 
-        };
+<div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
 
-        updateSortHeaders();
+<i data-lucide="alert-circle" class="w-8 h-8"></i>
 
-        renderTable();
+</div>
 
-        document
-            .getElementById('loading')
-            .style
-            .display='none';
+<h3 class="font-bold text-red-700 mt-3">
+Gagal memuat data
+</h3>
 
-        document
-            .getElementById('tableContent')
-            .classList
-            .add('show');
+<p class="text-xs text-slate-500 mt-2 max-w-md">
+${safe(error.message)}
+</p>
 
-    }
-    catch(error){
+<button
+onclick="loadTable()"
+class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
+>
+Coba Lagi
+</button>
 
-        document
-            .getElementById('loading')
-            .innerHTML = `
+</div>`;
 
-                <div class="text-center">
-
-                    <div
-                        class="
-                            bg-red-50
-                            text-red-600
-                            p-4
-                            rounded-full
-                            inline-flex
-                        "
-                    >
-
-                        <i
-                            data-lucide="alert-circle"
-                            class="w-8 h-8"
-                        ></i>
-
-                    </div>
-
-                    <h3
-                        class="
-                            font-bold
-                            text-red-700
-                            mt-3
-                        "
-                    >
-                        Gagal memuat data
-                    </h3>
-
-                    <p
-                        class="
-                            text-xs
-                            text-slate-500
-                            mt-2
-                            max-w-md
-                        "
-                    >
-                        ${escapeHtml(error.message)}
-                    </p>
-
-                    <button
-                        onclick="loadTable()"
-                        class="
-                            mt-4
-                            bg-blue-800
-                            hover:bg-blue-700
-                            text-white
-                            font-bold
-                            px-5
-                            py-2.5
-                            rounded-xl
-                            text-sm
-                        "
-                    >
-                        Coba Lagi
-                    </button>
-
-                </div>
-
-            `;
-
-        lucide.createIcons();
-
-    }
+lucide.createIcons();
 
 }
 
-
-/* =========================================================
-   STATISTICS
-========================================================= */
+}
 
 function updateStatistics(result){
 
-    const data =
-        result.data || [];
+const data=result.data||[],
+chart=result.chart||{},
+types=chart.serviceByType||{};
 
-    const chart =
-        result.chart || {};
+const total=data.length||
+Object.values(types).reduce((a,b)=>a+Number(b),0);
 
-    const total =
-        data.length ||
-        Object.values(
-            chart.serviceByType || {}
-        )
-        .reduce(
-            (a,b)=>a+Number(b),
-            0
-        );
+const count=k=>
+Object.entries(types)
+.filter(([x])=>x.toLowerCase().includes(k))
+.reduce((a,[,v])=>a+Number(v),0);
 
-    const periodic =
-        Object.entries(
-            chart.serviceByType || {}
-        )
-        .filter(
-            ([key]) =>
-                key
-                .toLowerCase()
-                .includes('periodic')
-        )
-        .reduce(
-            (sum,[,value]) =>
-                sum + Number(value),
-            0
-        );
-
-    const general =
-        Object.entries(
-            chart.serviceByType || {}
-        )
-        .filter(
-            ([key]) =>
-                key
-                .toLowerCase()
-                .includes('general')
-        )
-        .reduce(
-            (sum,[,value]) =>
-                sum + Number(value),
-            0
-        );
-
-    const baik =
-        Number(
-            chart.status?.Baik || 0
-        );
-
-    document
-        .getElementById('totalData')
-        .textContent =
-            total;
-
-    document
-        .getElementById('periodicTotal')
-        .textContent =
-            periodic;
-
-    document
-        .getElementById('generalTotal')
-        .textContent =
-            general;
-
-    document
-        .getElementById('baikTotal')
-        .textContent =
-            baik;
+$('totalData').textContent=total;
+$('periodicTotal').textContent=count('periodic');
+$('generalTotal').textContent=count('general');
+$('baikTotal').textContent=Number(chart.status?.Baik||0);
 
 }
-
-
-/* =========================================================
-   FILTER
-========================================================= */
 
 function applyFilters(){
 
-    const search =
-        document
-            .getElementById('searchInput')
-            .value
-            .trim()
-            .toLowerCase();
+const search=$('searchInput').value.trim().toLowerCase(),
+service=$('serviceFilter').value,
+status=$('statusFilter').value;
 
-    const service =
-        document
-            .getElementById('serviceFilter')
-            .value;
+filteredData=allData.filter(row=>{
 
-    const status =
-        document
-            .getElementById('statusFilter')
-            .value;
+const text=[
+'tanggal',
+'unit',
+'hm',
+'service',
+'status',
+'pic',
+'itemRusak',
+'remark',
+'pap'
+]
+.map(k=>row[k])
+.join(' ')
+.toLowerCase();
 
-    filteredData =
-        allData.filter(row=>{
+return(
+(!search||text.includes(search))&&
+(!service||String(row.service||'').trim().toLowerCase()===service.toLowerCase())&&
+(!status||String(row.status||'').trim().toLowerCase()===status.toLowerCase())
+);
 
-            const searchable = [
+});
 
-                row.tanggal,
-
-                row.unit,
-
-                row.hm,
-
-                row.service,
-
-                row.status,
-
-                row.pic,
-
-                row.itemRusak,
-
-                row.remark,
-
-                row.pap
-
-            ]
-            .join(' ')
-            .toLowerCase();
-
-            const matchSearch =
-                !search ||
-                searchable.includes(search);
-
-            const matchService =
-                !service ||
-                String(row.service || '')
-                    .trim()
-                    .toLowerCase()
-                    ===
-                service.toLowerCase();
-
-            const matchStatus =
-                !status ||
-                String(row.status || '')
-                    .trim()
-                    .toLowerCase()
-                    ===
-                status.toLowerCase();
-
-            return (
-                matchSearch &&
-                matchService &&
-                matchStatus
-            );
-
-        });
-
-    currentPage = 1;
-
-    applyCurrentSort();
-
-    renderTable();
+currentPage=1;
+applyCurrentSort();
+renderTable();
 
 }
-
-
-/* =========================================================
-   RESET FILTER
-========================================================= */
 
 function resetFilters(){
 
-    document
-        .getElementById('searchInput')
-        .value='';
+$('searchInput').value='';
+$('serviceFilter').value='';
+$('statusFilter').value='';
 
-    document
-        .getElementById('serviceFilter')
-        .value='';
+filteredData=[...allData];
 
-    document
-        .getElementById('statusFilter')
-        .value='';
+currentPage=1;
 
-    filteredData =
-        [...allData];
-
-    currentPage = 1;
-
-    applyCurrentSort();
-
-    renderTable();
+applyCurrentSort();
+renderTable();
 
 }
-
-
-/* =========================================================
-   SORTING
-========================================================= */
 
 function toggleSort(key){
 
-    if(sortState.key === key){
+if(sortState.key===key)
 
-        if(sortState.direction === 0){
+sortState.direction=
+sortState.direction===0
+?1
+:sortState.direction===1
+?-1
+:0;
 
-            sortState.direction = 1;
+else{
 
-        }
-        else if(sortState.direction === 1){
-
-            sortState.direction = -1;
-
-        }
-        else{
-
-            sortState.direction = 0;
-
-        }
-
-    }
-
-    else{
-
-        sortState.key =
-            key;
-
-        sortState.direction =
-            1;
-
-    }
-
-    applyCurrentSort();
-
-    currentPage = 1;
-
-    updateSortHeaders();
-
-    renderTable();
+sortState.key=key;
+sortState.direction=1
 
 }
 
+applyCurrentSort();
 
-/* =========================================================
-   APPLY CURRENT SORT
-========================================================= */
+currentPage=1;
+
+updateSortHeaders();
+
+renderTable();
+
+}
 
 function applyCurrentSort(){
 
-    if(
-        !sortState.key ||
-        sortState.direction === 0
-    ){
+if(!sortState.key||!sortState.direction){
 
-        filteredData.sort(
-            (a,b)=>
-                Number(a._originalIndex || 0) -
-                Number(b._originalIndex || 0)
-        );
+filteredData.sort(
+(a,b)=>a._originalIndex-b._originalIndex
+);
 
-        return;
-
-    }
-
-    const key =
-        sortState.key;
-
-    const direction =
-        sortState.direction;
-
-    filteredData.sort(
-        (a,b)=>{
-
-            const comparison =
-                compareRows(
-                    a,
-                    b,
-                    key
-                );
-
-            if(comparison === 0){
-
-                return (
-                    Number(a._originalIndex || 0) -
-                    Number(b._originalIndex || 0)
-                );
-
-            }
-
-            return comparison * direction;
-
-        }
-    );
+return;
 
 }
 
+const{k:_,direction}=sortState,
+key=sortState.key;
 
-/* =========================================================
-   COMPARE ROWS
-========================================================= */
+filteredData.sort((a,b)=>{
 
-function compareRows(
-    rowA,
-    rowB,
-    key
-){
+const c=compareRows(a,b,key);
 
-    if(key === 'tanggal'){
+return c
+?c*direction
+:a._originalIndex-b._originalIndex;
 
-        const dateA =
-            parseIndonesianDate(
-                rowA.tanggal
-            );
-
-        const dateB =
-            parseIndonesianDate(
-                rowB.tanggal
-            );
-
-        if(dateA === null && dateB === null){
-
-            return 0;
-
-        }
-
-        if(dateA === null){
-
-            return 1;
-
-        }
-
-        if(dateB === null){
-
-            return -1;
-
-        }
-
-        if(dateA < dateB){
-
-            return -1;
-
-        }
-
-        if(dateA > dateB){
-
-            return 1;
-
-        }
-
-        return 0;
-
-    }
-
-
-    if(key === 'hm'){
-
-        const numA =
-            parseNumber(
-                rowA.hm
-            );
-
-        const numB =
-            parseNumber(
-                rowB.hm
-            );
-
-        if(numA === null && numB === null){
-
-            return 0;
-
-        }
-
-        if(numA === null){
-
-            return 1;
-
-        }
-
-        if(numB === null){
-
-            return -1;
-
-        }
-
-        return numA - numB;
-
-    }
-
-
-    const valueA =
-        String(
-            rowA[key] ?? ''
-        )
-        .trim()
-        .toLowerCase();
-
-    const valueB =
-        String(
-            rowB[key] ?? ''
-        )
-        .trim()
-        .toLowerCase();
-
-    if(!valueA && !valueB){
-
-        return 0;
-
-    }
-
-    if(!valueA){
-
-        return 1;
-
-    }
-
-    if(!valueB){
-
-        return -1;
-
-    }
-
-    return valueA.localeCompare(
-        valueB,
-        'id',
-        {
-            numeric:true,
-            sensitivity:'base'
-        }
-    );
+});
 
 }
 
+function compareRows(a,b,key){
 
-/* =========================================================
-   DATE PARSER
-========================================================= */
+if(key==='tanggal'){
+
+const x=parseIndonesianDate(a.tanggal),
+y=parseIndonesianDate(b.tanggal);
+
+if(x===null&&y===null)return 0;
+if(x===null)return 1;
+if(y===null)return-1;
+
+return x-y;
+
+}
+
+if(key==='hm'){
+
+const x=parseNumber(a.hm),
+y=parseNumber(b.hm);
+
+if(x===null&&y===null)return 0;
+if(x===null)return 1;
+if(y===null)return-1;
+
+return x-y;
+
+}
+
+const x=String(a[key]??'').trim().toLowerCase(),
+y=String(b[key]??'').trim().toLowerCase();
+
+if(!x&&!y)return 0;
+if(!x)return 1;
+if(!y)return-1;
+
+return x.localeCompare(
+y,
+'id',
+{
+numeric:true,
+sensitivity:'base'
+}
+);
+
+}
 
 function parseIndonesianDate(value){
 
-    if(value === null || value === undefined){
+if(value==null)return null;
 
-        return null;
+if(value instanceof Date)
+return Number.isNaN(value.getTime())
+?null
+:value.getTime();
 
-    }
+let t=String(value).trim();
 
-    if(value instanceof Date){
+if(!t)return null;
 
-        const timestamp =
-            value.getTime();
+t=t.replace(
+/T\d{1,2}:\d{2}(:\d{2})?.*$/,
+''
+).trim();
 
-        return Number.isNaN(timestamp)
-            ? null
-            : timestamp;
+let m=t.match(
+/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
+);
 
-    }
+if(m)
+return validDate(+m[3],+m[2],+m[1]);
 
-    let text =
-        String(value)
-            .trim();
+m=t.match(
+/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
+);
 
-    if(!text){
+if(m)
+return validDate(+m[1],+m[2],+m[3]);
 
-        return null;
+if(/^\d+(\.\d+)?$/.test(t)){
 
-    }
+const n=Number(t);
 
-    text =
-        text
-            .replace(
-                /T\d{1,2}:\d{2}(:\d{2})?.*$/,
-                ''
-            )
-            .trim();
-
-    let match =
-        text.match(
-            /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
-        );
-
-    if(match){
-
-        const first =
-            Number(match[1]);
-
-        const second =
-            Number(match[2]);
-
-        const year =
-            Number(match[3]);
-
-        const day =
-            first;
-
-        const month =
-            second;
-
-        return createValidDate(
-            year,
-            month,
-            day
-        );
-
-    }
-
-    match =
-        text.match(
-            /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
-        );
-
-    if(match){
-
-        const year =
-            Number(match[1]);
-
-        const month =
-            Number(match[2]);
-
-        const day =
-            Number(match[3]);
-
-        return createValidDate(
-            year,
-            month,
-            day
-        );
-
-    }
-
-    if(
-        /^\d+(\.\d+)?$/.test(text)
-    ){
-
-        const numeric =
-            Number(text);
-
-        if(
-            numeric > 20000 &&
-            numeric < 100000
-        ){
-
-            return Date.UTC(
-                1899,
-                11,
-                30
-            ) +
-            numeric *
-            24 *
-            60 *
-            60 *
-            1000;
-
-        }
-
-    }
-
-    const fallback =
-        new Date(text);
-
-    if(!Number.isNaN(fallback.getTime())){
-
-        return fallback.getTime();
-
-    }
-
-    return null;
+if(n>20000&&n<100000)
+return Date.UTC(1899,11,30)+n*86400000;
 
 }
 
+const d=new Date(t);
 
-/* =========================================================
-   CREATE VALID DATE
-========================================================= */
-
-function createValidDate(
-    year,
-    month,
-    day
-){
-
-    const date =
-        new Date(
-            Date.UTC(
-                year,
-                month - 1,
-                day
-            )
-        );
-
-    if(
-        date.getUTCFullYear() !== year ||
-        date.getUTCMonth() !== month - 1 ||
-        date.getUTCDate() !== day
-    ){
-
-        return null;
-
-    }
-
-    return date.getTime();
+return Number.isNaN(d.getTime())
+?null
+:d.getTime();
 
 }
 
+function validDate(y,m,d){
 
-/* =========================================================
-   NUMBER PARSER
-========================================================= */
+const x=new Date(Date.UTC(y,m-1,d));
+
+return x.getUTCFullYear()===y&&
+x.getUTCMonth()===m-1&&
+x.getUTCDate()===d
+?x.getTime()
+:null;
+
+}
 
 function parseNumber(value){
 
-    if(
-        value === null ||
-        value === undefined ||
-        String(value).trim() === ''
-    ){
+if(value==null||String(value).trim()==='')
+return null;
 
-        return null;
+const n=Number(
+String(value)
+.trim()
+.replace(/\s/g,'')
+.replace(/,/g,'')
+);
 
-    }
-
-    let text =
-        String(value)
-            .trim()
-            .replace(/\s/g,'');
-
-    text =
-        text.replace(
-            /,/g,
-            ''
-        );
-
-    const number =
-        Number(text);
-
-    if(Number.isNaN(number)){
-
-        return null;
-
-    }
-
-    return number;
+return Number.isNaN(n)?null:n;
 
 }
-
-
-/* =========================================================
-   UPDATE SORT HEADERS
-========================================================= */
 
 function updateSortHeaders(){
 
-    const buttons =
-        document.querySelectorAll(
-            '.sort-button[data-sort-key]'
-        );
+document.querySelectorAll(
+'.sort-button[data-sort-key]'
+).forEach(b=>{
 
-    buttons.forEach(button=>{
+const active=
+sortState.key===b.dataset.sortKey&&
+sortState.direction!==0;
 
-        const key =
-            button.dataset.sortKey;
+b.classList.toggle(
+'sort-active',
+active
+);
 
-        const icon =
-            button.querySelector(
-                '.sort-icon'
-            );
+b.classList.toggle(
+'sort-normal',
+!active
+);
 
-        button.classList.remove(
-            'sort-active'
-        );
+const icon=b.querySelector('.sort-icon');
 
-        button.classList.add(
-            'sort-normal'
-        );
+if(icon)
 
-        if(icon){
+icon.setAttribute(
+'data-lucide',
+active
+?(sortState.direction===1
+?'arrow-up'
+:'arrow-down')
+:'arrow-up-down'
+);
 
-            icon.setAttribute(
-                'data-lucide',
-                'arrow-up-down'
-            );
+b.title=active
+?(sortState.direction===1
+?'Urutan naik (ASC)'
+:'Urutan turun (DESC)')
+:'Klik: ASC → DESC → Urutan Normal';
 
-        }
+});
 
-        if(
-            sortState.key === key &&
-            sortState.direction !== 0
-        ){
-
-            button.classList.remove(
-                'sort-normal'
-            );
-
-            button.classList.add(
-                'sort-active'
-            );
-
-            if(
-                sortState.direction === 1
-            ){
-
-                if(icon){
-
-                    icon.setAttribute(
-                        'data-lucide',
-                        'arrow-up'
-                    );
-
-                }
-
-                button.title =
-                    'Urutan naik (ASC)';
-
-            }
-            else{
-
-                if(icon){
-
-                    icon.setAttribute(
-                        'data-lucide',
-                        'arrow-down'
-                    );
-
-                }
-
-                button.title =
-                    'Urutan turun (DESC)';
-
-            }
-
-        }
-        else{
-
-            button.title =
-                'Klik: ASC → DESC → Urutan Normal';
-
-        }
-
-    });
-
-    lucide.createIcons();
+lucide.createIcons();
 
 }
-
-
-/* =========================================================
-   RENDER TABLE
-========================================================= */
 
 function renderTable(){
 
-    const tbody =
-        document
-            .getElementById(
-                'tableBody'
-            );
-
-    const mobileList =
-        document
-            .getElementById(
-                'mobileDataList'
-            );
-
-    const emptyState =
-        document
-            .getElementById(
-                'emptyState'
-            );
-
-    tbody.innerHTML='';
-
-    mobileList.innerHTML='';
-
-    const total =
-        filteredData.length;
-
-    const totalPages =
-        Math.max(
-            1,
-            Math.ceil(
-                total /
-                ROWS_PER_PAGE
-            )
-        );
-
-    if(currentPage > totalPages){
-
-        currentPage =
-            totalPages;
-
-    }
-
-    const start =
-        (currentPage - 1) *
-        ROWS_PER_PAGE;
-
-    const end =
-        Math.min(
-            start + ROWS_PER_PAGE,
-            total
-        );
-
-    const pageData =
-        filteredData.slice(
-            start,
-            end
-        );
-
-
-    if(!pageData.length){
-
-        emptyState
-            .classList
-            .remove('hidden');
-
-    }
-    else{
-
-        emptyState
-            .classList
-            .add('hidden');
-
-
-        /* -----------------------------------------
-           DESKTOP
-        ----------------------------------------- */
-
-        pageData.forEach(
-            (row,index)=>{
-
-                const tr =
-                    document
-                        .createElement('tr');
-
-                const number =
-                    start + index + 1;
-
-                tr.innerHTML = `
-
-                    <td class="
-                        text-center
-                        font-bold
-                        text-slate-400
-                    ">
-                        ${number}
-                    </td>
-
-                    <td class="whitespace-nowrap">
-                        ${escapeHtml(row.tanggal)}
-                    </td>
-
-                    <td>
-                        <span class="unit-badge">
-                            ${escapeHtml(row.unit)}
-                        </span>
-                    </td>
-
-                    <td class="
-                        whitespace-nowrap
-                        font-semibold
-                        text-slate-600
-                    ">
-                        ${escapeHtml(row.hm)}
-                    </td>
-
-                    <td>
-                        ${getServiceBadge(row.service)}
-                    </td>
-
-                    <td>
-                        ${getStatusBadge(row.status)}
-                    </td>
-
-                    <td class="
-                        font-semibold
-                        text-slate-700
-                    ">
-                        ${escapeHtml(row.pic)}
-                    </td>
-
-                    <td
-                        class="
-                            max-w-[180px]
-                            truncate
-                        "
-                        title="${escapeHtml(row.itemRusak)}"
-                    >
-                        ${
-                            escapeHtml(row.itemRusak)
-                            ||
-                            '<span class="text-slate-300">-</span>'
-                        }
-                    </td>
-
-                    <td
-                        class="
-                            max-w-[220px]
-                            truncate
-                        "
-                        title="${escapeHtml(row.remark)}"
-                    >
-                        ${
-                            escapeHtml(row.remark)
-                            ||
-                            '<span class="text-slate-300">-</span>'
-                        }
-                    </td>
-
-                    <td>
-                        ${getPapLink(row.pap)}
-                    </td>
-
-                `;
-
-                tbody.appendChild(tr);
-
-            }
-        );
-
-
-        /* -----------------------------------------
-           MOBILE CARDS
-        ----------------------------------------- */
-
-        pageData.forEach(
-            (row,index)=>{
-
-                const number =
-                    start + index + 1;
-
-                const card =
-                    document.createElement('div');
-
-                card.className =
-                    'mobile-data-card';
-
-                const itemRusak =
-                    escapeHtml(
-                        row.itemRusak
-                    );
-
-                const remark =
-                    escapeHtml(
-                        row.remark
-                    );
-
-                card.innerHTML = `
-
-                    <div
-                        class="
-                            mobile-card-header
-                        "
-                    >
-
-                        <div>
-
-                            <div
-                                class="
-                                    flex
-                                    items-center
-                                    gap-2
-                                "
-                            >
-
-                                <span
-                                    class="
-                                        mobile-number
-                                    "
-                                >
-                                    ${number}
-                                </span>
-
-                                <div
-                                    class="mobile-unit"
-                                >
-                                    ${escapeHtml(
-                                        row.unit
-                                    )}
-                                </div>
-
-                            </div>
-
-                            <div
-                                class="
-                                    mobile-date
-                                "
-                            >
-
-                                <i
-                                    data-lucide="calendar-days"
-                                    class="inline w-3 h-3 mr-1"
-                                ></i>
-
-                                ${escapeHtml(
-                                    row.tanggal
-                                )}
-
-                            </div>
-
-                        </div>
-
-                        <div>
-                            ${getStatusBadge(
-                                row.status
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="
-                            mobile-card-grid
-                        "
-                    >
-
-                        <div class="mobile-field">
-
-                            <div class="mobile-label">
-                                HM
-                            </div>
-
-                            <div
-                                class="
-                                    mobile-value
-                                "
-                            >
-                                ${escapeHtml(
-                                    row.hm
-                                )}
-                            </div>
-
-                        </div>
-
-
-                        <div class="mobile-field">
-
-                            <div class="mobile-label">
-                                Service
-                            </div>
-
-                            <div>
-                                ${getServiceBadge(
-                                    row.service
-                                )}
-                            </div>
-
-                        </div>
-
-
-                        <div class="mobile-field">
-
-                            <div class="mobile-label">
-                                PIC / Mekanik
-                            </div>
-
-                            <div
-                                class="
-                                    mobile-value
-                                "
-                            >
-                                ${escapeHtml(
-                                    row.pic
-                                ) || '-'}
-                            </div>
-
-                        </div>
-
-
-                        <div class="mobile-field">
-
-                            <div class="mobile-label">
-                                Item Rusak
-                            </div>
-
-                            <div
-                                class="
-                                    mobile-value
-                                "
-                            >
-                                ${
-                                    itemRusak ||
-                                    '<span class="text-slate-300">-</span>'
-                                }
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            class="
-                                mobile-field
-                                full
-                            "
-                        >
-
-                            <div class="mobile-label">
-                                Remark
-                            </div>
-
-                            <div
-                                class="
-                                    mobile-remark
-                                "
-                            >
-                                ${
-                                    remark ||
-                                    '<span class="text-slate-300">Tidak ada remark</span>'
-                                }
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="
-                            mobile-pap
-                        "
-                    >
-
-                        ${getPapLink(row.pap)}
-
-                    </div>
-
-                `;
-
-                mobileList.appendChild(card);
-
-            }
-        );
-
-    }
-
-
-    updateResultInfo(
-        total,
-        start,
-        end
-    );
-
-    renderPagination(
-        totalPages
-    );
-
-    lucide.createIcons();
+const tbody=$('tableBody'),
+mobile=$('mobileDataList'),
+empty=$('emptyState');
+
+tbody.innerHTML='';
+mobile.innerHTML='';
+
+const total=filteredData.length,
+pages=Math.max(
+1,
+Math.ceil(total/ROWS_PER_PAGE)
+);
+
+currentPage=Math.min(
+currentPage,
+pages
+);
+
+const start=(currentPage-1)*ROWS_PER_PAGE,
+end=Math.min(
+start+ROWS_PER_PAGE,
+total
+),
+rows=filteredData.slice(
+start,
+end
+);
+
+empty.classList.toggle(
+'hidden',
+!!rows.length
+);
+
+if(rows.length){
+
+rows.forEach((row,i)=>{
+
+const no=start+i+1,
+tr=document.createElement('tr');
+
+tr.innerHTML=`
+
+<td class="text-center font-bold text-slate-400">
+${no}
+</td>
+
+<td class="whitespace-nowrap">
+${safe(row.tanggal)}
+</td>
+
+<td>
+<span class="unit-badge">
+${safe(row.unit)}
+</span>
+</td>
+
+<td class="whitespace-nowrap font-semibold text-slate-600">
+${safe(row.hm)}
+</td>
+
+<td>
+${getServiceBadge(row.service)}
+</td>
+
+<td>
+${getStatusBadge(row.status)}
+</td>
+
+<td class="font-semibold text-slate-700">
+${safe(row.pic)}
+</td>
+
+<td
+class="max-w-[180px] truncate"
+title="${safe(row.itemRusak)}"
+>
+${safe(row.itemRusak)||'<span class="text-slate-300">-</span>'}
+</td>
+
+<td
+class="max-w-[220px] truncate"
+title="${safe(row.remark)}"
+>
+${safe(row.remark)||'<span class="text-slate-300">-</span>'}
+</td>
+
+<td>
+${getPapLink(row.pap)}
+</td>
+
+`;
+
+tbody.appendChild(tr);
+
+const card=document.createElement('div');
+
+card.className='mobile-data-card';
+
+card.innerHTML=`
+
+<div class="mobile-card-header">
+
+<div>
+
+<div class="flex items-center gap-2">
+
+<span class="mobile-number">
+${no}
+</span>
+
+<div class="mobile-unit">
+${safe(row.unit)}
+</div>
+
+</div>
+
+<div class="mobile-date">
+
+<i
+data-lucide="calendar-days"
+class="inline w-3 h-3 mr-1"
+></i>
+
+${safe(row.tanggal)}
+
+</div>
+
+</div>
+
+<div>
+${getStatusBadge(row.status)}
+</div>
+
+</div>
+
+<div class="mobile-card-grid">
+
+<div class="mobile-field">
+
+<div class="mobile-label">
+HM
+</div>
+
+<div class="mobile-value">
+${safe(row.hm)}
+</div>
+
+</div>
+
+<div class="mobile-field">
+
+<div class="mobile-label">
+Service
+</div>
+
+<div>
+${getServiceBadge(row.service)}
+</div>
+
+</div>
+
+<div class="mobile-field">
+
+<div class="mobile-label">
+PIC / Mekanik
+</div>
+
+<div class="mobile-value">
+${safe(row.pic)||'-'}
+</div>
+
+</div>
+
+<div class="mobile-field">
+
+<div class="mobile-label">
+Item Rusak
+</div>
+
+<div class="mobile-value">
+${safe(row.itemRusak)||'<span class="text-slate-300">-</span>'}
+</div>
+
+</div>
+
+<div class="mobile-field full">
+
+<div class="mobile-label">
+Remark
+</div>
+
+<div class="mobile-remark">
+${safe(row.remark)||'<span class="text-slate-300">Tidak ada remark</span>'}
+</div>
+
+</div>
+
+</div>
+
+<div class="mobile-pap">
+
+${getPapLink(row.pap)}
+
+</div>
+
+`;
+
+mobile.appendChild(card);
+
+});
 
 }
 
+updateResultInfo(total,start,end);
 
-/* =========================================================
-   PAP LINK
-========================================================= */
+renderPagination(pages);
+
+lucide.createIcons();
+
+}
 
 function getPapLink(pap){
 
-    const value =
-        String(pap || '').trim();
+const value=String(pap||'').trim();
 
-    if(!value){
+if(!value)
+return'<span class="text-slate-300">-</span>';
 
-        return `
-            <span class="text-slate-300">
-                -
-            </span>
-        `;
+let url;
 
-    }
+try{
 
-    let url;
+url=new URL(value);
 
-    try{
+}catch{
 
-        url =
-            new URL(value);
-
-    }
-    catch(error){
-
-        return `
-            <span
-                class="
-                    text-slate-400
-                    text-[10px]
-                    font-medium
-                "
-                title="${escapeHtml(value)}"
-            >
-                ${escapeHtml(value)}
-            </span>
-        `;
-
-    }
-
-    if(
-        url.protocol !== 'http:' &&
-        url.protocol !== 'https:'
-    ){
-
-        return `
-            <span class="text-slate-400">
-                -
-            </span>
-        `;
-
-    }
-
-    return `
-
-        <a
-            href="${escapeHtml(url.href)}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="pap-link"
-            title="Lihat gambar PAP"
-        >
-
-            <i
-                data-lucide="image"
-                class="w-3.5 h-3.5"
-            ></i>
-
-            Lihat PAP
-
-        </a>
-
-    `;
+return`
+<span
+class="text-slate-400 text-[10px] font-medium"
+title="${safe(value)}"
+>
+${safe(value)}
+</span>
+`;
 
 }
 
+if(!['http:','https:'].includes(url.protocol))
+return'<span class="text-slate-400">-</span>';
 
-/* =========================================================
-   SERVICE BADGE
-========================================================= */
+return`
+
+<a
+href="${safe(url.href)}"
+target="_blank"
+rel="noopener noreferrer"
+class="pap-link"
+title="Lihat gambar PAP"
+>
+
+<i
+data-lucide="image"
+class="w-3.5 h-3.5"
+></i>
+
+Lihat PAP
+
+</a>
+
+`;
+
+}
 
 function getServiceBadge(service){
 
-    const value =
-        String(service || '').trim();
+const value=String(service||'').trim(),
+l=value.toLowerCase();
 
-    const lower =
-        value.toLowerCase();
+const cls=
+l.includes('periodic')
+?'service-periodic'
+:l.includes('general')
+?'service-general'
+:'service-other';
 
-    let cls =
-        'service-other';
-
-    if(
-        lower.includes('periodic')
-    ){
-
-        cls =
-            'service-periodic';
-
-    }
-    else if(
-        lower.includes('general')
-    ){
-
-        cls =
-            'service-general';
-
-    }
-
-    return `
-
-        <span
-            class="
-                service-badge
-                ${cls}
-            "
-        >
-            ${escapeHtml(value || '-')}
-        </span>
-
-    `;
+return`
+<span class="service-badge ${cls}">
+${safe(value||'-')}
+</span>
+`;
 
 }
-
-
-/* =========================================================
-   STATUS BADGE
-========================================================= */
 
 function getStatusBadge(status){
 
-    const value =
-        String(status || '').trim();
+const value=String(status||'').trim(),
+l=value.toLowerCase();
 
-    const lower =
-        value.toLowerCase();
+const good=l==='baik',
+bad=l==='rusak';
 
-    let cls =
-        'status-other';
+return`
 
-    let icon =
-        'circle';
+<span class="status-badge ${good?'status-good':bad?'status-bad':'status-other'}">
 
-    if(lower === 'baik'){
+<i
+data-lucide="${good?'circle-check':bad?'circle-alert':'circle'}"
+class="w-3 h-3"
+></i>
 
-        cls =
-            'status-good';
+${safe(value||'-')}
 
-        icon =
-            'circle-check';
+</span>
 
-    }
-    else if(
-        lower === 'rusak'
-    ){
-
-        cls =
-            'status-bad';
-
-        icon =
-            'circle-alert';
-
-    }
-
-    return `
-
-        <span
-            class="
-                status-badge
-                ${cls}
-            "
-        >
-
-            <i
-                data-lucide="${icon}"
-                class="w-3 h-3"
-            ></i>
-
-            ${escapeHtml(value || '-')}
-
-        </span>
-
-    `;
+`;
 
 }
 
+function updateResultInfo(total,start,end){
 
-/* =========================================================
-   RESULT INFO
-========================================================= */
+if(!total){
 
-function updateResultInfo(
-    total,
-    start,
-    end
-){
+$('resultInfo').textContent=
+'Tidak ada data yang sesuai filter.';
 
-    const resultInfo =
-        document
-            .getElementById(
-                'resultInfo'
-            );
+$('paginationInfo').textContent=
+'0 data';
 
-    const paginationInfo =
-        document
-            .getElementById(
-                'paginationInfo'
-            );
-
-    if(total === 0){
-
-        resultInfo.textContent =
-            'Tidak ada data yang sesuai filter.';
-
-        paginationInfo.textContent =
-            '0 data';
-
-        return;
-
-    }
-
-    resultInfo.textContent =
-        `Menampilkan ${start + 1}–${end} dari ${total} data`;
-
-    paginationInfo.textContent =
-        `${total} data ditemukan`;
+return;
 
 }
 
+$('resultInfo').textContent=
+`Menampilkan ${start+1}–${end} dari ${total} data`;
 
-/* =========================================================
-   PAGINATION
-========================================================= */
-
-function renderPagination(
-    totalPages
-){
-
-    const container =
-        document
-            .getElementById(
-                'pagination'
-            );
-
-    container.innerHTML='';
-
-    if(
-        filteredData.length === 0
-    ){
-
-        return;
-
-    }
-
-    const prev =
-        document.createElement('button');
-
-    prev.className =
-        'pagination-button';
-
-    prev.innerHTML = `
-        <i
-            data-lucide="chevron-left"
-            class="w-4 h-4"
-        ></i>
-    `;
-
-    prev.disabled =
-        currentPage === 1;
-
-    prev.onclick = ()=>{
-
-        if(currentPage > 1){
-
-            currentPage--;
-
-            renderTable();
-
-        }
-
-    };
-
-    container.appendChild(prev);
-
-
-    const pages =
-        getPaginationPages(
-            currentPage,
-            totalPages
-        );
-
-
-    pages.forEach(page=>{
-
-        if(page === '...'){
-
-            const span =
-                document.createElement('span');
-
-            span.className =
-                'px-2 text-slate-400 text-xs';
-
-            span.textContent =
-                '...';
-
-            container.appendChild(span);
-
-            return;
-
-        }
-
-        const button =
-            document.createElement('button');
-
-        button.className =
-            'pagination-button' +
-            (
-                page === currentPage
-                ? ' active'
-                : ''
-            );
-
-        button.textContent =
-            page;
-
-        button.onclick = ()=>{
-
-            currentPage =
-                page;
-
-            renderTable();
-
-        };
-
-        container.appendChild(button);
-
-    });
-
-
-    const next =
-        document.createElement('button');
-
-    next.className =
-        'pagination-button';
-
-    next.innerHTML = `
-        <i
-            data-lucide="chevron-right"
-            class="w-4 h-4"
-        ></i>
-    `;
-
-    next.disabled =
-        currentPage === totalPages;
-
-    next.onclick = ()=>{
-
-        if(
-            currentPage <
-            totalPages
-        ){
-
-            currentPage++;
-
-            renderTable();
-
-        }
-
-    };
-
-    container.appendChild(next);
-
-    lucide.createIcons();
+$('paginationInfo').textContent=
+`${total} data ditemukan`;
 
 }
 
+function renderPagination(totalPages){
 
-/* =========================================================
-   PAGINATION RANGE
-========================================================= */
+const c=$('pagination');
 
-function getPaginationPages(
-    current,
-    total
-){
+c.innerHTML='';
 
-    if(total <= 7){
+if(!filteredData.length)return;
 
-        return Array.from(
-            {
-                length:total
-            },
-            (_,i)=>i+1
-        );
+const add=(
+content,
+cls='',
+disabled=false,
+fn=null
+)=>{
 
-    }
+const b=document.createElement('button');
 
-    const pages = [];
+b.className=
+'pagination-button'+
+(cls?' '+cls:'');
 
-    pages.push(1);
+b.disabled=disabled;
 
-    if(current > 4){
+typeof content==='string'&&
+content.startsWith('<i')
+?b.innerHTML=content
+:b.textContent=content;
 
-        pages.push('...');
+if(fn)b.onclick=fn;
 
-    }
+c.appendChild(b);
 
-    const start =
-        Math.max(
-            2,
-            current - 1
-        );
+};
 
-    const end =
-        Math.min(
-            total - 1,
-            current + 1
-        );
+add(
+'<i data-lucide="chevron-left" class="w-4 h-4"></i>',
+'',
+currentPage===1,
+()=>{
 
-    for(
-        let i=start;
-        i<=end;
-        i++
-    ){
+if(currentPage>1){
 
-        pages.push(i);
-
-    }
-
-    if(current < total - 3){
-
-        pages.push('...');
-
-    }
-
-    pages.push(total);
-
-    return pages;
+currentPage--;
+renderTable();
 
 }
 
+});
 
-/* =========================================================
-   LEADERBOARD
-========================================================= */
+getPaginationPages(
+currentPage,
+totalPages
+).forEach(
+p=>p==='...'
+?
+(()=>{
 
-function updateLeaderboardFromData(
-    data
-){
+const s=document.createElement('span');
 
-    const list =
-        document
-            .getElementById(
-                'leaderboardList'
-            );
+s.className=
+'px-2 text-slate-400 text-xs';
 
-    if(!data.length){
+s.textContent='...';
 
-        list.innerHTML = `
+c.appendChild(s);
 
-            <div
-                class="
-                    text-center
-                    text-slate-400
-                    text-sm
-                    py-6
-                "
-            >
-                Belum ada data mekanik.
-            </div>
+})()
+:
+add(
+p,
+p===currentPage?'active':'',
+false,
+()=>{
 
-        `;
+currentPage=p;
+renderTable();
 
-        return;
+}
+));
 
-    }
+add(
+'<i data-lucide="chevron-right" class="w-4 h-4"></i>',
+'',
+currentPage===totalPages,
+()=>{
 
-    const ranking =
-        [...data].sort(
-            (a,b)=>
-                Number(b.count || 0) -
-                Number(a.count || 0)
-        );
+if(currentPage<totalPages){
 
-    list.innerHTML =
-        ranking
-            .map(
-                (mechanic,index)=>{
-
-                    const rank =
-                        index + 1;
-
-                    const cls =
-                        rank <= 3
-                        ? `top-${rank}`
-                        : '';
-
-                    const medal =
-                        rank === 1
-                        ? '🥇'
-                        : rank === 2
-                        ? '🥈'
-                        : rank === 3
-                        ? '🥉'
-                        : rank;
-
-                    return `
-
-                        <div
-                            class="
-                                leader-row
-                                ${cls}
-                            "
-                        >
-
-                            <div
-                                class="
-                                    leader-rank
-                                "
-                            >
-                                ${medal}
-                            </div>
-
-                            <div
-                                class="
-                                    leader-name
-                                    truncate
-                                "
-                            >
-                                ${escapeHtml(
-                                    mechanic.name
-                                )}
-                            </div>
-
-                            <div
-                                class="
-                                    leader-count
-                                "
-                            >
-                                ${Number(
-                                    mechanic.count || 0
-                                )}
-                                pekerjaan
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            )
-            .join('');
+currentPage++;
+renderTable();
 
 }
 
+});
 
-/* =========================================================
-   OPEN LEADERBOARD
-========================================================= */
+lucide.createIcons();
+
+}
+
+function getPaginationPages(current,total){
+
+if(total<=7)
+return Array.from(
+{length:total},
+(_,i)=>i+1
+);
+
+const p=[1];
+
+if(current>4)p.push('...');
+
+for(
+let i=Math.max(2,current-1);
+i<=Math.min(total-1,current+1);
+i++
+)
+p.push(i);
+
+if(current<total-3)p.push('...');
+
+p.push(total);
+
+return p;
+
+}
+
+function updateLeaderboardFromData(data){
+
+const list=$('leaderboardList');
+
+if(!data.length){
+
+list.innerHTML=
+'<div class="text-center text-slate-400 text-sm py-6">Belum ada data mekanik.</div>';
+
+return;
+
+}
+
+list.innerHTML=
+[...data]
+.sort(
+(a,b)=>Number(b.count||0)-Number(a.count||0)
+)
+.map((m,i)=>{
+
+const rank=i+1,
+cls=rank<=3?`top-${rank}`:'',
+medal=
+rank===1
+?'🥇'
+:rank===2
+?'🥈'
+:rank===3
+?'🥉'
+:rank;
+
+return`
+
+<div class="leader-row ${cls}">
+
+<div class="leader-rank">
+${medal}
+</div>
+
+<div class="leader-name truncate">
+${safe(m.name)}
+</div>
+
+<div class="leader-count">
+${Number(m.count||0)} pekerjaan
+</div>
+
+</div>
+
+`;
+
+})
+.join('');
+
+}
 
 function openLeaderboard(){
 
-    if(
-        apiData?.chart?.mechanic
-    ){
+if(apiData?.chart?.mechanic)
+updateLeaderboardFromData(
+apiData.chart.mechanic
+);
 
-        updateLeaderboardFromData(
-            apiData.chart.mechanic
-        );
+$('leaderboardOverlay')
+.classList.add('show');
 
-    }
-
-    document
-        .getElementById(
-            'leaderboardOverlay'
-        )
-        .classList
-        .add('show');
-
-    document.body.style.overflow =
-        'hidden';
+document.body.style.overflow='hidden';
 
 }
-
-
-/* =========================================================
-   CLOSE LEADERBOARD
-========================================================= */
 
 function closeLeaderboard(){
 
-    document
-        .getElementById(
-            'leaderboardOverlay'
-        )
-        .classList
-        .remove('show');
+$('leaderboardOverlay')
+.classList.remove('show');
 
-    document.body.style.overflow =
-        '';
+document.body.style.overflow='';
 
 }
 
+function closeLeaderboardOutside(e){
 
-/* =========================================================
-   CLOSE OUTSIDE
-========================================================= */
-
-function closeLeaderboardOutside(
-    event
-){
-
-    if(
-        event.target ===
-        document.getElementById(
-            'leaderboardOverlay'
-        )
-    ){
-
-        closeLeaderboard();
-
-    }
+if(
+e.target===
+$('leaderboardOverlay')
+)
+closeLeaderboard();
 
 }
-
-
-/* =========================================================
-   LEADERBOARD PULSE
-========================================================= */
 
 function scheduleLeaderboardPulse(){
 
-    const button =
-        document.getElementById(
-            'leaderboardButton'
-        );
+const button=$('leaderboardButton'),
+delay=12000+Math.random()*14000;
 
-    const delay =
-        12000 +
-        Math.random() * 14000;
+setTimeout(()=>{
 
-    setTimeout(()=>{
+const overlay=$('leaderboardOverlay');
 
-        const overlay =
-            document.getElementById(
-                'leaderboardOverlay'
-            );
+if(!overlay.classList.contains('show')){
 
-        if(
-            !overlay.classList.contains(
-                'show'
-            )
-        ){
+button.classList.remove('leader-pulse');
 
-            button.classList.remove(
-                'leader-pulse'
-            );
+void button.offsetWidth;
 
-            void button.offsetWidth;
-
-            button.classList.add(
-                'leader-pulse'
-            );
-
-        }
-
-        scheduleLeaderboardPulse();
-
-    },delay);
+button.classList.add('leader-pulse');
 
 }
 
+scheduleLeaderboardPulse();
 
-/* =========================================================
-   SECURITY
-========================================================= */
-
-function escapeHtml(value){
-
-    return String(
-        value ?? ''
-    )
-    .replace(
-        /&/g,
-        '&amp;'
-    )
-    .replace(
-        /</g,
-        '&lt;'
-    )
-    .replace(
-        />/g,
-        '&gt;'
-    )
-    .replace(
-        /"/g,
-        '&quot;'
-    )
-    .replace(
-        /'/g,
-        '&#039;'
-    );
+},delay);
 
 }
 
+window.addEventListener('load',()=>{
 
-/* =========================================================
-   START
-========================================================= */
+lucide.createIcons();
 
-window.addEventListener(
-    'load',
-    ()=>{
+loadTable();
 
-        lucide.createIcons();
+scheduleLeaderboardPulse();
 
-        loadTable();
+});
 
-        scheduleLeaderboardPulse();
+document.addEventListener('keydown',e=>{
 
-    }
-);
+if(e.key==='Escape')
+closeLeaderboard();
 
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
-document.addEventListener(
-    'keydown',
-    event=>{
-
-        if(
-            event.key === 'Escape'
-        ){
-
-            closeLeaderboard();
-
-        }
-
-    }
-);
+});
 
 </script>
 
 </body>
 </html>
+
