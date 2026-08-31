@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
@@ -10,19 +9,15 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Dashboard Periodic Service - PT TSI</title>
+<title>Data Periodic Service - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
 >
-
 
 <style>
 
@@ -35,33 +30,21 @@
 }
 
 html{
-    width:100%;
-    min-height:100%;
+    min-width:0;
 }
 
 body{
     margin:0;
-    min-width:320px;
-    min-height:100vh;
-
     font-family:'Inter',sans-serif;
-
     background:
         linear-gradient(
             135deg,
             #f8fafc,
             #eef2f7
         );
-
     color:#1e293b;
-
-    overflow-x:hidden;
+    min-height:100vh;
 }
-
-
-/* =========================================================
-   GLOBAL UTILITIES
-========================================================= */
 
 .color-primary{
     background:#1E3A8A;
@@ -69,6 +52,12 @@ body{
 
 .text-primary{
     color:#1E3A8A;
+}
+
+.glass-panel{
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3);
 }
 
 .fade-in{
@@ -92,21 +81,12 @@ body{
 
 }
 
-.glass-panel{
 
-    background:
-        rgba(255,255,255,.95);
-
-    backdrop-filter:
-        blur(10px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-}
+/* =========================================================
+   LOGO
+========================================================= */
 
 .logo-wrapper{
-
     transition:
         transform
         .4s
@@ -116,19 +96,15 @@ body{
             .32,
             1.275
         );
-
 }
 
 .logo-wrapper:hover{
-
     transform:
         scale(1.08)
         rotate(2deg);
-
 }
 
 .logo-shadow{
-
     filter:
         drop-shadow(
             0 10px 8px
@@ -138,622 +114,391 @@ body{
             0 4px 3px
             rgba(0,0,0,.1)
         );
-
 }
 
 
 /* =========================================================
-   CHART CARDS
+   TITLE
 ========================================================= */
 
-.chart-card{
-
-    background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:20px;
-
-    padding:20px;
-
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.04);
-
-    transition:
-        .25s ease;
-
-    min-width:0;
-
-}
-
-.chart-card:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 12px 25px
-        rgba(15,23,42,.08);
-
-}
-
-.chart-title{
-
-    font-size:14px;
-
+.page-title{
+    font-size:30px;
     font-weight:900;
-
-    color:#334155;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
+    color:#1e293b;
+    letter-spacing:-.025em;
 }
 
-.chart-subtitle{
-
-    font-size:10px;
-
-    color:#94a3b8;
-
-    font-weight:600;
-
-    margin-top:4px;
-
-    line-height:1.5;
-
-}
-
-.chart-wrapper{
-
-    position:relative;
-
-    height:300px;
-
-    margin-top:15px;
-
-    width:100%;
-
+.page-subtitle{
+    font-size:13px;
+    color:#64748b;
+    font-weight:500;
 }
 
 
 /* =========================================================
-   STATISTICS
+   BACK BUTTON
+========================================================= */
+
+.back-button{
+    background:#1e3a8a;
+    color:#fff;
+    border-radius:12px;
+    padding:11px 17px;
+    font-size:12px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.2s ease;
+    box-shadow:
+        0 5px 12px
+        rgba(30,58,138,.18);
+    border:none;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.back-button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:
+        0 8px 18px
+        rgba(30,58,138,.25);
+}
+
+
+/* =========================================================
+   STAT CARD
 ========================================================= */
 
 .stat-card{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:18px;
-
-    padding:18px;
-
-    transition:
-        .25s ease;
-
-    min-width:0;
-
-    overflow:hidden;
-
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:17px;
+    transition:.25s ease;
 }
 
 .stat-card:hover{
-
-    transform:
-        translateY(-3px);
-
+    transform:translateY(-2px);
     box-shadow:
         0 10px 20px
         rgba(15,23,42,.07);
-
 }
 
 
 /* =========================================================
-   NAVIGATION BUTTONS
+   TABLE
 ========================================================= */
 
-.navigation-button{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
-    font-size:13px;
-
-    font-weight:800;
-
-    border-radius:12px;
-
-    padding:
-        11px
-        17px;
-
-    transition:
-        all
-        .2s
-        ease;
-
-    cursor:pointer;
-
-    white-space:nowrap;
-
-}
-
-.navigation-button:hover{
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-/* =========================================================
-   FLOATING LEADERBOARD
-========================================================= */
-
-#leaderboardButton{
-
-    position:fixed;
-
-    right:28px;
-
-    bottom:28px;
-
-    z-index:90;
-
-    width:68px;
-
-    height:68px;
-
-    border-radius:20px;
-
-    background:#1e3a8a;
-
-    color:#fff;
-
-    border:
-        2px solid
-        rgba(255,255,255,.45);
-
-    box-shadow:
-        0 12px 30px
-        rgba(15,23,42,.25),
-        0 0 0
-        rgba(30,58,138,0);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-    transition:
-        transform
-        .25s
-        ease,
-
-        box-shadow
-        .25s
-        ease;
-
-}
-
-#leaderboardButton:hover{
-
-    transform:
-        translateY(-4px)
-        scale(1.06);
-
-    box-shadow:
-        0 16px 35px
-        rgba(15,23,42,.30),
-
-        0 0 22px
-        rgba(30,58,138,.28);
-
-}
-
-
-/* =========================================================
-   LEADERBOARD PULSE
-========================================================= */
-
-#leaderboardButton.leader-pulse{
-
-    animation:
-        leaderPulse
-        1.8s
-        cubic-bezier(.4,0,.2,1);
-
-}
-
-@keyframes leaderPulse{
-
-    0%{
-
-        transform:scale(1);
-
-        box-shadow:
-            0 12px 30px
-            rgba(15,23,42,.25),
-
-            0 0 0
-            rgba(30,58,138,0);
-
-    }
-
-    18%{
-
-        transform:scale(1.16);
-
-        box-shadow:
-            0 16px 35px
-            rgba(15,23,42,.28),
-
-            0 0 0 9px
-            rgba(30,58,138,.12),
-
-            0 0 28px
-            rgba(30,58,138,.35);
-
-    }
-
-    35%{
-
-        transform:scale(1.08);
-
-        box-shadow:
-            0 16px 35px
-            rgba(15,23,42,.28),
-
-            0 0 0 17px
-            rgba(30,58,138,.06),
-
-            0 0 34px
-            rgba(30,58,138,.25);
-
-    }
-
-    52%{
-
-        transform:scale(1.13);
-
-        box-shadow:
-            0 16px 35px
-            rgba(15,23,42,.28),
-
-            0 0 0 8px
-            rgba(30,58,138,.10),
-
-            0 0 30px
-            rgba(30,58,138,.30);
-
-    }
-
-    72%{
-
-        transform:scale(1.04);
-
-        box-shadow:
-            0 13px 30px
-            rgba(15,23,42,.25),
-
-            0 0 0 16px
-            rgba(30,58,138,.03),
-
-            0 0 20px
-            rgba(30,58,138,.16);
-
-    }
-
-    100%{
-
-        transform:scale(1);
-
-        box-shadow:
-            0 12px 30px
-            rgba(15,23,42,.25),
-
-            0 0 0
-            rgba(30,58,138,0);
-
-    }
-
-}
-
-
-/* =========================================================
-   LEADERBOARD TOOLTIP
-========================================================= */
-
-.leader-tooltip{
-
-    position:absolute;
-
-    right:0;
-
-    bottom:78px;
-
-    white-space:nowrap;
-
-    background:#0f172a;
-
-    color:#fff;
-
-    font-size:10px;
-
-    font-weight:700;
-
-    padding:
-        7px
-        10px;
-
-    border-radius:8px;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transform:
-        translateY(5px);
-
-    transition:.2s;
-
-}
-
-#leaderboardButton:hover
-.leader-tooltip{
-
-    opacity:1;
-
-    transform:
-        translateY(0);
-
-}
-
-
-/* =========================================================
-   LEADERBOARD OVERLAY
-========================================================= */
-
-#leaderboardOverlay{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:95;
-
-    background:
-        rgba(15,23,42,.28);
-
-    backdrop-filter:
-        blur(3px);
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-}
-
-#leaderboardOverlay.show{
-
-    display:flex;
-
-}
-
-#leaderboardModal{
-
-    width:
-        min(
-            430px,
-            100%
-        );
-
-    max-height:80vh;
-
-    overflow:hidden;
-
+.table-panel{
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:22px;
-
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    overflow:hidden;
     box-shadow:
-        0 25px 60px
-        rgba(15,23,42,.25);
-
-    animation:
-        leaderModalIn
-        .25s
-        ease;
-
+        0 4px 12px
+        rgba(15,23,42,.04);
 }
 
-@keyframes leaderModalIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(12px)
-            scale(.97);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
+.table-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
 }
 
+table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    min-width:950px;
+}
 
-/* =========================================================
-   LEADERBOARD ROW
-========================================================= */
+thead{
+    background:#f8fafc;
+}
 
-.leader-row{
+thead th{
+    padding:0;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    white-space:nowrap;
+    text-align:left;
+}
 
-    display:flex;
+.sort-button{
 
-    align-items:center;
-
-    gap:12px;
+    width:100%;
 
     padding:
-        12px
         14px;
 
-    border-radius:14px;
+    background:transparent;
 
-    margin-bottom:7px;
-
-    background:#f8fafc;
-
-    border:
-        1px solid
-        #f1f5f9;
-
-}
-
-.leader-row.top-1{
-
-    background:#fffbeb;
-
-    border-color:#fde68a;
-
-}
-
-.leader-row.top-2{
-
-    background:#f8fafc;
-
-    border-color:#cbd5e1;
-
-}
-
-.leader-row.top-3{
-
-    background:#fff7ed;
-
-    border-color:#fed7aa;
-
-}
-
-.leader-rank{
-
-    width:30px;
-
-    height:30px;
-
-    border-radius:10px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:12px;
-
-    font-weight:900;
-
-    background:#e2e8f0;
+    border:none;
 
     color:#475569;
 
-    flex-shrink:0;
+    font-family:inherit;
 
-}
-
-.top-1 .leader-rank{
-
-    background:#fbbf24;
-
-    color:#78350f;
-
-}
-
-.top-2 .leader-rank{
-
-    background:#cbd5e1;
-
-    color:#334155;
-
-}
-
-.top-3 .leader-rank{
-
-    background:#fdba74;
-
-    color:#7c2d12;
-
-}
-
-.leader-name{
-
-    font-size:12px;
-
-    font-weight:800;
-
-    color:#334155;
-
-    flex:1;
-
-    min-width:0;
-
-}
-
-.leader-count{
-
-    font-size:11px;
+    font-size:10px;
 
     font-weight:900;
 
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    text-align:left;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    gap:7px;
+
+    cursor:pointer;
+
+    transition:.18s ease;
+
+}
+
+.sort-button:hover{
+
+    background:#eff6ff;
+
     color:#1e3a8a;
 
-    background:#dbeafe;
+}
 
-    padding:
-        5px
-        9px;
+.sort-icon{
 
-    border-radius:999px;
+    width:14px;
 
+    height:14px;
+
+    flex-shrink:0;
+
+    color:#94a3b8;
+
+    transition:.18s ease;
+
+}
+
+.sort-button.sort-active{
+
+    color:#1e3a8a;
+
+    background:#eff6ff;
+
+}
+
+.sort-button.sort-active .sort-icon{
+
+    color:#1e3a8a;
+
+}
+
+.sort-button.sort-normal .sort-icon{
+
+    opacity:.45;
+
+}
+
+tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:11px;
+    font-weight:500;
+    vertical-align:middle;
+}
+
+tbody tr{
+    transition:background .15s ease;
+}
+
+tbody tr:hover{
+    background:#f8fafc;
+}
+
+tbody tr:last-child td{
+    border-bottom:none;
+}
+
+
+/* =========================================================
+   PAP
+========================================================= */
+
+.pap-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:6px 10px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1d4ed8;
+    border:1px solid #dbeafe;
+    font-size:10px;
+    font-weight:800;
     white-space:nowrap;
+    text-decoration:none;
+    transition:.2s ease;
+}
 
+.pap-link:hover{
+    background:#dbeafe;
+    border-color:#bfdbfe;
+    color:#1e40af;
+    transform:translateY(-1px);
+    box-shadow:
+        0 3px 8px
+        rgba(37,99,235,.12);
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.service-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:5px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.service-periodic{
+    background:#dbeafe;
+    color:#1e40af;
+}
+
+.service-general{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.service-other{
+    background:#e2e8f0;
+    color:#475569;
+}
+
+.status-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.status-good{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.status-bad{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.status-other{
+    background:#e2e8f0;
+    color:#475569;
+}
+
+.unit-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:50px;
+    padding:5px 8px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    font-size:10px;
+    font-weight:900;
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.filter-input{
+    width:100%;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:11px;
+    padding:10px 12px;
+    color:#334155;
+    font-size:11px;
+    font-weight:600;
+    outline:none;
+    transition:.2s ease;
+}
+
+.filter-input:focus{
+    background:#fff;
+    border-color:#93c5fd;
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.10);
+}
+
+select.filter-input{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination-button{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s ease;
+}
+
+.pagination-button:hover:not(:disabled){
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe;
+}
+
+.pagination-button.active{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a;
+}
+
+.pagination-button:disabled{
+    opacity:.4;
+    cursor:not-allowed;
 }
 
 
@@ -762,951 +507,729 @@ body{
 ========================================================= */
 
 #loading{
-
+    min-height:350px;
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     justify-content:center;
-
-    min-height:400px;
-
 }
 
-#dashboard{
-
+#tableContent{
     display:none;
-
 }
 
-#dashboard.show{
-
+#tableContent.show{
     display:block;
-
 }
 
 
 /* =========================================================
-   RESPONSIVE - TABLET
+   MOBILE CARD
 ========================================================= */
 
-@media(max-width:1024px){
+.mobile-data-list{
+    display:none;
+}
 
-    body{
+.mobile-data-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:10px;
+    box-shadow:
+        0 3px 10px
+        rgba(15,23,42,.035);
+}
 
-        padding:
-            12px !important;
+.mobile-card-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:12px;
+    margin-bottom:12px;
+    border-bottom:1px solid #f1f5f9;
+}
 
-    }
+.mobile-unit{
+    font-size:16px;
+    font-weight:900;
+    color:#1e3a8a;
+}
 
-    main{
+.mobile-date{
+    font-size:10px;
+    font-weight:700;
+    color:#64748b;
+    margin-top:3px;
+}
 
-        padding:
-            24px !important;
+.mobile-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px 14px;
+}
 
-    }
+.mobile-field{
+    min-width:0;
+}
 
-    .chart-wrapper{
+.mobile-field.full{
+    grid-column:1 / -1;
+}
 
-        height:290px;
+.mobile-label{
+    font-size:8px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:4px;
+}
 
-    }
+.mobile-value{
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    word-break:break-word;
+}
 
+.mobile-remark{
+    background:#f8fafc;
+    border-radius:10px;
+    padding:9px 10px;
+    color:#475569;
+    font-size:10px;
+    line-height:1.5;
+}
+
+.mobile-pap{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid #f1f5f9;
+}
+
+.mobile-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:27px;
+    height:27px;
+    padding:0 7px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#64748b;
+    font-size:9px;
+    font-weight:900;
 }
 
 
 /* =========================================================
-   RESPONSIVE - MOBILE
+   LEADERBOARD BUTTON
 ========================================================= */
 
-@media(max-width:768px){
+#leaderboardButton{
+    position:fixed;
+    right:28px;
+    bottom:28px;
+    z-index:90;
+    width:68px;
+    height:68px;
+    border-radius:20px;
+    background:#1e3a8a;
+    color:#fff;
+    border:2px solid rgba(255,255,255,.45);
+    box-shadow:
+        0 12px 30px
+        rgba(15,23,42,.28);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+#leaderboardButton:hover{
+    transform:
+        translateY(-4px)
+        scale(1.05);
+    box-shadow:
+        0 18px 38px
+        rgba(15,23,42,.34);
+}
+
+#leaderboardButton.leader-pulse{
+    animation:
+        leaderPulse
+        1.5s
+        ease-in-out;
+}
+
+@keyframes leaderPulse{
+
+    0%{
+        transform:scale(1);
+        box-shadow:
+            0 12px 30px
+            rgba(15,23,42,.28);
+    }
+
+    20%{
+        transform:scale(1.18);
+        box-shadow:
+            0 0 0 12px
+            rgba(30,58,138,.12),
+            0 16px 38px
+            rgba(15,23,42,.32);
+    }
+
+    40%{
+        transform:scale(.98);
+    }
+
+    60%{
+        transform:scale(1.12);
+        box-shadow:
+            0 0 0 8px
+            rgba(30,58,138,.10),
+            0 16px 38px
+            rgba(15,23,42,.32);
+    }
+
+    100%{
+        transform:scale(1);
+        box-shadow:
+            0 12px 30px
+            rgba(15,23,42,.28);
+    }
+
+}
+
+.leader-tooltip{
+    position:absolute;
+    right:0;
+    bottom:78px;
+    white-space:nowrap;
+    background:#0f172a;
+    color:#fff;
+    font-size:10px;
+    font-weight:700;
+    padding:7px 10px;
+    border-radius:8px;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(5px);
+    transition:.2s;
+}
+
+#leaderboardButton:hover .leader-tooltip{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* =========================================================
+   LEADERBOARD MODAL
+========================================================= */
+
+#leaderboardOverlay{
+    position:fixed;
+    inset:0;
+    z-index:95;
+    background:rgba(15,23,42,.28);
+    backdrop-filter:blur(3px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+#leaderboardOverlay.show{
+    display:flex;
+}
+
+#leaderboardModal{
+    width:min(430px,100%);
+    max-height:80vh;
+    overflow:hidden;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:22px;
+    box-shadow:
+        0 25px 60px
+        rgba(15,23,42,.25);
+    animation:
+        leaderModalIn
+        .25s ease;
+}
+
+@keyframes leaderModalIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(12px)
+            scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+.leader-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    border-radius:14px;
+    margin-bottom:7px;
+    background:#f8fafc;
+    border:1px solid #f1f5f9;
+}
+
+.leader-row.top-1{
+    background:#fffbeb;
+    border-color:#fde68a;
+}
+
+.leader-row.top-2{
+    background:#f8fafc;
+    border-color:#cbd5e1;
+}
+
+.leader-row.top-3{
+    background:#fff7ed;
+    border-color:#fed7aa;
+}
+
+.leader-rank{
+    width:30px;
+    height:30px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:900;
+    background:#e2e8f0;
+    color:#475569;
+    flex-shrink:0;
+}
+
+.top-1 .leader-rank{
+    background:#fbbf24;
+    color:#78350f;
+}
+
+.top-2 .leader-rank{
+    background:#cbd5e1;
+    color:#334155;
+}
+
+.top-3 .leader-rank{
+    background:#fdba74;
+    color:#7c2d12;
+}
+
+.leader-name{
+    font-size:12px;
+    font-weight:800;
+    color:#334155;
+    flex:1;
+    min-width:0;
+}
+
+.leader-count{
+    font-size:11px;
+    font-weight:900;
+    color:#1e3a8a;
+    background:#dbeafe;
+    padding:5px 9px;
+    border-radius:999px;
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media(max-width:767px){
 
     body{
-
-        padding:
-            8px !important;
-
+        padding:10px !important;
+        background:#f1f5f9;
     }
 
     main{
+        padding:18px !important;
+        border-radius:22px !important;
+    }
 
-        padding:
-            18px !important;
-
-        border-radius:
-            22px !important;
-
+    footer{
+        margin-top:20px !important;
+        padding-bottom:90px !important;
     }
 
 
-    /* HEADER */
+    /* -----------------------------------------
+       HEADER
+    ----------------------------------------- */
 
     header{
-
-        margin-bottom:
-            24px !important;
-
-        padding-bottom:
-            20px !important;
-
+        margin-bottom:20px !important;
+        padding-bottom:18px !important;
     }
 
-
     .logo-wrapper{
-
-        margin-bottom:
-            14px !important;
-
+        margin-bottom:12px !important;
     }
 
     .logo-wrapper > div{
-
-        width:
-            76px !important;
-
-        height:
-            76px !important;
-
+        width:78px !important;
+        height:78px !important;
     }
 
-
     .color-primary{
-
-        width:
-            100%;
-
-        max-width:
-            520px;
-
-        padding:
-            14px
-            16px !important;
-
-        border-radius:
-            16px !important;
-
+        width:100%;
+        padding:13px 15px !important;
+        border-radius:15px !important;
     }
 
     .color-primary h1{
-
-        font-size:
-            16px !important;
-
-        line-height:
-            1.3;
-
-        letter-spacing:
-            .07em !important;
-
+        font-size:15px !important;
+        letter-spacing:.06em !important;
     }
 
     .color-primary h2{
-
-        font-size:
-            10px !important;
-
-        line-height:
-            1.4;
-
-        letter-spacing:
-            .12em !important;
-
+        font-size:10px !important;
+        letter-spacing:.12em !important;
     }
-
 
     header > div:last-child{
-
-        font-size:
-            8px !important;
-
-        letter-spacing:
-            .2em !important;
-
-        text-align:center;
-
+        font-size:8px !important;
+        letter-spacing:.2em !important;
     }
 
 
-    /* TITLE */
+    /* -----------------------------------------
+       PAGE TITLE
+    ----------------------------------------- */
 
-    section h2{
-
-        font-size:
-            20px !important;
-
-        line-height:
-            1.3;
-
+    section > div:first-child{
+        align-items:flex-start !important;
     }
 
-    section h2 span{
-
-        padding:
-            10px !important;
-
+    .page-title{
+        font-size:20px !important;
+        line-height:1.3;
+        gap:9px !important;
     }
 
-    section h2 i{
-
-        width:
-            20px !important;
-
-        height:
-            20px !important;
-
+    .page-title span{
+        padding:9px !important;
     }
 
-
-    section p{
-
-        line-height:
-            1.5;
-
+    .page-title svg{
+        width:18px !important;
+        height:18px !important;
     }
 
+    .page-subtitle{
+        font-size:10px !important;
+        line-height:1.5;
+        margin-top:7px !important;
+    }
 
-    /* NAVIGATION */
+    .back-button{
+        padding:9px 11px !important;
+        font-size:10px !important;
+        border-radius:10px !important;
+    }
 
-    .navigation-button{
-
-        width:
-            100%;
-
-        min-height:
-            44px;
-
+    .back-button svg{
+        width:14px !important;
+        height:14px !important;
     }
 
 
-    /* STATISTICS */
+    /* -----------------------------------------
+       STATISTICS
+    ----------------------------------------- */
+
+    #tableContent > div:first-child{
+        grid-template-columns:1fr 1fr !important;
+        gap:9px !important;
+        margin-bottom:12px !important;
+    }
 
     .stat-card{
+        padding:13px !important;
+        border-radius:14px !important;
+    }
 
-        padding:
-            14px;
-
-        border-radius:
-            15px;
-
+    .stat-card p:first-child{
+        font-size:8px !important;
     }
 
     .stat-card p:last-child{
-
-        font-size:
-            24px !important;
-
-        line-height:
-            1.1;
-
+        font-size:23px !important;
+        margin-top:5px !important;
     }
 
 
-    /* CHART */
+    /* -----------------------------------------
+       FILTER
+    ----------------------------------------- */
 
-    .chart-card{
-
-        padding:
-            15px;
-
-        border-radius:
-            17px;
-
+    #tableContent > div:nth-child(2){
+        padding:13px !important;
+        border-radius:15px !important;
+        margin-bottom:12px !important;
     }
 
-    .chart-title{
-
-        font-size:
-            12px;
-
-        gap:
-            7px;
-
-        line-height:
-            1.35;
-
+    #tableContent > div:nth-child(2) > div:first-child{
+        margin-bottom:12px !important;
     }
 
-    .chart-title span{
-
-        padding:
-            7px !important;
-
+    #tableContent > div:nth-child(2) > div:first-child span{
+        padding:7px !important;
     }
 
-    .chart-title i{
-
-        width:
-            15px !important;
-
-        height:
-            15px !important;
-
+    #tableContent > div:nth-child(2) > div:first-child svg{
+        width:14px !important;
+        height:14px !important;
     }
 
-    .chart-subtitle{
-
-        font-size:
-            9px;
-
-        line-height:
-            1.45;
-
+    #tableContent > div:nth-child(2) > div:first-child h3{
+        font-size:12px !important;
     }
 
-    .chart-wrapper{
+    #tableContent > div:nth-child(2) > div:first-child p{
+        font-size:8px !important;
+    }
 
-        height:
-            270px;
+    #tableContent > div:nth-child(2) > div:last-child{
+        grid-template-columns:1fr !important;
+        gap:10px !important;
+    }
 
-        margin-top:
-            12px;
+    #tableContent > div:nth-child(2) label{
+        font-size:8px !important;
+        margin-bottom:5px !important;
+    }
 
+    .filter-input{
+        font-size:10px !important;
+        padding:10px !important;
     }
 
 
-    /* MECHANIC CHART */
+    /* -----------------------------------------
+       TABLE HEADER
+    ----------------------------------------- */
 
-    .chart-card .chart-wrapper[style*="380px"]{
+    .table-panel{
+        border-radius:16px !important;
+    }
 
-        height:
-            320px !important;
+    .table-panel > div:first-child{
+        padding:13px !important;
+    }
 
+    .table-panel > div:first-child h3{
+        font-size:11px !important;
+    }
+
+    .table-panel > div:first-child p{
+        font-size:8px !important;
+    }
+
+    .table-panel > div:first-child > div:last-child{
+        display:none !important;
     }
 
 
-    /* LEADERBOARD BUTTON */
+    /* -----------------------------------------
+       HIDE DESKTOP TABLE
+    ----------------------------------------- */
+
+    .table-scroll{
+        display:none;
+    }
+
+
+    /* -----------------------------------------
+       SHOW MOBILE CARDS
+    ----------------------------------------- */
+
+    .mobile-data-list{
+        display:block;
+        padding:10px;
+        background:#f8fafc;
+    }
+
+
+    /* -----------------------------------------
+       PAGINATION
+    ----------------------------------------- */
+
+    .table-panel > div:last-child{
+        padding:10px !important;
+        gap:8px;
+    }
+
+    #paginationInfo{
+        font-size:8px !important;
+        white-space:nowrap;
+    }
+
+    #pagination{
+        gap:3px !important;
+        overflow-x:auto;
+        max-width:65%;
+        padding-bottom:2px;
+    }
+
+    .pagination-button{
+        width:30px !important;
+        height:30px !important;
+        min-width:30px !important;
+        font-size:9px !important;
+    }
+
+
+    /* -----------------------------------------
+       LEADERBOARD BUTTON
+    ----------------------------------------- */
 
     #leaderboardButton{
-
-        right:
-            16px;
-
-        bottom:
-            16px;
-
-        width:
-            58px;
-
-        height:
-            58px;
-
-        border-radius:
-            17px;
-
+        width:55px;
+        height:55px;
+        right:16px;
+        bottom:16px;
+        border-radius:17px;
     }
 
     #leaderboardButton svg{
-
-        width:
-            24px;
-
-        height:
-            24px;
-
+        width:23px;
+        height:23px;
     }
 
     .leader-tooltip{
-
         display:none;
-
     }
 
 
-    /* LEADERBOARD MODAL */
+    /* -----------------------------------------
+       LEADERBOARD MODAL
+    ----------------------------------------- */
 
     #leaderboardOverlay{
-
-        padding:
-            12px;
-
+        padding:10px;
     }
 
     #leaderboardModal{
-
-        width:
-            100%;
-
-        max-width:
-            430px;
-
-        max-height:
-            88vh;
-
-        border-radius:
-            18px;
-
+        width:100%;
+        max-height:85vh;
+        border-radius:18px;
     }
 
     #leaderboardList{
-
-        padding:
-            14px;
-
-        max-height:
-            68vh;
-
+        padding:12px !important;
     }
 
     .leader-row{
-
-        gap:
-            8px;
-
-        padding:
-            10px;
-
-    }
-
-    .leader-rank{
-
-        width:
-            28px;
-
-        height:
-            28px;
-
-        border-radius:
-            9px;
-
-        font-size:
-            11px;
-
+        padding:10px;
     }
 
     .leader-name{
-
-        font-size:
-            11px;
-
+        font-size:11px;
     }
 
     .leader-count{
-
-        font-size:
-            9px;
-
-        padding:
-            4px
-            7px;
-
-    }
-
-
-    /* FOOTER */
-
-    footer{
-
-        margin-top:
-            20px !important;
-
-        padding-left:
-            10px !important;
-
-        padding-right:
-            10px !important;
-
-    }
-
-    footer p:first-child{
-
-        font-size:
-            10px !important;
-
-        line-height:
-            1.5;
-
-    }
-
-    footer p:last-child{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.5;
-
+        font-size:9px;
+        padding:4px 7px;
     }
 
 }
 
 
 /* =========================================================
-   RESPONSIVE - SMALL MOBILE
+   VERY SMALL PHONE
 ========================================================= */
 
-@media(max-width:480px){
+@media(max-width:380px){
 
     body{
-
-        padding:
-            5px !important;
-
+        padding:6px !important;
     }
 
     main{
-
-        padding:
-            14px !important;
-
-        border-radius:
-            18px !important;
-
+        padding:13px !important;
     }
 
-
-    .logo-wrapper > div{
-
-        width:
-            68px !important;
-
-        height:
-            68px !important;
-
-        border-radius:
-            15px !important;
-
+    .page-title{
+        font-size:18px !important;
     }
 
-
-    .color-primary{
-
-        padding:
-            12px
-            10px !important;
-
-        border-radius:
-            14px !important;
-
+    .back-button{
+        padding:8px !important;
     }
 
-    .color-primary h1{
-
-        font-size:
-            13px !important;
-
-        letter-spacing:
-            .05em !important;
-
+    .back-button span{
+        display:none;
     }
 
-    .color-primary h2{
-
-        font-size:
-            8px !important;
-
-        letter-spacing:
-            .08em !important;
-
+    .mobile-card-grid{
+        grid-template-columns:1fr;
     }
 
-
-    header > div:last-child{
-
-        font-size:
-            7px !important;
-
+    .mobile-field.full{
+        grid-column:auto;
     }
 
-
-    section h2{
-
-        font-size:
-            18px !important;
-
-        gap:
-            8px !important;
-
-    }
-
-    section h2 span{
-
-        padding:
-            8px !important;
-
-        border-radius:
-            9px !important;
-
-    }
-
-    section h2 i{
-
-        width:
-            18px !important;
-
-        height:
-            18px !important;
-
-    }
-
-
-    .stat-card{
-
-        padding:
-            12px;
-
-        border-radius:
-            14px;
-
-    }
-
-    .stat-card p:first-child{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.35;
-
-    }
-
-    .stat-card p:last-child{
-
-        font-size:
-            21px !important;
-
-    }
-
-
-    .chart-card{
-
-        padding:
-            12px;
-
-        border-radius:
-            15px;
-
-    }
-
-    .chart-title{
-
-        font-size:
-            11px;
-
-    }
-
-    .chart-subtitle{
-
-        font-size:
-            8px;
-
-    }
-
-    .chart-wrapper{
-
-        height:
-            245px;
-
-    }
-
-    .chart-card .chart-wrapper[style*="380px"]{
-
-        height:
-            290px !important;
-
-    }
-
-
-    #leaderboardButton{
-
-        right:
-            12px;
-
-        bottom:
-            12px;
-
-        width:
-            54px;
-
-        height:
-            54px;
-
-        border-radius:
-            16px;
-
-    }
-
-    #leaderboardButton svg{
-
-        width:
-            22px;
-
-        height:
-            22px;
-
-    }
-
-
-    #leaderboardModal{
-
-        border-radius:
-            16px;
-
-    }
-
-
-    #leaderboardModal > div:first-child{
-
-        padding:
-            13px
-            14px;
-
-    }
-
-
-    #leaderboardModal h3{
-
-        font-size:
-            13px;
-
-    }
-
-    #leaderboardModal h3 span{
-
-        padding:
-            7px !important;
-
-    }
-
-    #leaderboardModal h3 svg{
-
-        width:
-            16px !important;
-
-        height:
-            16px !important;
-
-    }
-
-
-    #leaderboardModal p{
-
-        font-size:
-            8px;
-
-    }
-
-
-    #leaderboardList{
-
-        padding:
-            11px;
-
-    }
-
-
-    .leader-row{
-
-        gap:
-            6px;
-
-        padding:
-            8px;
-
-        border-radius:
-            11px;
-
-    }
-
-    .leader-rank{
-
-        width:
-            25px;
-
-        height:
-            25px;
-
-        font-size:
-            10px;
-
-    }
-
-    .leader-name{
-
-        font-size:
-            10px;
-
-    }
-
-    .leader-count{
-
-        font-size:
-            8px;
-
-        padding:
-            4px
-            6px;
-
-    }
-
-
-    footer p:first-child{
-
-        font-size:
-            8px !important;
-
-    }
-
-    footer p:last-child{
-
-        font-size:
-            7px !important;
-
+    #pagination{
+        max-width:58%;
     }
 
 }
 
 
-@media(max-width:375px){
+/* =========================================================
+   TABLET
+========================================================= */
 
-    body{
-
-        padding:
-            4px !important;
-
-    }
+@media(
+    min-width:768px
+) and (
+    max-width:1100px
+){
 
     main{
-
-        padding:
-            11px !important;
-
-        border-radius:
-            16px !important;
-
+        padding:25px !important;
     }
 
-
-    .stat-card{
-
-        padding:
-            10px;
-
+    .page-title{
+        font-size:25px;
     }
 
-    .stat-card p:first-child{
-
-        font-size:
-            7px !important;
-
+    #tableContent > div:first-child{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .stat-card p:last-child{
-
-        font-size:
-            19px !important;
-
-    }
-
-
-    .chart-card{
-
-        padding:
-            10px;
-
-    }
-
-    .chart-wrapper{
-
-        height:
-            225px;
-
-    }
-
-    .chart-card .chart-wrapper[style*="380px"]{
-
-        height:
-            270px !important;
-
-    }
-
-
-    #leaderboardButton{
-
-        right:
-            9px;
-
-        bottom:
-            9px;
-
-        width:
-            50px;
-
-        height:
-            50px;
-
-        border-radius:
-            14px;
-
-    }
-
-}
-
-
-/* =========================================================
-   LANDSCAPE MOBILE
-========================================================= */
-
-@media(
-    max-width:768px
-)
-and (
-    orientation:landscape
-){
-
-    .chart-wrapper{
-
-        height:
-            250px;
-
-    }
-
-    .chart-card .chart-wrapper[style*="380px"]{
-
-        height:
-            280px !important;
-
-    }
-
-    #leaderboardModal{
-
-        max-height:
-            92vh;
-
-    }
-
-    #leaderboardList{
-
-        max-height:
-            72vh;
-
-    }
-
-}
-
-
-/* =========================================================
-   REDUCE MOTION
-========================================================= */
-
-@media(
-    prefers-reduced-motion:reduce
-){
-
-    *,
-    *::before,
-    *::after{
-
-        animation-duration:
-            .01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            .01ms !important;
-
+    #tableContent > div:nth-child(2) > div:last-child{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
 }
@@ -1716,27 +1239,58 @@ and (
 </head>
 
 
-<body class="flex flex-col items-center p-4 sm:p-8">
-
+<body
+    class="
+        flex
+        flex-col
+        items-center
+        p-4
+        sm:p-8
+    "
+>
 
 <main
-    class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in"
+    class="
+        w-full
+        max-w-7xl
+        flex-grow
+        glass-panel
+        p-6
+        sm:p-10
+        rounded-3xl
+        shadow-2xl
+        fade-in
+    "
 >
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <header
-    class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
+    class="
+        w-full
+        mb-8
+        pb-6
+        border-b-2
+        border-slate-100
+        flex
+        flex-col
+        items-center
+    "
 >
-
 
     <div class="mb-4 logo-wrapper">
 
         <div
-            class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
+            class="
+                w-24
+                h-24
+                flex
+                items-center
+                justify-center
+                bg-white
+                rounded-2xl
+                logo-shadow
+                overflow-hidden
+                p-2
+            "
         >
 
             <img
@@ -1749,7 +1303,17 @@ and (
 
             <div
                 id="logoFallback"
-                class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+                class="
+                    hidden
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    bg-blue-900
+                    w-full
+                    h-full
+                    text-white
+                "
             >
 
                 <span class="font-black text-2xl">
@@ -1764,21 +1328,53 @@ and (
 
 
     <div
-        class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
+        class="
+            color-primary
+            text-white
+            px-8
+            py-4
+            rounded-2xl
+            shadow-lg
+            flex
+            flex-col
+            items-center
+            gap-1
+        "
     >
 
         <h1
-            class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
+            class="
+                text-xl
+                sm:text-2xl
+                font-black
+                uppercase
+                tracking-[0.1em]
+                text-center
+            "
         >
             PAPERLESS PROJECT
         </h1>
 
         <div
-            class="h-0.5 w-16 bg-amber-500 rounded-full my-1"
+            class="
+                h-0.5
+                w-16
+                bg-amber-500
+                rounded-full
+                my-1
+            "
         ></div>
 
         <h2
-            class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
+            class="
+                text-sm
+                sm:text-lg
+                font-bold
+                uppercase
+                tracking-widest
+                text-blue-100
+                text-center
+            "
         >
             PT TATSUMI SERUNI INDONESIA
         </h2>
@@ -1787,7 +1383,14 @@ and (
 
 
     <div
-        class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase"
+        class="
+            mt-3
+            text-[10px]
+            font-bold
+            text-slate-400
+            tracking-[0.3em]
+            uppercase
+        "
     >
         Digitalization Initiative v2.0
     </div>
@@ -1795,536 +1398,898 @@ and (
 </header>
 
 
-<!-- =====================================================
-     TITLE / NAVIGATION
-===================================================== -->
-
 <section>
 
-
     <div
-        class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6"
+        class="
+            flex
+            items-center
+            justify-between
+            gap-5
+            mb-6
+        "
     >
-
 
         <div>
 
             <h2
-                class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3"
+                class="
+                    page-title
+                    flex
+                    items-center
+                    gap-3
+                "
             >
 
                 <span
-                    class="bg-blue-900 text-white p-3 rounded-xl shadow-md shrink-0"
+                    class="
+                        bg-blue-900
+                        text-white
+                        p-3
+                        rounded-xl
+                        shadow-md
+                    "
                 >
 
                     <i
-                        data-lucide="layout-dashboard"
+                        data-lucide="database"
                         class="w-6 h-6"
                     ></i>
 
                 </span>
 
-                Dashboard Periodic Service
+                Data Periodic Service
 
             </h2>
 
-
             <p
-                class="text-slate-500 font-medium text-sm mt-2 ml-1"
+                class="
+                    page-subtitle
+                    mt-2
+                    ml-1
+                "
             >
-                Monitoring dan analisis data periodic service secara terintegrasi.
+                Daftar seluruh aktivitas periodic service
+                yang tersimpan pada database.
             </p>
 
         </div>
 
 
+        <button
+            onclick="goToDashboard()"
+            class="back-button"
+        >
+
+            <i
+                data-lucide="arrow-left"
+                class="w-4 h-4"
+            ></i>
+
+            <span>Kembali</span>
+
+        </button>
+
+    </div>
+
+
+    <div id="loading">
+
+        <i
+            data-lucide="loader-circle"
+            class="
+                w-9
+                h-9
+                animate-spin
+                text-amber-500
+            "
+        ></i>
+
+        <p
+            class="
+                font-semibold
+                text-sm
+                text-slate-400
+                mt-3
+            "
+        >
+            Memuat data...
+        </p>
+
+    </div>
+
+
+    <div id="tableContent">
+
+
         <!-- =================================================
-             NAVIGATION
+             STATISTICS
         ================================================= -->
 
         <div
-            class="flex flex-col sm:flex-row gap-2 w-full lg:w-auto"
+            class="
+                grid
+                grid-cols-4
+                gap-4
+                mb-6
+            "
         >
 
+            <div class="stat-card">
 
-            <!-- HOME -->
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Total Data
+                </p>
 
-            <button
-                type="button"
-                onclick="goToHome()"
-                class="navigation-button bg-slate-100 hover:bg-slate-200 text-slate-700 shadow-sm"
+                <p
+                    id="totalData"
+                    class="
+                        text-3xl
+                        font-black
+                        text-blue-900
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Periodic Service
+                </p>
+
+                <p
+                    id="periodicTotal"
+                    class="
+                        text-3xl
+                        font-black
+                        text-indigo-600
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    General Service
+                </p>
+
+                <p
+                    id="generalTotal"
+                    class="
+                        text-3xl
+                        font-black
+                        text-amber-600
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p
+                    class="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                        uppercase
+                        tracking-wider
+                    "
+                >
+                    Status Baik
+                </p>
+
+                <p
+                    id="baikTotal"
+                    class="
+                        text-3xl
+                        font-black
+                        text-emerald-600
+                        mt-2
+                    "
+                >
+                    -
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FILTER
+        ================================================= -->
+
+        <div
+            class="
+                bg-white
+                border
+                border-slate-200
+                rounded-2xl
+                p-5
+                mb-5
+                shadow-sm
+            "
+        >
+
+            <div
+                class="
+                    flex
+                    items-center
+                    gap-3
+                    mb-4
+                "
             >
 
-                <i
-                    data-lucide="house"
-                    class="w-4 h-4"
-                ></i>
+                <span
+                    class="
+                        bg-blue-100
+                        text-blue-700
+                        p-2
+                        rounded-lg
+                    "
+                >
 
-                Kembali ke Home
+                    <i
+                        data-lucide="filter"
+                        class="w-4 h-4"
+                    ></i>
 
-            </button>
+                </span>
+
+                <div>
+
+                    <h3
+                        class="
+                            text-sm
+                            font-black
+                            text-slate-700
+                        "
+                    >
+                        Filter Data
+                    </h3>
+
+                    <p
+                        class="
+                            text-[10px]
+                            text-slate-400
+                            font-medium
+                        "
+                    >
+                        Gunakan filter untuk mencari data tertentu.
+                    </p>
+
+                </div>
+
+            </div>
 
 
-            <!-- TABLE -->
-
-            <button
-                type="button"
-                onclick="goToTable()"
-                class="navigation-button bg-blue-800 hover:bg-blue-700 text-white shadow-md"
+            <div
+                class="
+                    grid
+                    grid-cols-4
+                    gap-4
+                "
             >
 
-                <i
-                    data-lucide="table-2"
-                    class="w-4 h-4"
-                ></i>
+                <div>
 
-                Lihat Data
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Cari Data
+                    </label>
 
-            </button>
+                    <div class="relative">
 
+                        <i
+                            data-lucide="search"
+                            class="
+                                absolute
+                                left-3
+                                top-1/2
+                                -translate-y-1/2
+                                w-4
+                                h-4
+                                text-slate-400
+                            "
+                        ></i>
+
+                        <input
+                            id="searchInput"
+                            type="text"
+                            placeholder="Unit, PIC, remark..."
+                            class="filter-input pl-10"
+                            oninput="applyFilters()"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Jenis Service
+                    </label>
+
+                    <select
+                        id="serviceFilter"
+                        class="filter-input"
+                        onchange="applyFilters()"
+                    >
+
+                        <option value="">
+                            Semua Service
+                        </option>
+
+                        <option value="Periodic Service">
+                            Periodic Service
+                        </option>
+
+                        <option value="General Service">
+                            General Service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label
+                        class="
+                            block
+                            text-[10px]
+                            font-bold
+                            text-slate-500
+                            uppercase
+                            tracking-wider
+                            mb-2
+                        "
+                    >
+                        Status
+                    </label>
+
+                    <select
+                        id="statusFilter"
+                        class="filter-input"
+                        onchange="applyFilters()"
+                    >
+
+                        <option value="">
+                            Semua Status
+                        </option>
+
+                        <option value="Baik">
+                            Baik
+                        </option>
+
+                        <option value="Rusak">
+                            Rusak
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="flex items-end">
+
+                    <button
+                        onclick="resetFilters()"
+                        class="
+                            w-full
+                            h-[38px]
+                            rounded-xl
+                            border
+                            border-slate-200
+                            bg-slate-50
+                            hover:bg-slate-100
+                            text-slate-600
+                            font-bold
+                            text-[11px]
+                            transition
+                            flex
+                            items-center
+                            justify-center
+                            gap-2
+                        "
+                    >
+
+                        <i
+                            data-lucide="rotate-ccw"
+                            class="w-4 h-4"
+                        ></i>
+
+                        Reset Filter
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DATA PANEL
+        ================================================= -->
+
+        <div class="table-panel">
+
+
+            <!-- TABLE HEADER -->
+
+            <div
+                class="
+                    px-5
+                    py-4
+                    border-b
+                    border-slate-100
+                    flex
+                    items-center
+                    justify-between
+                "
+            >
+
+                <div>
+
+                    <h3
+                        class="
+                            font-black
+                            text-slate-700
+                            text-sm
+                        "
+                    >
+                        Daftar Aktivitas Periodic Service
+                    </h3>
+
+                    <p
+                        id="resultInfo"
+                        class="
+                            text-[10px]
+                            text-slate-400
+                            mt-1
+                            font-medium
+                        "
+                    >
+                        -
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="
+                        flex
+                        items-center
+                        gap-2
+                        text-[10px]
+                        text-slate-400
+                        font-semibold
+                    "
+                >
+
+                    <i
+                        data-lucide="refresh-cw"
+                        class="w-3.5 h-3.5"
+                    ></i>
+
+                    Data langsung dari Database
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DESKTOP TABLE
+            ================================================= -->
+
+            <div class="table-scroll">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th style="width:50px">
+
+                                <div class="sort-button">
+                                    No
+                                </div>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="tanggal"
+                                    onclick="toggleSort('tanggal')"
+                                >
+
+                                    Tanggal
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="unit"
+                                    onclick="toggleSort('unit')"
+                                >
+
+                                    Unit
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="hm"
+                                    onclick="toggleSort('hm')"
+                                >
+
+                                    HM
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="service"
+                                    onclick="toggleSort('service')"
+                                >
+
+                                    Service
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="status"
+                                    onclick="toggleSort('status')"
+                                >
+
+                                    Status
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="pic"
+                                    onclick="toggleSort('pic')"
+                                >
+
+                                    PIC / Mekanik
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="itemRusak"
+                                    onclick="toggleSort('itemRusak')"
+                                >
+
+                                    Item Rusak
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <button
+                                    class="sort-button sort-normal"
+                                    data-sort-key="remark"
+                                    onclick="toggleSort('remark')"
+                                >
+
+                                    Remark
+
+                                    <i
+                                        data-lucide="arrow-up-down"
+                                        class="sort-icon"
+                                    ></i>
+
+                                </button>
+
+                            </th>
+
+
+                            <th>
+
+                                <div class="sort-button">
+                                    PAP
+                                </div>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tableBody"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- =================================================
+                 MOBILE CARD LIST
+            ================================================= -->
+
+            <div
+                id="mobileDataList"
+                class="mobile-data-list"
+            ></div>
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================= -->
+
+            <div
+                id="emptyState"
+                class="hidden"
+            >
+
+                <div class="py-16 text-center">
+
+                    <div
+                        class="
+                            inline-flex
+                            items-center
+                            justify-center
+                            bg-slate-100
+                            text-slate-400
+                            p-4
+                            rounded-full
+                        "
+                    >
+
+                        <i
+                            data-lucide="search-x"
+                            class="w-8 h-8"
+                        ></i>
+
+                    </div>
+
+                    <h3
+                        class="
+                            font-bold
+                            text-slate-600
+                            mt-4
+                        "
+                    >
+                        Data tidak ditemukan
+                    </h3>
+
+                    <p
+                        class="
+                            text-xs
+                            text-slate-400
+                            mt-1
+                        "
+                    >
+                        Coba ubah kata pencarian atau filter.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PAGINATION
+            ================================================= -->
+
+            <div
+                class="
+                    px-5
+                    py-4
+                    border-t
+                    border-slate-100
+                    flex
+                    items-center
+                    justify-between
+                "
+            >
+
+                <div
+                    id="paginationInfo"
+                    class="
+                        text-[10px]
+                        font-semibold
+                        text-slate-400
+                    "
+                >
+                    -
+                </div>
+
+                <div
+                    id="pagination"
+                    class="
+                        flex
+                        items-center
+                        gap-1
+                    "
+                ></div>
+
+            </div>
 
         </div>
 
     </div>
-
-
-<!-- =====================================================
-     INFO
-===================================================== -->
-
-
-<!-- =====================================================
-     LOADING
-===================================================== -->
-
-<div id="loading">
-
-    <i
-        data-lucide="loader-circle"
-        class="w-9 h-9 animate-spin text-amber-500"
-    ></i>
-
-    <p
-        class="font-semibold text-sm text-slate-400 mt-3"
-    >
-        Memuat dashboard...
-    </p>
-
-</div>
-
-
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
-
-<div id="dashboard">
-
-
-<!-- =====================================================
-     STATISTICS
-===================================================== -->
-
-<div
-    class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
->
-
-
-    <div class="stat-card">
-
-        <p
-            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-        >
-            Total Pekerjaan
-        </p>
-
-        <p
-            id="totalData"
-            class="text-3xl font-black text-blue-900 mt-2"
-        >
-            -
-        </p>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <p
-            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-        >
-            Periodic Service
-        </p>
-
-        <p
-            id="periodicTotal"
-            class="text-3xl font-black text-indigo-600 mt-2"
-        >
-            -
-        </p>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <p
-            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-        >
-            General Service
-        </p>
-
-        <p
-            id="generalTotal"
-            class="text-3xl font-black text-amber-600 mt-2"
-        >
-            -
-        </p>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <p
-            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-        >
-            Status Baik
-        </p>
-
-        <p
-            id="baikTotal"
-            class="text-3xl font-black text-emerald-600 mt-2"
-        >
-            -
-        </p>
-
-    </div>
-
-
-</div>
-
-
-<!-- =====================================================
-     ROW 1
-===================================================== -->
-
-<div
-    class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5"
->
-
-
-<!-- SERVICE BY UNIT -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-blue-100 text-blue-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="wrench"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Service per Jenis Alat
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Perbandingan Periodic dan General Service pada W, FD, D, dan E
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="serviceByUnitChart"></canvas>
-
-    </div>
-
-</div>
-
-
-<!-- STATUS -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-emerald-100 text-emerald-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="circle-check"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Kondisi Unit
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Perbandingan status Baik dan Rusak
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="statusChart"></canvas>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     ROW 2
-===================================================== -->
-
-<div
-    class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5"
->
-
-
-<!-- MONTHLY TREND -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-violet-100 text-violet-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="trending-up"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Trend Pekerjaan Bulanan
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Jumlah pekerjaan berdasarkan bulan
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="monthlyTrendChart"></canvas>
-
-    </div>
-
-</div>
-
-
-<!-- SERVICE TYPE -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-amber-100 text-amber-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="layers-3"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Komposisi Jenis Service
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Total pekerjaan berdasarkan jenis service
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="serviceTypeChart"></canvas>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     EXTRA CHARTS
-===================================================== -->
-
-<div
-    class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5"
->
-
-
-<!-- UNIT DISTRIBUTION -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-cyan-100 text-cyan-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="truck"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Distribusi Jenis Alat
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Jumlah pekerjaan berdasarkan tipe unit
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="unitDistributionChart"></canvas>
-
-    </div>
-
-</div>
-
-
-<!-- ACTIVITY -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-rose-100 text-rose-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="activity"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Aktivitas Service
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Perbandingan aktivitas berdasarkan tipe service
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="activityChart"></canvas>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     MECHANIC PRODUCTIVITY
-===================================================== -->
-
-<div class="chart-card mb-2">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-purple-100 text-purple-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="trophy"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Produktivitas Mekanik
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Jumlah pekerjaan yang ditangani masing-masing PIC
-    </p>
-
-
-    <div
-        class="chart-wrapper"
-        style="height:380px"
-    >
-
-        <canvas id="mechanicChart"></canvas>
-
-    </div>
-
-</div>
-
-
-</div>
 
 </section>
 
 </main>
 
 
-<!-- =====================================================
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer
-    class="mt-8 text-center text-slate-400 px-4 pb-8"
+    class="
+        mt-8
+        text-center
+        text-slate-400
+        px-4
+        pb-8
+    "
 >
 
     <p
-        class="font-bold text-slate-500 tracking-tight uppercase"
+        class="
+            font-bold
+            text-slate-500
+            tracking-tight
+            uppercase
+        "
     >
-        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+        &copy; 2026 Paperless Project - PT TSI.
+        All rights reserved.
     </p>
-
 
     <p class="text-[10px] mt-1">
 
         System Architecture by:
 
         <span
-            class="text-slate-600 font-semibold uppercase"
+            class="
+                text-slate-600
+                font-semibold
+                uppercase
+            "
         >
             Imam Wahyu Ramadhan, S.T.
         </span>
@@ -2332,7 +2297,12 @@ and (
         |
 
         <span
-            class="text-amber-600 font-bold uppercase tracking-tighter"
+            class="
+                text-amber-600
+                font-bold
+                uppercase
+                tracking-tighter
+            "
         >
             Project 2.0
         </span>
@@ -2342,15 +2312,14 @@ and (
 </footer>
 
 
-<!-- =====================================================
-     FLOATING LEADERBOARD
-===================================================== -->
+<!-- =========================================================
+     LEADERBOARD BUTTON
+========================================================= -->
 
 <button
     id="leaderboardButton"
-    type="button"
     onclick="openLeaderboard()"
-    aria-label="Leaderboard Mekanik"
+    aria-label="Leaderboard"
 >
 
     <i
@@ -2365,34 +2334,48 @@ and (
 </button>
 
 
-<!-- =====================================================
-     LEADERBOARD POPUP
-===================================================== -->
+<!-- =========================================================
+     LEADERBOARD MODAL
+========================================================= -->
 
 <div
     id="leaderboardOverlay"
     onclick="closeLeaderboardOutside(event)"
 >
 
-
-    <div
-        id="leaderboardModal"
-    >
-
+    <div id="leaderboardModal">
 
         <div
-            class="px-5 py-4 border-b border-slate-100 flex items-center justify-between"
+            class="
+                px-5
+                py-4
+                border-b
+                border-slate-100
+                flex
+                items-center
+                justify-between
+            "
         >
-
 
             <div>
 
                 <h3
-                    class="font-black text-slate-800 flex items-center gap-2"
+                    class="
+                        font-black
+                        text-slate-800
+                        flex
+                        items-center
+                        gap-2
+                    "
                 >
 
                     <span
-                        class="bg-amber-100 text-amber-600 p-2 rounded-xl"
+                        class="
+                            bg-amber-100
+                            text-amber-600
+                            p-2
+                            rounded-xl
+                        "
                     >
 
                         <i
@@ -2406,9 +2389,13 @@ and (
 
                 </h3>
 
-
                 <p
-                    class="text-[10px] text-slate-400 font-medium mt-1"
+                    class="
+                        text-[10px]
+                        text-slate-400
+                        font-medium
+                        mt-1
+                    "
                 >
                     Berdasarkan total aktivitas periodic service
                 </p>
@@ -2417,10 +2404,15 @@ and (
 
 
             <button
-                type="button"
                 onclick="closeLeaderboard()"
-                class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
-                aria-label="Tutup leaderboard"
+                class="
+                    text-slate-400
+                    hover:text-slate-700
+                    hover:bg-slate-100
+                    p-2
+                    rounded-xl
+                    transition
+                "
             >
 
                 <i
@@ -2430,26 +2422,32 @@ and (
 
             </button>
 
-
         </div>
 
 
         <div
             id="leaderboardList"
-            class="p-5 overflow-y-auto max-h-[60vh]"
+            class="
+                p-5
+                overflow-y-auto
+                max-h-[60vh]
+            "
         >
 
             <div
-                class="text-center text-slate-400 text-sm py-6"
+                class="
+                    text-center
+                    text-slate-400
+                    text-sm
+                    py-6
+                "
             >
                 Memuat leaderboard...
             </div>
 
         </div>
 
-
     </div>
-
 
 </div>
 
@@ -2461,39 +2459,44 @@ and (
 ========================================================= */
 
 const API_URL =
-    'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
+'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
+
+const DASHBOARD_URL =
+'periodic.html';
+
+const ROWS_PER_PAGE =
+15;
 
 
-const HOME_URL =
-    'index.html';
-
-const TABLE_URL =
-    'table.html';
-
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
 
 let apiData = null;
 
-let charts = {};
+let allData = [];
 
-let isLoading = false;
+let filteredData = [];
+
+let currentPage = 1;
+
+let sortState = {
+
+    key:null,
+
+    direction:0
+
+};
 
 
 /* =========================================================
    NAVIGATION
 ========================================================= */
 
-function goToHome(){
+function goToDashboard(){
 
     window.location.href =
-        HOME_URL;
-
-}
-
-
-function goToTable(){
-
-    window.location.href =
-        TABLE_URL;
+        DASHBOARD_URL;
 
 }
 
@@ -2504,152 +2507,24 @@ function goToTable(){
 
 function handleLogoError(){
 
-    const logo =
-        document.getElementById(
-            'companyLogo'
-        );
+    document
+        .getElementById('companyLogo')
+        .classList
+        .add('hidden');
 
-    const fallback =
-        document.getElementById(
-            'logoFallback'
-        );
-
-
-    if(logo){
-
-        logo.classList.add(
-            'hidden'
-        );
-
-    }
-
-
-    if(fallback){
-
-        fallback.classList.remove(
-            'hidden'
-        );
-
-    }
+    document
+        .getElementById('logoFallback')
+        .classList
+        .remove('hidden');
 
 }
 
 
 /* =========================================================
-   NUMBER HELPER
+   LOAD DATA
 ========================================================= */
 
-function toNumber(value){
-
-    const number =
-        Number(value);
-
-    return Number.isFinite(number)
-        ? number
-        : 0;
-
-}
-
-
-/* =========================================================
-   OBJECT HELPER
-========================================================= */
-
-function safeObject(value){
-
-    if(
-        value &&
-        typeof value === 'object' &&
-        !Array.isArray(value)
-    ){
-
-        return value;
-
-    }
-
-    return {};
-
-}
-
-
-/* =========================================================
-   ARRAY HELPER
-========================================================= */
-
-function safeArray(value){
-
-    return Array.isArray(value)
-        ? value
-        : [];
-
-}
-
-
-/* =========================================================
-   CHART DEFAULT CONFIG
-========================================================= */
-
-Chart.defaults.font.family =
-    'Inter';
-
-Chart.defaults.font.size =
-    11;
-
-Chart.defaults.color =
-    '#64748b';
-
-Chart.defaults.plugins.legend.labels.usePointStyle =
-    true;
-
-Chart.defaults.plugins.legend.labels.boxWidth =
-    10;
-
-
-/* =========================================================
-   DESTROY CHARTS
-========================================================= */
-
-function destroyCharts(){
-
-    Object.values(
-        charts
-    ).forEach(chart => {
-
-        if(
-            chart &&
-            typeof chart.destroy === 'function'
-        ){
-
-            chart.destroy();
-
-        }
-
-    });
-
-
-    charts = {};
-
-}
-
-
-/* =========================================================
-   LOAD API
-========================================================= */
-
-async function loadDashboard(){
-
-    if(isLoading){
-
-        return;
-
-    }
-
-
-    isLoading = true;
-
-
-    showLoading();
-
+async function loadTable(){
 
     try{
 
@@ -2658,16 +2533,9 @@ async function loadDashboard(){
                 API_URL,
                 {
                     method:'GET',
-
-                    cache:'no-store',
-
-                    headers:{
-                        'Accept':
-                            'application/json'
-                    }
+                    cache:'no-store'
                 }
             );
-
 
         if(!response.ok){
 
@@ -2677,189 +2545,129 @@ async function loadDashboard(){
 
         }
 
-
         const result =
             await response.json();
 
+        apiData =
+            result;
 
-        if(
-            !result ||
-            typeof result !== 'object'
-        ){
+        allData =
+            Array.isArray(result.data)
+            ? result.data.map(
+                (row,index)=>({
 
-            throw new Error(
-                'Response API tidak valid.'
-            );
+                    ...row,
 
-        }
+                    _originalIndex:index
 
+                })
+            )
+            : [];
 
-        const chart =
-            safeObject(
-                result.chart
-            );
-
-
-        apiData = result;
-
-
-        updateStatistics(
-            result
-        );
-
-
-        createCharts(
-            chart
-        );
-
+        updateStatistics(result);
 
         updateLeaderboardFromData(
-            safeArray(
-                chart.mechanic
-            )
+            result.chart?.mechanic || []
         );
 
+        filteredData =
+            [...allData];
+
+        currentPage = 1;
+
+        sortState = {
+
+            key:null,
+
+            direction:0
+
+        };
+
+        updateSortHeaders();
+
+        renderTable();
 
         document
             .getElementById('loading')
-            .style.display =
-                'none';
-
+            .style
+            .display='none';
 
         document
-            .getElementById('dashboard')
-            .classList.add(
-                'show'
-            );
-
-
-        isLoading = false;
-
+            .getElementById('tableContent')
+            .classList
+            .add('show');
 
     }
-
     catch(error){
 
-        isLoading = false;
+        document
+            .getElementById('loading')
+            .innerHTML = `
 
-        showError(
-            error
-        );
+                <div class="text-center">
+
+                    <div
+                        class="
+                            bg-red-50
+                            text-red-600
+                            p-4
+                            rounded-full
+                            inline-flex
+                        "
+                    >
+
+                        <i
+                            data-lucide="alert-circle"
+                            class="w-8 h-8"
+                        ></i>
+
+                    </div>
+
+                    <h3
+                        class="
+                            font-bold
+                            text-red-700
+                            mt-3
+                        "
+                    >
+                        Gagal memuat data
+                    </h3>
+
+                    <p
+                        class="
+                            text-xs
+                            text-slate-500
+                            mt-2
+                            max-w-md
+                        "
+                    >
+                        ${escapeHtml(error.message)}
+                    </p>
+
+                    <button
+                        onclick="loadTable()"
+                        class="
+                            mt-4
+                            bg-blue-800
+                            hover:bg-blue-700
+                            text-white
+                            font-bold
+                            px-5
+                            py-2.5
+                            rounded-xl
+                            text-sm
+                        "
+                    >
+                        Coba Lagi
+                    </button>
+
+                </div>
+
+            `;
+
+        lucide.createIcons();
 
     }
-
-}
-
-
-/* =========================================================
-   SHOW LOADING
-========================================================= */
-
-function showLoading(){
-
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    if(!loading){
-
-        return;
-
-    }
-
-
-    loading.style.display =
-        'flex';
-
-
-    loading.innerHTML = `
-
-        <i
-            data-lucide="loader-circle"
-            class="w-9 h-9 animate-spin text-amber-500"
-        ></i>
-
-        <p
-            class="font-semibold text-sm text-slate-400 mt-3"
-        >
-            Memuat dashboard...
-        </p>
-
-    `;
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   SHOW ERROR
-========================================================= */
-
-function showError(error){
-
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    const message =
-        error?.message ||
-        'Terjadi kesalahan saat mengambil data.';
-
-
-    loading.style.display =
-        'flex';
-
-
-    loading.innerHTML = `
-
-        <div class="text-center">
-
-            <div
-                class="bg-red-50 text-red-600 p-4 rounded-full inline-flex"
-            >
-
-                <i
-                    data-lucide="alert-circle"
-                    class="w-8 h-8"
-                ></i>
-
-            </div>
-
-
-            <h3
-                class="font-bold text-red-700 mt-3"
-            >
-                Gagal memuat dashboard
-            </h3>
-
-
-            <p
-                class="text-xs text-slate-500 mt-2 max-w-md"
-            >
-                ${escapeHtml(message)}
-            </p>
-
-
-            <button
-                type="button"
-                onclick="loadDashboard()"
-                class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
-            >
-                Coba Lagi
-            </button>
-
-        </div>
-
-    `;
-
-
-    lucide.createIcons();
 
 }
 
@@ -2871,1096 +2679,1593 @@ function showError(error){
 function updateStatistics(result){
 
     const data =
-        safeArray(
-            result?.data
-        );
-
+        result.data || [];
 
     const chart =
-        safeObject(
-            result?.chart
+        result.chart || {};
+
+    const total =
+        data.length ||
+        Object.values(
+            chart.serviceByType || {}
+        )
+        .reduce(
+            (a,b)=>a+Number(b),
+            0
         );
-
-
-    const serviceByType =
-        safeObject(
-            chart.serviceByType
-        );
-
-
-    let total =
-        data.length;
-
-
-    if(total === 0){
-
-        total =
-            Object.values(
-                serviceByType
-            )
-            .reduce(
-                (sum,value) =>
-                    sum +
-                    toNumber(value),
-
-                0
-            );
-
-    }
-
 
     const periodic =
         Object.entries(
-            serviceByType
+            chart.serviceByType || {}
         )
         .filter(
             ([key]) =>
-                String(key)
-                    .toLowerCase()
-                    .includes('periodic')
+                key
+                .toLowerCase()
+                .includes('periodic')
         )
         .reduce(
             (sum,[,value]) =>
-                sum +
-                toNumber(value),
-
+                sum + Number(value),
             0
         );
-
 
     const general =
         Object.entries(
-            serviceByType
+            chart.serviceByType || {}
         )
         .filter(
             ([key]) =>
-                String(key)
-                    .toLowerCase()
-                    .includes('general')
+                key
+                .toLowerCase()
+                .includes('general')
         )
         .reduce(
             (sum,[,value]) =>
-                sum +
-                toNumber(value),
-
+                sum + Number(value),
             0
         );
-
-
-    const status =
-        safeObject(
-            chart.status
-        );
-
 
     const baik =
-        Object.entries(
-            status
-        )
-        .filter(
-            ([key]) =>
-                String(key)
+        Number(
+            chart.status?.Baik || 0
+        );
+
+    document
+        .getElementById('totalData')
+        .textContent =
+            total;
+
+    document
+        .getElementById('periodicTotal')
+        .textContent =
+            periodic;
+
+    document
+        .getElementById('generalTotal')
+        .textContent =
+            general;
+
+    document
+        .getElementById('baikTotal')
+        .textContent =
+            baik;
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function applyFilters(){
+
+    const search =
+        document
+            .getElementById('searchInput')
+            .value
+            .trim()
+            .toLowerCase();
+
+    const service =
+        document
+            .getElementById('serviceFilter')
+            .value;
+
+    const status =
+        document
+            .getElementById('statusFilter')
+            .value;
+
+    filteredData =
+        allData.filter(row=>{
+
+            const searchable = [
+
+                row.tanggal,
+
+                row.unit,
+
+                row.hm,
+
+                row.service,
+
+                row.status,
+
+                row.pic,
+
+                row.itemRusak,
+
+                row.remark,
+
+                row.pap
+
+            ]
+            .join(' ')
+            .toLowerCase();
+
+            const matchSearch =
+                !search ||
+                searchable.includes(search);
+
+            const matchService =
+                !service ||
+                String(row.service || '')
                     .trim()
                     .toLowerCase()
-                    === 'baik'
-        )
-        .reduce(
-            (sum,[,value]) =>
-                sum +
-                toNumber(value),
+                    ===
+                service.toLowerCase();
 
-            0
-        );
+            const matchStatus =
+                !status ||
+                String(row.status || '')
+                    .trim()
+                    .toLowerCase()
+                    ===
+                status.toLowerCase();
 
+            return (
+                matchSearch &&
+                matchService &&
+                matchStatus
+            );
 
-    setText(
-        'totalData',
-        total
-    );
+        });
 
+    currentPage = 1;
 
-    setText(
-        'periodicTotal',
-        periodic
-    );
+    applyCurrentSort();
 
-
-    setText(
-        'generalTotal',
-        general
-    );
-
-
-    setText(
-        'baikTotal',
-        baik
-    );
+    renderTable();
 
 }
 
 
 /* =========================================================
-   SET TEXT
+   RESET FILTER
 ========================================================= */
 
-function setText(
-    id,
-    value
-){
+function resetFilters(){
 
-    const element =
-        document.getElementById(
-            id
-        );
+    document
+        .getElementById('searchInput')
+        .value='';
+
+    document
+        .getElementById('serviceFilter')
+        .value='';
+
+    document
+        .getElementById('statusFilter')
+        .value='';
+
+    filteredData =
+        [...allData];
+
+    currentPage = 1;
+
+    applyCurrentSort();
+
+    renderTable();
+
+}
 
 
-    if(element){
+/* =========================================================
+   SORTING
+========================================================= */
 
-        element.textContent =
-            value;
+function toggleSort(key){
+
+    if(sortState.key === key){
+
+        if(sortState.direction === 0){
+
+            sortState.direction = 1;
+
+        }
+        else if(sortState.direction === 1){
+
+            sortState.direction = -1;
+
+        }
+        else{
+
+            sortState.direction = 0;
+
+        }
 
     }
 
-}
+    else{
 
+        sortState.key =
+            key;
 
-/* =========================================================
-   CREATE ALL CHARTS
-========================================================= */
+        sortState.direction =
+            1;
 
-function createCharts(chart){
+    }
 
-    destroyCharts();
+    applyCurrentSort();
 
+    currentPage = 1;
 
-    const safeChart =
-        safeObject(
-            chart
-        );
+    updateSortHeaders();
 
-
-    createServiceByUnitChart(
-        safeObject(
-            safeChart.serviceByUnit
-        )
-    );
-
-
-    createStatusChart(
-        safeObject(
-            safeChart.status
-        )
-    );
-
-
-    createMonthlyTrendChart(
-        safeObject(
-            safeChart.monthlyTrend
-        )
-    );
-
-
-    createServiceTypeChart(
-        safeObject(
-            safeChart.serviceByType
-        )
-    );
-
-
-    createUnitDistributionChart(
-        safeObject(
-            safeChart.serviceByUnit
-        )
-    );
-
-
-    createActivityChart(
-        safeObject(
-            safeChart.serviceByType
-        )
-    );
-
-
-    createMechanicChart(
-        safeArray(
-            safeChart.mechanic
-        )
-    );
+    renderTable();
 
 }
 
 
 /* =========================================================
-   SERVICE BY UNIT
+   APPLY CURRENT SORT
 ========================================================= */
 
-function createServiceByUnitChart(data){
+function applyCurrentSort(){
 
-    const units =
-        [
-            'W',
-            'FD',
-            'D',
-            'E'
-        ];
+    if(
+        !sortState.key ||
+        sortState.direction === 0
+    ){
 
-
-    charts.serviceByUnit =
-        new Chart(
-
-            document.getElementById(
-                'serviceByUnitChart'
-            ),
-
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:units,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Periodic Service',
-
-                            data:
-                                units.map(
-                                    unit =>
-                                        toNumber(
-                                            data[unit]?.periodic
-                                        )
-                                ),
-
-                            backgroundColor:
-                                '#1E3A8A',
-
-                            borderRadius:
-                                7
-
-                        },
-
-
-                        {
-
-                            label:
-                                'General Service',
-
-                            data:
-                                units.map(
-                                    unit =>
-                                        toNumber(
-                                            data[unit]?.general
-                                        )
-                                ),
-
-                            backgroundColor:
-                                '#F59E0B',
-
-                            borderRadius:
-                                7
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-                            position:'top'
-                        }
-
-                    },
-
-                    scales:{
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
+        filteredData.sort(
+            (a,b)=>
+                Number(a._originalIndex || 0) -
+                Number(b._originalIndex || 0)
         );
-
-}
-
-
-/* =========================================================
-   STATUS CHART
-========================================================= */
-
-function createStatusChart(data){
-
-    const entries =
-        Object.entries(
-            data
-        );
-
-
-    const labels =
-        entries.map(
-            ([key]) =>
-                key
-        );
-
-
-    const values =
-        entries.map(
-            ([,value]) =>
-                toNumber(value)
-        );
-
-
-    if(!labels.length){
 
         return;
 
     }
 
-
-    charts.status =
-        new Chart(
-
-            document.getElementById(
-                'statusChart'
-            ),
-
-            {
-
-                type:'doughnut',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            data:values,
-
-                            backgroundColor:[
-
-                                '#10B981',
-                                '#EF4444',
-                                '#94A3B8',
-                                '#3B82F6',
-                                '#F59E0B'
-
-                            ],
-
-                            borderWidth:3,
-
-                            borderColor:'#fff'
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    cutout:'62%',
-
-                    plugins:{
-
-                        legend:{
-                            position:'bottom'
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   MONTHLY TREND
-========================================================= */
-
-function createMonthlyTrendChart(data){
-
-    const keys =
-        Object.keys(
-            data
-        )
-        .sort();
-
-
-    const monthNames =
-        [
-
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'Mei',
-            'Jun',
-            'Jul',
-            'Agu',
-            'Sep',
-            'Okt',
-            'Nov',
-            'Des'
-
-        ];
-
-
-    const labels =
-        keys.map(
-            key => {
-
-                const parts =
-                    String(key)
-                        .split('-');
-
-
-                if(
-                    parts.length < 2
-                ){
-
-                    return key;
-
-                }
-
-
-                const year =
-                    parts[0];
-
-
-                const monthIndex =
-                    toNumber(
-                        parts[1]
-                    ) - 1;
-
-
-                const month =
-                    monthNames[
-                        monthIndex
-                    ];
-
-
-                if(!month){
-
-                    return key;
-
-                }
-
-
-                return `${month} ${year}`;
-
-            }
-        );
-
-
-    const values =
-        keys.map(
-            key =>
-                toNumber(
-                    data[key]
-                )
-        );
-
-
-    if(!labels.length){
-
-        return;
-
-    }
-
-
-    charts.monthlyTrend =
-        new Chart(
-
-            document.getElementById(
-                'monthlyTrendChart'
-            ),
-
-            {
-
-                type:'line',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Jumlah Pekerjaan',
-
-                            data:values,
-
-                            borderColor:
-                                '#7C3AED',
-
-                            backgroundColor:
-                                'rgba(124,58,237,.10)',
-
-                            fill:true,
-
-                            tension:.35,
-
-                            pointRadius:4,
-
-                            pointHoverRadius:6
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   SERVICE TYPE
-========================================================= */
-
-function createServiceTypeChart(data){
-
-    const entries =
-        Object.entries(
-            data
-        );
-
-
-    const labels =
-        entries.map(
-            ([key]) =>
-                key
-        );
-
-
-    const values =
-        entries.map(
-            ([,value]) =>
-                toNumber(value)
-        );
-
-
-    if(!labels.length){
-
-        return;
-
-    }
-
-
-    charts.serviceType =
-        new Chart(
-
-            document.getElementById(
-                'serviceTypeChart'
-            ),
-
-            {
-
-                type:'doughnut',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            data:values,
-
-                            backgroundColor:[
-
-                                '#1E3A8A',
-                                '#F59E0B',
-                                '#94A3B8',
-                                '#10B981',
-                                '#7C3AED'
-
-                            ],
-
-                            borderWidth:3,
-
-                            borderColor:'#fff'
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    cutout:'58%',
-
-                    plugins:{
-
-                        legend:{
-                            position:'bottom'
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   UNIT DISTRIBUTION
-========================================================= */
-
-function createUnitDistributionChart(data){
-
-    const units =
-        [
-            'W',
-            'FD',
-            'D',
-            'E'
-        ];
-
-
-    const values =
-        units.map(
-            unit => {
-
-                const periodic =
-                    toNumber(
-                        data[unit]?.periodic
-                    );
-
-
-                const general =
-                    toNumber(
-                        data[unit]?.general
-                    );
-
-
-                const other =
-                    toNumber(
-                        data[unit]?.other
-                    );
-
+    const key =
+        sortState.key;
+
+    const direction =
+        sortState.direction;
+
+    filteredData.sort(
+        (a,b)=>{
+
+            const comparison =
+                compareRows(
+                    a,
+                    b,
+                    key
+                );
+
+            if(comparison === 0){
 
                 return (
-                    periodic +
-                    general +
-                    other
+                    Number(a._originalIndex || 0) -
+                    Number(b._originalIndex || 0)
                 );
 
             }
-        );
 
+            return comparison * direction;
 
-    charts.unitDistribution =
-        new Chart(
-
-            document.getElementById(
-                'unitDistributionChart'
-            ),
-
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:units,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Total Pekerjaan',
-
-                            data:values,
-
-                            backgroundColor:[
-
-                                '#0EA5E9',
-                                '#8B5CF6',
-                                '#F97316',
-                                '#10B981'
-
-                            ],
-
-                            borderRadius:7
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
+        }
+    );
 
 }
 
 
 /* =========================================================
-   ACTIVITY CHART
+   COMPARE ROWS
 ========================================================= */
 
-function createActivityChart(data){
+function compareRows(
+    rowA,
+    rowB,
+    key
+){
 
-    const entries =
-        Object.entries(
-            data
-        );
+    if(key === 'tanggal'){
 
+        const dateA =
+            parseIndonesianDate(
+                rowA.tanggal
+            );
 
-    const labels =
-        entries.map(
-            ([key]) =>
-                key
-        );
+        const dateB =
+            parseIndonesianDate(
+                rowB.tanggal
+            );
 
+        if(dateA === null && dateB === null){
 
-    const values =
-        entries.map(
-            ([,value]) =>
-                toNumber(value)
-        );
+            return 0;
 
+        }
 
-    if(!labels.length){
+        if(dateA === null){
 
-        return;
+            return 1;
+
+        }
+
+        if(dateB === null){
+
+            return -1;
+
+        }
+
+        if(dateA < dateB){
+
+            return -1;
+
+        }
+
+        if(dateA > dateB){
+
+            return 1;
+
+        }
+
+        return 0;
 
     }
 
 
-    charts.activity =
-        new Chart(
+    if(key === 'hm'){
 
-            document.getElementById(
-                'activityChart'
-            ),
+        const numA =
+            parseNumber(
+                rowA.hm
+            );
 
-            {
+        const numB =
+            parseNumber(
+                rowB.hm
+            );
 
-                type:'bar',
+        if(numA === null && numB === null){
 
-                data:{
+            return 0;
 
-                    labels:labels,
+        }
 
-                    datasets:[
+        if(numA === null){
 
-                        {
+            return 1;
 
-                            label:
-                                'Pekerjaan',
+        }
 
-                            data:values,
+        if(numB === null){
 
-                            backgroundColor:[
+            return -1;
 
-                                '#3B82F6',
-                                '#F59E0B',
-                                '#64748B',
-                                '#10B981',
-                                '#7C3AED'
+        }
 
-                            ],
+        return numA - numB;
 
-                            borderRadius:7
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    indexAxis:'y',
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        x:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
+    }
 
 
-/* =========================================================
-   MECHANIC PRODUCTIVITY
-========================================================= */
-
-function createMechanicChart(data){
-
-    const validData =
-        safeArray(
-            data
+    const valueA =
+        String(
+            rowA[key] ?? ''
         )
-        .filter(
-            item =>
-                item &&
-                typeof item === 'object'
+        .trim()
+        .toLowerCase();
+
+    const valueB =
+        String(
+            rowB[key] ?? ''
+        )
+        .trim()
+        .toLowerCase();
+
+    if(!valueA && !valueB){
+
+        return 0;
+
+    }
+
+    if(!valueA){
+
+        return 1;
+
+    }
+
+    if(!valueB){
+
+        return -1;
+
+    }
+
+    return valueA.localeCompare(
+        valueB,
+        'id',
+        {
+            numeric:true,
+            sensitivity:'base'
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DATE PARSER
+========================================================= */
+
+function parseIndonesianDate(value){
+
+    if(value === null || value === undefined){
+
+        return null;
+
+    }
+
+    if(value instanceof Date){
+
+        const timestamp =
+            value.getTime();
+
+        return Number.isNaN(timestamp)
+            ? null
+            : timestamp;
+
+    }
+
+    let text =
+        String(value)
+            .trim();
+
+    if(!text){
+
+        return null;
+
+    }
+
+    text =
+        text
+            .replace(
+                /T\d{1,2}:\d{2}(:\d{2})?.*$/,
+                ''
+            )
+            .trim();
+
+    let match =
+        text.match(
+            /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
+        );
+
+    if(match){
+
+        const first =
+            Number(match[1]);
+
+        const second =
+            Number(match[2]);
+
+        const year =
+            Number(match[3]);
+
+        const day =
+            first;
+
+        const month =
+            second;
+
+        return createValidDate(
+            year,
+            month,
+            day
+        );
+
+    }
+
+    match =
+        text.match(
+            /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
+        );
+
+    if(match){
+
+        const year =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]);
+
+        const day =
+            Number(match[3]);
+
+        return createValidDate(
+            year,
+            month,
+            day
+        );
+
+    }
+
+    if(
+        /^\d+(\.\d+)?$/.test(text)
+    ){
+
+        const numeric =
+            Number(text);
+
+        if(
+            numeric > 20000 &&
+            numeric < 100000
+        ){
+
+            return Date.UTC(
+                1899,
+                11,
+                30
+            ) +
+            numeric *
+            24 *
+            60 *
+            60 *
+            1000;
+
+        }
+
+    }
+
+    const fallback =
+        new Date(text);
+
+    if(!Number.isNaN(fallback.getTime())){
+
+        return fallback.getTime();
+
+    }
+
+    return null;
+
+}
+
+
+/* =========================================================
+   CREATE VALID DATE
+========================================================= */
+
+function createValidDate(
+    year,
+    month,
+    day
+){
+
+    const date =
+        new Date(
+            Date.UTC(
+                year,
+                month - 1,
+                day
+            )
+        );
+
+    if(
+        date.getUTCFullYear() !== year ||
+        date.getUTCMonth() !== month - 1 ||
+        date.getUTCDate() !== day
+    ){
+
+        return null;
+
+    }
+
+    return date.getTime();
+
+}
+
+
+/* =========================================================
+   NUMBER PARSER
+========================================================= */
+
+function parseNumber(value){
+
+    if(
+        value === null ||
+        value === undefined ||
+        String(value).trim() === ''
+    ){
+
+        return null;
+
+    }
+
+    let text =
+        String(value)
+            .trim()
+            .replace(/\s/g,'');
+
+    text =
+        text.replace(
+            /,/g,
+            ''
+        );
+
+    const number =
+        Number(text);
+
+    if(Number.isNaN(number)){
+
+        return null;
+
+    }
+
+    return number;
+
+}
+
+
+/* =========================================================
+   UPDATE SORT HEADERS
+========================================================= */
+
+function updateSortHeaders(){
+
+    const buttons =
+        document.querySelectorAll(
+            '.sort-button[data-sort-key]'
+        );
+
+    buttons.forEach(button=>{
+
+        const key =
+            button.dataset.sortKey;
+
+        const icon =
+            button.querySelector(
+                '.sort-icon'
+            );
+
+        button.classList.remove(
+            'sort-active'
+        );
+
+        button.classList.add(
+            'sort-normal'
+        );
+
+        if(icon){
+
+            icon.setAttribute(
+                'data-lucide',
+                'arrow-up-down'
+            );
+
+        }
+
+        if(
+            sortState.key === key &&
+            sortState.direction !== 0
+        ){
+
+            button.classList.remove(
+                'sort-normal'
+            );
+
+            button.classList.add(
+                'sort-active'
+            );
+
+            if(
+                sortState.direction === 1
+            ){
+
+                if(icon){
+
+                    icon.setAttribute(
+                        'data-lucide',
+                        'arrow-up'
+                    );
+
+                }
+
+                button.title =
+                    'Urutan naik (ASC)';
+
+            }
+            else{
+
+                if(icon){
+
+                    icon.setAttribute(
+                        'data-lucide',
+                        'arrow-down'
+                    );
+
+                }
+
+                button.title =
+                    'Urutan turun (DESC)';
+
+            }
+
+        }
+        else{
+
+            button.title =
+                'Klik: ASC → DESC → Urutan Normal';
+
+        }
+
+    });
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderTable(){
+
+    const tbody =
+        document
+            .getElementById(
+                'tableBody'
+            );
+
+    const mobileList =
+        document
+            .getElementById(
+                'mobileDataList'
+            );
+
+    const emptyState =
+        document
+            .getElementById(
+                'emptyState'
+            );
+
+    tbody.innerHTML='';
+
+    mobileList.innerHTML='';
+
+    const total =
+        filteredData.length;
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                total /
+                ROWS_PER_PAGE
+            )
+        );
+
+    if(currentPage > totalPages){
+
+        currentPage =
+            totalPages;
+
+    }
+
+    const start =
+        (currentPage - 1) *
+        ROWS_PER_PAGE;
+
+    const end =
+        Math.min(
+            start + ROWS_PER_PAGE,
+            total
+        );
+
+    const pageData =
+        filteredData.slice(
+            start,
+            end
         );
 
 
-    const sorted =
-        [...validData]
-        .sort(
-            (a,b) =>
-                toNumber(
-                    b.count
-                ) -
-                toNumber(
-                    a.count
-                )
+    if(!pageData.length){
+
+        emptyState
+            .classList
+            .remove('hidden');
+
+    }
+    else{
+
+        emptyState
+            .classList
+            .add('hidden');
+
+
+        /* -----------------------------------------
+           DESKTOP
+        ----------------------------------------- */
+
+        pageData.forEach(
+            (row,index)=>{
+
+                const tr =
+                    document
+                        .createElement('tr');
+
+                const number =
+                    start + index + 1;
+
+                tr.innerHTML = `
+
+                    <td class="
+                        text-center
+                        font-bold
+                        text-slate-400
+                    ">
+                        ${number}
+                    </td>
+
+                    <td class="whitespace-nowrap">
+                        ${escapeHtml(row.tanggal)}
+                    </td>
+
+                    <td>
+                        <span class="unit-badge">
+                            ${escapeHtml(row.unit)}
+                        </span>
+                    </td>
+
+                    <td class="
+                        whitespace-nowrap
+                        font-semibold
+                        text-slate-600
+                    ">
+                        ${escapeHtml(row.hm)}
+                    </td>
+
+                    <td>
+                        ${getServiceBadge(row.service)}
+                    </td>
+
+                    <td>
+                        ${getStatusBadge(row.status)}
+                    </td>
+
+                    <td class="
+                        font-semibold
+                        text-slate-700
+                    ">
+                        ${escapeHtml(row.pic)}
+                    </td>
+
+                    <td
+                        class="
+                            max-w-[180px]
+                            truncate
+                        "
+                        title="${escapeHtml(row.itemRusak)}"
+                    >
+                        ${
+                            escapeHtml(row.itemRusak)
+                            ||
+                            '<span class="text-slate-300">-</span>'
+                        }
+                    </td>
+
+                    <td
+                        class="
+                            max-w-[220px]
+                            truncate
+                        "
+                        title="${escapeHtml(row.remark)}"
+                    >
+                        ${
+                            escapeHtml(row.remark)
+                            ||
+                            '<span class="text-slate-300">-</span>'
+                        }
+                    </td>
+
+                    <td>
+                        ${getPapLink(row.pap)}
+                    </td>
+
+                `;
+
+                tbody.appendChild(tr);
+
+            }
         );
 
 
-    const labels =
-        sorted.map(
-            item =>
-                String(
-                    item.name ??
-                    'Tanpa Nama'
-                )
+        /* -----------------------------------------
+           MOBILE CARDS
+        ----------------------------------------- */
+
+        pageData.forEach(
+            (row,index)=>{
+
+                const number =
+                    start + index + 1;
+
+                const card =
+                    document.createElement('div');
+
+                card.className =
+                    'mobile-data-card';
+
+                const itemRusak =
+                    escapeHtml(
+                        row.itemRusak
+                    );
+
+                const remark =
+                    escapeHtml(
+                        row.remark
+                    );
+
+                card.innerHTML = `
+
+                    <div
+                        class="
+                            mobile-card-header
+                        "
+                    >
+
+                        <div>
+
+                            <div
+                                class="
+                                    flex
+                                    items-center
+                                    gap-2
+                                "
+                            >
+
+                                <span
+                                    class="
+                                        mobile-number
+                                    "
+                                >
+                                    ${number}
+                                </span>
+
+                                <div
+                                    class="mobile-unit"
+                                >
+                                    ${escapeHtml(
+                                        row.unit
+                                    )}
+                                </div>
+
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-date
+                                "
+                            >
+
+                                <i
+                                    data-lucide="calendar-days"
+                                    class="inline w-3 h-3 mr-1"
+                                ></i>
+
+                                ${escapeHtml(
+                                    row.tanggal
+                                )}
+
+                            </div>
+
+                        </div>
+
+                        <div>
+                            ${getStatusBadge(
+                                row.status
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="
+                            mobile-card-grid
+                        "
+                    >
+
+                        <div class="mobile-field">
+
+                            <div class="mobile-label">
+                                HM
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-value
+                                "
+                            >
+                                ${escapeHtml(
+                                    row.hm
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="mobile-field">
+
+                            <div class="mobile-label">
+                                Service
+                            </div>
+
+                            <div>
+                                ${getServiceBadge(
+                                    row.service
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="mobile-field">
+
+                            <div class="mobile-label">
+                                PIC / Mekanik
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-value
+                                "
+                            >
+                                ${escapeHtml(
+                                    row.pic
+                                ) || '-'}
+                            </div>
+
+                        </div>
+
+
+                        <div class="mobile-field">
+
+                            <div class="mobile-label">
+                                Item Rusak
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-value
+                                "
+                            >
+                                ${
+                                    itemRusak ||
+                                    '<span class="text-slate-300">-</span>'
+                                }
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="
+                                mobile-field
+                                full
+                            "
+                        >
+
+                            <div class="mobile-label">
+                                Remark
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-remark
+                                "
+                            >
+                                ${
+                                    remark ||
+                                    '<span class="text-slate-300">Tidak ada remark</span>'
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="
+                            mobile-pap
+                        "
+                    >
+
+                        ${getPapLink(row.pap)}
+
+                    </div>
+
+                `;
+
+                mobileList.appendChild(card);
+
+            }
         );
 
-
-    const values =
-        sorted.map(
-            item =>
-                toNumber(
-                    item.count
-                )
-        );
+    }
 
 
-    if(!labels.length){
+    updateResultInfo(
+        total,
+        start,
+        end
+    );
+
+    renderPagination(
+        totalPages
+    );
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   PAP LINK
+========================================================= */
+
+function getPapLink(pap){
+
+    const value =
+        String(pap || '').trim();
+
+    if(!value){
+
+        return `
+            <span class="text-slate-300">
+                -
+            </span>
+        `;
+
+    }
+
+    let url;
+
+    try{
+
+        url =
+            new URL(value);
+
+    }
+    catch(error){
+
+        return `
+            <span
+                class="
+                    text-slate-400
+                    text-[10px]
+                    font-medium
+                "
+                title="${escapeHtml(value)}"
+            >
+                ${escapeHtml(value)}
+            </span>
+        `;
+
+    }
+
+    if(
+        url.protocol !== 'http:' &&
+        url.protocol !== 'https:'
+    ){
+
+        return `
+            <span class="text-slate-400">
+                -
+            </span>
+        `;
+
+    }
+
+    return `
+
+        <a
+            href="${escapeHtml(url.href)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="pap-link"
+            title="Lihat gambar PAP"
+        >
+
+            <i
+                data-lucide="image"
+                class="w-3.5 h-3.5"
+            ></i>
+
+            Lihat PAP
+
+        </a>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SERVICE BADGE
+========================================================= */
+
+function getServiceBadge(service){
+
+    const value =
+        String(service || '').trim();
+
+    const lower =
+        value.toLowerCase();
+
+    let cls =
+        'service-other';
+
+    if(
+        lower.includes('periodic')
+    ){
+
+        cls =
+            'service-periodic';
+
+    }
+    else if(
+        lower.includes('general')
+    ){
+
+        cls =
+            'service-general';
+
+    }
+
+    return `
+
+        <span
+            class="
+                service-badge
+                ${cls}
+            "
+        >
+            ${escapeHtml(value || '-')}
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+function getStatusBadge(status){
+
+    const value =
+        String(status || '').trim();
+
+    const lower =
+        value.toLowerCase();
+
+    let cls =
+        'status-other';
+
+    let icon =
+        'circle';
+
+    if(lower === 'baik'){
+
+        cls =
+            'status-good';
+
+        icon =
+            'circle-check';
+
+    }
+    else if(
+        lower === 'rusak'
+    ){
+
+        cls =
+            'status-bad';
+
+        icon =
+            'circle-alert';
+
+    }
+
+    return `
+
+        <span
+            class="
+                status-badge
+                ${cls}
+            "
+        >
+
+            <i
+                data-lucide="${icon}"
+                class="w-3 h-3"
+            ></i>
+
+            ${escapeHtml(value || '-')}
+
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   RESULT INFO
+========================================================= */
+
+function updateResultInfo(
+    total,
+    start,
+    end
+){
+
+    const resultInfo =
+        document
+            .getElementById(
+                'resultInfo'
+            );
+
+    const paginationInfo =
+        document
+            .getElementById(
+                'paginationInfo'
+            );
+
+    if(total === 0){
+
+        resultInfo.textContent =
+            'Tidak ada data yang sesuai filter.';
+
+        paginationInfo.textContent =
+            '0 data';
 
         return;
 
     }
 
+    resultInfo.textContent =
+        `Menampilkan ${start + 1}–${end} dari ${total} data`;
 
-    charts.mechanic =
-        new Chart(
+    paginationInfo.textContent =
+        `${total} data ditemukan`;
 
-            document.getElementById(
-                'mechanicChart'
-            ),
+}
 
-            {
 
-                type:'bar',
+/* =========================================================
+   PAGINATION
+========================================================= */
 
-                data:{
+function renderPagination(
+    totalPages
+){
 
-                    labels:labels,
+    const container =
+        document
+            .getElementById(
+                'pagination'
+            );
 
-                    datasets:[
+    container.innerHTML='';
 
-                        {
+    if(
+        filteredData.length === 0
+    ){
 
-                            label:
-                                'Jumlah Pekerjaan',
+        return;
 
-                            data:values,
+    }
 
-                            backgroundColor:
-                                '#7C3AED',
+    const prev =
+        document.createElement('button');
 
-                            borderRadius:7
+    prev.className =
+        'pagination-button';
 
-                        }
+    prev.innerHTML = `
+        <i
+            data-lucide="chevron-left"
+            class="w-4 h-4"
+        ></i>
+    `;
 
-                    ]
+    prev.disabled =
+        currentPage === 1;
 
-                },
+    prev.onclick = ()=>{
 
-                options:{
+        if(currentPage > 1){
 
-                    indexAxis:'y',
+            currentPage--;
 
-                    responsive:true,
+            renderTable();
 
-                    maintainAspectRatio:false,
+        }
 
-                    plugins:{
+    };
 
-                        legend:{
-                            display:false
-                        }
+    container.appendChild(prev);
 
-                    },
 
-                    scales:{
-
-                        x:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        },
-
-                        y:{
-
-                            ticks:{
-
-                                font:{
-
-                                    size:10,
-
-                                    weight:'600'
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
+    const pages =
+        getPaginationPages(
+            currentPage,
+            totalPages
         );
+
+
+    pages.forEach(page=>{
+
+        if(page === '...'){
+
+            const span =
+                document.createElement('span');
+
+            span.className =
+                'px-2 text-slate-400 text-xs';
+
+            span.textContent =
+                '...';
+
+            container.appendChild(span);
+
+            return;
+
+        }
+
+        const button =
+            document.createElement('button');
+
+        button.className =
+            'pagination-button' +
+            (
+                page === currentPage
+                ? ' active'
+                : ''
+            );
+
+        button.textContent =
+            page;
+
+        button.onclick = ()=>{
+
+            currentPage =
+                page;
+
+            renderTable();
+
+        };
+
+        container.appendChild(button);
+
+    });
+
+
+    const next =
+        document.createElement('button');
+
+    next.className =
+        'pagination-button';
+
+    next.innerHTML = `
+        <i
+            data-lucide="chevron-right"
+            class="w-4 h-4"
+        ></i>
+    `;
+
+    next.disabled =
+        currentPage === totalPages;
+
+    next.onclick = ()=>{
+
+        if(
+            currentPage <
+            totalPages
+        ){
+
+            currentPage++;
+
+            renderTable();
+
+        }
+
+    };
+
+    container.appendChild(next);
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   PAGINATION RANGE
+========================================================= */
+
+function getPaginationPages(
+    current,
+    total
+){
+
+    if(total <= 7){
+
+        return Array.from(
+            {
+                length:total
+            },
+            (_,i)=>i+1
+        );
+
+    }
+
+    const pages = [];
+
+    pages.push(1);
+
+    if(current > 4){
+
+        pages.push('...');
+
+    }
+
+    const start =
+        Math.max(
+            2,
+            current - 1
+        );
+
+    const end =
+        Math.min(
+            total - 1,
+            current + 1
+        );
+
+    for(
+        let i=start;
+        i<=end;
+        i++
+    ){
+
+        pages.push(i);
+
+    }
+
+    if(current < total - 3){
+
+        pages.push('...');
+
+    }
+
+    pages.push(total);
+
+    return pages;
 
 }
 
@@ -3969,38 +4274,27 @@ function createMechanicChart(data){
    LEADERBOARD
 ========================================================= */
 
-function updateLeaderboardFromData(data){
+function updateLeaderboardFromData(
+    data
+){
 
     const list =
-        document.getElementById(
-            'leaderboardList'
-        );
+        document
+            .getElementById(
+                'leaderboardList'
+            );
 
-
-    if(!list){
-
-        return;
-
-    }
-
-
-    const validData =
-        safeArray(
-            data
-        )
-        .filter(
-            item =>
-                item &&
-                typeof item === 'object'
-        );
-
-
-    if(!validData.length){
+    if(!data.length){
 
         list.innerHTML = `
 
             <div
-                class="text-center text-slate-400 text-sm py-6"
+                class="
+                    text-center
+                    text-slate-400
+                    text-sm
+                    py-6
+                "
             >
                 Belum ada data mekanik.
             </div>
@@ -4011,87 +4305,81 @@ function updateLeaderboardFromData(data){
 
     }
 
-
     const ranking =
-        [...validData]
-        .sort(
-            (a,b) =>
-                toNumber(b.count) -
-                toNumber(a.count)
+        [...data].sort(
+            (a,b)=>
+                Number(b.count || 0) -
+                Number(a.count || 0)
         );
-
 
     list.innerHTML =
         ranking
-        .map(
-            (mechanic,index) => {
+            .map(
+                (mechanic,index)=>{
 
-                const rank =
-                    index + 1;
+                    const rank =
+                        index + 1;
 
-
-                const cls =
-                    rank <= 3
+                    const cls =
+                        rank <= 3
                         ? `top-${rank}`
                         : '';
 
-
-                const medal =
-                    rank === 1
+                    const medal =
+                        rank === 1
                         ? '🥇'
                         : rank === 2
-                            ? '🥈'
-                            : rank === 3
-                                ? '🥉'
-                                : rank;
+                        ? '🥈'
+                        : rank === 3
+                        ? '🥉'
+                        : rank;
 
-
-                const name =
-                    escapeHtml(
-                        mechanic.name ??
-                        'Tanpa Nama'
-                    );
-
-
-                const count =
-                    toNumber(
-                        mechanic.count
-                    );
-
-
-                return `
-
-                    <div
-                        class="leader-row ${cls}"
-                    >
+                    return `
 
                         <div
-                            class="leader-rank"
+                            class="
+                                leader-row
+                                ${cls}
+                            "
                         >
-                            ${medal}
+
+                            <div
+                                class="
+                                    leader-rank
+                                "
+                            >
+                                ${medal}
+                            </div>
+
+                            <div
+                                class="
+                                    leader-name
+                                    truncate
+                                "
+                            >
+                                ${escapeHtml(
+                                    mechanic.name
+                                )}
+                            </div>
+
+                            <div
+                                class="
+                                    leader-count
+                                "
+                            >
+                                ${Number(
+                                    mechanic.count || 0
+                                )}
+                                pekerjaan
+                            </div>
+
                         </div>
 
+                    `;
 
-                        <div
-                            class="leader-name truncate"
-                        >
-                            ${name}
-                        </div>
-
-
-                        <div
-                            class="leader-count"
-                        >
-                            ${count} pekerjaan
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        )
-        .join('');
+                }
+            )
+            .join('');
 
 }
 
@@ -4112,15 +4400,12 @@ function openLeaderboard(){
 
     }
 
-
     document
         .getElementById(
             'leaderboardOverlay'
         )
-        .classList.add(
-            'show'
-        );
-
+        .classList
+        .add('show');
 
     document.body.style.overflow =
         'hidden';
@@ -4138,10 +4423,8 @@ function closeLeaderboard(){
         .getElementById(
             'leaderboardOverlay'
         )
-        .classList.remove(
-            'show'
-        );
-
+        .classList
+        .remove('show');
 
     document.body.style.overflow =
         '';
@@ -4157,15 +4440,11 @@ function closeLeaderboardOutside(
     event
 ){
 
-    const overlay =
-        document.getElementById(
-            'leaderboardOverlay'
-        );
-
-
     if(
         event.target ===
-        overlay
+        document.getElementById(
+            'leaderboardOverlay'
+        )
     ){
 
         closeLeaderboard();
@@ -4186,59 +4465,38 @@ function scheduleLeaderboardPulse(){
             'leaderboardButton'
         );
 
-
-    if(!button){
-
-        return;
-
-    }
-
-
     const delay =
-        9000 +
-        Math.random() *
-        10000;
+        12000 +
+        Math.random() * 14000;
 
+    setTimeout(()=>{
 
-    setTimeout(
+        const overlay =
+            document.getElementById(
+                'leaderboardOverlay'
+            );
 
-        () => {
+        if(
+            !overlay.classList.contains(
+                'show'
+            )
+        ){
 
-            const overlay =
-                document.getElementById(
-                    'leaderboardOverlay'
-                );
+            button.classList.remove(
+                'leader-pulse'
+            );
 
+            void button.offsetWidth;
 
-            if(
-                overlay &&
-                !overlay.classList.contains(
-                    'show'
-                )
-            ){
+            button.classList.add(
+                'leader-pulse'
+            );
 
-                button.classList.remove(
-                    'leader-pulse'
-                );
+        }
 
+        scheduleLeaderboardPulse();
 
-                void button.offsetWidth;
-
-
-                button.classList.add(
-                    'leader-pulse'
-                );
-
-            }
-
-
-            scheduleLeaderboardPulse();
-
-        },
-
-        delay
-
-    );
+    },delay);
 
 }
 
@@ -4252,27 +4510,22 @@ function escapeHtml(value){
     return String(
         value ?? ''
     )
-
     .replace(
         /&/g,
         '&amp;'
     )
-
     .replace(
         /</g,
         '&lt;'
     )
-
     .replace(
         />/g,
         '&gt;'
     )
-
     .replace(
         /"/g,
         '&quot;'
     )
-
     .replace(
         /'/g,
         '&#039;'
@@ -4287,11 +4540,11 @@ function escapeHtml(value){
 
 window.addEventListener(
     'load',
-    () => {
+    ()=>{
 
         lucide.createIcons();
 
-        loadDashboard();
+        loadTable();
 
         scheduleLeaderboardPulse();
 
@@ -4305,7 +4558,7 @@ window.addEventListener(
 
 document.addEventListener(
     'keydown',
-    event => {
+    event=>{
 
         if(
             event.key === 'Escape'
@@ -4321,6 +4574,4 @@ document.addEventListener(
 </script>
 
 </body>
-
 </html>
-
