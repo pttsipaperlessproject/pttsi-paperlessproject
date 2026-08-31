@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="id">
 
 <head>
@@ -6,8 +7,9 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=1200"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>Dashboard Oil Usage - PT TSI</title>
@@ -23,7 +25,6 @@
     rel="stylesheet"
 >
 
-
 <style>
 
 /* =========================================================
@@ -35,12 +36,16 @@
 }
 
 html{
-    min-width:1100px;
+    width:100%;
+    min-width:0;
 }
 
 body{
 
     margin:0;
+
+    width:100%;
+    min-width:0;
 
     font-family:'Inter',sans-serif;
 
@@ -213,6 +218,8 @@ body{
     display:flex;
 
     align-items:center;
+
+    justify-content:center;
 
     gap:8px;
 
@@ -615,17 +622,633 @@ body{
    RESPONSIVE
 ========================================================= */
 
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media(max-width:1100px){
 
-    html{
+    html,
+    body{
 
         min-width:0;
 
+        width:100%;
+
+        overflow-x:hidden;
+
     }
+
+
+    .stats-grid{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
 
     body{
 
-        min-width:1100px;
+        padding:
+            12px !important;
+
+        align-items:
+            stretch !important;
+
+    }
+
+
+    main{
+
+        width:100% !important;
+
+        max-width:none !important;
+
+        padding:
+            20px !important;
+
+        border-radius:
+            24px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       HEADER
+    ----------------------------------------------------- */
+
+    header{
+
+        margin-bottom:
+            24px !important;
+
+        padding-bottom:
+            20px !important;
+
+    }
+
+
+    .logo-wrapper{
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:
+            78px !important;
+
+        height:
+            78px !important;
+
+    }
+
+
+    header .color-primary{
+
+        width:100%;
+
+        padding:
+            14px
+            12px !important;
+
+        border-radius:
+            17px !important;
+
+    }
+
+
+    header .color-primary h1{
+
+        font-size:
+            16px !important;
+
+        letter-spacing:
+            .07em !important;
+
+    }
+
+
+    header .color-primary h2{
+
+        font-size:
+            11px !important;
+
+        letter-spacing:
+            .08em !important;
+
+    }
+
+
+    header > div:last-child{
+
+        font-size:
+            8px !important;
+
+        letter-spacing:
+            .18em !important;
+
+        text-align:center;
+
+    }
+
+
+    /* -----------------------------------------------------
+       PAGE TITLE AREA
+    ----------------------------------------------------- */
+
+    section > div:first-child{
+
+        flex-direction:
+            column !important;
+
+        align-items:
+            stretch !important;
+
+        gap:
+            18px !important;
+
+    }
+
+
+    .page-title{
+
+        font-size:
+            22px !important;
+
+        line-height:
+            1.25 !important;
+
+        gap:
+            10px !important;
+
+    }
+
+
+    .page-title > span{
+
+        padding:
+            10px !important;
+
+    }
+
+
+    .page-title > span i{
+
+        width:
+            20px !important;
+
+        height:
+            20px !important;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:
+            11px !important;
+
+        line-height:
+            1.5 !important;
+
+        margin-top:
+            8px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       NAVIGATION CONTROLS
+    ----------------------------------------------------- */
+
+    section > div:first-child > div:last-child{
+
+        width:100%;
+
+        display:grid !important;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:10px !important;
+
+    }
+
+
+    section > div:first-child > div:last-child > div{
+
+        grid-column:
+            1 / -1;
+
+        width:100%;
+
+        justify-content:
+            space-between !important;
+
+        background:
+            #f8fafc;
+
+        border:
+            1px solid
+            #e2e8f0;
+
+        border-radius:
+            12px;
+
+        padding:
+            4px 6px;
+
+    }
+
+
+    section > div:first-child > div:last-child > div span{
+
+        padding-left:
+            5px;
+
+    }
+
+
+    .year-selector{
+
+        flex:1;
+
+        width:auto;
+
+        min-width:0;
+
+        padding:
+            10px
+            12px;
+
+    }
+
+
+    .nav-button{
+
+        width:100%;
+
+        min-height:
+            44px;
+
+        padding:
+            10px
+            8px;
+
+        font-size:
+            10px;
+
+        white-space:
+            nowrap;
+
+    }
+
+
+    /* -----------------------------------------------------
+       STATISTICS
+    ----------------------------------------------------- */
+
+    .stats-grid{
+
+        grid-template-columns:
+            1fr;
+
+        gap:10px;
+
+        margin-bottom:
+            18px;
+
+    }
+
+
+    .stat-card{
+
+        min-height:
+            105px;
+
+        padding:
+            15px;
+
+        border-radius:
+            15px;
+
+    }
+
+
+    .stat-card .text-3xl{
+
+        font-size:
+            26px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       DASHBOARD GRID
+    ----------------------------------------------------- */
+
+    .dashboard-grid{
+
+        grid-template-columns:
+            1fr;
+
+        gap:14px;
+
+    }
+
+
+    .chart-panel{
+
+        width:100%;
+
+        min-width:0;
+
+        padding:
+            15px;
+
+        border-radius:
+            17px;
+
+    }
+
+
+    .chart-header{
+
+        align-items:
+            flex-start;
+
+        gap:
+            10px;
+
+        margin-bottom:
+            12px;
+
+    }
+
+
+    .chart-title-wrap{
+
+        min-width:0;
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .chart-icon{
+
+        width:34px;
+
+        height:34px;
+
+        border-radius:
+            10px;
+
+    }
+
+
+    .chart-icon i{
+
+        width:
+            17px !important;
+
+        height:
+            17px !important;
+
+    }
+
+
+    .chart-title{
+
+        font-size:
+            12px;
+
+        line-height:
+            1.4;
+
+    }
+
+
+    .chart-description{
+
+        font-size:
+            9px;
+
+        line-height:
+            1.4;
+
+    }
+
+
+    #trendBadge{
+
+        flex-shrink:0;
+
+        font-size:
+            8px;
+
+        padding:
+            6px 8px;
+
+        white-space:
+            nowrap;
+
+    }
+
+
+    /* -----------------------------------------------------
+       CHART SIZE
+    ----------------------------------------------------- */
+
+    .chart-container{
+
+        height:
+            260px;
+
+    }
+
+
+    .chart-container.tall{
+
+        height:
+            300px;
+
+    }
+
+
+    /* -----------------------------------------------------
+       LOADING
+    ----------------------------------------------------- */
+
+    #loading{
+
+        min-height:
+            280px;
+
+    }
+
+
+    /* -----------------------------------------------------
+       FOOTER
+    ----------------------------------------------------- */
+
+    footer{
+
+        margin-top:
+            20px !important;
+
+        padding-bottom:
+            20px !important;
+
+    }
+
+
+    footer p:first-child{
+
+        font-size:
+            9px !important;
+
+        line-height:
+            1.5;
+
+    }
+
+
+    footer p:last-child{
+
+        font-size:
+            8px !important;
+
+        line-height:
+            1.6;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:480px){
+
+    body{
+
+        padding:
+            8px !important;
+
+    }
+
+
+    main{
+
+        padding:
+            15px !important;
+
+        border-radius:
+            20px !important;
+
+    }
+
+
+    .page-title{
+
+        font-size:
+            19px !important;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:
+            10px !important;
+
+    }
+
+
+    section > div:first-child > div:last-child{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    section > div:first-child > div:last-child > div{
+
+        grid-column:
+            auto;
+
+    }
+
+
+    section > div:first-child > div:last-child > .nav-button{
+
+        width:100%;
+
+    }
+
+
+    .chart-container{
+
+        height:
+            235px;
+
+    }
+
+
+    .chart-container.tall{
+
+        height:
+            280px;
+
+    }
+
+
+    .chart-panel{
+
+        padding:
+            13px;
+
+    }
+
+
+    .chart-title{
+
+        font-size:
+            11px;
+
+    }
+
+
+    .chart-description{
+
+        font-size:
+            8px;
+
+    }
+
+
+    #trendBadge{
+
+        font-size:
+            7px;
 
     }
 
@@ -634,7 +1257,6 @@ body{
 </style>
 
 </head>
-
 
 <body
     class="
@@ -645,7 +1267,6 @@ body{
         sm:p-8
     "
 >
-
 
 <main
     class="
@@ -660,7 +1281,6 @@ body{
         fade-in
     "
 >
-
 
 <!-- =====================================================
      HEADER
@@ -680,139 +1300,139 @@ body{
 >
 
 
-    <div class="mb-4 logo-wrapper">
+<div class="mb-4 logo-wrapper">
+
+    <div
+        class="
+            w-24
+            h-24
+            flex
+            items-center
+            justify-center
+            bg-white
+            rounded-2xl
+            logo-shadow
+            overflow-hidden
+            p-2
+        "
+    >
+
+        <img
+            src="default_logo.png"
+            alt="Logo PT TSI"
+            class="
+                w-full
+                h-full
+                object-contain
+            "
+            id="companyLogo"
+            onerror="handleLogoError()"
+        >
+
 
         <div
+            id="logoFallback"
             class="
-                w-24
-                h-24
+                hidden
                 flex
+                flex-col
                 items-center
                 justify-center
-                bg-white
-                rounded-2xl
-                logo-shadow
-                overflow-hidden
-                p-2
+                bg-blue-900
+                w-full
+                h-full
+                text-white
             "
         >
 
-            <img
-                src="default_logo.png"
-                alt="Logo PT TSI"
+            <span
                 class="
-                    w-full
-                    h-full
-                    object-contain
-                "
-                id="companyLogo"
-                onerror="handleLogoError()"
-            >
-
-
-            <div
-                id="logoFallback"
-                class="
-                    hidden
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    bg-blue-900
-                    w-full
-                    h-full
-                    text-white
+                    font-black
+                    text-2xl
                 "
             >
-
-                <span
-                    class="
-                        font-black
-                        text-2xl
-                    "
-                >
-                    TSI
-                </span>
-
-            </div>
+                TSI
+            </span>
 
         </div>
 
     </div>
 
+</div>
 
-    <div
+
+<div
+    class="
+        color-primary
+        text-white
+        px-8
+        py-4
+        rounded-2xl
+        shadow-lg
+        flex
+        flex-col
+        items-center
+        gap-1
+    "
+>
+
+    <h1
         class="
-            color-primary
-            text-white
-            px-8
-            py-4
-            rounded-2xl
-            shadow-lg
-            flex
-            flex-col
-            items-center
-            gap-1
-        "
-    >
-
-        <h1
-            class="
-                text-xl
-                sm:text-2xl
-                font-black
-                uppercase
-                tracking-[0.1em]
-                text-center
-            "
-        >
-            PAPERLESS PROJECT
-        </h1>
-
-
-        <div
-            class="
-                h-0.5
-                w-16
-                bg-amber-500
-                rounded-full
-                my-1
-            "
-        ></div>
-
-
-        <h2
-            class="
-                text-sm
-                sm:text-lg
-                font-bold
-                uppercase
-                tracking-widest
-                text-blue-100
-                text-center
-            "
-        >
-            PT TATSUMI SERUNI INDONESIA
-        </h2>
-
-    </div>
-
-
-    <div
-        class="
-            mt-3
-            text-[10px]
-            font-bold
-            text-slate-400
-            tracking-[0.3em]
+            text-xl
+            sm:text-2xl
+            font-black
             uppercase
+            tracking-[0.1em]
+            text-center
         "
     >
-        Digitalization Initiative v2.0
-    </div>
+        PAPERLESS PROJECT
+    </h1>
+
+
+    <div
+        class="
+            h-0.5
+            w-16
+            bg-amber-500
+            rounded-full
+            my-1
+        "
+    ></div>
+
+
+    <h2
+        class="
+            text-sm
+            sm:text-lg
+            font-bold
+            uppercase
+            tracking-widest
+            text-blue-100
+            text-center
+        "
+    >
+        PT TATSUMI SERUNI INDONESIA
+    </h2>
+
+</div>
+
+
+<div
+    class="
+        mt-3
+        text-[10px]
+        font-bold
+        text-slate-400
+        tracking-[0.3em]
+        uppercase
+    "
+>
+    Digitalization Initiative v2.0
+</div>
+
 
 </header>
-
 
 <!-- =====================================================
      PAGE TITLE
@@ -821,503 +1441,502 @@ body{
 <section>
 
 
-    <div
-        class="
-            flex
-            items-center
-            justify-between
-            gap-5
-            mb-6
-        "
-    >
+<div
+    class="
+        flex
+        items-center
+        justify-between
+        gap-5
+        mb-6
+    "
+>
 
 
-        <div>
+    <div>
 
-            <h2
-                class="
-                    page-title
-                    flex
-                    items-center
-                    gap-3
-                "
-            >
-
-                <span
-                    class="
-                        bg-blue-900
-                        text-white
-                        p-3
-                        rounded-xl
-                        shadow-md
-                    "
-                >
-
-                    <i
-                        data-lucide="bar-chart-3"
-                        class="w-6 h-6"
-                    ></i>
-
-                </span>
-
-                Dashboard Penggunaan Oli
-
-            </h2>
-
-
-            <p
-                class="
-                    page-subtitle
-                    mt-2
-                    ml-1
-                "
-            >
-
-                Monitoring dan analisis penggunaan oli secara terintegrasi
-
-            </p>
-
-        </div>
-
-
-        <div
+        <h2
             class="
+                page-title
                 flex
                 items-center
                 gap-3
             "
         >
 
-
-            <!-- YEAR -->
-
-            <div
+            <span
                 class="
-                    flex
-                    items-center
-                    gap-2
+                    bg-blue-900
+                    text-white
+                    p-3
+                    rounded-xl
+                    shadow-md
                 "
             >
 
-                <span
-                    class="
-                        text-[10px]
-                        font-black
-                        uppercase
-                        tracking-wider
-                        text-slate-400
-                    "
-                >
-                    Tahun
-                </span>
-
-
-                <select
-                    id="yearSelector"
-                    class="year-selector"
-                    onchange="changeYear()"
-                >
-
-                    <option value="2026">2026</option>
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
-                    <option value="2016">2016</option>
-
-                    <option value="ALL">
-                        Seluruh Data
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- HOME -->
-
-            <button
-                onclick="goToHome()"
-                class="nav-button secondary"
-            >
-
                 <i
-                    data-lucide="house"
-                    class="w-4 h-4"
+                    data-lucide="bar-chart-3"
+                    class="w-6 h-6"
                 ></i>
 
-                Kembali ke Home
+            </span>
 
-            </button>
+            Dashboard Penggunaan Oli
 
-
-            <!-- DATA -->
-
-            <button
-                onclick="goToData()"
-                class="nav-button"
-            >
-
-                <i
-                    data-lucide="table-2"
-                    class="w-4 h-4"
-                ></i>
-
-                Lihat Data
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         LOADING
-    ================================================= -->
-
-    <div id="loading">
-
-        <i
-            data-lucide="loader-circle"
-            class="
-                w-9
-                h-9
-                animate-spin
-                text-amber-500
-            "
-        ></i>
+        </h2>
 
 
         <p
-            id="loadingText"
             class="
-                font-semibold
-                text-sm
-                text-slate-400
-                mt-3
+                page-subtitle
+                mt-2
+                ml-1
             "
         >
-            Memuat dashboard oil usage...
+
+            Monitoring dan analisis penggunaan oli secara terintegrasi
+
         </p>
 
     </div>
 
 
+    <div
+        class="
+            flex
+            items-center
+            gap-3
+        "
+    >
+
+
+        <!-- YEAR -->
+
+        <div
+            class="
+                flex
+                items-center
+                gap-2
+            "
+        >
+
+            <span
+                class="
+                    text-[10px]
+                    font-black
+                    uppercase
+                    tracking-wider
+                    text-slate-400
+                "
+            >
+                Tahun
+            </span>
+
+
+            <select
+                id="yearSelector"
+                class="year-selector"
+                onchange="changeYear()"
+            >
+
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+
+                <option value="ALL">
+                    Seluruh Data
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- HOME -->
+
+        <button
+            onclick="goToHome()"
+            class="nav-button secondary"
+        >
+
+            <i
+                data-lucide="house"
+                class="w-4 h-4"
+            ></i>
+
+            Kembali ke Home
+
+        </button>
+
+
+        <!-- DATA -->
+
+        <button
+            onclick="goToData()"
+            class="nav-button"
+        >
+
+            <i
+                data-lucide="table-2"
+                class="w-4 h-4"
+            ></i>
+
+            Lihat Data
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     LOADING
+================================================= -->
+
+<div id="loading">
+
+    <i
+        data-lucide="loader-circle"
+        class="
+            w-9
+            h-9
+            animate-spin
+            text-amber-500
+        "
+    ></i>
+
+
+    <p
+        id="loadingText"
+        class="
+            font-semibold
+            text-sm
+            text-slate-400
+            mt-3
+        "
+    >
+        Memuat dashboard oil usage...
+    </p>
+
+</div>
+
+
+<!-- =================================================
+     DASHBOARD
+================================================= -->
+
+<div id="dashboardContent">
+
+
     <!-- =================================================
-         DASHBOARD
+         STATISTICS
     ================================================= -->
 
-    <div id="dashboardContent">
+    <div
+        id="statsGrid"
+        class="stats-grid"
+    >
+    </div>
+
+
+    <!-- =================================================
+         CHARTS
+    ================================================= -->
+
+    <div class="dashboard-grid">
 
 
         <!-- =================================================
-             STATISTICS
+             CHART A
         ================================================= -->
 
-        <div
-            id="statsGrid"
-            class="stats-grid"
-        >
+        <div class="chart-panel full">
+
+
+            <div class="chart-header">
+
+                <div
+                    class="chart-title-wrap"
+                >
+
+                    <div class="chart-icon">
+
+                        <i
+                            data-lucide="trending-up"
+                            class="w-5 h-5"
+                        ></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="chart-title">
+                            Tren Oil Usage
+                        </div>
+
+                        <div
+                            id="trendDescription"
+                            class="chart-description"
+                        >
+                            Penggunaan oli per bulan.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="trendBadge"
+                    class="
+                        text-[10px]
+                        font-black
+                        bg-blue-50
+                        text-blue-700
+                        px-3
+                        py-1.5
+                        rounded-lg
+                    "
+                >
+                    2026
+                </div>
+
+            </div>
+
+
+            <div class="chart-container tall">
+
+                <canvas
+                    id="trendChart"
+                ></canvas>
+
+            </div>
+
         </div>
 
 
         <!-- =================================================
-             CHARTS
+             CHART B
         ================================================= -->
 
-        <div class="dashboard-grid">
+        <div class="chart-panel">
 
 
-            <!-- =================================================
-                 CHART A
-            ================================================= -->
+            <div class="chart-header">
 
-            <div class="chart-panel full">
+                <div
+                    class="chart-title-wrap"
+                >
 
+                    <div class="chart-icon">
 
-                <div class="chart-header">
-
-                    <div
-                        class="chart-title-wrap"
-                    >
-
-                        <div class="chart-icon">
-
-                            <i
-                                data-lucide="trending-up"
-                                class="w-5 h-5"
-                            ></i>
-
-                        </div>
-
-
-                        <div>
-
-                            <div class="chart-title">
-                                Tren Oil Usage
-                            </div>
-
-                            <div
-                                id="trendDescription"
-                                class="chart-description"
-                            >
-                                Penggunaan oli per bulan.
-                            </div>
-
-                        </div>
+                        <i
+                            data-lucide="droplets"
+                            class="w-5 h-5"
+                        ></i>
 
                     </div>
 
 
-                    <div
-                        id="trendBadge"
-                        class="
-                            text-[10px]
-                            font-black
-                            bg-blue-50
-                            text-blue-700
-                            px-3
-                            py-1.5
-                            rounded-lg
-                        "
-                    >
-                        2026
+                    <div>
+
+                        <div class="chart-title">
+                            Oil Usage berdasarkan Merk
+                        </div>
+
+                        <div class="chart-description">
+                            Total penggunaan berdasarkan merk oli.
+                        </div>
+
                     </div>
-
-                </div>
-
-
-                <div class="chart-container tall">
-
-                    <canvas
-                        id="trendChart"
-                    ></canvas>
 
                 </div>
 
             </div>
 
 
-            <!-- =================================================
-                 CHART B
-            ================================================= -->
+            <div class="chart-container">
 
-            <div class="chart-panel">
+                <canvas
+                    id="brandChart"
+                ></canvas>
+
+            </div>
+
+        </div>
 
 
-                <div class="chart-header">
+        <!-- =================================================
+             CHART C
+        ================================================= -->
 
-                    <div
-                        class="chart-title-wrap"
-                    >
+        <div class="chart-panel">
 
-                        <div class="chart-icon">
 
-                            <i
-                                data-lucide="droplets"
-                                class="w-5 h-5"
-                            ></i>
+            <div class="chart-header">
 
+                <div
+                    class="chart-title-wrap"
+                >
+
+                    <div class="chart-icon">
+
+                        <i
+                            data-lucide="layers"
+                            class="w-5 h-5"
+                        ></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="chart-title">
+                            Oil Usage berdasarkan Jenis Oli
                         </div>
 
-
-                        <div>
-
-                            <div class="chart-title">
-                                Oil Usage berdasarkan Merk
-                            </div>
-
-                            <div class="chart-description">
-                                Total penggunaan berdasarkan merk oli.
-                            </div>
-
+                        <div class="chart-description">
+                            Distribusi penggunaan berdasarkan jenis oli.
                         </div>
 
                     </div>
 
                 </div>
 
-
-                <div class="chart-container">
-
-                    <canvas
-                        id="brandChart"
-                    ></canvas>
-
-                </div>
-
             </div>
 
 
-            <!-- =================================================
-                 CHART C
-            ================================================= -->
+            <div class="chart-container">
 
-            <div class="chart-panel">
+                <canvas
+                    id="oilTypeChart"
+                ></canvas>
+
+            </div>
+
+        </div>
 
 
-                <div class="chart-header">
+        <!-- =================================================
+             CHART D
+        ================================================= -->
 
-                    <div
-                        class="chart-title-wrap"
-                    >
+        <div class="chart-panel">
 
-                        <div class="chart-icon">
 
-                            <i
-                                data-lucide="layers"
-                                class="w-5 h-5"
-                            ></i>
+            <div class="chart-header">
 
+                <div
+                    class="chart-title-wrap"
+                >
+
+                    <div class="chart-icon">
+
+                        <i
+                            data-lucide="truck"
+                            class="w-5 h-5"
+                        ></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="chart-title">
+                            Oil Usage berdasarkan Jenis Unit
                         </div>
 
-
-                        <div>
-
-                            <div class="chart-title">
-                                Oil Usage berdasarkan Jenis Oli
-                            </div>
-
-                            <div class="chart-description">
-                                Distribusi penggunaan berdasarkan jenis oli.
-                            </div>
-
+                        <div class="chart-description">
+                            Total konsumsi oli berdasarkan jenis unit.
                         </div>
 
                     </div>
 
                 </div>
 
-
-                <div class="chart-container">
-
-                    <canvas
-                        id="oilTypeChart"
-                    ></canvas>
-
-                </div>
-
             </div>
 
 
-            <!-- =================================================
-                 CHART D
-            ================================================= -->
+            <div class="chart-container">
 
-            <div class="chart-panel">
+                <canvas
+                    id="unitTypeChart"
+                ></canvas>
+
+            </div>
+
+        </div>
 
 
-                <div class="chart-header">
+        <!-- =================================================
+             CHART E
+        ================================================= -->
 
-                    <div
-                        class="chart-title-wrap"
-                    >
+        <div class="chart-panel">
 
-                        <div class="chart-icon">
 
-                            <i
-                                data-lucide="truck"
-                                class="w-5 h-5"
-                            ></i>
+            <div class="chart-header">
 
+                <div
+                    class="chart-title-wrap"
+                >
+
+                    <div class="chart-icon">
+
+                        <i
+                            data-lucide="trophy"
+                            class="w-5 h-5"
+                        ></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="chart-title">
+                            Top 10 Unit berdasarkan Oil Usage
                         </div>
 
-
-                        <div>
-
-                            <div class="chart-title">
-                                Oil Usage berdasarkan Jenis Unit
-                            </div>
-
-                            <div class="chart-description">
-                                Total konsumsi oli berdasarkan jenis unit.
-                            </div>
-
+                        <div class="chart-description">
+                            Unit dengan konsumsi oli terbesar.
                         </div>
 
                     </div>
 
                 </div>
 
-
-                <div class="chart-container">
-
-                    <canvas
-                        id="unitTypeChart"
-                    ></canvas>
-
-                </div>
-
             </div>
 
 
-            <!-- =================================================
-                 CHART E
-            ================================================= -->
+            <div class="chart-container">
 
-            <div class="chart-panel">
-
-
-                <div class="chart-header">
-
-                    <div
-                        class="chart-title-wrap"
-                    >
-
-                        <div class="chart-icon">
-
-                            <i
-                                data-lucide="trophy"
-                                class="w-5 h-5"
-                            ></i>
-
-                        </div>
-
-
-                        <div>
-
-                            <div class="chart-title">
-                                Top 10 Unit berdasarkan Oil Usage
-                            </div>
-
-                            <div class="chart-description">
-                                Unit dengan konsumsi oli terbesar.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="chart-container">
-
-                    <canvas
-                        id="topUnitChart"
-                    ></canvas>
-
-                </div>
+                <canvas
+                    id="topUnitChart"
+                ></canvas>
 
             </div>
-
 
         </div>
 
 
     </div>
 
+
+</div>
+
+
 </section>
 
-
 </main>
-
 
 <!-- =====================================================
      FOOTER
@@ -1333,57 +1952,58 @@ body{
     "
 >
 
-    <p
+
+<p
+    class="
+        font-bold
+        text-slate-500
+        tracking-tight
+        uppercase
+    "
+>
+
+    &copy; 2026 Paperless Project - PT TSI.
+    All rights reserved.
+
+</p>
+
+
+<p
+    class="
+        text-[10px]
+        mt-1
+    "
+>
+
+    System Architecture by:
+
+    <span
         class="
-            font-bold
-            text-slate-500
-            tracking-tight
+            text-slate-600
+            font-semibold
             uppercase
         "
     >
+        Imam Wahyu Ramadhan, S.T.
+    </span>
 
-        &copy; 2026 Paperless Project - PT TSI.
-        All rights reserved.
+    |
 
-    </p>
-
-
-    <p
+    <span
         class="
-            text-[10px]
-            mt-1
+            text-amber-600
+            font-bold
+            uppercase
+            tracking-tighter
         "
     >
+        Project 2.0
+    </span>
 
-        System Architecture by:
+</p>
 
-        <span
-            class="
-                text-slate-600
-                font-semibold
-                uppercase
-            "
-        >
-            Imam Wahyu Ramadhan, S.T.
-        </span>
-
-        |
-
-        <span
-            class="
-                text-amber-600
-                font-bold
-                uppercase
-                tracking-tighter
-            "
-        >
-            Project 2.0
-        </span>
-
-    </p>
 
 </footer>
-
 
 <script>
 
@@ -4587,7 +5207,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 
