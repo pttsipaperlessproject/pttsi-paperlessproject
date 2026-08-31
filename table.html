@@ -6,7 +6,7 @@
 
 <meta
     name="viewport"
-    content="width=1200"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Data Periodic Service - PT TSI</title>
@@ -21,12 +21,16 @@
 
 <style>
 
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 *{
     box-sizing:border-box;
 }
 
 html{
-    min-width:1100px;
+    min-width:0;
 }
 
 body{
@@ -39,6 +43,7 @@ body{
             #eef2f7
         );
     color:#1e293b;
+    min-height:100vh;
 }
 
 .color-primary{
@@ -76,6 +81,11 @@ body{
 
 }
 
+
+/* =========================================================
+   LOGO
+========================================================= */
+
 .logo-wrapper{
     transition:
         transform
@@ -106,6 +116,11 @@ body{
         );
 }
 
+
+/* =========================================================
+   TITLE
+========================================================= */
+
 .page-title{
     font-size:30px;
     font-weight:900;
@@ -119,6 +134,11 @@ body{
     font-weight:500;
 }
 
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
 .back-button{
     background:#1e3a8a;
     color:#fff;
@@ -128,11 +148,15 @@ body{
     font-weight:800;
     display:flex;
     align-items:center;
+    justify-content:center;
     gap:8px;
     transition:.2s ease;
     box-shadow:
         0 5px 12px
         rgba(30,58,138,.18);
+    border:none;
+    cursor:pointer;
+    white-space:nowrap;
 }
 
 .back-button:hover{
@@ -142,6 +166,11 @@ body{
         0 8px 18px
         rgba(30,58,138,.25);
 }
+
+
+/* =========================================================
+   STAT CARD
+========================================================= */
 
 .stat-card{
     background:#fff;
@@ -158,6 +187,11 @@ body{
         rgba(15,23,42,.07);
 }
 
+
+/* =========================================================
+   TABLE
+========================================================= */
+
 .table-panel{
     background:#fff;
     border:1px solid #e2e8f0;
@@ -168,10 +202,16 @@ body{
         rgba(15,23,42,.04);
 }
 
+.table-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
 table{
     width:100%;
     border-collapse:separate;
     border-spacing:0;
+    min-width:950px;
 }
 
 thead{
@@ -292,6 +332,11 @@ tbody tr:last-child td{
     border-bottom:none;
 }
 
+
+/* =========================================================
+   PAP
+========================================================= */
+
 .pap-link{
     display:inline-flex;
     align-items:center;
@@ -318,6 +363,11 @@ tbody tr:last-child td{
         0 3px 8px
         rgba(37,99,235,.12);
 }
+
+
+/* =========================================================
+   BADGES
+========================================================= */
 
 .service-badge{
     display:inline-flex;
@@ -383,6 +433,11 @@ tbody tr:last-child td{
     font-weight:900;
 }
 
+
+/* =========================================================
+   FILTER
+========================================================= */
+
 .filter-input{
     width:100%;
     background:#f8fafc;
@@ -407,6 +462,11 @@ tbody tr:last-child td{
 select.filter-input{
     cursor:pointer;
 }
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
 
 .pagination-button{
     width:34px;
@@ -441,6 +501,11 @@ select.filter-input{
     cursor:not-allowed;
 }
 
+
+/* =========================================================
+   LOADING
+========================================================= */
+
 #loading{
     min-height:350px;
     display:flex;
@@ -456,6 +521,113 @@ select.filter-input{
 #tableContent.show{
     display:block;
 }
+
+
+/* =========================================================
+   MOBILE CARD
+========================================================= */
+
+.mobile-data-list{
+    display:none;
+}
+
+.mobile-data-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:10px;
+    box-shadow:
+        0 3px 10px
+        rgba(15,23,42,.035);
+}
+
+.mobile-card-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:12px;
+    margin-bottom:12px;
+    border-bottom:1px solid #f1f5f9;
+}
+
+.mobile-unit{
+    font-size:16px;
+    font-weight:900;
+    color:#1e3a8a;
+}
+
+.mobile-date{
+    font-size:10px;
+    font-weight:700;
+    color:#64748b;
+    margin-top:3px;
+}
+
+.mobile-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px 14px;
+}
+
+.mobile-field{
+    min-width:0;
+}
+
+.mobile-field.full{
+    grid-column:1 / -1;
+}
+
+.mobile-label{
+    font-size:8px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:4px;
+}
+
+.mobile-value{
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    word-break:break-word;
+}
+
+.mobile-remark{
+    background:#f8fafc;
+    border-radius:10px;
+    padding:9px 10px;
+    color:#475569;
+    font-size:10px;
+    line-height:1.5;
+}
+
+.mobile-pap{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid #f1f5f9;
+}
+
+.mobile-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:27px;
+    height:27px;
+    padding:0 7px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#64748b;
+    font-size:9px;
+    font-weight:900;
+}
+
+
+/* =========================================================
+   LEADERBOARD BUTTON
+========================================================= */
 
 #leaderboardButton{
     position:fixed;
@@ -557,6 +729,11 @@ select.filter-input{
     opacity:1;
     transform:translateY(0);
 }
+
+
+/* =========================================================
+   LEADERBOARD MODAL
+========================================================= */
 
 #leaderboardOverlay{
     position:fixed;
@@ -680,14 +857,379 @@ select.filter-input{
     white-space:nowrap;
 }
 
-@media(max-width:1100px){
 
-    html{
-        min-width:0;
-    }
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media(max-width:767px){
 
     body{
-        min-width:1100px;
+        padding:10px !important;
+        background:#f1f5f9;
+    }
+
+    main{
+        padding:18px !important;
+        border-radius:22px !important;
+    }
+
+    footer{
+        margin-top:20px !important;
+        padding-bottom:90px !important;
+    }
+
+
+    /* -----------------------------------------
+       HEADER
+    ----------------------------------------- */
+
+    header{
+        margin-bottom:20px !important;
+        padding-bottom:18px !important;
+    }
+
+    .logo-wrapper{
+        margin-bottom:12px !important;
+    }
+
+    .logo-wrapper > div{
+        width:78px !important;
+        height:78px !important;
+    }
+
+    .color-primary{
+        width:100%;
+        padding:13px 15px !important;
+        border-radius:15px !important;
+    }
+
+    .color-primary h1{
+        font-size:15px !important;
+        letter-spacing:.06em !important;
+    }
+
+    .color-primary h2{
+        font-size:10px !important;
+        letter-spacing:.12em !important;
+    }
+
+    header > div:last-child{
+        font-size:8px !important;
+        letter-spacing:.2em !important;
+    }
+
+
+    /* -----------------------------------------
+       PAGE TITLE
+    ----------------------------------------- */
+
+    section > div:first-child{
+        align-items:flex-start !important;
+    }
+
+    .page-title{
+        font-size:20px !important;
+        line-height:1.3;
+        gap:9px !important;
+    }
+
+    .page-title span{
+        padding:9px !important;
+    }
+
+    .page-title svg{
+        width:18px !important;
+        height:18px !important;
+    }
+
+    .page-subtitle{
+        font-size:10px !important;
+        line-height:1.5;
+        margin-top:7px !important;
+    }
+
+    .back-button{
+        padding:9px 11px !important;
+        font-size:10px !important;
+        border-radius:10px !important;
+    }
+
+    .back-button svg{
+        width:14px !important;
+        height:14px !important;
+    }
+
+
+    /* -----------------------------------------
+       STATISTICS
+    ----------------------------------------- */
+
+    #tableContent > div:first-child{
+        grid-template-columns:1fr 1fr !important;
+        gap:9px !important;
+        margin-bottom:12px !important;
+    }
+
+    .stat-card{
+        padding:13px !important;
+        border-radius:14px !important;
+    }
+
+    .stat-card p:first-child{
+        font-size:8px !important;
+    }
+
+    .stat-card p:last-child{
+        font-size:23px !important;
+        margin-top:5px !important;
+    }
+
+
+    /* -----------------------------------------
+       FILTER
+    ----------------------------------------- */
+
+    #tableContent > div:nth-child(2){
+        padding:13px !important;
+        border-radius:15px !important;
+        margin-bottom:12px !important;
+    }
+
+    #tableContent > div:nth-child(2) > div:first-child{
+        margin-bottom:12px !important;
+    }
+
+    #tableContent > div:nth-child(2) > div:first-child span{
+        padding:7px !important;
+    }
+
+    #tableContent > div:nth-child(2) > div:first-child svg{
+        width:14px !important;
+        height:14px !important;
+    }
+
+    #tableContent > div:nth-child(2) > div:first-child h3{
+        font-size:12px !important;
+    }
+
+    #tableContent > div:nth-child(2) > div:first-child p{
+        font-size:8px !important;
+    }
+
+    #tableContent > div:nth-child(2) > div:last-child{
+        grid-template-columns:1fr !important;
+        gap:10px !important;
+    }
+
+    #tableContent > div:nth-child(2) label{
+        font-size:8px !important;
+        margin-bottom:5px !important;
+    }
+
+    .filter-input{
+        font-size:10px !important;
+        padding:10px !important;
+    }
+
+
+    /* -----------------------------------------
+       TABLE HEADER
+    ----------------------------------------- */
+
+    .table-panel{
+        border-radius:16px !important;
+    }
+
+    .table-panel > div:first-child{
+        padding:13px !important;
+    }
+
+    .table-panel > div:first-child h3{
+        font-size:11px !important;
+    }
+
+    .table-panel > div:first-child p{
+        font-size:8px !important;
+    }
+
+    .table-panel > div:first-child > div:last-child{
+        display:none !important;
+    }
+
+
+    /* -----------------------------------------
+       HIDE DESKTOP TABLE
+    ----------------------------------------- */
+
+    .table-scroll{
+        display:none;
+    }
+
+
+    /* -----------------------------------------
+       SHOW MOBILE CARDS
+    ----------------------------------------- */
+
+    .mobile-data-list{
+        display:block;
+        padding:10px;
+        background:#f8fafc;
+    }
+
+
+    /* -----------------------------------------
+       PAGINATION
+    ----------------------------------------- */
+
+    .table-panel > div:last-child{
+        padding:10px !important;
+        gap:8px;
+    }
+
+    #paginationInfo{
+        font-size:8px !important;
+        white-space:nowrap;
+    }
+
+    #pagination{
+        gap:3px !important;
+        overflow-x:auto;
+        max-width:65%;
+        padding-bottom:2px;
+    }
+
+    .pagination-button{
+        width:30px !important;
+        height:30px !important;
+        min-width:30px !important;
+        font-size:9px !important;
+    }
+
+
+    /* -----------------------------------------
+       LEADERBOARD BUTTON
+    ----------------------------------------- */
+
+    #leaderboardButton{
+        width:55px;
+        height:55px;
+        right:16px;
+        bottom:16px;
+        border-radius:17px;
+    }
+
+    #leaderboardButton svg{
+        width:23px;
+        height:23px;
+    }
+
+    .leader-tooltip{
+        display:none;
+    }
+
+
+    /* -----------------------------------------
+       LEADERBOARD MODAL
+    ----------------------------------------- */
+
+    #leaderboardOverlay{
+        padding:10px;
+    }
+
+    #leaderboardModal{
+        width:100%;
+        max-height:85vh;
+        border-radius:18px;
+    }
+
+    #leaderboardList{
+        padding:12px !important;
+    }
+
+    .leader-row{
+        padding:10px;
+    }
+
+    .leader-name{
+        font-size:11px;
+    }
+
+    .leader-count{
+        font-size:9px;
+        padding:4px 7px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media(max-width:380px){
+
+    body{
+        padding:6px !important;
+    }
+
+    main{
+        padding:13px !important;
+    }
+
+    .page-title{
+        font-size:18px !important;
+    }
+
+    .back-button{
+        padding:8px !important;
+    }
+
+    .back-button span{
+        display:none;
+    }
+
+    .mobile-card-grid{
+        grid-template-columns:1fr;
+    }
+
+    .mobile-field.full{
+        grid-column:auto;
+    }
+
+    #pagination{
+        max-width:58%;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(
+    min-width:768px
+) and (
+    max-width:1100px
+){
+
+    main{
+        padding:25px !important;
+    }
+
+    .page-title{
+        font-size:25px;
+    }
+
+    #tableContent > div:first-child{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    #tableContent > div:nth-child(2) > div:last-child{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
 }
@@ -696,8 +1238,15 @@ select.filter-input{
 
 </head>
 
+
 <body
-    class="flex flex-col items-center p-4 sm:p-8"
+    class="
+        flex
+        flex-col
+        items-center
+        p-4
+        sm:p-8
+    "
 >
 
 <main
@@ -777,6 +1326,7 @@ select.filter-input{
 
     </div>
 
+
     <div
         class="
             color-primary
@@ -831,6 +1381,7 @@ select.filter-input{
 
     </div>
 
+
     <div
         class="
             mt-3
@@ -845,6 +1396,7 @@ select.filter-input{
     </div>
 
 </header>
+
 
 <section>
 
@@ -903,6 +1455,7 @@ select.filter-input{
 
         </div>
 
+
         <button
             onclick="goToDashboard()"
             class="back-button"
@@ -913,11 +1466,12 @@ select.filter-input{
                 class="w-4 h-4"
             ></i>
 
-            Kembali
+            <span>Kembali</span>
 
         </button>
 
     </div>
+
 
     <div id="loading">
 
@@ -944,7 +1498,13 @@ select.filter-input{
 
     </div>
 
+
     <div id="tableContent">
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
 
         <div
             class="
@@ -983,6 +1543,7 @@ select.filter-input{
 
             </div>
 
+
             <div class="stat-card">
 
                 <p
@@ -1011,6 +1572,7 @@ select.filter-input{
 
             </div>
 
+
             <div class="stat-card">
 
                 <p
@@ -1038,6 +1600,7 @@ select.filter-input{
                 </p>
 
             </div>
+
 
             <div class="stat-card">
 
@@ -1068,6 +1631,11 @@ select.filter-input{
             </div>
 
         </div>
+
+
+        <!-- =================================================
+             FILTER
+        ================================================= -->
 
         <div
             class="
@@ -1132,6 +1700,7 @@ select.filter-input{
 
             </div>
 
+
             <div
                 class="
                     grid
@@ -1183,6 +1752,7 @@ select.filter-input{
 
                 </div>
 
+
                 <div>
 
                     <label
@@ -1220,6 +1790,7 @@ select.filter-input{
                     </select>
 
                 </div>
+
 
                 <div>
 
@@ -1259,6 +1830,7 @@ select.filter-input{
 
                 </div>
 
+
                 <div class="flex items-end">
 
                     <button
@@ -1297,7 +1869,15 @@ select.filter-input{
 
         </div>
 
+
+        <!-- =================================================
+             DATA PANEL
+        ================================================= -->
+
         <div class="table-panel">
+
+
+            <!-- TABLE HEADER -->
 
             <div
                 class="
@@ -1337,6 +1917,7 @@ select.filter-input{
 
                 </div>
 
+
                 <div
                     class="
                         flex
@@ -1359,7 +1940,12 @@ select.filter-input{
 
             </div>
 
-            <div class="overflow-x-auto">
+
+            <!-- =================================================
+                 DESKTOP TABLE
+            ================================================= -->
+
+            <div class="table-scroll">
 
                 <table>
 
@@ -1374,6 +1960,7 @@ select.filter-input{
                                 </div>
 
                             </th>
+
 
                             <th>
 
@@ -1394,6 +1981,7 @@ select.filter-input{
 
                             </th>
 
+
                             <th>
 
                                 <button
@@ -1412,6 +2000,7 @@ select.filter-input{
                                 </button>
 
                             </th>
+
 
                             <th>
 
@@ -1432,6 +2021,7 @@ select.filter-input{
 
                             </th>
 
+
                             <th>
 
                                 <button
@@ -1450,6 +2040,7 @@ select.filter-input{
                                 </button>
 
                             </th>
+
 
                             <th>
 
@@ -1470,6 +2061,7 @@ select.filter-input{
 
                             </th>
 
+
                             <th>
 
                                 <button
@@ -1488,6 +2080,7 @@ select.filter-input{
                                 </button>
 
                             </th>
+
 
                             <th>
 
@@ -1508,6 +2101,7 @@ select.filter-input{
 
                             </th>
 
+
                             <th>
 
                                 <button
@@ -1527,6 +2121,7 @@ select.filter-input{
 
                             </th>
 
+
                             <th>
 
                                 <div class="sort-button">
@@ -1539,11 +2134,27 @@ select.filter-input{
 
                     </thead>
 
+
                     <tbody id="tableBody"></tbody>
 
                 </table>
 
             </div>
+
+
+            <!-- =================================================
+                 MOBILE CARD LIST
+            ================================================= -->
+
+            <div
+                id="mobileDataList"
+                class="mobile-data-list"
+            ></div>
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================= -->
 
             <div
                 id="emptyState"
@@ -1595,6 +2206,11 @@ select.filter-input{
 
             </div>
 
+
+            <!-- =================================================
+                 PAGINATION
+            ================================================= -->
+
             <div
                 class="
                     px-5
@@ -1636,6 +2252,11 @@ select.filter-input{
 </section>
 
 </main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
 <footer
     class="
@@ -1690,6 +2311,11 @@ select.filter-input{
 
 </footer>
 
+
+<!-- =========================================================
+     LEADERBOARD BUTTON
+========================================================= -->
+
 <button
     id="leaderboardButton"
     onclick="openLeaderboard()"
@@ -1706,6 +2332,11 @@ select.filter-input{
     </span>
 
 </button>
+
+
+<!-- =========================================================
+     LEADERBOARD MODAL
+========================================================= -->
 
 <div
     id="leaderboardOverlay"
@@ -1771,6 +2402,7 @@ select.filter-input{
 
             </div>
 
+
             <button
                 onclick="closeLeaderboard()"
                 class="
@@ -1791,6 +2423,7 @@ select.filter-input{
             </button>
 
         </div>
+
 
         <div
             id="leaderboardList"
@@ -1817,6 +2450,7 @@ select.filter-input{
     </div>
 
 </div>
+
 
 <script>
 
@@ -1845,30 +2479,6 @@ let allData = [];
 let filteredData = [];
 
 let currentPage = 1;
-
-
-/*
-    SORT STATE
-
-    direction:
-        0 = normal/original
-        1 = ascending
-        -1 = descending
-
-    Contoh:
-
-    klik pertama:
-        0 -> 1
-
-    klik kedua:
-        1 -> -1
-
-    klik ketiga:
-        -1 -> 0
-
-    klik keempat:
-        0 -> 1
-*/
 
 let sortState = {
 
@@ -1948,11 +2558,6 @@ async function loadTable(){
 
                     ...row,
 
-                    /*
-                        Menyimpan posisi asli dari
-                        Google Sheet.
-                    */
-
                     _originalIndex:index
 
                 })
@@ -1969,11 +2574,6 @@ async function loadTable(){
             [...allData];
 
         currentPage = 1;
-
-        /*
-            Reset sorting ketika data baru
-            pertama kali dimuat.
-        */
 
         sortState = {
 
@@ -2234,14 +2834,6 @@ function applyFilters(){
 
     currentPage = 1;
 
-    /*
-        Jangan menghilangkan sorting ketika
-        filter digunakan.
-
-        Jika sedang sorting tanggal ASC,
-        setelah filter data tetap tanggal ASC.
-    */
-
     applyCurrentSort();
 
     renderTable();
@@ -2272,10 +2864,6 @@ function resetFilters(){
 
     currentPage = 1;
 
-    /*
-        Sorting tetap dipertahankan.
-    */
-
     applyCurrentSort();
 
     renderTable();
@@ -2287,19 +2875,7 @@ function resetFilters(){
    SORTING
 ========================================================= */
 
-/*
-    Fungsi utama ketika header kolom diklik.
-
-    1x = ASC
-    2x = DESC
-    3x = NORMAL
-*/
-
 function toggleSort(key){
-
-    /*
-        Jika klik kolom yang sama
-    */
 
     if(sortState.key === key){
 
@@ -2321,11 +2897,6 @@ function toggleSort(key){
 
     }
 
-    /*
-        Jika pindah ke kolom lain,
-        selalu mulai dari ASC.
-    */
-
     else{
 
         sortState.key =
@@ -2335,12 +2906,6 @@ function toggleSort(key){
             1;
 
     }
-
-    /*
-        Jika kembali ke NORMAL,
-        jangan ubah key.
-        Yang penting direction = 0.
-    */
 
     applyCurrentSort();
 
@@ -2358,12 +2923,6 @@ function toggleSort(key){
 ========================================================= */
 
 function applyCurrentSort(){
-
-    /*
-        NORMAL
-
-        Kembalikan ke urutan asli Google Sheet.
-    */
 
     if(
         !sortState.key ||
@@ -2396,14 +2955,6 @@ function applyCurrentSort(){
                     key
                 );
 
-            /*
-                Jika nilainya sama,
-                gunakan posisi asli
-                sebagai tie breaker.
-
-                Ini membuat sorting stabil.
-            */
-
             if(comparison === 0){
 
                 return (
@@ -2431,14 +2982,6 @@ function compareRows(
     key
 ){
 
-    /*
-        KHUSUS TANGGAL
-
-        Tidak menggunakan perbandingan string.
-
-        Kita convert ke timestamp.
-    */
-
     if(key === 'tanggal'){
 
         const dateA =
@@ -2450,11 +2993,6 @@ function compareRows(
             parseIndonesianDate(
                 rowB.tanggal
             );
-
-        /*
-            Data tanggal kosong
-            diletakkan di bawah.
-        */
 
         if(dateA === null && dateB === null){
 
@@ -2491,12 +3029,6 @@ function compareRows(
     }
 
 
-    /*
-        KHUSUS HM
-
-        Dibandingkan sebagai angka.
-    */
-
     if(key === 'hm'){
 
         const numA =
@@ -2532,10 +3064,6 @@ function compareRows(
     }
 
 
-    /*
-        KOLOM TEXT
-    */
-
     const valueA =
         String(
             rowA[key] ?? ''
@@ -2549,10 +3077,6 @@ function compareRows(
         )
         .trim()
         .toLowerCase();
-
-    /*
-        Kosong selalu diletakkan paling bawah.
-    */
 
     if(!valueA && !valueB){
 
@@ -2588,36 +3112,6 @@ function compareRows(
    DATE PARSER
 ========================================================= */
 
-/*
-    Fungsi ini dibuat khusus supaya tanggal
-    tidak lagi dianggap sebagai text.
-
-    Mendukung format:
-
-        DD/MM/YYYY
-        DD-MM-YYYY
-        DD.MM.YYYY
-
-        YYYY/MM/DD
-        YYYY-MM-DD
-        YYYY.MM.DD
-
-    Contoh:
-
-        02/08/2026
-        15/07/2026
-        28/06/2026
-
-    akan menjadi:
-
-        2026-08-02
-        2026-07-15
-        2026-06-28
-
-    sehingga sorting benar-benar berdasarkan
-    tanggal sebenarnya.
-*/
-
 function parseIndonesianDate(value){
 
     if(value === null || value === undefined){
@@ -2625,10 +3119,6 @@ function parseIndonesianDate(value){
         return null;
 
     }
-
-    /*
-        Jika API memberikan Date object.
-    */
 
     if(value instanceof Date){
 
@@ -2651,10 +3141,6 @@ function parseIndonesianDate(value){
 
     }
 
-    /*
-        Buang bagian jam jika ada.
-    */
-
     text =
         text
             .replace(
@@ -2662,13 +3148,6 @@ function parseIndonesianDate(value){
                 ''
             )
             .trim();
-
-    /*
-        FORMAT:
-        DD/MM/YYYY
-        DD-MM-YYYY
-        DD.MM.YYYY
-    */
 
     let match =
         text.match(
@@ -2686,13 +3165,6 @@ function parseIndonesianDate(value){
         const year =
             Number(match[3]);
 
-        /*
-            Jika tahun berada di belakang,
-            kita anggap format Indonesia:
-
-                DD/MM/YYYY
-        */
-
         const day =
             first;
 
@@ -2706,13 +3178,6 @@ function parseIndonesianDate(value){
         );
 
     }
-
-    /*
-        FORMAT:
-        YYYY/MM/DD
-        YYYY-MM-DD
-        YYYY.MM.DD
-    */
 
     match =
         text.match(
@@ -2738,24 +3203,12 @@ function parseIndonesianDate(value){
 
     }
 
-    /*
-        FORMAT ANGKA SERIAL DATE GOOGLE SHEETS
-
-        Jika suatu saat API mengirim angka
-        seperti 45900, kita coba konversi.
-    */
-
     if(
         /^\d+(\.\d+)?$/.test(text)
     ){
 
         const numeric =
             Number(text);
-
-        /*
-            Serial date Google Sheets
-            dihitung dari 1899-12-30.
-        */
 
         if(
             numeric > 20000 &&
@@ -2776,13 +3229,6 @@ function parseIndonesianDate(value){
         }
 
     }
-
-    /*
-        Fallback terakhir.
-
-        Hanya digunakan jika format API
-        ternyata ISO lengkap.
-    */
 
     const fallback =
         new Date(text);
@@ -2808,11 +3254,6 @@ function createValidDate(
     day
 ){
 
-    /*
-        Gunakan UTC supaya tidak terkena
-        masalah timezone / perubahan hari.
-    */
-
     const date =
         new Date(
             Date.UTC(
@@ -2821,17 +3262,6 @@ function createValidDate(
                 day
             )
         );
-
-    /*
-        Validasi ulang.
-
-        Contoh:
-
-        31/02/2026
-
-        tidak boleh dianggap sebagai tanggal
-        valid.
-    */
 
     if(
         date.getUTCFullYear() !== year ||
@@ -2868,10 +3298,6 @@ function parseNumber(value){
         String(value)
             .trim()
             .replace(/\s/g,'');
-
-    /*
-        Menghilangkan pemisah ribuan.
-    */
 
     text =
         text.replace(
@@ -2914,10 +3340,6 @@ function updateSortHeaders(){
                 '.sort-icon'
             );
 
-        /*
-            Reset
-        */
-
         button.classList.remove(
             'sort-active'
         );
@@ -2934,10 +3356,6 @@ function updateSortHeaders(){
             );
 
         }
-
-        /*
-            Jika ini adalah kolom aktif
-        */
 
         if(
             sortState.key === key &&
@@ -3012,6 +3430,12 @@ function renderTable(){
                 'tableBody'
             );
 
+    const mobileList =
+        document
+            .getElementById(
+                'mobileDataList'
+            );
+
     const emptyState =
         document
             .getElementById(
@@ -3019,6 +3443,8 @@ function renderTable(){
             );
 
     tbody.innerHTML='';
+
+    mobileList.innerHTML='';
 
     const total =
         filteredData.length;
@@ -3055,6 +3481,7 @@ function renderTable(){
             end
         );
 
+
     if(!pageData.length){
 
         emptyState
@@ -3067,6 +3494,11 @@ function renderTable(){
         emptyState
             .classList
             .add('hidden');
+
+
+        /* -----------------------------------------
+           DESKTOP
+        ----------------------------------------- */
 
         pageData.forEach(
             (row,index)=>{
@@ -3160,7 +3592,222 @@ function renderTable(){
             }
         );
 
+
+        /* -----------------------------------------
+           MOBILE CARDS
+        ----------------------------------------- */
+
+        pageData.forEach(
+            (row,index)=>{
+
+                const number =
+                    start + index + 1;
+
+                const card =
+                    document.createElement('div');
+
+                card.className =
+                    'mobile-data-card';
+
+                const itemRusak =
+                    escapeHtml(
+                        row.itemRusak
+                    );
+
+                const remark =
+                    escapeHtml(
+                        row.remark
+                    );
+
+                card.innerHTML = `
+
+                    <div
+                        class="
+                            mobile-card-header
+                        "
+                    >
+
+                        <div>
+
+                            <div
+                                class="
+                                    flex
+                                    items-center
+                                    gap-2
+                                "
+                            >
+
+                                <span
+                                    class="
+                                        mobile-number
+                                    "
+                                >
+                                    ${number}
+                                </span>
+
+                                <div
+                                    class="mobile-unit"
+                                >
+                                    ${escapeHtml(
+                                        row.unit
+                                    )}
+                                </div>
+
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-date
+                                "
+                            >
+
+                                <i
+                                    data-lucide="calendar-days"
+                                    class="inline w-3 h-3 mr-1"
+                                ></i>
+
+                                ${escapeHtml(
+                                    row.tanggal
+                                )}
+
+                            </div>
+
+                        </div>
+
+                        <div>
+                            ${getStatusBadge(
+                                row.status
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="
+                            mobile-card-grid
+                        "
+                    >
+
+                        <div class="mobile-field">
+
+                            <div class="mobile-label">
+                                HM
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-value
+                                "
+                            >
+                                ${escapeHtml(
+                                    row.hm
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="mobile-field">
+
+                            <div class="mobile-label">
+                                Service
+                            </div>
+
+                            <div>
+                                ${getServiceBadge(
+                                    row.service
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="mobile-field">
+
+                            <div class="mobile-label">
+                                PIC / Mekanik
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-value
+                                "
+                            >
+                                ${escapeHtml(
+                                    row.pic
+                                ) || '-'}
+                            </div>
+
+                        </div>
+
+
+                        <div class="mobile-field">
+
+                            <div class="mobile-label">
+                                Item Rusak
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-value
+                                "
+                            >
+                                ${
+                                    itemRusak ||
+                                    '<span class="text-slate-300">-</span>'
+                                }
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="
+                                mobile-field
+                                full
+                            "
+                        >
+
+                            <div class="mobile-label">
+                                Remark
+                            </div>
+
+                            <div
+                                class="
+                                    mobile-remark
+                                "
+                            >
+                                ${
+                                    remark ||
+                                    '<span class="text-slate-300">Tidak ada remark</span>'
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="
+                            mobile-pap
+                        "
+                    >
+
+                        ${getPapLink(row.pap)}
+
+                    </div>
+
+                `;
+
+                mobileList.appendChild(card);
+
+            }
+        );
+
     }
+
 
     updateResultInfo(
         total,
@@ -3465,11 +4112,13 @@ function renderPagination(
 
     container.appendChild(prev);
 
+
     const pages =
         getPaginationPages(
             currentPage,
             totalPages
         );
+
 
     pages.forEach(page=>{
 
@@ -3516,6 +4165,7 @@ function renderPagination(
         container.appendChild(button);
 
     });
+
 
     const next =
         document.createElement('button');
@@ -3694,7 +4344,9 @@ function updateLeaderboardFromData(
                         >
 
                             <div
-                                class="leader-rank"
+                                class="
+                                    leader-rank
+                                "
                             >
                                 ${medal}
                             </div>
@@ -3711,7 +4363,9 @@ function updateLeaderboardFromData(
                             </div>
 
                             <div
-                                class="leader-count"
+                                class="
+                                    leader-count
+                                "
                             >
                                 ${Number(
                                     mechanic.count || 0
@@ -3921,3 +4575,4 @@ document.addEventListener(
 
 </body>
 </html>
+
