@@ -7,7 +7,7 @@
 
 <meta
     name="viewport"
-    content="width=1200"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>LPH Dashboard - PT TSI</title>
@@ -35,12 +35,16 @@
 }
 
 html{
-    min-width:1100px;
+    min-width:0;
+    width:100%;
 }
 
 body{
 
     margin:0;
+
+    width:100%;
+    min-width:0;
 
     font-family:'Inter',sans-serif;
 
@@ -215,6 +219,8 @@ body{
         0 4px 12px
         rgba(15,23,42,.04);
 
+    min-width:0;
+
 }
 
 .chart-container{
@@ -222,6 +228,8 @@ body{
     position:relative;
 
     height:300px;
+
+    width:100%;
 
 }
 
@@ -356,6 +364,8 @@ body{
 
     align-items:center;
 
+    justify-content:center;
+
     gap:8px;
 
     transition:.2s ease;
@@ -417,20 +427,567 @@ body{
 
 
 /* =========================================================
-   MOBILE FALLBACK
+   RESPONSIVE
 ========================================================= */
 
-@media(max-width:1100px){
+/* TABLET */
 
-    html{
+@media(max-width:1024px){
 
-        min-width:0;
-
+    body{
+        padding:16px;
     }
+
+    main{
+        padding:24px !important;
+    }
+
+    .chart-container{
+        height:280px;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:768px){
 
     body{
 
-        min-width:1100px;
+        padding:
+            8px;
+
+    }
+
+    main{
+
+        width:100%;
+
+        max-width:none;
+
+        padding:
+            16px !important;
+
+        border-radius:
+            20px !important;
+
+    }
+
+
+    /* HEADER */
+
+    header{
+
+        margin-bottom:
+            20px !important;
+
+        padding-bottom:
+            18px !important;
+
+    }
+
+
+    .logo-wrapper{
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:
+            72px !important;
+
+        height:
+            72px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    header .color-primary{
+
+        width:100%;
+
+        padding:
+            14px
+            12px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:
+            16px !important;
+
+        letter-spacing:
+            .06em !important;
+
+    }
+
+
+    header h2{
+
+        font-size:
+            10px !important;
+
+        letter-spacing:
+            .08em !important;
+
+    }
+
+
+    header > div:last-child{
+
+        font-size:
+            8px !important;
+
+        letter-spacing:
+            .18em !important;
+
+    }
+
+
+    /* PAGE TITLE */
+
+    section > div:first-child{
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        gap:
+            16px !important;
+
+        margin-bottom:
+            20px !important;
+
+    }
+
+
+    section > div:first-child > div:first-child{
+
+        width:100%;
+
+    }
+
+
+    section h2{
+
+        font-size:
+            22px !important;
+
+        line-height:
+            1.25;
+
+        gap:
+            10px !important;
+
+    }
+
+
+    section h2 span{
+
+        padding:
+            9px !important;
+
+    }
+
+
+    section h2 span i{
+
+        width:
+            20px !important;
+
+        height:
+            20px !important;
+
+    }
+
+
+    section p{
+
+        font-size:
+            11px !important;
+
+        line-height:
+            1.5;
+
+    }
+
+
+    /* NAVIGATION */
+
+    section > div:first-child > div:last-child{
+
+        width:100% !important;
+
+        flex-direction:
+            column !important;
+
+    }
+
+
+    .dashboard-button{
+
+        width:100%;
+
+        min-height:
+            44px;
+
+        font-size:
+            11px;
+
+    }
+
+
+    /* KPI */
+
+    #dashboardContent > div:first-child{
+
+        grid-template-columns:
+            repeat(1,minmax(0,1fr)) !important;
+
+        gap:
+            10px !important;
+
+        margin-bottom:
+            10px !important;
+
+    }
+
+
+    /* UNIT KPI */
+
+    #dashboardContent > div:nth-child(2){
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr)) !important;
+
+        gap:
+            10px !important;
+
+        margin-bottom:
+            10px !important;
+
+    }
+
+
+    .stat-card{
+
+        padding:
+            14px;
+
+        border-radius:
+            14px;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:
+            25px !important;
+
+    }
+
+
+    /* CHART ROWS */
+
+    #dashboardContent > div:nth-child(3),
+    #dashboardContent > div:nth-child(5){
+
+        grid-template-columns:
+            1fr !important;
+
+        gap:
+            12px !important;
+
+        margin-bottom:
+            12px !important;
+
+    }
+
+
+    /* CHART PANEL */
+
+    .chart-panel{
+
+        padding:
+            14px;
+
+        border-radius:
+            16px;
+
+    }
+
+
+    .chart-container{
+
+        height:
+            260px;
+
+    }
+
+
+    /* TREND */
+
+    #dashboardContent > .chart-panel{
+
+        margin-bottom:
+            12px !important;
+
+    }
+
+
+    /* OPEN TABLE */
+
+    #dashboardContent > div:last-child{
+
+        border-radius:
+            16px;
+
+    }
+
+
+    #openTable{
+
+        width:100%;
+
+        overflow-x:auto;
+
+        -webkit-overflow-scrolling:touch;
+
+    }
+
+
+    #openTable table{
+
+        min-width:
+            700px;
+
+    }
+
+
+    /* FOOTER */
+
+    footer{
+
+        margin-top:
+            18px !important;
+
+        padding:
+            0 8px 20px !important;
+
+    }
+
+
+    footer p{
+
+        font-size:
+            9px !important;
+
+        line-height:
+            1.5;
+
+    }
+
+}
+
+
+/* SMALL MOBILE */
+
+@media(max-width:480px){
+
+    body{
+
+        padding:
+            5px;
+
+    }
+
+
+    main{
+
+        padding:
+            12px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    header{
+
+        margin-bottom:
+            16px !important;
+
+        padding-bottom:
+            15px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:
+            64px !important;
+
+        height:
+            64px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:
+            14px !important;
+
+    }
+
+
+    header h2{
+
+        font-size:
+            8px !important;
+
+    }
+
+
+    section h2{
+
+        font-size:
+            19px !important;
+
+    }
+
+
+    section h2 span{
+
+        padding:
+            8px !important;
+
+    }
+
+
+    section p{
+
+        font-size:
+            10px !important;
+
+    }
+
+
+    .stat-card{
+
+        padding:
+            12px;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:
+            23px !important;
+
+    }
+
+
+    .chart-panel{
+
+        padding:
+            12px;
+
+    }
+
+
+    .chart-container{
+
+        height:
+            230px;
+
+    }
+
+
+    #dashboardContent > div:nth-child(2){
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr)) !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   PREVENT CHART OVERFLOW
+========================================================= */
+
+canvas{
+
+    max-width:100%;
+
+}
+
+
+/* =========================================================
+   MOBILE TABLE
+========================================================= */
+
+@media(max-width:768px){
+
+    .overflow-x-auto{
+
+        overflow-x:auto;
+
+        max-width:100%;
+
+        -webkit-overflow-scrolling:touch;
+
+    }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICE
+========================================================= */
+
+@media(hover:none){
+
+    .stat-card:hover{
+
+        transform:none;
+
+        box-shadow:none;
+
+    }
+
+
+    .logo-wrapper:hover{
+
+        transform:none;
+
+    }
+
+
+    .dashboard-button:hover{
+
+        transform:none;
 
     }
 
@@ -3654,3 +4211,4 @@ document.addEventListener(
 </body>
 
 </html>
+
