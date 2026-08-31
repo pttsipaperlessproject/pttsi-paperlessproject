@@ -32,7 +32,6 @@ body{
     background:linear-gradient(135deg,#f8fafc,#f1f5f9);
     min-height:100vh;
     color:#1e293b;
-    width:100%;
     overflow-x:hidden;
 }
 
@@ -469,7 +468,7 @@ body{
 
 
 /* =========================================================
-   RESPONSIVE TABLET
+   RESPONSIVE - TABLET
 ========================================================= */
 
 @media(max-width:900px){
@@ -482,7 +481,7 @@ body{
 
 
 /* =========================================================
-   RESPONSIVE MOBILE
+   RESPONSIVE - MOBILE
 ========================================================= */
 
 @media(max-width:640px){
@@ -496,31 +495,26 @@ body{
 
     body{
         padding:10px!important;
-        align-items:stretch!important;
+        display:flex;
+        align-items:center;
     }
-
-
-    /* =====================================================
-       MAIN CONTAINER
-    ===================================================== */
 
     main{
         width:100%!important;
         max-width:100%!important;
-        padding:18px!important;
-        margin:0!important;
-        border-radius:24px!important;
+        min-width:0!important;
     }
 
     .glass-panel{
+        width:100%!important;
         padding:18px!important;
         border-radius:24px!important;
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        HEADER
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #mainHeader{
         margin-bottom:24px!important;
@@ -528,7 +522,7 @@ body{
     }
 
     .logo-wrapper{
-        margin-bottom:16px!important;
+        margin-bottom:14px!important;
     }
 
     .logo-wrapper > div{
@@ -540,15 +534,14 @@ body{
     #mainHeader .color-primary{
         width:100%!important;
         max-width:100%!important;
-        padding:15px 12px!important;
+        padding:14px 12px!important;
         border-radius:18px!important;
     }
 
     #mainHeader h1{
         font-size:17px!important;
-        line-height:1.25!important;
+        line-height:1.3!important;
         letter-spacing:.07em!important;
-        word-break:normal!important;
     }
 
     #mainHeader h2{
@@ -559,19 +552,18 @@ body{
 
     #mainHeader .mt-3{
         font-size:8px!important;
-        letter-spacing:.2em!important;
-        line-height:1.5!important;
-        text-align:center!important;
+        letter-spacing:.22em!important;
+        text-align:center;
     }
 
 
-    /* =====================================================
-       HOME SCREEN
-    ===================================================== */
+    /* -----------------------------------------------------
+       HOME
+    ----------------------------------------------------- */
 
     #homeScreen{
         width:100%!important;
-        max-width:100%!important;
+        min-width:0!important;
     }
 
     #homeScreen > div:first-child{
@@ -579,8 +571,8 @@ body{
     }
 
     #homeScreen h2{
-        font-size:21px!important;
-        line-height:1.3!important;
+        font-size:22px!important;
+        line-height:1.25!important;
     }
 
     #homeScreen p{
@@ -589,83 +581,83 @@ body{
     }
 
 
-    /* =====================================================
-       MAIN MENU CARDS
-    ===================================================== */
-
-    #homeScreen .grid{
-        width:100%!important;
-        grid-template-columns:1fr!important;
-        gap:12px!important;
-    }
-
-    .main-menu-card{
-        width:100%!important;
-        min-width:0!important;
-        max-width:100%!important;
-        border-radius:18px!important;
-    }
+    /* -----------------------------------------------------
+       MAIN MENU BUTTON
+    ----------------------------------------------------- */
 
     #homeScreen .main-menu-card{
-        padding:20px 16px!important;
-        min-height:145px;
+        width:100%!important;
+        min-width:0!important;
+        padding:22px 16px!important;
+        border-radius:18px!important;
         gap:12px!important;
     }
 
-    #homeScreen .main-menu-card .bg-white\/10{
-        padding:12px!important;
-        border-radius:15px!important;
+    #homeScreen .main-menu-card .p-4{
+        padding:13px!important;
+        border-radius:16px!important;
     }
 
-    #homeScreen .main-menu-card .bg-white\/10 i{
+    #homeScreen .main-menu-card i{
         width:32px!important;
         height:32px!important;
     }
 
-    #homeScreen .main-menu-card span.text-lg{
+    #homeScreen .main-menu-card span{
+        line-height:1.35!important;
+    }
+
+    #homeScreen .main-menu-card span.text-lg,
+    #homeScreen .main-menu-card span.sm\:text-xl{
         font-size:16px!important;
-        line-height:1.3!important;
     }
 
     #homeScreen .main-menu-card span.text-\[10px\]{
         font-size:9px!important;
-        line-height:1.4!important;
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        WORKSHOP LIVE MONITOR
-    ===================================================== */
+    ----------------------------------------------------- */
 
-    #homeScreen > button.main-menu-card{
-        padding:16px!important;
-        gap:12px!important;
-        text-align:center!important;
-    }
-
-    #homeScreen > button.main-menu-card > div:last-of-type{
-        min-width:0!important;
+    #homeScreen > button.menu-dark{
         width:100%!important;
+        min-width:0!important;
+        padding:17px 15px!important;
+        gap:12px!important;
+        border-radius:18px!important;
     }
 
-    #homeScreen > button.main-menu-card span{
-        word-break:normal!important;
+    #homeScreen > button.menu-dark > div{
+        padding:10px!important;
+        border-radius:12px!important;
     }
 
-    #homeScreen > button.main-menu-card span.text-lg{
+    #homeScreen > button.menu-dark > div > i{
+        width:24px!important;
+        height:24px!important;
+    }
+
+    #homeScreen > button.menu-dark span{
+        word-break:normal;
+        overflow-wrap:anywhere;
+    }
+
+    #homeScreen > button.menu-dark span:first-child{
         font-size:15px!important;
-        line-height:1.35!important;
+        line-height:1.3!important;
     }
 
-    #homeScreen > button.main-menu-card span.text-\[10px\]{
+    #homeScreen > button.menu-dark span:last-child{
         font-size:9px!important;
         line-height:1.45!important;
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        HOME INFO
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #homeScreen > div:last-child{
         padding:12px!important;
@@ -673,62 +665,26 @@ body{
         border-radius:16px!important;
     }
 
+    #homeScreen > div:last-child > div{
+        padding:8px!important;
+        border-radius:10px!important;
+        flex:none!important;
+    }
+
     #homeScreen > div:last-child p{
         font-size:9px!important;
         line-height:1.45!important;
-    }
-
-    #homeScreen > div:last-child > div{
-        padding:7px!important;
-        flex-shrink:0!important;
+        text-align:left!important;
     }
 
 
-    /* =====================================================
-       REPORT HEADER
-    ===================================================== */
-
-    #reportMenuScreen,
-    #formMenuScreen{
-        width:100%!important;
-        max-width:100%!important;
-    }
-
-    #reportMenuScreen > div:first-child,
-    #formMenuScreen > div:first-child{
-        gap:12px!important;
-        margin-bottom:20px!important;
-    }
-
-    #reportMenuScreen h2,
-    #formMenuScreen h2{
-        font-size:20px!important;
-        line-height:1.3!important;
-        gap:9px!important;
-    }
-
-    #reportMenuScreen h2 span,
-    #formMenuScreen h2 span{
-        padding:9px!important;
-        border-radius:12px!important;
-        flex-shrink:0!important;
-    }
-
-    #reportMenuScreen h2 span i,
-    #formMenuScreen h2 span i{
-        width:20px!important;
-        height:20px!important;
-    }
-
-
-    /* =====================================================
+    /* -----------------------------------------------------
        BACK BUTTON
-    ===================================================== */
+    ----------------------------------------------------- */
 
     .back-button{
-        width:auto!important;
-        max-width:100%!important;
-        min-width:0!important;
+        width:max-content!important;
+        max-width:max-content!important;
         flex:none!important;
         align-self:flex-start!important;
         padding:9px 13px!important;
@@ -736,137 +692,172 @@ body{
         border-radius:11px!important;
     }
 
-    .back-button i{
-        width:15px!important;
-        height:15px!important;
-    }
 
+    /* -----------------------------------------------------
+       REPORT HEADER
+    ----------------------------------------------------- */
 
-    /* =====================================================
-       DASHBOARD GRID
-    ===================================================== */
-
-    .dashboard-grid{
-        grid-template-columns:1fr!important;
-        gap:12px!important;
-        width:100%!important;
-    }
-
-    .dashboard-card{
+    #reportMenuScreen{
         width:100%!important;
         min-width:0!important;
-        min-height:145px!important;
-        height:auto!important;
-        padding:18px!important;
-        border-radius:20px!important;
     }
 
-    .dashboard-card-content{
-        min-width:0!important;
+    #reportMenuScreen h2,
+    #formMenuScreen h2{
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important;
     }
 
-    .dashboard-icon{
-        width:48px!important;
-        height:48px!important;
-        border-radius:15px!important;
+    #reportMenuScreen h2 > span,
+    #formMenuScreen h2 > span{
+        padding:10px!important;
+        border-radius:12px!important;
+        flex:none!important;
     }
 
-    .dashboard-icon i{
-        width:23px!important;
-        height:23px!important;
-    }
-
-    .dashboard-arrow{
-        width:34px!important;
-        height:34px!important;
-        border-radius:10px!important;
-    }
-
-    .dashboard-arrow i{
-        width:17px!important;
-        height:17px!important;
-    }
-
-    .dashboard-title{
-        font-size:12px!important;
-        line-height:1.4!important;
-        letter-spacing:.045em!important;
-        max-width:85%!important;
-        overflow-wrap:anywhere!important;
-    }
-
-    .dashboard-card-content > div:last-child{
-        gap:8px!important;
-        margin-top:20px!important;
-    }
-
-    .dashboard-card-content > div:last-child > span:last-child{
-        font-size:8px!important;
-        flex-shrink:0!important;
-    }
-
-
-    /* =====================================================
-       FORM MENU
-    ===================================================== */
-
-    #formMenuScreen{
-        width:100%!important;
-    }
-
-    #formMenuScreen .info-panel{
-        margin-bottom:18px!important;
-        padding:14px!important;
-        border-radius:18px!important;
-        gap:12px!important;
-    }
-
-    #formMenuScreen .info-panel > div:first-child{
-        padding:8px!important;
-        border-radius:11px!important;
-    }
-
-    #formMenuScreen .info-panel > div:first-child i{
+    #reportMenuScreen h2 > span i,
+    #formMenuScreen h2 > span i{
         width:20px!important;
         height:20px!important;
     }
 
-    #formMenuScreen .info-panel h4{
-        font-size:9px!important;
-        line-height:1.4!important;
-        letter-spacing:.1em!important;
+
+    /* -----------------------------------------------------
+       DASHBOARD
+    ----------------------------------------------------- */
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+        gap:13px;
+        width:100%;
     }
 
-    #formMenuScreen .info-panel p{
+    .dashboard-card{
+        width:100%;
+        min-width:0;
+        min-height:145px;
+        padding:18px;
+        border-radius:20px;
+    }
+
+    .dashboard-card-content{
+        min-width:0;
+    }
+
+    .dashboard-icon{
+        width:50px;
+        height:50px;
+        border-radius:15px;
+    }
+
+    .dashboard-icon i{
+        width:24px;
+        height:24px;
+    }
+
+    .dashboard-arrow{
+        width:34px;
+        height:34px;
+        border-radius:10px;
+    }
+
+    .dashboard-arrow i{
+        width:18px;
+        height:18px;
+    }
+
+    .dashboard-title{
+        font-size:12px;
+        line-height:1.4;
+        letter-spacing:.045em;
+        max-width:85%;
+        overflow-wrap:anywhere;
+    }
+
+    .dashboard-card .text-\[10px\]{
+        font-size:8px!important;
+        flex:none;
+    }
+
+    .dashboard-card:hover{
+        transform:translateY(-3px) scale(1.005);
+    }
+
+
+    /* -----------------------------------------------------
+       FORM MENU
+    ----------------------------------------------------- */
+
+    #formMenuScreen{
+        width:100%!important;
+        min-width:0!important;
+    }
+
+    #formMenuScreen .text-slate-500.font-medium.text-sm{
+        font-size:10px!important;
+        line-height:1.5!important;
+        margin-top:6px!important;
+    }
+
+
+    /* -----------------------------------------------------
+       K3L INFO PANEL
+    ----------------------------------------------------- */
+
+    .info-panel{
+        width:100%!important;
+        padding:14px!important;
+        border-radius:17px!important;
+        gap:11px!important;
+    }
+
+    .info-panel > div:first-child{
+        padding:9px!important;
+        border-radius:11px!important;
+    }
+
+    .info-panel > div:first-child i{
+        width:20px!important;
+        height:20px!important;
+    }
+
+    .info-panel h4{
+        font-size:9px!important;
+        line-height:1.4!important;
+        letter-spacing:.10em!important;
+    }
+
+    .info-panel p{
         font-size:9px!important;
         line-height:1.55!important;
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        FORM GROUP
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #formMenuContainer{
         width:100%!important;
-        max-width:100%!important;
+        min-width:0!important;
     }
 
     .form-group{
         width:100%!important;
-        max-width:100%!important;
+        min-width:0!important;
         padding:14px!important;
         border-left-width:4px!important;
         border-radius:16px!important;
     }
 
     .form-group > div:first-child{
-        gap:10px!important;
+        gap:9px!important;
     }
 
     .form-group > div:first-child > div:first-child{
         min-width:0!important;
-        flex:1 1 auto!important;
+        gap:9px!important;
     }
 
     .form-group > div:first-child > div:first-child > div:first-child{
@@ -879,82 +870,95 @@ body{
         height:18px!important;
     }
 
-    .form-group span.text-sm{
-        font-size:11px!important;
-        line-height:1.4!important;
-        letter-spacing:.035em!important;
-        overflow-wrap:anywhere!important;
+    .form-group > div:first-child > div:first-child > div:last-child{
+        min-width:0!important;
     }
 
-    .form-group p{
+    .form-group > div:first-child > div:first-child > div:last-child span{
+        font-size:11px!important;
+        line-height:1.4!important;
+        overflow-wrap:anywhere;
+    }
+
+    .form-group > div:first-child > div:first-child > div:last-child p{
         font-size:8px!important;
-        line-height:1.45!important;
+        line-height:1.4!important;
     }
 
     .form-group > div:first-child > div:last-child{
         padding:7px!important;
+        border-radius:9px!important;
     }
 
     .form-group > div:first-child > div:last-child i{
-        width:14px!important;
-        height:14px!important;
+        width:15px!important;
+        height:15px!important;
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        SUBMENU
-    ===================================================== */
+    ----------------------------------------------------- */
 
-    .form-group .submenu-link{
+    .form-group > div[id^="sub-"]{
+        margin-top:12px!important;
+        padding-top:12px!important;
+    }
+
+    .submenu-link{
+        width:100%!important;
+        min-width:0!important;
         padding:10px!important;
-        min-height:44px!important;
-        border-radius:12px!important;
-        font-size:11px!important;
-        line-height:1.4!important;
         gap:9px!important;
+        border-radius:11px!important;
+        font-size:11px!important;
+        line-height:1.35!important;
     }
 
     .submenu-link > span:first-child{
         padding:5px!important;
+        border-radius:7px!important;
+        flex:none!important;
     }
 
     .submenu-link > span:first-child i{
-        width:12px!important;
-        height:12px!important;
+        width:13px!important;
+        height:13px!important;
     }
 
     .submenu-link > span:last-child{
         min-width:0!important;
-        overflow-wrap:anywhere!important;
+        overflow-wrap:anywhere;
     }
 
 
-    /* =====================================================
-       MODAL
-    ===================================================== */
+    /* -----------------------------------------------------
+       MODALS
+    ----------------------------------------------------- */
 
     .modal-overlay{
         padding:12px!important;
+        overflow-y:auto;
     }
 
     .modal-card{
         width:100%!important;
-        max-width:100%!important;
-        padding:20px!important;
-        border-radius:22px!important;
+        max-width:420px!important;
         max-height:calc(100vh - 24px)!important;
-        overflow-y:auto!important;
+        overflow-y:auto;
+        padding:22px 18px!important;
+        border-radius:23px!important;
     }
 
-    .modal-card .mx-auto{
+    .modal-card > div:first-child{
         width:54px!important;
         height:54px!important;
         border-radius:16px!important;
     }
 
-    .modal-card .mx-auto i{
-        width:26px!important;
-        height:26px!important;
+    .modal-card > div:first-child i{
+        width:27px!important;
+        height:27px!important;
     }
 
     .modal-card h3{
@@ -972,32 +976,28 @@ body{
         font-size:16px!important;
     }
 
-    .modal-card .flex.gap-3{
-        gap:8px!important;
-    }
-
-    .modal-card .flex.gap-3 button{
-        padding:11px 8px!important;
-        font-size:11px!important;
+    .modal-card button{
+        min-height:44px;
+        font-size:12px!important;
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        TOAST
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #toast{
+        width:calc(100vw - 28px)!important;
         min-width:0!important;
-        width:calc(100vw - 32px)!important;
-        max-width:calc(100vw - 32px)!important;
-        padding:12px 14px!important;
+        max-width:calc(100vw - 28px)!important;
         bottom:18px!important;
-        border-radius:13px!important;
+        padding:12px 14px!important;
+        border-radius:12px!important;
     }
 
     #toast span{
         font-size:11px!important;
-        line-height:1.45!important;
+        line-height:1.4!important;
     }
 
     #toast i{
@@ -1006,15 +1006,16 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        FOOTER
-    ===================================================== */
+    ----------------------------------------------------- */
 
     footer{
         width:100%!important;
-        max-width:100%!important;
-        margin-top:18px!important;
-        padding:0 8px 20px!important;
+        margin-top:20px!important;
+        padding-left:8px!important;
+        padding-right:8px!important;
+        padding-bottom:22px!important;
     }
 
     footer p:first-child{
@@ -1024,19 +1025,7 @@ body{
 
     footer p:last-child{
         font-size:8px!important;
-        line-height:1.6!important;
-    }
-
-
-    /* =====================================================
-       TOUCH DEVICE
-    ===================================================== */
-
-    .main-menu-card:hover,
-    .dashboard-card:hover,
-    .form-group:hover,
-    .submenu-link:hover{
-        transform:none;
+        line-height:1.5!important;
     }
 
 }
@@ -1044,21 +1033,18 @@ body{
 
 /* =========================================================
    VERY SMALL MOBILE
+   <= 380px
 ========================================================= */
 
 @media(max-width:380px){
 
     body{
-        padding:6px!important;
-    }
-
-    main{
-        padding:14px!important;
-        border-radius:20px!important;
+        padding:7px!important;
     }
 
     .glass-panel{
         padding:14px!important;
+        border-radius:20px!important;
     }
 
     #mainHeader h1{
@@ -1070,21 +1056,31 @@ body{
     }
 
     #homeScreen h2{
-        font-size:19px!important;
+        font-size:20px!important;
     }
 
     #homeScreen .main-menu-card{
-        min-height:135px!important;
-        padding:17px 12px!important;
+        padding:19px 12px!important;
+    }
+
+    #homeScreen > button.menu-dark{
+        padding:14px 11px!important;
     }
 
     .dashboard-card{
-        min-height:135px!important;
-        padding:16px!important;
+        min-height:135px;
+        padding:15px;
+        border-radius:18px;
+    }
+
+    .dashboard-icon{
+        width:46px;
+        height:46px;
+        border-radius:14px;
     }
 
     .dashboard-title{
-        font-size:11px!important;
+        font-size:11px;
     }
 
     .form-group{
@@ -1092,29 +1088,53 @@ body{
     }
 
     .modal-card{
-        padding:17px!important;
+        padding:19px 14px!important;
+    }
+
+    .modal-card > div:last-child{
+        flex-direction:column!important;
+    }
+
+    .modal-card > div:last-child button{
+        width:100%!important;
+        flex:none!important;
     }
 
 }
 
 
 /* =========================================================
-   LANDSCAPE MOBILE
+   TOUCH DEVICES
+   Reduce hover movement on touchscreen
 ========================================================= */
 
-@media(max-width:900px) and (orientation:landscape){
+@media(hover:none) and (pointer:coarse){
 
-    .modal-card{
-        max-height:calc(100vh - 20px)!important;
+    .main-menu-card:hover{
+        transform:none;
+        box-shadow:none;
     }
 
-    #mainHeader{
-        margin-bottom:18px!important;
-        padding-bottom:16px!important;
+    .form-group:hover{
+        transform:none;
+        box-shadow:none;
     }
 
-    .dashboard-card{
-        min-height:130px!important;
+    .submenu-link:hover{
+        transform:none;
+    }
+
+    .dashboard-card:hover{
+        transform:none;
+        filter:none;
+    }
+
+    .dashboard-card:hover .dashboard-icon{
+        transform:none;
+    }
+
+    .dashboard-card:hover .dashboard-arrow{
+        transform:none;
     }
 
 }
