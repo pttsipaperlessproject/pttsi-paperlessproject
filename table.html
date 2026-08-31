@@ -4,1228 +4,1152 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Data Periodic Service - PT TSI</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
 
 body{
-margin:0;
-font-family:Inter,sans-serif;
-background:linear-gradient(135deg,#f8fafc,#eef2f7);
-color:#1e293b;
-min-height:100vh
+    margin:0;
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b;
+    min-height:100vh
 }
 
 .color-primary{background:#1e3a8a}
 .text-primary{color:#1e3a8a}
 
 .glass-panel{
-background:rgba(255,255,255,.95);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,.3)
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3)
 }
 
 .fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 
 @keyframes fadeIn{
-from{opacity:0;transform:translateY(12px)}
-to{opacity:1;transform:translateY(0)}
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
 .logo-wrapper{
-transition:transform .4s cubic-bezier(.175,.885,.32,1.275)
+    transition:transform .4s cubic-bezier(.175,.885,.32,1.275)
 }
 
 .logo-wrapper:hover{
-transform:scale(1.08) rotate(2deg)
+    transform:scale(1.08) rotate(2deg)
 }
 
 .logo-shadow{
-filter:drop-shadow(0 10px 8px rgba(0,0,0,.04)) drop-shadow(0 4px 3px rgba(0,0,0,.1))
+    filter:
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
 
 .page-title{
-font-size:30px;
-font-weight:900;
-color:#1e293b;
-letter-spacing:-.025em
+    font-size:30px;
+    font-weight:900;
+    color:#1e293b;
+    letter-spacing:-.025em
 }
 
 .page-subtitle{
-font-size:13px;
-color:#64748b;
-font-weight:500
+    font-size:13px;
+    color:#64748b;
+    font-weight:500
 }
 
 .back-button{
-background:#1e3a8a;
-color:#fff;
-border:0;
-border-radius:12px;
-padding:11px 17px;
-font-size:12px;
-font-weight:800;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:8px;
-transition:.2s ease;
-box-shadow:0 5px 12px rgba(30,58,138,.18);
-cursor:pointer;
-white-space:nowrap
+    background:#1e3a8a;
+    color:#fff;
+    border:0;
+    border-radius:12px;
+    padding:11px 17px;
+    font-size:12px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.2s ease;
+    box-shadow:0 5px 12px rgba(30,58,138,.18);
+    cursor:pointer;
+    white-space:nowrap
 }
 
 .back-button:hover{
-background:#1d4ed8;
-transform:translateY(-2px);
-box-shadow:0 8px 18px rgba(30,58,138,.25)
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
 }
 
 .stat-card{
-background:#fff;
-border:1px solid #e2e8f0;
-border-radius:17px;
-padding:17px;
-transition:.25s ease
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:17px;
+    transition:.25s ease
 }
 
 .stat-card:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 20px rgba(15,23,42,.07)
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
 
 .table-panel{
-background:#fff;
-border:1px solid #e2e8f0;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 4px 12px rgba(15,23,42,.04)
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(15,23,42,.04)
 }
 
 .table-scroll{
-overflow-x:auto;
--webkit-overflow-scrolling:touch
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch
 }
 
 table{
-width:100%;
-border-collapse:separate;
-border-spacing:0;
-min-width:950px
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    min-width:950px
 }
 
 thead{background:#f8fafc}
 
 thead th{
-padding:0;
-border-bottom:2px solid #e2e8f0;
-color:#475569;
-font-size:10px;
-font-weight:900;
-text-transform:uppercase;
-letter-spacing:.08em;
-white-space:nowrap;
-text-align:left
+    padding:0;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    white-space:nowrap;
+    text-align:left
 }
 
 .sort-button{
-width:100%;
-padding:14px;
-background:transparent;
-border:0;
-color:#475569;
-font-family:inherit;
-font-size:10px;
-font-weight:900;
-text-transform:uppercase;
-letter-spacing:.08em;
-text-align:left;
-display:flex;
-align-items:center;
-gap:7px;
-cursor:pointer;
-transition:.18s ease
+    width:100%;
+    padding:14px;
+    background:transparent;
+    border:0;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    text-align:left;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    cursor:pointer;
+    transition:.18s ease
 }
 
 .sort-button:hover,
 .sort-button.sort-active{
-background:#eff6ff;
-color:#1e3a8a
+    background:#eff6ff;
+    color:#1e3a8a
 }
 
 .sort-icon{
-width:14px;
-height:14px;
-flex-shrink:0;
-color:#94a3b8;
-transition:.18s ease
+    width:14px;
+    height:14px;
+    flex-shrink:0;
+    color:#94a3b8;
+    transition:.18s ease
 }
 
-.sort-button.sort-active .sort-icon{color:#1e3a8a}
-.sort-button.sort-normal .sort-icon{opacity:.45}
+.sort-button.sort-active .sort-icon{
+    color:#1e3a8a
+}
+
+.sort-button.sort-normal .sort-icon{
+    opacity:.45
+}
 
 tbody td{
-padding:13px 14px;
-border-bottom:1px solid #f1f5f9;
-color:#334155;
-font-size:11px;
-font-weight:500;
-vertical-align:middle
+    padding:13px 14px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:11px;
+    font-weight:500;
+    vertical-align:middle
 }
 
-tbody tr{transition:background .15s ease}
-tbody tr:hover{background:#f8fafc}
-tbody tr:last-child td{border-bottom:0}
+tbody tr{
+    transition:background .15s ease
+}
+
+tbody tr:hover{
+    background:#f8fafc
+}
+
+tbody tr:last-child td{
+    border-bottom:0
+}
 
 .pap-link{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-gap:6px;
-padding:6px 10px;
-border-radius:8px;
-background:#eff6ff;
-color:#1d4ed8;
-border:1px solid #dbeafe;
-font-size:10px;
-font-weight:800;
-white-space:nowrap;
-text-decoration:none;
-transition:.2s ease
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:6px 10px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1d4ed8;
+    border:1px solid #dbeafe;
+    font-size:10px;
+    font-weight:800;
+    white-space:nowrap;
+    text-decoration:none;
+    transition:.2s ease
 }
 
 .pap-link:hover{
-background:#dbeafe;
-border-color:#bfdbfe;
-color:#1e40af;
-transform:translateY(-1px);
-box-shadow:0 3px 8px rgba(37,99,235,.12)
+    background:#dbeafe;
+    border-color:#bfdbfe;
+    color:#1e40af;
+    transform:translateY(-1px);
+    box-shadow:0 3px 8px rgba(37,99,235,.12)
 }
 
 .service-badge,
 .status-badge{
-display:inline-flex;
-align-items:center;
-border-radius:999px;
-font-weight:800;
-white-space:nowrap
+    display:inline-flex;
+    align-items:center;
+    border-radius:999px;
+    font-weight:800;
+    white-space:nowrap
 }
 
 .service-badge{
-padding:5px 9px;
-font-size:9px
+    padding:5px 9px;
+    font-size:9px
 }
 
-.service-periodic{background:#dbeafe;color:#1e40af}
-.service-general{background:#fef3c7;color:#92400e}
-.service-other{background:#e2e8f0;color:#475569}
+.service-periodic{
+    background:#dbeafe;
+    color:#1e40af
+}
+
+.service-general{
+    background:#fef3c7;
+    color:#92400e
+}
+
+.service-other{
+    background:#e2e8f0;
+    color:#475569
+}
 
 .status-badge{
-gap:5px;
-padding:5px 9px;
-font-size:9px
+    gap:5px;
+    padding:5px 9px;
+    font-size:9px
 }
 
-.status-good{background:#dcfce7;color:#166534}
-.status-bad{background:#fee2e2;color:#991b1b}
-.status-other{background:#e2e8f0;color:#475569}
+.status-good{
+    background:#dcfce7;
+    color:#166534
+}
+
+.status-bad{
+    background:#fee2e2;
+    color:#991b1b
+}
+
+.status-other{
+    background:#e2e8f0;
+    color:#475569
+}
 
 .unit-badge{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-min-width:50px;
-padding:5px 8px;
-border-radius:8px;
-background:#eff6ff;
-color:#1e3a8a;
-font-size:10px;
-font-weight:900
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:50px;
+    padding:5px 8px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    font-size:10px;
+    font-weight:900
 }
 
 .filter-input{
-width:100%;
-background:#f8fafc;
-border:1px solid #e2e8f0;
-border-radius:11px;
-padding:10px 12px;
-color:#334155;
-font-size:11px;
-font-weight:600;
-outline:0;
-transition:.2s ease
+    width:100%;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:11px;
+    padding:10px 12px;
+    color:#334155;
+    font-size:11px;
+    font-weight:600;
+    outline:0;
+    transition:.2s ease
 }
 
 .filter-input:focus{
-background:#fff;
-border-color:#93c5fd;
-box-shadow:0 0 0 3px rgba(59,130,246,.1)
+    background:#fff;
+    border-color:#93c5fd;
+    box-shadow:0 0 0 3px rgba(59,130,246,.1)
 }
 
-select.filter-input{cursor:pointer}
+select.filter-input{
+    cursor:pointer
+}
 
 .pagination-button{
-width:34px;
-height:34px;
-border-radius:9px;
-border:1px solid #e2e8f0;
-background:#fff;
-color:#475569;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:11px;
-font-weight:800;
-cursor:pointer;
-transition:.2s ease
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s ease
 }
 
 .pagination-button:hover:not(:disabled){
-background:#eff6ff;
-color:#1e3a8a;
-border-color:#bfdbfe
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe
 }
 
 .pagination-button.active{
-background:#1e3a8a;
-color:#fff;
-border-color:#1e3a8a
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
 }
 
 .pagination-button:disabled{
-opacity:.4;
-cursor:not-allowed
+    opacity:.4;
+    cursor:not-allowed
 }
 
 #loading{
-min-height:350px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center
+    min-height:350px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center
 }
 
-#tableContent{display:none}
-#tableContent.show{display:block}
-
-.mobile-data-list{display:none}
-
-.mobile-data-card{
-background:#fff;
-border:1px solid #e2e8f0;
-border-radius:17px;
-padding:15px;
-margin-bottom:10px;
-box-shadow:0 3px 10px rgba(15,23,42,.035)
-}
-
-.mobile-card-header{
-display:flex;
-align-items:flex-start;
-justify-content:space-between;
-gap:12px;
-padding-bottom:12px;
-margin-bottom:12px;
-border-bottom:1px solid #f1f5f9
-}
-
-.mobile-unit{
-font-size:16px;
-font-weight:900;
-color:#1e3a8a;
-word-break:break-word
-}
-
-.mobile-date{
-font-size:10px;
-font-weight:700;
-color:#64748b;
-margin-top:3px
-}
-
-.mobile-card-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:11px 14px
-}
-
-.mobile-field{min-width:0}
-.mobile-field.full{grid-column:1/-1}
-
-.mobile-label{
-font-size:8px;
-font-weight:900;
-color:#94a3b8;
-text-transform:uppercase;
-letter-spacing:.08em;
-margin-bottom:4px
-}
-
-.mobile-value{
-font-size:11px;
-font-weight:600;
-color:#334155;
-word-break:break-word
-}
-
-.mobile-remark{
-background:#f8fafc;
-border-radius:10px;
-padding:9px 10px;
-color:#475569;
-font-size:10px;
-line-height:1.5;
-word-break:break-word
-}
-
-.mobile-pap{
-margin-top:12px;
-padding-top:12px;
-border-top:1px solid #f1f5f9
-}
-
-.mobile-number{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-min-width:27px;
-height:27px;
-padding:0 7px;
-border-radius:8px;
-background:#f1f5f9;
-color:#64748b;
-font-size:9px;
-font-weight:900;
-flex-shrink:0
-}
-
-#leaderboardButton{
-position:fixed;
-right:28px;
-bottom:28px;
-z-index:90;
-width:68px;
-height:68px;
-border-radius:20px;
-background:#1e3a8a;
-color:#fff;
-border:2px solid rgba(255,255,255,.45);
-box-shadow:0 12px 30px rgba(15,23,42,.28);
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-transition:transform .25s ease,box-shadow .25s ease
-}
-
-#leaderboardButton:hover{
-transform:translateY(-4px) scale(1.05);
-box-shadow:0 18px 38px rgba(15,23,42,.34)
-}
-
-#leaderboardButton.leader-pulse{
-animation:leaderPulse 1.5s ease-in-out
-}
-
-@keyframes leaderPulse{
-0%,100%{
-transform:scale(1);
-box-shadow:0 12px 30px rgba(15,23,42,.28)
-}
-20%{
-transform:scale(1.18);
-box-shadow:0 0 0 12px rgba(30,58,138,.12),0 16px 38px rgba(15,23,42,.32)
-}
-40%{transform:scale(.98)}
-60%{
-transform:scale(1.12);
-box-shadow:0 0 0 8px rgba(30,58,138,.1),0 16px 38px rgba(15,23,42,.32)
-}
-}
-
-.leader-tooltip{
-position:absolute;
-right:0;
-bottom:78px;
-white-space:nowrap;
-background:#0f172a;
-color:#fff;
-font-size:10px;
-font-weight:700;
-padding:7px 10px;
-border-radius:8px;
-opacity:0;
-pointer-events:none;
-transform:translateY(5px);
-transition:.2s
-}
-
-#leaderboardButton:hover .leader-tooltip{
-opacity:1;
-transform:translateY(0)
-}
-
-#leaderboardOverlay{
-position:fixed;
-inset:0;
-z-index:95;
-background:rgba(15,23,42,.28);
-backdrop-filter:blur(3px);
-display:none;
-align-items:center;
-justify-content:center;
-padding:20px
-}
-
-#leaderboardOverlay.show{display:flex}
-
-#leaderboardModal{
-width:min(430px,100%);
-max-height:80vh;
-overflow:hidden;
-background:#fff;
-border:1px solid #e2e8f0;
-border-radius:22px;
-box-shadow:0 25px 60px rgba(15,23,42,.25);
-animation:leaderModalIn .25s ease
-}
-
-@keyframes leaderModalIn{
-from{
-opacity:0;
-transform:translateY(12px) scale(.97)
-}
-to{
-opacity:1;
-transform:translateY(0) scale(1)
-}
-}
-
-.leader-row{
-display:flex;
-align-items:center;
-gap:12px;
-padding:12px 14px;
-border-radius:14px;
-margin-bottom:7px;
-background:#f8fafc;
-border:1px solid #f1f5f9
-}
-
-.leader-row.top-1{
-background:#fffbeb;
-border-color:#fde68a
-}
-
-.leader-row.top-2{border-color:#cbd5e1}
-
-.leader-row.top-3{
-background:#fff7ed;
-border-color:#fed7aa
-}
-
-.leader-rank{
-width:30px;
-height:30px;
-border-radius:10px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:12px;
-font-weight:900;
-background:#e2e8f0;
-color:#475569;
-flex-shrink:0
-}
-
-.top-1 .leader-rank{
-background:#fbbf24;
-color:#78350f
-}
-
-.top-2 .leader-rank{
-background:#cbd5e1;
-color:#334155
-}
-
-.top-3 .leader-rank{
-background:#fdba74;
-color:#7c2d12
-}
-
-.leader-name{
-font-size:12px;
-font-weight:800;
-color:#334155;
-flex:1;
-min-width:0
-}
-
-.leader-count{
-font-size:11px;
-font-weight:900;
-color:#1e3a8a;
-background:#dbeafe;
-padding:5px 9px;
-border-radius:999px;
-white-space:nowrap
-}
-
-
-/* =========================================================
-   MOBILE RESPONSIVE
-   Hanya bagian ini yang menangani perubahan tampilan mobile.
-   ========================================================= */
-
-@media(max-width:767px){
-
-html{
-overflow-x:hidden
-}
-
-body{
-padding:8px!important;
-background:#f1f5f9;
-overflow-x:hidden
-}
-
-main{
-width:100%!important;
-padding:16px!important;
-border-radius:20px!important;
-overflow:hidden
-}
-
-footer{
-margin-top:18px!important;
-padding:0 10px 90px!important
-}
-
-footer p{
-font-size:9px!important;
-line-height:1.6
-}
-
-footer p:last-child{
-font-size:8px!important
-}
-
-/* HEADER */
-
-header{
-margin-bottom:20px!important;
-padding-bottom:18px!important
-}
-
-.logo-wrapper{
-margin-bottom:12px!important
-}
-
-.logo-wrapper>div{
-width:74px!important;
-height:74px!important;
-border-radius:16px!important
-}
-
-.color-primary{
-width:100%;
-padding:13px 12px!important;
-border-radius:15px!important;
-gap:3px!important
-}
-
-.color-primary h1{
-font-size:14px!important;
-line-height:1.35!important;
-letter-spacing:.06em!important
-}
-
-.color-primary h2{
-font-size:9px!important;
-line-height:1.5!important;
-letter-spacing:.1em!important
-}
-
-.color-primary .h-0\.5{
-margin-top:5px!important;
-margin-bottom:5px!important
-}
-
-header>div:last-child{
-font-size:7px!important;
-letter-spacing:.17em!important;
-text-align:center
-}
-
-/* TITLE */
-
-section>div:first-child{
-align-items:flex-start!important;
-gap:10px!important;
-margin-bottom:18px!important
-}
-
-section>div:first-child>div:first-child{
-min-width:0;
-flex:1
-}
-
-.page-title{
-font-size:19px!important;
-line-height:1.3!important;
-gap:8px!important;
-word-break:normal
-}
-
-.page-title span{
-padding:8px!important;
-border-radius:10px!important;
-flex-shrink:0
-}
-
-.page-title svg{
-width:18px!important;
-height:18px!important
-}
-
-.page-subtitle{
-font-size:9px!important;
-line-height:1.5!important;
-margin-top:6px!important;
-margin-left:0!important
-}
-
-.back-button{
-padding:9px 10px!important;
-font-size:9px!important;
-border-radius:10px!important;
-gap:5px!important;
-flex-shrink:0
-}
-
-.back-button svg{
-width:14px!important;
-height:14px!important
-}
-
-/* LOADING */
-
-#loading{
-min-height:280px
-}
-
-/* STATISTICS */
-
-#tableContent>div:first-child{
-grid-template-columns:1fr 1fr!important;
-gap:8px!important;
-margin-bottom:12px!important
-}
-
-.stat-card{
-padding:12px!important;
-border-radius:13px!important;
-min-width:0
-}
-
-.stat-card p:first-child{
-font-size:7px!important;
-line-height:1.4!important;
-letter-spacing:.05em!important
-}
-
-.stat-card p:last-child{
-font-size:21px!important;
-margin-top:5px!important;
-line-height:1!important
-}
-
-/* FILTER */
-
-#tableContent>div:nth-child(2){
-padding:13px!important;
-border-radius:15px!important;
-margin-bottom:12px!important
-}
-
-#tableContent>div:nth-child(2)>div:first-child{
-margin-bottom:12px!important;
-gap:8px!important
-}
-
-#tableContent>div:nth-child(2)>div:first-child span{
-padding:7px!important;
-border-radius:8px!important
-}
-
-#tableContent>div:nth-child(2)>div:first-child svg{
-width:14px!important;
-height:14px!important
-}
-
-#tableContent>div:nth-child(2)>div:first-child h3{
-font-size:11px!important
-}
-
-#tableContent>div:nth-child(2)>div:first-child p{
-font-size:7px!important;
-line-height:1.4!important
-}
-
-#tableContent>div:nth-child(2)>div:last-child{
-grid-template-columns:1fr!important;
-gap:9px!important
-}
-
-#tableContent>div:nth-child(2) label{
-font-size:7px!important;
-margin-bottom:4px!important
-}
-
-.filter-input{
-font-size:10px!important;
-padding:10px!important;
-height:38px!important
-}
-
-#tableContent>div:nth-child(2) button{
-height:38px!important
-}
-
-/* TABLE PANEL */
-
-.table-panel{
-border-radius:16px!important
-}
-
-.table-panel>div:first-child{
-padding:12px!important;
-gap:8px!important
-}
-
-.table-panel>div:first-child h3{
-font-size:10px!important;
-line-height:1.4!important
-}
-
-.table-panel>div:first-child p{
-font-size:7px!important;
-line-height:1.4!important
+#tableContent{
+    display:none
 }
 
-.table-panel>div:first-child>div:last-child{
-display:none!important
+#tableContent.show{
+    display:block
 }
 
-/* HIDE DESKTOP TABLE */
-
-.table-scroll{
-display:none!important
-}
 
-/* MOBILE CARDS */
+/* =========================
+   MOBILE DATA CARD
+   ========================= */
 
 .mobile-data-list{
-display:block!important;
-padding:9px!important;
-background:#f8fafc
+    display:none
 }
 
 .mobile-data-card{
-padding:13px!important;
-margin-bottom:8px!important;
-border-radius:15px!important
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:10px;
+    box-shadow:0 3px 10px rgba(15,23,42,.035);
+    transition:.2s ease
+}
+
+.mobile-data-card:active{
+    transform:scale(.995)
 }
 
 .mobile-card-header{
-gap:8px!important;
-padding-bottom:10px!important;
-margin-bottom:10px!important
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:12px;
+    margin-bottom:12px;
+    border-bottom:1px solid #f1f5f9
 }
 
 .mobile-unit{
-font-size:14px!important;
-line-height:1.25!important
+    font-size:16px;
+    font-weight:900;
+    color:#1e3a8a;
+    line-height:1.2
 }
 
 .mobile-date{
-font-size:8px!important;
-margin-top:3px!important
-}
-
-.mobile-date svg{
-width:10px!important;
-height:10px!important
+    font-size:10px;
+    font-weight:700;
+    color:#64748b;
+    margin-top:4px
 }
 
 .mobile-card-grid{
-grid-template-columns:1fr 1fr!important;
-gap:10px 12px!important
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px 14px
 }
 
-.mobile-label{
-font-size:7px!important;
-margin-bottom:3px!important
-}
-
-.mobile-value{
-font-size:10px!important;
-line-height:1.45!important
-}
-
-.mobile-remark{
-padding:8px!important;
-font-size:9px!important;
-line-height:1.5!important
-}
-
-.mobile-number{
-min-width:24px!important;
-height:24px!important;
-padding:0 6px!important;
-font-size:8px!important;
-border-radius:7px!important
-}
-
-.mobile-card-header .status-badge{
-padding:4px 7px!important;
-font-size:8px!important
-}
-
-.mobile-card-header .status-badge svg{
-width:10px!important;
-height:10px!important
-}
-
-.mobile-card-grid .service-badge{
-font-size:8px!important;
-padding:4px 7px!important;
-max-width:100%;
-overflow:hidden;
-text-overflow:ellipsis
-}
-
-.mobile-pap{
-margin-top:10px!important;
-padding-top:10px!important
-}
-
-.mobile-pap .pap-link{
-width:100%;
-font-size:9px!important;
-padding:7px 9px!important
-}
-
-/* EMPTY STATE */
-
-#emptyState .py-16{
-padding-top:40px!important;
-padding-bottom:40px!important
-}
-
-#emptyState h3{
-font-size:13px!important
-}
-
-#emptyState p{
-font-size:9px!important
-}
-
-/* PAGINATION */
-
-.table-panel>div:last-child{
-padding:10px!important;
-gap:7px!important;
-min-width:0
-}
-
-#paginationInfo{
-font-size:7px!important;
-white-space:nowrap;
-flex-shrink:0
-}
-
-#pagination{
-gap:3px!important;
-overflow-x:auto;
-max-width:70%;
-padding-bottom:2px;
-scrollbar-width:none
-}
-
-#pagination::-webkit-scrollbar{
-display:none
-}
-
-.pagination-button{
-width:29px!important;
-height:29px!important;
-min-width:29px!important;
-font-size:8px!important;
-border-radius:8px!important
-}
-
-#pagination>span{
-font-size:9px!important;
-padding:0 1px!important
-}
-
-/* LEADERBOARD BUTTON */
-
-#leaderboardButton{
-width:54px;
-height:54px;
-right:15px;
-bottom:15px;
-border-radius:16px
-}
-
-#leaderboardButton svg{
-width:22px;
-height:22px
-}
-
-.leader-tooltip{
-display:none
-}
-
-/* LEADERBOARD MODAL */
-
-#leaderboardOverlay{
-padding:9px!important
-}
-
-#leaderboardModal{
-width:100%;
-max-height:86vh;
-border-radius:17px!important
-}
-
-#leaderboardModal>div:first-child{
-padding:13px!important
-}
-
-#leaderboardModal h3{
-font-size:12px!important;
-line-height:1.4!important
-}
-
-#leaderboardModal h3 span{
-padding:7px!important
-}
-
-#leaderboardModal h3 svg{
-width:16px!important;
-height:16px!important
-}
-
-#leaderboardModal p{
-font-size:8px!important;
-line-height:1.4!important
-}
-
-#leaderboardList{
-padding:11px!important;
-max-height:70vh!important
-}
-
-.leader-row{
-padding:9px!important;
-gap:8px!important;
-border-radius:11px!important;
-margin-bottom:6px!important
-}
-
-.leader-rank{
-width:27px!important;
-height:27px!important;
-border-radius:8px!important;
-font-size:10px!important
-}
-
-.leader-name{
-font-size:10px!important
-}
-
-.leader-count{
-font-size:8px!important;
-padding:4px 6px!important
-}
-
-}
-
-
-/* =========================================================
-   HP SANGAT KECIL
-   ========================================================= */
-
-@media(max-width:380px){
-
-body{
-padding:5px!important
-}
-
-main{
-padding:12px!important;
-border-radius:17px!important
-}
-
-.logo-wrapper>div{
-width:66px!important;
-height:66px!important
-}
-
-.color-primary{
-padding:11px 9px!important;
-border-radius:13px!important
-}
-
-.color-primary h1{
-font-size:12px!important
-}
-
-.color-primary h2{
-font-size:8px!important
-}
-
-header>div:last-child{
-font-size:6px!important
-}
-
-.page-title{
-font-size:17px!important
-}
-
-.page-title span{
-padding:7px!important
-}
-
-.page-title svg{
-width:16px!important;
-height:16px!important
-}
-
-.page-subtitle{
-font-size:8px!important
-}
-
-.back-button{
-padding:8px!important
-}
-
-.back-button span{
-display:none
-}
-
-.back-button svg{
-width:15px!important;
-height:15px!important
-}
-
-.stat-card{
-padding:10px!important
-}
-
-.stat-card p:first-child{
-font-size:6px!important
-}
-
-.stat-card p:last-child{
-font-size:19px!important
-}
-
-#tableContent>div:nth-child(2){
-padding:11px!important
-}
-
-.mobile-card-grid{
-grid-template-columns:1fr!important;
-gap:9px!important
+.mobile-field{
+    min-width:0
 }
 
 .mobile-field.full{
-grid-column:auto
+    grid-column:1/-1
 }
 
-.mobile-data-card{
-padding:12px!important
-}
-
-.mobile-card-header{
-align-items:flex-start!important
-}
-
-.mobile-unit{
-font-size:13px!important
+.mobile-label{
+    font-size:8px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:4px
 }
 
 .mobile-value{
-font-size:10px!important
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    word-break:break-word;
+    line-height:1.45
 }
 
-#pagination{
-max-width:60%
+.mobile-remark{
+    background:#f8fafc;
+    border-radius:10px;
+    padding:9px 10px;
+    color:#475569;
+    font-size:10px;
+    line-height:1.5;
+    word-break:break-word
 }
 
-#paginationInfo{
-font-size:6px!important
+.mobile-pap{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid #f1f5f9
 }
 
-.pagination-button{
-width:27px!important;
-height:27px!important;
-min-width:27px!important;
-font-size:8px!important
+.mobile-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:27px;
+    height:27px;
+    padding:0 7px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#64748b;
+    font-size:9px;
+    font-weight:900
 }
+
+
+/* =========================
+   LEADERBOARD
+   ========================= */
 
 #leaderboardButton{
-width:50px;
-height:50px;
-right:12px;
-bottom:12px;
-border-radius:15px
+    position:fixed;
+    right:28px;
+    bottom:28px;
+    z-index:90;
+    width:68px;
+    height:68px;
+    border-radius:20px;
+    background:#1e3a8a;
+    color:#fff;
+    border:2px solid rgba(255,255,255,.45);
+    box-shadow:0 12px 30px rgba(15,23,42,.28);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:transform .25s ease,box-shadow .25s ease
 }
 
-#leaderboardButton svg{
-width:20px;
-height:20px
+#leaderboardButton:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 18px 38px rgba(15,23,42,.34)
 }
 
-footer{
-padding-bottom:75px!important
+#leaderboardButton.leader-pulse{
+    animation:leaderPulse 1.5s ease-in-out
 }
 
+@keyframes leaderPulse{
+    0%,100%{
+        transform:scale(1);
+        box-shadow:0 12px 30px rgba(15,23,42,.28)
+    }
+
+    20%{
+        transform:scale(1.18);
+        box-shadow:
+            0 0 0 12px rgba(30,58,138,.12),
+            0 16px 38px rgba(15,23,42,.32)
+    }
+
+    40%{
+        transform:scale(.98)
+    }
+
+    60%{
+        transform:scale(1.12);
+        box-shadow:
+            0 0 0 8px rgba(30,58,138,.1),
+            0 16px 38px rgba(15,23,42,.32)
+    }
+}
+
+.leader-tooltip{
+    position:absolute;
+    right:0;
+    bottom:78px;
+    white-space:nowrap;
+    background:#0f172a;
+    color:#fff;
+    font-size:10px;
+    font-weight:700;
+    padding:7px 10px;
+    border-radius:8px;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(5px);
+    transition:.2s
+}
+
+#leaderboardButton:hover .leader-tooltip{
+    opacity:1;
+    transform:translateY(0)
+}
+
+#leaderboardOverlay{
+    position:fixed;
+    inset:0;
+    z-index:95;
+    background:rgba(15,23,42,.28);
+    backdrop-filter:blur(3px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px
+}
+
+#leaderboardOverlay.show{
+    display:flex
+}
+
+#leaderboardModal{
+    width:min(430px,100%);
+    max-height:80vh;
+    overflow:hidden;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:22px;
+    box-shadow:0 25px 60px rgba(15,23,42,.25);
+    animation:leaderModalIn .25s ease
+}
+
+@keyframes leaderModalIn{
+    from{
+        opacity:0;
+        transform:translateY(12px) scale(.97)
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1)
+    }
+}
+
+.leader-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    border-radius:14px;
+    margin-bottom:7px;
+    background:#f8fafc;
+    border:1px solid #f1f5f9
+}
+
+.leader-row.top-1{
+    background:#fffbeb;
+    border-color:#fde68a
+}
+
+.leader-row.top-2{
+    border-color:#cbd5e1
+}
+
+.leader-row.top-3{
+    background:#fff7ed;
+    border-color:#fed7aa
+}
+
+.leader-rank{
+    width:30px;
+    height:30px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:900;
+    background:#e2e8f0;
+    color:#475569;
+    flex-shrink:0
+}
+
+.top-1 .leader-rank{
+    background:#fbbf24;
+    color:#78350f
+}
+
+.top-2 .leader-rank{
+    background:#cbd5e1;
+    color:#334155
+}
+
+.top-3 .leader-rank{
+    background:#fdba74;
+    color:#7c2d12
+}
+
+.leader-name{
+    font-size:12px;
+    font-weight:800;
+    color:#334155;
+    flex:1;
+    min-width:0
+}
+
+.leader-count{
+    font-size:11px;
+    font-weight:900;
+    color:#1e3a8a;
+    background:#dbeafe;
+    padding:5px 9px;
+    border-radius:999px;
+    white-space:nowrap
 }
 
 
-/* =========================================================
+/* =========================
+   MOBILE
+   ========================= */
+
+@media(max-width:767px){
+
+    body{
+        padding:8px!important;
+        background:#f1f5f9
+    }
+
+    main{
+        padding:16px!important;
+        border-radius:22px!important;
+        box-shadow:0 8px 25px rgba(15,23,42,.06)!important
+    }
+
+    header{
+        margin-bottom:20px!important;
+        padding-bottom:18px!important
+    }
+
+    .logo-wrapper{
+        margin-bottom:12px!important
+    }
+
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
+    }
+
+    .color-primary{
+        width:100%;
+        padding:13px 14px!important;
+        border-radius:15px!important
+    }
+
+    .color-primary h1{
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
+    }
+
+    .color-primary h2{
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
+    }
+
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important
+    }
+
+
+    /* PAGE TITLE */
+
+    section>div:first-child{
+        align-items:flex-start!important;
+        gap:10px!important;
+        margin-bottom:17px!important
+    }
+
+    .page-title{
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:8px!important
+    }
+
+    .page-title span{
+        padding:9px!important;
+        border-radius:10px!important
+    }
+
+    .page-title svg{
+        width:18px!important;
+        height:18px!important
+    }
+
+    .page-subtitle{
+        font-size:10px!important;
+        line-height:1.5!important;
+        margin-top:6px!important
+    }
+
+    .back-button{
+        padding:9px 11px!important;
+        font-size:10px!important;
+        border-radius:10px!important;
+        gap:5px!important
+    }
+
+    .back-button svg{
+        width:14px!important;
+        height:14px!important
+    }
+
+
+    /* STATISTICS */
+
+    #tableContent>div:first-child{
+        grid-template-columns:1fr 1fr!important;
+        gap:9px!important;
+        margin-bottom:12px!important
+    }
+
+    .stat-card{
+        padding:13px!important;
+        border-radius:14px!important
+    }
+
+    .stat-card p:first-child{
+        font-size:8px!important;
+        line-height:1.3!important
+    }
+
+    .stat-card p:last-child{
+        font-size:23px!important;
+        line-height:1!important;
+        margin-top:7px!important
+    }
+
+
+    /* FILTER */
+
+    #tableContent>div:nth-child(2){
+        padding:13px!important;
+        border-radius:15px!important;
+        margin-bottom:12px!important
+    }
+
+    #tableContent>div:nth-child(2)>div:first-child{
+        margin-bottom:12px!important;
+        gap:9px!important
+    }
+
+    #tableContent>div:nth-child(2)>div:first-child span{
+        padding:7px!important;
+        border-radius:8px!important
+    }
+
+    #tableContent>div:nth-child(2)>div:first-child svg{
+        width:14px!important;
+        height:14px!important
+    }
+
+    #tableContent>div:nth-child(2)>div:first-child h3{
+        font-size:12px!important
+    }
+
+    #tableContent>div:nth-child(2)>div:first-child p{
+        font-size:8px!important;
+        line-height:1.4!important
+    }
+
+    #tableContent>div:nth-child(2)>div:last-child{
+        grid-template-columns:1fr!important;
+        gap:10px!important
+    }
+
+    #tableContent>div:nth-child(2) label{
+        font-size:8px!important;
+        margin-bottom:5px!important
+    }
+
+    .filter-input{
+        font-size:10px!important;
+        padding:10px!important;
+        min-height:38px
+    }
+
+
+    /* TABLE PANEL */
+
+    .table-panel{
+        border-radius:16px!important
+    }
+
+    .table-panel>div:first-child{
+        padding:13px!important
+    }
+
+    .table-panel>div:first-child h3{
+        font-size:11px!important
+    }
+
+    .table-panel>div:first-child p{
+        font-size:8px!important
+    }
+
+    .table-panel>div:first-child>div:last-child{
+        display:none!important
+    }
+
+    /* Hide desktop table */
+    .table-scroll{
+        display:none!important
+    }
+
+    /* Show mobile cards */
+    .mobile-data-list{
+        display:block!important;
+        padding:9px!important;
+        background:#f8fafc
+    }
+
+    .mobile-data-card{
+        padding:14px!important;
+        border-radius:15px!important;
+        margin-bottom:9px!important
+    }
+
+    .mobile-card-header{
+        gap:8px!important;
+        padding-bottom:11px!important;
+        margin-bottom:11px!important
+    }
+
+    .mobile-unit{
+        font-size:15px!important
+    }
+
+    .mobile-date{
+        font-size:9px!important
+    }
+
+    .mobile-card-grid{
+        gap:10px 12px!important
+    }
+
+    .mobile-label{
+        font-size:7px!important;
+        margin-bottom:4px!important
+    }
+
+    .mobile-value{
+        font-size:10px!important;
+        line-height:1.45!important
+    }
+
+    .mobile-remark{
+        font-size:9px!important;
+        padding:8px 9px!important
+    }
+
+    .mobile-pap{
+        margin-top:11px!important;
+        padding-top:11px!important
+    }
+
+    .mobile-number{
+        min-width:25px!important;
+        height:25px!important;
+        font-size:8px!important
+    }
+
+    .service-badge{
+        padding:5px 8px!important;
+        font-size:8px!important
+    }
+
+    .status-badge{
+        padding:5px 8px!important;
+        font-size:8px!important
+    }
+
+    .status-badge svg{
+        width:11px!important;
+        height:11px!important
+    }
+
+    .pap-link{
+        padding:6px 9px!important;
+        font-size:9px!important
+    }
+
+    .pap-link svg{
+        width:13px!important;
+        height:13px!important
+    }
+
+
+    /* EMPTY STATE */
+
+    #emptyState .py-16{
+        padding-top:35px!important;
+        padding-bottom:35px!important
+    }
+
+    #emptyState h3{
+        font-size:13px!important
+    }
+
+    #emptyState p{
+        font-size:9px!important
+    }
+
+
+    /* PAGINATION */
+
+    .table-panel>div:last-child{
+        padding:10px!important;
+        gap:7px!important
+    }
+
+    #paginationInfo{
+        font-size:8px!important;
+        white-space:nowrap
+    }
+
+    #pagination{
+        gap:3px!important;
+        overflow-x:auto;
+        max-width:65%;
+        padding-bottom:2px;
+        scrollbar-width:none
+    }
+
+    #pagination::-webkit-scrollbar{
+        display:none
+    }
+
+    .pagination-button{
+        width:30px!important;
+        height:30px!important;
+        min-width:30px!important;
+        font-size:9px!important;
+        border-radius:8px!important
+    }
+
+
+    /* FOOTER */
+
+    footer{
+        margin-top:18px!important;
+        padding:0 8px 90px!important
+    }
+
+    footer p:first-child{
+        font-size:8px!important;
+        line-height:1.5!important
+    }
+
+    footer p:last-child{
+        font-size:8px!important;
+        line-height:1.5!important
+    }
+
+
+    /* LEADERBOARD BUTTON */
+
+    #leaderboardButton{
+        width:55px;
+        height:55px;
+        right:16px;
+        bottom:16px;
+        border-radius:17px;
+        box-shadow:0 10px 25px rgba(15,23,42,.25)
+    }
+
+    #leaderboardButton svg{
+        width:23px;
+        height:23px
+    }
+
+    .leader-tooltip{
+        display:none
+    }
+
+
+    /* LEADERBOARD MODAL */
+
+    #leaderboardOverlay{
+        padding:10px
+    }
+
+    #leaderboardModal{
+        width:100%;
+        max-height:85vh;
+        border-radius:18px
+    }
+
+    #leaderboardModal>div:first-child{
+        padding:13px!important
+    }
+
+    #leaderboardList{
+        padding:12px!important;
+        max-height:65vh!important
+    }
+
+    .leader-row{
+        padding:10px!important;
+        gap:9px!important;
+        border-radius:12px!important
+    }
+
+    .leader-rank{
+        width:28px!important;
+        height:28px!important;
+        border-radius:9px!important;
+        font-size:11px!important
+    }
+
+    .leader-name{
+        font-size:10px!important
+    }
+
+    .leader-count{
+        font-size:8px!important;
+        padding:4px 7px!important
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONE
+   ========================= */
+
+@media(max-width:380px){
+
+    body{
+        padding:5px!important
+    }
+
+    main{
+        padding:12px!important
+    }
+
+    .page-title{
+        font-size:18px!important
+    }
+
+    .page-subtitle{
+        font-size:9px!important
+    }
+
+    .back-button{
+        padding:8px!important
+    }
+
+    .back-button span{
+        display:none
+    }
+
+    .mobile-card-grid{
+        grid-template-columns:1fr!important
+    }
+
+    .mobile-field.full{
+        grid-column:auto
+    }
+
+    #pagination{
+        max-width:58%
+    }
+
+    .stat-card p:last-child{
+        font-size:21px!important
+    }
+
+    .mobile-card-header{
+        align-items:flex-start!important
+    }
+}
+
+
+/* =========================
    TABLET
-   ========================================================= */
+   ========================= */
 
 @media(min-width:768px) and (max-width:1100px){
 
-main{
-padding:25px!important
-}
+    main{
+        padding:25px!important
+    }
 
-.page-title{
-font-size:25px
-}
+    .page-title{
+        font-size:25px
+    }
 
-#tableContent>div:first-child{
-grid-template-columns:repeat(2,1fr)
-}
+    #tableContent>div:first-child{
+        grid-template-columns:repeat(2,1fr)
+    }
 
-#tableContent>div:nth-child(2)>div:last-child{
-grid-template-columns:repeat(2,1fr)
-}
-
+    #tableContent>div:nth-child(2)>div:last-child{
+        grid-template-columns:repeat(2,1fr)
+    }
 }
 </style>
 </head>
+
 
 <body class="flex flex-col items-center p-4 sm:p-8">
 
@@ -1235,10 +1159,22 @@ grid-template-columns:repeat(2,1fr)
 
 <div class="mb-4 logo-wrapper">
 <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-<img src="default_logo.png" alt="Logo PT TSI" class="w-full h-full object-contain" id="companyLogo" onerror="handleLogoError()">
-<div id="logoFallback" class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white">
+
+<img
+    src="default_logo.png"
+    alt="Logo PT TSI"
+    class="w-full h-full object-contain"
+    id="companyLogo"
+    onerror="handleLogoError()"
+>
+
+<div
+    id="logoFallback"
+    class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+>
 <span class="font-black text-2xl">TSI</span>
 </div>
+
 </div>
 </div>
 
@@ -1262,6 +1198,7 @@ Digitalization Initiative v2.0
 
 </header>
 
+
 <section>
 
 <div class="flex items-center justify-between gap-5 mb-6">
@@ -1269,10 +1206,13 @@ Digitalization Initiative v2.0
 <div>
 
 <h2 class="page-title flex items-center gap-3">
+
 <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
 <i data-lucide="database" class="w-6 h-6"></i>
 </span>
+
 Data Periodic Service
+
 </h2>
 
 <p class="page-subtitle mt-2 ml-1">
@@ -1281,16 +1221,23 @@ Daftar seluruh aktivitas periodic service yang tersimpan pada database.
 
 </div>
 
-<button onclick="goToDashboard()" class="back-button">
+<button
+    onclick="goToDashboard()"
+    class="back-button"
+>
 <i data-lucide="arrow-left" class="w-4 h-4"></i>
 <span>Kembali</span>
 </button>
 
 </div>
 
+
 <div id="loading">
 
-<i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+<i
+    data-lucide="loader-circle"
+    class="w-9 h-9 animate-spin text-amber-500"
+></i>
 
 <p class="font-semibold text-sm text-slate-400 mt-3">
 Memuat data...
@@ -1298,7 +1245,11 @@ Memuat data...
 
 </div>
 
+
 <div id="tableContent">
+
+
+<!-- STATISTICS -->
 
 <div class="grid grid-cols-4 gap-4 mb-6">
 
@@ -1306,32 +1257,61 @@ Memuat data...
 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
 Total Data
 </p>
-<p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
+
+<p
+    id="totalData"
+    class="text-3xl font-black text-blue-900 mt-2"
+>
+-
+</p>
 </div>
+
 
 <div class="stat-card">
 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
 Periodic Service
 </p>
-<p id="periodicTotal" class="text-3xl font-black text-indigo-600 mt-2">-</p>
+
+<p
+    id="periodicTotal"
+    class="text-3xl font-black text-indigo-600 mt-2"
+>
+-
+</p>
 </div>
+
 
 <div class="stat-card">
 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
 General Service
 </p>
-<p id="generalTotal" class="text-3xl font-black text-amber-600 mt-2">-</p>
+
+<p
+    id="generalTotal"
+    class="text-3xl font-black text-amber-600 mt-2"
+>
+-
+</p>
 </div>
+
 
 <div class="stat-card">
 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
 Status Baik
 </p>
-<p id="baikTotal" class="text-3xl font-black text-emerald-600 mt-2">-</p>
+
+<p
+    id="baikTotal"
+    class="text-3xl font-black text-emerald-600 mt-2"
+>
+-
+</p>
 </div>
 
 </div>
 
+
+<!-- FILTER -->
 
 <div class="bg-white border border-slate-200 rounded-2xl p-5 mb-5 shadow-sm">
 
@@ -1342,6 +1322,7 @@ Status Baik
 </span>
 
 <div>
+
 <h3 class="text-sm font-black text-slate-700">
 Filter Data
 </h3>
@@ -1349,12 +1330,14 @@ Filter Data
 <p class="text-[10px] text-slate-400 font-medium">
 Gunakan filter untuk mencari data tertentu.
 </p>
+
 </div>
 
 </div>
 
 
 <div class="grid grid-cols-4 gap-4">
+
 
 <div>
 
@@ -1364,16 +1347,17 @@ Cari Data
 
 <div class="relative">
 
-<i data-lucide="search"
-class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400">
-</i>
+<i
+    data-lucide="search"
+    class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
+></i>
 
 <input
-id="searchInput"
-type="text"
-placeholder="Unit, PIC, remark..."
-class="filter-input pl-10"
-oninput="applyFilters()"
+    id="searchInput"
+    type="text"
+    placeholder="Unit, PIC, remark..."
+    class="filter-input pl-10"
+    oninput="applyFilters()"
 >
 
 </div>
@@ -1387,11 +1371,23 @@ oninput="applyFilters()"
 Jenis Service
 </label>
 
-<select id="serviceFilter" class="filter-input" onchange="applyFilters()">
+<select
+    id="serviceFilter"
+    class="filter-input"
+    onchange="applyFilters()"
+>
 
-<option value="">Semua Service</option>
-<option value="Periodic Service">Periodic Service</option>
-<option value="General Service">General Service</option>
+<option value="">
+Semua Service
+</option>
+
+<option value="Periodic Service">
+Periodic Service
+</option>
+
+<option value="General Service">
+General Service
+</option>
 
 </select>
 
@@ -1404,11 +1400,23 @@ Jenis Service
 Status
 </label>
 
-<select id="statusFilter" class="filter-input" onchange="applyFilters">
+<select
+    id="statusFilter"
+    class="filter-input"
+    onchange="applyFilters()"
+>
 
-<option value="">Semua Status</option>
-<option value="Baik">Baik</option>
-<option value="Rusak">Rusak</option>
+<option value="">
+Semua Status
+</option>
+
+<option value="Baik">
+Baik
+</option>
+
+<option value="Rusak">
+Rusak
+</option>
 
 </select>
 
@@ -1418,11 +1426,12 @@ Status
 <div class="flex items-end">
 
 <button
-onclick="resetFilters()"
-class="w-full h-[38px] rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold text-[11px] transition flex items-center justify-center gap-2"
+    onclick="resetFilters()"
+    class="w-full h-[38px] rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold text-[11px] transition flex items-center justify-center gap-2"
 >
 
 <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+
 Reset Filter
 
 </button>
@@ -1430,10 +1439,14 @@ Reset Filter
 </div>
 
 </div>
+
 </div>
 
 
+<!-- TABLE -->
+
 <div class="table-panel">
+
 
 <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
 
@@ -1443,7 +1456,10 @@ Reset Filter
 Daftar Aktivitas Periodic Service
 </h3>
 
-<p id="resultInfo" class="text-[10px] text-slate-400 mt-1 font-medium">
+<p
+    id="resultInfo"
+    class="text-[10px] text-slate-400 mt-1 font-medium"
+>
 -
 </p>
 
@@ -1452,6 +1468,7 @@ Daftar Aktivitas Periodic Service
 <div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
 
 <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+
 Data langsung dari Database
 
 </div>
@@ -1468,67 +1485,112 @@ Data langsung dari Database
 <tr>
 
 <th style="width:50px">
-<div class="sort-button">No</div>
+<div class="sort-button">
+No
+</div>
 </th>
 
+
 <th>
-<button class="sort-button sort-normal" data-sort-key="tanggal" onclick="toggleSort('tanggal')">
+<button
+    class="sort-button sort-normal"
+    data-sort-key="tanggal"
+    onclick="toggleSort('tanggal')"
+>
 Tanggal
 <i data-lucide="arrow-up-down" class="sort-icon"></i>
 </button>
 </th>
 
+
 <th>
-<button class="sort-button sort-normal" data-sort-key="unit" onclick="toggleSort('unit')">
+<button
+    class="sort-button sort-normal"
+    data-sort-key="unit"
+    onclick="toggleSort('unit')"
+>
 Unit
 <i data-lucide="arrow-up-down" class="sort-icon"></i>
 </button>
 </th>
 
+
 <th>
-<button class="sort-button sort-normal" data-sort-key="hm" onclick="toggleSort('hm')">
+<button
+    class="sort-button sort-normal"
+    data-sort-key="hm"
+    onclick="toggleSort('hm')"
+>
 HM
 <i data-lucide="arrow-up-down" class="sort-icon"></i>
 </button>
 </th>
 
+
 <th>
-<button class="sort-button sort-normal" data-sort-key="service" onclick="toggleSort('service')">
+<button
+    class="sort-button sort-normal"
+    data-sort-key="service"
+    onclick="toggleSort('service')"
+>
 Service
 <i data-lucide="arrow-up-down" class="sort-icon"></i>
 </button>
 </th>
 
+
 <th>
-<button class="sort-button sort-normal" data-sort-key="status" onclick="toggleSort('status')">
+<button
+    class="sort-button sort-normal"
+    data-sort-key="status"
+    onclick="toggleSort('status')"
+>
 Status
 <i data-lucide="arrow-up-down" class="sort-icon"></i>
 </button>
 </th>
 
+
 <th>
-<button class="sort-button sort-normal" data-sort-key="pic" onclick="toggleSort('pic')">
+<button
+    class="sort-button sort-normal"
+    data-sort-key="pic"
+    onclick="toggleSort('pic')"
+>
 PIC / Mekanik
 <i data-lucide="arrow-up-down" class="sort-icon"></i>
 </button>
 </th>
 
+
 <th>
-<button class="sort-button sort-normal" data-sort-key="itemRusak" onclick="toggleSort('itemRusak')">
+<button
+    class="sort-button sort-normal"
+    data-sort-key="itemRusak"
+    onclick="toggleSort('itemRusak')"
+>
 Item Rusak
 <i data-lucide="arrow-up-down" class="sort-icon"></i>
 </button>
 </th>
 
+
 <th>
-<button class="sort-button sort-normal" data-sort-key="remark" onclick="toggleSort('remark')">
+<button
+    class="sort-button sort-normal"
+    data-sort-key="remark"
+    onclick="toggleSort('remark')"
+>
 Remark
 <i data-lucide="arrow-up-down" class="sort-icon"></i>
 </button>
 </th>
 
+
 <th>
-<div class="sort-button">PAP</div>
+<div class="sort-button">
+PAP
+</div>
 </th>
 
 </tr>
@@ -1542,8 +1604,15 @@ Remark
 </div>
 
 
-<div id="mobileDataList" class="mobile-data-list"></div>
+<!-- MOBILE DATA -->
 
+<div
+    id="mobileDataList"
+    class="mobile-data-list"
+></div>
+
+
+<!-- EMPTY STATE -->
 
 <div id="emptyState" class="hidden">
 
@@ -1568,22 +1637,34 @@ Coba ubah kata pencarian atau filter.
 </div>
 
 
+<!-- PAGINATION -->
+
 <div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
 
-<div id="paginationInfo" class="text-[10px] font-semibold text-slate-400">
+<div
+    id="paginationInfo"
+    class="text-[10px] font-semibold text-slate-400"
+>
 -
 </div>
 
-<div id="pagination" class="flex items-center gap-1"></div>
+<div
+    id="pagination"
+    class="flex items-center gap-1"
+></div>
 
 </div>
 
 </div>
+
 </div>
 
 </section>
+
 </main>
 
+
+<!-- FOOTER -->
 
 <footer class="mt-8 text-center text-slate-400 px-4 pb-8">
 
@@ -1592,6 +1673,7 @@ Coba ubah kata pencarian atau filter.
 </p>
 
 <p class="text-[10px] mt-1">
+
 System Architecture by:
 
 <span class="text-slate-600 font-semibold uppercase">
@@ -1609,10 +1691,12 @@ Project 2.0
 </footer>
 
 
+<!-- LEADERBOARD BUTTON -->
+
 <button
-id="leaderboardButton"
-onclick="openLeaderboard()"
-aria-label="Leaderboard"
+    id="leaderboardButton"
+    onclick="openLeaderboard()"
+    aria-label="Leaderboard"
 >
 
 <i data-lucide="trophy" class="w-7 h-7"></i>
@@ -1624,12 +1708,15 @@ Leaderboard Mekanik
 </button>
 
 
+<!-- LEADERBOARD MODAL -->
+
 <div
-id="leaderboardOverlay"
-onclick="closeLeaderboardOutside(event)"
+    id="leaderboardOverlay"
+    onclick="closeLeaderboardOutside(event)"
 >
 
 <div id="leaderboardModal">
+
 
 <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
 
@@ -1653,9 +1740,10 @@ Berdasarkan total aktivitas periodic service
 
 </div>
 
+
 <button
-onclick="closeLeaderboard()"
-class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
+    onclick="closeLeaderboard()"
+    class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
 >
 
 <i data-lucide="x" class="w-5 h-5"></i>
@@ -1666,8 +1754,8 @@ class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl tra
 
 
 <div
-id="leaderboardList"
-class="p-5 overflow-y-auto max-h-[60vh]"
+    id="leaderboardList"
+    class="p-5 overflow-y-auto max-h-[60vh]"
 >
 
 <div class="text-center text-slate-400 text-sm py-6">
@@ -1677,6 +1765,7 @@ Memuat leaderboard...
 </div>
 
 </div>
+
 </div>
 
 
@@ -1694,21 +1783,27 @@ sortState={key:null,direction:0};
 
 const $=id=>document.getElementById(id);
 
-const safe=v=>String(v??'').replace(/[&<>"']/g,m=>({
-'&':'&amp;',
-'<':'&lt;',
-'>':'&gt;',
-'"':'&quot;',
-"'":'&#039;'
-}[m]));
+const safe=v=>
+String(v??'').replace(
+    /[&<>"']/g,
+    m=>({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#039;'
+    }[m])
+);
+
 
 function goToDashboard(){
-location.href=DASHBOARD_URL
+    location.href=DASHBOARD_URL
 }
 
+
 function handleLogoError(){
-$('companyLogo').classList.add('hidden');
-$('logoFallback').classList.remove('hidden')
+    $('companyLogo').classList.add('hidden');
+    $('logoFallback').classList.remove('hidden')
 }
 
 
@@ -1716,28 +1811,34 @@ async function loadTable(){
 
 try{
 
-const r=await fetch(API_URL,{
-method:'GET',
-cache:'no-store'
-});
+const r=await fetch(
+    API_URL,
+    {
+        method:'GET',
+        cache:'no-store'
+    }
+);
 
-if(!r.ok)throw Error(`HTTP Error ${r.status}`);
+if(!r.ok)
+    throw Error(`HTTP Error ${r.status}`);
 
 const result=await r.json();
 
 apiData=result;
 
 allData=Array.isArray(result.data)
-?result.data.map((row,index)=>({
-...row,
-_originalIndex:index
-}))
-:[];
+    ?result.data.map(
+        (row,index)=>({
+            ...row,
+            _originalIndex:index
+        })
+    )
+    :[];
 
 updateStatistics(result);
 
 updateLeaderboardFromData(
-result.chart?.mechanic||[]
+    result.chart?.mechanic||[]
 );
 
 filteredData=[...allData];
@@ -1745,8 +1846,8 @@ filteredData=[...allData];
 currentPage=1;
 
 sortState={
-key:null,
-direction:0
+    key:null,
+    direction:0
 };
 
 updateSortHeaders();
@@ -1760,6 +1861,7 @@ $('tableContent').classList.add('show');
 }catch(error){
 
 $('loading').innerHTML=`
+
 <div class="text-center">
 
 <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
@@ -1777,8 +1879,8 @@ ${safe(error.message)}
 </p>
 
 <button
-onclick="loadTable()"
-class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
+    onclick="loadTable()"
+    class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
 >
 Coba Lagi
 </button>
@@ -1802,16 +1904,18 @@ types=chart.serviceByType||{};
 const total=
 data.length||
 Object.values(types).reduce(
-(a,b)=>a+Number(b),0
+    (a,b)=>a+Number(b),
+    0
 );
 
 const count=k=>
 Object.entries(types)
-.filter(([x])=>
-x.toLowerCase().includes(k)
+.filter(
+    ([x])=>x.toLowerCase().includes(k)
 )
 .reduce(
-(a,[,v])=>a+Number(v),0
+    (a,[,v])=>a+Number(v),
+    0
 );
 
 $('totalData').textContent=total;
@@ -1831,9 +1935,7 @@ Number(chart.status?.Baik||0);
 function applyFilters(){
 
 const search=
-$('searchInput').value
-.trim()
-.toLowerCase();
+$('searchInput').value.trim().toLowerCase();
 
 const service=
 $('serviceFilter').value;
@@ -1844,30 +1946,32 @@ $('statusFilter').value;
 filteredData=allData.filter(row=>{
 
 const text=[
-'tanggal',
-'unit',
-'hm',
-'service',
-'status',
-'pic',
-'itemRusak',
-'remark',
-'pap'
+    'tanggal',
+    'unit',
+    'hm',
+    'service',
+    'status',
+    'pic',
+    'itemRusak',
+    'remark',
+    'pap'
 ]
 .map(k=>row[k])
 .join(' ')
 .toLowerCase();
 
 return(
-(!search||text.includes(search))&&
-(!service||
-String(row.service||'')
-.trim()
-.toLowerCase()===service.toLowerCase())&&
-(!status||
-String(row.status||'')
-.trim()
-.toLowerCase()===status.toLowerCase())
+    (!search||text.includes(search))&&
+    (!service||
+        String(row.service||'')
+        .trim()
+        .toLowerCase()===service.toLowerCase()
+    )&&
+    (!status||
+        String(row.status||'')
+        .trim()
+        .toLowerCase()===status.toLowerCase()
+    )
 );
 
 });
@@ -1904,10 +2008,10 @@ if(sortState.key===key){
 
 sortState.direction=
 sortState.direction===0
-?1
-:sortState.direction===1
-?-1
-:0;
+    ?1
+    :sortState.direction===1
+        ?-1
+        :0;
 
 }else{
 
@@ -1932,23 +2036,27 @@ function applyCurrentSort(){
 if(!sortState.key||!sortState.direction){
 
 filteredData.sort(
-(a,b)=>
-a._originalIndex-b._originalIndex
+    (a,b)=>
+        a._originalIndex-b._originalIndex
 );
 
 return;
+
 }
 
-const{k:_,direction}=sortState,
-key=sortState.key;
+const{
+    direction
+}=sortState;
+
+const key=sortState.key;
 
 filteredData.sort((a,b)=>{
 
 const c=compareRows(a,b,key);
 
 return c
-?c*direction
-:a._originalIndex-b._originalIndex;
+    ?c*direction
+    :a._originalIndex-b._originalIndex;
 
 });
 
@@ -1964,11 +2072,12 @@ y=parseIndonesianDate(b.tanggal);
 
 if(x===null&&y===null)return 0;
 if(x===null)return 1;
-if(y===null)return-1;
+if(y===null)return -1;
 
 return x-y;
 
 }
+
 
 if(key==='hm'){
 
@@ -1977,31 +2086,34 @@ y=parseNumber(b.hm);
 
 if(x===null&&y===null)return 0;
 if(x===null)return 1;
-if(y===null)return-1;
+if(y===null)return -1;
 
 return x-y;
 
 }
 
-const x=String(a[key]??'')
+
+const x=
+String(a[key]??'')
 .trim()
 .toLowerCase();
 
-const y=String(b[key]??'')
+const y=
+String(b[key]??'')
 .trim()
 .toLowerCase();
 
 if(!x&&!y)return 0;
 if(!x)return 1;
-if(!y)return-1;
+if(!y)return -1;
 
 return x.localeCompare(
-y,
-'id',
-{
-numeric:true,
-sensitivity:'base'
-}
+    y,
+    'id',
+    {
+        numeric:true,
+        sensitivity:'base'
+    }
 );
 
 }
@@ -2013,40 +2125,38 @@ if(value==null)return null;
 
 if(value instanceof Date)
 return Number.isNaN(value.getTime())
-?null
-:value.getTime();
+    ?null
+    :value.getTime();
 
 let t=String(value).trim();
 
 if(!t)return null;
 
-t=t
-.replace(
-/T\d{1,2}:\d{2}(:\d{2})?.*$/,
-''
-)
-.trim();
+t=t.replace(
+    /T\d{1,2}:\d{2}(:\d{2})?.*$/,
+    ''
+).trim();
 
 let m=t.match(
-/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
+    /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
 );
 
 if(m)
 return validDate(
-+m[3],
-+m[2],
-+m[1]
+    +m[3],
+    +m[2],
+    +m[1]
 );
 
 m=t.match(
-/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
+    /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
 );
 
 if(m)
 return validDate(
-+m[1],
-+m[2],
-+m[3]
+    +m[1],
+    +m[2],
+    +m[3]
 );
 
 if(/^\d+(\.\d+)?$/.test(t)){
@@ -2054,19 +2164,16 @@ if(/^\d+(\.\d+)?$/.test(t)){
 const n=Number(t);
 
 if(n>20000&&n<100000)
-return Date.UTC(
-1899,
-11,
-30
-)+n*86400000;
+return Date.UTC(1899,11,30)+
+n*86400000;
 
 }
 
 const d=new Date(t);
 
 return Number.isNaN(d.getTime())
-?null
-:d.getTime();
+    ?null
+    :d.getTime();
 
 }
 
@@ -2074,14 +2181,14 @@ return Number.isNaN(d.getTime())
 function validDate(y,m,d){
 
 const x=new Date(
-Date.UTC(y,m-1,d)
+    Date.UTC(y,m-1,d)
 );
 
 return x.getUTCFullYear()===y&&
 x.getUTCMonth()===m-1&&
 x.getUTCDate()===d
-?x.getTime()
-:null;
+    ?x.getTime()
+    :null;
 
 }
 
@@ -2089,20 +2196,21 @@ x.getUTCDate()===d
 function parseNumber(value){
 
 if(
-value==null||
-String(value).trim()===''
-)return null;
+    value==null||
+    String(value).trim()===''
+)
+return null;
 
 const n=Number(
-String(value)
-.trim()
-.replace(/\s/g,'')
-.replace(/,/g,'')
+    String(value)
+    .trim()
+    .replace(/\s/g,'')
+    .replace(/,/g,'')
 );
 
 return Number.isNaN(n)
-?null
-:n;
+    ?null
+    :n;
 
 }
 
@@ -2110,45 +2218,48 @@ return Number.isNaN(n)
 function updateSortHeaders(){
 
 document
-.querySelectorAll('.sort-button[data-sort-key]')
+.querySelectorAll(
+    '.sort-button[data-sort-key]'
+)
 .forEach(b=>{
 
 const active=
-sortState.key===b.dataset.sortKey&&
-sortState.direction!==0;
+    sortState.key===b.dataset.sortKey&&
+    sortState.direction!==0;
 
 b.classList.toggle(
-'sort-active',
-active
+    'sort-active',
+    active
 );
 
 b.classList.toggle(
-'sort-normal',
-!active
+    'sort-normal',
+    !active
 );
 
-const icon=b.querySelector('.sort-icon');
+const icon=
+b.querySelector('.sort-icon');
 
 if(icon)
 icon.setAttribute(
-'data-lucide',
-active
-?(
-sortState.direction===1
-?'arrow-up'
-:'arrow-down'
-)
-:'arrow-up-down'
+    'data-lucide',
+    active
+        ?(
+            sortState.direction===1
+                ?'arrow-up'
+                :'arrow-down'
+        )
+        :'arrow-up-down'
 );
 
 b.title=
 active
-?(
-sortState.direction===1
-?'Urutan naik (ASC)'
-:'Urutan turun (DESC)'
-)
-:'Klik: ASC → DESC → Urutan Normal';
+    ?(
+        sortState.direction===1
+            ?'Urutan naik (ASC)'
+            :'Urutan turun (DESC)'
+    )
+    :'Klik: ASC → DESC → Urutan Normal';
 
 });
 
@@ -2159,25 +2270,30 @@ lucide.createIcons();
 
 function renderTable(){
 
-const tbody=$('tableBody'),
-mobile=$('mobileDataList'),
-empty=$('emptyState');
+const tbody=$('tableBody');
+
+const mobile=$('mobileDataList');
+
+const empty=$('emptyState');
 
 tbody.innerHTML='';
+
 mobile.innerHTML='';
 
 const total=filteredData.length;
 
 const pages=
 Math.max(
-1,
-Math.ceil(total/ROWS_PER_PAGE)
+    1,
+    Math.ceil(
+        total/ROWS_PER_PAGE
+    )
 );
 
 currentPage=
 Math.min(
-currentPage,
-pages
+    currentPage,
+    pages
 );
 
 const start=
@@ -2185,19 +2301,19 @@ const start=
 
 const end=
 Math.min(
-start+ROWS_PER_PAGE,
-total
+    start+ROWS_PER_PAGE,
+    total
 );
 
 const rows=
 filteredData.slice(
-start,
-end
+    start,
+    end
 );
 
 empty.classList.toggle(
-'hidden',
-!!rows.length
+    'hidden',
+    !!rows.length
 );
 
 
@@ -2207,7 +2323,8 @@ rows.forEach((row,i)=>{
 
 const no=start+i+1;
 
-const tr=document.createElement('tr');
+const tr=
+document.createElement('tr');
 
 tr.innerHTML=`
 
@@ -2242,16 +2359,16 @@ ${safe(row.pic)}
 </td>
 
 <td
-class="max-w-[180px] truncate"
-title="${safe(row.itemRusak)}"
+    class="max-w-[180px] truncate"
+    title="${safe(row.itemRusak)}"
 >
 ${safe(row.itemRusak)||
 '<span class="text-slate-300">-</span>'}
 </td>
 
 <td
-class="max-w-[220px] truncate"
-title="${safe(row.remark)}"
+    class="max-w-[220px] truncate"
+    title="${safe(row.remark)}"
 >
 ${safe(row.remark)||
 '<span class="text-slate-300">-</span>'}
@@ -2265,9 +2382,13 @@ ${getPapLink(row.pap)}
 tbody.appendChild(tr);
 
 
-const card=document.createElement('div');
+/* MOBILE CARD */
 
-card.className='mobile-data-card';
+const card=
+document.createElement('div');
+
+card.className=
+'mobile-data-card';
 
 card.innerHTML=`
 
@@ -2290,8 +2411,8 @@ ${safe(row.unit)}
 <div class="mobile-date">
 
 <i
-data-lucide="calendar-days"
-class="inline w-3 h-3 mr-1"
+    data-lucide="calendar-days"
+    class="inline w-3 h-3 mr-1"
 ></i>
 
 ${safe(row.tanggal)}
@@ -2309,6 +2430,7 @@ ${getStatusBadge(row.status)}
 
 <div class="mobile-card-grid">
 
+
 <div class="mobile-field">
 
 <div class="mobile-label">
@@ -2316,7 +2438,7 @@ HM
 </div>
 
 <div class="mobile-value">
-${safe(row.hm)}
+${safe(row.hm)||'-'}
 </div>
 
 </div>
@@ -2377,6 +2499,7 @@ ${safe(row.remark)||
 
 </div>
 
+
 </div>
 
 
@@ -2395,9 +2518,9 @@ mobile.appendChild(card);
 
 
 updateResultInfo(
-total,
-start,
-end
+    total,
+    start,
+    end
 );
 
 renderPagination(pages);
@@ -2413,18 +2536,20 @@ const value=
 String(pap||'').trim();
 
 if(!value)
-return'<span class="text-slate-300">-</span>';
+return '<span class="text-slate-300">-</span>';
 
 let url;
 
 try{
-url=new URL(value)
+
+url=new URL(value);
+
 }catch{
 
-return`
+return `
 <span
-class="text-slate-400 text-[10px] font-medium"
-title="${safe(value)}"
+    class="text-slate-400 text-[10px] font-medium"
+    title="${safe(value)}"
 >
 ${safe(value)}
 </span>
@@ -2433,24 +2558,24 @@ ${safe(value)}
 }
 
 if(
-!['http:','https:']
-.includes(url.protocol)
+    !['http:','https:']
+    .includes(url.protocol)
 )
-return'<span class="text-slate-400">-</span>';
+return '<span class="text-slate-400">-</span>';
 
-return`
+return `
 
 <a
-href="${safe(url.href)}"
-target="_blank"
-rel="noopener noreferrer"
-class="pap-link"
-title="Lihat gambar PAP"
+    href="${safe(url.href)}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="pap-link"
+    title="Lihat gambar PAP"
 >
 
 <i
-data-lucide="image"
-class="w-3.5 h-3.5"
+    data-lucide="image"
+    class="w-3.5 h-3.5"
 ></i>
 
 Lihat PAP
@@ -2471,12 +2596,12 @@ const l=value.toLowerCase();
 
 const cls=
 l.includes('periodic')
-?'service-periodic'
-:l.includes('general')
-?'service-general'
-:'service-other';
+    ?'service-periodic'
+    :l.includes('general')
+        ?'service-general'
+        :'service-other';
 
-return`
+return `
 
 <span class="service-badge ${cls}">
 ${safe(value||'-')}
@@ -2494,28 +2619,29 @@ String(status||'').trim();
 
 const l=value.toLowerCase();
 
-const good=l==='baik',
-bad=l==='rusak';
+const good=l==='baik';
 
-return`
+const bad=l==='rusak';
+
+return `
 
 <span class="status-badge ${
-good
-?'status-good'
-:bad
-?'status-bad'
-:'status-other'
+    good
+        ?'status-good'
+        :bad
+            ?'status-bad'
+            :'status-other'
 }">
 
 <i
-data-lucide="${
-good
-?'circle-check'
-:bad
-?'circle-alert'
-:'circle'
-}"
-class="w-3 h-3"
+    data-lucide="${
+        good
+            ?'circle-check'
+            :bad
+                ?'circle-alert'
+                :'circle'
+    }"
+    class="w-3 h-3"
 ></i>
 
 ${safe(value||'-')}
@@ -2527,11 +2653,7 @@ ${safe(value||'-')}
 }
 
 
-function updateResultInfo(
-total,
-start,
-end
-){
+function updateResultInfo(total,start,end){
 
 if(!total){
 
@@ -2560,16 +2682,18 @@ const c=$('pagination');
 
 c.innerHTML='';
 
-if(!filteredData.length)return;
+if(!filteredData.length)
+return;
 
 const add=(
-content,
-cls='',
-disabled=false,
-fn=null
+    content,
+    cls='',
+    disabled=false,
+    fn=null
 )=>{
 
-const b=document.createElement('button');
+const b=
+document.createElement('button');
 
 b.className=
 'pagination-button'+
@@ -2579,10 +2703,11 @@ b.disabled=disabled;
 
 typeof content==='string'&&
 content.startsWith('<i')
-?b.innerHTML=content
-:b.textContent=content;
+    ?b.innerHTML=content
+    :b.textContent=content;
 
-if(fn)b.onclick=fn;
+if(fn)
+b.onclick=fn;
 
 c.appendChild(b);
 
@@ -2590,62 +2715,58 @@ c.appendChild(b);
 
 
 add(
-'<i data-lucide="chevron-left" class="w-4 h-4"></i>',
-'',
-currentPage===1,
-()=>{
-if(currentPage>1){
-currentPage--;
-renderTable();
-}
-}
+    '<i data-lucide="chevron-left" class="w-4 h-4"></i>',
+    '',
+    currentPage===1,
+    ()=>{
+        if(currentPage>1){
+            currentPage--;
+            renderTable();
+        }
+    }
 );
 
 
 getPaginationPages(
-currentPage,
-totalPages
+    currentPage,
+    totalPages
 )
 .forEach(
-p=>
-p==='...'
-?
-(()=>{
-const s=document.createElement('span');
+    p=>
+    p==='...'
+        ?(()=>{
+            const s=
+            document.createElement('span');
 
-s.className=
-'px-2 text-slate-400 text-xs';
+            s.className=
+            'px-2 text-slate-400 text-xs';
 
-s.textContent='...';
+            s.textContent='...';
 
-c.appendChild(s);
-
-})()
-:
-add(
-p,
-p===currentPage
-?'active'
-:'',
-false,
-()=>{
-currentPage=p;
-renderTable();
-}
-)
+            c.appendChild(s);
+        })()
+        :add(
+            p,
+            p===currentPage?'active':'',
+            false,
+            ()=>{
+                currentPage=p;
+                renderTable();
+            }
+        )
 );
 
 
 add(
-'<i data-lucide="chevron-right" class="w-4 h-4"></i>',
-'',
-currentPage===totalPages,
-()=>{
-if(currentPage<totalPages){
-currentPage++;
-renderTable();
-}
-}
+    '<i data-lucide="chevron-right" class="w-4 h-4"></i>',
+    '',
+    currentPage===totalPages,
+    ()=>{
+        if(currentPage<totalPages){
+            currentPage++;
+            renderTable();
+        }
+    }
 );
 
 lucide.createIcons();
@@ -2653,15 +2774,12 @@ lucide.createIcons();
 }
 
 
-function getPaginationPages(
-current,
-total
-){
+function getPaginationPages(current,total){
 
 if(total<=7)
 return Array.from(
-{length:total},
-(_,i)=>i+1
+    {length:total},
+    (_,i)=>i+1
 );
 
 const p=[1];
@@ -2670,9 +2788,9 @@ if(current>4)
 p.push('...');
 
 for(
-let i=Math.max(2,current-1);
-i<=Math.min(total-1,current+1);
-i++
+    let i=Math.max(2,current-1);
+    i<=Math.min(total-1,current+1);
+    i++
 )
 p.push(i);
 
@@ -2692,7 +2810,8 @@ const list=$('leaderboardList');
 
 if(!data.length){
 
-list.innerHTML=`
+list.innerHTML=
+`
 <div class="text-center text-slate-400 text-sm py-6">
 Belum ada data mekanik.
 </div>
@@ -2705,9 +2824,9 @@ return;
 list.innerHTML=
 [...data]
 .sort(
-(a,b)=>
-Number(b.count||0)-
-Number(a.count||0)
+    (a,b)=>
+        Number(b.count||0)-
+        Number(a.count||0)
 )
 .map((m,i)=>{
 
@@ -2715,19 +2834,19 @@ const rank=i+1;
 
 const cls=
 rank<=3
-?`top-${rank}`
-:'';
+    ?`top-${rank}`
+    :'';
 
 const medal=
 rank===1
-?'🥇'
-:rank===2
-?'🥈'
-:rank===3
-?'🥉'
-:rank;
+    ?'🥇'
+    :rank===2
+        ?'🥈'
+        :rank===3
+            ?'🥉'
+            :rank;
 
-return`
+return `
 
 <div class="leader-row ${cls}">
 
@@ -2757,7 +2876,7 @@ function openLeaderboard(){
 
 if(apiData?.chart?.mechanic)
 updateLeaderboardFromData(
-apiData.chart.mechanic
+    apiData.chart.mechanic
 );
 
 $('leaderboardOverlay')
@@ -2781,8 +2900,8 @@ document.body.style.overflow='';
 function closeLeaderboardOutside(e){
 
 if(
-e.target===
-$('leaderboardOverlay')
+    e.target===
+    $('leaderboardOverlay')
 )
 closeLeaderboard();
 
@@ -2803,16 +2922,18 @@ setTimeout(()=>{
 const overlay=
 $('leaderboardOverlay');
 
-if(!overlay.classList.contains('show')){
+if(
+    !overlay.classList.contains('show')
+){
 
 button.classList.remove(
-'leader-pulse'
+    'leader-pulse'
 );
 
 void button.offsetWidth;
 
 button.classList.add(
-'leader-pulse'
+    'leader-pulse'
 );
 
 }
@@ -2825,25 +2946,21 @@ scheduleLeaderboardPulse();
 
 
 window.addEventListener(
-'load',
-()=>{
-
-lucide.createIcons();
-
-loadTable();
-
-scheduleLeaderboardPulse();
-
-}
+    'load',
+    ()=>{
+        lucide.createIcons();
+        loadTable();
+        scheduleLeaderboardPulse();
+    }
 );
 
 
 document.addEventListener(
-'keydown',
-e=>{
-if(e.key==='Escape')
-closeLeaderboard();
-}
+    'keydown',
+    e=>{
+        if(e.key==='Escape')
+            closeLeaderboard();
+    }
 );
 
 </script>
