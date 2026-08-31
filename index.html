@@ -9,18 +9,13 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html{
     width:100%;
@@ -35,30 +30,16 @@ body{
     overflow-x:hidden;
 }
 
-.color-primary{
-    background:#1E3A8A;
-}
-
-.text-primary{
-    color:#1E3A8A;
-}
+.color-primary{background:#1E3A8A}
+.text-primary{color:#1E3A8A}
 
 .fade-in{
     animation:fadeIn .5s cubic-bezier(.4,0,.2,1);
 }
 
 @keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
 .slide-in{
@@ -66,17 +47,8 @@ body{
 }
 
 @keyframes slideIn{
-
-    from{
-        opacity:0;
-        transform:translateX(-8px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-
+    from{opacity:0;transform:translateX(-8px)}
+    to{opacity:1;transform:translateX(0)}
 }
 
 .glass-panel{
@@ -184,17 +156,8 @@ body{
 }
 
 @keyframes modalIn{
-
-    from{
-        opacity:0;
-        transform:translateY(15px) scale(.97);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-
+    from{opacity:0;transform:translateY(15px) scale(.97)}
+    to{opacity:1;transform:translateY(0) scale(1)}
 }
 
 #toast{
@@ -217,37 +180,17 @@ body{
 
 #toast.show{
     visibility:visible;
-    animation:
-        fadein_toast .4s,
-        fadeout_toast .5s 2.5s;
+    animation:fadein_toast .4s,fadeout_toast .5s 2.5s;
 }
 
 @keyframes fadein_toast{
-
-    from{
-        bottom:0;
-        opacity:0;
-    }
-
-    to{
-        bottom:30px;
-        opacity:1;
-    }
-
+    from{bottom:0;opacity:0}
+    to{bottom:30px;opacity:1}
 }
 
 @keyframes fadeout_toast{
-
-    from{
-        bottom:30px;
-        opacity:1;
-    }
-
-    to{
-        bottom:0;
-        opacity:0;
-    }
-
+    from{bottom:30px;opacity:1}
+    to{bottom:0;opacity:0}
 }
 
 ::-webkit-scrollbar{
@@ -255,9 +198,7 @@ body{
     height:8px;
 }
 
-::-webkit-scrollbar-track{
-    background:#f1f5f9;
-}
+::-webkit-scrollbar-track{background:#f1f5f9}
 
 ::-webkit-scrollbar-thumb{
     background:#cbd5e1;
@@ -291,7 +232,6 @@ body{
     box-shadow:
         0 12px 30px rgba(15,23,42,.10),
         inset 0 1px 0 rgba(255,255,255,.18);
-
     transition:
         transform .35s cubic-bezier(.175,.885,.32,1.275),
         box-shadow .35s ease,
@@ -372,7 +312,6 @@ body{
     box-shadow:
         0 8px 20px rgba(0,0,0,.12),
         inset 0 1px 0 rgba(255,255,255,.18);
-
     transition:
         transform .35s ease,
         background .35s ease;
@@ -412,7 +351,6 @@ body{
     background:rgba(255,255,255,.12);
     border:1px solid rgba(255,255,255,.18);
     opacity:.65;
-
     transition:
         transform .3s ease,
         opacity .3s ease,
@@ -468,7 +406,7 @@ body{
 
 
 /* =========================================================
-   RESPONSIVE - TABLET
+   TABLET
 ========================================================= */
 
 @media(max-width:900px){
@@ -481,7 +419,7 @@ body{
 
 
 /* =========================================================
-   RESPONSIVE - MOBILE
+   MOBILE
 ========================================================= */
 
 @media(max-width:640px){
@@ -494,21 +432,23 @@ body{
     }
 
     body{
-        padding:10px!important;
+        padding:8px!important;
         display:flex;
-        align-items:center;
+        align-items:flex-start;
     }
 
     main{
         width:100%!important;
         max-width:100%!important;
         min-width:0!important;
+        padding:16px!important;
+        border-radius:23px!important;
     }
 
     .glass-panel{
         width:100%!important;
-        padding:18px!important;
-        border-radius:24px!important;
+        padding:16px!important;
+        border-radius:23px!important;
     }
 
 
@@ -517,42 +457,44 @@ body{
     ----------------------------------------------------- */
 
     #mainHeader{
-        margin-bottom:24px!important;
-        padding-bottom:20px!important;
+        margin-bottom:20px!important;
+        padding-bottom:18px!important;
     }
 
     .logo-wrapper{
-        margin-bottom:14px!important;
+        margin-bottom:12px!important;
     }
 
     .logo-wrapper > div{
-        width:76px!important;
-        height:76px!important;
-        border-radius:18px!important;
+        width:72px!important;
+        height:72px!important;
+        border-radius:17px!important;
+        padding:7px!important;
     }
 
     #mainHeader .color-primary{
         width:100%!important;
         max-width:100%!important;
-        padding:14px 12px!important;
-        border-radius:18px!important;
+        padding:13px 10px!important;
+        border-radius:17px!important;
     }
 
     #mainHeader h1{
-        font-size:17px!important;
+        font-size:16px!important;
         line-height:1.3!important;
-        letter-spacing:.07em!important;
+        letter-spacing:.065em!important;
     }
 
     #mainHeader h2{
-        font-size:11px!important;
+        font-size:10px!important;
         line-height:1.4!important;
-        letter-spacing:.12em!important;
+        letter-spacing:.10em!important;
     }
 
     #mainHeader .mt-3{
         font-size:8px!important;
-        letter-spacing:.22em!important;
+        line-height:1.4!important;
+        letter-spacing:.18em!important;
         text-align:center;
     }
 
@@ -564,43 +506,51 @@ body{
     #homeScreen{
         width:100%!important;
         min-width:0!important;
+        gap:0!important;
     }
 
     #homeScreen > div:first-child{
-        margin-bottom:18px!important;
+        width:100%!important;
+        margin-bottom:16px!important;
     }
 
     #homeScreen h2{
-        font-size:22px!important;
+        font-size:21px!important;
         line-height:1.25!important;
     }
 
     #homeScreen p{
-        font-size:11px!important;
+        font-size:10px!important;
         line-height:1.5!important;
     }
 
 
     /* -----------------------------------------------------
-       MAIN MENU BUTTON
+       MAIN MENU
     ----------------------------------------------------- */
+
+    #homeScreen > div.grid{
+        width:100%!important;
+        grid-template-columns:1fr!important;
+        gap:12px!important;
+    }
 
     #homeScreen .main-menu-card{
         width:100%!important;
         min-width:0!important;
-        padding:22px 16px!important;
-        border-radius:18px!important;
-        gap:12px!important;
+        padding:20px 14px!important;
+        border-radius:17px!important;
+        gap:11px!important;
     }
 
     #homeScreen .main-menu-card .p-4{
-        padding:13px!important;
-        border-radius:16px!important;
+        padding:12px!important;
+        border-radius:14px!important;
     }
 
     #homeScreen .main-menu-card i{
-        width:32px!important;
-        height:32px!important;
+        width:30px!important;
+        height:30px!important;
     }
 
     #homeScreen .main-menu-card span{
@@ -609,11 +559,11 @@ body{
 
     #homeScreen .main-menu-card span.text-lg,
     #homeScreen .main-menu-card span.sm\:text-xl{
-        font-size:16px!important;
+        font-size:15px!important;
     }
 
     #homeScreen .main-menu-card span.text-\[10px\]{
-        font-size:9px!important;
+        font-size:8px!important;
     }
 
 
@@ -624,19 +574,19 @@ body{
     #homeScreen > button.menu-dark{
         width:100%!important;
         min-width:0!important;
-        padding:17px 15px!important;
-        gap:12px!important;
-        border-radius:18px!important;
+        padding:15px 12px!important;
+        gap:10px!important;
+        border-radius:17px!important;
     }
 
     #homeScreen > button.menu-dark > div{
-        padding:10px!important;
-        border-radius:12px!important;
+        padding:9px!important;
+        border-radius:11px!important;
     }
 
     #homeScreen > button.menu-dark > div > i{
-        width:24px!important;
-        height:24px!important;
+        width:23px!important;
+        height:23px!important;
     }
 
     #homeScreen > button.menu-dark span{
@@ -645,12 +595,12 @@ body{
     }
 
     #homeScreen > button.menu-dark span:first-child{
-        font-size:15px!important;
+        font-size:14px!important;
         line-height:1.3!important;
     }
 
     #homeScreen > button.menu-dark span:last-child{
-        font-size:9px!important;
+        font-size:8px!important;
         line-height:1.45!important;
     }
 
@@ -660,21 +610,54 @@ body{
     ----------------------------------------------------- */
 
     #homeScreen > div:last-child{
-        padding:12px!important;
-        gap:10px!important;
-        border-radius:16px!important;
+        width:100%!important;
+        padding:11px!important;
+        gap:9px!important;
+        border-radius:15px!important;
     }
 
     #homeScreen > div:last-child > div{
-        padding:8px!important;
-        border-radius:10px!important;
+        padding:7px!important;
+        border-radius:9px!important;
         flex:none!important;
     }
 
     #homeScreen > div:last-child p{
-        font-size:9px!important;
+        font-size:8px!important;
         line-height:1.45!important;
         text-align:left!important;
+    }
+
+
+    /* -----------------------------------------------------
+       REPORT / FORM HEADER
+    ----------------------------------------------------- */
+
+    #reportMenuScreen,
+    #formMenuScreen{
+        width:100%!important;
+        min-width:0!important;
+    }
+
+    #reportMenuScreen h2,
+    #formMenuScreen h2{
+        font-size:19px!important;
+        line-height:1.3!important;
+        gap:9px!important;
+        min-width:0!important;
+    }
+
+    #reportMenuScreen h2 > span,
+    #formMenuScreen h2 > span{
+        padding:9px!important;
+        border-radius:11px!important;
+        flex:none!important;
+    }
+
+    #reportMenuScreen h2 > span i,
+    #formMenuScreen h2 > span i{
+        width:19px!important;
+        height:19px!important;
     }
 
 
@@ -685,41 +668,17 @@ body{
     .back-button{
         width:max-content!important;
         max-width:max-content!important;
+        min-width:0!important;
         flex:none!important;
         align-self:flex-start!important;
-        padding:9px 13px!important;
-        font-size:12px!important;
-        border-radius:11px!important;
+        padding:8px 12px!important;
+        font-size:11px!important;
+        border-radius:10px!important;
     }
 
-
-    /* -----------------------------------------------------
-       REPORT HEADER
-    ----------------------------------------------------- */
-
-    #reportMenuScreen{
-        width:100%!important;
-        min-width:0!important;
-    }
-
-    #reportMenuScreen h2,
-    #formMenuScreen h2{
-        font-size:20px!important;
-        line-height:1.3!important;
-        gap:10px!important;
-    }
-
-    #reportMenuScreen h2 > span,
-    #formMenuScreen h2 > span{
-        padding:10px!important;
-        border-radius:12px!important;
-        flex:none!important;
-    }
-
-    #reportMenuScreen h2 > span i,
-    #formMenuScreen h2 > span i{
-        width:20px!important;
-        height:20px!important;
+    .back-button i{
+        width:14px!important;
+        height:14px!important;
     }
 
 
@@ -728,56 +687,56 @@ body{
     ----------------------------------------------------- */
 
     .dashboard-grid{
-        grid-template-columns:1fr;
-        gap:13px;
-        width:100%;
+        grid-template-columns:1fr!important;
+        gap:11px!important;
+        width:100%!important;
     }
 
     .dashboard-card{
-        width:100%;
-        min-width:0;
-        min-height:145px;
-        padding:18px;
-        border-radius:20px;
+        width:100%!important;
+        min-width:0!important;
+        min-height:135px!important;
+        padding:16px!important;
+        border-radius:18px!important;
     }
 
     .dashboard-card-content{
-        min-width:0;
+        min-width:0!important;
     }
 
     .dashboard-icon{
-        width:50px;
-        height:50px;
-        border-radius:15px;
+        width:47px!important;
+        height:47px!important;
+        border-radius:14px!important;
     }
 
     .dashboard-icon i{
-        width:24px;
-        height:24px;
+        width:23px!important;
+        height:23px!important;
     }
 
     .dashboard-arrow{
-        width:34px;
-        height:34px;
-        border-radius:10px;
+        width:32px!important;
+        height:32px!important;
+        border-radius:9px!important;
     }
 
     .dashboard-arrow i{
-        width:18px;
-        height:18px;
+        width:17px!important;
+        height:17px!important;
     }
 
     .dashboard-title{
-        font-size:12px;
-        line-height:1.4;
-        letter-spacing:.045em;
-        max-width:85%;
+        font-size:11px!important;
+        line-height:1.4!important;
+        letter-spacing:.04em!important;
+        max-width:84%!important;
         overflow-wrap:anywhere;
     }
 
     .dashboard-card .text-\[10px\]{
         font-size:8px!important;
-        flex:none;
+        flex:none!important;
     }
 
     .dashboard-card:hover{
@@ -789,47 +748,42 @@ body{
        FORM MENU
     ----------------------------------------------------- */
 
-    #formMenuScreen{
-        width:100%!important;
-        min-width:0!important;
-    }
-
     #formMenuScreen .text-slate-500.font-medium.text-sm{
-        font-size:10px!important;
+        font-size:9px!important;
         line-height:1.5!important;
-        margin-top:6px!important;
+        margin-top:5px!important;
     }
 
 
     /* -----------------------------------------------------
-       K3L INFO PANEL
+       K3L
     ----------------------------------------------------- */
 
     .info-panel{
         width:100%!important;
-        padding:14px!important;
-        border-radius:17px!important;
-        gap:11px!important;
+        padding:13px!important;
+        border-radius:16px!important;
+        gap:10px!important;
     }
 
     .info-panel > div:first-child{
-        padding:9px!important;
-        border-radius:11px!important;
+        padding:8px!important;
+        border-radius:10px!important;
     }
 
     .info-panel > div:first-child i{
-        width:20px!important;
-        height:20px!important;
+        width:19px!important;
+        height:19px!important;
     }
 
     .info-panel h4{
-        font-size:9px!important;
+        font-size:8px!important;
         line-height:1.4!important;
-        letter-spacing:.10em!important;
+        letter-spacing:.08em!important;
     }
 
     .info-panel p{
-        font-size:9px!important;
+        font-size:8px!important;
         line-height:1.55!important;
     }
 
@@ -846,28 +800,28 @@ body{
     .form-group{
         width:100%!important;
         min-width:0!important;
-        padding:14px!important;
+        padding:13px!important;
         border-left-width:4px!important;
-        border-radius:16px!important;
+        border-radius:15px!important;
     }
 
     .form-group > div:first-child{
-        gap:9px!important;
+        gap:8px!important;
     }
 
     .form-group > div:first-child > div:first-child{
         min-width:0!important;
-        gap:9px!important;
+        gap:8px!important;
     }
 
     .form-group > div:first-child > div:first-child > div:first-child{
-        padding:8px!important;
-        border-radius:10px!important;
+        padding:7px!important;
+        border-radius:9px!important;
     }
 
     .form-group > div:first-child > div:first-child > div:first-child i{
-        width:18px!important;
-        height:18px!important;
+        width:17px!important;
+        height:17px!important;
     }
 
     .form-group > div:first-child > div:first-child > div:last-child{
@@ -875,24 +829,24 @@ body{
     }
 
     .form-group > div:first-child > div:first-child > div:last-child span{
-        font-size:11px!important;
+        font-size:10px!important;
         line-height:1.4!important;
         overflow-wrap:anywhere;
     }
 
     .form-group > div:first-child > div:first-child > div:last-child p{
-        font-size:8px!important;
+        font-size:7px!important;
         line-height:1.4!important;
     }
 
     .form-group > div:first-child > div:last-child{
-        padding:7px!important;
-        border-radius:9px!important;
+        padding:6px!important;
+        border-radius:8px!important;
     }
 
     .form-group > div:first-child > div:last-child i{
-        width:15px!important;
-        height:15px!important;
+        width:14px!important;
+        height:14px!important;
     }
 
 
@@ -901,17 +855,17 @@ body{
     ----------------------------------------------------- */
 
     .form-group > div[id^="sub-"]{
-        margin-top:12px!important;
-        padding-top:12px!important;
+        margin-top:10px!important;
+        padding-top:10px!important;
     }
 
     .submenu-link{
         width:100%!important;
         min-width:0!important;
-        padding:10px!important;
-        gap:9px!important;
-        border-radius:11px!important;
-        font-size:11px!important;
+        padding:9px!important;
+        gap:8px!important;
+        border-radius:10px!important;
+        font-size:10px!important;
         line-height:1.35!important;
     }
 
@@ -922,8 +876,8 @@ body{
     }
 
     .submenu-link > span:first-child i{
-        width:13px!important;
-        height:13px!important;
+        width:12px!important;
+        height:12px!important;
     }
 
     .submenu-link > span:last-child{
@@ -937,48 +891,48 @@ body{
     ----------------------------------------------------- */
 
     .modal-overlay{
-        padding:12px!important;
+        padding:10px!important;
         overflow-y:auto;
     }
 
     .modal-card{
         width:100%!important;
-        max-width:420px!important;
-        max-height:calc(100vh - 24px)!important;
+        max-width:410px!important;
+        max-height:calc(100vh - 20px)!important;
         overflow-y:auto;
-        padding:22px 18px!important;
-        border-radius:23px!important;
+        padding:20px 16px!important;
+        border-radius:21px!important;
     }
 
     .modal-card > div:first-child{
-        width:54px!important;
-        height:54px!important;
-        border-radius:16px!important;
+        width:51px!important;
+        height:51px!important;
+        border-radius:15px!important;
     }
 
     .modal-card > div:first-child i{
-        width:27px!important;
-        height:27px!important;
+        width:25px!important;
+        height:25px!important;
     }
 
     .modal-card h3{
-        font-size:18px!important;
+        font-size:17px!important;
         line-height:1.3!important;
     }
 
     .modal-card p{
-        font-size:11px!important;
+        font-size:10px!important;
         line-height:1.5!important;
     }
 
     .modal-card input{
-        padding:13px!important;
+        padding:12px!important;
         font-size:16px!important;
     }
 
     .modal-card button{
-        min-height:44px;
-        font-size:12px!important;
+        min-height:43px;
+        font-size:11px!important;
     }
 
 
@@ -987,22 +941,22 @@ body{
     ----------------------------------------------------- */
 
     #toast{
-        width:calc(100vw - 28px)!important;
+        width:calc(100vw - 24px)!important;
         min-width:0!important;
-        max-width:calc(100vw - 28px)!important;
-        bottom:18px!important;
-        padding:12px 14px!important;
-        border-radius:12px!important;
+        max-width:calc(100vw - 24px)!important;
+        bottom:15px!important;
+        padding:11px 13px!important;
+        border-radius:11px!important;
     }
 
     #toast span{
-        font-size:11px!important;
+        font-size:10px!important;
         line-height:1.4!important;
     }
 
     #toast i{
-        width:18px!important;
-        height:18px!important;
+        width:17px!important;
+        height:17px!important;
     }
 
 
@@ -1012,19 +966,19 @@ body{
 
     footer{
         width:100%!important;
-        margin-top:20px!important;
-        padding-left:8px!important;
-        padding-right:8px!important;
-        padding-bottom:22px!important;
+        margin-top:16px!important;
+        padding-left:6px!important;
+        padding-right:6px!important;
+        padding-bottom:18px!important;
     }
 
     footer p:first-child{
-        font-size:9px!important;
+        font-size:8px!important;
         line-height:1.5!important;
     }
 
     footer p:last-child{
-        font-size:8px!important;
+        font-size:7px!important;
         line-height:1.5!important;
     }
 
@@ -1033,62 +987,61 @@ body{
 
 /* =========================================================
    VERY SMALL MOBILE
-   <= 380px
 ========================================================= */
 
 @media(max-width:380px){
 
     body{
-        padding:7px!important;
+        padding:6px!important;
     }
 
     .glass-panel{
-        padding:14px!important;
+        padding:13px!important;
         border-radius:20px!important;
     }
 
     #mainHeader h1{
-        font-size:15px!important;
+        font-size:14px!important;
     }
 
     #mainHeader h2{
-        font-size:9px!important;
+        font-size:8px!important;
     }
 
     #homeScreen h2{
-        font-size:20px!important;
+        font-size:19px!important;
     }
 
     #homeScreen .main-menu-card{
-        padding:19px 12px!important;
+        padding:18px 11px!important;
     }
 
     #homeScreen > button.menu-dark{
-        padding:14px 11px!important;
+        padding:13px 10px!important;
     }
 
     .dashboard-card{
-        min-height:135px;
-        padding:15px;
-        border-radius:18px;
+        min-height:128px!important;
+        padding:14px!important;
+        border-radius:17px!important;
     }
 
     .dashboard-icon{
-        width:46px;
-        height:46px;
-        border-radius:14px;
+        width:44px!important;
+        height:44px!important;
+        border-radius:13px!important;
     }
 
     .dashboard-title{
-        font-size:11px;
+        font-size:10px!important;
     }
 
     .form-group{
-        padding:12px!important;
+        padding:11px!important;
     }
 
     .modal-card{
-        padding:19px 14px!important;
+        padding:18px 13px!important;
     }
 
     .modal-card > div:last-child{
@@ -1105,7 +1058,6 @@ body{
 
 /* =========================================================
    TOUCH DEVICES
-   Reduce hover movement on touchscreen
 ========================================================= */
 
 @media(hover:none) and (pointer:coarse){
@@ -1145,77 +1097,54 @@ body{
 
 <body class="flex flex-col items-center p-4 sm:p-8">
 
-<main
-    class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in"
->
+<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in">
 
 <!-- =========================================================
      HEADER
 ========================================================= -->
 
-<header
-    id="mainHeader"
-    class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
->
-
+<header id="mainHeader" class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
 <div class="mb-4 logo-wrapper">
 
-    <div
-        class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
-    >
+<div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
 
-        <img
-            src="default_logo.png"
-            alt="Logo PT TSI"
-            class="w-full h-full object-contain"
-            id="companyLogo"
-            onerror="handleLogoError()"
-        >
+<img
+src="default_logo.png"
+alt="Logo PT TSI"
+class="w-full h-full object-contain"
+id="companyLogo"
+onerror="handleLogoError()"
 
-        <div
-            id="logoFallback"
-            class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
-        >
-
-            <span class="font-black text-2xl">
-                TSI
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div
-    class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
 >
 
-    <h1
-        class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
-    >
-        PAPERLESS PROJECT
-    </h1>
+<div id="logoFallback" class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white">
 
-    <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-
-    <h2
-        class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
-    >
-        PT TATSUMI SERUNI INDONESIA
-    </h2>
+<span class="font-black text-2xl">TSI</span>
 
 </div>
 
-
-<div
-    class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase"
->
-    Digitalization Initiative v2.0
 </div>
 
+</div>
+
+<div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+
+<h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+PAPERLESS PROJECT
+</h1>
+
+<div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+
+<h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+PT TATSUMI SERUNI INDONESIA
+</h2>
+
+</div>
+
+<div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
+Digitalization Initiative v2.0
+</div>
 
 </header>
 
@@ -1223,188 +1152,132 @@ body{
      HOME SCREEN
 ========================================================= -->
 
-<div
-    id="homeScreen"
-    class="space-y-6 flex flex-col items-center text-center fade-in"
->
-
+<div id="homeScreen" class="space-y-6 flex flex-col items-center text-center fade-in">
 
 <div class="space-y-2 mb-3">
 
-    <h2
-        class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight"
-    >
-        Portal Layanan Digital
-    </h2>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight">
+Portal Layanan Digital
+</h2>
 
-    <p class="text-slate-500 font-medium text-sm">
-        Sistem Digitalisasi Data Operasional Terpadu.
-    </p>
+<p class="text-slate-500 font-medium text-sm">
+Sistem Digitalisasi Data Operasional Terpadu.
+</p>
 
 </div>
-
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
 
+<!-- MENU FORMULIR -->
 
-    <!-- =================================================
-         MENU FORMULIR
-    ================================================== -->
+<button
+type="button"
+onclick="showFormMenu()"
+class="main-menu-card menu-blue text-white font-bold p-7 sm:p-9 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-4 border-b-4 border-blue-950"
 
-    <button
-        type="button"
-        onclick="showFormMenu()"
-        class="main-menu-card menu-blue text-white font-bold p-7 sm:p-9 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-4 border-b-4 border-blue-950"
-    >
+>
 
-        <div
-            class="bg-white/10 border border-white/20 p-4 rounded-2xl"
-        >
+<div class="bg-white/10 border border-white/20 p-4 rounded-2xl">
 
-            <i
-                data-lucide="file-text"
-                class="w-10 h-10"
-            ></i>
-
-        </div>
-
-
-        <div>
-
-            <span
-                class="block text-lg sm:text-xl font-black tracking-wide uppercase"
-            >
-                Menu Formulir
-            </span>
-
-            <span
-                class="block text-[10px] text-blue-100 font-medium mt-1"
-            >
-                Akses seluruh formulir digital
-            </span>
-
-        </div>
-
-    </button>
-
-
-    <!-- =================================================
-         MENU LAPORAN
-    ================================================== -->
-
-    <button
-        type="button"
-        onclick="showReportMenu()"
-        class="main-menu-card menu-amber text-white font-bold p-7 sm:p-9 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-4 border-b-4 border-amber-800"
-    >
-
-        <div
-            class="bg-white/10 border border-white/20 p-4 rounded-2xl"
-        >
-
-            <i
-                data-lucide="bar-chart-3"
-                class="w-10 h-10"
-            ></i>
-
-        </div>
-
-
-        <div>
-
-            <span
-                class="block text-lg sm:text-xl font-black tracking-wide uppercase"
-            >
-                Menu Laporan
-            </span>
-
-            <span
-                class="block text-[10px] text-amber-100 font-medium mt-1"
-            >
-                Monitoring dan laporan operasional
-            </span>
-
-        </div>
-
-    </button>
+<i data-lucide="file-text" class="w-10 h-10"></i>
 
 </div>
 
+<div>
 
-<!-- =================================================
-     WORKSHOP LIVE MONITOR
-================================================== -->
+<span class="block text-lg sm:text-xl font-black tracking-wide uppercase">
+Menu Formulir
+</span>
 
-<button
-    type="button"
-    onclick="openLink('https://pttsipaperlessproject2-workshop.netlify.app/',false)"
-    class="main-menu-card menu-dark w-full text-white font-bold p-5 sm:p-6 rounded-2xl shadow-lg flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left"
->
+<span class="block text-[10px] text-blue-100 font-medium mt-1">
+Akses seluruh formulir digital
+</span>
 
-    <div
-        class="bg-slate-700 text-amber-400 p-3 rounded-xl border border-slate-600 shrink-0"
-    >
-
-        <i
-            data-lucide="monitor"
-            class="w-7 h-7"
-        ></i>
-
-    </div>
-
-
-    <div>
-
-        <span
-            class="text-lg sm:text-xl block font-black uppercase tracking-wider"
-        >
-            Workshop Live Monitor
-        </span>
-
-        <span
-            class="text-[10px] sm:text-xs font-medium text-slate-300 block mt-1"
-        >
-            Pantau status pengerjaan unit dan aktivitas workshop secara real-time.
-        </span>
-
-    </div>
-
-
-    <i
-        data-lucide="arrow-up-right"
-        class="w-5 h-5 text-slate-400 hidden sm:block ml-2"
-    ></i>
+</div>
 
 </button>
 
+<!-- MENU LAPORAN -->
 
-<!-- =================================================
-     INFO
-================================================== -->
+<button
+type="button"
+onclick="showReportMenu()"
+class="main-menu-card menu-amber text-white font-bold p-7 sm:p-9 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-4 border-b-4 border-amber-800"
 
-<div
-    class="w-full mt-1 p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center gap-3"
 >
 
-    <div
-        class="bg-blue-50 text-blue-800 p-2 rounded-xl"
-    >
+<div class="bg-white/10 border border-white/20 p-4 rounded-2xl">
 
-        <i
-            data-lucide="shield-check"
-            class="w-4 h-4"
-        ></i>
-
-    </div>
-
-    <p
-        class="text-[10px] sm:text-xs text-slate-500 font-medium"
-    >
-        Sistem terintegrasi untuk mendukung digitalisasi operasional PT TSI.
-    </p>
+<i data-lucide="bar-chart-3" class="w-10 h-10"></i>
 
 </div>
 
+<div>
+
+<span class="block text-lg sm:text-xl font-black tracking-wide uppercase">
+Menu Laporan
+</span>
+
+<span class="block text-[10px] text-amber-100 font-medium mt-1">
+Monitoring dan laporan operasional
+</span>
+
+</div>
+
+</button>
+
+</div>
+
+<!-- WORKSHOP LIVE MONITOR -->
+
+<button
+type="button"
+onclick="openLink('https://pttsipaperlessproject2-workshop.netlify.app/',false)"
+class="main-menu-card menu-dark w-full text-white font-bold p-5 sm:p-6 rounded-2xl shadow-lg flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left"
+
+>
+
+<div class="bg-slate-700 text-amber-400 p-3 rounded-xl border border-slate-600 shrink-0">
+
+<i data-lucide="monitor" class="w-7 h-7"></i>
+
+</div>
+
+<div>
+
+<span class="text-lg sm:text-xl block font-black uppercase tracking-wider">
+Workshop Live Monitor
+</span>
+
+<span class="text-[10px] sm:text-xs font-medium text-slate-300 block mt-1">
+Pantau status pengerjaan unit dan aktivitas workshop secara real-time.
+</span>
+
+</div>
+
+<i
+data-lucide="arrow-up-right"
+class="w-5 h-5 text-slate-400 hidden sm:block ml-2"
+
+> </i>
+
+</button>
+
+<!-- INFO -->
+
+<div class="w-full mt-1 p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center gap-3">
+
+<div class="bg-blue-50 text-blue-800 p-2 rounded-xl">
+
+<i data-lucide="shield-check" class="w-4 h-4"></i>
+
+</div>
+
+<p class="text-[10px] sm:text-xs text-slate-500 font-medium">
+Sistem terintegrasi untuk mendukung digitalisasi operasional PT TSI.
+</p>
+
+</div>
 
 </div>
 
@@ -1412,73 +1285,42 @@ body{
      REPORT MENU
 ========================================================= -->
 
-<div
-    id="reportMenuScreen"
-    class="hidden fade-in"
->
+<div id="reportMenuScreen" class="hidden fade-in">
 
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7">
 
-<!-- HEADER REPORT -->
+<div>
 
-<div
-    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7"
->
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
 
-    <div>
+<span class="bg-amber-600 text-white p-3 rounded-xl shadow-md">
 
-        <h2
-            class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3"
-        >
+<i data-lucide="layout-dashboard" class="w-6 h-6"></i>
 
-            <span
-                class="bg-amber-600 text-white p-3 rounded-xl shadow-md"
-            >
+</span>
 
-                <i
-                    data-lucide="layout-dashboard"
-                    class="w-6 h-6"
-                ></i>
+Dashboard Laporan
 
-            </span>
-
-            Dashboard Laporan
-
-        </h2>
-
-    </div>
-
-
-    <!-- KEMBALI -->
-
-    <button
-        type="button"
-        onclick="showHome()"
-        class="back-button w-fit max-w-max self-start shrink-0 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2.5 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm whitespace-nowrap"
-    >
-
-        <i
-            data-lucide="arrow-left"
-            class="w-4 h-4 shrink-0"
-        ></i>
-
-        <span>
-            Kembali
-        </span>
-
-    </button>
+</h2>
 
 </div>
 
+<button
+type="button"
+onclick="showHome()"
+class="back-button w-fit max-w-max self-start shrink-0 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2.5 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm whitespace-nowrap"
 
-<!-- =====================================================
-     DASHBOARD GRID
-====================================================== -->
+>
 
-<div
-    id="dashboardGrid"
-    class="dashboard-grid"
-></div>
+<i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
 
+<span>Kembali</span>
+
+</button>
+
+</div>
+
+<div id="dashboardGrid" class="dashboard-grid"></div>
 
 </div>
 
@@ -1486,122 +1328,77 @@ body{
      FORM MENU
 ========================================================= -->
 
-<div
-    id="formMenuScreen"
-    class="space-y-6 hidden fade-in"
->
+<div id="formMenuScreen" class="space-y-6 hidden fade-in">
 
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
 
-<div
-    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6"
->
+<div>
 
-    <div>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
 
-        <h2
-            class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3"
-        >
+<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
 
-            <span
-                class="bg-blue-900 text-white p-3 rounded-xl shadow-md"
-            >
+<i data-lucide="clipboard-list" class="w-6 h-6"></i>
 
-                <i
-                    data-lucide="clipboard-list"
-                    class="w-6 h-6"
-                ></i>
+</span>
 
-            </span>
+Digital Form Repository
 
-            Digital Form Repository
+</h2>
 
-        </h2>
-
-
-        <p
-            class="text-slate-500 font-medium text-sm mt-2 ml-1"
-        >
-            Pilih formulir digital sesuai kebutuhan operasional.
-        </p>
-
-    </div>
-
-
-    <!-- KEMBALI KE HOME -->
-
-    <button
-        type="button"
-        onclick="showHome()"
-        class="back-button w-fit max-w-max self-start shrink-0 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2.5 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm whitespace-nowrap"
-    >
-
-        <i
-            data-lucide="arrow-left"
-            class="w-4 h-4 shrink-0"
-        ></i>
-
-        <span>
-            Kembali
-        </span>
-
-    </button>
+<p class="text-slate-500 font-medium text-sm mt-2 ml-1">
+Pilih formulir digital sesuai kebutuhan operasional.
+</p>
 
 </div>
 
+<button
+type="button"
+onclick="showHome()"
+class="back-button w-fit max-w-max self-start shrink-0 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2.5 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm whitespace-nowrap"
 
-<!-- =================================================
-     K3L
-================================================== -->
-
-<div
-    class="info-panel mb-6 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-start gap-4"
 >
 
-    <div
-        class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0"
-    >
+<i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
 
-        <i
-            data-lucide="shield-check"
-            class="w-6 h-6"
-        ></i>
+<span>Kembali</span>
 
-    </div>
-
-
-    <div class="space-y-1">
-
-        <h4
-            class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]"
-        >
-            Protokol Keselamatan Kerja (K3L)
-        </h4>
-
-
-        <p
-            class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium"
-        >
-
-            Seluruh personel operasional
-            <b>diwajibkan</b>
-            untuk senantiasa menegakkan standar K3,
-            mematuhi Prosedur Operasional Standar (SOP),
-            serta Instruksi Kerja yang telah dilegalisasi
-            dalam kerangka <b>SMK3 Perusahaan</b>
-            guna menjamin keamanan dan keberlanjutan kerja.
-
-        </p>
-
-    </div>
+</button>
 
 </div>
 
+<!-- K3L -->
 
-<div
-    id="formMenuContainer"
-    class="space-y-4"
-></div>
+<div class="info-panel mb-6 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-start gap-4">
 
+<div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0">
+
+<i data-lucide="shield-check" class="w-6 h-6"></i>
+
+</div>
+
+<div class="space-y-1">
+
+<h4 class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]">
+Protokol Keselamatan Kerja (K3L)
+</h4>
+
+<p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">
+
+Seluruh personel operasional <b>diwajibkan</b>
+untuk senantiasa menegakkan standar K3,
+mematuhi Prosedur Operasional Standar (SOP),
+serta Instruksi Kerja yang telah dilegalisasi
+dalam kerangka <b>SMK3 Perusahaan</b>
+guna menjamin keamanan dan keberlanjutan kerja.
+
+</p>
+
+</div>
+
+</div>
+
+<div id="formMenuContainer" class="space-y-4"></div>
 
 </div>
 
@@ -1609,88 +1406,67 @@ body{
      AUTH MODAL
 ========================================================= -->
 
-<div
-    id="authModal"
-    class="fixed inset-0 modal-overlay hidden items-center justify-center p-4 z-50"
->
+<div id="authModal" class="fixed inset-0 modal-overlay hidden items-center justify-center p-4 z-50">
 
+<div class="modal-card bg-white p-7 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6 border-t-4 border-amber-600">
 
-<div
-    class="modal-card bg-white p-7 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6 border-t-4 border-amber-600"
->
+<div class="mx-auto w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center">
 
-    <div
-        class="mx-auto w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center"
-    >
-
-        <i
-            data-lucide="lock-keyhole"
-            class="w-8 h-8 text-amber-600"
-        ></i>
-
-    </div>
-
-
-    <div>
-
-        <h3
-            class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight"
-        >
-            Endpoint Restricted
-        </h3>
-
-        <p
-            class="text-slate-500 text-sm mt-2"
-        >
-            Otorisasi diperlukan untuk mengakses data.
-        </p>
-
-    </div>
-
-
-    <div class="space-y-3">
-
-        <input
-            type="password"
-            id="passwordInput"
-            placeholder="Access Token"
-            class="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-lg font-bold text-slate-700 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 outline-none transition-all"
-        >
-
-
-        <div
-            id="passwordError"
-            class="hidden text-[10px] text-red-600 font-bold bg-red-50 p-3 rounded-xl border border-red-100 uppercase"
-        >
-            ACCESS DENIED: Kode akses tidak valid!
-        </div>
-
-    </div>
-
-
-    <div class="flex gap-3">
-
-        <button
-            type="button"
-            onclick="closeAuth()"
-            class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition"
-        >
-            Batal
-        </button>
-
-
-        <button
-            type="button"
-            onclick="confirmAuth()"
-            class="flex-1 bg-blue-800 text-white font-bold py-3 rounded-xl hover:bg-blue-900 shadow-md transition"
-        >
-            Authorize
-        </button>
-
-    </div>
+<i data-lucide="lock-keyhole" class="w-8 h-8 text-amber-600"></i>
 
 </div>
 
+<div>
+
+<h3 class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight">
+Endpoint Restricted
+</h3>
+
+<p class="text-slate-500 text-sm mt-2">
+Otorisasi diperlukan untuk mengakses data.
+</p>
+
+</div>
+
+<div class="space-y-3">
+
+<input
+type="password"
+id="passwordInput"
+placeholder="Access Token"
+class="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-lg font-bold text-slate-700 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 outline-none transition-all"
+
+>
+
+<div id="passwordError" class="hidden text-[10px] text-red-600 font-bold bg-red-50 p-3 rounded-xl border border-red-100 uppercase">
+ACCESS DENIED: Kode akses tidak valid!
+</div>
+
+</div>
+
+<div class="flex gap-3">
+
+<button
+type="button"
+onclick="closeAuth()"
+class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition"
+
+>
+
+Batal </button>
+
+<button
+type="button"
+onclick="confirmAuth()"
+class="flex-1 bg-blue-800 text-white font-bold py-3 rounded-xl hover:bg-blue-900 shadow-md transition"
+
+>
+
+Authorize </button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1698,81 +1474,59 @@ body{
      THANK YOU MODAL
 ========================================================= -->
 
-<div
-    id="thanksModal"
-    class="fixed inset-0 modal-overlay hidden items-center justify-center p-4 z-50"
->
+<div id="thanksModal" class="fixed inset-0 modal-overlay hidden items-center justify-center p-4 z-50">
 
+<div class="modal-card bg-white p-7 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6 border-t-4 border-emerald-600">
 
-<div
-    class="modal-card bg-white p-7 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6 border-t-4 border-emerald-600"
->
+<div class="mx-auto w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center">
 
-    <div
-        class="mx-auto w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center"
-    >
-
-        <i
-            data-lucide="check-circle"
-            class="w-8 h-8 text-emerald-600"
-        ></i>
-
-    </div>
-
-
-    <div>
-
-        <h3
-            class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight"
-        >
-            Terima Kasih!
-        </h3>
-
-        <p
-            class="text-slate-500 text-sm mt-2"
-        >
-            Data formulir Anda telah dikirim ke tab baru.
-        </p>
-
-    </div>
-
-
-    <div
-        class="p-4 bg-slate-50 rounded-2xl border border-slate-100"
-    >
-
-        <p
-            class="text-slate-700 font-semibold text-sm"
-        >
-            Apakah Anda ingin mengisi formulir digital lainnya?
-        </p>
-
-    </div>
-
-
-    <div class="flex gap-3">
-
-        <button
-            type="button"
-            onclick="closeWindow()"
-            class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition"
-        >
-            Tutup Tab
-        </button>
-
-
-        <button
-            type="button"
-            onclick="closeThanks()"
-            class="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 shadow-md transition"
-        >
-            Ya, Lanjut
-        </button>
-
-    </div>
+<i data-lucide="check-circle" class="w-8 h-8 text-emerald-600"></i>
 
 </div>
 
+<div>
+
+<h3 class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight">
+Terima Kasih!
+</h3>
+
+<p class="text-slate-500 text-sm mt-2">
+Data formulir Anda telah dikirim ke tab baru.
+</p>
+
+</div>
+
+<div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+
+<p class="text-slate-700 font-semibold text-sm">
+Apakah Anda ingin mengisi formulir digital lainnya?
+</p>
+
+</div>
+
+<div class="flex gap-3">
+
+<button
+type="button"
+onclick="closeWindow()"
+class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition"
+
+>
+
+Tutup Tab </button>
+
+<button
+type="button"
+onclick="closeThanks()"
+class="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 shadow-md transition"
+
+>
+
+Ya, Lanjut </button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1780,22 +1534,11 @@ body{
      TOAST
 ========================================================= -->
 
-<div
-    id="toast"
-    class="flex items-center gap-3"
->
+<div id="toast" class="flex items-center gap-3">
 
+<i data-lucide="info" class="text-amber-400 w-5 h-5 shrink-0"></i>
 
-<i
-    data-lucide="info"
-    class="text-amber-400 w-5 h-5 shrink-0"
-></i>
-
-<span
-    id="toastMsg"
-    class="text-sm font-medium"
-></span>
-
+<span id="toastMsg" class="text-sm font-medium"></span>
 
 </div>
 
@@ -1805,38 +1548,27 @@ body{
      FOOTER
 ========================================================= -->
 
-<footer
-    class="mt-8 text-center text-slate-400 px-4 pb-8"
->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
 
-
-<p
-    class="font-bold text-slate-500 tracking-tight uppercase"
->
-    &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+<p class="font-bold text-slate-500 tracking-tight uppercase">
+&copy; 2026 Paperless Project - PT TSI. All rights reserved.
 </p>
-
 
 <p class="text-[10px] mt-1">
 
-    System Architecture by:
+System Architecture by:
 
-    <span
-        class="text-slate-600 font-semibold uppercase"
-    >
-        Imam Wahyu Ramadhan, S.T.
-    </span>
+<span class="text-slate-600 font-semibold uppercase">
+Imam Wahyu Ramadhan, S.T.
+</span>
 
-    |
+|
 
-    <span
-        class="text-amber-600 font-bold uppercase tracking-tighter"
-    >
-        Project 2.0
-    </span>
+<span class="text-amber-600 font-bold uppercase tracking-tighter">
+Project 2.0
+</span>
 
 </p>
-
 
 </footer>
 
@@ -1846,220 +1578,220 @@ body{
    AUTHENTICATION
 ========================================================= */
 
-const SECRET_CODE = '3978128';
+const SECRET_CODE='3978128';
 
-let pendingAction = null;
+let pendingAction=null;
 
 
 /* =========================================================
    FORM DATA
 ========================================================= */
 
-const FORM_DATA = [
+const FORM_DATA=[
 
-    {
-        id:"dmt",
-        title:"DAILY MEETING",
-        icon:"users",
+{
+id:"dmt",
+title:"DAILY MEETING",
+icon:"users",
 
-        children:[
+children:[
 
-            {
-                name:"Mechanic Activity",
-                link:"https://mechanic-activity.netlify.app/"
-            },
+{
+name:"Mechanic Activity",
+link:"https://mechanic-activity.netlify.app/"
+},
 
-            {
-                name:"Breakdown Information",
-                link:"#"
-            }
+{
+name:"Breakdown Information",
+link:"#"
+}
 
-        ]
-    },
-
-
-    {
-        id:"lph",
-        title:"Laporan Pemeriksaan Harian (LPH)",
-        icon:"truck",
-
-        children:[
-
-            {
-                name:"LPH Wheel Loader",
-                link:"https://forms.gle/YzV3hmmFSSiUAZkJ9"
-            },
-
-            {
-                name:"LPH Forklift",
-                link:"https://forms.gle/E6btWm7G5YxrQkyt8"
-            },
-
-            {
-                name:"LPH Dumptruck",
-                link:"https://forms.gle/57WPzJ2LUxqCPtXMA"
-            },
-
-            {
-                name:"LPH Excavator",
-                link:"https://forms.gle/G7uFHthvNmU6ubNP8"
-            }
-
-        ]
-    },
+]
+},
 
 
-    {
-        id:"rjo",
-        title:"Repair Job Order (RJO)",
-        icon:"wrench",
+{
+id:"lph",
+title:"Laporan Pemeriksaan Harian (LPH)",
+icon:"truck",
 
-        children:[
+children:[
 
-            {
-                name:"Buka Form RJO",
-                link:"https://forms.gle/FrSktMFs83bHhPZ39"
-            }
+{
+name:"LPH Wheel Loader",
+link:"https://forms.gle/YzV3hmmFSSiUAZkJ9"
+},
 
-        ]
-    },
+{
+name:"LPH Forklift",
+link:"https://forms.gle/E6btWm7G5YxrQkyt8"
+},
 
+{
+name:"LPH Dumptruck",
+link:"https://forms.gle/57WPzJ2LUxqCPtXMA"
+},
 
-    {
-        id:"ciu",
-        title:"Checklist Inspection Unit",
-        icon:"clipboard-check",
+{
+name:"LPH Excavator",
+link:"https://forms.gle/G7uFHthvNmU6ubNP8"
+}
 
-        children:[
-
-            {
-                name:"CIU Dumptruck",
-                link:"https://forms.gle/2wLcpNpDGGmeWpZy8"
-            },
-
-            {
-                name:"CIU Excavator",
-                link:"https://forms.gle/DXk1yQVa4rns8p6h9"
-            },
-
-            {
-                name:"CIU Forklift",
-                link:"https://forms.gle/4G3usE7nUZyq9xNe8"
-            },
-
-            {
-                name:"CIU Wheel Loader",
-                link:"https://forms.gle/vGaa6pGjcM16MWqk7"
-            }
-
-        ]
-    },
+]
+},
 
 
-    {
-        id:"cps",
-        title:"Checklist Periodic Service",
-        icon:"calendar-clock",
+{
+id:"rjo",
+title:"Repair Job Order (RJO)",
+icon:"wrench",
 
-        children:[
+children:[
 
-            {
-                name:"CPS Dumptruck",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLSehLV9Z9ppLAuyWTHd_RpS9OgxXwz7cH6Jv4m3Ov6QeV0ccRA/viewform"
-            },
+{
+name:"Buka Form RJO",
+link:"https://forms.gle/FrSktMFs83bHhPZ39"
+}
 
-            {
-                name:"CPS Excavator",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLScZVERcQ1GFS29_DTR3YkNiGUqf99O-u-On0PG24hrfFojs-g/viewform"
-            },
-
-            {
-                name:"CPS Forklift",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLScXX5R0rOsJX0kNKEY1pxTRVOQh6lD3YsBjguf53I1pLo7Bw/viewform"
-            },
-
-            {
-                name:"CPS Wheel Loader",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLScOD63w9xuMoalEdYcU6YiQIUHbtkBNUT8Me8TpujUrO9jnNg/viewform"
-            }
-
-        ]
-    },
+]
+},
 
 
-    {
-        id:"cim",
-        title:"Checklist Inspection Machine",
-        icon:"settings",
+{
+id:"ciu",
+title:"Checklist Inspection Unit",
+icon:"clipboard-check",
 
-        children:[
+children:[
 
-            {
-                name:"CIM Compressor",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLSfyypoY9V594bImNv6T8HWWBcyG2JS57-p5UTASWKikPOr5rQ/viewform"
-            },
+{
+name:"CIU Dumptruck",
+link:"https://forms.gle/2wLcpNpDGGmeWpZy8"
+},
 
-            {
-                name:"CIM Crane",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLSfSHoHSzp5iQGtbVtym4ziVhKhdbxpmViC096GAUZhL_pRQKg/viewform"
-            },
+{
+name:"CIU Excavator",
+link:"https://forms.gle/DXk1yQVa4rns8p6h9"
+},
 
-            {
-                name:"CIM Grinding Machine",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLSeI5LUWrA4UgcozFcHS55CoPXlhwZZZxtLrm66CGM6YVEuBlQ/viewform"
-            },
+{
+name:"CIU Forklift",
+link:"https://forms.gle/4G3usE7nUZyq9xNe8"
+},
 
-            {
-                name:"CIM Tabung Bertekanan",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLSe7_60xawLnhab7h9kbxleRyQgYvfWSalDuoujIbrudiChTXA/viewform"
-            },
+{
+name:"CIU Wheel Loader",
+link:"https://forms.gle/vGaa6pGjcM16MWqk7"
+}
 
-            {
-                name:"CIM Welding Machine",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLSejNr0h2V1w6cjxFRkvj4p7kJ7EKGWWRzVBreuxkPMpy2cbUQ/viewform"
-            }
-
-        ]
-    },
+]
+},
 
 
-    {
-        id:"usa",
-        title:"Usage & Activity",
-        icon:"history",
+{
+id:"cps",
+title:"Checklist Periodic Service",
+icon:"calendar-clock",
 
-        children:[
+children:[
 
-            {
-                name:"Checklist Oil Usage",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLSfIV1S2Ax2uicpA5AqRDoOPuw0m4lo9VKXP2nS7jtvoB_JMpQ/viewform"
-            },
+{
+name:"CPS Dumptruck",
+link:"https://docs.google.com/forms/d/e/1FAIpQLSehLV9Z9ppLAuyWTHd_RpS9OgxXwz7cH6Jv4m3Ov6QeV0ccRA/viewform"
+},
 
-            {
-                name:"Greasing Activity",
-                link:"https://docs.google.com/forms/d/e/1FAIpQLSeeLpDCfQ2Vj6Wjkx4JCj0sjM2wFSQGb40LqlO6z0YccAMMdw/viewform"
-            }
+{
+name:"CPS Excavator",
+link:"https://docs.google.com/forms/d/e/1FAIpQLScZVERcQ1GFS29_DTR3YkNiGUqf99O-u-On0PG24hrfFojs-g/viewform"
+},
 
-        ]
-    },
+{
+name:"CPS Forklift",
+link:"https://docs.google.com/forms/d/e/1FAIpQLScXX5R0rOsJX0kNKEY1pxTRVOQh6lD3YsBjguf53I1pLo7Bw/viewform"
+},
+
+{
+name:"CPS Wheel Loader",
+link:"https://docs.google.com/forms/d/e/1FAIpQLScOD63w9xuMoalEdYcU6YiQIUHbtkBNUT8Me8TpujUrO9jnNg/viewform"
+}
+
+]
+},
 
 
-    {
-        id:"etr",
-        title:"Emergency Trouble Report (ETR)",
-        icon:"alert-octagon",
-        restricted:true,
-        description:"Form repair unit kerusakan fatal/berbahaya.",
+{
+id:"cim",
+title:"Checklist Inspection Machine",
+icon:"settings",
 
-        children:[
+children:[
 
-            {
-                name:"Buka Form ETR",
-                link:"https://forms.gle/7U7vn9yzpCDWP3nW7"
-            }
+{
+name:"CIM Compressor",
+link:"https://docs.google.com/forms/d/e/1FAIpQLSfyypoY9V594bImNv6T8HWWBcyG2JS57-p5UTASWKikPOr5rQ/viewform"
+},
 
-        ]
-    }
+{
+name:"CIM Crane",
+link:"https://docs.google.com/forms/d/e/1FAIpQLSfSHoHSzp5iQGtbVtym4ziVhKhdbxpmViC096GAUZhL_pRQKg/viewform"
+},
+
+{
+name:"CIM Grinding Machine",
+link:"https://docs.google.com/forms/d/e/1FAIpQLSeI5LUWrA4UgcozFcHS55CoPXlhwZZZxtLrm66CGM6YVEuBlQ/viewform"
+},
+
+{
+name:"CIM Tabung Bertekanan",
+link:"https://docs.google.com/forms/d/e/1FAIpQLSe7_60xawLnhab7h9kbxleRyQgYvfWSalDuoujIbrudiChTXA/viewform"
+},
+
+{
+name:"CIM Welding Machine",
+link:"https://docs.google.com/forms/d/e/1FAIpQLSejNr0h2V1w6cjxFRkvj4p7kJ7EKGWWRzVBreuxkPMpy2cbUQ/viewform"
+}
+
+]
+},
+
+
+{
+id:"usa",
+title:"Usage & Activity",
+icon:"history",
+
+children:[
+
+{
+name:"Checklist Oil Usage",
+link:"https://docs.google.com/forms/d/e/1FAIpQLSfIV1S2Ax2uicpA5AqRDoOPuw0m4lo9VKXP2nS7jtvoB_JMpQ/viewform"
+},
+
+{
+name:"Greasing Activity",
+link:"https://docs.google.com/forms/d/e/1FAIpQLSeeLpDCfQ2Vj6Wjkx4JCj0sjM2wFSQGb40LqlO6z0YccAMMdw/viewform"
+}
+
+]
+},
+
+
+{
+id:"etr",
+title:"Emergency Trouble Report (ETR)",
+icon:"alert-octagon",
+restricted:true,
+description:"Form repair unit kerusakan fatal/berbahaya.",
+
+children:[
+
+{
+name:"Buka Form ETR",
+link:"https://forms.gle/7U7vn9yzpCDWP3nW7"
+}
+
+]
+}
 
 ];
 
@@ -2068,70 +1800,70 @@ const FORM_DATA = [
    DASHBOARD DATA
 ========================================================= */
 
-const DASHBOARD_DATA = [
+const DASHBOARD_DATA=[
 
-    {
-        title:"Dashboard Periodic Service",
-        icon:"calendar-check-2",
-        link:"periodic.html",
-        theme:"dashboard-blue"
-    },
+{
+title:"Dashboard Periodic Service",
+icon:"calendar-check-2",
+link:"periodic.html",
+theme:"dashboard-blue"
+},
 
-    {
-        title:"Dashboard Laporan Kerusakan pada LPH",
-        icon:"clipboard-x",
-        link:"lph.html",
-        theme:"dashboard-cyan"
-    },
+{
+title:"Dashboard Laporan Kerusakan pada LPH",
+icon:"clipboard-x",
+link:"lph.html",
+theme:"dashboard-cyan"
+},
 
-    {
-        title:"Dashboard Corrective Maintenance",
-        icon:"wrench",
-        link:"maintenance.html",
-        theme:"dashboard-indigo"
-    },
+{
+title:"Dashboard Corrective Maintenance",
+icon:"wrench",
+link:"maintenance.html",
+theme:"dashboard-indigo"
+},
 
-    {
-        title:"Dashboard Greasing Activity",
-        icon:"droplets",
-        link:"greasing.html",
-        theme:"dashboard-emerald"
-    },
+{
+title:"Dashboard Greasing Activity",
+icon:"droplets",
+link:"greasing.html",
+theme:"dashboard-emerald"
+},
 
-    {
-        title:"Dashboard Oil Usage",
-        icon:"fuel",
-        link:"oil.html",
-        theme:"dashboard-amber"
-    },
+{
+title:"Dashboard Oil Usage",
+icon:"fuel",
+link:"oil.html",
+theme:"dashboard-amber"
+},
 
-    {
-        title:"Dashboard Man Power",
-        icon:"users",
-        link:"shift.html",
-        theme:"dashboard-violet"
-    },
+{
+title:"Dashboard Man Power",
+icon:"users",
+link:"shift.html",
+theme:"dashboard-violet"
+},
 
-    {
-        title:"Dashboard Breakdown Unit",
-        icon:"triangle-alert",
-        link:"bd.html",
-        theme:"dashboard-rose"
-    },
+{
+title:"Dashboard Breakdown Unit",
+icon:"triangle-alert",
+link:"bd.html",
+theme:"dashboard-rose"
+},
 
-    {
-        title:"Dashboard Availability",
-        icon:"activity",
-        link:"availability.html",
-        theme:"dashboard-teal"
-    },
+{
+title:"Dashboard Availability",
+icon:"activity",
+link:"availability.html",
+theme:"dashboard-teal"
+},
 
-    {
-        title:"Dashboard Populasi Unit",
-        icon:"truck",
-        link:"armada.html",
-        theme:"dashboard-slate"
-    }
+{
+title:"Dashboard Populasi Unit",
+icon:"truck",
+link:"armada.html",
+theme:"dashboard-slate"
+}
 
 ];
 
@@ -2142,20 +1874,12 @@ const DASHBOARD_DATA = [
 
 function handleLogoError(){
 
-    const logo =
-        document.getElementById('companyLogo');
+const logo=document.getElementById('companyLogo');
+const fallback=document.getElementById('logoFallback');
 
-    const fallback =
-        document.getElementById('logoFallback');
+if(logo) logo.classList.add('hidden');
 
-
-    if(logo){
-        logo.classList.add('hidden');
-    }
-
-    if(fallback){
-        fallback.classList.remove('hidden');
-    }
+if(fallback) fallback.classList.remove('hidden');
 
 }
 
@@ -2166,27 +1890,20 @@ function handleLogoError(){
 
 function showHome(){
 
-    const homeScreen =
-        document.getElementById('homeScreen');
+const homeScreen=document.getElementById('homeScreen');
+const formMenuScreen=document.getElementById('formMenuScreen');
+const reportMenuScreen=document.getElementById('reportMenuScreen');
 
-    const formMenuScreen =
-        document.getElementById('formMenuScreen');
+homeScreen.classList.remove('hidden');
 
-    const reportMenuScreen =
-        document.getElementById('reportMenuScreen');
+formMenuScreen.classList.add('hidden');
 
+reportMenuScreen.classList.add('hidden');
 
-    homeScreen.classList.remove('hidden');
-
-    formMenuScreen.classList.add('hidden');
-
-    reportMenuScreen.classList.add('hidden');
-
-
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
 
 }
 
@@ -2197,30 +1914,22 @@ function showHome(){
 
 function showFormMenu(){
 
-    const homeScreen =
-        document.getElementById('homeScreen');
+const homeScreen=document.getElementById('homeScreen');
+const formMenuScreen=document.getElementById('formMenuScreen');
+const reportMenuScreen=document.getElementById('reportMenuScreen');
 
-    const formMenuScreen =
-        document.getElementById('formMenuScreen');
+homeScreen.classList.add('hidden');
 
-    const reportMenuScreen =
-        document.getElementById('reportMenuScreen');
+reportMenuScreen.classList.add('hidden');
 
+formMenuScreen.classList.remove('hidden');
 
-    homeScreen.classList.add('hidden');
+renderForms();
 
-    reportMenuScreen.classList.add('hidden');
-
-    formMenuScreen.classList.remove('hidden');
-
-
-    renderForms();
-
-
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
 
 }
 
@@ -2231,30 +1940,22 @@ function showFormMenu(){
 
 function showReportMenu(){
 
-    const homeScreen =
-        document.getElementById('homeScreen');
+const homeScreen=document.getElementById('homeScreen');
+const formMenuScreen=document.getElementById('formMenuScreen');
+const reportMenuScreen=document.getElementById('reportMenuScreen');
 
-    const formMenuScreen =
-        document.getElementById('formMenuScreen');
+homeScreen.classList.add('hidden');
 
-    const reportMenuScreen =
-        document.getElementById('reportMenuScreen');
+formMenuScreen.classList.add('hidden');
 
+reportMenuScreen.classList.remove('hidden');
 
-    homeScreen.classList.add('hidden');
+renderDashboards();
 
-    formMenuScreen.classList.add('hidden');
-
-    reportMenuScreen.classList.remove('hidden');
-
-
-    renderDashboards();
-
-
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
 
 }
 
@@ -2265,97 +1966,74 @@ function showReportMenu(){
 
 function renderDashboards(){
 
-    const container =
-        document.getElementById('dashboardGrid');
+const container=document.getElementById('dashboardGrid');
+
+if(!container) return;
+
+container.innerHTML='';
+
+DASHBOARD_DATA.forEach((dashboard,index)=>{
+
+const card=document.createElement('button');
+
+card.type='button';
+
+card.className=`
+dashboard-card
+${dashboard.theme}
+slide-in
+`;
+
+card.style.animationDelay=`${index*60}ms`;
+
+card.innerHTML=`
+
+<div class="dashboard-card-content">
+
+<div class="flex items-start justify-between">
+
+<div class="dashboard-icon">
+
+<i data-lucide="${dashboard.icon}"></i>
+
+</div>
+
+<div class="dashboard-arrow">
+
+<i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+
+</div>
+
+</div>
 
 
-    if(!container){
-        return;
-    }
+<div class="flex items-end justify-between gap-3 mt-8">
 
+<span class="dashboard-title">
+${escapeHtml(dashboard.title)}
+</span>
 
-    container.innerHTML = '';
+<span class="text-[10px] font-black opacity-40 tracking-widest">
+${String(index+1).padStart(2,'0')}
+</span>
 
+</div>
 
-    DASHBOARD_DATA.forEach((dashboard,index)=>{
+</div>
 
-        const card =
-            document.createElement('button');
+`;
 
+card.onclick=()=>{
 
-        card.type = 'button';
+window.location.href=dashboard.link;
 
+};
 
-        card.className = `
-            dashboard-card
-            ${dashboard.theme}
-            slide-in
-        `;
+container.appendChild(card);
 
+});
 
-        card.style.animationDelay =
-            `${index * 60}ms`;
-
-
-        card.innerHTML = `
-
-            <div class="dashboard-card-content">
-
-                <div class="flex items-start justify-between">
-
-                    <div class="dashboard-icon">
-
-                        <i
-                            data-lucide="${dashboard.icon}"
-                        ></i>
-
-                    </div>
-
-                    <div class="dashboard-arrow">
-
-                        <i
-                            data-lucide="arrow-up-right"
-                            class="w-5 h-5"
-                        ></i>
-
-                    </div>
-
-                </div>
-
-
-                <div class="flex items-end justify-between gap-3 mt-8">
-
-                    <span class="dashboard-title">
-                        ${escapeHtml(dashboard.title)}
-                    </span>
-
-                    <span
-                        class="text-[10px] font-black opacity-40 tracking-widest"
-                    >
-                        ${String(index + 1).padStart(2,'0')}
-                    </span>
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        card.onclick = ()=>{
-
-            window.location.href =
-                dashboard.link;
-
-        };
-
-
-        container.appendChild(card);
-
-    });
-
-
-    lucide.createIcons();
+lucide.createIcons();
 
 }
 
@@ -2366,256 +2044,218 @@ function renderDashboards(){
 
 function renderForms(){
 
-    const container =
-        document.getElementById('formMenuContainer');
+const container=document.getElementById('formMenuContainer');
 
+if(!container) return;
 
-    if(!container){
-        return;
-    }
+container.innerHTML='';
 
+FORM_DATA.forEach(group=>{
 
-    container.innerHTML = '';
+const div=document.createElement('div');
 
+div.className=`
+form-group
+p-5 sm:p-6
+rounded-2xl
+shadow-sm
+slide-in
+${group.restricted?'restricted':''}
+`;
 
-    FORM_DATA.forEach(group=>{
+div.innerHTML=`
 
-        const div =
-            document.createElement('div');
+<div class="flex justify-between items-center gap-4 font-bold text-primary">
 
+<div class="flex items-center gap-3 min-w-0">
 
-        div.className = `
-            form-group
-            p-5 sm:p-6
-            rounded-2xl
-            shadow-sm
-            slide-in
-            ${group.restricted ? 'restricted' : ''}
-        `;
+<div class="p-2.5 rounded-xl shrink-0
+${group.restricted?'bg-red-50':'bg-amber-50'}">
 
+<i
+data-lucide="${group.icon}"
+class="w-5 h-5
+${group.restricted?'text-red-600':'text-amber-600'}"
+></i>
 
-        div.innerHTML = `
+</div>
 
-            <div
-                class="flex justify-between items-center gap-4 font-bold text-primary"
-            >
 
-                <div
-                    class="flex items-center gap-3 min-w-0"
-                >
+<div class="flex flex-col min-w-0">
 
-                    <div
-                        class="p-2.5 rounded-xl shrink-0
-                        ${group.restricted ? 'bg-red-50' : 'bg-amber-50'}"
-                    >
+<span class="text-sm sm:text-base font-extrabold uppercase tracking-wide
+${group.restricted?'text-red-700':'text-slate-700'}">
 
-                        <i
-                            data-lucide="${group.icon}"
-                            class="w-5 h-5
-                            ${group.restricted ? 'text-red-600' : 'text-amber-600'}"
-                        ></i>
+${escapeHtml(group.title)}
 
-                    </div>
+</span>
 
 
-                    <div
-                        class="flex flex-col min-w-0"
-                    >
+${
+group.description
+?
+`
+<p class="text-[10px] font-medium italic text-slate-500 normal-case mt-1 leading-tight">
+${escapeHtml(group.description)}
+</p>
+`
+:''
+}
 
-                        <span
-                            class="text-sm sm:text-base font-extrabold uppercase tracking-wide
-                            ${group.restricted ? 'text-red-700' : 'text-slate-700'}"
-                        >
-                            ${escapeHtml(group.title)}
-                        </span>
+</div>
 
+</div>
 
-                        ${
-                            group.description
-                            ?
-                            `
-                                <p
-                                    class="text-[10px] font-medium italic text-slate-500 normal-case mt-1 leading-tight"
-                                >
-                                    ${escapeHtml(group.description)}
-                                </p>
-                            `
-                            :
-                            ''
-                        }
 
-                    </div>
+<div class="bg-slate-50 p-2 rounded-xl shrink-0">
 
-                </div>
+<i
+id="icon-${group.id}"
+data-lucide="chevron-down"
+class="w-4 h-4 text-slate-400 transition-transform"
+></i>
 
+</div>
 
-                <div
-                    class="bg-slate-50 p-2 rounded-xl shrink-0"
-                >
+</div>
 
-                    <i
-                        id="icon-${group.id}"
-                        data-lucide="chevron-down"
-                        class="w-4 h-4 text-slate-400 transition-transform"
-                    ></i>
 
-                </div>
+<div
+id="sub-${group.id}"
+class="hidden mt-5 space-y-2 border-t border-slate-100 pt-4"
+></div>
 
-            </div>
+`;
 
 
-            <div
-                id="sub-${group.id}"
-                class="hidden mt-5 space-y-2 border-t border-slate-100 pt-4"
-            ></div>
+const sub=div.querySelector(`#sub-${group.id}`);
 
-        `;
 
+group.children.forEach(item=>{
 
-        const sub =
-            div.querySelector(`#sub-${group.id}`);
+const btn=document.createElement('button');
 
+btn.type='button';
 
-        group.children.forEach(item=>{
+btn.className=`
+submenu-link
+block
+w-full
+text-left
+p-3 sm:p-3.5
+rounded-xl
+text-slate-600
+font-semibold
+flex
+items-center
+gap-3
+bg-slate-50
+border
+border-transparent
+text-sm
+`;
 
-            const btn =
-                document.createElement('button');
+btn.innerHTML=`
 
+<span class="bg-white text-amber-500 p-1.5 rounded-lg shadow-sm shrink-0">
 
-            btn.type = 'button';
+<i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
 
+</span>
 
-            btn.className = `
-                submenu-link
-                block
-                w-full
-                text-left
-                p-3 sm:p-3.5
-                rounded-xl
-                text-slate-600
-                font-semibold
-                flex
-                items-center
-                gap-3
-                bg-slate-50
-                border
-                border-transparent
-                text-sm
-            `;
+<span>
+${escapeHtml(item.name)}
+</span>
 
+`;
 
-            btn.innerHTML = `
 
-                <span
-                    class="bg-white text-amber-500 p-1.5 rounded-lg shadow-sm shrink-0"
-                >
+btn.onclick=event=>{
 
-                    <i
-                        data-lucide="arrow-right"
-                        class="w-3.5 h-3.5"
-                    ></i>
+event.stopPropagation();
 
-                </span>
 
-                <span>
-                    ${escapeHtml(item.name)}
-                </span>
+if(
+item.name==="Breakdown Information" &&
+item.link==="#"
+){
 
-            `;
+showToast(
+"Formulir masih dalam pekerjaan, silahkan hubungi system engineer"
+);
 
+return;
 
-            btn.onclick = event=>{
+}
 
-                event.stopPropagation();
 
+if(group.restricted){
 
-                if(
-                    item.name === "Breakdown Information" &&
-                    item.link === "#"
-                ){
+checkAuth(
+()=>openLink(item.link,true)
+);
 
-                    showToast(
-                        "Formulir masih dalam pekerjaan, silahkan hubungi system engineer"
-                    );
+}else{
 
-                    return;
+openLink(item.link,true);
 
-                }
+}
 
+};
 
-                if(group.restricted){
 
-                    checkAuth(
-                        ()=>openLink(item.link,true)
-                    );
+sub.appendChild(btn);
 
-                }else{
+});
 
-                    openLink(item.link,true);
 
-                }
+div.onclick=()=>{
 
-            };
+const isHidden=sub.classList.contains('hidden');
 
 
-            sub.appendChild(btn);
+document
+.querySelectorAll(
+'#formMenuContainer [id^="sub-"]'
+)
+.forEach(el=>{
+el.classList.add('hidden');
+});
 
-        });
 
+document
+.querySelectorAll(
+'#formMenuContainer [id^="icon-"]'
+)
+.forEach(el=>{
+el.style.transform='rotate(0deg)';
+});
 
-        div.onclick = ()=>{
 
-            const isHidden =
-                sub.classList.contains('hidden');
+if(isHidden){
 
+sub.classList.remove('hidden');
 
-            document
-                .querySelectorAll(
-                    '#formMenuContainer [id^="sub-"]'
-                )
-                .forEach(el=>{
-                    el.classList.add('hidden');
-                });
+const icon=document.getElementById(
+`icon-${group.id}`
+);
 
+if(icon){
 
-            document
-                .querySelectorAll(
-                    '#formMenuContainer [id^="icon-"]'
-                )
-                .forEach(el=>{
-                    el.style.transform = 'rotate(0deg)';
-                });
+icon.style.transform='rotate(180deg)';
 
+}
 
-            if(isHidden){
+}
 
-                sub.classList.remove('hidden');
+};
 
 
-                const icon =
-                    document.getElementById(
-                        `icon-${group.id}`
-                    );
+container.appendChild(div);
 
+});
 
-                if(icon){
-
-                    icon.style.transform =
-                        'rotate(180deg)';
-
-                }
-
-            }
-
-        };
-
-
-        container.appendChild(div);
-
-    });
-
-
-    lucide.createIcons();
+lucide.createIcons();
 
 }
 
@@ -2626,33 +2266,30 @@ function renderForms(){
 
 function openLink(link,isForm=false){
 
-    if(!link || link === '#'){
+if(!link || link==='#'){
 
-        showToast(
-            "Data sedang disinkronisasi."
-        );
+showToast("Data sedang disinkronisasi.");
 
-        return;
+return;
 
-    }
+}
 
 
-    if(isForm){
+if(isForm){
 
-        window.open(
-            link,
-            '_blank',
-            'noopener,noreferrer'
-        );
+window.open(
+link,
+'_blank',
+'noopener,noreferrer'
+);
 
+showThanks();
 
-        showThanks();
+}else{
 
-    }else{
+window.location.href=link;
 
-        window.location.href = link;
-
-    }
+}
 
 }
 
@@ -2663,45 +2300,39 @@ function openLink(link,isForm=false){
 
 function showThanks(){
 
-    const modal =
-        document.getElementById('thanksModal');
+const modal=document.getElementById('thanksModal');
 
+modal.classList.remove('hidden');
 
-    modal.classList.remove('hidden');
+modal.classList.add('flex');
 
-    modal.classList.add('flex');
-
-
-    lucide.createIcons();
+lucide.createIcons();
 
 }
 
 
 function closeThanks(){
 
-    const modal =
-        document.getElementById('thanksModal');
+const modal=document.getElementById('thanksModal');
 
+modal.classList.add('hidden');
 
-    modal.classList.add('hidden');
-
-    modal.classList.remove('flex');
+modal.classList.remove('flex');
 
 }
 
 
 function closeWindow(){
 
-    window.close();
+window.close();
 
+setTimeout(()=>{
 
-    setTimeout(()=>{
+closeThanks();
 
-        closeThanks();
+showHome();
 
-        showHome();
-
-    },500);
+},500);
 
 }
 
@@ -2712,30 +2343,23 @@ function closeWindow(){
 
 function showToast(message){
 
-    const toast =
-        document.getElementById('toast');
+const toast=document.getElementById('toast');
 
-    const toastMsg =
-        document.getElementById('toastMsg');
+const toastMsg=document.getElementById('toastMsg');
 
+toastMsg.innerText=message;
 
-    toastMsg.innerText = message;
+toast.classList.remove('show');
 
+void toast.offsetWidth;
 
-    toast.classList.remove('show');
+toast.classList.add('show');
 
+setTimeout(()=>{
 
-    void toast.offsetWidth;
+toast.classList.remove('show');
 
-
-    toast.classList.add('show');
-
-
-    setTimeout(()=>{
-
-        toast.classList.remove('show');
-
-    },3000);
+},3000);
 
 }
 
@@ -2746,98 +2370,77 @@ function showToast(message){
 
 function checkAuth(callback){
 
-    pendingAction = callback;
+pendingAction=callback;
 
+const modal=document.getElementById('authModal');
 
-    const modal =
-        document.getElementById('authModal');
+modal.classList.remove('hidden');
 
+modal.classList.add('flex');
 
-    modal.classList.remove('hidden');
+const input=document.getElementById('passwordInput');
 
-    modal.classList.add('flex');
+const error=document.getElementById('passwordError');
 
+input.value='';
 
-    const input =
-        document.getElementById('passwordInput');
+error.classList.add('hidden');
 
+setTimeout(()=>{
 
-    const error =
-        document.getElementById('passwordError');
+input.focus();
 
+},100);
 
-    input.value = '';
-
-    error.classList.add('hidden');
-
-
-    setTimeout(()=>{
-
-        input.focus();
-
-    },100);
-
-
-    lucide.createIcons();
+lucide.createIcons();
 
 }
 
 
 function closeAuth(){
 
-    const modal =
-        document.getElementById('authModal');
+const modal=document.getElementById('authModal');
 
+modal.classList.add('hidden');
 
-    modal.classList.add('hidden');
+modal.classList.remove('flex');
 
-    modal.classList.remove('flex');
-
-
-    pendingAction = null;
+pendingAction=null;
 
 }
 
 
 function confirmAuth(){
 
-    const input =
-        document.getElementById('passwordInput');
+const input=document.getElementById('passwordInput');
 
+const error=document.getElementById('passwordError');
 
-    const error =
-        document.getElementById('passwordError');
+if(input.value===SECRET_CODE){
 
+const action=pendingAction;
 
-    if(input.value === SECRET_CODE){
+closeAuth();
 
-        const action =
-            pendingAction;
+if(action){
+action();
+}
 
+}else{
 
-        closeAuth();
+error.classList.remove('hidden');
 
+input.value='';
 
-        if(action){
-            action();
-        }
+input.focus();
 
-    }else{
+setTimeout(()=>{
 
-        error.classList.remove('hidden');
+error.classList.add('hidden');
 
-        input.value = '';
+},2000);
 
-        input.focus();
-
-
-        setTimeout(()=>{
-
-            error.classList.add('hidden');
-
-        },2000);
-
-    }
+}
 
 }
 
@@ -2847,19 +2450,19 @@ function confirmAuth(){
 ========================================================= */
 
 document
-    .getElementById('passwordInput')
-    .addEventListener(
-        'keydown',
-        event=>{
+.getElementById('passwordInput')
+.addEventListener(
+'keydown',
+event=>{
 
-            if(event.key === 'Enter'){
+if(event.key==='Enter'){
 
-                confirmAuth();
+confirmAuth();
 
-            }
+}
 
-        }
-    );
+}
+);
 
 
 /* =========================================================
@@ -2867,18 +2470,18 @@ document
 ========================================================= */
 
 document.addEventListener(
-    'keydown',
-    event=>{
+'keydown',
+event=>{
 
-        if(event.key === 'Escape'){
+if(event.key==='Escape'){
 
-            closeAuth();
+closeAuth();
 
-            closeThanks();
+closeThanks();
 
-        }
+}
 
-    }
+}
 );
 
 
@@ -2888,12 +2491,12 @@ document.addEventListener(
 
 function escapeHtml(value){
 
-    return String(value ?? '')
-        .replace(/&/g,'&amp;')
-        .replace(/</g,'&lt;')
-        .replace(/>/g,'&gt;')
-        .replace(/"/g,'&quot;')
-        .replace(/'/g,'&#039;');
+return String(value??'')
+.replace(/&/g,'&amp;')
+.replace(/</g,'&lt;')
+.replace(/>/g,'&gt;')
+.replace(/"/g,'&quot;')
+.replace(/'/g,'&#039;');
 
 }
 
@@ -2903,14 +2506,14 @@ function escapeHtml(value){
 ========================================================= */
 
 window.addEventListener(
-    'load',
-    ()=>{
+'load',
+()=>{
 
-        lucide.createIcons();
+lucide.createIcons();
 
-        showHome();
+showHome();
 
-    }
+}
 );
 
 </script>
