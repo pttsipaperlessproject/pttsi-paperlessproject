@@ -7,14 +7,17 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=1200"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>Dashboard Corrective Maintenance Unit - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
+
 <script src="https://unpkg.com/lucide@latest"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <link
@@ -33,12 +36,16 @@
 }
 
 html{
-    min-width:1100px;
+    min-width:0;
 }
 
 body{
 
     margin:0;
+
+    width:100%;
+
+    min-width:0;
 
     font-family:'Inter',sans-serif;
 
@@ -396,6 +403,8 @@ body{
 
     overflow-x:auto;
 
+    -webkit-overflow-scrolling:touch;
+
     border:
         1px solid
         #e2e8f0;
@@ -589,20 +598,612 @@ body{
 
 
 /* =========================================================
-   MOBILE FALLBACK
+   RESPONSIVE
 ========================================================= */
 
-@media(max-width:1100px){
+/* TABLET */
 
-    html{
+@media(max-width:1024px){
+
+    body{
+
+        padding-left:16px !important;
+
+        padding-right:16px !important;
+
+    }
+
+    main{
+
+        padding:28px !important;
+
+    }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:767px){
+
+    body{
+
+        padding:
+            10px !important;
+
+    }
+
+
+    main{
+
+        width:100% !important;
+
+        max-width:none !important;
+
+        padding:
+            18px !important;
+
+        border-radius:
+            22px !important;
+
+    }
+
+
+    /* HEADER */
+
+    header{
+
+        margin-bottom:
+            22px !important;
+
+        padding-bottom:
+            18px !important;
+
+    }
+
+
+    .logo-wrapper{
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:78px !important;
+
+        height:78px !important;
+
+    }
+
+
+    header .color-primary{
+
+        width:100%;
+
+        padding:
+            14px
+            12px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:
+            17px !important;
+
+        line-height:
+            1.3 !important;
+
+        letter-spacing:
+            .06em !important;
+
+    }
+
+
+    header h2{
+
+        font-size:
+            10px !important;
+
+        line-height:
+            1.4 !important;
+
+        letter-spacing:
+            .12em !important;
+
+    }
+
+
+    header > div:last-child{
+
+        font-size:
+            8px !important;
+
+        letter-spacing:
+            .2em !important;
+
+    }
+
+
+    /* PAGE HEADER */
+
+    section.mb-7{
+
+        margin-bottom:
+            18px !important;
+
+    }
+
+
+    section.mb-7 > div{
+
+        gap:
+            16px !important;
+
+    }
+
+
+    section.mb-7 h2{
+
+        font-size:
+            21px !important;
+
+        line-height:
+            1.3 !important;
+
+        align-items:
+            flex-start !important;
+
+    }
+
+
+    section.mb-7 h2 > span{
+
+        padding:
+            9px !important;
+
+        flex-shrink:
+            0;
+
+    }
+
+
+    section.mb-7 h2 i{
+
+        width:
+            20px !important;
+
+        height:
+            20px !important;
+
+    }
+
+
+    section.mb-7 p{
+
+        font-size:
+            11px !important;
+
+        line-height:
+            1.5 !important;
+
+        margin-top:
+            8px !important;
+
+    }
+
+
+    /* NAVIGATION */
+
+    section.mb-7 > div > div:last-child{
+
+        width:100%;
+
+        justify-content:
+            stretch !important;
+
+        align-items:
+            stretch !important;
+
+    }
+
+
+    section.mb-7 > div > div:last-child > div{
+
+        width:100%;
+
+        display:grid;
+
+        grid-template-columns:
+            auto
+            minmax(0,1fr);
+
+        align-items:center;
+
+    }
+
+
+    .year-selector{
+
+        width:100%;
+
+        min-width:0;
+
+        padding:
+            10px
+            12px;
+
+    }
+
+
+    .dashboard-button{
+
+        flex:1;
+
+        min-width:0;
+
+        padding:
+            10px
+            9px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    /* STATISTICS */
+
+    #dashboardContent > div:first-child{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr)) !important;
+
+        gap:
+            10px !important;
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+
+    .stat-card,
+    .unit-card{
+
+        padding:
+            14px !important;
+
+        border-radius:
+            14px !important;
+
+    }
+
+
+    .stat-card p:first-child,
+    .unit-card p:first-child{
+
+        font-size:
+            8px !important;
+
+    }
+
+
+    .stat-card p:nth-child(2),
+    .unit-card p:nth-child(2){
+
+        font-size:
+            24px !important;
+
+        line-height:
+            1.1 !important;
+
+        margin-top:
+            8px !important;
+
+    }
+
+
+    .stat-card p:last-child,
+    .unit-card p:last-child{
+
+        font-size:
+            8px !important;
+
+    }
+
+
+    /* CHART ROW */
+
+    #dashboardContent > div:nth-child(2),
+    #dashboardContent > div:nth-child(3){
+
+        grid-template-columns:
+            1fr !important;
+
+        gap:
+            12px !important;
+
+        margin-bottom:
+            12px !important;
+
+    }
+
+
+    .chart-card{
+
+        padding:
+            16px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    .chart-card h3{
+
+        font-size:
+            12px !important;
+
+        line-height:
+            1.4 !important;
+
+    }
+
+
+    .chart-card p{
+
+        font-size:
+            9px !important;
+
+        line-height:
+            1.4 !important;
+
+    }
+
+
+    .chart-wrapper{
+
+        height:
+            260px;
+
+    }
+
+
+    /* OPEN ACTIVITIES */
+
+    #dashboardContent > div:nth-child(4){
+
+        margin-top:
+            12px !important;
+
+        padding:
+            14px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    #dashboardContent > div:nth-child(4) > div:first-child{
+
+        align-items:
+            flex-start !important;
+
+    }
+
+
+    #dashboardContent > div:nth-child(4) > div:first-child > div:first-child{
 
         min-width:0;
 
     }
 
-    body{
 
-        min-width:1100px;
+    #dashboardContent > div:nth-child(4) h3{
+
+        font-size:
+            11px !important;
+
+        line-height:
+            1.4 !important;
+
+    }
+
+
+    #dashboardContent > div:nth-child(4) p{
+
+        font-size:
+            8px !important;
+
+        line-height:
+            1.4 !important;
+
+    }
+
+
+    #openTableCount{
+
+        font-size:
+            9px !important;
+
+    }
+
+
+    .open-table-wrapper{
+
+        margin-top:
+            10px;
+
+    }
+
+
+    /* DATABASE INFO */
+
+    #dashboardContent > div:nth-child(5){
+
+        margin-top:
+            12px !important;
+
+        padding:
+            14px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    #dashboardContent > div:nth-child(5) h3{
+
+        font-size:
+            11px !important;
+
+    }
+
+
+    #dashboardContent > div:nth-child(5) p{
+
+        font-size:
+            8px !important;
+
+        line-height:
+            1.5 !important;
+
+    }
+
+
+    /* LOADING */
+
+    #loading{
+
+        min-height:
+            300px;
+
+    }
+
+
+    /* FOOTER */
+
+    footer{
+
+        margin-top:
+            18px !important;
+
+        padding:
+            0 8px 20px !important;
+
+    }
+
+
+    footer p:first-child{
+
+        font-size:
+            9px !important;
+
+        line-height:
+            1.5 !important;
+
+    }
+
+
+    footer p:last-child{
+
+        font-size:
+            8px !important;
+
+        line-height:
+            1.5 !important;
+
+    }
+
+}
+
+
+/* VERY SMALL MOBILE */
+
+@media(max-width:420px){
+
+    main{
+
+        padding:
+            14px !important;
+
+        border-radius:
+            18px !important;
+
+    }
+
+
+    #dashboardContent > div:first-child{
+
+        gap:
+            8px !important;
+
+    }
+
+
+    .stat-card,
+    .unit-card{
+
+        padding:
+            12px !important;
+
+    }
+
+
+    .stat-card p:nth-child(2),
+    .unit-card p:nth-child(2){
+
+        font-size:
+            21px !important;
+
+    }
+
+
+    section.mb-7 h2{
+
+        font-size:
+            19px !important;
+
+    }
+
+
+    .dashboard-button{
+
+        font-size:
+            9px;
+
+        gap:
+            5px;
+
+    }
+
+
+    .dashboard-button svg{
+
+        width:
+            14px !important;
+
+        height:
+            14px !important;
+
+    }
+
+
+    .chart-wrapper{
+
+        height:
+            235px;
 
     }
 
@@ -654,63 +1255,64 @@ body{
 
 <div class="mb-4 logo-wrapper">
 
-    <div
+
+<div
+    class="
+        w-24
+        h-24
+        flex
+        items-center
+        justify-center
+        bg-white
+        rounded-2xl
+        logo-shadow
+        overflow-hidden
+        p-2
+    "
+>
+
+    <img
+        src="default_logo.png"
+        alt="Logo PT TSI"
         class="
-            w-24
-            h-24
+            w-full
+            h-full
+            object-contain
+        "
+        id="companyLogo"
+        onerror="handleLogoError()"
+    >
+
+    <div
+        id="logoFallback"
+        class="
+            hidden
             flex
+            flex-col
             items-center
             justify-center
-            bg-white
-            rounded-2xl
-            logo-shadow
-            overflow-hidden
-            p-2
+            bg-blue-900
+            w-full
+            h-full
+            text-white
         "
     >
 
-        <img
-            src="default_logo.png"
-            alt="Logo PT TSI"
+        <span
             class="
-                w-full
-                h-full
-                object-contain
-            "
-            id="companyLogo"
-            onerror="handleLogoError()"
-        >
-
-        <div
-            id="logoFallback"
-            class="
-                hidden
-                flex
-                flex-col
-                items-center
-                justify-center
-                bg-blue-900
-                w-full
-                h-full
-                text-white
+                font-black
+                text-2xl
             "
         >
-
-            <span
-                class="
-                    font-black
-                    text-2xl
-                "
-            >
-                TSI
-            </span>
-
-        </div>
+            TSI
+        </span>
 
     </div>
 
 </div>
 
+
+</div>
 
 <div
     class="
@@ -727,45 +1329,46 @@ body{
     "
 >
 
-    <h1
-        class="
-            text-xl
-            sm:text-2xl
-            font-black
-            uppercase
-            tracking-[0.1em]
-            text-center
-        "
-    >
-        PAPERLESS PROJECT
-    </h1>
 
-    <div
-        class="
-            h-0.5
-            w-16
-            bg-amber-500
-            rounded-full
-            my-1
-        "
-    ></div>
+<h1
+    class="
+        text-xl
+        sm:text-2xl
+        font-black
+        uppercase
+        tracking-[0.1em]
+        text-center
+    "
+>
+    PAPERLESS PROJECT
+</h1>
 
-    <h2
-        class="
-            text-sm
-            sm:text-lg
-            font-bold
-            uppercase
-            tracking-widest
-            text-blue-100
-            text-center
-        "
-    >
-        PT TATSUMI SERUNI INDONESIA
-    </h2>
+<div
+    class="
+        h-0.5
+        w-16
+        bg-amber-500
+        rounded-full
+        my-1
+    "
+></div>
+
+<h2
+    class="
+        text-sm
+        sm:text-lg
+        font-bold
+        uppercase
+        tracking-widest
+        text-blue-100
+        text-center
+    "
+>
+    PT TATSUMI SERUNI INDONESIA
+</h2>
+
 
 </div>
-
 
 <div
     class="
@@ -781,7 +1384,6 @@ body{
 </div>
 
 </header>
-
 
 <!-- =====================================================
      PAGE HEADER
@@ -802,53 +1404,54 @@ body{
 
 <div>
 
-    <h2
+
+<h2
+    class="
+        text-[30px]
+        font-black
+        tracking-tight
+        text-slate-800
+        flex
+        items-center
+        gap-3
+    "
+>
+
+    <span
         class="
-            text-[30px]
-            font-black
-            tracking-tight
-            text-slate-800
-            flex
-            items-center
-            gap-3
+            bg-blue-900
+            text-white
+            p-3
+            rounded-xl
         "
     >
 
-        <span
-            class="
-                bg-blue-900
-                text-white
-                p-3
-                rounded-xl
-            "
-        >
+        <i
+            data-lucide="wrench"
+            class="w-6 h-6"
+        ></i>
 
-            <i
-                data-lucide="wrench"
-                class="w-6 h-6"
-            ></i>
+    </span>
 
-        </span>
+    Dashboard Corrective Maintenance Unit
 
-        Dashboard Corrective Maintenance Unit
-
-    </h2>
+</h2>
 
 
-    <p
-        class="
-            text-[13px]
-            text-slate-500
-            font-medium
-            mt-2
-            ml-1
-        "
-    >
-        Monitoring dan analisis data aktivitas corrective maintenance secara terintegrasi.
-    </p>
+<p
+    class="
+        text-[13px]
+        text-slate-500
+        font-medium
+        mt-2
+        ml-1
+    "
+>
+    Monitoring dan analisis data aktivitas corrective maintenance secara terintegrasi.
+</p>
+
 
 </div>
-
 
 <!-- =================================================
      NAVIGATION + YEAR
@@ -873,103 +1476,114 @@ body{
 >
 
 <span
-    class="
-        text-[10px]
-        font-black
-        uppercase
-        tracking-wider
-        text-slate-400
-    "
+class="
+text-[10px]
+font-black
+uppercase
+tracking-wider
+text-slate-400
+"
+
 >
-    Tahun
+
+
+Tahun
+
+
 </span>
 
-
 <select
-    id="yearSelector"
-    class="year-selector"
-    onchange="changeYear()"
+id="yearSelector"
+class="year-selector"
+onchange="changeYear()"
+
 >
 
-    <option value="2026">
-        2026
-    </option>
 
-    <option value="2025">
-        2025
-    </option>
+<option value="2026">
+    2026
+</option>
 
-    <option value="2024">
-        2024
-    </option>
+<option value="2025">
+    2025
+</option>
 
-    <option value="2023">
-        2023
-    </option>
+<option value="2024">
+    2024
+</option>
 
-    <option value="2022">
-        2022
-    </option>
+<option value="2023">
+    2023
+</option>
 
-    <option value="2021">
-        2021
-    </option>
+<option value="2022">
+    2022
+</option>
 
-    <option value="2020">
-        2020
-    </option>
+<option value="2021">
+    2021
+</option>
 
-    <option value="2019">
-        2019
-    </option>
+<option value="2020">
+    2020
+</option>
 
-    <option value="ALL">
-        Seluruh Data
-    </option>
+<option value="2019">
+    2019
+</option>
+
+<option value="ALL">
+    Seluruh Data
+</option>
+
 
 </select>
 
 </div>
 
-
 <button
-    type="button"
-    onclick="goToHome()"
-    class="
-        dashboard-button
-        bg-slate-100
-        hover:bg-slate-200
-        text-slate-700
-    "
+type="button"
+onclick="goToHome()"
+class="
+dashboard-button
+bg-slate-100
+hover:bg-slate-200
+text-slate-700
+"
+
 >
 
-    <i
-        data-lucide="house"
-        class="w-4 h-4"
-    ></i>
 
-    Kembali ke Home
+<i
+    data-lucide="house"
+    class="w-4 h-4"
+></i>
+
+Kembali ke Home
+
 
 </button>
 
-
 <button
-    type="button"
-    onclick="goToTable()"
-    class="
-        dashboard-button
-        bg-blue-800
-        hover:bg-blue-700
-        text-white
-    "
+type="button"
+onclick="goToTable()"
+class="
+dashboard-button
+bg-blue-800
+hover:bg-blue-700
+text-white
+"
+
 >
 
-    <i
-        data-lucide="table-2"
-        class="w-4 h-4"
-    ></i>
 
-    Lihat Data
+<i
+    data-lucide="table-2"
+    class="w-4 h-4"
+></i>
+
+Lihat Data
+
 
 </button>
 
@@ -979,7 +1593,6 @@ body{
 
 </section>
 
-
 <!-- =====================================================
      LOADING
 ===================================================== -->
@@ -987,14 +1600,15 @@ body{
 <div id="loading">
 
 <i
-    data-lucide="loader-circle"
-    class="
-        w-10
-        h-10
-        animate-spin
-        text-amber-500
-    "
-></i>
+data-lucide="loader-circle"
+class="
+w-10
+h-10
+animate-spin
+text-amber-500
+"
+
+> </i>
 
 <p
     id="loadingText"
@@ -1010,13 +1624,11 @@ body{
 
 </div>
 
-
 <!-- =====================================================
      DASHBOARD CONTENT
 ===================================================== -->
 
 <div id="dashboardContent">
-
 
 <!-- =====================================================
      STATISTICS
@@ -1031,264 +1643,269 @@ body{
     "
 >
 
-
 <!-- TOTAL -->
 
 <div class="stat-card">
 
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Total Activity
-    </p>
 
-    <p
-        id="totalData"
-        class="
-            text-3xl
-            font-black
-            text-blue-900
-            mt-2
-        "
-    >
-        -
-    </p>
+<p
+    class="
+        text-[10px]
+        font-bold
+        text-slate-400
+        uppercase
+        tracking-wider
+    "
+>
+    Total Activity
+</p>
 
-    <p
-        class="
-            text-[9px]
-            text-slate-400
-            font-bold
-            mt-1
-        "
-    >
-        Maintenance Activity
-    </p>
+<p
+    id="totalData"
+    class="
+        text-3xl
+        font-black
+        text-blue-900
+        mt-2
+    "
+>
+    -
+</p>
+
+<p
+    class="
+        text-[9px]
+        text-slate-400
+        font-bold
+        mt-1
+    "
+>
+    Maintenance Activity
+</p>
+
 
 </div>
-
 
 <!-- OPEN -->
 
 <div class="stat-card">
 
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Open
-    </p>
 
-    <p
-        id="openTotal"
-        class="
-            text-3xl
-            font-black
-            text-orange-600
-            mt-2
-        "
-    >
-        -
-    </p>
+<p
+    class="
+        text-[10px]
+        font-bold
+        text-slate-400
+        uppercase
+        tracking-wider
+    "
+>
+    Open
+</p>
 
-    <p
-        class="
-            text-[9px]
-            text-slate-400
-            font-bold
-            mt-1
-        "
-    >
-        Belum selesai
-    </p>
+<p
+    id="openTotal"
+    class="
+        text-3xl
+        font-black
+        text-orange-600
+        mt-2
+    "
+>
+    -
+</p>
+
+<p
+    class="
+        text-[9px]
+        text-slate-400
+        font-bold
+        mt-1
+    "
+>
+    Belum selesai
+</p>
+
 
 </div>
-
 
 <!-- FORKLIFT -->
 
 <div class="unit-card">
 
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Forklift
-    </p>
 
-    <p
-        id="forkliftTotal"
-        class="
-            text-3xl
-            font-black
-            text-orange-500
-            mt-2
-        "
-    >
-        -
-    </p>
+<p
+    class="
+        text-[10px]
+        font-bold
+        text-slate-400
+        uppercase
+        tracking-wider
+    "
+>
+    Forklift
+</p>
 
-    <p
-        class="
-            text-[9px]
-            font-black
-            unit-label-f
-            mt-1
-            tracking-widest
-        "
-    >
-        FD
-    </p>
+<p
+    id="forkliftTotal"
+    class="
+        text-3xl
+        font-black
+        text-orange-500
+        mt-2
+    "
+>
+    -
+</p>
+
+<p
+    class="
+        text-[9px]
+        font-black
+        unit-label-f
+        mt-1
+        tracking-widest
+    "
+>
+    FD
+</p>
+
 
 </div>
-
 
 <!-- WHEEL LOADER -->
 
 <div class="unit-card">
 
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Wheel Loader
-    </p>
 
-    <p
-        id="wheelLoaderTotal"
-        class="
-            text-3xl
-            font-black
-            text-indigo-600
-            mt-2
-        "
-    >
-        -
-    </p>
+<p
+    class="
+        text-[10px]
+        font-bold
+        text-slate-400
+        uppercase
+        tracking-wider
+    "
+>
+    Wheel Loader
+</p>
 
-    <p
-        class="
-            text-[9px]
-            font-black
-            unit-label-w
-            mt-1
-            tracking-widest
-        "
-    >
-        W
-    </p>
+<p
+    id="wheelLoaderTotal"
+    class="
+        text-3xl
+        font-black
+        text-indigo-600
+        mt-2
+    "
+>
+    -
+</p>
+
+<p
+    class="
+        text-[9px]
+        font-black
+        unit-label-w
+        mt-1
+        tracking-widest
+    "
+>
+    W
+</p>
+
 
 </div>
-
 
 <!-- DUMP TRUCK -->
 
 <div class="unit-card">
 
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Dump Truck
-    </p>
 
-    <p
-        id="dumpTruckTotal"
-        class="
-            text-3xl
-            font-black
-            text-rose-600
-            mt-2
-        "
-    >
-        -
-    </p>
+<p
+    class="
+        text-[10px]
+        font-bold
+        text-slate-400
+        uppercase
+        tracking-wider
+    "
+>
+    Dump Truck
+</p>
 
-    <p
-        class="
-            text-[9px]
-            font-black
-            unit-label-d
-            mt-1
-            tracking-widest
-        "
-    >
-        D
-    </p>
+<p
+    id="dumpTruckTotal"
+    class="
+        text-3xl
+        font-black
+        text-rose-600
+        mt-2
+    "
+>
+    -
+</p>
+
+<p
+    class="
+        text-[9px]
+        font-black
+        unit-label-d
+        mt-1
+        tracking-widest
+    "
+>
+    D
+</p>
+
 
 </div>
-
 
 <!-- EXCAVATOR -->
 
 <div class="unit-card">
 
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Excavator
-    </p>
 
-    <p
-        id="excavatorTotal"
-        class="
-            text-3xl
-            font-black
-            text-emerald-600
-            mt-2
-        "
-    >
-        -
-    </p>
+<p
+    class="
+        text-[10px]
+        font-bold
+        text-slate-400
+        uppercase
+        tracking-wider
+    "
+>
+    Excavator
+</p>
 
-    <p
-        class="
-            text-[9px]
-            font-black
-            unit-label-e
-            mt-1
-            tracking-widest
-        "
-    >
-        E
-    </p>
+<p
+    id="excavatorTotal"
+    class="
+        text-3xl
+        font-black
+        text-emerald-600
+        mt-2
+    "
+>
+    -
+</p>
+
+<p
+    class="
+        text-[9px]
+        font-black
+        unit-label-e
+        mt-1
+        tracking-widest
+    "
+>
+    E
+</p>
+
 
 </div>
 
 </div>
-
 
 <!-- =====================================================
      CHART ROW 1
@@ -1302,7 +1919,6 @@ body{
         mb-5
     "
 >
-
 
 <!-- TREND -->
 
@@ -1342,7 +1958,6 @@ body{
 
 </div>
 
-
 <div
     class="
         bg-blue-50
@@ -1363,7 +1978,6 @@ body{
 
 </div>
 
-
 <div class="chart-wrapper">
 
 <canvas id="trendChart"></canvas>
@@ -1371,7 +1985,6 @@ body{
 </div>
 
 </div>
-
 
 <!-- STATUS -->
 
@@ -1402,7 +2015,6 @@ body{
 
 </div>
 
-
 <div
     class="
         chart-wrapper
@@ -1420,7 +2032,6 @@ body{
 
 </div>
 
-
 <!-- =====================================================
      CHART ROW 2
 ===================================================== -->
@@ -1432,7 +2043,6 @@ body{
         gap-5
     "
 >
-
 
 <!-- TOP CORRECTIVE MAINTENANCE -->
 
@@ -1463,7 +2073,6 @@ body{
 
 </div>
 
-
 <div class="chart-wrapper">
 
 <canvas id="maintenanceChart"></canvas>
@@ -1471,7 +2080,6 @@ body{
 </div>
 
 </div>
-
 
 <!-- DISTRIBUSI UNIT -->
 
@@ -1502,7 +2110,6 @@ body{
 
 </div>
 
-
 <div class="chart-wrapper">
 
 <canvas id="unitDistributionChart"></canvas>
@@ -1512,7 +2119,6 @@ body{
 </div>
 
 </div>
-
 
 <!-- =====================================================
      OPEN ACTIVITIES
@@ -1529,7 +2135,6 @@ body{
         shadow-sm
     "
 >
-
 
 <div
     class="
@@ -1550,21 +2155,22 @@ body{
 >
 
 <span
-    class="
-        bg-orange-100
-        text-orange-600
-        p-2.5
-        rounded-lg
-    "
+class="
+bg-orange-100
+text-orange-600
+p-2.5
+rounded-lg
+"
+
 >
 
 <i
-    data-lucide="alert-triangle"
-    class="w-4 h-4"
-></i>
+data-lucide="alert-triangle"
+class="w-4 h-4"
+
+> </i>
 
 </span>
-
 
 <div>
 
@@ -1593,7 +2199,6 @@ body{
 
 </div>
 
-
 <div
     class="
         bg-orange-50
@@ -1616,7 +2221,6 @@ OPEN
 </div>
 
 </div>
-
 
 <div class="open-table-wrapper">
 
@@ -1654,7 +2258,6 @@ OPEN
 
 </thead>
 
-
 <tbody id="openActivitiesBody">
 
 </tbody>
@@ -1664,7 +2267,6 @@ OPEN
 </div>
 
 </div>
-
 
 <!-- =====================================================
      DATA SUMMARY
@@ -1690,21 +2292,22 @@ OPEN
 >
 
 <span
-    class="
-        bg-blue-100
-        text-blue-700
-        p-2
-        rounded-lg
-    "
+class="
+bg-blue-100
+text-blue-700
+p-2
+rounded-lg
+"
+
 >
 
 <i
-    data-lucide="database"
-    class="w-4 h-4"
-></i>
+data-lucide="database"
+class="w-4 h-4"
+
+> </i>
 
 </span>
-
 
 <div>
 
@@ -1717,7 +2320,6 @@ OPEN
 >
     Database Corrective Maintenance
 </h3>
-
 
 <p
     id="databaseInfo"
@@ -1739,7 +2341,6 @@ OPEN
 
 </div>
 
-
 <!-- =====================================================
      ERROR STATE
 ===================================================== -->
@@ -1760,12 +2361,12 @@ OPEN
 >
 
 <i
-    data-lucide="alert-circle"
-    class="w-9 h-9"
-></i>
+data-lucide="alert-circle"
+class="w-9 h-9"
+
+> </i>
 
 </div>
-
 
 <h3
     class="
@@ -1776,7 +2377,6 @@ OPEN
 >
     Gagal memuat data
 </h3>
-
 
 <p
     id="errorMessage"
@@ -1791,28 +2391,31 @@ OPEN
     Terjadi kesalahan.
 </p>
 
-
 <button
-    onclick="loadYearData(currentYear)"
-    class="
-        mt-5
-        bg-blue-800
-        hover:bg-blue-700
-        text-white
-        font-bold
-        px-5
-        py-2.5
-        rounded-xl
-        text-sm
-    "
+onclick="loadYearData(currentYear)"
+class="
+mt-5
+bg-blue-800
+hover:bg-blue-700
+text-white
+font-bold
+px-5
+py-2.5
+rounded-xl
+text-sm
+"
+
 >
-    Coba Lagi
+
+
+Coba Lagi
+
+
 </button>
 
 </div>
 
 </main>
-
 
 <!-- =====================================================
      FOOTER
@@ -1840,7 +2443,6 @@ OPEN
     All rights reserved.
 </p>
 
-
 <p
     class="
         text-[10px]
@@ -1851,32 +2453,41 @@ OPEN
 System Architecture by:
 
 <span
-    class="
-        text-slate-600
-        font-semibold
-        uppercase
-    "
+class="
+text-slate-600
+font-semibold
+uppercase
+"
+
 >
-    Imam Wahyu Ramadhan, S.T.
+
+
+Imam Wahyu Ramadhan, S.T.
+
+
 </span>
 
 |
 
 <span
-    class="
-        text-amber-600
-        font-bold
-        uppercase
-        tracking-tighter
-    "
+class="
+text-amber-600
+font-bold
+uppercase
+tracking-tighter
+"
+
 >
-    Project 2.0
+
+
+Project 2.0
+
+
 </span>
 
 </p>
 
 </footer>
-
 
 <script>
 
@@ -4442,17 +5053,6 @@ function renderOpenActivities(
     }
 
 
-    /*
-       TANGGAL TIDAK LAGI MENAMPILKAN TAHUN
-       DALAM KURUNG.
-
-       Sebelumnya:
-       28/08/2026 (2026)
-
-       Sekarang:
-       28/08/2026
-    */
-
     body.innerHTML =
         openData
         .map(
@@ -4679,4 +5279,3 @@ document.addEventListener(
 </body>
 
 </html>
-
