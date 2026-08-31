@@ -54,6 +54,8 @@ body{
         );
 
     color:#1e293b;
+
+    overflow-x:hidden;
 }
 
 
@@ -163,6 +165,8 @@ body{
     transition:
         .25s ease;
 
+    min-width:0;
+
 }
 
 .chart-card:hover{
@@ -202,6 +206,8 @@ body{
 
     margin-top:4px;
 
+    line-height:1.5;
+
 }
 
 .chart-wrapper{
@@ -211,6 +217,8 @@ body{
     height:300px;
 
     margin-top:15px;
+
+    width:100%;
 
 }
 
@@ -233,6 +241,10 @@ body{
 
     transition:
         .25s ease;
+
+    min-width:0;
+
+    overflow:hidden;
 
 }
 
@@ -777,7 +789,36 @@ body{
 
 
 /* =========================================================
-   DESKTOP-STYLE MOBILE
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media(max-width:1024px){
+
+    body{
+
+        padding:
+            12px !important;
+
+    }
+
+    main{
+
+        padding:
+            24px !important;
+
+    }
+
+    .chart-wrapper{
+
+        height:290px;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
 ========================================================= */
 
 @media(max-width:768px){
@@ -785,39 +826,63 @@ body{
     body{
 
         padding:
-            10px !important;
+            8px !important;
 
     }
 
     main{
 
         padding:
-            22px !important;
+            18px !important;
 
         border-radius:
             22px !important;
 
     }
 
-    .logo-wrapper > div{
 
-        width:
-            82px !important;
+    /* HEADER */
 
-        height:
-            82px !important;
+    header{
+
+        margin-bottom:
+            24px !important;
+
+        padding-bottom:
+            20px !important;
 
     }
 
+
+    .logo-wrapper{
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+    .logo-wrapper > div{
+
+        width:
+            76px !important;
+
+        height:
+            76px !important;
+
+    }
+
+
     .color-primary{
 
-        width:auto;
+        width:
+            100%;
 
-        max-width:100%;
+        max-width:
+            520px;
 
         padding:
             14px
-            20px !important;
+            16px !important;
 
         border-radius:
             16px !important;
@@ -827,48 +892,156 @@ body{
     .color-primary h1{
 
         font-size:
-            17px !important;
+            16px !important;
+
+        line-height:
+            1.3;
 
         letter-spacing:
-            .08em !important;
+            .07em !important;
 
     }
 
     .color-primary h2{
 
         font-size:
-            11px !important;
+            10px !important;
+
+        line-height:
+            1.4;
+
+        letter-spacing:
+            .12em !important;
 
     }
+
+
+    header > div:last-child{
+
+        font-size:
+            8px !important;
+
+        letter-spacing:
+            .2em !important;
+
+        text-align:center;
+
+    }
+
+
+    /* TITLE */
 
     section h2{
 
         font-size:
-            22px;
+            20px !important;
+
+        line-height:
+            1.3;
 
     }
+
+    section h2 span{
+
+        padding:
+            10px !important;
+
+    }
+
+    section h2 i{
+
+        width:
+            20px !important;
+
+        height:
+            20px !important;
+
+    }
+
+
+    section p{
+
+        line-height:
+            1.5;
+
+    }
+
+
+    /* NAVIGATION */
+
+    .navigation-button{
+
+        width:
+            100%;
+
+        min-height:
+            44px;
+
+    }
+
+
+    /* STATISTICS */
 
     .stat-card{
 
         padding:
-            16px;
+            14px;
+
+        border-radius:
+            15px;
 
     }
+
+    .stat-card p:last-child{
+
+        font-size:
+            24px !important;
+
+        line-height:
+            1.1;
+
+    }
+
+
+    /* CHART */
 
     .chart-card{
 
         padding:
-            17px;
+            15px;
 
         border-radius:
-            18px;
+            17px;
 
     }
 
     .chart-title{
 
         font-size:
-            13px;
+            12px;
+
+        gap:
+            7px;
+
+        line-height:
+            1.35;
+
+    }
+
+    .chart-title span{
+
+        padding:
+            7px !important;
+
+    }
+
+    .chart-title i{
+
+        width:
+            15px !important;
+
+        height:
+            15px !important;
 
     }
 
@@ -877,31 +1050,60 @@ body{
         font-size:
             9px;
 
+        line-height:
+            1.45;
+
     }
 
     .chart-wrapper{
 
         height:
-            280px;
+            270px;
+
+        margin-top:
+            12px;
 
     }
+
+
+    /* MECHANIC CHART */
+
+    .chart-card .chart-wrapper[style*="380px"]{
+
+        height:
+            320px !important;
+
+    }
+
+
+    /* LEADERBOARD BUTTON */
 
     #leaderboardButton{
 
         right:
-            18px;
+            16px;
 
         bottom:
-            18px;
+            16px;
 
         width:
-            62px;
+            58px;
 
         height:
-            62px;
+            58px;
 
         border-radius:
-            19px;
+            17px;
+
+    }
+
+    #leaderboardButton svg{
+
+        width:
+            24px;
+
+        height:
+            24px;
 
     }
 
@@ -911,9 +1113,445 @@ body{
 
     }
 
-    .navigation-button{
 
-        width:100%;
+    /* LEADERBOARD MODAL */
+
+    #leaderboardOverlay{
+
+        padding:
+            12px;
+
+    }
+
+    #leaderboardModal{
+
+        width:
+            100%;
+
+        max-width:
+            430px;
+
+        max-height:
+            88vh;
+
+        border-radius:
+            18px;
+
+    }
+
+    #leaderboardList{
+
+        padding:
+            14px;
+
+        max-height:
+            68vh;
+
+    }
+
+    .leader-row{
+
+        gap:
+            8px;
+
+        padding:
+            10px;
+
+    }
+
+    .leader-rank{
+
+        width:
+            28px;
+
+        height:
+            28px;
+
+        border-radius:
+            9px;
+
+        font-size:
+            11px;
+
+    }
+
+    .leader-name{
+
+        font-size:
+            11px;
+
+    }
+
+    .leader-count{
+
+        font-size:
+            9px;
+
+        padding:
+            4px
+            7px;
+
+    }
+
+
+    /* FOOTER */
+
+    footer{
+
+        margin-top:
+            20px !important;
+
+        padding-left:
+            10px !important;
+
+        padding-right:
+            10px !important;
+
+    }
+
+    footer p:first-child{
+
+        font-size:
+            10px !important;
+
+        line-height:
+            1.5;
+
+    }
+
+    footer p:last-child{
+
+        font-size:
+            8px !important;
+
+        line-height:
+            1.5;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - SMALL MOBILE
+========================================================= */
+
+@media(max-width:480px){
+
+    body{
+
+        padding:
+            5px !important;
+
+    }
+
+    main{
+
+        padding:
+            14px !important;
+
+        border-radius:
+            18px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:
+            68px !important;
+
+        height:
+            68px !important;
+
+        border-radius:
+            15px !important;
+
+    }
+
+
+    .color-primary{
+
+        padding:
+            12px
+            10px !important;
+
+        border-radius:
+            14px !important;
+
+    }
+
+    .color-primary h1{
+
+        font-size:
+            13px !important;
+
+        letter-spacing:
+            .05em !important;
+
+    }
+
+    .color-primary h2{
+
+        font-size:
+            8px !important;
+
+        letter-spacing:
+            .08em !important;
+
+    }
+
+
+    header > div:last-child{
+
+        font-size:
+            7px !important;
+
+    }
+
+
+    section h2{
+
+        font-size:
+            18px !important;
+
+        gap:
+            8px !important;
+
+    }
+
+    section h2 span{
+
+        padding:
+            8px !important;
+
+        border-radius:
+            9px !important;
+
+    }
+
+    section h2 i{
+
+        width:
+            18px !important;
+
+        height:
+            18px !important;
+
+    }
+
+
+    .stat-card{
+
+        padding:
+            12px;
+
+        border-radius:
+            14px;
+
+    }
+
+    .stat-card p:first-child{
+
+        font-size:
+            8px !important;
+
+        line-height:
+            1.35;
+
+    }
+
+    .stat-card p:last-child{
+
+        font-size:
+            21px !important;
+
+    }
+
+
+    .chart-card{
+
+        padding:
+            12px;
+
+        border-radius:
+            15px;
+
+    }
+
+    .chart-title{
+
+        font-size:
+            11px;
+
+    }
+
+    .chart-subtitle{
+
+        font-size:
+            8px;
+
+    }
+
+    .chart-wrapper{
+
+        height:
+            245px;
+
+    }
+
+    .chart-card .chart-wrapper[style*="380px"]{
+
+        height:
+            290px !important;
+
+    }
+
+
+    #leaderboardButton{
+
+        right:
+            12px;
+
+        bottom:
+            12px;
+
+        width:
+            54px;
+
+        height:
+            54px;
+
+        border-radius:
+            16px;
+
+    }
+
+    #leaderboardButton svg{
+
+        width:
+            22px;
+
+        height:
+            22px;
+
+    }
+
+
+    #leaderboardModal{
+
+        border-radius:
+            16px;
+
+    }
+
+
+    #leaderboardModal > div:first-child{
+
+        padding:
+            13px
+            14px;
+
+    }
+
+
+    #leaderboardModal h3{
+
+        font-size:
+            13px;
+
+    }
+
+    #leaderboardModal h3 span{
+
+        padding:
+            7px !important;
+
+    }
+
+    #leaderboardModal h3 svg{
+
+        width:
+            16px !important;
+
+        height:
+            16px !important;
+
+    }
+
+
+    #leaderboardModal p{
+
+        font-size:
+            8px;
+
+    }
+
+
+    #leaderboardList{
+
+        padding:
+            11px;
+
+    }
+
+
+    .leader-row{
+
+        gap:
+            6px;
+
+        padding:
+            8px;
+
+        border-radius:
+            11px;
+
+    }
+
+    .leader-rank{
+
+        width:
+            25px;
+
+        height:
+            25px;
+
+        font-size:
+            10px;
+
+    }
+
+    .leader-name{
+
+        font-size:
+            10px;
+
+    }
+
+    .leader-count{
+
+        font-size:
+            8px;
+
+        padding:
+            4px
+            6px;
+
+    }
+
+
+    footer p:first-child{
+
+        font-size:
+            8px !important;
+
+    }
+
+    footer p:last-child{
+
+        font-size:
+            7px !important;
 
     }
 
@@ -925,64 +1563,149 @@ body{
     body{
 
         padding:
-            7px !important;
+            4px !important;
 
     }
 
     main{
 
         padding:
-            16px !important;
+            11px !important;
 
         border-radius:
-            18px !important;
+            16px !important;
 
     }
+
+
+    .stat-card{
+
+        padding:
+            10px;
+
+    }
+
+    .stat-card p:first-child{
+
+        font-size:
+            7px !important;
+
+    }
+
+    .stat-card p:last-child{
+
+        font-size:
+            19px !important;
+
+    }
+
 
     .chart-card{
 
         padding:
-            14px;
+            10px;
 
     }
 
     .chart-wrapper{
 
         height:
-            260px;
+            225px;
 
     }
 
-    .color-primary h1{
+    .chart-card .chart-wrapper[style*="380px"]{
 
-        font-size:
-            14px !important;
-
-    }
-
-    .color-primary h2{
-
-        font-size:
-            9px !important;
+        height:
+            270px !important;
 
     }
+
 
     #leaderboardButton{
 
         right:
-            14px;
+            9px;
 
         bottom:
-            14px;
+            9px;
 
         width:
-            58px;
+            50px;
 
         height:
-            58px;
+            50px;
 
         border-radius:
-            17px;
+            14px;
+
+    }
+
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media(
+    max-width:768px
+)
+and (
+    orientation:landscape
+){
+
+    .chart-wrapper{
+
+        height:
+            250px;
+
+    }
+
+    .chart-card .chart-wrapper[style*="380px"]{
+
+        height:
+            280px !important;
+
+    }
+
+    #leaderboardModal{
+
+        max-height:
+            92vh;
+
+    }
+
+    #leaderboardList{
+
+        max-height:
+            72vh;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media(
+    prefers-reduced-motion:reduce
+){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
 
     }
 
@@ -1168,7 +1891,6 @@ body{
 <!-- =====================================================
      INFO
 ===================================================== -->
-
 
 
 <!-- =====================================================
@@ -1742,12 +2464,6 @@ const API_URL =
     'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
 
 
-/*
-   Navigasi antar halaman.
-   Semua file diasumsikan berada dalam
-   folder/deployment yang sama.
-*/
-
 const HOME_URL =
     'index.html';
 
@@ -2172,13 +2888,6 @@ function updateStatistics(result){
         );
 
 
-    /*
-       Jika API mengirim data utama,
-       gunakan jumlah data tersebut.
-
-       Jika tidak ada, hitung dari serviceByType.
-    */
-
     let total =
         data.length;
 
@@ -2407,11 +3116,9 @@ function createServiceByUnitChart(data){
 
                 type:'bar',
 
-
                 data:{
 
                     labels:units,
-
 
                     datasets:[
 
@@ -2462,13 +3169,11 @@ function createServiceByUnitChart(data){
 
                 },
 
-
                 options:{
 
                     responsive:true,
 
                     maintainAspectRatio:false,
-
 
                     plugins:{
 
@@ -2477,7 +3182,6 @@ function createServiceByUnitChart(data){
                         }
 
                     },
-
 
                     scales:{
 
@@ -2546,11 +3250,9 @@ function createStatusChart(data){
 
                 type:'doughnut',
 
-
                 data:{
 
                     labels:labels,
-
 
                     datasets:[
 
@@ -2578,7 +3280,6 @@ function createStatusChart(data){
 
                 },
 
-
                 options:{
 
                     responsive:true,
@@ -2586,7 +3287,6 @@ function createStatusChart(data){
                     maintainAspectRatio:false,
 
                     cutout:'62%',
-
 
                     plugins:{
 
@@ -2711,11 +3411,9 @@ function createMonthlyTrendChart(data){
 
                 type:'line',
 
-
                 data:{
 
                     labels:labels,
-
 
                     datasets:[
 
@@ -2746,13 +3444,11 @@ function createMonthlyTrendChart(data){
 
                 },
 
-
                 options:{
 
                     responsive:true,
 
                     maintainAspectRatio:false,
-
 
                     plugins:{
 
@@ -2761,7 +3457,6 @@ function createMonthlyTrendChart(data){
                         }
 
                     },
-
 
                     scales:{
 
@@ -2830,11 +3525,9 @@ function createServiceTypeChart(data){
 
                 type:'doughnut',
 
-
                 data:{
 
                     labels:labels,
-
 
                     datasets:[
 
@@ -2862,7 +3555,6 @@ function createServiceTypeChart(data){
 
                 },
 
-
                 options:{
 
                     responsive:true,
@@ -2870,7 +3562,6 @@ function createServiceTypeChart(data){
                     maintainAspectRatio:false,
 
                     cutout:'58%',
-
 
                     plugins:{
 
@@ -2947,11 +3638,9 @@ function createUnitDistributionChart(data){
 
                 type:'bar',
 
-
                 data:{
 
                     labels:units,
-
 
                     datasets:[
 
@@ -2979,13 +3668,11 @@ function createUnitDistributionChart(data){
 
                 },
 
-
                 options:{
 
                     responsive:true,
 
                     maintainAspectRatio:false,
-
 
                     plugins:{
 
@@ -2994,7 +3681,6 @@ function createUnitDistributionChart(data){
                         }
 
                     },
-
 
                     scales:{
 
@@ -3063,11 +3749,9 @@ function createActivityChart(data){
 
                 type:'bar',
 
-
                 data:{
 
                     labels:labels,
-
 
                     datasets:[
 
@@ -3096,7 +3780,6 @@ function createActivityChart(data){
 
                 },
 
-
                 options:{
 
                     indexAxis:'y',
@@ -3105,7 +3788,6 @@ function createActivityChart(data){
 
                     maintainAspectRatio:false,
 
-
                     plugins:{
 
                         legend:{
@@ -3113,7 +3795,6 @@ function createActivityChart(data){
                         }
 
                     },
-
 
                     scales:{
 
@@ -3205,11 +3886,9 @@ function createMechanicChart(data){
 
                 type:'bar',
 
-
                 data:{
 
                     labels:labels,
-
 
                     datasets:[
 
@@ -3231,7 +3910,6 @@ function createMechanicChart(data){
 
                 },
 
-
                 options:{
 
                     indexAxis:'y',
@@ -3240,7 +3918,6 @@ function createMechanicChart(data){
 
                     maintainAspectRatio:false,
 
-
                     plugins:{
 
                         legend:{
@@ -3248,7 +3925,6 @@ function createMechanicChart(data){
                         }
 
                     },
-
 
                     scales:{
 
@@ -3261,7 +3937,6 @@ function createMechanicChart(data){
                             }
 
                         },
-
 
                         y:{
 
@@ -3547,11 +4222,6 @@ function scheduleLeaderboardPulse(){
                 );
 
 
-                /*
-                   Memaksa browser
-                   mengulang animasi.
-                */
-
                 void button.offsetWidth;
 
 
@@ -3653,3 +4323,4 @@ document.addEventListener(
 </body>
 
 </html>
+
