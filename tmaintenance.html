@@ -7,7 +7,7 @@
 
 <meta
     name="viewport"
-    content="width=1200"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Data Corrective Maintenance Unit - PT TSI</title>
@@ -33,12 +33,16 @@
 }
 
 html{
-    min-width:1100px;
+    min-width:0;
+    width:100%;
 }
 
 body{
 
     margin:0;
+
+    width:100%;
+    min-width:0;
 
     font-family:'Inter',sans-serif;
 
@@ -50,6 +54,8 @@ body{
         );
 
     color:#1e293b;
+
+    overflow-x:hidden;
 
 }
 
@@ -225,6 +231,8 @@ body{
 
     cursor:pointer;
 
+    white-space:nowrap;
+
 }
 
 .back-button:hover{
@@ -311,6 +319,8 @@ body{
     transition:
         .25s ease;
 
+    min-width:0;
+
 }
 
 .stat-card:hover{
@@ -349,12 +359,51 @@ body{
 
 
 /* =========================================================
+   TABLE SCROLL AREA
+========================================================= */
+
+.table-scroll{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+.table-scroll::-webkit-scrollbar{
+
+    height:7px;
+
+}
+
+.table-scroll::-webkit-scrollbar-track{
+
+    background:#f8fafc;
+
+}
+
+.table-scroll::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:999px;
+
+}
+
+
+/* =========================================================
    TABLE
 ========================================================= */
 
 table{
 
     width:100%;
+
+    min-width:760px;
 
     border-collapse:separate;
 
@@ -632,6 +681,8 @@ tbody tr:last-child td{
 
     letter-spacing:.03em;
 
+    white-space:nowrap;
+
 }
 
 
@@ -695,6 +746,8 @@ select.filter-input{
     width:34px;
 
     height:34px;
+
+    min-width:34px;
 
     border-radius:9px;
 
@@ -800,20 +853,822 @@ select.filter-input{
 
 
 /* =========================================================
-   MOBILE FALLBACK
+   TABLE HEADER RESPONSIVE WRAPPER
 ========================================================= */
 
-@media(max-width:1100px){
+.table-header-info{
 
-    html{
+    min-width:0;
 
-        min-width:0;
+}
 
-    }
+.database-info{
+
+    flex-shrink:0;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:1024px){
 
     body{
 
-        min-width:1100px;
+        padding-left:16px;
+        padding-right:16px;
+
+    }
+
+    main{
+
+        max-width:100% !important;
+
+    }
+
+    .page-title{
+
+        font-size:26px;
+
+    }
+
+    .stat-card{
+
+        padding:15px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    body{
+
+        padding:12px !important;
+
+    }
+
+
+    main{
+
+        padding:20px !important;
+
+        border-radius:22px !important;
+
+    }
+
+
+    /* HEADER */
+
+    header{
+
+        margin-bottom:24px !important;
+
+        padding-bottom:20px !important;
+
+    }
+
+
+    .logo-wrapper{
+
+        margin-bottom:14px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:78px !important;
+
+        height:78px !important;
+
+        border-radius:16px !important;
+
+    }
+
+
+    header .color-primary{
+
+        width:100%;
+
+        padding:
+            14px
+            16px !important;
+
+        border-radius:16px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:18px !important;
+
+        letter-spacing:.06em !important;
+
+    }
+
+
+    header h2{
+
+        font-size:12px !important;
+
+        letter-spacing:.08em !important;
+
+    }
+
+
+    header .mt-3{
+
+        font-size:8px !important;
+
+        letter-spacing:.2em !important;
+
+    }
+
+
+    /* PAGE TITLE */
+
+    .page-title{
+
+        font-size:21px;
+
+        line-height:1.25;
+
+        gap:10px;
+
+    }
+
+
+    .page-title > span{
+
+        padding:10px !important;
+
+        border-radius:10px !important;
+
+        flex-shrink:0;
+
+    }
+
+
+    .page-title i{
+
+        width:20px !important;
+
+        height:20px !important;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:11px;
+
+        line-height:1.6;
+
+        margin-top:8px !important;
+
+    }
+
+
+    section > div:first-child{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:14px;
+
+        margin-bottom:20px !important;
+
+    }
+
+
+    section > div:first-child > div:first-child{
+
+        width:100%;
+
+    }
+
+
+    section > div:first-child > .flex{
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:9px;
+
+    }
+
+
+    section > div:first-child > .flex > div{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+
+    .year-selector{
+
+        min-width:0;
+
+        flex:1;
+
+        width:100%;
+
+    }
+
+
+    .back-button{
+
+        width:100%;
+
+        justify-content:center;
+
+        padding:
+            10px
+            14px;
+
+    }
+
+
+    /* STATISTICS */
+
+    .grid.grid-cols-5{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr)) !important;
+
+        gap:10px !important;
+
+        margin-bottom:14px !important;
+
+    }
+
+
+    .stat-card{
+
+        padding:13px;
+
+        border-radius:14px;
+
+    }
+
+
+    .stat-card p.text-\\[10px\\]{
+
+        font-size:9px !important;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:24px !important;
+
+        line-height:1.1;
+
+    }
+
+
+    .stat-card span{
+
+        font-size:9px !important;
+
+    }
+
+
+    /* FILTER */
+
+    .filter-panel-mobile{
+
+        padding:15px !important;
+
+    }
+
+
+    .bg-white.border.border-slate-200.rounded-2xl.p-5.mb-5{
+
+        padding:15px !important;
+
+        border-radius:16px !important;
+
+    }
+
+
+    .bg-white.border.border-slate-200.rounded-2xl.p-5.mb-5 > div:last-child{
+
+        grid-template-columns:
+            1fr !important;
+
+        gap:12px !important;
+
+    }
+
+
+    .bg-white.border.border-slate-200.rounded-2xl.p-5.mb-5 .mb-4{
+
+        margin-bottom:14px !important;
+
+    }
+
+
+    .filter-input{
+
+        padding:
+            10px
+            11px;
+
+        font-size:11px;
+
+    }
+
+
+    /* TABLE PANEL */
+
+    .table-panel{
+
+        border-radius:16px;
+
+    }
+
+
+    .table-panel > .px-5.py-4{
+
+        padding:
+            14px !important;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+
+    .table-header-info{
+
+        width:100%;
+
+    }
+
+
+    .database-info{
+
+        width:100%;
+
+        justify-content:flex-start;
+
+        flex-wrap:wrap;
+
+        line-height:1.5;
+
+    }
+
+
+    /* TABLE */
+
+    .table-scroll{
+
+        width:100%;
+
+        overflow-x:auto;
+
+    }
+
+
+    table{
+
+        min-width:720px;
+
+    }
+
+
+    thead th{
+
+        font-size:9px;
+
+    }
+
+
+    .sort-button{
+
+        padding:
+            12px 10px;
+
+        font-size:9px;
+
+    }
+
+
+    .sort-icon{
+
+        width:12px;
+
+        height:12px;
+
+    }
+
+
+    tbody td{
+
+        padding:
+            11px
+            10px;
+
+        font-size:10px;
+
+    }
+
+
+    /* PAGINATION */
+
+    .table-panel > .px-5.py-4.border-t{
+
+        padding:
+            12px !important;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:10px;
+
+    }
+
+
+    #paginationInfo{
+
+        text-align:center;
+
+    }
+
+
+    #pagination{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+
+    /* LOADING */
+
+    #loading{
+
+        min-height:280px;
+
+    }
+
+
+    /* FOOTER */
+
+    footer{
+
+        margin-top:20px !important;
+
+        padding-left:8px !important;
+
+        padding-right:8px !important;
+
+        padding-bottom:20px !important;
+
+    }
+
+
+    footer p{
+
+        font-size:9px !important;
+
+        line-height:1.6;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:480px){
+
+    body{
+
+        padding:8px !important;
+
+    }
+
+
+    main{
+
+        padding:15px !important;
+
+        border-radius:18px !important;
+
+    }
+
+
+    header{
+
+        margin-bottom:20px !important;
+
+        padding-bottom:17px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:68px !important;
+
+        height:68px !important;
+
+        padding:6px !important;
+
+    }
+
+
+    header .color-primary{
+
+        padding:
+            12px
+            10px !important;
+
+        border-radius:14px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:15px !important;
+
+        letter-spacing:.04em !important;
+
+    }
+
+
+    header h2{
+
+        font-size:9px !important;
+
+        letter-spacing:.06em !important;
+
+    }
+
+
+    header .h-0\\.5{
+
+        width:45px !important;
+
+    }
+
+
+    header .mt-3{
+
+        font-size:7px !important;
+
+        letter-spacing:.15em !important;
+
+    }
+
+
+    .page-title{
+
+        font-size:18px;
+
+    }
+
+
+    .page-title > span{
+
+        padding:8px !important;
+
+    }
+
+
+    .page-title i{
+
+        width:18px !important;
+
+        height:18px !important;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:10px;
+
+    }
+
+
+    .year-selector{
+
+        font-size:11px;
+
+        padding:
+            9px
+            10px;
+
+    }
+
+
+    .back-button{
+
+        font-size:11px;
+
+    }
+
+
+    .grid.grid-cols-5{
+
+        gap:8px !important;
+
+    }
+
+
+    .stat-card{
+
+        padding:11px;
+
+        border-radius:12px;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:21px !important;
+
+    }
+
+
+    .stat-card p.text-\\[10px\\]{
+
+        font-size:8px !important;
+
+        letter-spacing:.05em !important;
+
+    }
+
+
+    .bg-white.border.border-slate-200.rounded-2xl.p-5.mb-5{
+
+        padding:12px !important;
+
+    }
+
+
+    .table-panel{
+
+        border-radius:14px;
+
+    }
+
+
+    .table-panel > .px-5.py-4{
+
+        padding:
+            12px !important;
+
+    }
+
+
+    .table-panel h3{
+
+        font-size:12px !important;
+
+    }
+
+
+    .database-info{
+
+        font-size:9px !important;
+
+    }
+
+
+    #resultInfo{
+
+        font-size:9px !important;
+
+    }
+
+
+    .pagination-button{
+
+        width:31px;
+
+        height:31px;
+
+        min-width:31px;
+
+        font-size:10px;
+
+    }
+
+
+    #paginationInfo{
+
+        font-size:9px !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:375px){
+
+    main{
+
+        padding:12px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:14px !important;
+
+    }
+
+
+    header h2{
+
+        font-size:8px !important;
+
+    }
+
+
+    .page-title{
+
+        font-size:16px;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:9px;
+
+    }
+
+
+    .stat-card{
+
+        padding:10px;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:19px !important;
+
+    }
+
+
+    .stat-card p.text-\\[10px\\]{
+
+        font-size:7px !important;
+
+    }
+
+
+    .stat-card span{
+
+        font-size:8px !important;
+
+    }
+
+
+    .pagination-button{
+
+        width:29px;
+
+        height:29px;
+
+        min-width:29px;
 
     }
 
@@ -1131,8 +1986,6 @@ select.filter-input{
                     <option value="2019">
                         2019
                     </option>
-
-                    <!-- SELURUH DATA PALING BAWAH -->
 
                     <option value="ALL">
                         Seluruh Data
@@ -1771,7 +2624,7 @@ select.filter-input{
                 "
             >
 
-                <div>
+                <div class="table-header-info">
 
                     <h3
                         class="
@@ -1801,6 +2654,7 @@ select.filter-input{
 
                 <div
                     class="
+                        database-info
                         flex
                         items-center
                         gap-2
@@ -1838,9 +2692,7 @@ select.filter-input{
 
             <!-- TABLE -->
 
-            <div
-                class="overflow-x-auto"
-            >
+            <div class="table-scroll">
 
                 <table>
 
@@ -2308,10 +3160,6 @@ async function loadYearData(
         String(year);
 
 
-    /*
-       Tampilkan loading.
-    */
-
     showLoading(
         currentYear === 'ALL'
             ?
@@ -2321,21 +3169,12 @@ async function loadYearData(
     );
 
 
-    /*
-       Reset data sementara.
-    */
-
     allData = [];
 
     filteredData = [];
 
     currentPage = 1;
 
-
-    /*
-       DEFAULT SORTING:
-       Date terbaru -> terlama
-    */
 
     sortKey = 'date';
 
@@ -2346,13 +3185,6 @@ async function loadYearData(
 
         let requestUrl;
 
-
-        /*
-           Jika ALL:
-
-           Ambil seluruh data dari API
-           tanpa parameter year.
-        */
 
         if(
             currentYear === 'ALL'
@@ -2411,11 +3243,9 @@ async function loadYearData(
             result;
 
 
-        /*
-           =================================================
+        /* =================================================
            MODE SELURUH DATA
-           =================================================
-        */
+        ================================================= */
 
         if(
             currentYear === 'ALL'
@@ -2458,12 +3288,6 @@ async function loadYearData(
                             index
                         )=>{
 
-                            /*
-                               Tambahkan sourceYear
-                               untuk mengetahui data
-                               berasal dari sheet mana.
-                            */
-
                             allData.push({
 
                                 originalIndex:
@@ -2498,11 +3322,9 @@ async function loadYearData(
         }
 
 
-        /*
-           =================================================
+        /* =================================================
            MODE TAHUN TERTENTU
-           =================================================
-        */
+        ================================================= */
 
         else{
 
@@ -3212,11 +4034,6 @@ function sortBy(
     key
 ){
 
-    /*
-       Jika klik kolom yang berbeda,
-       mulai dari ASC.
-    */
-
     if(
         sortKey !== key
     ){
@@ -3229,10 +4046,6 @@ function sortBy(
 
     }
 
-    /*
-       Jika ASC -> DESC
-    */
-
     else if(
         sortDirection === 'asc'
     ){
@@ -3241,11 +4054,6 @@ function sortBy(
             'desc';
 
     }
-
-    /*
-       Jika DESC -> kembali ke
-       default sorting.
-    */
 
     else{
 
@@ -3553,13 +4361,6 @@ function parseDate(
     }
 
 
-    /*
-       Format:
-
-       1 February 2019
-       12 March 2026
-    */
-
     const match =
         text.match(
             /^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/i
@@ -3622,12 +4423,6 @@ function parseDate(
     }
 
 
-    /*
-       Format:
-
-       DD/MM/YYYY
-    */
-
     const dmy =
         text.match(
             /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
@@ -3645,10 +4440,6 @@ function parseDate(
     }
 
 
-    /*
-       Format YYYY-MM-DD
-    */
-
     const iso =
         text.match(
             /^(\d{4})-(\d{2})-(\d{2})/
@@ -3665,10 +4456,6 @@ function parseDate(
 
     }
 
-
-    /*
-       Fallback
-    */
 
     const fallback =
         new Date(
@@ -3759,11 +4546,6 @@ function formatDate(
 
 /* =========================================================
    UNIT DISPLAY
-=========================================================
-
-   Badge jenis unit DIHAPUS.
-
-   Yang ditampilkan hanya nomor unit.
 ========================================================= */
 
 function getUnitBadge(
@@ -4688,13 +5470,6 @@ window.addEventListener(
 
         lucide.createIcons();
 
-
-        /*
-           Default:
-
-           Sheet 2026
-           Date terbaru -> terlama
-        */
 
         loadYearData(
             '2026'
