@@ -7,7 +7,7 @@
 
 <meta
     name="viewport"
-    content="width=1200"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Data Kerusakan pada LPH unit - PT TSI</title>
@@ -33,12 +33,17 @@
 }
 
 html{
-    min-width:1100px;
+    width:100%;
+    min-width:0;
+    overflow-x:hidden;
 }
 
 body{
 
     margin:0;
+
+    width:100%;
+    min-width:0;
 
     font-family:'Inter',sans-serif;
 
@@ -175,6 +180,8 @@ body{
 
     letter-spacing:-.025em;
 
+    line-height:1.2;
+
 }
 
 .page-subtitle{
@@ -184,6 +191,8 @@ body{
     color:#64748b;
 
     font-weight:500;
+
+    line-height:1.6;
 
 }
 
@@ -212,6 +221,8 @@ body{
 
     align-items:center;
 
+    justify-content:center;
+
     gap:8px;
 
     transition:
@@ -224,6 +235,8 @@ body{
     border:none;
 
     cursor:pointer;
+
+    flex-shrink:0;
 
 }
 
@@ -259,6 +272,8 @@ body{
 
     transition:
         .25s ease;
+
+    min-width:0;
 
 }
 
@@ -301,9 +316,25 @@ body{
    TABLE
 ========================================================= */
 
+.table-scroll{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    -webkit-overflow-scrolling:touch;
+
+    scrollbar-width:thin;
+
+}
+
 table{
 
     width:100%;
+
+    min-width:760px;
 
     border-collapse:separate;
 
@@ -707,6 +738,8 @@ select.filter-input{
 
     height:34px;
 
+    min-width:34px;
+
     border-radius:9px;
 
     border:
@@ -811,20 +844,953 @@ select.filter-input{
 
 
 /* =========================================================
-   MOBILE FALLBACK
+   TABLE SCROLLBAR
 ========================================================= */
 
-@media(max-width:1100px){
+.table-scroll::-webkit-scrollbar{
 
-    html{
+    height:7px;
 
-        min-width:0;
+}
 
-    }
+.table-scroll::-webkit-scrollbar-track{
+
+    background:#f8fafc;
+
+}
+
+.table-scroll::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:999px;
+
+}
+
+.table-scroll::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:1024px){
 
     body{
 
-        min-width:1100px;
+        padding:
+            20px !important;
+
+    }
+
+    main{
+
+        padding:
+            28px !important;
+
+    }
+
+    .page-title{
+
+        font-size:26px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    body{
+
+        padding:
+            10px !important;
+
+        align-items:
+            stretch !important;
+
+    }
+
+
+    main{
+
+        width:100% !important;
+
+        max-width:none !important;
+
+        padding:
+            18px !important;
+
+        border-radius:
+            22px !important;
+
+        box-shadow:
+            0 10px 30px
+            rgba(15,23,42,.08) !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       HEADER
+    ----------------------------------------------------- */
+
+    header{
+
+        margin-bottom:
+            24px !important;
+
+        padding-bottom:
+            20px !important;
+
+    }
+
+
+    .logo-wrapper{
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:
+            76px !important;
+
+        height:
+            76px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    header .color-primary{
+
+        width:100%;
+
+        max-width:
+            420px;
+
+        padding:
+            14px 18px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    header .color-primary h1{
+
+        font-size:
+            18px !important;
+
+        line-height:
+            1.3 !important;
+
+    }
+
+
+    header .color-primary h2{
+
+        font-size:
+            11px !important;
+
+        line-height:
+            1.4 !important;
+
+    }
+
+
+    header > div:last-child{
+
+        font-size:
+            8px !important;
+
+        letter-spacing:
+            .18em !important;
+
+        text-align:center;
+
+    }
+
+
+    /* -----------------------------------------------------
+       PAGE TITLE
+    ----------------------------------------------------- */
+
+    .page-title{
+
+        font-size:
+            21px !important;
+
+        line-height:
+            1.3 !important;
+
+        gap:
+            10px !important;
+
+        align-items:
+            flex-start !important;
+
+    }
+
+
+    .page-title span{
+
+        padding:
+            9px !important;
+
+        border-radius:
+            10px !important;
+
+        flex-shrink:0;
+
+    }
+
+
+    .page-title span svg{
+
+        width:
+            20px !important;
+
+        height:
+            20px !important;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:
+            11px !important;
+
+        line-height:
+            1.6 !important;
+
+        margin-top:
+            8px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       TITLE + BACK BUTTON
+    ----------------------------------------------------- */
+
+    section > div:first-child{
+
+        flex-direction:
+            column !important;
+
+        align-items:
+            stretch !important;
+
+        gap:
+            14px !important;
+
+        margin-bottom:
+            20px !important;
+
+    }
+
+
+    .back-button{
+
+        width:100%;
+
+        min-height:
+            42px;
+
+        padding:
+            10px 14px;
+
+        border-radius:
+            11px;
+
+    }
+
+
+    /* -----------------------------------------------------
+       STATISTICS
+    ----------------------------------------------------- */
+
+    #tableContent > div:first-child{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr)) !important;
+
+        gap:
+            10px !important;
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+
+    .stat-card{
+
+        padding:
+            13px !important;
+
+        border-radius:
+            14px !important;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:
+            25px !important;
+
+        line-height:
+            1 !important;
+
+    }
+
+
+    .stat-card p.text-\[10px\]{
+
+        font-size:
+            8px !important;
+
+        line-height:
+            1.4 !important;
+
+    }
+
+
+    .stat-card span{
+
+        font-size:
+            9px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       FILTER PANEL
+    ----------------------------------------------------- */
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl{
+
+        padding:
+            14px !important;
+
+        border-radius:
+            15px !important;
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl
+    > div:first-child{
+
+        margin-bottom:
+            13px !important;
+
+    }
+
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl
+    > div:first-child h3{
+
+        font-size:
+            12px !important;
+
+    }
+
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl
+    > div:first-child p{
+
+        font-size:
+            9px !important;
+
+        line-height:
+            1.5 !important;
+
+    }
+
+
+    #tableContent .grid.grid-cols-4{
+
+        grid-template-columns:
+            1fr !important;
+
+        gap:
+            11px !important;
+
+    }
+
+
+    #tableContent .grid.grid-cols-4 label{
+
+        font-size:
+            9px !important;
+
+        margin-bottom:
+            6px !important;
+
+    }
+
+
+    .filter-input{
+
+        min-height:
+            40px;
+
+        font-size:
+            11px;
+
+    }
+
+
+    #tableContent .grid.grid-cols-4 .flex.items-end{
+
+        margin-top:
+            1px;
+
+    }
+
+
+    /* -----------------------------------------------------
+       TABLE PANEL
+    ----------------------------------------------------- */
+
+    .table-panel{
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    .table-panel > div:first-child{
+
+        padding:
+            13px 14px !important;
+
+        gap:
+            10px;
+
+    }
+
+
+    .table-panel > div:first-child h3{
+
+        font-size:
+            12px !important;
+
+    }
+
+
+    .table-panel > div:first-child p{
+
+        font-size:
+            9px !important;
+
+    }
+
+
+    .table-panel > div:first-child > div:last-child{
+
+        font-size:
+            0 !important;
+
+        gap:
+            0 !important;
+
+    }
+
+
+    .table-panel > div:first-child > div:last-child svg{
+
+        width:
+            15px;
+
+        height:
+            15px;
+
+    }
+
+
+    .table-scroll{
+
+        width:
+            100%;
+
+    }
+
+
+    table{
+
+        min-width:
+            720px;
+
+    }
+
+
+    thead th{
+
+        font-size:
+            9px;
+
+    }
+
+
+    .sort-button{
+
+        padding:
+            12px 11px;
+
+        font-size:
+            9px;
+
+    }
+
+
+    tbody td{
+
+        padding:
+            11px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    /* -----------------------------------------------------
+       PAGINATION
+    ----------------------------------------------------- */
+
+    .table-panel > div:last-child{
+
+        padding:
+            11px 12px !important;
+
+        gap:
+            10px;
+
+    }
+
+
+    #paginationInfo{
+
+        font-size:
+            9px !important;
+
+        white-space:
+            nowrap;
+
+    }
+
+
+    #pagination{
+
+        max-width:
+            100%;
+
+        overflow-x:
+            auto;
+
+        padding-bottom:
+            2px;
+
+        scrollbar-width:none;
+
+    }
+
+
+    #pagination::-webkit-scrollbar{
+
+        display:none;
+
+    }
+
+
+    .pagination-button{
+
+        width:
+            32px;
+
+        height:
+            32px;
+
+        min-width:
+            32px;
+
+        border-radius:
+            8px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    /* -----------------------------------------------------
+       EMPTY STATE
+    ----------------------------------------------------- */
+
+    #emptyState .py-16{
+
+        padding-top:
+            45px !important;
+
+        padding-bottom:
+            45px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       FOOTER
+    ----------------------------------------------------- */
+
+    footer{
+
+        margin-top:
+            18px !important;
+
+        padding-left:
+            10px !important;
+
+        padding-right:
+            10px !important;
+
+        padding-bottom:
+            20px !important;
+
+    }
+
+
+    footer p:first-child{
+
+        font-size:
+            9px !important;
+
+        line-height:
+            1.5 !important;
+
+    }
+
+
+    footer p:last-child{
+
+        font-size:
+            8px !important;
+
+        line-height:
+            1.7 !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:480px){
+
+    body{
+
+        padding:
+            7px !important;
+
+    }
+
+
+    main{
+
+        padding:
+            14px !important;
+
+        border-radius:
+            19px !important;
+
+    }
+
+
+    header{
+
+        margin-bottom:
+            20px !important;
+
+        padding-bottom:
+            17px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:
+            68px !important;
+
+        height:
+            68px !important;
+
+    }
+
+
+    header .color-primary{
+
+        padding:
+            12px 13px !important;
+
+        border-radius:
+            14px !important;
+
+    }
+
+
+    header .color-primary h1{
+
+        font-size:
+            15px !important;
+
+        letter-spacing:
+            .07em !important;
+
+    }
+
+
+    header .color-primary h2{
+
+        font-size:
+            9px !important;
+
+        letter-spacing:
+            .12em !important;
+
+    }
+
+
+    .page-title{
+
+        font-size:
+            18px !important;
+
+    }
+
+
+    .page-title span{
+
+        padding:
+            8px !important;
+
+    }
+
+
+    .page-title span svg{
+
+        width:
+            18px !important;
+
+        height:
+            18px !important;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:
+            10px !important;
+
+    }
+
+
+    #tableContent > div:first-child{
+
+        gap:
+            8px !important;
+
+    }
+
+
+    .stat-card{
+
+        padding:
+            11px !important;
+
+        border-radius:
+            12px !important;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:
+            22px !important;
+
+    }
+
+
+    .stat-card p.text-\[10px\]{
+
+        font-size:
+            7px !important;
+
+    }
+
+
+    .stat-card span{
+
+        font-size:
+            8px !important;
+
+    }
+
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl{
+
+        padding:
+            12px !important;
+
+    }
+
+
+    .table-panel > div:first-child{
+
+        padding:
+            11px 12px !important;
+
+    }
+
+
+    table{
+
+        min-width:
+            700px;
+
+    }
+
+
+    #paginationInfo{
+
+        display:none;
+
+    }
+
+
+    .table-panel > div:last-child{
+
+        justify-content:
+            center !important;
+
+    }
+
+
+    footer p:first-child{
+
+        font-size:
+            8px !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+========================================================= */
+
+@media(max-width:375px){
+
+    main{
+
+        padding:
+            11px !important;
+
+    }
+
+
+    .page-title{
+
+        font-size:
+            16px !important;
+
+    }
+
+
+    .page-title span{
+
+        padding:
+            7px !important;
+
+    }
+
+
+    .page-title span svg{
+
+        width:
+            17px !important;
+
+        height:
+            17px !important;
+
+    }
+
+
+    #tableContent > div:first-child{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr)) !important;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:
+            20px !important;
+
+    }
+
+
+    .stat-card{
+
+        padding:
+            10px !important;
+
+    }
+
+
+    header .color-primary h1{
+
+        font-size:
+            14px !important;
+
+    }
+
+
+    header .color-primary h2{
+
+        font-size:
+            8px !important;
 
     }
 
@@ -1745,9 +2711,7 @@ select.filter-input{
 
             <!-- TABLE -->
 
-            <div
-                class="overflow-x-auto"
-            >
+            <div class="table-scroll">
 
                 <table>
 
@@ -2097,24 +3061,6 @@ let filteredData = [];
 let currentPage = 1;
 
 
-/*
-   Sorting state.
-
-   sortKey:
-   null
-   number
-   unit
-   problem
-   startDate
-   finishDate
-   status
-
-   sortDirection:
-   null
-   asc
-   desc
-*/
-
 let sortKey = null;
 
 let sortDirection = null;
@@ -2227,11 +3173,6 @@ async function loadTable(){
 
         currentPage = 1;
 
-
-        /*
-           Reset sorting ketika
-           data pertama kali dimuat.
-        */
 
         sortKey = null;
 
@@ -2733,19 +3674,6 @@ function resetFilters(){
    SORT
 ========================================================= */
 
-/*
-   Siklus sorting:
-
-   klik pertama
-   ASC
-
-   klik kedua
-   DESC
-
-   klik ketiga
-   kembali ke default
-*/
-
 function sortBy(
     key
 ){
@@ -2926,15 +3854,11 @@ function getSortedData(
             }
 
 
-            /*
-               Tanggal kosong diletakkan
-               di bagian bawah.
-            */
-
             const emptyA =
                 valueA === '' ||
                 valueA === null ||
                 valueA === undefined;
+
 
             const emptyB =
                 valueB === '' ||
@@ -3615,11 +4539,6 @@ function renderTable(){
         '';
 
 
-    /*
-       Terapkan sorting sebelum
-       menentukan data pagination.
-    */
-
     const sortedData =
         getSortedData(
             filteredData
@@ -4288,3 +5207,4 @@ document.addEventListener(
 </body>
 
 </html>
+
