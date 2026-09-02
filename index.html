@@ -15,10 +15,13 @@
 
 <style>
 
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
 html{
     width:100%;
+    max-width:100%;
     overflow-x:hidden;
 }
 
@@ -30,16 +33,28 @@ body{
     overflow-x:hidden;
 }
 
-.color-primary{background:#1E3A8A}
-.text-primary{color:#1E3A8A}
+.color-primary{
+    background:#1E3A8A;
+}
+
+.text-primary{
+    color:#1E3A8A;
+}
 
 .fade-in{
     animation:fadeIn .5s cubic-bezier(.4,0,.2,1);
 }
 
 @keyframes fadeIn{
-    from{opacity:0;transform:translateY(12px)}
-    to{opacity:1;transform:translateY(0)}
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .slide-in{
@@ -47,8 +62,15 @@ body{
 }
 
 @keyframes slideIn{
-    from{opacity:0;transform:translateX(-8px)}
-    to{opacity:1;transform:translateX(0)}
+    from{
+        opacity:0;
+        transform:translateX(-8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
 }
 
 .glass-panel{
@@ -156,8 +178,15 @@ body{
 }
 
 @keyframes modalIn{
-    from{opacity:0;transform:translateY(15px) scale(.97)}
-    to{opacity:1;transform:translateY(0) scale(1)}
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 #toast{
@@ -184,13 +213,27 @@ body{
 }
 
 @keyframes fadein_toast{
-    from{bottom:0;opacity:0}
-    to{bottom:30px;opacity:1}
+    from{
+        bottom:0;
+        opacity:0;
+    }
+
+    to{
+        bottom:30px;
+        opacity:1;
+    }
 }
 
 @keyframes fadeout_toast{
-    from{bottom:30px;opacity:1}
-    to{bottom:0;opacity:0}
+    from{
+        bottom:30px;
+        opacity:1;
+    }
+
+    to{
+        bottom:0;
+        opacity:0;
+    }
 }
 
 ::-webkit-scrollbar{
@@ -198,7 +241,9 @@ body{
     height:8px;
 }
 
-::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-track{
+    background:#f1f5f9;
+}
 
 ::-webkit-scrollbar-thumb{
     background:#cbd5e1;
@@ -409,10 +454,25 @@ body{
    TABLET
 ========================================================= */
 
-@media(max-width:900px){
+@media(max-width:1024px){
+
+    body{
+        padding:14px!important;
+    }
+
+    main{
+        padding:28px!important;
+        border-radius:28px!important;
+    }
 
     .dashboard-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:15px;
+    }
+
+    #mainHeader{
+        margin-bottom:25px!important;
+        padding-bottom:22px!important;
     }
 
 }
@@ -428,6 +488,7 @@ body{
     body{
         width:100%;
         max-width:100%;
+        min-width:0!important;
         overflow-x:hidden;
     }
 
@@ -457,17 +518,23 @@ body{
     ----------------------------------------------------- */
 
     #mainHeader{
+        width:100%!important;
         margin-bottom:20px!important;
         padding-bottom:18px!important;
     }
 
     .logo-wrapper{
+        width:100%!important;
         margin-bottom:12px!important;
+        display:flex!important;
+        justify-content:center!important;
     }
 
     .logo-wrapper > div{
         width:72px!important;
         height:72px!important;
+        min-width:72px!important;
+        min-height:72px!important;
         border-radius:17px!important;
         padding:7px!important;
     }
@@ -477,25 +544,29 @@ body{
         max-width:100%!important;
         padding:13px 10px!important;
         border-radius:17px!important;
+        gap:2px!important;
     }
 
     #mainHeader h1{
+        width:100%!important;
         font-size:16px!important;
         line-height:1.3!important;
         letter-spacing:.065em!important;
     }
 
     #mainHeader h2{
+        width:100%!important;
         font-size:10px!important;
         line-height:1.4!important;
         letter-spacing:.10em!important;
     }
 
     #mainHeader .mt-3{
+        width:100%!important;
         font-size:8px!important;
         line-height:1.4!important;
         letter-spacing:.18em!important;
-        text-align:center;
+        text-align:center!important;
     }
 
 
@@ -995,18 +1066,63 @@ body{
         padding:6px!important;
     }
 
+    main{
+        padding:13px!important;
+        border-radius:20px!important;
+    }
+
     .glass-panel{
         padding:13px!important;
         border-radius:20px!important;
     }
 
+
+    /* -----------------------------------------------------
+       HEADER VERY SMALL
+    ----------------------------------------------------- */
+
+    #mainHeader{
+        margin-bottom:17px!important;
+        padding-bottom:15px!important;
+    }
+
+    .logo-wrapper{
+        margin-bottom:10px!important;
+    }
+
+    .logo-wrapper > div{
+        width:64px!important;
+        height:64px!important;
+        min-width:64px!important;
+        min-height:64px!important;
+        border-radius:15px!important;
+        padding:6px!important;
+    }
+
+    #mainHeader .color-primary{
+        padding:11px 8px!important;
+        border-radius:15px!important;
+    }
+
     #mainHeader h1{
         font-size:14px!important;
+        letter-spacing:.055em!important;
     }
 
     #mainHeader h2{
         font-size:8px!important;
+        letter-spacing:.085em!important;
     }
+
+    #mainHeader .mt-3{
+        font-size:7px!important;
+        letter-spacing:.14em!important;
+    }
+
+
+    /* -----------------------------------------------------
+       HOME
+    ----------------------------------------------------- */
 
     #homeScreen h2{
         font-size:19px!important;
@@ -1019,6 +1135,11 @@ body{
     #homeScreen > button.menu-dark{
         padding:13px 10px!important;
     }
+
+
+    /* -----------------------------------------------------
+       DASHBOARD
+    ----------------------------------------------------- */
 
     .dashboard-card{
         min-height:128px!important;
@@ -1036,9 +1157,19 @@ body{
         font-size:10px!important;
     }
 
+
+    /* -----------------------------------------------------
+       FORM
+    ----------------------------------------------------- */
+
     .form-group{
         padding:11px!important;
     }
+
+
+    /* -----------------------------------------------------
+       MODAL
+    ----------------------------------------------------- */
 
     .modal-card{
         padding:18px 13px!important;
