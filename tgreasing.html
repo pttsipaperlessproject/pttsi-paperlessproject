@@ -32,15 +32,11 @@
 
 html{
     min-width:0;
-    width:100%;
 }
 
 body{
 
     margin:0;
-
-    width:100%;
-    min-width:0;
 
     font-family:'Inter',sans-serif;
 
@@ -53,7 +49,7 @@ body{
 
     color:#1e293b;
 
-    overflow-x:hidden;
+    width:100%;
 
 }
 
@@ -219,7 +215,7 @@ body{
         0 5px 12px
         rgba(30,58,138,.18);
 
-    white-space:nowrap;
+    flex-shrink:0;
 
 }
 
@@ -255,8 +251,6 @@ body{
 
     transition:
         .25s ease;
-
-    min-width:0;
 
 }
 
@@ -296,7 +290,7 @@ body{
 
 
 /* =========================================================
-   TABLE SCROLL AREA
+   TABLE SCROLL
 ========================================================= */
 
 .table-scroll{
@@ -311,29 +305,9 @@ body{
 
 }
 
-.table-scroll::-webkit-scrollbar{
+.table-scroll table{
 
-    height:6px;
-
-}
-
-.table-scroll::-webkit-scrollbar-track{
-
-    background:#f8fafc;
-
-}
-
-.table-scroll::-webkit-scrollbar-thumb{
-
-    background:#cbd5e1;
-
-    border-radius:999px;
-
-}
-
-.table-scroll::-webkit-scrollbar-thumb:hover{
-
-    background:#94a3b8;
+    min-width:850px;
 
 }
 
@@ -345,8 +319,6 @@ body{
 table{
 
     width:100%;
-
-    min-width:900px;
 
     border-collapse:separate;
 
@@ -671,8 +643,6 @@ select.filter-input{
 
     height:34px;
 
-    min-width:34px;
-
     border-radius:9px;
 
     border:
@@ -726,37 +696,6 @@ select.filter-input{
     opacity:.4;
 
     cursor:not-allowed;
-
-}
-
-
-/* =========================================================
-   PAGINATION WRAPPER
-========================================================= */
-
-.pagination-wrapper{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-}
-
-#pagination{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:4px;
-
-    flex-wrap:wrap;
-
-    justify-content:flex-end;
 
 }
 
@@ -1189,31 +1128,24 @@ select.filter-input{
 @media(max-width:1024px){
 
     body{
-
-        padding-left:12px !important;
-        padding-right:12px !important;
-
+        padding:16px !important;
     }
 
     main{
-
-        padding:
-            28px !important;
-
+        padding:28px !important;
         border-radius:26px !important;
-
     }
 
     .page-title{
-
         font-size:26px;
-
     }
 
     .stat-card{
-
         padding:15px;
+    }
 
+    .table-scroll table{
+        min-width:820px;
     }
 
 }
@@ -1226,10 +1158,8 @@ select.filter-input{
 @media(max-width:768px){
 
     body{
-
-        padding:
-            8px !important;
-
+        padding:10px !important;
+        align-items:stretch !important;
     }
 
 
@@ -1239,8 +1169,7 @@ select.filter-input{
 
         max-width:none !important;
 
-        padding:
-            20px 16px !important;
+        padding:20px !important;
 
         border-radius:22px !important;
 
@@ -1259,9 +1188,7 @@ select.filter-input{
 
 
     .logo-wrapper{
-
         margin-bottom:14px !important;
-
     }
 
 
@@ -1271,7 +1198,7 @@ select.filter-input{
 
         height:78px !important;
 
-        border-radius:18px !important;
+        border-radius:16px !important;
 
     }
 
@@ -1280,22 +1207,20 @@ select.filter-input{
 
         width:100%;
 
-        max-width:100%;
-
         padding:
             13px
-            14px !important;
+            12px !important;
 
-        border-radius:17px !important;
+        border-radius:16px !important;
 
     }
 
 
     header h1{
 
-        font-size:17px !important;
+        font-size:18px !important;
 
-        letter-spacing:.06em !important;
+        line-height:1.25 !important;
 
     }
 
@@ -1304,7 +1229,9 @@ select.filter-input{
 
         font-size:11px !important;
 
-        letter-spacing:.08em !important;
+        line-height:1.4 !important;
+
+        letter-spacing:.12em !important;
 
     }
 
@@ -1313,7 +1240,7 @@ select.filter-input{
 
         font-size:8px !important;
 
-        letter-spacing:.22em !important;
+        letter-spacing:.2em !important;
 
         text-align:center;
 
@@ -1322,13 +1249,20 @@ select.filter-input{
 
     /* PAGE TITLE */
 
+    section > div:first-child{
+
+        align-items:flex-start !important;
+
+    }
+
+
     .page-title{
 
         font-size:21px;
 
         line-height:1.25;
 
-        gap:9px;
+        gap:9px !important;
 
     }
 
@@ -1342,7 +1276,7 @@ select.filter-input{
     }
 
 
-    .page-title > span svg{
+    .page-title i{
 
         width:20px !important;
 
@@ -1355,49 +1289,43 @@ select.filter-input{
 
         font-size:11px;
 
-        line-height:1.6;
+        line-height:1.5;
 
-        margin-top:8px !important;
-
-        margin-left:0 !important;
-
-    }
-
-
-    section > div:first-child{
-
-        align-items:flex-start !important;
-
-        flex-direction:column;
-
-        gap:14px;
-
-        margin-bottom:20px !important;
+        margin-top:7px !important;
 
     }
 
 
     .back-button{
 
-        width:100%;
-
-        min-height:42px;
-
         padding:
-            10px
-            14px;
+            9px
+            12px;
+
+        font-size:10px;
+
+        border-radius:10px;
+
+    }
+
+
+    .back-button i{
+
+        width:14px !important;
+
+        height:14px !important;
 
     }
 
 
     /* STATISTICS */
 
-    #tableContent > div:first-child{
+    #tableContent > .grid{
 
         grid-template-columns:
-            repeat(2,minmax(0,1fr));
+            repeat(2,minmax(0,1fr)) !important;
 
-        gap:10px;
+        gap:10px !important;
 
         margin-bottom:16px !important;
 
@@ -1417,18 +1345,16 @@ select.filter-input{
 
         font-size:8px !important;
 
-        letter-spacing:.04em;
-
-        line-height:1.4;
+        letter-spacing:.04em !important;
 
     }
 
 
-    .stat-card p.text-3xl{
+    .stat-card p[id]{
 
-        font-size:24px !important;
+        font-size:25px !important;
 
-        line-height:1;
+        margin-top:6px !important;
 
     }
 
@@ -1442,23 +1368,7 @@ select.filter-input{
 
     /* FILTER */
 
-    .filter-input{
-
-        font-size:11px;
-
-        min-height:40px;
-
-    }
-
-
-    .filter-input.pl-10{
-
-        padding-left:38px !important;
-
-    }
-
-
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl{
+    #tableContent .bg-white.border.rounded-2xl{
 
         padding:15px !important;
 
@@ -1469,20 +1379,33 @@ select.filter-input{
     }
 
 
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl
-    > div:nth-child(2){
+    #tableContent .bg-white.border.rounded-2xl
+    > .flex.items-center.gap-3{
 
-        grid-template-columns:
-            1fr;
-
-        gap:11px;
+        margin-bottom:13px !important;
 
     }
 
 
-    /* FILTER TITLE */
+    #tableContent .bg-white.border.rounded-2xl
+    > .flex.items-center.gap-3 span{
 
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl
+        padding:7px !important;
+
+    }
+
+
+    #tableContent .bg-white.border.rounded-2xl
+    > .flex.items-center.gap-3 i{
+
+        width:15px !important;
+
+        height:15px !important;
+
+    }
+
+
+    #tableContent .bg-white.border.rounded-2xl
     h3{
 
         font-size:12px !important;
@@ -1490,15 +1413,49 @@ select.filter-input{
     }
 
 
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl
+    #tableContent .bg-white.border.rounded-2xl
     p{
 
         font-size:9px !important;
 
+        line-height:1.4;
+
     }
 
 
-    /* TABLE HEADER */
+    #tableContent .grid.grid-cols-4{
+
+        grid-template-columns:
+            1fr !important;
+
+        gap:10px !important;
+
+    }
+
+
+    #tableContent .grid.grid-cols-4 label{
+
+        font-size:8px !important;
+
+        margin-bottom:5px !important;
+
+    }
+
+
+    .filter-input{
+
+        font-size:10px;
+
+        padding:
+            9px
+            10px;
+
+        border-radius:10px;
+
+    }
+
+
+    /* TABLE PANEL */
 
     .table-panel{
 
@@ -1507,7 +1464,8 @@ select.filter-input{
     }
 
 
-    .table-panel > div:first-child{
+    .table-panel
+    > .px-5.py-4{
 
         padding:
             13px
@@ -1520,25 +1478,26 @@ select.filter-input{
     }
 
 
-    .table-panel > div:first-child
-    h3{
+    .table-panel
+    > .px-5.py-4 h3{
 
         font-size:12px !important;
 
     }
 
 
-    .table-panel > div:first-child
-    p{
+    .table-panel
+    > .px-5.py-4 p{
 
-        font-size:9px !important;
+        font-size:8px !important;
 
         line-height:1.4;
 
     }
 
 
-    .table-panel > div:first-child
+    .table-panel
+    > .px-5.py-4
     > div:last-child{
 
         font-size:8px !important;
@@ -1548,9 +1507,22 @@ select.filter-input{
     }
 
 
-    table{
+    .table-scroll{
 
-        min-width:850px;
+        width:100%;
+
+        overflow-x:auto;
+
+        overflow-y:hidden;
+
+        border-top:0;
+
+    }
+
+
+    .table-scroll table{
+
+        min-width:820px;
 
     }
 
@@ -1558,10 +1530,10 @@ select.filter-input{
     thead th{
 
         padding:
-            12px
-            12px;
+            11px
+            10px;
 
-        font-size:9px;
+        font-size:8px;
 
     }
 
@@ -1569,23 +1541,34 @@ select.filter-input{
     tbody td{
 
         padding:
-            11px
-            12px;
+            10px
+            10px;
 
         font-size:10px;
 
     }
 
 
+    .sort-icon{
+
+        width:12px;
+
+        height:12px;
+
+    }
+
+
     .unit-badge{
 
-        min-width:44px;
+        min-width:42px;
 
         padding:
             4px
-            7px;
+            6px;
 
         font-size:9px;
+
+        border-radius:7px;
 
     }
 
@@ -1598,51 +1581,61 @@ select.filter-input{
 
         font-size:9px;
 
+        border-radius:7px;
+
     }
 
 
     /* PAGINATION */
 
-    .pagination-wrapper{
+    .table-panel
+    > .px-5.py-4:last-child{
 
-        flex-direction:column;
+        padding:
+            11px
+            12px !important;
 
-        align-items:flex-start;
+        gap:10px;
+
+    }
+
+
+    #paginationInfo{
+
+        font-size:8px !important;
+
+        white-space:nowrap;
 
     }
 
 
     #pagination{
 
-        width:100%;
-
-        justify-content:center;
+        max-width:100%;
 
         overflow-x:auto;
 
-        flex-wrap:nowrap;
-
         padding-bottom:2px;
 
-        -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
 
     }
 
 
     #pagination::-webkit-scrollbar{
 
-        height:0;
+        display:none;
 
     }
 
 
     .pagination-button{
 
-        width:32px;
+        width:30px;
 
-        height:32px;
+        height:30px;
 
-        min-width:32px;
+        border-radius:8px;
 
         font-size:10px;
 
@@ -1656,7 +1649,9 @@ select.filter-input{
         margin-top:18px !important;
 
         padding:
-            0 8px 20px !important;
+            0
+            8px
+            20px !important;
 
     }
 
@@ -1683,20 +1678,20 @@ select.filter-input{
 
     #leaderboardButton{
 
-        width:56px;
-
-        height:56px;
-
         right:16px;
 
         bottom:16px;
 
-        border-radius:17px;
+        width:54px;
+
+        height:54px;
+
+        border-radius:16px;
 
     }
 
 
-    #leaderboardButton svg{
+    #leaderboardButton > i{
 
         width:23px !important;
 
@@ -1727,14 +1722,15 @@ select.filter-input{
 
         max-width:none;
 
-        max-height:85vh;
+        max-height:82vh;
 
         border-radius:18px;
 
     }
 
 
-    #leaderboardModal > div:first-child{
+    #leaderboardModal
+    > .px-5.py-4{
 
         padding:
             13px
@@ -1743,9 +1739,42 @@ select.filter-input{
     }
 
 
+    #leaderboardModal h3{
+
+        font-size:13px !important;
+
+    }
+
+
+    #leaderboardModal
+    h3 span{
+
+        padding:7px !important;
+
+    }
+
+
+    #leaderboardModal
+    h3 i{
+
+        width:17px !important;
+
+        height:17px !important;
+
+    }
+
+
+    #leaderboardModal
+    p{
+
+        font-size:8px !important;
+
+    }
+
+
     #leaderboardList{
 
-        padding:14px !important;
+        padding:13px !important;
 
         max-height:65vh !important;
 
@@ -1760,18 +1789,18 @@ select.filter-input{
             10px
             11px;
 
-        border-radius:12px;
+        border-radius:11px;
 
     }
 
 
     .leader-rank{
 
-        width:28px;
+        width:27px;
 
-        height:28px;
+        height:27px;
 
-        border-radius:9px;
+        border-radius:8px;
 
         font-size:11px;
 
@@ -1780,7 +1809,7 @@ select.filter-input{
 
     .leader-name{
 
-        font-size:11px;
+        font-size:10px;
 
     }
 
@@ -1806,23 +1835,28 @@ select.filter-input{
 
     body{
 
-        padding:
-            5px !important;
+        padding:6px !important;
 
     }
 
 
     main{
 
-        padding:
-            16px 12px !important;
+        padding:14px !important;
 
-        border-radius:19px !important;
+        border-radius:18px !important;
 
     }
 
 
-    /* HEADER */
+    header{
+
+        margin-bottom:20px !important;
+
+        padding-bottom:17px !important;
+
+    }
+
 
     .logo-wrapper > div{
 
@@ -1830,12 +1864,25 @@ select.filter-input{
 
         height:68px !important;
 
+        border-radius:14px !important;
+
+    }
+
+
+    header .color-primary{
+
+        padding:
+            11px
+            8px !important;
+
+        border-radius:14px !important;
+
     }
 
 
     header h1{
 
-        font-size:14px !important;
+        font-size:15px !important;
 
     }
 
@@ -1844,10 +1891,19 @@ select.filter-input{
 
         font-size:9px !important;
 
+        letter-spacing:.09em !important;
+
     }
 
 
-    /* TITLE */
+    header .mt-3{
+
+        font-size:7px !important;
+
+        letter-spacing:.14em !important;
+
+    }
+
 
     .page-title{
 
@@ -1863,27 +1919,38 @@ select.filter-input{
     }
 
 
-    .page-title > span svg{
+    .page-title i{
 
-        width:18px !important;
+        width:17px !important;
 
-        height:18px !important;
+        height:17px !important;
 
     }
 
 
     .page-subtitle{
 
-        font-size:10px;
+        font-size:9px;
 
     }
 
 
-    /* STAT */
+    .back-button{
 
-    #tableContent > div:first-child{
+        padding:
+            8px
+            10px;
 
-        gap:8px;
+        font-size:9px;
+
+        gap:5px;
+
+    }
+
+
+    #tableContent > .grid{
+
+        gap:8px !important;
 
     }
 
@@ -1897,54 +1964,32 @@ select.filter-input{
     }
 
 
-    .stat-card p.text-3xl{
+    .stat-card p[id]{
 
-        font-size:21px !important;
-
-    }
-
-
-    .stat-card p:first-child{
-
-        font-size:7px !important;
+        font-size:22px !important;
 
     }
 
 
-    .stat-card span{
-
-        font-size:8px !important;
-
-    }
-
-
-    /* FILTER */
-
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl{
+    #tableContent .bg-white.border.rounded-2xl{
 
         padding:12px !important;
 
     }
 
 
-    /* TABLE */
-
-    .table-panel{
-
-        border-radius:14px;
-
-    }
-
-
-    .table-panel > div:first-child{
+    .table-panel
+    > .px-5.py-4{
 
         padding:
+            11px
             12px !important;
 
     }
 
 
-    .table-panel > div:first-child
+    .table-panel
+    > .px-5.py-4
     > div:last-child{
 
         display:none;
@@ -1952,9 +1997,9 @@ select.filter-input{
     }
 
 
-    table{
+    .table-scroll table{
 
-        min-width:820px;
+        min-width:800px;
 
     }
 
@@ -1962,9 +2007,10 @@ select.filter-input{
     thead th{
 
         padding:
-            10px;
+            10px
+            9px;
 
-        font-size:8px;
+        font-size:7px;
 
     }
 
@@ -1972,14 +2018,39 @@ select.filter-input{
     tbody td{
 
         padding:
-            10px;
+            9px
+            9px;
 
         font-size:9px;
 
     }
 
 
-    /* FOOTER */
+    .table-panel
+    > .px-5.py-4:last-child{
+
+        flex-direction:column;
+
+        align-items:stretch !important;
+
+    }
+
+
+    #paginationInfo{
+
+        text-align:center;
+
+    }
+
+
+    #pagination{
+
+        justify-content:center;
+
+        width:100%;
+
+    }
+
 
     footer p:first-child{
 
@@ -1988,19 +2059,26 @@ select.filter-input{
     }
 
 
-    /* LEADERBOARD */
-
     #leaderboardButton{
 
-        width:52px;
+        right:12px;
 
-        height:52px;
+        bottom:12px;
 
-        right:13px;
+        width:50px;
 
-        bottom:13px;
+        height:50px;
 
-        border-radius:15px;
+        border-radius:14px;
+
+    }
+
+
+    #leaderboardButton > i{
+
+        width:21px !important;
+
+        height:21px !important;
 
     }
 
@@ -2008,43 +2086,53 @@ select.filter-input{
 
 
 /* =========================================================
-   VERY SMALL MOBILE
+   EXTRA SMALL MOBILE
 ========================================================= */
 
 @media(max-width:375px){
 
     main{
 
-        padding:
-            14px 10px !important;
-
-    }
-
-
-    header h1{
-
-        font-size:13px !important;
-
-    }
-
-
-    header h2{
-
-        font-size:8px !important;
+        padding:11px !important;
 
     }
 
 
     .page-title{
 
-        font-size:17px;
+        font-size:16px;
+
+    }
+
+
+    .page-title > span{
+
+        padding:7px !important;
 
     }
 
 
     .page-subtitle{
 
-        font-size:9px;
+        font-size:8px;
+
+    }
+
+
+    .back-button{
+
+        padding:
+            7px
+            9px;
+
+        font-size:8px;
+
+    }
+
+
+    #tableContent > .grid{
+
+        gap:7px !important;
 
     }
 
@@ -2056,54 +2144,30 @@ select.filter-input{
     }
 
 
-    .stat-card p.text-3xl{
+    .stat-card p:first-child{
 
-        font-size:19px !important;
-
-    }
-
-
-    .back-button{
-
-        font-size:10px;
+        font-size:7px !important;
 
     }
 
 
-    .filter-input{
+    .stat-card p[id]{
 
-        font-size:10px;
-
-    }
-
-
-    #paginationInfo{
-
-        font-size:9px !important;
+        font-size:20px !important;
 
     }
 
 
-    .pagination-button{
+    .stat-card span{
 
-        width:30px;
-
-        height:30px;
-
-        min-width:30px;
+        font-size:8px !important;
 
     }
 
 
-    #leaderboardButton{
+    #leaderboardModal{
 
-        width:48px;
-
-        height:48px;
-
-        right:11px;
-
-        bottom:11px;
+        border-radius:15px;
 
     }
 
@@ -2115,7 +2179,13 @@ select.filter-input{
 
 
 <body
-    class="flex flex-col items-center p-4 sm:p-8"
+    class="
+        flex
+        flex-col
+        items-center
+        p-4
+        sm:p-8
+    "
 >
 
 
@@ -3119,11 +3189,13 @@ select.filter-input{
 
             <div
                 class="
-                    pagination-wrapper
                     px-5
                     py-4
                     border-t
                     border-slate-100
+                    flex
+                    items-center
+                    justify-between
                 "
             >
 
