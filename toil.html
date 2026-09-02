@@ -32,8 +32,8 @@
 }
 
 html{
-    min-width:0;
     width:100%;
+    min-width:0;
 }
 
 body{
@@ -423,7 +423,7 @@ body{
 
 
 /* =========================================================
-   TABLE SCROLL WRAPPER
+   TABLE SCROLL
 ========================================================= */
 
 .table-scroll{
@@ -707,8 +707,6 @@ tbody tr:last-child td{
 
     width:100%;
 
-    min-width:0;
-
     background:#f8fafc;
 
     border:
@@ -730,6 +728,8 @@ tbody tr:last-child td{
     outline:none;
 
     transition:.2s ease;
+
+    min-width:0;
 
 }
 
@@ -762,7 +762,7 @@ select.filter-input{
 
     height:34px;
 
-    flex-shrink:0;
+    min-width:34px;
 
     border-radius:9px;
 
@@ -835,13 +835,15 @@ select.filter-input{
 
     justify-content:center;
 
-    text-align:center;
+    width:100%;
 
 }
 
 #tableContent{
 
     display:none;
+
+    width:100%;
 
 }
 
@@ -877,57 +879,29 @@ select.filter-input{
 
     max-width:700px;
 
-    width:100%;
-
     margin:auto;
 
 }
 
 
 /* =========================================================
-   TABLE HEADER RESPONSIVE WRAPPER
+   TABLE HEADER RESPONSIVE
 ========================================================= */
 
-.table-header-info{
+.table-header{
 
     min-width:0;
 
 }
 
-.table-header-database{
-
-    flex-shrink:0;
-
-}
-
 
 /* =========================================================
-   TABLE FOOTER
+   TABLE FOOTER RESPONSIVE
 ========================================================= */
 
 .table-footer{
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:16px;
-
-}
-
-.pagination-container{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:4px;
-
-    flex-wrap:wrap;
-
-    justify-content:flex-end;
+    min-width:0;
 
 }
 
@@ -941,6 +915,7 @@ select.filter-input{
     body{
 
         padding-left:12px !important;
+
         padding-right:12px !important;
 
     }
@@ -948,8 +923,7 @@ select.filter-input{
 
     main{
 
-        padding:
-            24px !important;
+        max-width:100% !important;
 
     }
 
@@ -964,27 +938,6 @@ select.filter-input{
     }
 
 
-    .page-title{
-
-        font-size:27px;
-
-    }
-
-
-    .table-panel{
-
-        border-radius:18px;
-
-    }
-
-
-    .filter-grid{
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-    }
-
 }
 
 
@@ -997,46 +950,53 @@ select.filter-input{
     body{
 
         padding:
-            8px !important;
+            10px !important;
+
+        overflow-x:hidden;
 
     }
 
 
     main{
 
-        width:100% !important;
-
-        max-width:none !important;
-
         padding:
             18px !important;
 
-        border-radius:22px !important;
+        border-radius:
+            22px !important;
 
     }
 
 
     header{
 
-        margin-bottom:22px !important;
+        margin-bottom:
+            22px !important;
 
-        padding-bottom:18px !important;
+        padding-bottom:
+            20px !important;
 
     }
 
 
     .logo-wrapper{
 
-        margin-bottom:14px !important;
+        margin-bottom:
+            14px !important;
 
     }
 
 
     .logo-wrapper > div{
 
-        width:76px !important;
+        width:
+            76px !important;
 
-        height:76px !important;
+        height:
+            76px !important;
+
+        border-radius:
+            17px !important;
 
     }
 
@@ -1045,42 +1005,50 @@ select.filter-input{
 
         width:100%;
 
-        max-width:430px;
+        max-width:100%;
 
         padding:
             13px
-            14px !important;
+            16px !important;
 
-        border-radius:15px !important;
+        border-radius:
+            16px !important;
 
     }
 
 
     header .color-primary h1{
 
-        font-size:18px !important;
+        font-size:
+            18px !important;
 
-        letter-spacing:.07em !important;
+        letter-spacing:
+            .07em !important;
 
     }
 
 
     header .color-primary h2{
 
-        font-size:11px !important;
+        font-size:
+            11px !important;
 
-        letter-spacing:.12em !important;
+        letter-spacing:
+            .08em !important;
+
+        line-height:
+            1.5 !important;
 
     }
 
 
     header > div:last-child{
 
-        margin-top:10px !important;
+        font-size:
+            8px !important;
 
-        font-size:8px !important;
-
-        letter-spacing:.22em !important;
+        letter-spacing:
+            .18em !important;
 
         text-align:center;
 
@@ -1089,53 +1057,60 @@ select.filter-input{
 
     section > div:first-child{
 
-        flex-direction:column !important;
+        flex-direction:column;
 
-        align-items:stretch !important;
+        align-items:stretch;
 
-        gap:14px !important;
-
-        margin-bottom:20px !important;
+        gap:16px;
 
     }
 
 
     .page-title{
 
-        font-size:22px;
+        font-size:
+            23px;
 
-        line-height:1.25;
+        line-height:
+            1.25;
 
-        gap:10px !important;
-
-    }
-
-
-    .page-title span{
-
-        padding:9px !important;
-
-        border-radius:10px !important;
+        gap:10px;
 
     }
 
 
-    .page-title span svg{
+    .page-title > span{
 
-        width:20px !important;
+        padding:
+            10px !important;
 
-        height:20px !important;
+        border-radius:
+            10px !important;
+
+    }
+
+
+    .page-title > span svg{
+
+        width:
+            21px !important;
+
+        height:
+            21px !important;
 
     }
 
 
     .page-subtitle{
 
-        font-size:11px;
+        font-size:
+            11px;
 
-        line-height:1.6;
+        line-height:
+            1.6;
 
-        margin-top:7px !important;
+        margin-left:
+            0 !important;
 
     }
 
@@ -1147,8 +1122,8 @@ select.filter-input{
         display:grid !important;
 
         grid-template-columns:
-            1fr
-            1fr;
+            minmax(0,1fr)
+            minmax(0,1fr);
 
         gap:8px !important;
 
@@ -1159,36 +1134,30 @@ select.filter-input{
 
         min-width:0;
 
+        width:100%;
+
     }
 
 
     section > div:first-child > div:last-child > div{
 
-        display:flex;
-
-        align-items:center;
-
-        gap:6px;
-
-    }
-
-
-    section > div:first-child > div:last-child > div > span{
-
-        display:none;
+        justify-content:space-between;
 
     }
 
 
     .year-selector{
 
-        width:100%;
-
         min-width:0;
+
+        width:100%;
 
         padding:
             10px
             10px;
+
+        font-size:
+            11px;
 
     }
 
@@ -1197,11 +1166,12 @@ select.filter-input{
 
         width:100%;
 
-        min-height:40px;
-
         padding:
             10px
             12px;
+
+        font-size:
+            11px;
 
     }
 
@@ -1220,90 +1190,145 @@ select.filter-input{
 
     .stat-card{
 
-        min-height:108px;
+        padding:
+            13px;
 
-        padding:13px;
+        min-height:
+            108px;
 
-        border-radius:14px;
+        border-radius:
+            14px;
 
     }
 
 
     .stat-card .text-3xl{
 
-        font-size:24px !important;
+        font-size:
+            24px !important;
 
     }
 
 
     .stat-card .text-\[10px\]{
 
-        font-size:8px !important;
+        font-size:
+            8px !important;
 
     }
 
 
     .stat-card .text-\[9px\]{
 
-        font-size:8px !important;
+        font-size:
+            8px !important;
 
     }
 
 
-    .stat-card .bg-slate-50{
+    .stat-card .p-2{
 
-        padding:7px !important;
-
-    }
-
-
-    .stat-card .bg-slate-50 svg{
-
-        width:14px !important;
-
-        height:14px !important;
+        padding:
+            7px !important;
 
     }
 
 
-    .filter-panel{
+    .stat-card .w-4{
 
-        padding:15px !important;
-
-        border-radius:16px !important;
-
-        margin-bottom:15px !important;
+        width:
+            14px !important;
 
     }
 
 
-    .filter-grid{
+    .stat-card .h-4{
+
+        height:
+            14px !important;
+
+    }
+
+
+    .stat-card .mb-1{
+
+        margin-bottom:
+            2px !important;
+
+    }
+
+
+    .stat-card .qty-unit{
+
+        font-size:
+            8px;
+
+    }
+
+
+    #tableContent > div:nth-child(2){
+
+        padding:
+            15px !important;
+
+        border-radius:
+            16px !important;
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+
+    #tableContent > div:nth-child(2) > div:first-child{
+
+        margin-bottom:
+            14px !important;
+
+    }
+
+
+    #tableContent > div:nth-child(2) .grid{
 
         grid-template-columns:
-            1fr !important;
+            repeat(2,minmax(0,1fr));
 
-        gap:11px !important;
-
-    }
-
-
-    .filter-panel .mt-4{
-
-        margin-top:12px !important;
+        gap:10px !important;
 
     }
 
 
-    .filter-panel .mt-4 button{
+    #tableContent > div:nth-child(2) .mt-4{
+
+        margin-top:
+            12px !important;
+
+    }
+
+
+    #tableContent > div:nth-child(2) .mt-4 button{
 
         width:100%;
 
     }
 
 
+    .filter-input{
+
+        font-size:
+            10px;
+
+        padding:
+            9px
+            10px;
+
+    }
+
+
     .table-panel{
 
-        border-radius:16px;
+        border-radius:
+            16px;
 
     }
 
@@ -1314,48 +1339,31 @@ select.filter-input{
             13px
             14px !important;
 
-        gap:12px;
-
-        align-items:flex-start !important;
+        gap:10px;
 
     }
 
 
-    .table-header-info h3{
+    .table-header > div:last-child{
 
-        font-size:13px !important;
-
-    }
-
-
-    .table-header-info p{
-
-        font-size:9px !important;
-
-        line-height:1.4;
+        font-size:
+            8px !important;
 
     }
 
 
-    .table-header-database{
+    .table-header > div:last-child svg{
 
-        font-size:8px !important;
+        width:
+            12px !important;
 
-        gap:5px !important;
-
-    }
-
-
-    .table-header-database span:not(#activeYearBadge){
-
-        display:none;
+        height:
+            12px !important;
 
     }
 
 
-    #activeYearBadge{
-
-        font-size:8px !important;
+    .table-header > div:last-child span{
 
         padding:
             4px
@@ -1366,25 +1374,25 @@ select.filter-input{
 
     .table-scroll{
 
-        width:100%;
-
         overflow-x:auto;
 
-        overflow-y:hidden;
+        width:100%;
 
     }
 
 
     table{
 
-        min-width:700px;
+        min-width:
+            720px;
 
     }
 
 
     thead th{
 
-        font-size:9px;
+        font-size:
+            9px;
 
     }
 
@@ -1395,7 +1403,8 @@ select.filter-input{
             12px
             10px;
 
-        font-size:9px;
+        font-size:
+            9px;
 
         gap:5px;
 
@@ -1404,9 +1413,11 @@ select.filter-input{
 
     .sort-icon{
 
-        width:12px;
+        width:
+            12px;
 
-        height:12px;
+        height:
+            12px;
 
     }
 
@@ -1417,14 +1428,8 @@ select.filter-input{
             11px
             10px;
 
-        font-size:10px;
-
-    }
-
-
-    .qty-unit{
-
-        font-size:8px;
+        font-size:
+            10px;
 
     }
 
@@ -1435,33 +1440,29 @@ select.filter-input{
             12px
             14px !important;
 
-        flex-direction:column;
-
-        align-items:stretch;
-
         gap:10px;
+
+        flex-wrap:wrap;
 
     }
 
 
     #paginationInfo{
 
-        text-align:center;
+        font-size:
+            9px !important;
 
-        font-size:9px !important;
+        flex:
+            1 1 auto;
 
     }
 
 
-    .pagination-container{
+    #pagination{
 
-        justify-content:center;
-
-        width:100%;
+        max-width:100%;
 
         overflow-x:auto;
-
-        flex-wrap:nowrap;
 
         padding-bottom:2px;
 
@@ -1470,22 +1471,27 @@ select.filter-input{
 
     .pagination-button{
 
-        width:32px;
+        width:
+            32px;
 
-        height:32px;
+        min-width:
+            32px;
 
-        flex-shrink:0;
+        height:
+            32px;
+
+        font-size:
+            10px;
 
     }
 
 
     footer{
 
-        margin-top:20px !important;
+        margin-top:
+            20px !important;
 
-        padding:
-            0
-            8px
+        padding-bottom:
             20px !important;
 
     }
@@ -1493,16 +1499,19 @@ select.filter-input{
 
     footer p{
 
-        font-size:9px;
+        font-size:
+            9px !important;
 
-        line-height:1.5;
+        line-height:
+            1.6;
 
     }
 
 
     footer p:last-child{
 
-        font-size:8px !important;
+        font-size:
+            8px !important;
 
     }
 
@@ -1515,30 +1524,43 @@ select.filter-input{
 
 @media(max-width:480px){
 
+    body{
+
+        padding:
+            7px !important;
+
+    }
+
+
     main{
 
         padding:
             14px !important;
 
-        border-radius:18px !important;
+        border-radius:
+            18px !important;
 
     }
 
 
     header{
 
-        margin-bottom:18px !important;
+        margin-bottom:
+            18px !important;
+
+        padding-bottom:
+            17px !important;
 
     }
 
 
     .logo-wrapper > div{
 
-        width:68px !important;
+        width:
+            68px !important;
 
-        height:68px !important;
-
-        border-radius:15px !important;
+        height:
+            68px !important;
 
     }
 
@@ -1549,57 +1571,62 @@ select.filter-input{
             11px
             10px !important;
 
-        border-radius:13px !important;
+        border-radius:
+            14px !important;
 
     }
 
 
     header .color-primary h1{
 
-        font-size:15px !important;
+        font-size:
+            15px !important;
 
     }
 
 
     header .color-primary h2{
 
-        font-size:9px !important;
+        font-size:
+            9px !important;
 
-        letter-spacing:.09em !important;
-
-    }
-
-
-    header .color-primary .h-0\.5{
-
-        width:45px !important;
-
-        margin-top:5px !important;
-
-        margin-bottom:5px !important;
+        letter-spacing:
+            .06em !important;
 
     }
 
 
     header > div:last-child{
 
-        font-size:7px !important;
+        font-size:
+            7px !important;
 
-        letter-spacing:.16em !important;
+        margin-top:
+            9px !important;
 
     }
 
 
     .page-title{
 
-        font-size:19px;
+        font-size:
+            20px;
+
+    }
+
+
+    .page-title > span{
+
+        padding:
+            8px !important;
 
     }
 
 
     .page-subtitle{
 
-        font-size:10px;
+        font-size:
+            10px;
 
     }
 
@@ -1607,7 +1634,6 @@ select.filter-input{
     section > div:first-child > div:last-child{
 
         grid-template-columns:
-            1fr
             1fr;
 
     }
@@ -1615,22 +1641,16 @@ select.filter-input{
 
     .year-selector{
 
-        font-size:10px;
-
-        padding:
-            9px
-            8px;
+        font-size:
+            10px;
 
     }
 
 
     .back-button{
 
-        font-size:10px;
-
-        padding:
-            9px
-            8px;
+        font-size:
+            10px;
 
     }
 
@@ -1644,62 +1664,43 @@ select.filter-input{
 
     .stat-card{
 
-        min-height:100px;
+        padding:
+            11px;
 
-        padding:11px;
+        min-height:
+            100px;
 
-        border-radius:13px;
+        border-radius:
+            13px;
 
     }
 
 
     .stat-card .text-3xl{
 
-        font-size:21px !important;
+        font-size:
+            21px !important;
 
     }
 
 
-    .stat-card .mb-1{
+    .stat-card .text-\[10px\]{
 
-        font-size:8px !important;
-
-    }
-
-
-    .filter-panel{
-
-        padding:12px !important;
+        font-size:
+            7px !important;
 
     }
 
 
-    .filter-panel h3{
+    .stat-card .text-\[9px\]{
 
-        font-size:12px !important;
-
-    }
-
-
-    .filter-panel p{
-
-        font-size:8px !important;
+        font-size:
+            7px !important;
 
     }
 
 
-    .filter-input{
-
-        font-size:10px;
-
-        padding:
-            9px
-            10px;
-
-    }
-
-
-    .table-header{
+    #tableContent > div:nth-child(2){
 
         padding:
             12px !important;
@@ -1707,91 +1708,55 @@ select.filter-input{
     }
 
 
-    .table-header-info h3{
+    #tableContent > div:nth-child(2) .grid{
 
-        font-size:12px !important;
-
-    }
-
-
-    .table-header-info p{
-
-        font-size:8px !important;
+        grid-template-columns:
+            1fr;
 
     }
 
 
-    .table-header-database{
+    .table-header{
 
-        display:none !important;
+        align-items:flex-start !important;
 
-    }
-
-
-    table{
-
-        min-width:680px;
+        flex-direction:column;
 
     }
 
 
-    thead th{
+    .table-header > div:last-child{
 
-        font-size:8px;
+        width:100%;
 
-    }
+        justify-content:flex-start;
 
-
-    .sort-button{
-
-        padding:
-            11px
-            9px;
-
-        font-size:8px;
+        flex-wrap:wrap;
 
     }
 
 
-    tbody td{
+    .table-footer{
 
-        padding:
-            10px
-            9px;
+        flex-direction:column;
 
-        font-size:9px;
+        align-items:stretch !important;
 
     }
 
 
-    .unit-text{
+    #paginationInfo{
 
-        font-size:9px;
-
-    }
-
-
-    .qty-cell{
-
-        font-size:10px;
+        text-align:center;
 
     }
 
 
-    .pagination-button{
+    #pagination{
 
-        width:30px;
+        justify-content:center;
 
-        height:30px;
-
-        font-size:10px;
-
-    }
-
-
-    footer p{
-
-        font-size:8px;
+        width:100%;
 
     }
 
@@ -1799,7 +1764,7 @@ select.filter-input{
 
 
 /* =========================================================
-   VERY SMALL MOBILE
+   EXTRA SMALL MOBILE
 ========================================================= */
 
 @media(max-width:375px){
@@ -1808,6 +1773,22 @@ select.filter-input{
 
         padding:
             11px !important;
+
+    }
+
+
+    .page-title{
+
+        font-size:
+            18px;
+
+    }
+
+
+    .page-title > span{
+
+        padding:
+            7px !important;
 
     }
 
@@ -1821,115 +1802,43 @@ select.filter-input{
 
     .stat-card{
 
-        padding:10px;
+        padding:
+            9px;
 
-        min-height:94px;
+        min-height:
+            94px;
 
     }
 
 
     .stat-card .text-3xl{
 
-        font-size:19px !important;
+        font-size:
+            19px !important;
 
     }
 
 
     .stat-card .text-\[10px\]{
 
-        font-size:7px !important;
+        font-size:
+            6.5px !important;
 
     }
 
 
     .stat-card .text-\[9px\]{
 
-        font-size:7px !important;
+        font-size:
+            6.5px !important;
 
     }
 
 
-    .page-title{
+    footer p{
 
-        font-size:17px;
-
-    }
-
-
-    .page-title span{
-
-        padding:8px !important;
-
-    }
-
-
-    .page-title span svg{
-
-        width:18px !important;
-
-        height:18px !important;
-
-    }
-
-
-    .page-subtitle{
-
-        font-size:9px;
-
-    }
-
-
-    section > div:first-child > div:last-child{
-
-        gap:6px !important;
-
-    }
-
-
-    .year-selector,
-    .back-button{
-
-        font-size:9px;
-
-    }
-
-
-    .filter-panel{
-
-        padding:10px !important;
-
-    }
-
-
-    .filter-input{
-
-        font-size:9px;
-
-    }
-
-
-    .table-header{
-
-        padding:
-            10px !important;
-
-    }
-
-
-    table{
-
-        min-width:660px;
-
-    }
-
-
-    tbody td{
-
-        padding:
-            9px
-            8px;
-
-        font-size:9px;
+        font-size:
+            8px !important;
 
     }
 
@@ -2281,7 +2190,6 @@ select.filter-input{
 
         <div
             class="
-                filter-panel
                 bg-white
                 border
                 border-slate-200
@@ -2349,7 +2257,6 @@ select.filter-input{
 
             <div
                 class="
-                    filter-grid
                     grid
                     grid-cols-4
                     gap-4
@@ -2629,7 +2536,7 @@ select.filter-input{
                 "
             >
 
-                <div class="table-header-info">
+                <div>
 
                     <h3
                         class="
@@ -2659,7 +2566,6 @@ select.filter-input{
 
                 <div
                     class="
-                        table-header-database
                         flex
                         items-center
                         gap-2
@@ -2695,7 +2601,9 @@ select.filter-input{
             </div>
 
 
-            <div class="table-scroll">
+            <div
+                class="table-scroll"
+            >
 
                 <table>
 
@@ -2893,6 +2801,9 @@ select.filter-input{
                     py-4
                     border-t
                     border-slate-100
+                    flex
+                    items-center
+                    justify-between
                 "
             >
 
@@ -2911,7 +2822,9 @@ select.filter-input{
                 <div
                     id="pagination"
                     class="
-                        pagination-container
+                        flex
+                        items-center
+                        gap-1
                     "
                 >
                 </div>
