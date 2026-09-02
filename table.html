@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
 <title>Data Periodic Service - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+    box-sizing:border-box
+}
+
+html{
+    width:100%;
+    min-width:0
+}
 
 body{
     margin:0;
+    width:100%;
+    min-width:0;
     font-family:Inter,sans-serif;
     background:linear-gradient(135deg,#f8fafc,#eef2f7);
     color:#1e293b;
-    min-height:100vh
+    min-height:100vh;
+    overflow-x:hidden
 }
 
-.color-primary{background:#1e3a8a}
-.text-primary{color:#1e3a8a}
+.color-primary{
+    background:#1e3a8a
+}
+
+.text-primary{
+    color:#1e3a8a
+}
 
 .glass-panel{
     background:rgba(255,255,255,.95);
@@ -30,15 +55,27 @@ body{
     border:1px solid rgba(255,255,255,.3)
 }
 
-.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
+.fade-in{
+    animation:fadeIn .5s cubic-bezier(.4,0,.2,1)
+}
 
 @keyframes fadeIn{
-    from{opacity:0;transform:translateY(12px)}
-    to{opacity:1;transform:translateY(0)}
+
+    from{
+        opacity:0;
+        transform:translateY(12px)
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0)
+    }
+
 }
 
 .logo-wrapper{
-    transition:transform .4s cubic-bezier(.175,.885,.32,1.275)
+    transition:
+        transform .4s cubic-bezier(.175,.885,.32,1.275)
 }
 
 .logo-wrapper:hover{
@@ -121,7 +158,9 @@ table{
     min-width:950px
 }
 
-thead{background:#f8fafc}
+thead{
+    background:#f8fafc
+}
 
 thead th{
     padding:0;
@@ -486,7 +525,9 @@ select.filter-input{
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    transition:transform .25s ease,box-shadow .25s ease
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease
 }
 
 #leaderboardButton:hover{
@@ -499,6 +540,7 @@ select.filter-input{
 }
 
 @keyframes leaderPulse{
+
     0%,100%{
         transform:scale(1);
         box-shadow:0 12px 30px rgba(15,23,42,.28)
@@ -521,6 +563,7 @@ select.filter-input{
             0 0 0 8px rgba(30,58,138,.1),
             0 16px 38px rgba(15,23,42,.32)
     }
+
 }
 
 .leader-tooltip{
@@ -573,6 +616,7 @@ select.filter-input{
 }
 
 @keyframes leaderModalIn{
+
     from{
         opacity:0;
         transform:translateY(12px) scale(.97)
@@ -582,6 +626,7 @@ select.filter-input{
         opacity:1;
         transform:translateY(0) scale(1)
     }
+
 }
 
 .leader-row{
@@ -674,6 +719,11 @@ select.filter-input{
         box-shadow:0 8px 25px rgba(15,23,42,.06)!important
     }
 
+
+    /* =========================
+       HEADER + LOGO
+       ========================= */
+
     header{
         margin-bottom:20px!important;
         padding-bottom:18px!important
@@ -686,11 +736,23 @@ select.filter-input{
     .logo-wrapper>div{
         width:76px!important;
         height:76px!important;
-        border-radius:18px!important
+        border-radius:18px!important;
+        padding:7px!important
+    }
+
+    .logo-wrapper img{
+        width:100%!important;
+        height:100%!important;
+        object-fit:contain!important
+    }
+
+    .logo-wrapper #logoFallback span{
+        font-size:20px!important
     }
 
     .color-primary{
-        width:100%;
+        width:100%!important;
+        max-width:100%!important;
         padding:13px 14px!important;
         border-radius:15px!important
     }
@@ -707,13 +769,21 @@ select.filter-input{
         letter-spacing:.1em!important
     }
 
+    .color-primary .h-0\.5{
+        width:45px!important
+    }
+
     header>div:last-child{
         font-size:8px!important;
-        letter-spacing:.18em!important
+        letter-spacing:.18em!important;
+        text-align:center;
+        line-height:1.4
     }
 
 
-    /* PAGE TITLE */
+    /* =========================
+       PAGE TITLE
+       ========================= */
 
     section>div:first-child{
         align-items:flex-start!important;
@@ -756,7 +826,9 @@ select.filter-input{
     }
 
 
-    /* STATISTICS */
+    /* =========================
+       STATISTICS
+       ========================= */
 
     #tableContent>div:first-child{
         grid-template-columns:1fr 1fr!important;
@@ -781,7 +853,9 @@ select.filter-input{
     }
 
 
-    /* FILTER */
+    /* =========================
+       FILTER
+       ========================= */
 
     #tableContent>div:nth-child(2){
         padding:13px!important;
@@ -830,7 +904,9 @@ select.filter-input{
     }
 
 
-    /* TABLE PANEL */
+    /* =========================
+       TABLE PANEL
+       ========================= */
 
     .table-panel{
         border-radius:16px!important
@@ -852,12 +928,16 @@ select.filter-input{
         display:none!important
     }
 
+
     /* Hide desktop table */
+
     .table-scroll{
         display:none!important
     }
 
+
     /* Show mobile cards */
+
     .mobile-data-list{
         display:block!important;
         padding:9px!important;
@@ -940,7 +1020,9 @@ select.filter-input{
     }
 
 
-    /* EMPTY STATE */
+    /* =========================
+       EMPTY STATE
+       ========================= */
 
     #emptyState .py-16{
         padding-top:35px!important;
@@ -956,7 +1038,9 @@ select.filter-input{
     }
 
 
-    /* PAGINATION */
+    /* =========================
+       PAGINATION
+       ========================= */
 
     .table-panel>div:last-child{
         padding:10px!important;
@@ -989,7 +1073,9 @@ select.filter-input{
     }
 
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+       ========================= */
 
     footer{
         margin-top:18px!important;
@@ -1007,7 +1093,9 @@ select.filter-input{
     }
 
 
-    /* LEADERBOARD BUTTON */
+    /* =========================
+       LEADERBOARD BUTTON
+       ========================= */
 
     #leaderboardButton{
         width:55px;
@@ -1028,7 +1116,9 @@ select.filter-input{
     }
 
 
-    /* LEADERBOARD MODAL */
+    /* =========================
+       LEADERBOARD MODAL
+       ========================= */
 
     #leaderboardOverlay{
         padding:10px
@@ -1070,6 +1160,7 @@ select.filter-input{
         font-size:8px!important;
         padding:4px 7px!important
     }
+
 }
 
 
@@ -1087,6 +1178,43 @@ select.filter-input{
         padding:12px!important
     }
 
+
+    /* HEADER */
+
+    .logo-wrapper{
+        margin-bottom:10px!important
+    }
+
+    .logo-wrapper>div{
+        width:68px!important;
+        height:68px!important;
+        border-radius:16px!important;
+        padding:6px!important
+    }
+
+    .color-primary{
+        padding:11px 10px!important;
+        border-radius:13px!important
+    }
+
+    .color-primary h1{
+        font-size:13px!important;
+        letter-spacing:.045em!important
+    }
+
+    .color-primary h2{
+        font-size:8px!important;
+        letter-spacing:.075em!important
+    }
+
+    header>div:last-child{
+        font-size:7px!important;
+        letter-spacing:.13em!important
+    }
+
+
+    /* PAGE */
+
     .page-title{
         font-size:18px!important
     }
@@ -1102,6 +1230,9 @@ select.filter-input{
     .back-button span{
         display:none
     }
+
+
+    /* CARDS */
 
     .mobile-card-grid{
         grid-template-columns:1fr!important
@@ -1122,6 +1253,7 @@ select.filter-input{
     .mobile-card-header{
         align-items:flex-start!important
     }
+
 }
 
 
@@ -1146,19 +1278,64 @@ select.filter-input{
     #tableContent>div:nth-child(2)>div:last-child{
         grid-template-columns:repeat(2,1fr)
     }
+
 }
+
+
+/* =========================
+   MEDIUM MOBILE / SMALL TABLET
+   ========================= */
+
+@media(min-width:768px) and (max-width:900px){
+
+    body{
+        padding:12px!important
+    }
+
+    main{
+        border-radius:24px!important
+    }
+
+    .logo-wrapper>div{
+        width:86px!important;
+        height:86px!important
+    }
+
+    .color-primary{
+        padding:14px 20px!important
+    }
+
+    .color-primary h1{
+        font-size:18px!important
+    }
+
+    .color-primary h2{
+        font-size:12px!important
+    }
+
+}
+
 </style>
 </head>
 
 
 <body class="flex flex-col items-center p-4 sm:p-8">
 
-<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
+<main
+    class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in"
+>
 
-<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
+
+<header
+    class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
+>
+
 
 <div class="mb-4 logo-wrapper">
-<div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+
+<div
+    class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
+>
 
 <img
     src="default_logo.png"
@@ -1172,61 +1349,104 @@ select.filter-input{
     id="logoFallback"
     class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
 >
-<span class="font-black text-2xl">TSI</span>
+
+<span class="font-black text-2xl">
+TSI
+</span>
+
 </div>
 
 </div>
+
 </div>
 
-<div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
 
-<h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+<div
+    class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
+>
+
+<h1
+    class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
+>
 PAPERLESS PROJECT
 </h1>
 
-<div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+<div
+    class="h-0.5 w-16 bg-amber-500 rounded-full my-1"
+></div>
 
-<h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+<h2
+    class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
+>
 PT TATSUMI SERUNI INDONESIA
 </h2>
 
 </div>
 
-<div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
+
+<div
+    class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center"
+>
 Digitalization Initiative v2.0
 </div>
+
 
 </header>
 
 
 <section>
 
-<div class="flex items-center justify-between gap-5 mb-6">
+
+<div
+    class="flex items-center justify-between gap-5 mb-6"
+>
+
 
 <div>
 
-<h2 class="page-title flex items-center gap-3">
+<h2
+    class="page-title flex items-center gap-3"
+>
 
-<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
-<i data-lucide="database" class="w-6 h-6"></i>
+<span
+    class="bg-blue-900 text-white p-3 rounded-xl shadow-md"
+>
+
+<i
+    data-lucide="database"
+    class="w-6 h-6"
+></i>
+
 </span>
 
 Data Periodic Service
 
 </h2>
 
-<p class="page-subtitle mt-2 ml-1">
+
+<p
+    class="page-subtitle mt-2 ml-1"
+>
 Daftar seluruh aktivitas periodic service yang tersimpan pada database.
 </p>
 
 </div>
 
+
 <button
     onclick="goToDashboard()"
     class="back-button"
 >
-<i data-lucide="arrow-left" class="w-4 h-4"></i>
-<span>Kembali</span>
+
+<i
+    data-lucide="arrow-left"
+    class="w-4 h-4"
+></i>
+
+<span>
+Kembali
+</span>
+
 </button>
 
 </div>
@@ -1239,7 +1459,9 @@ Daftar seluruh aktivitas periodic service yang tersimpan pada database.
     class="w-9 h-9 animate-spin text-amber-500"
 ></i>
 
-<p class="font-semibold text-sm text-slate-400 mt-3">
+<p
+    class="font-semibold text-sm text-slate-400 mt-3"
+>
 Memuat data...
 </p>
 
@@ -1249,12 +1471,20 @@ Memuat data...
 <div id="tableContent">
 
 
-<!-- STATISTICS -->
+<!-- =========================
+     STATISTICS
+     ========================= -->
 
-<div class="grid grid-cols-4 gap-4 mb-6">
+<div
+    class="grid grid-cols-4 gap-4 mb-6"
+>
+
 
 <div class="stat-card">
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+
+<p
+    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+>
 Total Data
 </p>
 
@@ -1264,11 +1494,15 @@ Total Data
 >
 -
 </p>
+
 </div>
 
 
 <div class="stat-card">
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+
+<p
+    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+>
 Periodic Service
 </p>
 
@@ -1278,11 +1512,15 @@ Periodic Service
 >
 -
 </p>
+
 </div>
 
 
 <div class="stat-card">
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+
+<p
+    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+>
 General Service
 </p>
 
@@ -1292,11 +1530,15 @@ General Service
 >
 -
 </p>
+
 </div>
 
 
 <div class="stat-card">
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+
+<p
+    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+>
 Status Baik
 </p>
 
@@ -1306,28 +1548,49 @@ Status Baik
 >
 -
 </p>
-</div>
 
 </div>
 
+</div>
 
-<!-- FILTER -->
 
-<div class="bg-white border border-slate-200 rounded-2xl p-5 mb-5 shadow-sm">
+<!-- =========================
+     FILTER
+     ========================= -->
 
-<div class="flex items-center gap-3 mb-4">
+<div
+    class="bg-white border border-slate-200 rounded-2xl p-5 mb-5 shadow-sm"
+>
 
-<span class="bg-blue-100 text-blue-700 p-2 rounded-lg">
-<i data-lucide="filter" class="w-4 h-4"></i>
+
+<div
+    class="flex items-center gap-3 mb-4"
+>
+
+
+<span
+    class="bg-blue-100 text-blue-700 p-2 rounded-lg"
+>
+
+<i
+    data-lucide="filter"
+    class="w-4 h-4"
+></i>
+
 </span>
+
 
 <div>
 
-<h3 class="text-sm font-black text-slate-700">
+<h3
+    class="text-sm font-black text-slate-700"
+>
 Filter Data
 </h3>
 
-<p class="text-[10px] text-slate-400 font-medium">
+<p
+    class="text-[10px] text-slate-400 font-medium"
+>
 Gunakan filter untuk mencari data tertentu.
 </p>
 
@@ -1336,14 +1599,19 @@ Gunakan filter untuk mencari data tertentu.
 </div>
 
 
-<div class="grid grid-cols-4 gap-4">
+<div
+    class="grid grid-cols-4 gap-4"
+>
 
 
 <div>
 
-<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+<label
+    class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2"
+>
 Cari Data
 </label>
+
 
 <div class="relative">
 
@@ -1367,7 +1635,9 @@ Cari Data
 
 <div>
 
-<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+<label
+    class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2"
+>
 Jenis Service
 </label>
 
@@ -1396,7 +1666,9 @@ General Service
 
 <div>
 
-<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+<label
+    class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2"
+>
 Status
 </label>
 
@@ -1430,7 +1702,10 @@ Rusak
     class="w-full h-[38px] rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold text-[11px] transition flex items-center justify-center gap-2"
 >
 
-<i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+<i
+    data-lucide="rotate-ccw"
+    class="w-4 h-4"
+></i>
 
 Reset Filter
 
@@ -1443,16 +1718,23 @@ Reset Filter
 </div>
 
 
-<!-- TABLE -->
+<!-- =========================
+     TABLE
+     ========================= -->
 
 <div class="table-panel">
 
 
-<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+<div
+    class="px-5 py-4 border-b border-slate-100 flex items-center justify-between"
+>
+
 
 <div>
 
-<h3 class="font-black text-slate-700 text-sm">
+<h3
+    class="font-black text-slate-700 text-sm"
+>
 Daftar Aktivitas Periodic Service
 </h3>
 
@@ -1465,9 +1747,15 @@ Daftar Aktivitas Periodic Service
 
 </div>
 
-<div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
 
-<i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+<div
+    class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold"
+>
+
+<i
+    data-lucide="refresh-cw"
+    class="w-3.5 h-3.5"
+></i>
 
 Data langsung dari Database
 
@@ -1484,114 +1772,184 @@ Data langsung dari Database
 
 <tr>
 
+
 <th style="width:50px">
+
 <div class="sort-button">
 No
 </div>
+
 </th>
 
 
 <th>
+
 <button
     class="sort-button sort-normal"
     data-sort-key="tanggal"
     onclick="toggleSort('tanggal')"
 >
+
 Tanggal
-<i data-lucide="arrow-up-down" class="sort-icon"></i>
+
+<i
+    data-lucide="arrow-up-down"
+    class="sort-icon"
+></i>
+
 </button>
+
 </th>
 
 
 <th>
+
 <button
     class="sort-button sort-normal"
     data-sort-key="unit"
     onclick="toggleSort('unit')"
 >
+
 Unit
-<i data-lucide="arrow-up-down" class="sort-icon"></i>
+
+<i
+    data-lucide="arrow-up-down"
+    class="sort-icon"
+></i>
+
 </button>
+
 </th>
 
 
 <th>
+
 <button
     class="sort-button sort-normal"
     data-sort-key="hm"
     onclick="toggleSort('hm')"
 >
+
 HM
-<i data-lucide="arrow-up-down" class="sort-icon"></i>
+
+<i
+    data-lucide="arrow-up-down"
+    class="sort-icon"
+></i>
+
 </button>
+
 </th>
 
 
 <th>
+
 <button
     class="sort-button sort-normal"
     data-sort-key="service"
     onclick="toggleSort('service')"
 >
+
 Service
-<i data-lucide="arrow-up-down" class="sort-icon"></i>
+
+<i
+    data-lucide="arrow-up-down"
+    class="sort-icon"
+></i>
+
 </button>
+
 </th>
 
 
 <th>
+
 <button
     class="sort-button sort-normal"
     data-sort-key="status"
     onclick="toggleSort('status')"
 >
+
 Status
-<i data-lucide="arrow-up-down" class="sort-icon"></i>
+
+<i
+    data-lucide="arrow-up-down"
+    class="sort-icon"
+></i>
+
 </button>
+
 </th>
 
 
 <th>
+
 <button
     class="sort-button sort-normal"
     data-sort-key="pic"
     onclick="toggleSort('pic')"
 >
+
 PIC / Mekanik
-<i data-lucide="arrow-up-down" class="sort-icon"></i>
+
+<i
+    data-lucide="arrow-up-down"
+    class="sort-icon"
+></i>
+
 </button>
+
 </th>
 
 
 <th>
+
 <button
     class="sort-button sort-normal"
     data-sort-key="itemRusak"
     onclick="toggleSort('itemRusak')"
 >
+
 Item Rusak
-<i data-lucide="arrow-up-down" class="sort-icon"></i>
+
+<i
+    data-lucide="arrow-up-down"
+    class="sort-icon"
+></i>
+
 </button>
+
 </th>
 
 
 <th>
+
 <button
     class="sort-button sort-normal"
     data-sort-key="remark"
     onclick="toggleSort('remark')"
 >
+
 Remark
-<i data-lucide="arrow-up-down" class="sort-icon"></i>
+
+<i
+    data-lucide="arrow-up-down"
+    class="sort-icon"
+></i>
+
 </button>
+
 </th>
 
 
 <th>
+
 <div class="sort-button">
 PAP
 </div>
+
 </th>
+
 
 </tr>
 
@@ -1604,7 +1962,9 @@ PAP
 </div>
 
 
-<!-- MOBILE DATA -->
+<!-- =========================
+     MOBILE DATA
+     ========================= -->
 
 <div
     id="mobileDataList"
@@ -1612,23 +1972,39 @@ PAP
 ></div>
 
 
-<!-- EMPTY STATE -->
+<!-- =========================
+     EMPTY STATE
+     ========================= -->
 
-<div id="emptyState" class="hidden">
+<div
+    id="emptyState"
+    class="hidden"
+>
 
 <div class="py-16 text-center">
 
-<div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
+<div
+    class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full"
+>
 
-<i data-lucide="search-x" class="w-8 h-8"></i>
+<i
+    data-lucide="search-x"
+    class="w-8 h-8"
+></i>
 
 </div>
 
-<h3 class="font-bold text-slate-600 mt-4">
+
+<h3
+    class="font-bold text-slate-600 mt-4"
+>
 Data tidak ditemukan
 </h3>
 
-<p class="text-xs text-slate-400 mt-1">
+
+<p
+    class="text-xs text-slate-400 mt-1"
+>
 Coba ubah kata pencarian atau filter.
 </p>
 
@@ -1637,9 +2013,13 @@ Coba ubah kata pencarian atau filter.
 </div>
 
 
-<!-- PAGINATION -->
+<!-- =========================
+     PAGINATION
+     ========================= -->
 
-<div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
+<div
+    class="px-5 py-4 border-t border-slate-100 flex items-center justify-between"
+>
 
 <div
     id="paginationInfo"
@@ -1647,6 +2027,7 @@ Coba ubah kata pencarian atau filter.
 >
 -
 </div>
+
 
 <div
     id="pagination"
@@ -1664,25 +2045,36 @@ Coba ubah kata pencarian atau filter.
 </main>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+     ========================= -->
 
-<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+<footer
+    class="mt-8 text-center text-slate-400 px-4 pb-8"
+>
 
-<p class="font-bold text-slate-500 tracking-tight uppercase">
+<p
+    class="font-bold text-slate-500 tracking-tight uppercase"
+>
 &copy; 2026 Paperless Project - PT TSI. All rights reserved.
 </p>
+
 
 <p class="text-[10px] mt-1">
 
 System Architecture by:
 
-<span class="text-slate-600 font-semibold uppercase">
+<span
+    class="text-slate-600 font-semibold uppercase"
+>
 Imam Wahyu Ramadhan, S.T.
 </span>
 
 |
 
-<span class="text-amber-600 font-bold uppercase tracking-tighter">
+<span
+    class="text-amber-600 font-bold uppercase tracking-tighter"
+>
 Project 2.0
 </span>
 
@@ -1691,7 +2083,9 @@ Project 2.0
 </footer>
 
 
-<!-- LEADERBOARD BUTTON -->
+<!-- =========================
+     LEADERBOARD BUTTON
+     ========================= -->
 
 <button
     id="leaderboardButton"
@@ -1699,7 +2093,10 @@ Project 2.0
     aria-label="Leaderboard"
 >
 
-<i data-lucide="trophy" class="w-7 h-7"></i>
+<i
+    data-lucide="trophy"
+    class="w-7 h-7"
+></i>
 
 <span class="leader-tooltip">
 Leaderboard Mekanik
@@ -1708,25 +2105,38 @@ Leaderboard Mekanik
 </button>
 
 
-<!-- LEADERBOARD MODAL -->
+<!-- =========================
+     LEADERBOARD MODAL
+     ========================= -->
 
 <div
     id="leaderboardOverlay"
     onclick="closeLeaderboardOutside(event)"
 >
 
+
 <div id="leaderboardModal">
 
 
-<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+<div
+    class="px-5 py-4 border-b border-slate-100 flex items-center justify-between"
+>
+
 
 <div>
 
-<h3 class="font-black text-slate-800 flex items-center gap-2">
+<h3
+    class="font-black text-slate-800 flex items-center gap-2"
+>
 
-<span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
+<span
+    class="bg-amber-100 text-amber-600 p-2 rounded-xl"
+>
 
-<i data-lucide="trophy" class="w-5 h-5"></i>
+<i
+    data-lucide="trophy"
+    class="w-5 h-5"
+></i>
 
 </span>
 
@@ -1734,7 +2144,10 @@ Leaderboard Mekanik
 
 </h3>
 
-<p class="text-[10px] text-slate-400 font-medium mt-1">
+
+<p
+    class="text-[10px] text-slate-400 font-medium mt-1"
+>
 Berdasarkan total aktivitas periodic service
 </p>
 
@@ -1746,7 +2159,10 @@ Berdasarkan total aktivitas periodic service
     class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
 >
 
-<i data-lucide="x" class="w-5 h-5"></i>
+<i
+    data-lucide="x"
+    class="w-5 h-5"
+></i>
 
 </button>
 
@@ -1758,7 +2174,9 @@ Berdasarkan total aktivitas periodic service
     class="p-5 overflow-y-auto max-h-[60vh]"
 >
 
-<div class="text-center text-slate-400 text-sm py-6">
+<div
+    class="text-center text-slate-400 text-sm py-6"
+>
 Memuat leaderboard...
 </div>
 
@@ -1771,19 +2189,34 @@ Memuat leaderboard...
 
 <script>
 
-const API_URL='https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec',
-DASHBOARD_URL='periodic.html',
-ROWS_PER_PAGE=15;
+
+const API_URL=
+'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec',
+
+DASHBOARD_URL=
+'periodic.html',
+
+ROWS_PER_PAGE=
+15;
+
 
 let apiData=null,
 allData=[],
 filteredData=[],
 currentPage=1,
-sortState={key:null,direction:0};
+sortState={
+    key:null,
+    direction:0
+};
 
-const $=id=>document.getElementById(id);
 
-const safe=v=>
+const $=
+id=>
+document.getElementById(id);
+
+
+const safe=
+v=>
 String(v??'').replace(
     /[&<>"']/g,
     m=>({
@@ -1797,13 +2230,23 @@ String(v??'').replace(
 
 
 function goToDashboard(){
-    location.href=DASHBOARD_URL
+
+location.href=
+DASHBOARD_URL
+
 }
 
 
 function handleLogoError(){
-    $('companyLogo').classList.add('hidden');
-    $('logoFallback').classList.remove('hidden')
+
+$('companyLogo')
+.classList
+.add('hidden');
+
+$('logoFallback')
+.classList
+.remove('hidden');
+
 }
 
 
@@ -1811,7 +2254,8 @@ async function loadTable(){
 
 try{
 
-const r=await fetch(
+const r=
+await fetch(
     API_URL,
     {
         method:'GET',
@@ -1819,14 +2263,23 @@ const r=await fetch(
     }
 );
 
+
 if(!r.ok)
-    throw Error(`HTTP Error ${r.status}`);
+throw Error(
+    `HTTP Error ${r.status}`
+);
 
-const result=await r.json();
 
-apiData=result;
+const result=
+await r.json();
 
-allData=Array.isArray(result.data)
+
+apiData=
+result;
+
+
+allData=
+Array.isArray(result.data)
     ?result.data.map(
         (row,index)=>({
             ...row,
@@ -1835,28 +2288,43 @@ allData=Array.isArray(result.data)
     )
     :[];
 
+
 updateStatistics(result);
+
 
 updateLeaderboardFromData(
     result.chart?.mechanic||[]
 );
 
-filteredData=[...allData];
 
-currentPage=1;
+filteredData=
+[...allData];
+
+
+currentPage=
+1;
+
 
 sortState={
     key:null,
     direction:0
 };
 
+
 updateSortHeaders();
 
 renderTable();
 
-$('loading').style.display='none';
 
-$('tableContent').classList.add('show');
+$('loading')
+.style
+.display='none';
+
+
+$('tableContent')
+.classList
+.add('show');
+
 
 }catch(error){
 
@@ -1897,37 +2365,55 @@ lucide.createIcons();
 
 function updateStatistics(result){
 
-const data=result.data||[],
-chart=result.chart||{},
-types=chart.serviceByType||{};
+const data=
+result.data||[],
+
+chart=
+result.chart||{},
+
+types=
+chart.serviceByType||{};
+
 
 const total=
 data.length||
 Object.values(types).reduce(
-    (a,b)=>a+Number(b),
+    (a,b)=>
+        a+Number(b),
     0
 );
 
-const count=k=>
+
+const count=
+k=>
 Object.entries(types)
 .filter(
-    ([x])=>x.toLowerCase().includes(k)
+    ([x])=>
+        x.toLowerCase().includes(k)
 )
 .reduce(
-    (a,[,v])=>a+Number(v),
+    (a,[,v])=>
+        a+Number(v),
     0
 );
 
-$('totalData').textContent=total;
+
+$('totalData').textContent=
+total;
+
 
 $('periodicTotal').textContent=
 count('periodic');
 
+
 $('generalTotal').textContent=
 count('general');
 
+
 $('baikTotal').textContent=
-Number(chart.status?.Baik||0);
+Number(
+    chart.status?.Baik||0
+);
 
 }
 
@@ -1935,15 +2421,22 @@ Number(chart.status?.Baik||0);
 function applyFilters(){
 
 const search=
-$('searchInput').value.trim().toLowerCase();
+$('searchInput')
+.value
+.trim()
+.toLowerCase();
+
 
 const service=
 $('serviceFilter').value;
 
+
 const status=
 $('statusFilter').value;
 
-filteredData=allData.filter(row=>{
+
+filteredData=
+allData.filter(row=>{
 
 const text=[
     'tanggal',
@@ -1960,23 +2453,35 @@ const text=[
 .join(' ')
 .toLowerCase();
 
+
 return(
-    (!search||text.includes(search))&&
+
+    (!search||
+        text.includes(search)
+    )&&
+
     (!service||
         String(row.service||'')
         .trim()
-        .toLowerCase()===service.toLowerCase()
+        .toLowerCase()===
+        service.toLowerCase()
     )&&
+
     (!status||
         String(row.status||'')
         .trim()
-        .toLowerCase()===status.toLowerCase()
+        .toLowerCase()===
+        status.toLowerCase()
     )
+
 );
 
 });
 
-currentPage=1;
+
+currentPage=
+1;
+
 
 applyCurrentSort();
 
@@ -1991,9 +2496,14 @@ $('searchInput').value='';
 $('serviceFilter').value='';
 $('statusFilter').value='';
 
-filteredData=[...allData];
 
-currentPage=1;
+filteredData=
+[...allData];
+
+
+currentPage=
+1;
+
 
 applyCurrentSort();
 
@@ -2015,14 +2525,19 @@ sortState.direction===0
 
 }else{
 
-sortState.key=key;
-sortState.direction=1;
+sortState.key=
+key;
+
+sortState.direction=
+1;
 
 }
 
+
 applyCurrentSort();
 
-currentPage=1;
+currentPage=
+1;
 
 updateSortHeaders();
 
@@ -2033,32 +2548,49 @@ renderTable();
 
 function applyCurrentSort(){
 
-if(!sortState.key||!sortState.direction){
+if(
+    !sortState.key||
+    !sortState.direction
+){
 
 filteredData.sort(
     (a,b)=>
-        a._originalIndex-b._originalIndex
+        a._originalIndex-
+        b._originalIndex
 );
 
 return;
 
 }
 
+
 const{
     direction
-}=sortState;
+}=
+sortState;
 
-const key=sortState.key;
 
-filteredData.sort((a,b)=>{
+const key=
+sortState.key;
 
-const c=compareRows(a,b,key);
 
-return c
-    ?c*direction
-    :a._originalIndex-b._originalIndex;
+filteredData.sort(
+    (a,b)=>{
 
-});
+        const c=
+            compareRows(
+                a,
+                b,
+                key
+            );
+
+        return c
+            ?c*direction
+            :a._originalIndex-
+                b._originalIndex;
+
+    }
+);
 
 }
 
@@ -2067,12 +2599,26 @@ function compareRows(a,b,key){
 
 if(key==='tanggal'){
 
-const x=parseIndonesianDate(a.tanggal),
-y=parseIndonesianDate(b.tanggal);
+const x=
+parseIndonesianDate(
+    a.tanggal
+);
 
-if(x===null&&y===null)return 0;
-if(x===null)return 1;
-if(y===null)return -1;
+const y=
+parseIndonesianDate(
+    b.tanggal
+);
+
+
+if(x===null&&y===null)
+return 0;
+
+if(x===null)
+return 1;
+
+if(y===null)
+return -1;
+
 
 return x-y;
 
@@ -2081,12 +2627,22 @@ return x-y;
 
 if(key==='hm'){
 
-const x=parseNumber(a.hm),
-y=parseNumber(b.hm);
+const x=
+parseNumber(a.hm);
 
-if(x===null&&y===null)return 0;
-if(x===null)return 1;
-if(y===null)return -1;
+const y=
+parseNumber(b.hm);
+
+
+if(x===null&&y===null)
+return 0;
+
+if(x===null)
+return 1;
+
+if(y===null)
+return -1;
+
 
 return x-y;
 
@@ -2098,14 +2654,22 @@ String(a[key]??'')
 .trim()
 .toLowerCase();
 
+
 const y=
 String(b[key]??'')
 .trim()
 .toLowerCase();
 
-if(!x&&!y)return 0;
-if(!x)return 1;
-if(!y)return -1;
+
+if(!x&&!y)
+return 0;
+
+if(!x)
+return 1;
+
+if(!y)
+return -1;
+
 
 return x.localeCompare(
     y,
@@ -2121,57 +2685,96 @@ return x.localeCompare(
 
 function parseIndonesianDate(value){
 
-if(value==null)return null;
+if(value==null)
+return null;
+
 
 if(value instanceof Date)
-return Number.isNaN(value.getTime())
+
+return Number.isNaN(
+    value.getTime()
+)
     ?null
     :value.getTime();
 
-let t=String(value).trim();
 
-if(!t)return null;
+let t=
+String(value)
+.trim();
 
-t=t.replace(
+
+if(!t)
+return null;
+
+
+t=
+t.replace(
     /T\d{1,2}:\d{2}(:\d{2})?.*$/,
     ''
-).trim();
+)
+.trim();
 
-let m=t.match(
+
+let m=
+t.match(
     /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
 );
 
+
 if(m)
+
 return validDate(
     +m[3],
     +m[2],
     +m[1]
 );
 
-m=t.match(
+
+m=
+t.match(
     /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
 );
 
+
 if(m)
+
 return validDate(
     +m[1],
     +m[2],
     +m[3]
 );
 
-if(/^\d+(\.\d+)?$/.test(t)){
 
-const n=Number(t);
+if(
+    /^\d+(\.\d+)?$/.test(t)
+){
 
-if(n>20000&&n<100000)
-return Date.UTC(1899,11,30)+
+const n=
+Number(t);
+
+
+if(
+    n>20000&&
+    n<100000
+)
+
+return Date.UTC(
+    1899,
+    11,
+    30
+)+
 n*86400000;
 
 }
 
-const d=new Date(t);
 
-return Number.isNaN(d.getTime())
+const d=
+new Date(t);
+
+
+return Number.isNaN(
+    d.getTime()
+)
     ?null
     :d.getTime();
 
@@ -2180,9 +2783,15 @@ return Number.isNaN(d.getTime())
 
 function validDate(y,m,d){
 
-const x=new Date(
-    Date.UTC(y,m-1,d)
+const x=
+new Date(
+    Date.UTC(
+        y,
+        m-1,
+        d
+    )
 );
+
 
 return x.getUTCFullYear()===y&&
 x.getUTCMonth()===m-1&&
@@ -2199,14 +2808,18 @@ if(
     value==null||
     String(value).trim()===''
 )
+
 return null;
 
-const n=Number(
+
+const n=
+Number(
     String(value)
     .trim()
     .replace(/\s/g,'')
     .replace(/,/g,'')
 );
+
 
 return Number.isNaN(n)
     ?null
@@ -2224,23 +2837,31 @@ document
 .forEach(b=>{
 
 const active=
-    sortState.key===b.dataset.sortKey&&
+    sortState.key===
+        b.dataset.sortKey&&
     sortState.direction!==0;
+
 
 b.classList.toggle(
     'sort-active',
     active
 );
 
+
 b.classList.toggle(
     'sort-normal',
     !active
 );
 
+
 const icon=
-b.querySelector('.sort-icon');
+b.querySelector(
+    '.sort-icon'
+);
+
 
 if(icon)
+
 icon.setAttribute(
     'data-lucide',
     active
@@ -2251,6 +2872,7 @@ icon.setAttribute(
         )
         :'arrow-up-down'
 );
+
 
 b.title=
 active
@@ -2263,6 +2885,7 @@ active
 
 });
 
+
 lucide.createIcons();
 
 }
@@ -2270,25 +2893,36 @@ lucide.createIcons();
 
 function renderTable(){
 
-const tbody=$('tableBody');
+const tbody=
+$('tableBody');
 
-const mobile=$('mobileDataList');
 
-const empty=$('emptyState');
+const mobile=
+$('mobileDataList');
+
+
+const empty=
+$('emptyState');
+
 
 tbody.innerHTML='';
 
 mobile.innerHTML='';
 
-const total=filteredData.length;
+
+const total=
+filteredData.length;
+
 
 const pages=
 Math.max(
     1,
     Math.ceil(
-        total/ROWS_PER_PAGE
+        total/
+        ROWS_PER_PAGE
     )
 );
+
 
 currentPage=
 Math.min(
@@ -2296,20 +2930,26 @@ Math.min(
     pages
 );
 
+
 const start=
-(currentPage-1)*ROWS_PER_PAGE;
+(currentPage-1)*
+ROWS_PER_PAGE;
+
 
 const end=
 Math.min(
-    start+ROWS_PER_PAGE,
+    start+
+    ROWS_PER_PAGE,
     total
 );
+
 
 const rows=
 filteredData.slice(
     start,
     end
 );
+
 
 empty.classList.toggle(
     'hidden',
@@ -2319,12 +2959,18 @@ empty.classList.toggle(
 
 if(rows.length){
 
-rows.forEach((row,i)=>{
+rows.forEach(
+    (row,i)=>{
 
-const no=start+i+1;
+const no=
+start+i+1;
+
 
 const tr=
-document.createElement('tr');
+document.createElement(
+    'tr'
+);
+
 
 tr.innerHTML=`
 
@@ -2379,16 +3025,23 @@ ${getPapLink(row.pap)}
 </td>
 `;
 
+
 tbody.appendChild(tr);
 
 
-/* MOBILE CARD */
+/* =========================
+   MOBILE CARD
+   ========================= */
 
 const card=
-document.createElement('div');
+document.createElement(
+    'div'
+);
+
 
 card.className=
 'mobile-data-card';
+
 
 card.innerHTML=`
 
@@ -2408,6 +3061,7 @@ ${safe(row.unit)}
 
 </div>
 
+
 <div class="mobile-date">
 
 <i
@@ -2420,6 +3074,7 @@ ${safe(row.tanggal)}
 </div>
 
 </div>
+
 
 <div>
 ${getStatusBadge(row.status)}
@@ -2508,7 +3163,9 @@ ${safe(row.remark)||
 ${getPapLink(row.pap)}
 
 </div>
+
 `;
+
 
 mobile.appendChild(card);
 
@@ -2523,7 +3180,11 @@ updateResultInfo(
     end
 );
 
-renderPagination(pages);
+
+renderPagination(
+    pages
+);
+
 
 lucide.createIcons();
 
@@ -2533,35 +3194,46 @@ lucide.createIcons();
 function getPapLink(pap){
 
 const value=
-String(pap||'').trim();
+String(pap||'')
+.trim();
+
 
 if(!value)
+
 return '<span class="text-slate-300">-</span>';
+
 
 let url;
 
+
 try{
 
-url=new URL(value);
+url=
+new URL(value);
 
 }catch{
 
 return `
+
 <span
     class="text-slate-400 text-[10px] font-medium"
     title="${safe(value)}"
 >
 ${safe(value)}
 </span>
+
 `;
 
 }
+
 
 if(
     !['http:','https:']
     .includes(url.protocol)
 )
+
 return '<span class="text-slate-400">-</span>';
+
 
 return `
 
@@ -2590,9 +3262,13 @@ Lihat PAP
 function getServiceBadge(service){
 
 const value=
-String(service||'').trim();
+String(service||'')
+.trim();
 
-const l=value.toLowerCase();
+
+const l=
+value.toLowerCase();
+
 
 const cls=
 l.includes('periodic')
@@ -2600,6 +3276,7 @@ l.includes('periodic')
     :l.includes('general')
         ?'service-general'
         :'service-other';
+
 
 return `
 
@@ -2615,13 +3292,21 @@ ${safe(value||'-')}
 function getStatusBadge(status){
 
 const value=
-String(status||'').trim();
+String(status||'')
+.trim();
 
-const l=value.toLowerCase();
 
-const good=l==='baik';
+const l=
+value.toLowerCase();
 
-const bad=l==='rusak';
+
+const good=
+l==='baik';
+
+
+const bad=
+l==='rusak';
+
 
 return `
 
@@ -2653,22 +3338,30 @@ ${safe(value||'-')}
 }
 
 
-function updateResultInfo(total,start,end){
+function updateResultInfo(
+    total,
+    start,
+    end
+){
 
 if(!total){
 
 $('resultInfo').textContent=
 'Tidak ada data yang sesuai filter.';
 
+
 $('paginationInfo').textContent=
 '0 data';
+
 
 return;
 
 }
 
+
 $('resultInfo').textContent=
 `Menampilkan ${start+1}–${end} dari ${total} data`;
+
 
 $('paginationInfo').textContent=
 `${total} data ditemukan`;
@@ -2676,14 +3369,20 @@ $('paginationInfo').textContent=
 }
 
 
-function renderPagination(totalPages){
+function renderPagination(
+    totalPages
+){
 
-const c=$('pagination');
+const c=
+$('pagination');
+
 
 c.innerHTML='';
 
+
 if(!filteredData.length)
 return;
+
 
 const add=(
     content,
@@ -2693,21 +3392,29 @@ const add=(
 )=>{
 
 const b=
-document.createElement('button');
+document.createElement(
+    'button'
+);
+
 
 b.className=
 'pagination-button'+
 (cls?' '+cls:'');
 
-b.disabled=disabled;
+
+b.disabled=
+disabled;
+
 
 typeof content==='string'&&
 content.startsWith('<i')
     ?b.innerHTML=content
     :b.textContent=content;
 
+
 if(fn)
 b.onclick=fn;
+
 
 c.appendChild(b);
 
@@ -2719,10 +3426,15 @@ add(
     '',
     currentPage===1,
     ()=>{
+
         if(currentPage>1){
+
             currentPage--;
+
             renderTable();
+
         }
+
     }
 );
 
@@ -2733,27 +3445,42 @@ getPaginationPages(
 )
 .forEach(
     p=>
+
     p==='...'
+
         ?(()=>{
+
             const s=
-            document.createElement('span');
+            document.createElement(
+                'span'
+            );
 
             s.className=
             'px-2 text-slate-400 text-xs';
 
-            s.textContent='...';
+            s.textContent=
+            '...';
 
             c.appendChild(s);
+
         })()
+
         :add(
             p,
-            p===currentPage?'active':'',
+            p===currentPage
+                ?'active'
+                :'',
             false,
             ()=>{
-                currentPage=p;
+
+                currentPage=
+                p;
+
                 renderTable();
+
             }
         )
+
 );
 
 
@@ -2762,64 +3489,101 @@ add(
     '',
     currentPage===totalPages,
     ()=>{
+
         if(currentPage<totalPages){
+
             currentPage++;
+
             renderTable();
+
         }
+
     }
 );
+
 
 lucide.createIcons();
 
 }
 
 
-function getPaginationPages(current,total){
+function getPaginationPages(
+    current,
+    total
+){
 
 if(total<=7)
+
 return Array.from(
     {length:total},
     (_,i)=>i+1
 );
 
-const p=[1];
+
+const p=
+[1];
+
 
 if(current>4)
 p.push('...');
 
+
 for(
-    let i=Math.max(2,current-1);
-    i<=Math.min(total-1,current+1);
+    let i=
+        Math.max(
+            2,
+            current-1
+        );
+
+    i<=
+        Math.min(
+            total-1,
+            current+1
+        );
+
     i++
 )
+
 p.push(i);
+
 
 if(current<total-3)
 p.push('...');
 
+
 p.push(total);
+
 
 return p;
 
 }
 
 
-function updateLeaderboardFromData(data){
+function updateLeaderboardFromData(
+    data
+){
 
-const list=$('leaderboardList');
+const list=
+$('leaderboardList');
+
 
 if(!data.length){
 
 list.innerHTML=
 `
-<div class="text-center text-slate-400 text-sm py-6">
+
+<div
+    class="text-center text-slate-400 text-sm py-6"
+>
 Belum ada data mekanik.
 </div>
+
 `;
 
 return;
 
 }
+
 
 list.innerHTML=
 [...data]
@@ -2828,25 +3592,30 @@ list.innerHTML=
         Number(b.count||0)-
         Number(a.count||0)
 )
-.map((m,i)=>{
+.map(
+    (m,i)=>{
 
-const rank=i+1;
+        const rank=
+            i+1;
 
-const cls=
-rank<=3
-    ?`top-${rank}`
-    :'';
 
-const medal=
-rank===1
-    ?'🥇'
-    :rank===2
-        ?'🥈'
-        :rank===3
-            ?'🥉'
-            :rank;
+        const cls=
+            rank<=3
+                ?`top-${rank}`
+                :'';
 
-return `
+
+        const medal=
+            rank===1
+                ?'🥇'
+                :rank===2
+                    ?'🥈'
+                    :rank===3
+                        ?'🥉'
+                        :rank;
+
+
+        return `
 
 <div class="leader-row ${cls}">
 
@@ -2866,7 +3635,8 @@ ${Number(m.count||0)} pekerjaan
 
 `;
 
-})
+    }
+)
 .join('');
 
 }
@@ -2875,14 +3645,19 @@ ${Number(m.count||0)} pekerjaan
 function openLeaderboard(){
 
 if(apiData?.chart?.mechanic)
+
 updateLeaderboardFromData(
     apiData.chart.mechanic
 );
 
-$('leaderboardOverlay')
-.classList.add('show');
 
-document.body.style.overflow='hidden';
+$('leaderboardOverlay')
+.classList
+.add('show');
+
+
+document.body.style.overflow=
+'hidden';
 
 }
 
@@ -2890,9 +3665,12 @@ document.body.style.overflow='hidden';
 function closeLeaderboard(){
 
 $('leaderboardOverlay')
-.classList.remove('show');
+.classList
+.remove('show');
 
-document.body.style.overflow='';
+
+document.body.style.overflow=
+'';
 
 }
 
@@ -2903,6 +3681,7 @@ if(
     e.target===
     $('leaderboardOverlay')
 )
+
 closeLeaderboard();
 
 }
@@ -2913,34 +3692,45 @@ function scheduleLeaderboardPulse(){
 const button=
 $('leaderboardButton');
 
+
 const delay=
 12000+
 Math.random()*14000;
 
-setTimeout(()=>{
 
-const overlay=
-$('leaderboardOverlay');
+setTimeout(
+    ()=>{
 
-if(
-    !overlay.classList.contains('show')
-){
+        const overlay=
+        $('leaderboardOverlay');
 
-button.classList.remove(
-    'leader-pulse'
+
+        if(
+            !overlay.classList.contains(
+                'show'
+            )
+        ){
+
+            button.classList.remove(
+                'leader-pulse'
+            );
+
+
+            void button.offsetWidth;
+
+
+            button.classList.add(
+                'leader-pulse'
+            );
+
+        }
+
+
+        scheduleLeaderboardPulse();
+
+    },
+    delay
 );
-
-void button.offsetWidth;
-
-button.classList.add(
-    'leader-pulse'
-);
-
-}
-
-scheduleLeaderboardPulse();
-
-},delay);
 
 }
 
@@ -2948,9 +3738,13 @@ scheduleLeaderboardPulse();
 window.addEventListener(
     'load',
     ()=>{
+
         lucide.createIcons();
+
         loadTable();
+
         scheduleLeaderboardPulse();
+
     }
 );
 
@@ -2958,8 +3752,10 @@ window.addEventListener(
 document.addEventListener(
     'keydown',
     e=>{
+
         if(e.key==='Escape')
             closeLeaderboard();
+
     }
 );
 
