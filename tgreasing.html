@@ -7,7 +7,7 @@
 
 <meta
     name="viewport"
-    content="width=1200"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Data Greasing Activity - PT TSI</title>
@@ -31,12 +31,16 @@
 }
 
 html{
-    min-width:1100px;
+    min-width:0;
+    width:100%;
 }
 
 body{
 
     margin:0;
+
+    width:100%;
+    min-width:0;
 
     font-family:'Inter',sans-serif;
 
@@ -48,6 +52,8 @@ body{
         );
 
     color:#1e293b;
+
+    overflow-x:hidden;
 
 }
 
@@ -202,6 +208,8 @@ body{
 
     align-items:center;
 
+    justify-content:center;
+
     gap:8px;
 
     transition:
@@ -210,6 +218,8 @@ body{
     box-shadow:
         0 5px 12px
         rgba(30,58,138,.18);
+
+    white-space:nowrap;
 
 }
 
@@ -245,6 +255,8 @@ body{
 
     transition:
         .25s ease;
+
+    min-width:0;
 
 }
 
@@ -284,12 +296,57 @@ body{
 
 
 /* =========================================================
+   TABLE SCROLL AREA
+========================================================= */
+
+.table-scroll{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+.table-scroll::-webkit-scrollbar{
+
+    height:6px;
+
+}
+
+.table-scroll::-webkit-scrollbar-track{
+
+    background:#f8fafc;
+
+}
+
+.table-scroll::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:999px;
+
+}
+
+.table-scroll::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+
+/* =========================================================
    TABLE
 ========================================================= */
 
 table{
 
     width:100%;
+
+    min-width:900px;
 
     border-collapse:separate;
 
@@ -614,6 +671,8 @@ select.filter-input{
 
     height:34px;
 
+    min-width:34px;
+
     border-radius:9px;
 
     border:
@@ -637,6 +696,8 @@ select.filter-input{
     cursor:pointer;
 
     transition:.2s ease;
+
+    flex-shrink:0;
 
 }
 
@@ -665,6 +726,37 @@ select.filter-input{
     opacity:.4;
 
     cursor:not-allowed;
+
+}
+
+
+/* =========================================================
+   PAGINATION WRAPPER
+========================================================= */
+
+.pagination-wrapper{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+#pagination{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:4px;
+
+    flex-wrap:wrap;
+
+    justify-content:flex-end;
 
 }
 
@@ -1091,17 +1183,928 @@ select.filter-input{
 
 
 /* =========================================================
-   MOBILE FALLBACK
+   TABLET
 ========================================================= */
 
-@media(max-width:1100px){
-
-    html{
-        min-width:0;
-    }
+@media(max-width:1024px){
 
     body{
-        min-width:1100px;
+
+        padding-left:12px !important;
+        padding-right:12px !important;
+
+    }
+
+    main{
+
+        padding:
+            28px !important;
+
+        border-radius:26px !important;
+
+    }
+
+    .page-title{
+
+        font-size:26px;
+
+    }
+
+    .stat-card{
+
+        padding:15px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    body{
+
+        padding:
+            8px !important;
+
+    }
+
+
+    main{
+
+        width:100% !important;
+
+        max-width:none !important;
+
+        padding:
+            20px 16px !important;
+
+        border-radius:22px !important;
+
+    }
+
+
+    /* HEADER */
+
+    header{
+
+        margin-bottom:24px !important;
+
+        padding-bottom:20px !important;
+
+    }
+
+
+    .logo-wrapper{
+
+        margin-bottom:14px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:78px !important;
+
+        height:78px !important;
+
+        border-radius:18px !important;
+
+    }
+
+
+    header .color-primary{
+
+        width:100%;
+
+        max-width:100%;
+
+        padding:
+            13px
+            14px !important;
+
+        border-radius:17px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:17px !important;
+
+        letter-spacing:.06em !important;
+
+    }
+
+
+    header h2{
+
+        font-size:11px !important;
+
+        letter-spacing:.08em !important;
+
+    }
+
+
+    header .mt-3{
+
+        font-size:8px !important;
+
+        letter-spacing:.22em !important;
+
+        text-align:center;
+
+    }
+
+
+    /* PAGE TITLE */
+
+    .page-title{
+
+        font-size:21px;
+
+        line-height:1.25;
+
+        gap:9px;
+
+    }
+
+
+    .page-title > span{
+
+        padding:9px !important;
+
+        border-radius:10px !important;
+
+    }
+
+
+    .page-title > span svg{
+
+        width:20px !important;
+
+        height:20px !important;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:11px;
+
+        line-height:1.6;
+
+        margin-top:8px !important;
+
+        margin-left:0 !important;
+
+    }
+
+
+    section > div:first-child{
+
+        align-items:flex-start !important;
+
+        flex-direction:column;
+
+        gap:14px;
+
+        margin-bottom:20px !important;
+
+    }
+
+
+    .back-button{
+
+        width:100%;
+
+        min-height:42px;
+
+        padding:
+            10px
+            14px;
+
+    }
+
+
+    /* STATISTICS */
+
+    #tableContent > div:first-child{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:10px;
+
+        margin-bottom:16px !important;
+
+    }
+
+
+    .stat-card{
+
+        padding:13px;
+
+        border-radius:14px;
+
+    }
+
+
+    .stat-card p:first-child{
+
+        font-size:8px !important;
+
+        letter-spacing:.04em;
+
+        line-height:1.4;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:24px !important;
+
+        line-height:1;
+
+    }
+
+
+    .stat-card span{
+
+        font-size:9px !important;
+
+    }
+
+
+    /* FILTER */
+
+    .filter-input{
+
+        font-size:11px;
+
+        min-height:40px;
+
+    }
+
+
+    .filter-input.pl-10{
+
+        padding-left:38px !important;
+
+    }
+
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl{
+
+        padding:15px !important;
+
+        border-radius:16px !important;
+
+        margin-bottom:14px !important;
+
+    }
+
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl
+    > div:nth-child(2){
+
+        grid-template-columns:
+            1fr;
+
+        gap:11px;
+
+    }
+
+
+    /* FILTER TITLE */
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl
+    h3{
+
+        font-size:12px !important;
+
+    }
+
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl
+    p{
+
+        font-size:9px !important;
+
+    }
+
+
+    /* TABLE HEADER */
+
+    .table-panel{
+
+        border-radius:16px;
+
+    }
+
+
+    .table-panel > div:first-child{
+
+        padding:
+            13px
+            14px !important;
+
+        gap:10px;
+
+        align-items:flex-start !important;
+
+    }
+
+
+    .table-panel > div:first-child
+    h3{
+
+        font-size:12px !important;
+
+    }
+
+
+    .table-panel > div:first-child
+    p{
+
+        font-size:9px !important;
+
+        line-height:1.4;
+
+    }
+
+
+    .table-panel > div:first-child
+    > div:last-child{
+
+        font-size:8px !important;
+
+        white-space:nowrap;
+
+    }
+
+
+    table{
+
+        min-width:850px;
+
+    }
+
+
+    thead th{
+
+        padding:
+            12px
+            12px;
+
+        font-size:9px;
+
+    }
+
+
+    tbody td{
+
+        padding:
+            11px
+            12px;
+
+        font-size:10px;
+
+    }
+
+
+    .unit-badge{
+
+        min-width:44px;
+
+        padding:
+            4px
+            7px;
+
+        font-size:9px;
+
+    }
+
+
+    .pap-link{
+
+        padding:
+            5px
+            8px;
+
+        font-size:9px;
+
+    }
+
+
+    /* PAGINATION */
+
+    .pagination-wrapper{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    #pagination{
+
+        width:100%;
+
+        justify-content:center;
+
+        overflow-x:auto;
+
+        flex-wrap:nowrap;
+
+        padding-bottom:2px;
+
+        -webkit-overflow-scrolling:touch;
+
+    }
+
+
+    #pagination::-webkit-scrollbar{
+
+        height:0;
+
+    }
+
+
+    .pagination-button{
+
+        width:32px;
+
+        height:32px;
+
+        min-width:32px;
+
+        font-size:10px;
+
+    }
+
+
+    /* FOOTER */
+
+    footer{
+
+        margin-top:18px !important;
+
+        padding:
+            0 8px 20px !important;
+
+    }
+
+
+    footer p:first-child{
+
+        font-size:9px !important;
+
+        line-height:1.5;
+
+    }
+
+
+    footer p:last-child{
+
+        font-size:8px !important;
+
+        line-height:1.6;
+
+    }
+
+
+    /* LEADERBOARD BUTTON */
+
+    #leaderboardButton{
+
+        width:56px;
+
+        height:56px;
+
+        right:16px;
+
+        bottom:16px;
+
+        border-radius:17px;
+
+    }
+
+
+    #leaderboardButton svg{
+
+        width:23px !important;
+
+        height:23px !important;
+
+    }
+
+
+    .leader-tooltip{
+
+        display:none;
+
+    }
+
+
+    /* LEADERBOARD MODAL */
+
+    #leaderboardOverlay{
+
+        padding:12px;
+
+    }
+
+
+    #leaderboardModal{
+
+        width:100%;
+
+        max-width:none;
+
+        max-height:85vh;
+
+        border-radius:18px;
+
+    }
+
+
+    #leaderboardModal > div:first-child{
+
+        padding:
+            13px
+            14px !important;
+
+    }
+
+
+    #leaderboardList{
+
+        padding:14px !important;
+
+        max-height:65vh !important;
+
+    }
+
+
+    .leader-row{
+
+        gap:9px;
+
+        padding:
+            10px
+            11px;
+
+        border-radius:12px;
+
+    }
+
+
+    .leader-rank{
+
+        width:28px;
+
+        height:28px;
+
+        border-radius:9px;
+
+        font-size:11px;
+
+    }
+
+
+    .leader-name{
+
+        font-size:11px;
+
+    }
+
+
+    .leader-count{
+
+        font-size:9px;
+
+        padding:
+            4px
+            7px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:480px){
+
+    body{
+
+        padding:
+            5px !important;
+
+    }
+
+
+    main{
+
+        padding:
+            16px 12px !important;
+
+        border-radius:19px !important;
+
+    }
+
+
+    /* HEADER */
+
+    .logo-wrapper > div{
+
+        width:68px !important;
+
+        height:68px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:14px !important;
+
+    }
+
+
+    header h2{
+
+        font-size:9px !important;
+
+    }
+
+
+    /* TITLE */
+
+    .page-title{
+
+        font-size:18px;
+
+    }
+
+
+    .page-title > span{
+
+        padding:8px !important;
+
+    }
+
+
+    .page-title > span svg{
+
+        width:18px !important;
+
+        height:18px !important;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:10px;
+
+    }
+
+
+    /* STAT */
+
+    #tableContent > div:first-child{
+
+        gap:8px;
+
+    }
+
+
+    .stat-card{
+
+        padding:11px;
+
+        border-radius:12px;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:21px !important;
+
+    }
+
+
+    .stat-card p:first-child{
+
+        font-size:7px !important;
+
+    }
+
+
+    .stat-card span{
+
+        font-size:8px !important;
+
+    }
+
+
+    /* FILTER */
+
+    #tableContent .bg-white.border.border-slate-200.rounded-2xl{
+
+        padding:12px !important;
+
+    }
+
+
+    /* TABLE */
+
+    .table-panel{
+
+        border-radius:14px;
+
+    }
+
+
+    .table-panel > div:first-child{
+
+        padding:
+            12px !important;
+
+    }
+
+
+    .table-panel > div:first-child
+    > div:last-child{
+
+        display:none;
+
+    }
+
+
+    table{
+
+        min-width:820px;
+
+    }
+
+
+    thead th{
+
+        padding:
+            10px;
+
+        font-size:8px;
+
+    }
+
+
+    tbody td{
+
+        padding:
+            10px;
+
+        font-size:9px;
+
+    }
+
+
+    /* FOOTER */
+
+    footer p:first-child{
+
+        font-size:8px !important;
+
+    }
+
+
+    /* LEADERBOARD */
+
+    #leaderboardButton{
+
+        width:52px;
+
+        height:52px;
+
+        right:13px;
+
+        bottom:13px;
+
+        border-radius:15px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:375px){
+
+    main{
+
+        padding:
+            14px 10px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:13px !important;
+
+    }
+
+
+    header h2{
+
+        font-size:8px !important;
+
+    }
+
+
+    .page-title{
+
+        font-size:17px;
+
+    }
+
+
+    .page-subtitle{
+
+        font-size:9px;
+
+    }
+
+
+    .stat-card{
+
+        padding:9px;
+
+    }
+
+
+    .stat-card p.text-3xl{
+
+        font-size:19px !important;
+
+    }
+
+
+    .back-button{
+
+        font-size:10px;
+
+    }
+
+
+    .filter-input{
+
+        font-size:10px;
+
+    }
+
+
+    #paginationInfo{
+
+        font-size:9px !important;
+
+    }
+
+
+    .pagination-button{
+
+        width:30px;
+
+        height:30px;
+
+        min-width:30px;
+
+    }
+
+
+    #leaderboardButton{
+
+        width:48px;
+
+        height:48px;
+
+        right:11px;
+
+        bottom:11px;
+
     }
 
 }
@@ -1912,7 +2915,7 @@ select.filter-input{
             </div>
 
 
-            <div class="overflow-x-auto">
+            <div class="table-scroll">
 
                 <table>
 
@@ -2116,13 +3119,11 @@ select.filter-input{
 
             <div
                 class="
+                    pagination-wrapper
                     px-5
                     py-4
                     border-t
                     border-slate-100
-                    flex
-                    items-center
-                    justify-between
                 "
             >
 
@@ -2909,39 +3910,6 @@ function compareSortValues(
    DATE SORT
 ========================================================= */
 
-/*
-   Sorting tanggal TIDAK menggunakan
-   perbandingan string.
-
-   Contoh:
-
-   1/8/2026
-   2/8/2026
-   10/8/2026
-
-   akan menjadi:
-
-   1
-   2
-   10
-
-   Bukan:
-
-   1
-   10
-   2
-
-   Prioritas:
-
-   1. angka hari
-   2. bulan
-   3. tahun
-
-   Jadi angka tanggal tetap menjadi
-   dasar utama sorting.
-*/
-
-
 function compareDatesByDay(
     valueA,
     valueB
@@ -2959,10 +3927,6 @@ function compareDatesByDay(
         );
 
 
-    /*
-       Jika keduanya tidak valid.
-    */
-
     if(
         !dateA &&
         !dateB
@@ -2972,11 +3936,6 @@ function compareDatesByDay(
 
     }
 
-
-    /*
-       Data kosong / invalid
-       diletakkan di bawah.
-    */
 
     if(!dateA){
 
@@ -2992,11 +3951,6 @@ function compareDatesByDay(
     }
 
 
-    /*
-       UTAMA:
-       angka hari.
-    */
-
     if(
         dateA.day !==
         dateB.day
@@ -3010,11 +3964,6 @@ function compareDatesByDay(
     }
 
 
-    /*
-       Jika angka hari sama,
-       bandingkan bulan.
-    */
-
     if(
         dateA.month !==
         dateB.month
@@ -3027,11 +3976,6 @@ function compareDatesByDay(
 
     }
 
-
-    /*
-       Jika bulan sama,
-       bandingkan tahun.
-    */
 
     return (
         dateA.year -
@@ -3069,14 +4013,6 @@ function parseDateValue(value){
     }
 
 
-    /*
-       FORMAT:
-
-       DD/MM/YYYY
-       DD-MM-YYYY
-       DD.MM.YYYY
-    */
-
     let match =
         text.match(
             /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
@@ -3112,13 +4048,6 @@ function parseDateValue(value){
 
     }
 
-
-    /*
-       FORMAT:
-
-       YYYY/MM/DD
-       YYYY-MM-DD
-    */
 
     match =
         text.match(
@@ -3156,13 +4085,6 @@ function parseDateValue(value){
     }
 
 
-    /*
-       FORMAT:
-
-       Date object / ISO
-       / timestamp
-    */
-
     const parsed =
         new Date(value);
 
@@ -3188,10 +4110,6 @@ function parseDateValue(value){
 
     }
 
-
-    /*
-       Tidak dikenali.
-    */
 
     return null;
 
@@ -3237,20 +4155,11 @@ function updateSortIndicators(){
             }
 
 
-            /*
-               Reset class.
-            */
-
             header.classList.remove(
                 'sort-asc',
                 'sort-desc'
             );
 
-
-            /*
-               Jika bukan kolom aktif,
-               tampilkan icon netral.
-            */
 
             if(
                 sortState.column !== column ||
@@ -3499,16 +4408,6 @@ function applyFilters(){
     currentPage = 1;
 
 
-    /*
-       Setelah filtering,
-       sorting yang sedang aktif
-       tetap diterapkan.
-
-       Jika mode ORIGINAL,
-       data kembali mengikuti urutan
-       database.
-    */
-
     applyCurrentSort();
 
     renderTable();
@@ -3568,17 +4467,6 @@ function resetFilters(){
     filteredData =
         [...allData];
 
-
-    /*
-       Sorting tidak dihapus.
-
-       Artinya jika user sedang ASC,
-       reset filter tetap mempertahankan ASC.
-
-       Jika ingin kembali ke database,
-       cukup klik sorting 2x lagi sampai
-       mode ORIGINAL.
-    */
 
     currentPage = 1;
 
