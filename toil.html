@@ -32,8 +32,8 @@
 }
 
 html{
-    min-width:0;
     width:100%;
+    min-width:0;
 }
 
 body{
@@ -336,8 +336,6 @@ body{
 
     min-height:120px;
 
-    min-width:0;
-
 }
 
 .stat-card:hover{
@@ -413,15 +411,11 @@ body{
         0 4px 12px
         rgba(15,23,42,.04);
 
-    width:100%;
-
-    min-width:0;
-
 }
 
 
 /* =========================================================
-   TABLE SCROLL AREA
+   TABLE SCROLL
 ========================================================= */
 
 .table-scroll{
@@ -434,28 +428,6 @@ body{
 
     -webkit-overflow-scrolling:touch;
 
-    scrollbar-width:thin;
-
-}
-
-.table-scroll::-webkit-scrollbar{
-
-    height:6px;
-
-}
-
-.table-scroll::-webkit-scrollbar-track{
-
-    background:#f8fafc;
-
-}
-
-.table-scroll::-webkit-scrollbar-thumb{
-
-    background:#cbd5e1;
-
-    border-radius:10px;
-
 }
 
 
@@ -467,7 +439,7 @@ table{
 
     width:100%;
 
-    min-width:760px;
+    min-width:720px;
 
     border-collapse:separate;
 
@@ -780,8 +752,6 @@ select.filter-input{
 
     height:34px;
 
-    min-width:34px;
-
     border-radius:9px;
 
     border:
@@ -805,6 +775,8 @@ select.filter-input{
     cursor:pointer;
 
     transition:.2s ease;
+
+    flex-shrink:0;
 
 }
 
@@ -853,15 +825,15 @@ select.filter-input{
 
     justify-content:center;
 
-    width:100%;
+    text-align:center;
+
+    padding:20px;
 
 }
 
 #tableContent{
 
     display:none;
-
-    width:100%;
 
 }
 
@@ -903,28 +875,34 @@ select.filter-input{
 
 
 /* =========================================================
-   RESPONSIVE - TABLET
+   TABLE HEADER INFO
+========================================================= */
+
+.table-header-info{
+
+    flex-shrink:0;
+
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
 ========================================================= */
 
 @media(max-width:1024px){
 
     body{
 
-        padding-left:16px !important;
-        padding-right:16px !important;
+        padding-left:12px;
+        padding-right:12px;
 
     }
-
 
     main{
 
-        padding:
-            28px !important;
-
-        border-radius:24px !important;
+        max-width:100% !important;
 
     }
-
 
     .stats-grid{
 
@@ -933,62 +911,34 @@ select.filter-input{
 
     }
 
-
-    .page-title{
-
-        font-size:26px;
-
-    }
-
-
-    .page-subtitle{
-
-        font-size:12px;
-
-    }
-
-
-    .filter-grid{
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-    }
-
 }
 
 
 /* =========================================================
-   RESPONSIVE - MOBILE
+   MOBILE
 ========================================================= */
 
 @media(max-width:768px){
 
     body{
 
-        padding:
-            10px !important;
+        padding:10px !important;
 
     }
 
 
     main{
 
-        width:100%;
+        padding:18px !important;
 
-        max-width:100%;
-
-        padding:
-            20px !important;
-
-        border-radius:20px !important;
-
-        box-shadow:
-            0 10px 30px
-            rgba(15,23,42,.08) !important;
+        border-radius:24px !important;
 
     }
 
+
+    /* -----------------------------------------------------
+       HEADER
+    ----------------------------------------------------- */
 
     header{
 
@@ -1001,18 +951,20 @@ select.filter-input{
 
     .logo-wrapper{
 
-        margin-bottom:14px !important;
+        margin-bottom:12px !important;
 
     }
 
 
     .logo-wrapper > div{
 
-        width:78px !important;
+        width:76px !important;
 
-        height:78px !important;
+        height:76px !important;
 
-        border-radius:17px !important;
+        border-radius:18px !important;
+
+        padding:7px !important;
 
     }
 
@@ -1021,66 +973,85 @@ select.filter-input{
 
         width:100%;
 
-        max-width:430px;
+        max-width:420px;
 
         padding:
-            14px
-            18px !important;
+            13px
+            16px !important;
 
         border-radius:16px !important;
 
     }
 
 
-    header h1{
+    header .color-primary h1{
 
-        font-size:18px !important;
+        font-size:17px !important;
 
         letter-spacing:.08em !important;
+
+        line-height:1.2;
 
     }
 
 
-    header h2{
+    header .color-primary h2{
 
-        font-size:12px !important;
+        font-size:10px !important;
 
-        letter-spacing:.08em !important;
+        letter-spacing:.12em !important;
 
-        line-height:1.5 !important;
+        line-height:1.4;
 
     }
 
 
-    header .tracking-\[0\.3em\]{
+    header .color-primary .h-0\.5{
+
+        width:48px !important;
+
+        margin-top:5px !important;
+
+        margin-bottom:5px !important;
+
+    }
+
+
+    header > div:last-child{
+
+        margin-top:10px !important;
 
         font-size:8px !important;
 
         letter-spacing:.2em !important;
 
+        text-align:center;
+
     }
 
+
+    /* -----------------------------------------------------
+       PAGE TITLE
+    ----------------------------------------------------- */
 
     section > div:first-child{
 
         flex-direction:column;
 
-        align-items:stretch;
+        align-items:stretch !important;
 
-        gap:16px !important;
-
-        margin-bottom:20px !important;
+        gap:14px !important;
 
     }
 
 
     .page-title{
 
-        font-size:22px;
+        font-size:23px;
 
-        line-height:1.25;
+        line-height:1.2;
 
-        gap:9px;
+        gap:10px !important;
 
     }
 
@@ -1094,7 +1065,7 @@ select.filter-input{
     }
 
 
-    .page-title svg{
+    .page-title span svg{
 
         width:20px !important;
 
@@ -1111,6 +1082,8 @@ select.filter-input{
 
         margin-top:7px !important;
 
+        margin-left:0 !important;
+
     }
 
 
@@ -1118,19 +1091,26 @@ select.filter-input{
 
         width:100%;
 
-        display:grid !important;
+        flex-direction:column;
 
-        grid-template-columns:
-            1fr 1fr;
+        align-items:stretch !important;
 
-        gap:8px !important;
+        gap:10px !important;
 
     }
 
 
     section > div:first-child > div:last-child > div{
 
-        min-width:0;
+        width:100%;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:space-between;
+
+        gap:10px;
 
     }
 
@@ -1139,13 +1119,13 @@ select.filter-input{
 
         min-width:0;
 
+        flex:1;
+
         width:100%;
 
         padding:
             10px
-            11px;
-
-        font-size:11px;
+            12px;
 
     }
 
@@ -1157,13 +1137,15 @@ select.filter-input{
         justify-content:center;
 
         padding:
-            10px
-            12px;
-
-        font-size:11px;
+            11px
+            15px;
 
     }
 
+
+    /* -----------------------------------------------------
+       STATS
+    ----------------------------------------------------- */
 
     .stats-grid{
 
@@ -1179,18 +1161,11 @@ select.filter-input{
 
     .stat-card{
 
-        min-height:110px;
+        min-height:105px;
 
         padding:13px;
 
         border-radius:14px;
-
-    }
-
-
-    .stat-card .text-3xl{
-
-        font-size:24px !important;
 
     }
 
@@ -1202,16 +1177,16 @@ select.filter-input{
     }
 
 
-    .stat-card .text-\[9px\]{
+    .stat-card .text-3xl{
 
-        font-size:8px !important;
+        font-size:23px !important;
 
     }
 
 
-    .stat-card .p-2{
+    .stat-card .text-\[9px\]{
 
-        padding:7px !important;
+        font-size:8px !important;
 
     }
 
@@ -1225,9 +1200,27 @@ select.filter-input{
     }
 
 
+    .stat-card .p-2{
+
+        padding:6px !important;
+
+    }
+
+
+    .stat-card .gap-2{
+
+        gap:5px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       FILTER
+    ----------------------------------------------------- */
+
     #tableContent > div:nth-child(2){
 
-        padding:15px !important;
+        padding:14px !important;
 
         border-radius:16px !important;
 
@@ -1236,19 +1229,53 @@ select.filter-input{
     }
 
 
-    #tableContent > div:nth-child(2) > div:first-child{
-
-        margin-bottom:14px !important;
-
-    }
-
-
-    .filter-grid{
+    #tableContent > div:nth-child(2) .grid{
 
         grid-template-columns:
             1fr !important;
 
         gap:11px !important;
+
+    }
+
+
+    #tableContent > div:nth-child(2) .flex.items-center.gap-3{
+
+        gap:9px !important;
+
+        margin-bottom:13px !important;
+
+    }
+
+
+    #tableContent > div:nth-child(2) .bg-blue-100{
+
+        padding:7px !important;
+
+    }
+
+
+    #tableContent > div:nth-child(2) h3{
+
+        font-size:12px !important;
+
+    }
+
+
+    #tableContent > div:nth-child(2) p{
+
+        font-size:9px !important;
+
+        line-height:1.5;
+
+    }
+
+
+    #tableContent > div:nth-child(2) label{
+
+        font-size:9px !important;
+
+        margin-bottom:6px !important;
 
     }
 
@@ -1259,14 +1286,14 @@ select.filter-input{
             10px
             11px;
 
-        font-size:10px;
+        font-size:11px;
 
     }
 
 
     #tableContent > div:nth-child(2) .mt-4{
 
-        margin-top:13px !important;
+        margin-top:12px !important;
 
     }
 
@@ -1277,6 +1304,10 @@ select.filter-input{
 
     }
 
+
+    /* -----------------------------------------------------
+       TABLE PANEL
+    ----------------------------------------------------- */
 
     .table-panel{
 
@@ -1291,7 +1322,21 @@ select.filter-input{
             13px
             14px !important;
 
-        gap:10px;
+        gap:12px;
+
+    }
+
+
+    .table-header-info h3{
+
+        font-size:12px !important;
+
+    }
+
+
+    .table-header-info p{
+
+        font-size:9px !important;
 
     }
 
@@ -1302,16 +1347,12 @@ select.filter-input{
 
         gap:5px !important;
 
-        flex-wrap:wrap;
-
-        justify-content:flex-end;
-
-        text-align:right;
+        flex-shrink:0;
 
     }
 
 
-    .table-panel > div:first-child > div:last-child svg{
+    .table-panel > div:first-child > div:last-child .w-3\.5{
 
         width:12px !important;
 
@@ -1320,27 +1361,13 @@ select.filter-input{
     }
 
 
-    .table-panel > div:first-child h3{
-
-        font-size:12px !important;
-
-    }
-
-
-    .table-panel > div:first-child p{
-
-        font-size:8px !important;
-
-    }
-
-
-    .table-panel > div:first-child span{
-
-        font-size:8px !important;
+    #activeYearBadge{
 
         padding:
             4px
             6px !important;
+
+        font-size:8px !important;
 
     }
 
@@ -1356,7 +1383,7 @@ select.filter-input{
 
     table{
 
-        min-width:720px;
+        min-width:700px;
 
     }
 
@@ -1371,9 +1398,12 @@ select.filter-input{
     .sort-button{
 
         padding:
-            12px 10px;
+            12px
+            11px;
 
         font-size:9px;
+
+        gap:5px;
 
     }
 
@@ -1391,7 +1421,7 @@ select.filter-input{
 
         padding:
             11px
-            10px;
+            11px;
 
         font-size:10px;
 
@@ -1405,73 +1435,86 @@ select.filter-input{
     }
 
 
+    /* -----------------------------------------------------
+       PAGINATION
+    ----------------------------------------------------- */
+
     .table-panel > div:last-child{
 
         padding:
-            12px
-            14px !important;
+            11px
+            12px !important;
 
         gap:10px;
+
+        flex-wrap:wrap;
 
     }
 
 
     #paginationInfo{
 
-        font-size:8px !important;
+        font-size:9px !important;
 
-        white-space:nowrap;
+        width:100%;
+
+        text-align:center;
+
+        order:2;
 
     }
 
 
     #pagination{
 
-        max-width:100%;
+        width:100%;
 
-        overflow-x:auto;
+        justify-content:center;
 
-        padding-bottom:2px;
+        order:1;
 
-        scrollbar-width:none;
+        flex-wrap:wrap;
 
-    }
-
-
-    #pagination::-webkit-scrollbar{
-
-        display:none;
+        gap:3px !important;
 
     }
 
 
     .pagination-button{
 
-        width:30px;
+        width:31px;
 
-        height:30px;
-
-        min-width:30px;
+        height:31px;
 
         font-size:10px;
+
+        border-radius:8px;
 
     }
 
 
+    /* -----------------------------------------------------
+       FOOTER
+    ----------------------------------------------------- */
+
     footer{
 
         margin-top:20px !important;
+
+        padding-left:8px !important;
+
+        padding-right:8px !important;
 
         padding-bottom:20px !important;
 
     }
 
 
-    footer p{
+    footer p:first-child{
 
         font-size:9px !important;
 
-        line-height:1.6;
+        line-height:1.5;
 
     }
 
@@ -1480,40 +1523,44 @@ select.filter-input{
 
         font-size:8px !important;
 
+        line-height:1.6;
+
     }
 
 }
 
 
 /* =========================================================
-   RESPONSIVE - SMALL MOBILE
+   SMALL MOBILE
 ========================================================= */
 
 @media(max-width:480px){
 
     body{
 
-        padding:
-            6px !important;
+        padding:7px !important;
 
     }
 
 
     main{
 
-        padding:
-            15px !important;
+        padding:13px !important;
 
-        border-radius:17px !important;
+        border-radius:20px !important;
 
     }
 
 
+    /* -----------------------------------------------------
+       HEADER SMALL
+    ----------------------------------------------------- */
+
     header{
 
-        padding-bottom:16px !important;
-
         margin-bottom:18px !important;
+
+        padding-bottom:17px !important;
 
     }
 
@@ -1524,17 +1571,19 @@ select.filter-input{
 
         height:68px !important;
 
-        padding:6px !important;
+        border-radius:16px !important;
 
-        border-radius:15px !important;
+        padding:6px !important;
 
     }
 
 
     header .color-primary{
 
+        max-width:none;
+
         padding:
-            12px
+            11px
             10px !important;
 
         border-radius:14px !important;
@@ -1542,32 +1591,49 @@ select.filter-input{
     }
 
 
-    header h1{
+    header .color-primary h1{
 
-        font-size:15px !important;
+        font-size:14px !important;
 
-    }
-
-
-    header h2{
-
-        font-size:9px !important;
-
-        letter-spacing:.07em !important;
+        letter-spacing:.065em !important;
 
     }
 
 
-    header .h-0\.5{
+    header .color-primary h2{
 
-        width:45px !important;
+        font-size:8px !important;
+
+        letter-spacing:.09em !important;
 
     }
 
+
+    header .color-primary .h-0\.5{
+
+        width:40px !important;
+
+        height:2px !important;
+
+    }
+
+
+    header > div:last-child{
+
+        font-size:7px !important;
+
+        letter-spacing:.15em !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       PAGE TITLE SMALL
+    ----------------------------------------------------- */
 
     .page-title{
 
-        font-size:19px;
+        font-size:20px;
 
     }
 
@@ -1579,6 +1645,15 @@ select.filter-input{
     }
 
 
+    .page-title span svg{
+
+        width:18px !important;
+
+        height:18px !important;
+
+    }
+
+
     .page-subtitle{
 
         font-size:10px;
@@ -1586,13 +1661,9 @@ select.filter-input{
     }
 
 
-    section > div:first-child > div:last-child{
-
-        grid-template-columns:
-            1fr;
-
-    }
-
+    /* -----------------------------------------------------
+       STATS SMALL
+    ----------------------------------------------------- */
 
     .stats-grid{
 
@@ -1603,9 +1674,9 @@ select.filter-input{
 
     .stat-card{
 
-        min-height:102px;
-
         padding:11px;
+
+        min-height:96px;
 
         border-radius:13px;
 
@@ -1614,14 +1685,7 @@ select.filter-input{
 
     .stat-card .text-3xl{
 
-        font-size:21px !important;
-
-    }
-
-
-    .stat-card .mb-1{
-
-        margin-bottom:2px !important;
+        font-size:20px !important;
 
     }
 
@@ -1640,6 +1704,26 @@ select.filter-input{
     }
 
 
+    .stat-card .mb-1{
+
+        margin-bottom:2px !important;
+
+    }
+
+
+    .stat-card .bg-slate-50{
+
+        padding:5px !important;
+
+        border-radius:7px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       FILTER SMALL
+    ----------------------------------------------------- */
+
     #tableContent > div:nth-child(2){
 
         padding:12px !important;
@@ -1647,41 +1731,141 @@ select.filter-input{
     }
 
 
+    #tableContent > div:nth-child(2) .bg-blue-100{
+
+        padding:6px !important;
+
+        border-radius:7px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       TABLE SMALL
+    ----------------------------------------------------- */
+
     .table-panel > div:first-child{
 
-        align-items:flex-start;
+        padding:
+            11px
+            12px !important;
+
+    }
+
+
+    .table-header-info h3{
+
+        font-size:11px !important;
+
+    }
+
+
+    .table-header-info p{
+
+        font-size:8px !important;
 
     }
 
 
     .table-panel > div:first-child > div:last-child{
 
-        flex-direction:column;
+        font-size:7px !important;
 
-        align-items:flex-end;
+    }
 
-        gap:4px !important;
+
+    #activeYearBadge{
+
+        font-size:7px !important;
+
+        padding:
+            3px
+            5px !important;
+
+    }
+
+
+    table{
+
+        min-width:660px;
+
+    }
+
+
+    thead th{
+
+        font-size:8px;
+
+    }
+
+
+    .sort-button{
+
+        padding:
+            11px
+            9px;
+
+        font-size:8px;
+
+    }
+
+
+    tbody td{
+
+        padding:
+            10px
+            9px;
+
+        font-size:9px;
+
+    }
+
+
+    .sort-icon{
+
+        width:11px;
+
+        height:11px;
+
+    }
+
+
+    /* -----------------------------------------------------
+       PAGINATION SMALL
+    ----------------------------------------------------- */
+
+    .pagination-button{
+
+        width:29px;
+
+        height:29px;
+
+        font-size:9px;
 
     }
 
 
     #paginationInfo{
 
-        display:none;
+        font-size:8px !important;
 
     }
 
 
-    .table-panel > div:last-child{
+    /* -----------------------------------------------------
+       FOOTER SMALL
+    ----------------------------------------------------- */
 
-        justify-content:center !important;
+    footer p:first-child{
+
+        font-size:8px !important;
 
     }
 
 
-    footer{
+    footer p:last-child{
 
-        margin-top:16px !important;
+        font-size:7px !important;
 
     }
 
@@ -1689,15 +1873,14 @@ select.filter-input{
 
 
 /* =========================================================
-   RESPONSIVE - VERY SMALL MOBILE
+   EXTRA SMALL MOBILE
 ========================================================= */
 
 @media(max-width:375px){
 
     main{
 
-        padding:
-            12px !important;
+        padding:11px !important;
 
     }
 
@@ -1711,37 +1894,37 @@ select.filter-input{
     }
 
 
-    header h1{
+    header .color-primary h1{
 
         font-size:13px !important;
 
     }
 
 
-    header h2{
+    header .color-primary h2{
 
-        font-size:8px !important;
+        font-size:7px !important;
+
+    }
+
+
+    header > div:last-child{
+
+        font-size:6.5px !important;
 
     }
 
 
     .page-title{
 
-        font-size:17px;
+        font-size:18px;
 
     }
 
 
-    .page-title span{
+    .page-subtitle{
 
-        padding:7px !important;
-
-    }
-
-
-    .stats-grid{
-
-        gap:7px;
+        font-size:9px;
 
     }
 
@@ -1750,21 +1933,14 @@ select.filter-input{
 
         padding:9px;
 
-        min-height:96px;
+        min-height:90px;
 
     }
 
 
     .stat-card .text-3xl{
 
-        font-size:19px !important;
-
-    }
-
-
-    .stat-card .flex.items-end{
-
-        gap:4px !important;
+        font-size:18px !important;
 
     }
 
@@ -1785,7 +1961,7 @@ select.filter-input{
 
     table{
 
-        min-width:700px;
+        min-width:640px;
 
     }
 
@@ -2207,7 +2383,6 @@ select.filter-input{
                     grid
                     grid-cols-4
                     gap-4
-                    filter-grid
                 "
             >
 
@@ -2483,7 +2658,7 @@ select.filter-input{
                 "
             >
 
-                <div>
+                <div class="table-header-info">
 
                     <h3
                         class="
@@ -2548,9 +2723,7 @@ select.filter-input{
             </div>
 
 
-            <div
-                class="table-scroll"
-            >
+            <div class="table-scroll">
 
                 <table>
 
