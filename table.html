@@ -26,19 +26,17 @@
 }
 
 html{
-    width:100%;
     min-width:0
 }
 
 body{
     margin:0;
-    width:100%;
-    min-width:0;
     font-family:Inter,sans-serif;
     background:linear-gradient(135deg,#f8fafc,#eef2f7);
     color:#1e293b;
     min-height:100vh;
-    overflow-x:hidden
+    width:100%;
+    min-width:0
 }
 
 .color-primary{
@@ -74,8 +72,7 @@ body{
 }
 
 .logo-wrapper{
-    transition:
-        transform .4s cubic-bezier(.175,.885,.32,1.275)
+    transition:transform .4s cubic-bezier(.175,.885,.32,1.275)
 }
 
 .logo-wrapper:hover{
@@ -703,6 +700,31 @@ select.filter-input{
 
 
 /* =========================
+   TABLET
+   ========================= */
+
+@media(min-width:768px) and (max-width:1100px){
+
+    main{
+        padding:25px!important
+    }
+
+    .page-title{
+        font-size:25px
+    }
+
+    #tableContent>div:first-child{
+        grid-template-columns:repeat(2,1fr)
+    }
+
+    #tableContent>div:nth-child(2)>div:last-child{
+        grid-template-columns:repeat(2,1fr)
+    }
+
+}
+
+
+/* =========================
    MOBILE
    ========================= */
 
@@ -721,7 +743,7 @@ select.filter-input{
 
 
     /* =========================
-       HEADER + LOGO
+       HEADER
        ========================= */
 
     header{
@@ -736,25 +758,14 @@ select.filter-input{
     .logo-wrapper>div{
         width:76px!important;
         height:76px!important;
-        border-radius:18px!important;
-        padding:7px!important
-    }
-
-    .logo-wrapper img{
-        width:100%!important;
-        height:100%!important;
-        object-fit:contain!important
-    }
-
-    .logo-wrapper #logoFallback span{
-        font-size:20px!important
+        border-radius:18px!important
     }
 
     .color-primary{
         width:100%!important;
-        max-width:100%!important;
         padding:13px 14px!important;
-        border-radius:15px!important
+        border-radius:15px!important;
+        gap:1px!important
     }
 
     .color-primary h1{
@@ -769,15 +780,11 @@ select.filter-input{
         letter-spacing:.1em!important
     }
 
-    .color-primary .h-0\.5{
-        width:45px!important
-    }
-
     header>div:last-child{
         font-size:8px!important;
         letter-spacing:.18em!important;
-        text-align:center;
-        line-height:1.4
+        line-height:1.4!important;
+        text-align:center!important
     }
 
 
@@ -1181,39 +1188,32 @@ select.filter-input{
 
     /* HEADER */
 
-    .logo-wrapper{
-        margin-bottom:10px!important
-    }
-
     .logo-wrapper>div{
-        width:68px!important;
-        height:68px!important;
-        border-radius:16px!important;
-        padding:6px!important
+        width:70px!important;
+        height:70px!important;
+        border-radius:16px!important
     }
 
     .color-primary{
-        padding:11px 10px!important;
-        border-radius:13px!important
+        padding:12px 10px!important;
+        border-radius:14px!important
     }
 
     .color-primary h1{
-        font-size:13px!important;
-        letter-spacing:.045em!important
+        font-size:13px!important
     }
 
     .color-primary h2{
-        font-size:8px!important;
-        letter-spacing:.075em!important
+        font-size:8px!important
     }
 
     header>div:last-child{
         font-size:7px!important;
-        letter-spacing:.13em!important
+        letter-spacing:.15em!important
     }
 
 
-    /* PAGE */
+    /* PAGE TITLE */
 
     .page-title{
         font-size:18px!important
@@ -1232,7 +1232,7 @@ select.filter-input{
     }
 
 
-    /* CARDS */
+    /* MOBILE DATA */
 
     .mobile-card-grid{
         grid-template-columns:1fr!important
@@ -1242,9 +1242,15 @@ select.filter-input{
         grid-column:auto
     }
 
+
+    /* PAGINATION */
+
     #pagination{
         max-width:58%
     }
+
+
+    /* STATISTICS */
 
     .stat-card p:last-child{
         font-size:21px!important
@@ -1256,86 +1262,26 @@ select.filter-input{
 
 }
 
-
-/* =========================
-   TABLET
-   ========================= */
-
-@media(min-width:768px) and (max-width:1100px){
-
-    main{
-        padding:25px!important
-    }
-
-    .page-title{
-        font-size:25px
-    }
-
-    #tableContent>div:first-child{
-        grid-template-columns:repeat(2,1fr)
-    }
-
-    #tableContent>div:nth-child(2)>div:last-child{
-        grid-template-columns:repeat(2,1fr)
-    }
-
-}
-
-
-/* =========================
-   MEDIUM MOBILE / SMALL TABLET
-   ========================= */
-
-@media(min-width:768px) and (max-width:900px){
-
-    body{
-        padding:12px!important
-    }
-
-    main{
-        border-radius:24px!important
-    }
-
-    .logo-wrapper>div{
-        width:86px!important;
-        height:86px!important
-    }
-
-    .color-primary{
-        padding:14px 20px!important
-    }
-
-    .color-primary h1{
-        font-size:18px!important
-    }
-
-    .color-primary h2{
-        font-size:12px!important
-    }
-
-}
-
 </style>
 </head>
 
 
 <body class="flex flex-col items-center p-4 sm:p-8">
 
-<main
-    class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in"
->
+
+<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
 
-<header
-    class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
->
+<!-- =========================
+     HEADER
+     ========================= -->
+
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
 
 <div class="mb-4 logo-wrapper">
 
-<div
-    class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
->
+<div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
 
 <img
     src="default_logo.png"
@@ -1361,32 +1307,22 @@ TSI
 </div>
 
 
-<div
-    class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
->
+<div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
 
-<h1
-    class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
->
+<h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
 PAPERLESS PROJECT
 </h1>
 
-<div
-    class="h-0.5 w-16 bg-amber-500 rounded-full my-1"
-></div>
+<div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
 
-<h2
-    class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
->
+<h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
 PT TATSUMI SERUNI INDONESIA
 </h2>
 
 </div>
 
 
-<div
-    class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center"
->
+<div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
 Digitalization Initiative v2.0
 </div>
 
@@ -1394,23 +1330,21 @@ Digitalization Initiative v2.0
 </header>
 
 
+<!-- =========================
+     CONTENT
+     ========================= -->
+
 <section>
 
 
-<div
-    class="flex items-center justify-between gap-5 mb-6"
->
+<div class="flex items-center justify-between gap-5 mb-6">
 
 
 <div>
 
-<h2
-    class="page-title flex items-center gap-3"
->
+<h2 class="page-title flex items-center gap-3">
 
-<span
-    class="bg-blue-900 text-white p-3 rounded-xl shadow-md"
->
+<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
 
 <i
     data-lucide="database"
@@ -1424,10 +1358,10 @@ Data Periodic Service
 </h2>
 
 
-<p
-    class="page-subtitle mt-2 ml-1"
->
+<p class="page-subtitle mt-2 ml-1">
+
 Daftar seluruh aktivitas periodic service yang tersimpan pada database.
+
 </p>
 
 </div>
@@ -1449,8 +1383,13 @@ Kembali
 
 </button>
 
+
 </div>
 
+
+<!-- =========================
+     LOADING
+     ========================= -->
 
 <div id="loading">
 
@@ -1459,9 +1398,7 @@ Kembali
     class="w-9 h-9 animate-spin text-amber-500"
 ></i>
 
-<p
-    class="font-semibold text-sm text-slate-400 mt-3"
->
+<p class="font-semibold text-sm text-slate-400 mt-3">
 Memuat data...
 </p>
 
@@ -1475,16 +1412,12 @@ Memuat data...
      STATISTICS
      ========================= -->
 
-<div
-    class="grid grid-cols-4 gap-4 mb-6"
->
+<div class="grid grid-cols-4 gap-4 mb-6">
 
 
 <div class="stat-card">
 
-<p
-    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
->
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
 Total Data
 </p>
 
@@ -1500,9 +1433,7 @@ Total Data
 
 <div class="stat-card">
 
-<p
-    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
->
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
 Periodic Service
 </p>
 
@@ -1518,9 +1449,7 @@ Periodic Service
 
 <div class="stat-card">
 
-<p
-    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
->
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
 General Service
 </p>
 
@@ -1536,9 +1465,7 @@ General Service
 
 <div class="stat-card">
 
-<p
-    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
->
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
 Status Baik
 </p>
 
@@ -1551,6 +1478,7 @@ Status Baik
 
 </div>
 
+
 </div>
 
 
@@ -1558,19 +1486,13 @@ Status Baik
      FILTER
      ========================= -->
 
-<div
-    class="bg-white border border-slate-200 rounded-2xl p-5 mb-5 shadow-sm"
->
+<div class="bg-white border border-slate-200 rounded-2xl p-5 mb-5 shadow-sm">
 
 
-<div
-    class="flex items-center gap-3 mb-4"
->
+<div class="flex items-center gap-3 mb-4">
 
 
-<span
-    class="bg-blue-100 text-blue-700 p-2 rounded-lg"
->
+<span class="bg-blue-100 text-blue-700 p-2 rounded-lg">
 
 <i
     data-lucide="filter"
@@ -1582,33 +1504,26 @@ Status Baik
 
 <div>
 
-<h3
-    class="text-sm font-black text-slate-700"
->
+<h3 class="text-sm font-black text-slate-700">
 Filter Data
 </h3>
 
-<p
-    class="text-[10px] text-slate-400 font-medium"
->
+<p class="text-[10px] text-slate-400 font-medium">
 Gunakan filter untuk mencari data tertentu.
 </p>
 
 </div>
 
+
 </div>
 
 
-<div
-    class="grid grid-cols-4 gap-4"
->
+<div class="grid grid-cols-4 gap-4">
 
 
 <div>
 
-<label
-    class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2"
->
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
 Cari Data
 </label>
 
@@ -1619,6 +1534,7 @@ Cari Data
     data-lucide="search"
     class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
 ></i>
+
 
 <input
     id="searchInput"
@@ -1635,11 +1551,10 @@ Cari Data
 
 <div>
 
-<label
-    class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2"
->
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
 Jenis Service
 </label>
+
 
 <select
     id="serviceFilter"
@@ -1666,11 +1581,10 @@ General Service
 
 <div>
 
-<label
-    class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2"
->
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
 Status
 </label>
+
 
 <select
     id="statusFilter"
@@ -1713,6 +1627,7 @@ Reset Filter
 
 </div>
 
+
 </div>
 
 </div>
@@ -1725,16 +1640,12 @@ Reset Filter
 <div class="table-panel">
 
 
-<div
-    class="px-5 py-4 border-b border-slate-100 flex items-center justify-between"
->
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
 
 
 <div>
 
-<h3
-    class="font-black text-slate-700 text-sm"
->
+<h3 class="font-black text-slate-700 text-sm">
 Daftar Aktivitas Periodic Service
 </h3>
 
@@ -1748,9 +1659,7 @@ Daftar Aktivitas Periodic Service
 </div>
 
 
-<div
-    class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold"
->
+<div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
 
 <i
     data-lucide="refresh-cw"
@@ -1761,8 +1670,11 @@ Data langsung dari Database
 
 </div>
 
+
 </div>
 
+
+<!-- DESKTOP TABLE -->
 
 <div class="table-scroll">
 
@@ -1955,6 +1867,7 @@ PAP
 
 </thead>
 
+
 <tbody id="tableBody"></tbody>
 
 </table>
@@ -1983,9 +1896,8 @@ PAP
 
 <div class="py-16 text-center">
 
-<div
-    class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full"
->
+
+<div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
 
 <i
     data-lucide="search-x"
@@ -1995,18 +1907,15 @@ PAP
 </div>
 
 
-<h3
-    class="font-bold text-slate-600 mt-4"
->
+<h3 class="font-bold text-slate-600 mt-4">
 Data tidak ditemukan
 </h3>
 
 
-<p
-    class="text-xs text-slate-400 mt-1"
->
+<p class="text-xs text-slate-400 mt-1">
 Coba ubah kata pencarian atau filter.
 </p>
+
 
 </div>
 
@@ -2017,9 +1926,8 @@ Coba ubah kata pencarian atau filter.
      PAGINATION
      ========================= -->
 
-<div
-    class="px-5 py-4 border-t border-slate-100 flex items-center justify-between"
->
+<div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
+
 
 <div
     id="paginationInfo"
@@ -2034,9 +1942,12 @@ Coba ubah kata pencarian atau filter.
     class="flex items-center gap-1"
 ></div>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </div>
 
@@ -2049,14 +1960,13 @@ Coba ubah kata pencarian atau filter.
      FOOTER
      ========================= -->
 
-<footer
-    class="mt-8 text-center text-slate-400 px-4 pb-8"
->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
 
-<p
-    class="font-bold text-slate-500 tracking-tight uppercase"
->
+
+<p class="font-bold text-slate-500 tracking-tight uppercase">
+
 &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+
 </p>
 
 
@@ -2064,21 +1974,18 @@ Coba ubah kata pencarian atau filter.
 
 System Architecture by:
 
-<span
-    class="text-slate-600 font-semibold uppercase"
->
+<span class="text-slate-600 font-semibold uppercase">
 Imam Wahyu Ramadhan, S.T.
 </span>
 
 |
 
-<span
-    class="text-amber-600 font-bold uppercase tracking-tighter"
->
+<span class="text-amber-600 font-bold uppercase tracking-tighter">
 Project 2.0
 </span>
 
 </p>
+
 
 </footer>
 
@@ -2097,6 +2004,7 @@ Project 2.0
     data-lucide="trophy"
     class="w-7 h-7"
 ></i>
+
 
 <span class="leader-tooltip">
 Leaderboard Mekanik
@@ -2118,20 +2026,15 @@ Leaderboard Mekanik
 <div id="leaderboardModal">
 
 
-<div
-    class="px-5 py-4 border-b border-slate-100 flex items-center justify-between"
->
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
 
 
 <div>
 
-<h3
-    class="font-black text-slate-800 flex items-center gap-2"
->
+<h3 class="font-black text-slate-800 flex items-center gap-2">
 
-<span
-    class="bg-amber-100 text-amber-600 p-2 rounded-xl"
->
+
+<span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
 
 <i
     data-lucide="trophy"
@@ -2140,14 +2043,13 @@ Leaderboard Mekanik
 
 </span>
 
+
 Leaderboard Mekanik
 
 </h3>
 
 
-<p
-    class="text-[10px] text-slate-400 font-medium mt-1"
->
+<p class="text-[10px] text-slate-400 font-medium mt-1">
 Berdasarkan total aktivitas periodic service
 </p>
 
@@ -2166,6 +2068,7 @@ Berdasarkan total aktivitas periodic service
 
 </button>
 
+
 </div>
 
 
@@ -2174,13 +2077,12 @@ Berdasarkan total aktivitas periodic service
     class="p-5 overflow-y-auto max-h-[60vh]"
 >
 
-<div
-    class="text-center text-slate-400 text-sm py-6"
->
+<div class="text-center text-slate-400 text-sm py-6">
 Memuat leaderboard...
 </div>
 
 </div>
+
 
 </div>
 
@@ -2190,14 +2092,11 @@ Memuat leaderboard...
 <script>
 
 
-const API_URL=
-'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec',
+const API_URL='https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec',
 
-DASHBOARD_URL=
-'periodic.html',
+DASHBOARD_URL='periodic.html',
 
-ROWS_PER_PAGE=
-15;
+ROWS_PER_PAGE=15;
 
 
 let apiData=null,
@@ -2210,13 +2109,11 @@ sortState={
 };
 
 
-const $=
-id=>
+const $=id=>
 document.getElementById(id);
 
 
-const safe=
-v=>
+const safe=v=>
 String(v??'').replace(
     /[&<>"']/g,
     m=>({
@@ -2231,21 +2128,16 @@ String(v??'').replace(
 
 function goToDashboard(){
 
-location.href=
-DASHBOARD_URL
+    location.href=DASHBOARD_URL
 
 }
 
 
 function handleLogoError(){
 
-$('companyLogo')
-.classList
-.add('hidden');
+    $('companyLogo').classList.add('hidden');
 
-$('logoFallback')
-.classList
-.remove('hidden');
+    $('logoFallback').classList.remove('hidden')
 
 }
 
@@ -2254,8 +2146,8 @@ async function loadTable(){
 
 try{
 
-const r=
-await fetch(
+
+const r=await fetch(
     API_URL,
     {
         method:'GET',
@@ -2265,17 +2157,13 @@ await fetch(
 
 
 if(!r.ok)
-throw Error(
-    `HTTP Error ${r.status}`
-);
+    throw Error(`HTTP Error ${r.status}`);
 
 
-const result=
-await r.json();
+const result=await r.json();
 
 
-apiData=
-result;
+apiData=result;
 
 
 allData=
@@ -2297,12 +2185,10 @@ updateLeaderboardFromData(
 );
 
 
-filteredData=
-[...allData];
+filteredData=[...allData];
 
 
-currentPage=
-1;
+currentPage=1;
 
 
 sortState={
@@ -2313,20 +2199,18 @@ sortState={
 
 updateSortHeaders();
 
+
 renderTable();
 
 
-$('loading')
-.style
-.display='none';
+$('loading').style.display='none';
 
 
-$('tableContent')
-.classList
-.add('show');
+$('tableContent').classList.add('show');
 
 
 }catch(error){
+
 
 $('loading').innerHTML=`
 
@@ -2356,6 +2240,7 @@ Coba Lagi
 </div>
 `;
 
+
 lucide.createIcons();
 
 }
@@ -2365,41 +2250,31 @@ lucide.createIcons();
 
 function updateStatistics(result){
 
-const data=
-result.data||[],
-
-chart=
-result.chart||{},
-
-types=
-chart.serviceByType||{};
+const data=result.data||[],
+chart=result.chart||{},
+types=chart.serviceByType||{};
 
 
 const total=
 data.length||
 Object.values(types).reduce(
-    (a,b)=>
-        a+Number(b),
+    (a,b)=>a+Number(b),
     0
 );
 
 
-const count=
-k=>
+const count=k=>
 Object.entries(types)
 .filter(
-    ([x])=>
-        x.toLowerCase().includes(k)
+    ([x])=>x.toLowerCase().includes(k)
 )
 .reduce(
-    (a,[,v])=>
-        a+Number(v),
+    (a,[,v])=>a+Number(v),
     0
 );
 
 
-$('totalData').textContent=
-total;
+$('totalData').textContent=total;
 
 
 $('periodicTotal').textContent=
@@ -2411,20 +2286,16 @@ count('general');
 
 
 $('baikTotal').textContent=
-Number(
-    chart.status?.Baik||0
-);
+Number(chart.status?.Baik||0);
 
 }
 
 
 function applyFilters(){
 
+
 const search=
-$('searchInput')
-.value
-.trim()
-.toLowerCase();
+$('searchInput').value.trim().toLowerCase();
 
 
 const service=
@@ -2435,10 +2306,11 @@ const status=
 $('statusFilter').value;
 
 
-filteredData=
-allData.filter(row=>{
+filteredData=allData.filter(row=>{
+
 
 const text=[
+
     'tanggal',
     'unit',
     'hm',
@@ -2448,6 +2320,7 @@ const text=[
     'itemRusak',
     'remark',
     'pap'
+
 ]
 .map(k=>row[k])
 .join(' ')
@@ -2456,22 +2329,18 @@ const text=[
 
 return(
 
-    (!search||
-        text.includes(search)
-    )&&
+    (!search||text.includes(search))&&
 
     (!service||
         String(row.service||'')
         .trim()
-        .toLowerCase()===
-        service.toLowerCase()
+        .toLowerCase()===service.toLowerCase()
     )&&
 
     (!status||
         String(row.status||'')
         .trim()
-        .toLowerCase()===
-        status.toLowerCase()
+        .toLowerCase()===status.toLowerCase()
     )
 
 );
@@ -2479,11 +2348,11 @@ return(
 });
 
 
-currentPage=
-1;
+currentPage=1;
 
 
 applyCurrentSort();
+
 
 renderTable();
 
@@ -2492,20 +2361,20 @@ renderTable();
 
 function resetFilters(){
 
+
 $('searchInput').value='';
 $('serviceFilter').value='';
 $('statusFilter').value='';
 
 
-filteredData=
-[...allData];
+filteredData=[...allData];
 
 
-currentPage=
-1;
+currentPage=1;
 
 
 applyCurrentSort();
+
 
 renderTable();
 
@@ -2514,7 +2383,9 @@ renderTable();
 
 function toggleSort(key){
 
+
 if(sortState.key===key){
+
 
 sortState.direction=
 sortState.direction===0
@@ -2523,23 +2394,25 @@ sortState.direction===0
         ?-1
         :0;
 
+
 }else{
 
-sortState.key=
-key;
 
-sortState.direction=
-1;
+sortState.key=key;
+
+sortState.direction=1;
 
 }
 
 
 applyCurrentSort();
 
-currentPage=
-1;
+
+currentPage=1;
+
 
 updateSortHeaders();
+
 
 renderTable();
 
@@ -2548,16 +2421,15 @@ renderTable();
 
 function applyCurrentSort(){
 
-if(
-    !sortState.key||
-    !sortState.direction
-){
+
+if(!sortState.key||!sortState.direction){
+
 
 filteredData.sort(
     (a,b)=>
-        a._originalIndex-
-        b._originalIndex
+        a._originalIndex-b._originalIndex
 );
+
 
 return;
 
@@ -2566,58 +2438,51 @@ return;
 
 const{
     direction
-}=
-sortState;
+}=sortState;
 
 
-const key=
-sortState.key;
+const key=sortState.key;
 
 
-filteredData.sort(
-    (a,b)=>{
+filteredData.sort((a,b)=>{
 
-        const c=
-            compareRows(
-                a,
-                b,
-                key
-            );
 
-        return c
-            ?c*direction
-            :a._originalIndex-
-                b._originalIndex;
+const c=
+compareRows(a,b,key);
 
-    }
-);
+
+return c
+    ?c*direction
+    :a._originalIndex-b._originalIndex;
+
+});
 
 }
 
 
 function compareRows(a,b,key){
 
+
 if(key==='tanggal'){
 
-const x=
-parseIndonesianDate(
-    a.tanggal
-);
 
-const y=
-parseIndonesianDate(
-    b.tanggal
-);
+const x=
+parseIndonesianDate(a.tanggal),
+
+y=
+parseIndonesianDate(b.tanggal);
 
 
 if(x===null&&y===null)
-return 0;
+    return 0;
+
 
 if(x===null)
-return 1;
+    return 1;
+
 
 if(y===null)
-return -1;
+    return -1;
 
 
 return x-y;
@@ -2627,21 +2492,21 @@ return x-y;
 
 if(key==='hm'){
 
-const x=
-parseNumber(a.hm);
 
-const y=
-parseNumber(b.hm);
+const x=parseNumber(a.hm),
+y=parseNumber(b.hm);
 
 
 if(x===null&&y===null)
-return 0;
+    return 0;
+
 
 if(x===null)
-return 1;
+    return 1;
+
 
 if(y===null)
-return -1;
+    return -1;
 
 
 return x-y;
@@ -2662,13 +2527,15 @@ String(b[key]??'')
 
 
 if(!x&&!y)
-return 0;
+    return 0;
+
 
 if(!x)
-return 1;
+    return 1;
+
 
 if(!y)
-return -1;
+    return -1;
 
 
 return x.localeCompare(
@@ -2685,38 +2552,33 @@ return x.localeCompare(
 
 function parseIndonesianDate(value){
 
+
 if(value==null)
-return null;
+    return null;
 
 
 if(value instanceof Date)
 
-return Number.isNaN(
-    value.getTime()
-)
+return Number.isNaN(value.getTime())
     ?null
     :value.getTime();
 
 
 let t=
-String(value)
-.trim();
+String(value).trim();
 
 
 if(!t)
-return null;
+    return null;
 
 
-t=
-t.replace(
+t=t.replace(
     /T\d{1,2}:\d{2}(:\d{2})?.*$/,
     ''
-)
-.trim();
+).trim();
 
 
-let m=
-t.match(
+let m=t.match(
     /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
 );
 
@@ -2730,8 +2592,7 @@ return validDate(
 );
 
 
-m=
-t.match(
+m=t.match(
     /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
 );
 
@@ -2745,36 +2606,24 @@ return validDate(
 );
 
 
-if(
-    /^\d+(\.\d+)?$/.test(t)
-){
-
-const n=
-Number(t);
+if(/^\d+(\.\d+)?$/.test(t)){
 
 
-if(
-    n>20000&&
-    n<100000
-)
+const n=Number(t);
 
-return Date.UTC(
-    1899,
-    11,
-    30
-)+
+
+if(n>20000&&n<100000)
+
+return Date.UTC(1899,11,30)+
 n*86400000;
 
 }
 
 
-const d=
-new Date(t);
+const d=new Date(t);
 
 
-return Number.isNaN(
-    d.getTime()
-)
+return Number.isNaN(d.getTime())
     ?null
     :d.getTime();
 
@@ -2783,26 +2632,25 @@ return Number.isNaN(
 
 function validDate(y,m,d){
 
-const x=
-new Date(
-    Date.UTC(
-        y,
-        m-1,
-        d
-    )
+
+const x=new Date(
+    Date.UTC(y,m-1,d)
 );
 
 
 return x.getUTCFullYear()===y&&
 x.getUTCMonth()===m-1&&
 x.getUTCDate()===d
+
     ?x.getTime()
+
     :null;
 
 }
 
 
 function parseNumber(value){
+
 
 if(
     value==null||
@@ -2812,8 +2660,7 @@ if(
 return null;
 
 
-const n=
-Number(
+const n=Number(
     String(value)
     .trim()
     .replace(/\s/g,'')
@@ -2830,16 +2677,17 @@ return Number.isNaN(n)
 
 function updateSortHeaders(){
 
+
 document
 .querySelectorAll(
     '.sort-button[data-sort-key]'
 )
 .forEach(b=>{
 
+
 const active=
-    sortState.key===
-        b.dataset.sortKey&&
-    sortState.direction!==0;
+sortState.key===b.dataset.sortKey&&
+sortState.direction!==0;
 
 
 b.classList.toggle(
@@ -2855,9 +2703,7 @@ b.classList.toggle(
 
 
 const icon=
-b.querySelector(
-    '.sort-icon'
-);
+b.querySelector('.sort-icon');
 
 
 if(icon)
@@ -2865,22 +2711,26 @@ if(icon)
 icon.setAttribute(
     'data-lucide',
     active
+
         ?(
             sortState.direction===1
                 ?'arrow-up'
                 :'arrow-down'
         )
+
         :'arrow-up-down'
 );
 
 
 b.title=
 active
+
     ?(
         sortState.direction===1
             ?'Urutan naik (ASC)'
             :'Urutan turun (DESC)'
     )
+
     :'Klik: ASC → DESC → Urutan Normal';
 
 });
@@ -2892,6 +2742,7 @@ lucide.createIcons();
 
 
 function renderTable(){
+
 
 const tbody=
 $('tableBody');
@@ -2907,6 +2758,7 @@ $('emptyState');
 
 tbody.innerHTML='';
 
+
 mobile.innerHTML='';
 
 
@@ -2918,8 +2770,7 @@ const pages=
 Math.max(
     1,
     Math.ceil(
-        total/
-        ROWS_PER_PAGE
+        total/ROWS_PER_PAGE
     )
 );
 
@@ -2932,14 +2783,12 @@ Math.min(
 
 
 const start=
-(currentPage-1)*
-ROWS_PER_PAGE;
+(currentPage-1)*ROWS_PER_PAGE;
 
 
 const end=
 Math.min(
-    start+
-    ROWS_PER_PAGE,
+    start+ROWS_PER_PAGE,
     total
 );
 
@@ -2959,17 +2808,16 @@ empty.classList.toggle(
 
 if(rows.length){
 
-rows.forEach(
-    (row,i)=>{
+
+rows.forEach((row,i)=>{
+
 
 const no=
 start+i+1;
 
 
 const tr=
-document.createElement(
-    'tr'
-);
+document.createElement('tr');
 
 
 tr.innerHTML=`
@@ -2978,51 +2826,67 @@ tr.innerHTML=`
 ${no}
 </td>
 
+
 <td class="whitespace-nowrap">
 ${safe(row.tanggal)}
 </td>
 
+
 <td>
+
 <span class="unit-badge">
 ${safe(row.unit)}
 </span>
+
 </td>
+
 
 <td class="whitespace-nowrap font-semibold text-slate-600">
 ${safe(row.hm)}
 </td>
 
+
 <td>
 ${getServiceBadge(row.service)}
 </td>
+
 
 <td>
 ${getStatusBadge(row.status)}
 </td>
 
+
 <td class="font-semibold text-slate-700">
 ${safe(row.pic)}
 </td>
+
 
 <td
     class="max-w-[180px] truncate"
     title="${safe(row.itemRusak)}"
 >
+
 ${safe(row.itemRusak)||
 '<span class="text-slate-300">-</span>'}
+
 </td>
+
 
 <td
     class="max-w-[220px] truncate"
     title="${safe(row.remark)}"
 >
+
 ${safe(row.remark)||
 '<span class="text-slate-300">-</span>'}
+
 </td>
+
 
 <td>
 ${getPapLink(row.pap)}
 </td>
+
 `;
 
 
@@ -3033,10 +2897,9 @@ tbody.appendChild(tr);
    MOBILE CARD
    ========================= */
 
+
 const card=
-document.createElement(
-    'div'
-);
+document.createElement('div');
 
 
 card.className=
@@ -3047,38 +2910,50 @@ card.innerHTML=`
 
 <div class="mobile-card-header">
 
+
 <div>
 
+
 <div class="flex items-center gap-2">
+
 
 <span class="mobile-number">
 ${no}
 </span>
 
+
 <div class="mobile-unit">
 ${safe(row.unit)}
 </div>
+
 
 </div>
 
 
 <div class="mobile-date">
 
+
 <i
     data-lucide="calendar-days"
     class="inline w-3 h-3 mr-1"
 ></i>
 
+
 ${safe(row.tanggal)}
 
+
 </div>
+
 
 </div>
 
 
 <div>
+
 ${getStatusBadge(row.status)}
+
 </div>
+
 
 </div>
 
@@ -3088,62 +2963,80 @@ ${getStatusBadge(row.status)}
 
 <div class="mobile-field">
 
+
 <div class="mobile-label">
 HM
 </div>
+
 
 <div class="mobile-value">
 ${safe(row.hm)||'-'}
 </div>
 
+
 </div>
 
 
 <div class="mobile-field">
+
 
 <div class="mobile-label">
 Service
 </div>
 
+
 <div>
+
 ${getServiceBadge(row.service)}
+
 </div>
+
 
 </div>
 
 
 <div class="mobile-field">
+
 
 <div class="mobile-label">
 PIC / Mekanik
 </div>
 
+
 <div class="mobile-value">
 ${safe(row.pic)||'-'}
 </div>
+
 
 </div>
 
 
 <div class="mobile-field">
 
+
 <div class="mobile-label">
 Item Rusak
 </div>
 
+
 <div class="mobile-value">
+
 ${safe(row.itemRusak)||
 '<span class="text-slate-300">-</span>'}
+
 </div>
+
 
 </div>
 
 
 <div class="mobile-field full">
 
+
 <div class="mobile-label">
 Remark
 </div>
+
 
 <div class="mobile-remark">
 
@@ -3151,6 +3044,7 @@ ${safe(row.remark)||
 '<span class="text-slate-300">Tidak ada remark</span>'}
 
 </div>
+
 
 </div>
 
@@ -3181,9 +3075,7 @@ updateResultInfo(
 );
 
 
-renderPagination(
-    pages
-);
+renderPagination(pages);
 
 
 lucide.createIcons();
@@ -3193,9 +3085,9 @@ lucide.createIcons();
 
 function getPapLink(pap){
 
+
 const value=
-String(pap||'')
-.trim();
+String(pap||'').trim();
 
 
 if(!value)
@@ -3208,10 +3100,10 @@ let url;
 
 try{
 
-url=
-new URL(value);
+url=new URL(value);
 
 }catch{
+
 
 return `
 
@@ -3261,9 +3153,9 @@ Lihat PAP
 
 function getServiceBadge(service){
 
+
 const value=
-String(service||'')
-.trim();
+String(service||'').trim();
 
 
 const l=
@@ -3272,9 +3164,13 @@ value.toLowerCase();
 
 const cls=
 l.includes('periodic')
+
     ?'service-periodic'
+
     :l.includes('general')
+
         ?'service-general'
+
         :'service-other';
 
 
@@ -3291,9 +3187,9 @@ ${safe(value||'-')}
 
 function getStatusBadge(status){
 
+
 const value=
-String(status||'')
-.trim();
+String(status||'').trim();
 
 
 const l=
@@ -3311,25 +3207,40 @@ l==='rusak';
 return `
 
 <span class="status-badge ${
+
     good
+
         ?'status-good'
+
         :bad
+
             ?'status-bad'
+
             :'status-other'
+
 }">
+
 
 <i
     data-lucide="${
+
         good
+
             ?'circle-check'
+
             :bad
+
                 ?'circle-alert'
+
                 :'circle'
+
     }"
     class="w-3 h-3"
 ></i>
 
+
 ${safe(value||'-')}
+
 
 </span>
 
@@ -3338,13 +3249,11 @@ ${safe(value||'-')}
 }
 
 
-function updateResultInfo(
-    total,
-    start,
-    end
-){
+function updateResultInfo(total,start,end){
+
 
 if(!total){
+
 
 $('resultInfo').textContent=
 'Tidak ada data yang sesuai filter.';
@@ -3369,9 +3278,8 @@ $('paginationInfo').textContent=
 }
 
 
-function renderPagination(
-    totalPages
-){
+function renderPagination(totalPages){
+
 
 const c=
 $('pagination');
@@ -3391,10 +3299,9 @@ const add=(
     fn=null
 )=>{
 
+
 const b=
-document.createElement(
-    'button'
-);
+document.createElement('button');
 
 
 b.className=
@@ -3408,7 +3315,9 @@ disabled;
 
 typeof content==='string'&&
 content.startsWith('<i')
+
     ?b.innerHTML=content
+
     :b.textContent=content;
 
 
@@ -3422,9 +3331,13 @@ c.appendChild(b);
 
 
 add(
+
     '<i data-lucide="chevron-left" class="w-4 h-4"></i>',
+
     '',
+
     currentPage===1,
+
     ()=>{
 
         if(currentPage>1){
@@ -3436,6 +3349,7 @@ add(
         }
 
     }
+
 );
 
 
@@ -3444,6 +3358,7 @@ getPaginationPages(
     totalPages
 )
 .forEach(
+
     p=>
 
     p==='...'
@@ -3451,43 +3366,46 @@ getPaginationPages(
         ?(()=>{
 
             const s=
-            document.createElement(
-                'span'
-            );
+            document.createElement('span');
 
             s.className=
             'px-2 text-slate-400 text-xs';
 
-            s.textContent=
-            '...';
+            s.textContent='...';
 
             c.appendChild(s);
 
         })()
 
         :add(
+
             p,
-            p===currentPage
-                ?'active'
-                :'',
+
+            p===currentPage?'active':'',
+
             false,
+
             ()=>{
 
-                currentPage=
-                p;
+                currentPage=p;
 
                 renderTable();
 
             }
+
         )
 
 );
 
 
 add(
+
     '<i data-lucide="chevron-right" class="w-4 h-4"></i>',
+
     '',
+
     currentPage===totalPages,
+
     ()=>{
 
         if(currentPage<totalPages){
@@ -3499,6 +3417,7 @@ add(
         }
 
     }
+
 );
 
 
@@ -3507,10 +3426,8 @@ lucide.createIcons();
 }
 
 
-function getPaginationPages(
-    current,
-    total
-){
+function getPaginationPages(current,total){
+
 
 if(total<=7)
 
@@ -3520,8 +3437,7 @@ return Array.from(
 );
 
 
-const p=
-[1];
+const p=[1];
 
 
 if(current>4)
@@ -3529,19 +3445,13 @@ p.push('...');
 
 
 for(
-    let i=
-        Math.max(
-            2,
-            current-1
-        );
 
-    i<=
-        Math.min(
-            total-1,
-            current+1
-        );
+    let i=Math.max(2,current-1);
+
+    i<=Math.min(total-1,current+1);
 
     i++
+
 )
 
 p.push(i);
@@ -3559,9 +3469,8 @@ return p;
 }
 
 
-function updateLeaderboardFromData(
-    data
-){
+function updateLeaderboardFromData(data){
+
 
 const list=
 $('leaderboardList');
@@ -3569,12 +3478,11 @@ $('leaderboardList');
 
 if(!data.length){
 
+
 list.innerHTML=
 `
 
-<div
-    class="text-center text-slate-400 text-sm py-6"
->
+<div class="text-center text-slate-400 text-sm py-6">
 Belum ada data mekanik.
 </div>
 
@@ -3586,63 +3494,70 @@ return;
 
 
 list.innerHTML=
+
 [...data]
 .sort(
+
     (a,b)=>
         Number(b.count||0)-
         Number(a.count||0)
+
 )
-.map(
-    (m,i)=>{
-
-        const rank=
-            i+1;
+.map((m,i)=>{
 
 
-        const cls=
-            rank<=3
-                ?`top-${rank}`
-                :'';
+const rank=
+i+1;
 
 
-        const medal=
-            rank===1
-                ?'🥇'
-                :rank===2
-                    ?'🥈'
-                    :rank===3
-                        ?'🥉'
-                        :rank;
+const cls=
+rank<=3
+    ?`top-${rank}`
+    :'';
 
 
-        return `
+const medal=
+rank===1
+    ?'🥇'
+    :rank===2
+        ?'🥈'
+        :rank===3
+            ?'🥉'
+            :rank;
+
+
+return `
 
 <div class="leader-row ${cls}">
+
 
 <div class="leader-rank">
 ${medal}
 </div>
 
+
 <div class="leader-name truncate">
 ${safe(m.name)}
 </div>
+
 
 <div class="leader-count">
 ${Number(m.count||0)} pekerjaan
 </div>
 
+
 </div>
 
 `;
 
-    }
-)
+})
 .join('');
 
 }
 
 
 function openLeaderboard(){
+
 
 if(apiData?.chart?.mechanic)
 
@@ -3652,30 +3567,28 @@ updateLeaderboardFromData(
 
 
 $('leaderboardOverlay')
-.classList
-.add('show');
+.classList.add('show');
 
 
-document.body.style.overflow=
-'hidden';
+document.body.style.overflow='hidden';
 
 }
 
 
 function closeLeaderboard(){
 
+
 $('leaderboardOverlay')
-.classList
-.remove('show');
+.classList.remove('show');
 
 
-document.body.style.overflow=
-'';
+document.body.style.overflow='';
 
 }
 
 
 function closeLeaderboardOutside(e){
+
 
 if(
     e.target===
@@ -3689,6 +3602,7 @@ closeLeaderboard();
 
 function scheduleLeaderboardPulse(){
 
+
 const button=
 $('leaderboardButton');
 
@@ -3698,39 +3612,37 @@ const delay=
 Math.random()*14000;
 
 
-setTimeout(
-    ()=>{
-
-        const overlay=
-        $('leaderboardOverlay');
+setTimeout(()=>{
 
 
-        if(
-            !overlay.classList.contains(
-                'show'
-            )
-        ){
-
-            button.classList.remove(
-                'leader-pulse'
-            );
+const overlay=
+$('leaderboardOverlay');
 
 
-            void button.offsetWidth;
+if(
+    !overlay.classList.contains('show')
+){
 
 
-            button.classList.add(
-                'leader-pulse'
-            );
-
-        }
-
-
-        scheduleLeaderboardPulse();
-
-    },
-    delay
+button.classList.remove(
+    'leader-pulse'
 );
+
+
+void button.offsetWidth;
+
+
+button.classList.add(
+    'leader-pulse'
+);
+
+}
+
+
+scheduleLeaderboardPulse();
+
+
+},delay);
 
 }
 
