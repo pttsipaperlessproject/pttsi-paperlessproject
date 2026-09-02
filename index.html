@@ -29,7 +29,6 @@ body{
     font-family:'Inter',sans-serif;
     background:linear-gradient(135deg,#f8fafc,#f1f5f9);
     min-height:100vh;
-    width:100%;
     color:#1e293b;
     overflow-x:hidden;
 }
@@ -275,11 +274,9 @@ body{
     cursor:pointer;
     color:white;
     border:1px solid rgba(255,255,255,.25);
-
     box-shadow:
         0 12px 30px rgba(15,23,42,.10),
         inset 0 1px 0 rgba(255,255,255,.18);
-
     transition:
         transform .35s cubic-bezier(.175,.885,.32,1.275),
         box-shadow .35s ease,
@@ -305,25 +302,21 @@ body{
     height:100%;
     left:0;
     top:0;
-
     background:linear-gradient(
         120deg,
         transparent 20%,
         rgba(255,255,255,.14) 45%,
         transparent 70%
     );
-
     transform:translateX(-120%);
     transition:transform .65s ease;
 }
 
 .dashboard-card:hover{
     transform:translateY(-8px) scale(1.015);
-
     box-shadow:
         0 24px 45px rgba(15,23,42,.18),
         0 0 0 1px rgba(255,255,255,.25);
-
     filter:saturate(1.08);
 }
 
@@ -346,7 +339,6 @@ body{
     position:relative;
     z-index:2;
     height:100%;
-
     display:flex;
     flex-direction:column;
     justify-content:space-between;
@@ -355,20 +347,16 @@ body{
 .dashboard-icon{
     width:58px;
     height:58px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     border-radius:18px;
     background:rgba(255,255,255,.15);
     border:1px solid rgba(255,255,255,.22);
     backdrop-filter:blur(8px);
-
     box-shadow:
         0 8px 20px rgba(0,0,0,.12),
         inset 0 1px 0 rgba(255,255,255,.18);
-
     transition:
         transform .35s ease,
         background .35s ease;
@@ -401,17 +389,13 @@ body{
 .dashboard-arrow{
     width:38px;
     height:38px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     border-radius:12px;
     background:rgba(255,255,255,.12);
     border:1px solid rgba(255,255,255,.18);
-
     opacity:.65;
-
     transition:
         transform .3s ease,
         opacity .3s ease,
@@ -467,22 +451,28 @@ body{
 
 
 /* =========================================================
-   LARGE TABLET
+   TABLET
 ========================================================= */
 
 @media(max-width:1024px){
 
     body{
-        padding:12px!important;
+        padding:14px!important;
     }
 
     main{
-        max-width:100%!important;
         padding:28px!important;
+        border-radius:28px!important;
     }
 
     .dashboard-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:15px;
+    }
+
+    #mainHeader{
+        margin-bottom:25px!important;
+        padding-bottom:22px!important;
     }
 
 }
@@ -523,9 +513,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        HEADER
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #mainHeader{
         width:100%!important;
@@ -534,12 +524,17 @@ body{
     }
 
     .logo-wrapper{
+        width:100%!important;
         margin-bottom:12px!important;
+        display:flex!important;
+        justify-content:center!important;
     }
 
     .logo-wrapper > div{
         width:72px!important;
         height:72px!important;
+        min-width:72px!important;
+        min-height:72px!important;
         border-radius:17px!important;
         padding:7px!important;
     }
@@ -549,31 +544,35 @@ body{
         max-width:100%!important;
         padding:13px 10px!important;
         border-radius:17px!important;
+        gap:2px!important;
     }
 
     #mainHeader h1{
+        width:100%!important;
         font-size:16px!important;
         line-height:1.3!important;
         letter-spacing:.065em!important;
     }
 
     #mainHeader h2{
+        width:100%!important;
         font-size:10px!important;
         line-height:1.4!important;
         letter-spacing:.10em!important;
     }
 
     #mainHeader .mt-3{
+        width:100%!important;
         font-size:8px!important;
         line-height:1.4!important;
         letter-spacing:.18em!important;
-        text-align:center;
+        text-align:center!important;
     }
 
 
-    /* =====================================================
-       HOME SCREEN
-    ===================================================== */
+    /* -----------------------------------------------------
+       HOME
+    ----------------------------------------------------- */
 
     #homeScreen{
         width:100%!important;
@@ -597,9 +596,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        MAIN MENU
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #homeScreen > div.grid{
         width:100%!important;
@@ -639,9 +638,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        WORKSHOP LIVE MONITOR
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #homeScreen > button.menu-dark{
         width:100%!important;
@@ -677,9 +676,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        HOME INFO
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #homeScreen > div:last-child{
         width:100%!important;
@@ -701,9 +700,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        REPORT / FORM HEADER
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #reportMenuScreen,
     #formMenuScreen{
@@ -733,9 +732,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        BACK BUTTON
-    ===================================================== */
+    ----------------------------------------------------- */
 
     .back-button{
         width:max-content!important;
@@ -754,9 +753,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        DASHBOARD
-    ===================================================== */
+    ----------------------------------------------------- */
 
     .dashboard-grid{
         grid-template-columns:1fr!important;
@@ -816,9 +815,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        FORM MENU
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #formMenuScreen .text-slate-500.font-medium.text-sm{
         font-size:9px!important;
@@ -827,9 +826,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        K3L
-    ===================================================== */
+    ----------------------------------------------------- */
 
     .info-panel{
         width:100%!important;
@@ -860,9 +859,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        FORM GROUP
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #formMenuContainer{
         width:100%!important;
@@ -922,9 +921,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        SUBMENU
-    ===================================================== */
+    ----------------------------------------------------- */
 
     .form-group > div[id^="sub-"]{
         margin-top:10px!important;
@@ -958,9 +957,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        MODALS
-    ===================================================== */
+    ----------------------------------------------------- */
 
     .modal-overlay{
         padding:10px!important;
@@ -1008,9 +1007,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        TOAST
-    ===================================================== */
+    ----------------------------------------------------- */
 
     #toast{
         width:calc(100vw - 24px)!important;
@@ -1032,9 +1031,9 @@ body{
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        FOOTER
-    ===================================================== */
+    ----------------------------------------------------- */
 
     footer{
         width:100%!important;
@@ -1077,13 +1076,53 @@ body{
         border-radius:20px!important;
     }
 
+
+    /* -----------------------------------------------------
+       HEADER VERY SMALL
+    ----------------------------------------------------- */
+
+    #mainHeader{
+        margin-bottom:17px!important;
+        padding-bottom:15px!important;
+    }
+
+    .logo-wrapper{
+        margin-bottom:10px!important;
+    }
+
+    .logo-wrapper > div{
+        width:64px!important;
+        height:64px!important;
+        min-width:64px!important;
+        min-height:64px!important;
+        border-radius:15px!important;
+        padding:6px!important;
+    }
+
+    #mainHeader .color-primary{
+        padding:11px 8px!important;
+        border-radius:15px!important;
+    }
+
     #mainHeader h1{
         font-size:14px!important;
+        letter-spacing:.055em!important;
     }
 
     #mainHeader h2{
         font-size:8px!important;
+        letter-spacing:.085em!important;
     }
+
+    #mainHeader .mt-3{
+        font-size:7px!important;
+        letter-spacing:.14em!important;
+    }
+
+
+    /* -----------------------------------------------------
+       HOME
+    ----------------------------------------------------- */
 
     #homeScreen h2{
         font-size:19px!important;
@@ -1096,6 +1135,11 @@ body{
     #homeScreen > button.menu-dark{
         padding:13px 10px!important;
     }
+
+
+    /* -----------------------------------------------------
+       DASHBOARD
+    ----------------------------------------------------- */
 
     .dashboard-card{
         min-height:128px!important;
@@ -1113,9 +1157,19 @@ body{
         font-size:10px!important;
     }
 
+
+    /* -----------------------------------------------------
+       FORM
+    ----------------------------------------------------- */
+
     .form-group{
         padding:11px!important;
     }
+
+
+    /* -----------------------------------------------------
+       MODAL
+    ----------------------------------------------------- */
 
     .modal-card{
         padding:18px 13px!important;
@@ -1172,28 +1226,19 @@ body{
 
 </head>
 
-
 <body class="flex flex-col items-center p-4 sm:p-8">
 
-
 <main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative fade-in">
-
 
 <!-- =========================================================
      HEADER
 ========================================================= -->
 
-<header
-id="mainHeader"
-class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
->
-
+<header id="mainHeader" class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
 <div class="mb-4 logo-wrapper">
 
-<div
-class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
->
+<div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
 
 <img
 src="default_logo.png"
@@ -1201,16 +1246,12 @@ alt="Logo PT TSI"
 class="w-full h-full object-contain"
 id="companyLogo"
 onerror="handleLogoError()"
+
 >
 
-<div
-id="logoFallback"
-class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
->
+<div id="logoFallback" class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white">
 
-<span class="font-black text-2xl">
-TSI
-</span>
+<span class="font-black text-2xl">TSI</span>
 
 </div>
 
@@ -1218,53 +1259,35 @@ TSI
 
 </div>
 
+<div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
 
-<div
-class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
->
-
-<h1
-class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
->
+<h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
 PAPERLESS PROJECT
 </h1>
 
 <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
 
-<h2
-class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
->
+<h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
 PT TATSUMI SERUNI INDONESIA
 </h2>
 
 </div>
 
-
-<div
-class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase"
->
+<div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
 Digitalization Initiative v2.0
 </div>
 
-
 </header>
-
 
 <!-- =========================================================
      HOME SCREEN
 ========================================================= -->
 
-<div
-id="homeScreen"
-class="space-y-6 flex flex-col items-center text-center fade-in"
->
-
+<div id="homeScreen" class="space-y-6 flex flex-col items-center text-center fade-in">
 
 <div class="space-y-2 mb-3">
 
-<h2
-class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight"
->
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight">
 Portal Layanan Digital
 </h2>
 
@@ -1274,9 +1297,7 @@ Sistem Digitalisasi Data Operasional Terpadu.
 
 </div>
 
-
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
-
 
 <!-- MENU FORMULIR -->
 
@@ -1284,28 +1305,22 @@ Sistem Digitalisasi Data Operasional Terpadu.
 type="button"
 onclick="showFormMenu()"
 class="main-menu-card menu-blue text-white font-bold p-7 sm:p-9 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-4 border-b-4 border-blue-950"
+
 >
 
 <div class="bg-white/10 border border-white/20 p-4 rounded-2xl">
 
-<i
-data-lucide="file-text"
-class="w-10 h-10"
-></i>
+<i data-lucide="file-text" class="w-10 h-10"></i>
 
 </div>
 
 <div>
 
-<span
-class="block text-lg sm:text-xl font-black tracking-wide uppercase"
->
+<span class="block text-lg sm:text-xl font-black tracking-wide uppercase">
 Menu Formulir
 </span>
 
-<span
-class="block text-[10px] text-blue-100 font-medium mt-1"
->
+<span class="block text-[10px] text-blue-100 font-medium mt-1">
 Akses seluruh formulir digital
 </span>
 
@@ -1313,35 +1328,28 @@ Akses seluruh formulir digital
 
 </button>
 
-
 <!-- MENU LAPORAN -->
 
 <button
 type="button"
 onclick="showReportMenu()"
 class="main-menu-card menu-amber text-white font-bold p-7 sm:p-9 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-4 border-b-4 border-amber-800"
+
 >
 
 <div class="bg-white/10 border border-white/20 p-4 rounded-2xl">
 
-<i
-data-lucide="bar-chart-3"
-class="w-10 h-10"
-></i>
+<i data-lucide="bar-chart-3" class="w-10 h-10"></i>
 
 </div>
 
 <div>
 
-<span
-class="block text-lg sm:text-xl font-black tracking-wide uppercase"
->
+<span class="block text-lg sm:text-xl font-black tracking-wide uppercase">
 Menu Laporan
 </span>
 
-<span
-class="block text-[10px] text-amber-100 font-medium mt-1"
->
+<span class="block text-[10px] text-amber-100 font-medium mt-1">
 Monitoring dan laporan operasional
 </span>
 
@@ -1351,37 +1359,28 @@ Monitoring dan laporan operasional
 
 </div>
 
-
 <!-- WORKSHOP LIVE MONITOR -->
 
 <button
 type="button"
 onclick="openLink('https://pttsipaperlessproject2-workshop.netlify.app/',false)"
 class="main-menu-card menu-dark w-full text-white font-bold p-5 sm:p-6 rounded-2xl shadow-lg flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left"
+
 >
 
-<div
-class="bg-slate-700 text-amber-400 p-3 rounded-xl border border-slate-600 shrink-0"
->
+<div class="bg-slate-700 text-amber-400 p-3 rounded-xl border border-slate-600 shrink-0">
 
-<i
-data-lucide="monitor"
-class="w-7 h-7"
-></i>
+<i data-lucide="monitor" class="w-7 h-7"></i>
 
 </div>
 
 <div>
 
-<span
-class="text-lg sm:text-xl block font-black uppercase tracking-wider"
->
+<span class="text-lg sm:text-xl block font-black uppercase tracking-wider">
 Workshop Live Monitor
 </span>
 
-<span
-class="text-[10px] sm:text-xs font-medium text-slate-300 block mt-1"
->
+<span class="text-[10px] sm:text-xs font-medium text-slate-300 block mt-1">
 Pantau status pengerjaan unit dan aktivitas workshop secara real-time.
 </span>
 
@@ -1390,31 +1389,22 @@ Pantau status pengerjaan unit dan aktivitas workshop secara real-time.
 <i
 data-lucide="arrow-up-right"
 class="w-5 h-5 text-slate-400 hidden sm:block ml-2"
-></i>
+
+> </i>
 
 </button>
 
-
 <!-- INFO -->
 
-<div
-class="w-full mt-1 p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center gap-3"
->
+<div class="w-full mt-1 p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center gap-3">
 
-<div
-class="bg-blue-50 text-blue-800 p-2 rounded-xl"
->
+<div class="bg-blue-50 text-blue-800 p-2 rounded-xl">
 
-<i
-data-lucide="shield-check"
-class="w-4 h-4"
-></i>
+<i data-lucide="shield-check" class="w-4 h-4"></i>
 
 </div>
 
-<p
-class="text-[10px] sm:text-xs text-slate-500 font-medium"
->
+<p class="text-[10px] sm:text-xs text-slate-500 font-medium">
 Sistem terintegrasi untuk mendukung digitalisasi operasional PT TSI.
 </p>
 
@@ -1422,34 +1412,21 @@ Sistem terintegrasi untuk mendukung digitalisasi operasional PT TSI.
 
 </div>
 
-
 <!-- =========================================================
      REPORT MENU
 ========================================================= -->
 
-<div
-id="reportMenuScreen"
-class="hidden fade-in"
->
+<div id="reportMenuScreen" class="hidden fade-in">
 
-<div
-class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7"
->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7">
 
 <div>
 
-<h2
-class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3"
->
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
 
-<span
-class="bg-amber-600 text-white p-3 rounded-xl shadow-md"
->
+<span class="bg-amber-600 text-white p-3 rounded-xl shadow-md">
 
-<i
-data-lucide="layout-dashboard"
-class="w-6 h-6"
-></i>
+<i data-lucide="layout-dashboard" class="w-6 h-6"></i>
 
 </span>
 
@@ -1459,63 +1436,40 @@ Dashboard Laporan
 
 </div>
 
-
 <button
 type="button"
 onclick="showHome()"
 class="back-button w-fit max-w-max self-start shrink-0 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2.5 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm whitespace-nowrap"
+
 >
 
-<i
-data-lucide="arrow-left"
-class="w-4 h-4 shrink-0"
-></i>
+<i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
 
-<span>
-Kembali
-</span>
+<span>Kembali</span>
 
 </button>
 
 </div>
 
-
-<div
-id="dashboardGrid"
-class="dashboard-grid"
-></div>
+<div id="dashboardGrid" class="dashboard-grid"></div>
 
 </div>
-
 
 <!-- =========================================================
      FORM MENU
 ========================================================= -->
 
-<div
-id="formMenuScreen"
-class="space-y-6 hidden fade-in"
->
+<div id="formMenuScreen" class="space-y-6 hidden fade-in">
 
-
-<div
-class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6"
->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
 
 <div>
 
-<h2
-class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3"
->
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
 
-<span
-class="bg-blue-900 text-white p-3 rounded-xl shadow-md"
->
+<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
 
-<i
-data-lucide="clipboard-list"
-class="w-6 h-6"
-></i>
+<i data-lucide="clipboard-list" class="w-6 h-6"></i>
 
 </span>
 
@@ -1523,65 +1477,44 @@ Digital Form Repository
 
 </h2>
 
-
-<p
-class="text-slate-500 font-medium text-sm mt-2 ml-1"
->
+<p class="text-slate-500 font-medium text-sm mt-2 ml-1">
 Pilih formulir digital sesuai kebutuhan operasional.
 </p>
 
 </div>
 
-
 <button
 type="button"
 onclick="showHome()"
 class="back-button w-fit max-w-max self-start shrink-0 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2.5 px-4 rounded-xl transition flex items-center gap-2 border border-slate-200 text-sm whitespace-nowrap"
+
 >
 
-<i
-data-lucide="arrow-left"
-class="w-4 h-4 shrink-0"
-></i>
+<i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
 
-<span>
-Kembali
-</span>
+<span>Kembali</span>
 
 </button>
 
 </div>
 
-
 <!-- K3L -->
 
-<div
-class="info-panel mb-6 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-start gap-4"
->
+<div class="info-panel mb-6 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-start gap-4">
 
-<div
-class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0"
->
+<div class="bg-emerald-600 p-2.5 rounded-xl text-white shrink-0">
 
-<i
-data-lucide="shield-check"
-class="w-6 h-6"
-></i>
+<i data-lucide="shield-check" class="w-6 h-6"></i>
 
 </div>
 
-
 <div class="space-y-1">
 
-<h4
-class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]"
->
+<h4 class="font-bold text-emerald-900 text-[11px] sm:text-xs uppercase tracking-[0.15em]">
 Protokol Keselamatan Kerja (K3L)
 </h4>
 
-<p
-class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium"
->
+<p class="text-emerald-800 text-[10px] sm:text-xs leading-relaxed font-medium">
 
 Seluruh personel operasional <b>diwajibkan</b>
 untuk senantiasa menegakkan standar K3,
@@ -1596,56 +1529,35 @@ guna menjamin keamanan dan keberlanjutan kerja.
 
 </div>
 
-
-<div
-id="formMenuContainer"
-class="space-y-4"
-></div>
+<div id="formMenuContainer" class="space-y-4"></div>
 
 </div>
-
 
 <!-- =========================================================
      AUTH MODAL
 ========================================================= -->
 
-<div
-id="authModal"
-class="fixed inset-0 modal-overlay hidden items-center justify-center p-4 z-50"
->
+<div id="authModal" class="fixed inset-0 modal-overlay hidden items-center justify-center p-4 z-50">
 
-<div
-class="modal-card bg-white p-7 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6 border-t-4 border-amber-600"
->
+<div class="modal-card bg-white p-7 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6 border-t-4 border-amber-600">
 
-<div
-class="mx-auto w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center"
->
+<div class="mx-auto w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center">
 
-<i
-data-lucide="lock-keyhole"
-class="w-8 h-8 text-amber-600"
-></i>
+<i data-lucide="lock-keyhole" class="w-8 h-8 text-amber-600"></i>
 
 </div>
 
-
 <div>
 
-<h3
-class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight"
->
+<h3 class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight">
 Endpoint Restricted
 </h3>
 
-<p
-class="text-slate-500 text-sm mt-2"
->
+<p class="text-slate-500 text-sm mt-2">
 Otorisasi diperlukan untuk mengakses data.
 </p>
 
 </div>
-
 
 <div class="space-y-3">
 
@@ -1654,17 +1566,14 @@ type="password"
 id="passwordInput"
 placeholder="Access Token"
 class="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-lg font-bold text-slate-700 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 outline-none transition-all"
+
 >
 
-<div
-id="passwordError"
-class="hidden text-[10px] text-red-600 font-bold bg-red-50 p-3 rounded-xl border border-red-100 uppercase"
->
+<div id="passwordError" class="hidden text-[10px] text-red-600 font-bold bg-red-50 p-3 rounded-xl border border-red-100 uppercase">
 ACCESS DENIED: Kode akses tidak valid!
 </div>
 
 </div>
-
 
 <div class="flex gap-3">
 
@@ -1672,80 +1581,59 @@ ACCESS DENIED: Kode akses tidak valid!
 type="button"
 onclick="closeAuth()"
 class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition"
->
-Batal
-</button>
 
+>
+
+Batal </button>
 
 <button
 type="button"
 onclick="confirmAuth()"
 class="flex-1 bg-blue-800 text-white font-bold py-3 rounded-xl hover:bg-blue-900 shadow-md transition"
+
 >
-Authorize
-</button>
+
+Authorize </button>
 
 </div>
 
 </div>
 
 </div>
-
 
 <!-- =========================================================
      THANK YOU MODAL
 ========================================================= -->
 
-<div
-id="thanksModal"
-class="fixed inset-0 modal-overlay hidden items-center justify-center p-4 z-50"
->
+<div id="thanksModal" class="fixed inset-0 modal-overlay hidden items-center justify-center p-4 z-50">
 
-<div
-class="modal-card bg-white p-7 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6 border-t-4 border-emerald-600"
->
+<div class="modal-card bg-white p-7 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6 border-t-4 border-emerald-600">
 
-<div
-class="mx-auto w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center"
->
+<div class="mx-auto w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center">
 
-<i
-data-lucide="check-circle"
-class="w-8 h-8 text-emerald-600"
-></i>
+<i data-lucide="check-circle" class="w-8 h-8 text-emerald-600"></i>
 
 </div>
 
-
 <div>
 
-<h3
-class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight"
->
+<h3 class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight">
 Terima Kasih!
 </h3>
 
-<p
-class="text-slate-500 text-sm mt-2"
->
+<p class="text-slate-500 text-sm mt-2">
 Data formulir Anda telah dikirim ke tab baru.
 </p>
 
 </div>
 
+<div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
 
-<div
-class="p-4 bg-slate-50 rounded-2xl border border-slate-100"
->
-
-<p
-class="text-slate-700 font-semibold text-sm"
->
+<p class="text-slate-700 font-semibold text-sm">
 Apakah Anda ingin mengisi formulir digital lainnya?
 </p>
 
 </div>
-
 
 <div class="flex gap-3">
 
@@ -1753,88 +1641,67 @@ Apakah Anda ingin mengisi formulir digital lainnya?
 type="button"
 onclick="closeWindow()"
 class="flex-1 bg-slate-100 text-slate-500 font-bold py-3 rounded-xl hover:bg-slate-200 transition"
->
-Tutup Tab
-</button>
 
+>
+
+Tutup Tab </button>
 
 <button
 type="button"
 onclick="closeThanks()"
 class="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 shadow-md transition"
+
 >
-Ya, Lanjut
-</button>
+
+Ya, Lanjut </button>
 
 </div>
 
 </div>
 
 </div>
-
 
 <!-- =========================================================
      TOAST
 ========================================================= -->
 
-<div
-id="toast"
-class="flex items-center gap-3"
->
+<div id="toast" class="flex items-center gap-3">
 
-<i
-data-lucide="info"
-class="text-amber-400 w-5 h-5 shrink-0"
-></i>
+<i data-lucide="info" class="text-amber-400 w-5 h-5 shrink-0"></i>
 
-<span
-id="toastMsg"
-class="text-sm font-medium"
-></span>
+<span id="toastMsg" class="text-sm font-medium"></span>
 
 </div>
 
-
 </main>
-
 
 <!-- =========================================================
      FOOTER
 ========================================================= -->
 
-<footer
-class="mt-8 text-center text-slate-400 px-4 pb-8"
->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
 
-<p
-class="font-bold text-slate-500 tracking-tight uppercase"
->
+<p class="font-bold text-slate-500 tracking-tight uppercase">
 &copy; 2026 Paperless Project - PT TSI. All rights reserved.
 </p>
-
 
 <p class="text-[10px] mt-1">
 
 System Architecture by:
 
-<span
-class="text-slate-600 font-semibold uppercase"
->
+<span class="text-slate-600 font-semibold uppercase">
 Imam Wahyu Ramadhan, S.T.
 </span>
 
 |
 
-<span
-class="text-amber-600 font-bold uppercase tracking-tighter"
->
+<span class="text-amber-600 font-bold uppercase tracking-tighter">
 Project 2.0
 </span>
 
 </p>
 
 </footer>
-
 
 <script>
 
@@ -2139,16 +2006,11 @@ theme:"dashboard-slate"
 function handleLogoError(){
 
 const logo=document.getElementById('companyLogo');
-
 const fallback=document.getElementById('logoFallback');
 
-if(logo){
-    logo.classList.add('hidden');
-}
+if(logo) logo.classList.add('hidden');
 
-if(fallback){
-    fallback.classList.remove('hidden');
-}
+if(fallback) fallback.classList.remove('hidden');
 
 }
 
@@ -2160,9 +2022,7 @@ if(fallback){
 function showHome(){
 
 const homeScreen=document.getElementById('homeScreen');
-
 const formMenuScreen=document.getElementById('formMenuScreen');
-
 const reportMenuScreen=document.getElementById('reportMenuScreen');
 
 homeScreen.classList.remove('hidden');
@@ -2172,8 +2032,8 @@ formMenuScreen.classList.add('hidden');
 reportMenuScreen.classList.add('hidden');
 
 window.scrollTo({
-    top:0,
-    behavior:'smooth'
+top:0,
+behavior:'smooth'
 });
 
 }
@@ -2186,9 +2046,7 @@ window.scrollTo({
 function showFormMenu(){
 
 const homeScreen=document.getElementById('homeScreen');
-
 const formMenuScreen=document.getElementById('formMenuScreen');
-
 const reportMenuScreen=document.getElementById('reportMenuScreen');
 
 homeScreen.classList.add('hidden');
@@ -2200,8 +2058,8 @@ formMenuScreen.classList.remove('hidden');
 renderForms();
 
 window.scrollTo({
-    top:0,
-    behavior:'smooth'
+top:0,
+behavior:'smooth'
 });
 
 }
@@ -2214,9 +2072,7 @@ window.scrollTo({
 function showReportMenu(){
 
 const homeScreen=document.getElementById('homeScreen');
-
 const formMenuScreen=document.getElementById('formMenuScreen');
-
 const reportMenuScreen=document.getElementById('reportMenuScreen');
 
 homeScreen.classList.add('hidden');
@@ -2228,8 +2084,8 @@ reportMenuScreen.classList.remove('hidden');
 renderDashboards();
 
 window.scrollTo({
-    top:0,
-    behavior:'smooth'
+top:0,
+behavior:'smooth'
 });
 
 }
@@ -2358,10 +2214,8 @@ ${group.restricted?'text-red-600':'text-amber-600'}"
 
 <div class="flex flex-col min-w-0">
 
-<span
-class="text-sm sm:text-base font-extrabold uppercase tracking-wide
-${group.restricted?'text-red-700':'text-slate-700'}"
->
+<span class="text-sm sm:text-base font-extrabold uppercase tracking-wide
+${group.restricted?'text-red-700':'text-slate-700'}">
 
 ${escapeHtml(group.title)}
 
@@ -2434,14 +2288,9 @@ text-sm
 
 btn.innerHTML=`
 
-<span
-class="bg-white text-amber-500 p-1.5 rounded-lg shadow-sm shrink-0"
->
+<span class="bg-white text-amber-500 p-1.5 rounded-lg shadow-sm shrink-0">
 
-<i
-data-lucide="arrow-right"
-class="w-3.5 h-3.5"
-></i>
+<i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
 
 </span>
 
@@ -2501,7 +2350,7 @@ document
 '#formMenuContainer [id^="sub-"]'
 )
 .forEach(el=>{
-    el.classList.add('hidden');
+el.classList.add('hidden');
 });
 
 
@@ -2510,7 +2359,7 @@ document
 '#formMenuContainer [id^="icon-"]'
 )
 .forEach(el=>{
-    el.style.transform='rotate(0deg)';
+el.style.transform='rotate(0deg)';
 });
 
 
@@ -2705,7 +2554,7 @@ const action=pendingAction;
 closeAuth();
 
 if(action){
-    action();
+action();
 }
 
 }else{
