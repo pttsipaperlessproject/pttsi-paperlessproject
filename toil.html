@@ -32,8 +32,8 @@
 }
 
 html{
-    width:100%;
     min-width:0;
+    width:100%;
 }
 
 body{
@@ -217,8 +217,6 @@ body{
 
     align-items:center;
 
-    justify-content:center;
-
     gap:8px;
 
     transition:
@@ -231,8 +229,6 @@ body{
     border:none;
 
     cursor:pointer;
-
-    white-space:nowrap;
 
 }
 
@@ -281,8 +277,6 @@ body{
     transition:.2s ease;
 
     min-width:150px;
-
-    max-width:100%;
 
 }
 
@@ -419,11 +413,15 @@ body{
         0 4px 12px
         rgba(15,23,42,.04);
 
+    width:100%;
+
+    min-width:0;
+
 }
 
 
 /* =========================================================
-   TABLE SCROLL
+   TABLE SCROLL AREA
 ========================================================= */
 
 .table-scroll{
@@ -436,6 +434,28 @@ body{
 
     -webkit-overflow-scrolling:touch;
 
+    scrollbar-width:thin;
+
+}
+
+.table-scroll::-webkit-scrollbar{
+
+    height:6px;
+
+}
+
+.table-scroll::-webkit-scrollbar-track{
+
+    background:#f8fafc;
+
+}
+
+.table-scroll::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:10px;
+
 }
 
 
@@ -447,7 +467,7 @@ table{
 
     width:100%;
 
-    min-width:720px;
+    min-width:760px;
 
     border-collapse:separate;
 
@@ -729,8 +749,6 @@ tbody tr:last-child td{
 
     transition:.2s ease;
 
-    min-width:0;
-
 }
 
 .filter-input:focus{
@@ -885,45 +903,25 @@ select.filter-input{
 
 
 /* =========================================================
-   TABLE HEADER RESPONSIVE
-========================================================= */
-
-.table-header{
-
-    min-width:0;
-
-}
-
-
-/* =========================================================
-   TABLE FOOTER RESPONSIVE
-========================================================= */
-
-.table-footer{
-
-    min-width:0;
-
-}
-
-
-/* =========================================================
-   TABLET
+   RESPONSIVE - TABLET
 ========================================================= */
 
 @media(max-width:1024px){
 
     body{
 
-        padding-left:12px !important;
-
-        padding-right:12px !important;
+        padding-left:16px !important;
+        padding-right:16px !important;
 
     }
 
 
     main{
 
-        max-width:100% !important;
+        padding:
+            28px !important;
+
+        border-radius:24px !important;
 
     }
 
@@ -933,16 +931,35 @@ select.filter-input{
         grid-template-columns:
             repeat(2,minmax(0,1fr));
 
-        gap:12px;
+    }
+
+
+    .page-title{
+
+        font-size:26px;
 
     }
 
+
+    .page-subtitle{
+
+        font-size:12px;
+
+    }
+
+
+    .filter-grid{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr)) !important;
+
+    }
 
 }
 
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE - MOBILE
 ========================================================= */
 
 @media(max-width:768px){
@@ -952,51 +969,50 @@ select.filter-input{
         padding:
             10px !important;
 
-        overflow-x:hidden;
-
     }
 
 
     main{
 
-        padding:
-            18px !important;
+        width:100%;
 
-        border-radius:
-            22px !important;
+        max-width:100%;
+
+        padding:
+            20px !important;
+
+        border-radius:20px !important;
+
+        box-shadow:
+            0 10px 30px
+            rgba(15,23,42,.08) !important;
 
     }
 
 
     header{
 
-        margin-bottom:
-            22px !important;
+        margin-bottom:22px !important;
 
-        padding-bottom:
-            20px !important;
+        padding-bottom:20px !important;
 
     }
 
 
     .logo-wrapper{
 
-        margin-bottom:
-            14px !important;
+        margin-bottom:14px !important;
 
     }
 
 
     .logo-wrapper > div{
 
-        width:
-            76px !important;
+        width:78px !important;
 
-        height:
-            76px !important;
+        height:78px !important;
 
-        border-radius:
-            17px !important;
+        border-radius:17px !important;
 
     }
 
@@ -1005,52 +1021,42 @@ select.filter-input{
 
         width:100%;
 
-        max-width:100%;
+        max-width:430px;
 
         padding:
-            13px
-            16px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
-
-    header .color-primary h1{
-
-        font-size:
+            14px
             18px !important;
 
-        letter-spacing:
-            .07em !important;
+        border-radius:16px !important;
 
     }
 
 
-    header .color-primary h2{
+    header h1{
 
-        font-size:
-            11px !important;
+        font-size:18px !important;
 
-        letter-spacing:
-            .08em !important;
-
-        line-height:
-            1.5 !important;
+        letter-spacing:.08em !important;
 
     }
 
 
-    header > div:last-child{
+    header h2{
 
-        font-size:
-            8px !important;
+        font-size:12px !important;
 
-        letter-spacing:
-            .18em !important;
+        letter-spacing:.08em !important;
 
-        text-align:center;
+        line-height:1.5 !important;
+
+    }
+
+
+    header .tracking-\[0\.3em\]{
+
+        font-size:8px !important;
+
+        letter-spacing:.2em !important;
 
     }
 
@@ -1061,56 +1067,49 @@ select.filter-input{
 
         align-items:stretch;
 
-        gap:16px;
+        gap:16px !important;
+
+        margin-bottom:20px !important;
 
     }
 
 
     .page-title{
 
-        font-size:
-            23px;
+        font-size:22px;
 
-        line-height:
-            1.25;
+        line-height:1.25;
 
-        gap:10px;
+        gap:9px;
 
     }
 
 
-    .page-title > span{
+    .page-title span{
 
-        padding:
-            10px !important;
+        padding:9px !important;
 
-        border-radius:
-            10px !important;
+        border-radius:10px !important;
 
     }
 
 
-    .page-title > span svg{
+    .page-title svg{
 
-        width:
-            21px !important;
+        width:20px !important;
 
-        height:
-            21px !important;
+        height:20px !important;
 
     }
 
 
     .page-subtitle{
 
-        font-size:
-            11px;
+        font-size:11px;
 
-        line-height:
-            1.6;
+        line-height:1.6;
 
-        margin-left:
-            0 !important;
+        margin-top:7px !important;
 
     }
 
@@ -1122,8 +1121,7 @@ select.filter-input{
         display:grid !important;
 
         grid-template-columns:
-            minmax(0,1fr)
-            minmax(0,1fr);
+            1fr 1fr;
 
         gap:8px !important;
 
@@ -1133,15 +1131,6 @@ select.filter-input{
     section > div:first-child > div:last-child > div{
 
         min-width:0;
-
-        width:100%;
-
-    }
-
-
-    section > div:first-child > div:last-child > div{
-
-        justify-content:space-between;
 
     }
 
@@ -1154,10 +1143,9 @@ select.filter-input{
 
         padding:
             10px
-            10px;
-
-        font-size:
             11px;
+
+        font-size:11px;
 
     }
 
@@ -1166,12 +1154,13 @@ select.filter-input{
 
         width:100%;
 
+        justify-content:center;
+
         padding:
             10px
             12px;
 
-        font-size:
-            11px;
+        font-size:11px;
 
     }
 
@@ -1183,125 +1172,101 @@ select.filter-input{
 
         gap:10px;
 
-        margin-bottom:18px;
+        margin-bottom:16px;
 
     }
 
 
     .stat-card{
 
-        padding:
-            13px;
+        min-height:110px;
 
-        min-height:
-            108px;
+        padding:13px;
 
-        border-radius:
-            14px;
+        border-radius:14px;
 
     }
 
 
     .stat-card .text-3xl{
 
-        font-size:
-            24px !important;
+        font-size:24px !important;
 
     }
 
 
     .stat-card .text-\[10px\]{
 
-        font-size:
-            8px !important;
+        font-size:8px !important;
 
     }
 
 
     .stat-card .text-\[9px\]{
 
-        font-size:
-            8px !important;
+        font-size:8px !important;
 
     }
 
 
     .stat-card .p-2{
 
-        padding:
-            7px !important;
+        padding:7px !important;
 
     }
 
 
     .stat-card .w-4{
 
-        width:
-            14px !important;
+        width:14px !important;
 
-    }
-
-
-    .stat-card .h-4{
-
-        height:
-            14px !important;
-
-    }
-
-
-    .stat-card .mb-1{
-
-        margin-bottom:
-            2px !important;
-
-    }
-
-
-    .stat-card .qty-unit{
-
-        font-size:
-            8px;
+        height:14px !important;
 
     }
 
 
     #tableContent > div:nth-child(2){
 
-        padding:
-            15px !important;
+        padding:15px !important;
 
-        border-radius:
-            16px !important;
+        border-radius:16px !important;
 
-        margin-bottom:
-            14px !important;
+        margin-bottom:14px !important;
 
     }
 
 
     #tableContent > div:nth-child(2) > div:first-child{
 
-        margin-bottom:
-            14px !important;
+        margin-bottom:14px !important;
 
     }
 
 
-    #tableContent > div:nth-child(2) .grid{
+    .filter-grid{
 
         grid-template-columns:
-            repeat(2,minmax(0,1fr));
+            1fr !important;
 
-        gap:10px !important;
+        gap:11px !important;
+
+    }
+
+
+    .filter-input{
+
+        padding:
+            10px
+            11px;
+
+        font-size:10px;
 
     }
 
 
     #tableContent > div:nth-child(2) .mt-4{
 
-        margin-top:
-            12px !important;
+        margin-top:13px !important;
 
     }
 
@@ -1313,27 +1278,14 @@ select.filter-input{
     }
 
 
-    .filter-input{
-
-        font-size:
-            10px;
-
-        padding:
-            9px
-            10px;
-
-    }
-
-
     .table-panel{
 
-        border-radius:
-            16px;
+        border-radius:16px;
 
     }
 
 
-    .table-header{
+    .table-panel > div:first-child{
 
         padding:
             13px
@@ -1344,26 +1296,47 @@ select.filter-input{
     }
 
 
-    .table-header > div:last-child{
+    .table-panel > div:first-child > div:last-child{
 
-        font-size:
-            8px !important;
+        font-size:8px !important;
 
-    }
+        gap:5px !important;
 
+        flex-wrap:wrap;
 
-    .table-header > div:last-child svg{
+        justify-content:flex-end;
 
-        width:
-            12px !important;
-
-        height:
-            12px !important;
+        text-align:right;
 
     }
 
 
-    .table-header > div:last-child span{
+    .table-panel > div:first-child > div:last-child svg{
+
+        width:12px !important;
+
+        height:12px !important;
+
+    }
+
+
+    .table-panel > div:first-child h3{
+
+        font-size:12px !important;
+
+    }
+
+
+    .table-panel > div:first-child p{
+
+        font-size:8px !important;
+
+    }
+
+
+    .table-panel > div:first-child span{
+
+        font-size:8px !important;
 
         padding:
             4px
@@ -1383,16 +1356,14 @@ select.filter-input{
 
     table{
 
-        min-width:
-            720px;
+        min-width:720px;
 
     }
 
 
     thead th{
 
-        font-size:
-            9px;
+        font-size:9px;
 
     }
 
@@ -1400,24 +1371,18 @@ select.filter-input{
     .sort-button{
 
         padding:
-            12px
-            10px;
+            12px 10px;
 
-        font-size:
-            9px;
-
-        gap:5px;
+        font-size:9px;
 
     }
 
 
     .sort-icon{
 
-        width:
-            12px;
+        width:12px;
 
-        height:
-            12px;
+        height:12px;
 
     }
 
@@ -1428,13 +1393,19 @@ select.filter-input{
             11px
             10px;
 
-        font-size:
-            10px;
+        font-size:10px;
 
     }
 
 
-    .table-footer{
+    .qty-unit{
+
+        font-size:8px;
+
+    }
+
+
+    .table-panel > div:last-child{
 
         padding:
             12px
@@ -1442,18 +1413,14 @@ select.filter-input{
 
         gap:10px;
 
-        flex-wrap:wrap;
-
     }
 
 
     #paginationInfo{
 
-        font-size:
-            9px !important;
+        font-size:8px !important;
 
-        flex:
-            1 1 auto;
+        white-space:nowrap;
 
     }
 
@@ -1466,52 +1433,52 @@ select.filter-input{
 
         padding-bottom:2px;
 
+        scrollbar-width:none;
+
+    }
+
+
+    #pagination::-webkit-scrollbar{
+
+        display:none;
+
     }
 
 
     .pagination-button{
 
-        width:
-            32px;
+        width:30px;
 
-        min-width:
-            32px;
+        height:30px;
 
-        height:
-            32px;
+        min-width:30px;
 
-        font-size:
-            10px;
+        font-size:10px;
 
     }
 
 
     footer{
 
-        margin-top:
-            20px !important;
+        margin-top:20px !important;
 
-        padding-bottom:
-            20px !important;
+        padding-bottom:20px !important;
 
     }
 
 
     footer p{
 
-        font-size:
-            9px !important;
+        font-size:9px !important;
 
-        line-height:
-            1.6;
+        line-height:1.6;
 
     }
 
 
     footer p:last-child{
 
-        font-size:
-            8px !important;
+        font-size:8px !important;
 
     }
 
@@ -1519,7 +1486,7 @@ select.filter-input{
 
 
 /* =========================================================
-   SMALL MOBILE
+   RESPONSIVE - SMALL MOBILE
 ========================================================= */
 
 @media(max-width:480px){
@@ -1527,7 +1494,7 @@ select.filter-input{
     body{
 
         padding:
-            7px !important;
+            6px !important;
 
     }
 
@@ -1535,32 +1502,31 @@ select.filter-input{
     main{
 
         padding:
-            14px !important;
+            15px !important;
 
-        border-radius:
-            18px !important;
+        border-radius:17px !important;
 
     }
 
 
     header{
 
-        margin-bottom:
-            18px !important;
+        padding-bottom:16px !important;
 
-        padding-bottom:
-            17px !important;
+        margin-bottom:18px !important;
 
     }
 
 
     .logo-wrapper > div{
 
-        width:
-            68px !important;
+        width:68px !important;
 
-        height:
-            68px !important;
+        height:68px !important;
+
+        padding:6px !important;
+
+        border-radius:15px !important;
 
     }
 
@@ -1568,65 +1534,54 @@ select.filter-input{
     header .color-primary{
 
         padding:
-            11px
+            12px
             10px !important;
 
-        border-radius:
-            14px !important;
+        border-radius:14px !important;
 
     }
 
 
-    header .color-primary h1{
+    header h1{
 
-        font-size:
-            15px !important;
-
-    }
-
-
-    header .color-primary h2{
-
-        font-size:
-            9px !important;
-
-        letter-spacing:
-            .06em !important;
+        font-size:15px !important;
 
     }
 
 
-    header > div:last-child{
+    header h2{
 
-        font-size:
-            7px !important;
+        font-size:9px !important;
 
-        margin-top:
-            9px !important;
+        letter-spacing:.07em !important;
+
+    }
+
+
+    header .h-0\.5{
+
+        width:45px !important;
 
     }
 
 
     .page-title{
 
-        font-size:
-            20px;
+        font-size:19px;
 
     }
 
 
-    .page-title > span{
+    .page-title span{
 
-        padding:
-            8px !important;
+        padding:8px !important;
 
     }
 
 
     .page-subtitle{
 
-        font-size:
-            10px;
+        font-size:10px;
 
     }
 
@@ -1635,22 +1590,6 @@ select.filter-input{
 
         grid-template-columns:
             1fr;
-
-    }
-
-
-    .year-selector{
-
-        font-size:
-            10px;
-
-    }
-
-
-    .back-button{
-
-        font-size:
-            10px;
 
     }
 
@@ -1664,99 +1603,85 @@ select.filter-input{
 
     .stat-card{
 
-        padding:
-            11px;
+        min-height:102px;
 
-        min-height:
-            100px;
+        padding:11px;
 
-        border-radius:
-            13px;
+        border-radius:13px;
 
     }
 
 
     .stat-card .text-3xl{
 
-        font-size:
-            21px !important;
+        font-size:21px !important;
+
+    }
+
+
+    .stat-card .mb-1{
+
+        margin-bottom:2px !important;
 
     }
 
 
     .stat-card .text-\[10px\]{
 
-        font-size:
-            7px !important;
+        font-size:7px !important;
 
     }
 
 
     .stat-card .text-\[9px\]{
 
-        font-size:
-            7px !important;
+        font-size:7px !important;
 
     }
 
 
     #tableContent > div:nth-child(2){
 
-        padding:
-            12px !important;
+        padding:12px !important;
 
     }
 
 
-    #tableContent > div:nth-child(2) .grid{
+    .table-panel > div:first-child{
 
-        grid-template-columns:
-            1fr;
+        align-items:flex-start;
 
     }
 
 
-    .table-header{
-
-        align-items:flex-start !important;
+    .table-panel > div:first-child > div:last-child{
 
         flex-direction:column;
 
-    }
+        align-items:flex-end;
 
-
-    .table-header > div:last-child{
-
-        width:100%;
-
-        justify-content:flex-start;
-
-        flex-wrap:wrap;
-
-    }
-
-
-    .table-footer{
-
-        flex-direction:column;
-
-        align-items:stretch !important;
+        gap:4px !important;
 
     }
 
 
     #paginationInfo{
 
-        text-align:center;
+        display:none;
 
     }
 
 
-    #pagination{
+    .table-panel > div:last-child{
 
-        justify-content:center;
+        justify-content:center !important;
 
-        width:100%;
+    }
+
+
+    footer{
+
+        margin-top:16px !important;
 
     }
 
@@ -1764,7 +1689,7 @@ select.filter-input{
 
 
 /* =========================================================
-   EXTRA SMALL MOBILE
+   RESPONSIVE - VERY SMALL MOBILE
 ========================================================= */
 
 @media(max-width:375px){
@@ -1772,23 +1697,44 @@ select.filter-input{
     main{
 
         padding:
-            11px !important;
+            12px !important;
+
+    }
+
+
+    .logo-wrapper > div{
+
+        width:62px !important;
+
+        height:62px !important;
+
+    }
+
+
+    header h1{
+
+        font-size:13px !important;
+
+    }
+
+
+    header h2{
+
+        font-size:8px !important;
 
     }
 
 
     .page-title{
 
-        font-size:
-            18px;
+        font-size:17px;
 
     }
 
 
-    .page-title > span{
+    .page-title span{
 
-        padding:
-            7px !important;
+        padding:7px !important;
 
     }
 
@@ -1802,43 +1748,44 @@ select.filter-input{
 
     .stat-card{
 
-        padding:
-            9px;
+        padding:9px;
 
-        min-height:
-            94px;
+        min-height:96px;
 
     }
 
 
     .stat-card .text-3xl{
 
-        font-size:
-            19px !important;
+        font-size:19px !important;
+
+    }
+
+
+    .stat-card .flex.items-end{
+
+        gap:4px !important;
 
     }
 
 
     .stat-card .text-\[10px\]{
 
-        font-size:
-            6.5px !important;
+        font-size:6.5px !important;
 
     }
 
 
     .stat-card .text-\[9px\]{
 
-        font-size:
-            6.5px !important;
+        font-size:6.5px !important;
 
     }
 
 
-    footer p{
+    table{
 
-        font-size:
-            8px !important;
+        min-width:700px;
 
     }
 
@@ -2260,6 +2207,7 @@ select.filter-input{
                     grid
                     grid-cols-4
                     gap-4
+                    filter-grid
                 "
             >
 
@@ -2525,7 +2473,6 @@ select.filter-input{
 
             <div
                 class="
-                    table-header
                     px-5
                     py-4
                     border-b
@@ -2796,7 +2743,6 @@ select.filter-input{
 
             <div
                 class="
-                    table-footer
                     px-5
                     py-4
                     border-t
