@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Data Availability Unit - PT TSI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    padding: 24px;
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
+    background: linear-gradient(135deg, #f8fafc, #eef2f7);
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 28px;
+}
+
+.glass-panel {
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.3);
+}
+
+.color-primary {
+    background: #1E3A8A;
+}
+
+.logo-shadow {
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.10),
+        0 4px 10px rgba(15,23,42,.05);
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+.fade-in {
+    animation: fadeIn .8s ease forwards;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.fade-out {
+    animation: fadeOut .7s ease forwards;
+}
+
+@keyframes fadeOut {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+
+}
+
+.spin {
+    animation: spin 1.15s linear infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+.pulse-soft {
+    animation: pulseSoft 2.2s ease-in-out infinite;
+}
+
+@keyframes pulseSoft {
+
+    0%,100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .45;
+    }
+
+}
+
+/* =========================================================
+   SYSTEM ACTIVITY
+========================================================= */
+
+.system-icon {
+    transition:
+        background .5s ease,
+        color .5s ease,
+        transform .5s ease;
+}
+
+.progress-bar {
+    transition:
+        width 1.5s cubic-bezier(.4,0,.2,1);
+}
+
+.activity-text {
+    transition:
+        opacity .45s ease,
+        transform .45s ease;
+}
+
+.activity-text.hide {
+    opacity: 0;
+    transform: translateY(5px);
+}
+
+.live-number {
+    transition: opacity .35s ease;
+}
+
+/* =========================================================
+   WARNING
+========================================================= */
+
+.warning-box {
+    animation: warningAppear 1s ease forwards;
+}
+
+@keyframes warningAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(.97) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+}
+
+/* =========================================================
+   CHOICE CARDS
+========================================================= */
+
+.choice-card {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.choice-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(15,23,42,.10);
+}
+
+/* =========================================================
+   ARCHIVE
+========================================================= */
+
+.archive-card {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.archive-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(15,23,42,.10);
+}
+
+/* =========================================================
+   NAV MENU
+========================================================= */
+
+.nav-menu {
+    animation: menuIn .2s ease forwards;
+}
+
+@keyframes menuIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1024px) {
+
+    body {
+        padding: 16px;
+    }
+
+    main {
+        padding: 28px;
+        border-radius: 24px;
+    }
+
+}
+
+@media(max-width:768px) {
+
+    body {
+        padding: 10px;
+    }
+
+    main {
+        width: 100%;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .logo-wrapper {
+        width: 78px !important;
+        height: 78px !important;
+    }
+
+    header h1 {
+        font-size: 18px !important;
+    }
+
+    header h2 {
+        font-size: 11px !important;
+    }
+
+    .page-title {
+        font-size: 22px !important;
+    }
+
+}
+
+@media(max-width:480px) {
+
+    body {
+        padding: 6px;
+    }
+
+    main {
+        padding: 15px;
+        border-radius: 17px;
+    }
+
+    .logo-wrapper {
+        width: 68px !important;
+        height: 68px !important;
+    }
+
+    header h1 {
+        font-size: 15px !important;
+    }
+
+    header h2 {
+        font-size: 9px !important;
+    }
+
+    .page-title {
+        font-size: 19px !important;
+    }
+
+}
+
+@media(max-width:375px) {
+
+    main {
+        padding: 12px;
+    }
+
+    .page-title {
+        font-size: 17px !important;
+    }
+
+    header h1 {
+        font-size: 14px !important;
+    }
+
+    header h2 {
+        font-size: 8px !important;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<main class="glass-panel">
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
+
+    <div
+        class="mb-4 logo-wrapper"
+        style="width:96px;height:96px;"
+    >
+
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="w-full h-full object-contain"
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+
+            <div
+                id="logoFallback"
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+            >
+
+                <span class="font-black text-2xl">
+                    TSI
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+            PAPERLESS PROJECT
+        </h1>
+
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+
+    </div>
+
+
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
+        Digitalization Initiative v2.0
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     SYSTEM PROCESS
+========================================================= -->
+
+<section id="systemProcess">
+
+    <div class="max-w-3xl mx-auto">
+
+        <div class="text-center mb-9">
+
+            <div
+                id="systemIcon"
+                class="system-icon inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 text-blue-900 mb-5"
+            >
+
+                <i
+                    data-lucide="database"
+                    class="w-8 h-8 spin"
+                ></i>
+
+            </div>
+
+
+            <div class="text-[10px] font-black tracking-[0.3em] uppercase text-blue-600 mb-2">
+                Availability Data Engine
+            </div>
+
+
+            <div
+                id="activityText"
+                class="activity-text"
+            >
+
+                <h1
+                    id="activityTitle"
+                    class="text-2xl sm:text-3xl font-black text-slate-800"
+                >
+                    Connecting to Availability Database...
+                </h1>
+
+                <p
+                    id="activityDescription"
+                    class="mt-3 text-sm text-slate-500 max-w-xl mx-auto leading-relaxed"
+                >
+                    Establishing a connection with the Availability data source.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PROGRESS
+        ================================================= -->
+
+        <div class="mb-7">
+
+            <div class="flex items-center justify-between mb-2">
+
+                <span
+                    id="progressLabel"
+                    class="text-[11px] font-bold text-slate-400"
+                >
+                    Establishing connection
+                </span>
+
+                <span
+                    id="progressPercent"
+                    class="text-[11px] font-black text-blue-800"
+                >
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar h-full bg-blue-800 rounded-full"
+                    style="width:0%"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CURRENT ACTIVITY
+        ================================================= -->
+
+        <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5">
+
+            <div class="flex items-center gap-3">
+
+                <div
+                    id="activityIndicator"
+                    class="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center shrink-0"
+                >
+
+                    <i
+                        data-lucide="loader-circle"
+                        class="w-4 h-4 text-blue-700 spin"
+                    ></i>
+
+                </div>
+
+
+                <div class="min-w-0 flex-1">
+
+                    <div
+                        id="currentOperation"
+                        class="text-xs font-bold text-slate-700"
+                    >
+                        Establishing secure connection...
+                    </div>
+
+                    <div
+                        id="currentDetail"
+                        class="text-[10px] text-slate-400 mt-1"
+                    >
+                        Please wait while the system initializes the request.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             LIVE DATA
+        ================================================= -->
+
+        <div class="mt-4 rounded-2xl bg-slate-900 text-white p-5">
+
+            <div class="flex items-center gap-2 mb-5">
+
+                <div class="w-2 h-2 rounded-full bg-emerald-400 pulse-soft"></div>
+
+                <span class="text-[9px] font-black tracking-[0.25em] uppercase text-slate-500">
+                    Live Processing
+                </span>
+
+            </div>
+
+
+            <div class="grid grid-cols-2 gap-5">
+
+                <div>
+
+                    <div class="text-[9px] uppercase font-bold text-slate-500">
+                        Records Processed
+                    </div>
+
+                    <div
+                        id="recordCounter"
+                        class="live-number text-xl font-black mt-1"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="text-[9px] uppercase font-bold text-slate-500">
+                        Elapsed Processing
+                    </div>
+
+                    <div
+                        id="dataVolume"
+                        class="live-number text-xl font-black mt-1"
+                    >
+                        0.0 sec
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPACITY WARNING
+========================================================= -->
+
+<section
+    id="capacitySection"
+    class="hidden"
+>
+
+    <div class="max-w-3xl mx-auto warning-box">
+
+        <div class="rounded-3xl border border-amber-200 bg-amber-50 p-6 sm:p-8">
+
+            <div class="text-center">
+
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-white text-amber-600 flex items-center justify-center shadow-sm mb-5">
+
+                    <i
+                        data-lucide="triangle-alert"
+                        class="w-8 h-8"
+                    ></i>
+
+                </div>
+
+
+                <div class="text-[10px] font-black tracking-[0.3em] uppercase text-amber-600 mb-2">
+                    Processing Capacity Reached
+                </div>
+
+
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-800">
+                    Unable to Load Daily Availability
+                </h2>
+
+
+                <p class="mt-4 text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
+
+                    The system successfully connected to the Availability database
+                    and began processing the requested information.
+
+                    However, the current server environment does not have sufficient
+                    processing capacity to deliver the complete daily dataset.
+
+                </p>
+
+
+                <div class="mt-6 rounded-2xl bg-white/80 border border-amber-100 p-4 text-left">
+
+                    <div class="flex gap-3">
+
+                        <i
+                            data-lucide="shield-check"
+                            class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"
+                        ></i>
+
+                        <div class="text-xs text-slate-600 leading-relaxed">
+
+                            <strong class="text-slate-800">
+                                Your data is safe.
+                            </strong>
+
+                            No records have been deleted or lost.
+                            The limitation is only related to the current
+                            server resources required to process the complete
+                            daily Availability dataset.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FALLBACK PROCESS + USER CHOICE
+        ================================================= -->
+
+        <div
+            id="fallbackMessage"
+            class="mt-7 text-center"
+        >
+
+            <div class="inline-flex items-center gap-3 text-sm font-bold text-blue-700">
+
+                <i
+                    data-lucide="archive"
+                    class="w-5 h-5"
+                ></i>
+
+                Alternative data access is ready.
+
+            </div>
+
+            <p class="text-[10px] text-slate-400 mt-2">
+                The system has prepared the available Availability archive.
+            </p>
+
+
+            <!-- =================================================
+                 USER CHOICE MOVED HERE
+            ================================================= -->
+
+            <div class="grid sm:grid-cols-2 gap-4 mt-7 text-left">
+
+                <!-- ARCHIVE -->
+
+                <button
+                    onclick="openArchive()"
+                    class="choice-card group rounded-2xl bg-blue-900 text-white p-5 text-left shadow-lg"
+                >
+
+                    <div class="flex items-center justify-between">
+
+                        <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center">
+
+                            <i
+                                data-lucide="archive"
+                                class="w-5 h-5"
+                            ></i>
+
+                        </div>
+
+
+                        <i
+                            data-lucide="arrow-right"
+                            class="w-5 h-5 opacity-50 group-hover:translate-x-1 transition-transform"
+                        ></i>
+
+                    </div>
+
+
+                    <div class="mt-5">
+
+                        <div class="font-black text-lg">
+                            Open PDF Archive
+                        </div>
+
+                        <div class="text-xs text-blue-200 mt-1">
+                            View available monthly Availability reports
+                        </div>
+
+                    </div>
+
+                </button>
+
+
+                <!-- TABLE -->
+
+                <a
+                    href="tavailability.html"
+                    class="choice-card group rounded-2xl bg-white border border-slate-200 text-slate-700 p-5 text-left shadow-sm"
+                >
+
+                    <div class="flex items-center justify-between">
+
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center">
+
+                            <i
+                                data-lucide="table-2"
+                                class="w-5 h-5"
+                            ></i>
+
+                        </div>
+
+
+                        <i
+                            data-lucide="arrow-right"
+                            class="w-5 h-5 text-slate-300 group-hover:translate-x-1 transition-transform"
+                        ></i>
+
+                    </div>
+
+
+                    <div class="mt-5">
+
+                        <div class="font-black text-lg">
+                            Return to Availability Table
+                        </div>
+
+                        <div class="text-xs text-slate-400 mt-1">
+                            Continue viewing available data in table format
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PDF ARCHIVE
+========================================================= -->
+
+<section
+    id="archiveSection"
+    class="hidden"
+>
+
+    <div class="fade-in">
+
+        <!-- TITLE & NAVIGATION -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-8 w-full">
+
+            <!-- Bagian Kiri: Judul -->
+            <div class="flex items-center gap-4">
+
+                <div class="w-12 h-12 rounded-xl bg-[#1e3a8a] text-white flex items-center justify-center shrink-0">
+
+                    <i data-lucide="gauge" class="w-6 h-6"></i>
+
+                </div>
+
+                <div>
+
+                    <h1 class="text-2xl sm:text-[26px] font-black text-slate-900 tracking-tight">
+                        Data Availability Unit
+                    </h1>
+
+                    <p class="text-[13px] text-slate-600 mt-0.5">
+                        Daftar seluruh avilability unit yang tersimpan pada database.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Bagian Kanan: Filter & Tombol -->
+
+            <div class="flex flex-wrap items-center gap-3">
+
+                <div class="flex items-center gap-2">
+
+                    <span class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">
+                        Periode
+                    </span>
+
+                    <div class="relative">
+
+                        <select class="appearance-none border border-slate-200 rounded-xl pl-4 pr-10 py-2.5 text-sm font-bold text-[#1e3a8a] bg-white outline-none focus:border-blue-500 cursor-pointer shadow-sm">
+
+                            <option>
+                                Seluruh Data
+                            </option>
+
+                        </select>
+
+                        <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#1e3a8a]">
+
+                            <i
+                                data-lucide="chevron-down"
+                                class="w-4 h-4"
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1e3a8a] text-white font-bold text-sm shadow-sm hover:bg-blue-800 transition">
+
+                    <i
+                        data-lucide="calendar"
+                        class="w-4 h-4"
+                    ></i>
+
+                    Lihat data per hari
+
+                </button>
+
+
+                <button class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1e3a8a] text-white font-bold text-sm shadow-sm hover:bg-blue-800 transition">
+
+                    <i
+                        data-lucide="arrow-left"
+                        class="w-4 h-4"
+                    ></i>
+
+                    Kembali
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div
+            id="archiveStatus"
+            class="mb-6 rounded-2xl bg-slate-50 border border-slate-200 p-4 flex items-center gap-3"
+        >
+
+            <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
+
+                <i
+                    data-lucide="loader-circle"
+                    class="w-5 h-5 spin"
+                ></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="font-bold text-sm text-slate-700">
+                    Loading archive...
+                </div>
+
+                <div class="text-xs text-slate-400">
+                    Connecting to the Availability document archive
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PDF GRID -->
+
+        <div
+            id="pdfGrid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        ></div>
+
+
+        <!-- ERROR -->
+
+        <div
+            id="archiveError"
+            class="hidden text-center py-12"
+        >
+
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-4">
+
+                <i
+                    data-lucide="file-warning"
+                    class="w-7 h-7"
+                ></i>
+
+            </div>
+
+
+            <h3 class="font-black text-lg text-slate-800">
+                Archive Could Not Be Loaded
+            </h3>
+
+
+            <p class="text-sm text-slate-500 mt-2">
+                Please try again later.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+
+    <p class="text-[10px] mt-1">
+
+        System Architecture by:
+
+        <span class="text-slate-600 font-semibold uppercase">
+            Imam Wahyu Ramadhan, S.T.
+        </span>
+
+        |
+
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">
+            Project 2.0
+        </span>
+
+    </p>
+
+</footer>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   API
+========================================================= */
+
+const API_URL =
+'https://script.google.com/macros/s/AKfycbySVSJiyZeSemjIi4eCcnNVLp6iy0xcl3Oacewpi9nzSVerTEhyR9tYTQG4nAjZRMdP/exec';
+
+
+/* =========================================================
+   LOGO FALLBACK
+========================================================= */
+
+function handleLogoError() {
+
+    const logo =
+        document.getElementById('companyLogo');
+
+    const fallback =
+        document.getElementById('logoFallback');
+
+    if (logo) {
+        logo.classList.add('hidden');
+    }
+
+    if (fallback) {
+
+        fallback.classList.remove('hidden');
+        fallback.classList.add('flex');
+
+    }
+
+}
+
+
+/* =========================================================
+   ICONS
+========================================================= */
+
+function refreshIcons() {
+
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+
+}
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const activityTitle =
+document.getElementById('activityTitle');
+
+const activityDescription =
+document.getElementById('activityDescription');
+
+const activityText =
+document.getElementById('activityText');
+
+const currentOperation =
+document.getElementById('currentOperation');
+
+const currentDetail =
+document.getElementById('currentDetail');
+
+const progressBar =
+document.getElementById('progressBar');
+
+const progressPercent =
+document.getElementById('progressPercent');
+
+const progressLabel =
+document.getElementById('progressLabel');
+
+const recordCounter =
+document.getElementById('recordCounter');
+
+const dataVolume =
+document.getElementById('dataVolume');
+
+const systemIcon =
+document.getElementById('systemIcon');
+
+const activityIndicator =
+document.getElementById('activityIndicator');
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function setProgress(percent, label) {
+
+    progressBar.style.width =
+        percent + '%';
+
+    progressPercent.textContent =
+        Math.round(percent) + '%';
+
+    progressLabel.textContent =
+        label;
+
+}
+
+
+/* =========================================================
+   CHANGE ACTIVITY
+========================================================= */
+
+function changeActivity(
+    title,
+    description,
+    operation,
+    detail,
+    percent,
+    label
+) {
+
+    activityText.classList.add('hide');
+
+    setTimeout(() => {
+
+        activityTitle.textContent =
+            title;
+
+        activityDescription.textContent =
+            description;
+
+        currentOperation.textContent =
+            operation;
+
+        currentDetail.textContent =
+            detail;
+
+        setProgress(
+            percent,
+            label
+        );
+
+        activityText.classList.remove('hide');
+
+    }, 450);
+
+}
+
+
+/* =========================================================
+   LIVE PROCESS SIMULATION
+========================================================= */
+
+let recordValue = 0;
+
+let processingTimer = null;
+
+let processingStartTime = null;
+
+
+function startLiveProcessing(
+    targetRecords,
+    duration
+) {
+
+    const start =
+        Date.now();
+
+    processingStartTime =
+        start;
+
+    const initialRecords =
+        recordValue;
+
+
+    processingTimer =
+        setInterval(() => {
+
+            const elapsed =
+                Date.now() - start;
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
+
+
+            /*
+             * Ease-out movement.
+             */
+
+            const eased =
+                1 - Math.pow(
+                    1 - progress,
+                    1.8
+                );
+
+
+            recordValue =
+                initialRecords +
+                (
+                    targetRecords -
+                    initialRecords
+                ) * eased;
+
+
+            recordCounter.textContent =
+                new Intl.NumberFormat('en-US')
+                .format(
+                    Math.floor(recordValue)
+                );
+
+
+            dataVolume.textContent =
+                (
+                    elapsed / 1000
+                ).toFixed(1) +
+                ' sec';
+
+
+            if (progress >= 1) {
+
+                clearInterval(
+                    processingTimer
+                );
+
+            }
+
+        }, 180);
+
+}
+
+
+/* =========================================================
+   NATURAL PROCESS
+========================================================= */
+
+async function runSystemProcess() {
+
+    /*
+     * PHASE 1
+     */
+
+    await wait(1800);
+
+
+    changeActivity(
+
+        'Reading Availability Records...',
+
+        'The connection has been established. The system is now retrieving the requested records.',
+
+        'Reading availability records...',
+
+        'Retrieving records from the Availability data source.',
+
+        16,
+
+        'Reading availability records'
+
+    );
+
+
+    await wait(2200);
+
+
+    /*
+     * PHASE 2
+     */
+
+    changeActivity(
+
+        'Processing Daily Availability...',
+
+        'The system is organizing availability information by unit and date.',
+
+        'Processing daily records...',
+
+        'Aggregating records and preparing daily availability information.',
+
+        31,
+
+        'Processing daily records'
+
+    );
+
+
+    startLiveProcessing(
+        1284500,
+        4200
+    );
+
+
+    await wait(4200);
+
+
+    /*
+     * PHASE 3
+     */
+
+    changeActivity(
+
+        'Preparing Data Response...',
+
+        'The system is preparing the processed information for delivery to the web application.',
+
+        'Preparing response payload...',
+
+        'Converting processed records into a browser-readable response.',
+
+        54,
+
+        'Preparing response payload'
+
+    );
+
+
+    await wait(2600);
+
+
+    /*
+     * PHASE 4
+     */
+
+    changeActivity(
+
+        'Optimizing Data Request...',
+
+        'The system is attempting to reduce the response size before continuing.',
+
+        'Optimizing data payload...',
+
+        'Reducing response overhead to improve delivery performance.',
+
+        68,
+
+        'Optimizing data payload'
+
+    );
+
+
+    startLiveProcessing(
+        2147800,
+        4300
+    );
+
+
+    await wait(4300);
+
+
+    /*
+     * PHASE 5
+     */
+
+    changeActivity(
+
+        'Processing Large Dataset...',
+
+        'The requested dataset contains a substantial number of daily availability records.',
+
+        'Processing remaining records...',
+
+        'The server is continuing to process the remaining dataset.',
+
+        79,
+
+        'Processing remaining records'
+
+    );
+
+
+    await wait(3000);
+
+
+    /*
+     * PHASE 6
+     */
+
+    changeActivity(
+
+        'Checking Processing Capacity...',
+
+        'The system is evaluating whether the current environment can safely complete the request.',
+
+        'Checking available server resources...',
+
+        'Waiting for sufficient processing resources.',
+
+        87,
+
+        'Checking server capacity'
+
+    );
+
+
+    await wait(2600);
+
+
+    /*
+     * PHASE 7
+     * Deliberately slow.
+     */
+
+    changeActivity(
+
+        'Processing Request...',
+
+        'The system is still attempting to complete the request.',
+
+        'Server response delayed...',
+
+        'The dataset is taking longer than expected to process.',
+
+        91,
+
+        'Waiting for server response'
+
+    );
+
+
+    await wait(3200);
+
+
+    /*
+     * PHASE 8
+     */
+
+    changeActivity(
+
+        'Request Cannot Be Completed',
+
+        'The current processing environment has reached its available capacity.',
+
+        'Processing capacity reached.',
+
+        'The system will safely stop the request and prepare an alternative access method.',
+
+        93,
+
+        'Processing capacity reached'
+
+    );
+
+
+    await wait(1800);
+
+
+    showCapacitySection();
+
+}
+
+
+/* =========================================================
+   SHOW CAPACITY
+========================================================= */
+
+function showCapacitySection() {
+
+    const process =
+        document.getElementById('systemProcess');
+
+    const capacity =
+        document.getElementById('capacitySection');
+
+
+    process.classList.add('fade-out');
+
+
+    setTimeout(() => {
+
+        process.classList.add('hidden');
+
+        capacity.classList.remove('hidden');
+
+        refreshIcons();
+
+    }, 700);
+
+
+    /*
+     * Show alternative access and user choices
+     * inside the same capacity section.
+     */
+
+    setTimeout(() => {
+
+        const fallback =
+            document.getElementById('fallbackMessage');
+
+        fallback.innerHTML = `
+
+            <div class="inline-flex items-center gap-3 text-sm font-bold text-blue-700">
+
+                <i
+                    data-lucide="archive"
+                    class="w-5 h-5"
+                ></i>
+
+                Alternative data access is ready.
+
+            </div>
+
+            <p class="text-[10px] text-slate-400 mt-2">
+                The system has prepared the available Availability archive.
+            </p>
+
+
+            <div class="grid sm:grid-cols-2 gap-4 mt-7 text-left">
+
+                <!-- ARCHIVE -->
+
+                <button
+                    onclick="openArchive()"
+                    class="choice-card group rounded-2xl bg-blue-900 text-white p-5 text-left shadow-lg"
+                >
+
+                    <div class="flex items-center justify-between">
+
+                        <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center">
+
+                            <i
+                                data-lucide="archive"
+                                class="w-5 h-5"
+                            ></i>
+
+                        </div>
+
+
+                        <i
+                            data-lucide="arrow-right"
+                            class="w-5 h-5 opacity-50 group-hover:translate-x-1 transition-transform"
+                        ></i>
+
+                    </div>
+
+
+                    <div class="mt-5">
+
+                        <div class="font-black text-lg">
+                            Open PDF Archive
+                        </div>
+
+                        <div class="text-xs text-blue-200 mt-1">
+                            View available monthly Availability reports
+                        </div>
+
+                    </div>
+
+                </button>
+
+
+                <!-- TABLE -->
+
+                <a
+                    href="tavailability.html"
+                    class="choice-card group rounded-2xl bg-white border border-slate-200 text-slate-700 p-5 text-left shadow-sm"
+                >
+
+                    <div class="flex items-center justify-between">
+
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center">
+
+                            <i
+                                data-lucide="table-2"
+                                class="w-5 h-5"
+                            ></i>
+
+                        </div>
+
+
+                        <i
+                            data-lucide="arrow-right"
+                            class="w-5 h-5 text-slate-300 group-hover:translate-x-1 transition-transform"
+                        ></i>
+
+                    </div>
+
+
+                    <div class="mt-5">
+
+                        <div class="font-black text-lg">
+                            Return to Availability Table
+                        </div>
+
+                        <div class="text-xs text-slate-400 mt-1">
+                            Continue viewing available data in table format
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        `;
+
+        refreshIcons();
+
+    }, 3000);
+
+}
+
+
+/* =========================================================
+   OPEN ARCHIVE
+========================================================= */
+
+function openArchive() {
+
+    const capacity =
+        document.getElementById('capacitySection');
+
+    capacity.classList.add('fade-out');
+
+
+    setTimeout(() => {
+
+        capacity.classList.add('hidden');
+
+        const archive =
+            document.getElementById('archiveSection');
+
+        archive.classList.remove('hidden');
+
+        refreshIcons();
+
+        loadArchive();
+
+    }, 700);
+
+}
+
+
+/* =========================================================
+   LOAD ARCHIVE
+========================================================= */
+
+async function loadArchive() {
+
+    const grid =
+        document.getElementById('pdfGrid');
+
+    const status =
+        document.getElementById('archiveStatus');
+
+    const error =
+        document.getElementById('archiveError');
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method: 'GET',
+                    cache: 'no-store'
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                'HTTP ' + response.status
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !result ||
+            !result.success ||
+            !Array.isArray(result.data)
+        ) {
+
+            throw new Error(
+                'Invalid API response'
+            );
+
+        }
+
+
+        const rows =
+            result.data.slice(1);
+
+
+        grid.innerHTML = '';
+
+
+        rows.forEach(row => {
+
+            const month =
+                String(
+                    row[0] || ''
+                ).trim();
+
+            const url =
+                String(
+                    row[1] || ''
+                ).trim();
+
+
+            if (!month) {
+                return;
+            }
+
+
+            const card =
+                document.createElement('div');
+
+            card.className =
+                'archive-card bg-white border border-slate-200 rounded-2xl p-5';
+
+
+            if (url) {
+
+                card.innerHTML = `
+
+                    <div class="flex items-start justify-between gap-3">
+
+                        <div class="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+
+                            <i
+                                data-lucide="file-text"
+                                class="w-5 h-5"
+                            ></i>
+
+                        </div>
+
+
+                        <div class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[9px] font-black uppercase tracking-wider">
+
+                            Available
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-5">
+
+                        <div class="font-black text-slate-800 text-base">
+                            ${escapeHTML(month)}
+                        </div>
+
+                        <div class="text-xs text-slate-400 mt-1">
+                            Availability Report
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="${escapeAttribute(url)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="mt-5 w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-blue-900 text-white text-xs font-bold hover:bg-blue-800 transition"
+                    >
+
+                        <i
+                            data-lucide="file-down"
+                            class="w-4 h-4"
+                        ></i>
+
+                        View PDF
+
+                    </a>
+
+                `;
+
+            } else {
+
+                card.innerHTML = `
+
+                    <div class="flex items-start justify-between gap-3">
+
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 text-slate-400 flex items-center justify-center">
+
+                            <i
+                                data-lucide="file-clock"
+                                class="w-5 h-5"
+                            ></i>
+
+                        </div>
+
+
+                        <div class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-400 text-[9px] font-black uppercase tracking-wider">
+
+                            Not Available
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-5">
+
+                        <div class="font-black text-slate-500 text-base">
+                            ${escapeHTML(month)}
+                        </div>
+
+                        <div class="text-xs text-slate-400 mt-1">
+                            Availability Report
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        disabled
+                        class="mt-5 w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-100 text-slate-400 text-xs font-bold cursor-not-allowed"
+                    >
+
+                        <i
+                            data-lucide="clock-3"
+                            class="w-4 h-4"
+                        ></i>
+
+                        Belum Tersedia
+
+                    </button>
+
+                `;
+
+            }
+
+
+            grid.appendChild(card);
+
+        });
+
+
+        status.innerHTML = `
+
+            <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+
+                <i
+                    data-lucide="circle-check"
+                    class="w-5 h-5"
+                ></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="font-bold text-sm text-slate-700">
+                    Archive loaded successfully
+                </div>
+
+                <div class="text-xs text-slate-400">
+                    Monthly Availability documents are ready to access
+                </div>
+
+            </div>
+
+        `;
+
+
+        refreshIcons();
+
+    } catch (errorObject) {
+
+        console.error(
+            errorObject
+        );
+
+        status.classList.add('hidden');
+
+        grid.classList.add('hidden');
+
+        error.classList.remove('hidden');
+
+        refreshIcons();
+
+    }
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function wait(milliseconds) {
+
+    return new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                milliseconds
+            )
+    );
+
+}
+
+
+function escapeHTML(value) {
+
+    return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+}
+
+
+function escapeAttribute(value) {
+
+    return value
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    'DOMContentLoaded',
+    function() {
+
+        refreshIcons();
+
+        runSystemProcess();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+

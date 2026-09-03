@@ -1,0 +1,4470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Data Availability Unit - PT TSI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+html{
+    min-width:0;
+    width:100%;
+}
+
+body{
+    margin:0;
+    width:100%;
+    min-width:0;
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b;
+}
+
+.color-primary{background:#1E3A8A}
+.text-primary{color:#1E3A8A}
+
+.glass-panel{
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3)
+}
+
+.fade-in{
+    animation:fadeIn .5s cubic-bezier(.4,0,.2,1)
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.logo-wrapper{
+    transition:transform .4s cubic-bezier(.175,.885,.32,1.275)
+}
+
+.logo-wrapper:hover{
+    transform:scale(1.08) rotate(2deg)
+}
+
+.logo-shadow{
+    filter:
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
+}
+
+.page-title{
+    font-size:30px;
+    font-weight:900;
+    color:#1e293b;
+    letter-spacing:-.025em
+}
+
+.page-subtitle{
+    font-size:13px;
+    color:#64748b;
+    font-weight:500
+}
+
+.back-button{
+    background:#1e3a8a;
+    color:#fff;
+    border-radius:12px;
+    padding:11px 17px;
+    font-size:12px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:.2s ease;
+    box-shadow:0 5px 12px rgba(30,58,138,.18);
+    border:none;
+    cursor:pointer
+}
+
+.back-button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
+}
+
+.sheet-selector{
+    background:#fff;
+    border:1px solid #dbe3ee;
+    border-radius:12px;
+    padding:10px 14px;
+    color:#1e3a8a;
+    font-size:12px;
+    font-weight:900;
+    outline:none;
+    cursor:pointer;
+    transition:.2s ease;
+    min-width:180px
+}
+
+.sheet-selector:hover{
+    border-color:#93c5fd
+}
+
+.sheet-selector:focus{
+    border-color:#60a5fa;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
+}
+
+.sheet-selector option:disabled{
+    color:#64748b;
+    background:#e2e8f0
+}
+
+.stat-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:17px;
+    transition:.25s ease
+}
+
+.stat-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
+}
+
+.table-panel{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(15,23,42,.04)
+}
+
+.table-scroll{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:visible;
+    -webkit-overflow-scrolling:touch
+}
+
+table{
+    width:100%;
+    min-width:900px;
+    border-collapse:separate;
+    border-spacing:0
+}
+
+thead{
+    background:#f8fafc
+}
+
+thead th{
+    padding:0;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    white-space:nowrap;
+    text-align:left
+}
+
+.sort-button{
+    width:100%;
+    padding:14px;
+    background:transparent;
+    border:none;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    cursor:pointer;
+    transition:.2s ease;
+    text-align:left
+}
+
+.sort-button:hover,
+.sort-button.active{
+    background:#eff6ff;
+    color:#1e3a8a
+}
+
+.sort-icon{
+    width:14px;
+    height:14px;
+    flex-shrink:0;
+    opacity:.35;
+    transition:.2s ease
+}
+
+.sort-button:hover .sort-icon{
+    opacity:.8
+}
+
+.sort-button.active .sort-icon{
+    opacity:1
+}
+
+tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:11px;
+    font-weight:500;
+    vertical-align:middle
+}
+
+tbody tr{
+    transition:background .15s ease
+}
+
+tbody tr:hover{
+    background:#f8fafc
+}
+
+.total-row{
+    position:sticky;
+    bottom:0;
+    z-index:10;
+    background:#eef2ff !important;
+    box-shadow:0 -2px 8px rgba(15,23,42,.10)
+}
+
+.total-row td{
+    border-top:2px solid #c7d2fe;
+    border-bottom:none !important;
+    font-weight:900;
+    color:#1e3a8a
+}
+
+.total-row:hover{
+    background:#e0e7ff !important
+}
+
+.total-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:5px 10px;
+    border-radius:8px;
+    background:#1e3a8a;
+    color:#fff;
+    font-size:10px;
+    font-weight:900
+}
+
+.unit-clickable{
+    cursor:pointer
+}
+
+.unit-clickable:hover{
+    transform:translateY(-1px);
+    box-shadow:0 4px 10px rgba(30,58,138,.15)
+}
+
+.unit-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:64px;
+    padding:5px 9px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    font-size:10px;
+    font-weight:900;
+    transition:.2s ease
+}
+
+.unit-detail-hint{
+    font-size:9px;
+    color:#94a3b8;
+    font-weight:600;
+    margin-top:8px;
+    display:flex;
+    align-items:center;
+    gap:5px
+}
+
+.unit-detail-hint i{
+    width:12px;
+    height:12px
+}
+
+.number-cell{
+    color:#94a3b8;
+    font-weight:800;
+    text-align:center
+}
+
+.performance-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:76px;
+    padding:6px 9px;
+    border-radius:8px;
+    font-size:10px;
+    font-weight:900
+}
+
+.performance-good{
+    background:#ecfdf5;
+    color:#047857;
+    border:1px solid #a7f3d0
+}
+
+.performance-warning{
+    background:#fff7ed;
+    color:#c2410c;
+    border:1px solid #fed7aa
+}
+
+.performance-danger{
+    background:#fef2f2;
+    color:#b91c1c;
+    border:1px solid #fecaca
+}
+
+.performance-neutral{
+    background:#f8fafc;
+    color:#64748b;
+    border:1px solid #e2e8f0
+}
+
+.remark-cell{
+    max-width:420px;
+    line-height:1.6;
+    color:#475569;
+    font-size:10px
+}
+
+.remark-empty{
+    color:#cbd5e1
+}
+
+.filter-input{
+    width:100%;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:11px;
+    padding:10px 12px;
+    color:#334155;
+    font-size:11px;
+    font-weight:600;
+    outline:none;
+    transition:.2s ease
+}
+
+.filter-input:focus{
+    background:#fff;
+    border-color:#93c5fd;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
+}
+
+select.filter-input{
+    cursor:pointer
+}
+
+.pagination-button{
+    width:34px;
+    height:34px;
+    min-width:34px;
+    border-radius:9px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s ease
+}
+
+.pagination-button:hover:not(:disabled){
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe
+}
+
+.pagination-button.active{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.pagination-button:disabled{
+    opacity:.4;
+    cursor:not-allowed
+}
+
+#loading{
+    min-height:350px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center
+}
+
+#tableContent,
+#emptyState,
+#detailModal{
+    display:none
+}
+
+#tableContent.show,
+#emptyState.show{
+    display:block
+}
+
+#detailModal.show{
+    display:flex
+}
+
+#detailModal{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(15,23,42,.55);
+    backdrop-filter:blur(5px)
+}
+
+.detail-modal-box{
+    width:100%;
+    max-width:1050px;
+    max-height:90vh;
+    overflow:hidden;
+    background:#fff;
+    border-radius:22px;
+    box-shadow:0 25px 60px rgba(15,23,42,.25);
+    animation:modalIn .25s ease
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.98)
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1)
+    }
+}
+
+.detail-modal-header{
+    padding:20px 22px;
+    border-bottom:1px solid #e2e8f0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px
+}
+
+.detail-modal-content{
+    padding:20px;
+    overflow:auto;
+    max-height:calc(90vh - 90px)
+}
+
+.detail-close{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:10px;
+    background:#f1f5f9;
+    color:#64748b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.2s ease
+}
+
+.detail-close:hover{
+    background:#fee2e2;
+    color:#b91c1c
+}
+
+.detail-summary{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:10px;
+    margin-bottom:20px
+}
+
+.detail-summary-item{
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:13px 14px;
+    background:#f8fafc
+}
+
+.detail-summary-label{
+    font-size:9px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.07em
+}
+
+.detail-summary-value{
+    font-size:18px;
+    font-weight:900;
+    margin-top:5px
+}
+
+.detail-table-wrapper{
+    width:100%;
+    overflow-x:auto;
+    border:1px solid #e2e8f0;
+    border-radius:14px
+}
+
+.detail-table{
+    min-width:850px;
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0
+}
+
+.detail-table thead{
+    background:#f8fafc
+}
+
+.detail-table th{
+    padding:12px 13px;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:9px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    text-align:left;
+    white-space:nowrap
+}
+
+.detail-table td{
+    padding:12px 13px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:10px;
+    font-weight:600;
+    vertical-align:middle
+}
+
+.detail-table tbody tr:hover{
+    background:#f8fafc
+}
+
+.detail-table tbody tr:last-child td{
+    border-bottom:none
+}
+
+.detail-month{
+    font-weight:900;
+    color:#1e3a8a
+}
+
+.detail-no-data{
+    color:#94a3b8;
+    font-style:italic;
+    font-weight:600
+}
+
+.detail-section-title{
+    font-size:11px;
+    font-weight:900;
+    color:#475569;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:10px
+}
+
+@media(max-width:1024px){
+    body{
+        padding-left:16px!important;
+        padding-right:16px!important
+    }
+
+    main{
+        padding:28px!important;
+        border-radius:24px!important
+    }
+
+    .page-title{
+        font-size:26px
+    }
+
+    #tableContent>div:first-child{
+        grid-template-columns:repeat(3,minmax(0,1fr))
+    }
+
+    .filter-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important
+    }
+
+    header{
+        margin-bottom:28px!important
+    }
+
+    .table-panel{
+        border-radius:18px
+    }
+
+    .detail-summary{
+        grid-template-columns:repeat(3,minmax(0,1fr))
+    }
+}
+
+@media(max-width:768px){
+    body{
+        padding:10px!important;
+        align-items:stretch!important
+    }
+
+    main{
+        width:100%!important;
+        max-width:none!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
+    }
+
+    header{
+        margin-bottom:24px!important;
+        padding-bottom:20px!important
+    }
+
+    .logo-wrapper{
+        margin-bottom:12px!important
+    }
+
+    .logo-wrapper>div{
+        width:78px!important;
+        height:78px!important;
+        border-radius:16px!important
+    }
+
+    header>div:nth-child(2){
+        width:100%!important;
+        max-width:100%!important;
+        padding:13px 16px!important;
+        border-radius:16px!important
+    }
+
+    header h1{
+        font-size:18px!important;
+        line-height:1.3!important;
+        letter-spacing:.07em!important
+    }
+
+    header h2{
+        font-size:11px!important;
+        line-height:1.4!important;
+        letter-spacing:.12em!important
+    }
+
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
+    }
+
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important
+    }
+
+    .page-title{
+        font-size:22px!important;
+        line-height:1.3!important;
+        gap:10px!important
+    }
+
+    .page-title>span{
+        padding:9px!important;
+        flex-shrink:0
+    }
+
+    .page-title i{
+        width:20px!important;
+        height:20px!important
+    }
+
+    .page-subtitle{
+        font-size:11px!important;
+        line-height:1.6!important;
+        margin-left:0!important
+    }
+
+    section>div:first-child>div:last-child{
+        width:100%!important;
+        display:grid!important;
+        grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+        gap:8px!important
+    }
+
+    section>div:first-child>div:last-child>div{
+        width:100%!important;
+        gap:5px!important
+    }
+
+    .sheet-selector{
+        min-width:0!important;
+        width:100%!important;
+        padding:10px!important
+    }
+
+    .back-button{
+        width:100%;
+        justify-content:center;
+        padding:10px 12px
+    }
+
+    #tableContent>div:first-child{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:10px!important;
+        margin-bottom:16px!important
+    }
+
+    .stat-card{
+        padding:13px!important;
+        border-radius:14px!important
+    }
+
+    .stat-card p:first-child{
+        font-size:8px!important;
+        line-height:1.4!important
+    }
+
+    .stat-card p.text-3xl{
+        font-size:24px!important;
+        line-height:1!important
+    }
+
+    .stat-card span{
+        font-size:9px!important
+    }
+
+    .filter-panel{
+        padding:15px!important
+    }
+
+    .filter-grid{
+        grid-template-columns:1fr!important;
+        gap:11px!important
+    }
+
+    .table-panel{
+        border-radius:16px!important
+    }
+
+    .table-header{
+        padding:14px!important
+    }
+
+    .table-header-info{
+        min-width:0
+    }
+
+    .table-header-database{
+        font-size:8px!important;
+        white-space:nowrap
+    }
+
+    .table-header-database svg{
+        width:12px!important;
+        height:12px!important
+    }
+
+    .table-header-database #activeSheetBadge{
+        padding:4px 6px!important
+    }
+
+    table{
+        min-width:900px
+    }
+
+    thead th{
+        font-size:9px
+    }
+
+    .sort-button{
+        padding:11px 10px!important;
+        font-size:9px!important
+    }
+
+    .sort-icon{
+        width:12px!important;
+        height:12px!important
+    }
+
+    tbody td{
+        padding:11px 10px!important;
+        font-size:10px!important
+    }
+
+    .pagination-footer{
+        padding:12px 14px!important;
+        gap:10px
+    }
+
+    #paginationInfo{
+        font-size:9px!important;
+        white-space:nowrap
+    }
+
+    #pagination{
+        max-width:100%;
+        overflow-x:auto;
+        padding-bottom:2px;
+        scrollbar-width:none
+    }
+
+    #pagination::-webkit-scrollbar{
+        display:none
+    }
+
+    .pagination-button{
+        width:31px;
+        height:31px;
+        min-width:31px;
+        font-size:10px
+    }
+
+    footer{
+        margin-top:20px!important;
+        padding-bottom:20px!important
+    }
+
+    footer p:first-child{
+        font-size:9px!important;
+        line-height:1.5!important
+    }
+
+    footer p:last-child{
+        font-size:8px!important;
+        line-height:1.6!important
+    }
+
+    .detail-summary{
+        grid-template-columns:repeat(2,minmax(0,1fr))
+    }
+}
+
+@media(max-width:480px){
+    body{
+        padding:6px!important
+    }
+
+    main{
+        padding:15px!important;
+        border-radius:17px!important
+    }
+
+    header{
+        margin-bottom:20px!important;
+        padding-bottom:17px!important
+    }
+
+    .logo-wrapper>div{
+        width:68px!important;
+        height:68px!important
+    }
+
+    header>div:nth-child(2){
+        padding:12px 10px!important
+    }
+
+    header h1{
+        font-size:15px!important
+    }
+
+    header h2{
+        font-size:9px!important;
+        letter-spacing:.08em!important
+    }
+
+    header>div:last-child{
+        font-size:7px!important;
+        letter-spacing:.12em!important
+    }
+
+    .page-title{
+        font-size:19px!important
+    }
+
+    .page-subtitle{
+        font-size:10px!important
+    }
+
+    .page-title>span{
+        padding:8px!important
+    }
+
+    .page-title i{
+        width:18px!important;
+        height:18px!important
+    }
+
+    section>div:first-child>div:last-child{
+        grid-template-columns:1fr!important
+    }
+
+    #tableContent>div:first-child{
+        gap:8px!important
+    }
+
+    .stat-card{
+        padding:11px!important;
+        border-radius:12px!important
+    }
+
+    .stat-card p.text-3xl{
+        font-size:21px!important
+    }
+
+    .filter-panel{
+        padding:13px!important;
+        border-radius:14px!important
+    }
+
+    .table-header{
+        flex-direction:column!important;
+        align-items:flex-start!important;
+        gap:10px!important
+    }
+
+    .table-header-database{
+        width:100%;
+        justify-content:flex-start
+    }
+
+    .pagination-footer{
+        flex-direction:column!important;
+        align-items:stretch!important
+    }
+
+    #paginationInfo{
+        text-align:center
+    }
+
+    #pagination{
+        justify-content:center
+    }
+
+    .detail-modal-box{
+        border-radius:17px
+    }
+
+    #detailModal{
+        padding:10px
+    }
+
+    .detail-modal-header{
+        padding:16px
+    }
+
+    .detail-modal-content{
+        padding:14px
+    }
+
+    .detail-summary{
+        grid-template-columns:1fr 1fr
+    }
+}
+
+@media(max-width:375px){
+    main{
+        padding:12px!important
+    }
+
+    .page-title{
+        font-size:17px!important
+    }
+
+    .stat-card p.text-3xl{
+        font-size:19px!important
+    }
+
+    .stat-card p:first-child{
+        font-size:7px!important
+    }
+
+    header h1{
+        font-size:14px!important
+    }
+
+    header h2{
+        font-size:8px!important
+    }
+
+    .table-panel{
+        border-radius:13px!important
+    }
+}
+</style>
+</head>
+
+<body class="flex flex-col items-center p-4 sm:p-8">
+
+<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
+
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
+
+    <div class="mb-4 logo-wrapper">
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="w-full h-full object-contain"
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+
+            <div
+                id="logoFallback"
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+            >
+                <span class="font-black text-2xl">TSI</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+            PAPERLESS PROJECT
+        </h1>
+
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+    </div>
+
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
+        Digitalization Initiative v2.0
+    </div>
+
+</header>
+
+
+<section>
+
+<div class="flex items-center justify-between gap-5 mb-6">
+
+    <div>
+
+        <h2 class="page-title flex items-center gap-3">
+
+            <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                <i data-lucide="gauge" class="w-6 h-6"></i>
+            </span>
+
+            Data Availability Unit
+
+        </h2>
+
+        <p class="page-subtitle mt-2 ml-1">
+            Daftar seluruh avilability unit yang tersimpan pada database.
+        </p>
+
+    </div>
+
+
+    <div class="flex items-center gap-3">
+
+        <div class="flex items-center gap-2">
+
+            <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                Periode
+            </span>
+
+            <select
+                id="sheetSelector"
+                class="sheet-selector"
+                onchange="changeSheet()"
+            >
+
+                <option value="G1">Januari</option>
+                <option value="G2">Februari</option>
+                <option value="G3">Maret</option>
+                <option value="G4">April</option>
+                <option value="G5">Mei</option>
+                <option value="G6">Juni</option>
+                <option value="G7">Juli</option>
+                <option value="G8">Agustus</option>
+                <option value="G9">September</option>
+                <option value="G10">Oktober</option>
+                <option value="G11">November</option>
+                <option value="G12">Desember</option>
+
+                <option value="ALL">Seluruh Data</option>
+
+            </select>
+
+        </div>
+
+        <button
+            onclick="window.location.href='davailability.html'"
+            class="back-button"
+        >
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            Lihat data per hari
+        </button>
+
+        <button
+            onclick="goToDashboard()"
+            class="back-button"
+        >
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            Kembali
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="loading">
+
+    <i
+        data-lucide="loader-circle"
+        class="w-9 h-9 animate-spin text-amber-500"
+    ></i>
+
+    <p
+        id="loadingText"
+        class="font-semibold text-sm text-slate-400 mt-3"
+    >
+        Memuat data unit...
+    </p>
+
+</div>
+
+
+<div id="tableContent">
+
+<div class="grid grid-cols-6 gap-4 mb-6">
+
+    <div class="stat-card">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            Total Unit
+        </p>
+
+        <p
+            id="totalUnit"
+            class="text-3xl font-black text-blue-900 mt-2"
+        >
+            -
+        </p>
+
+        <p
+            id="selectedSheetLabel"
+            class="text-[9px] text-slate-400 font-bold mt-1"
+        >
+            -
+        </p>
+    </div>
+
+
+    <div class="stat-card">
+
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            Breakdown
+        </p>
+
+        <div class="flex items-end gap-2 mt-2">
+
+            <p
+                id="breakdownTotal"
+                class="text-3xl font-black text-rose-600"
+            >
+                -
+            </p>
+
+            <span class="mb-1 text-[11px] font-black text-slate-400">
+                BD
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            Standby
+        </p>
+
+        <div class="flex items-end gap-2 mt-2">
+
+            <p
+                id="standbyTotal"
+                class="text-3xl font-black text-amber-600"
+            >
+                -
+            </p>
+
+            <span class="mb-1 text-[11px] font-black text-slate-400">
+                SB
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            Total HM OP
+        </p>
+
+        <div class="flex items-end gap-2 mt-2">
+
+            <p
+                id="hmOperatingTotal"
+                class="text-3xl font-black text-indigo-600"
+            >
+                -
+            </p>
+
+            <span class="mb-1 text-[11px] font-black text-slate-400">
+                HM
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            Average PA
+        </p>
+
+        <div class="flex items-end gap-2 mt-2">
+
+            <p
+                id="paTotal"
+                class="text-3xl font-black text-emerald-600"
+            >
+                -
+            </p>
+
+            <span class="mb-1 text-[11px] font-black text-slate-400">
+                PA
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            Average MA
+        </p>
+
+        <div class="flex items-end gap-2 mt-2">
+
+            <p
+                id="maTotal"
+                class="text-3xl font-black text-cyan-600"
+            >
+                -
+            </p>
+
+            <span class="mb-1 text-[11px] font-black text-slate-400">
+                MA
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="filter-panel bg-white border border-slate-200 rounded-2xl p-5 mb-5 shadow-sm">
+
+    <div class="flex items-center gap-3 mb-4">
+
+        <span class="bg-blue-100 text-blue-700 p-2 rounded-lg">
+            <i data-lucide="filter" class="w-4 h-4"></i>
+        </span>
+
+        <div>
+
+            <h3 class="text-sm font-black text-slate-700">
+                Filter Data
+            </h3>
+
+            <p class="text-[10px] text-slate-400 font-medium">
+                Gunakan filter untuk mencari unit atau keterangan tertentu.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="filter-grid grid grid-cols-4 gap-4">
+
+        <div>
+
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+                Cari Data
+            </label>
+
+            <div class="relative">
+
+                <i
+                    data-lucide="search"
+                    class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
+                ></i>
+
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Unit, remark..."
+                    class="filter-input pl-10"
+                    oninput="applyFilters()"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+                Jenis Unit
+            </label>
+
+            <select
+                id="unitTypeFilter"
+                class="filter-input"
+                onchange="applyFilters()"
+            >
+                <option value="">Semua Unit</option>
+                <option value="F">Forklift</option>
+                <option value="W">Wheelloader</option>
+                <option value="D">Dumptruck</option>
+                <option value="E">Excavator</option>
+            </select>
+
+        </div>
+
+
+        <div>
+
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+                Performance
+            </label>
+
+            <select
+                id="performanceFilter"
+                class="filter-input"
+                onchange="applyFilters()"
+            >
+
+                <option value="">
+                    Semua Performance
+                </option>
+
+                <option value="BREAKDOWN">
+                    Ada Breakdown
+                </option>
+
+                <option value="NO_BREAKDOWN">
+                    Tidak Ada Breakdown
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="flex items-end">
+
+            <button
+                onclick="resetFilters()"
+                class="w-full h-[38px] rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold text-[11px] transition flex items-center justify-center gap-2"
+            >
+
+                <i
+                    data-lucide="rotate-ccw"
+                    class="w-4 h-4"
+                ></i>
+
+                Reset Filter
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="table-panel">
+
+<div class="table-header px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+
+    <div class="table-header-info">
+
+        <h3 class="font-black text-slate-700 text-sm">
+            Monitoring Performance Unit
+        </h3>
+
+        <p
+            id="resultInfo"
+            class="text-[10px] text-slate-400 mt-1 font-medium"
+        >
+            -
+        </p>
+
+    </div>
+
+
+    <div class="table-header-database flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
+
+        <i
+            data-lucide="database"
+            class="w-3.5 h-3.5"
+        ></i>
+
+        Database
+
+        <span
+            id="activeSheetBadge"
+            class="bg-blue-50 text-blue-700 px-2 py-1 rounded-md font-black"
+        >
+            -
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- Keterangan hanya muncul ketika mode Seluruh Data -->
+<div
+    id="allDataHint"
+    class="hidden px-5 py-2.5 bg-blue-50 border-b border-blue-100 text-[10px] text-blue-700 font-semibold"
+>
+    <i data-lucide="mouse-pointer-click" class="w-3 h-3 inline-block mr-1"></i>
+    Klik nama unit untuk melihat detail performance unit berdasarkan bulan.
+</div>
+
+
+<div class="table-scroll">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="width:55px">
+
+<button
+    class="sort-button"
+    onclick="sortBy('number')"
+    data-sort-key="number"
+>
+    <span>No</span>
+    <i
+        data-lucide="chevrons-up-down"
+        class="sort-icon"
+    ></i>
+</button>
+
+</th>
+
+
+<th style="width:120px">
+
+<button
+    class="sort-button"
+    onclick="sortBy('unit')"
+    data-sort-key="unit"
+>
+    <span>Unit</span>
+    <i
+        data-lucide="chevrons-up-down"
+        class="sort-icon"
+    ></i>
+</button>
+
+</th>
+
+
+<th style="width:100px">
+
+<button
+    class="sort-button"
+    onclick="sortBy('bd')"
+    data-sort-key="bd"
+>
+    <span>BD</span>
+    <i
+        data-lucide="chevrons-up-down"
+        class="sort-icon"
+    ></i>
+</button>
+
+</th>
+
+
+<th style="width:100px">
+
+<button
+    class="sort-button"
+    onclick="sortBy('sb')"
+    data-sort-key="sb"
+>
+    <span>SB</span>
+    <i
+        data-lucide="chevrons-up-down"
+        class="sort-icon"
+    ></i>
+</button>
+
+</th>
+
+
+<th style="width:145px">
+
+<button
+    class="sort-button"
+    onclick="sortBy('hm')"
+    data-sort-key="hm"
+>
+    <span>Total HM OP</span>
+    <i
+        data-lucide="chevrons-up-down"
+        class="sort-icon"
+    ></i>
+</button>
+
+</th>
+
+
+<th style="width:120px">
+
+<button
+    class="sort-button"
+    onclick="sortBy('pa')"
+    data-sort-key="pa"
+>
+    <span>PA</span>
+    <i
+        data-lucide="chevrons-up-down"
+        class="sort-icon"
+    ></i>
+</button>
+
+</th>
+
+
+<th style="width:120px">
+
+<button
+    class="sort-button"
+    onclick="sortBy('ma')"
+    data-sort-key="ma"
+>
+    <span>MA</span>
+    <i
+        data-lucide="chevrons-up-down"
+        class="sort-icon"
+    ></i>
+</button>
+
+</th>
+
+
+<th>
+
+<button
+    class="sort-button"
+    onclick="sortBy('remark')"
+    data-sort-key="remark"
+>
+    <span>Breakdown Remark</span>
+    <i
+        data-lucide="chevrons-up-down"
+        class="sort-icon"
+    ></i>
+</button>
+
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="tableBody"></tbody>
+
+<tfoot id="tableFoot"></tfoot>
+
+</table>
+
+</div>
+
+
+<div id="emptyState">
+
+<div class="py-16 text-center">
+
+    <div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
+
+        <i
+            data-lucide="search-x"
+            class="w-8 h-8"
+        ></i>
+
+    </div>
+
+    <h3 class="font-bold text-slate-600 mt-4">
+        Data tidak ditemukan
+    </h3>
+
+    <p class="text-xs text-slate-400 mt-1">
+        Coba ubah kata pencarian atau filter.
+    </p>
+
+</div>
+
+</div>
+
+
+<div class="pagination-footer px-5 py-4 border-t border-slate-100 flex items-center justify-between">
+
+    <div
+        id="paginationInfo"
+        class="text-[10px] font-semibold text-slate-400"
+    >
+        -
+    </div>
+
+    <div
+        id="pagination"
+        class="flex items-center gap-1"
+    ></div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- DETAIL MODAL -->
+<div
+    id="detailModal"
+    onclick="handleModalBackgroundClick(event)"
+>
+
+<div class="detail-modal-box">
+
+    <div class="detail-modal-header">
+
+        <div>
+
+            <div class="text-[9px] uppercase tracking-widest font-black text-slate-400">
+                Detail Performance Unit
+            </div>
+
+            <h3
+                id="detailModalTitle"
+                class="text-xl font-black text-blue-900 mt-1"
+            >
+                -
+            </h3>
+
+            <p class="text-[10px] text-slate-400 mt-1">
+                Detail data unit berdasarkan bulan
+            </p>
+
+        </div>
+
+
+        <button
+            class="detail-close"
+            onclick="closeDetailModal()"
+        >
+            <i
+                data-lucide="x"
+                class="w-5 h-5"
+            ></i>
+        </button>
+
+    </div>
+
+
+    <div
+        id="detailModalContent"
+        class="detail-modal-content"
+    ></div>
+
+</div>
+
+</div>
+
+
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+
+    <p class="text-[10px] mt-1">
+        System Architecture by:
+        <span class="text-slate-600 font-semibold uppercase">
+            Imam Wahyu Ramadhan, S.T.
+        </span>
+        |
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">
+            Project 2.0
+        </span>
+    </p>
+
+</footer>
+
+
+<script>
+
+const API_URL =
+'https://script.google.com/macros/s/AKfycbwsMGo8WIhjxsvk7wjxMXORFiKt7Q4oaV_gk0UxmK6gxLfTfAHsG_vVahrsged5gFOJ/exec';
+
+const DASHBOARD_URL='availability.html';
+
+const ROWS_PER_PAGE=15;
+
+
+const MONTHS={
+    G1:'Januari',
+    G2:'Februari',
+    G3:'Maret',
+    G4:'April',
+    G5:'Mei',
+    G6:'Juni',
+    G7:'Juli',
+    G8:'Agustus',
+    G9:'September',
+    G10:'Oktober',
+    G11:'November',
+    G12:'Desember'
+};
+
+const MONTH_KEYS=Object.keys(MONTHS);
+
+
+let apiData=null;
+
+let allData=[];
+
+let filteredData=[];
+
+let currentPage=1;
+
+let currentSheet='G1';
+
+let isAllDataMode=false;
+
+let monthlyData={};
+
+let sheetAvailability={};
+
+let sortKey='number';
+
+let sortDirection='asc';
+
+
+/* =========================================================
+   BASIC FUNCTIONS
+========================================================= */
+
+function goToDashboard(){
+    window.location.href=DASHBOARD_URL;
+}
+
+
+function handleLogoError(){
+
+    const logo=document.getElementById('companyLogo');
+
+    const fallback=document.getElementById('logoFallback');
+
+    if(logo) logo.classList.add('hidden');
+
+    if(fallback){
+        fallback.classList.remove('hidden');
+        fallback.classList.add('flex');
+    }
+
+}
+
+
+function getMonthLabel(sheet){
+
+    if(sheet==='ALL'){
+        return 'Seluruh Data';
+    }
+
+    return MONTHS[sheet]||sheet;
+
+}
+
+
+/* =========================================================
+   SHEET AVAILABILITY
+========================================================= */
+
+async function checkSheetAvailability(){
+
+    const checks=MONTH_KEYS.map(async sheet=>{
+
+        try{
+
+            const response=await fetch(
+                `${API_URL}?sheet=${encodeURIComponent(sheet)}`,
+                {
+                    method:'GET',
+                    cache:'no-store'
+                }
+            );
+
+            if(!response.ok){
+
+                return {
+                    sheet,
+                    available:false
+                };
+
+            }
+
+
+            const result=await response.json();
+
+            const rows=
+                Array.isArray(result?.rows)
+                ?result.rows
+                :[];
+
+
+            const hasData=rows.some(row=>
+                row &&
+                String(row[0]??'').trim()!==''
+            );
+
+
+            return {
+                sheet,
+                available:
+                    result?.success===true &&
+                    hasData
+            };
+
+        }catch(error){
+
+            console.warn(
+                `Availability check ${sheet}:`,
+                error
+            );
+
+            return {
+                sheet,
+                available:false
+            };
+
+        }
+
+    });
+
+
+    const results=await Promise.all(checks);
+
+
+    results.forEach(result=>{
+        sheetAvailability[result.sheet]=result.available;
+    });
+
+
+    updateMonthDropdown();
+
+}
+
+
+function updateMonthDropdown(){
+
+    const selector=
+        document.getElementById('sheetSelector');
+
+    if(!selector)return;
+
+
+    MONTH_KEYS.forEach(sheet=>{
+
+        const option=
+            selector.querySelector(
+                `option[value="${sheet}"]`
+            );
+
+        if(!option)return;
+
+
+        const available=
+            sheetAvailability[sheet]===true;
+
+
+        option.disabled=!available;
+
+        option.textContent=MONTHS[sheet];
+
+
+        if(available){
+
+            option.style.color='#1e3a8a';
+            option.style.background='#ffffff';
+
+        }else{
+
+            option.style.color='#64748b';
+            option.style.background='#e2e8f0';
+
+        }
+
+    });
+
+
+    const allOption=
+        selector.querySelector(
+            'option[value="ALL"]'
+        );
+
+
+    if(allOption){
+
+        const hasAny=
+            MONTH_KEYS.some(
+                sheet=>sheetAvailability[sheet]===true
+            );
+
+        allOption.disabled=!hasAny;
+
+        allOption.style.color=
+            hasAny?'#1e3a8a':'#64748b';
+
+    }
+
+}
+
+
+/* =========================================================
+   FETCH DATA
+========================================================= */
+
+async function fetchSheetData(sheet){
+
+    const response=await fetch(
+        `${API_URL}?sheet=${encodeURIComponent(sheet)}`,
+        {
+            method:'GET',
+            cache:'no-store'
+        }
+    );
+
+
+    if(!response.ok){
+
+        throw new Error(
+            `HTTP Error ${response.status}`
+        );
+
+    }
+
+
+    const result=await response.json();
+
+
+    if(
+        !result ||
+        result.success!==true
+    ){
+
+        throw new Error(
+            result?.error ||
+            `Data ${sheet} tidak tersedia.`
+        );
+
+    }
+
+
+    if(!Array.isArray(result.rows)){
+
+        throw new Error(
+            `Struktur data ${sheet} tidak sesuai.`
+        );
+
+    }
+
+
+    const rows=result.rows
+
+        .map((row,index)=>({
+
+            originalIndex:index,
+
+            sourceSheet:sheet,
+
+            unit:row[0]??'',
+
+            bd:row[1]??'',
+
+            sb:row[2]??'',
+
+            hm:row[3]??'',
+
+            pa:row[4]??'',
+
+            ma:row[5]??'',
+
+            remark:row[6]??''
+
+        }))
+
+        /* PENTING:
+           Baris dengan kolom A kosong tidak ditampilkan.
+        */
+
+        .filter(row=>
+            normalizeUnit(row.unit)!==''
+        );
+
+
+    return {
+        result,
+        rows
+    };
+
+}
+
+
+/* =========================================================
+   CHANGE SHEET
+========================================================= */
+
+function changeSheet(){
+
+    const selector=
+        document.getElementById('sheetSelector');
+
+    const selected=
+        selector?.value;
+
+
+    if(!selected)return;
+
+
+    if(
+        selected!=='ALL' &&
+        sheetAvailability[selected]!==true
+    ){
+
+        selector.value=currentSheet;
+
+        return;
+
+    }
+
+
+    loadSheetData(selected);
+
+}
+
+
+/* =========================================================
+   LOAD MONTH / ALL DATA
+========================================================= */
+
+async function loadSheetData(sheet){
+
+    currentSheet=
+        String(sheet).toUpperCase();
+
+    isAllDataMode=
+        currentSheet==='ALL';
+
+
+    showLoading(
+        isAllDataMode
+        ?'Menggabungkan data seluruh bulan...'
+        :`Memuat data ${getMonthLabel(currentSheet)}...`
+    );
+
+
+    allData=[];
+    filteredData=[];
+    currentPage=1;
+
+    /*
+       Default sorting:
+       mengikuti urutan database.
+    */
+    sortKey='number';
+    sortDirection='asc';
+
+
+    try{
+
+        if(isAllDataMode){
+
+            await loadAllMonths();
+
+        }else{
+
+            const data=
+                await fetchSheetData(currentSheet);
+
+            monthlyData={};
+
+            monthlyData[currentSheet]=data.rows;
+
+            apiData=data.result;
+
+            allData=data.rows;
+
+        }
+
+
+        filteredData=[...allData];
+
+
+        updateStatistics(
+            isAllDataMode
+            ?null
+            :apiData?.total,
+            allData
+        );
+
+
+        updateSheetUI(currentSheet);
+
+        clearFilters();
+
+        renderTable();
+
+        hideLoading();
+
+
+    }catch(error){
+
+        console.error(
+            'Unit Performance API Error:',
+            error
+        );
+
+        showError(error.message);
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD ALL MONTHS
+========================================================= */
+
+async function loadAllMonths(){
+
+    monthlyData={};
+
+
+    const availableMonths=
+        MONTH_KEYS.filter(
+            sheet=>sheetAvailability[sheet]===true
+        );
+
+
+    const sheets=
+        availableMonths.length
+        ?availableMonths
+        :MONTH_KEYS;
+
+
+    await Promise.all(
+
+        sheets.map(async sheet=>{
+
+            try{
+
+                const data=
+                    await fetchSheetData(sheet);
+
+                monthlyData[sheet]=data.rows;
+
+                sheetAvailability[sheet]=true;
+
+            }catch(error){
+
+                console.warn(
+                    `Sheet ${sheet} dilewati:`,
+                    error
+                );
+
+                monthlyData[sheet]=[];
+
+                sheetAvailability[sheet]=false;
+
+            }
+
+        })
+
+    );
+
+
+    updateMonthDropdown();
+
+
+    allData=
+        aggregateAllMonthlyData();
+
+}
+
+
+/* =========================================================
+   AGGREGATE ALL DATA
+========================================================= */
+
+function aggregateAllMonthlyData(){
+
+    const unitMap=new Map();
+
+
+    /*
+       Urutan ALL DATA:
+       mengikuti urutan database bulan demi bulan.
+       Unit yang pertama kali muncul mendapat posisi tersebut.
+    */
+
+    MONTH_KEYS.forEach(month=>{
+
+        const rows=
+            monthlyData[month]||[];
+
+
+        rows.forEach(row=>{
+
+            const unit=
+                normalizeUnit(row.unit);
+
+            if(!unit)return;
+
+
+            if(!unitMap.has(unit)){
+
+                unitMap.set(
+                    unit,
+                    {
+                        originalIndex:
+                            unitMap.size,
+
+                        sourceSheet:'ALL',
+
+                        unit,
+
+                        bd:0,
+
+                        sb:0,
+
+                        hm:0,
+
+                        paValues:[],
+
+                        maValues:[],
+
+                        remarks:[],
+
+                        monthlyDetails:{}
+
+                    }
+                );
+
+            }
+
+
+            const aggregate=
+                unitMap.get(unit);
+
+
+            aggregate.bd+=
+                parseNumber(row.bd);
+
+            aggregate.sb+=
+                parseNumber(row.sb);
+
+            aggregate.hm+=
+                parseNumber(row.hm);
+
+
+            if(
+                String(row.pa??'').trim()!==''
+            ){
+
+                aggregate.paValues.push(
+                    parsePercentage(row.pa)
+                );
+
+            }
+
+
+            if(
+                String(row.ma??'').trim()!==''
+            ){
+
+                aggregate.maValues.push(
+                    parsePercentage(row.ma)
+                );
+
+            }
+
+
+            const remark=
+                String(row.remark??'').trim();
+
+
+            if(
+                remark &&
+                !aggregate.remarks.includes(remark)
+            ){
+
+                aggregate.remarks.push(remark);
+
+            }
+
+
+            aggregate.monthlyDetails[month]={
+
+                unit:row.unit,
+
+                bd:row.bd,
+
+                sb:row.sb,
+
+                hm:row.hm,
+
+                pa:row.pa,
+
+                ma:row.ma,
+
+                remark:row.remark
+
+            };
+
+        });
+
+    });
+
+
+    return Array.from(unitMap.values())
+        .map(item=>({
+
+            originalIndex:item.originalIndex,
+
+            sourceSheet:'ALL',
+
+            unit:item.unit,
+
+            bd:item.bd,
+
+            sb:item.sb,
+
+            hm:item.hm,
+
+            pa:
+                item.paValues.length
+                ?item.paValues.reduce(
+                    (sum,value)=>sum+value,
+                    0
+                )/item.paValues.length
+                :0,
+
+            ma:
+                item.maValues.length
+                ?item.maValues.reduce(
+                    (sum,value)=>sum+value,
+                    0
+                )/item.maValues.length
+                :0,
+
+            remark:
+                item.remarks.join(' | '),
+
+            monthlyDetails:
+                item.monthlyDetails
+
+        }));
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+function showLoading(message){
+
+    const loading=
+        document.getElementById('loading');
+
+    const content=
+        document.getElementById('tableContent');
+
+    const text=
+        document.getElementById('loadingText');
+
+
+    if(text){
+
+        text.textContent=
+            message||'Memuat data...';
+
+    }
+
+
+    if(loading){
+
+        loading.style.display='flex';
+
+    }
+
+
+    if(content){
+
+        content.classList.remove('show');
+
+    }
+
+}
+
+
+function hideLoading(){
+
+    const loading=
+        document.getElementById('loading');
+
+    const content=
+        document.getElementById('tableContent');
+
+
+    if(loading){
+
+        loading.style.display='none';
+
+    }
+
+
+    if(content){
+
+        content.classList.add('show');
+
+    }
+
+}
+
+
+function showError(message){
+
+    const loading=
+        document.getElementById('loading');
+
+
+    if(!loading)return;
+
+
+    loading.style.display='flex';
+
+
+    loading.innerHTML=`
+
+        <div class="text-center">
+
+            <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+
+                <i
+                    data-lucide="alert-circle"
+                    class="w-8 h-8"
+                ></i>
+
+            </div>
+
+
+            <h3 class="font-bold text-red-700 mt-3">
+                Gagal memuat data
+            </h3>
+
+
+            <p class="text-xs text-slate-500 mt-2 max-w-lg mx-auto">
+                ${escapeHtml(message)}
+            </p>
+
+
+            <button
+                onclick="loadSheetData(currentSheet)"
+                class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
+            >
+                Coba Lagi
+            </button>
+
+        </div>
+    `;
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   UI
+========================================================= */
+
+function updateSheetUI(sheet){
+
+    const selectedLabel=
+        document.getElementById(
+            'selectedSheetLabel'
+        );
+
+    const badge=
+        document.getElementById(
+            'activeSheetBadge'
+        );
+
+
+    const label=
+        getMonthLabel(sheet);
+
+
+    if(selectedLabel){
+
+        selectedLabel.textContent=label;
+
+    }
+
+
+    if(badge){
+
+        badge.textContent=label;
+
+    }
+
+
+    const selector=
+        document.getElementById(
+            'sheetSelector'
+        );
+
+
+    if(
+        selector &&
+        selector.value!==sheet
+    ){
+
+        selector.value=sheet;
+
+    }
+
+
+    const hint=
+        document.getElementById(
+            'allDataHint'
+        );
+
+
+    if(hint){
+
+        if(sheet==='ALL'){
+
+            hint.classList.remove('hidden');
+
+        }else{
+
+            hint.classList.add('hidden');
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   NUMBER / PERCENTAGE
+========================================================= */
+
+function parseNumber(value){
+
+    if(value===null||value===undefined){
+
+        return 0;
+
+    }
+
+
+    const number=
+        Number(
+            String(value)
+                .trim()
+                .replace(/,/g,'')
+        );
+
+
+    return isNaN(number)?0:number;
+
+}
+
+
+function parsePercentage(value){
+
+    if(value===null||value===undefined){
+
+        return 0;
+
+    }
+
+
+    const number=
+        Number(
+            String(value)
+                .trim()
+                .replace('%','')
+        );
+
+
+    return isNaN(number)?0:number;
+
+}
+
+
+function formatNumber(value){
+
+    return parseNumber(value)
+        .toLocaleString('id-ID');
+
+}
+
+
+function formatPercentage(value){
+
+    return parsePercentage(value)
+        .toFixed(2)+'%';
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+function updateStatistics(totalFromApi,data){
+
+    const totalUnit=data.length;
+
+
+    const totalBD=
+        data.reduce(
+            (sum,row)=>
+                sum+parseNumber(row.bd),
+            0
+        );
+
+
+    const totalSB=
+        data.reduce(
+            (sum,row)=>
+                sum+parseNumber(row.sb),
+            0
+        );
+
+
+    const totalHM=
+        data.reduce(
+            (sum,row)=>
+                sum+parseNumber(row.hm),
+            0
+        );
+
+
+    let totalPA=0;
+
+    let totalMA=0;
+
+
+    if(
+        !isAllDataMode &&
+        totalFromApi &&
+        totalFromApi[4]!==undefined
+    ){
+
+        totalPA=
+            parsePercentage(
+                totalFromApi[4]
+            );
+
+    }else if(data.length){
+
+        totalPA=
+            data.reduce(
+                (sum,row)=>
+                    sum+parsePercentage(row.pa),
+                0
+            )/data.length;
+
+    }
+
+
+    if(
+        !isAllDataMode &&
+        totalFromApi &&
+        totalFromApi[5]!==undefined
+    ){
+
+        totalMA=
+            parsePercentage(
+                totalFromApi[5]
+            );
+
+    }else if(data.length){
+
+        totalMA=
+            data.reduce(
+                (sum,row)=>
+                    sum+parsePercentage(row.ma),
+                0
+            )/data.length;
+
+    }
+
+
+    document.getElementById(
+        'totalUnit'
+    ).textContent=
+        totalUnit.toLocaleString('id-ID');
+
+
+    document.getElementById(
+        'breakdownTotal'
+    ).textContent=
+        totalBD.toLocaleString('id-ID');
+
+
+    document.getElementById(
+        'standbyTotal'
+    ).textContent=
+        totalSB.toLocaleString('id-ID');
+
+
+    document.getElementById(
+        'hmOperatingTotal'
+    ).textContent=
+        totalHM.toLocaleString('id-ID');
+
+
+    document.getElementById(
+        'paTotal'
+    ).textContent=
+        formatPercentage(totalPA);
+
+
+    document.getElementById(
+        'maTotal'
+    ).textContent=
+        formatPercentage(totalMA);
+
+}
+
+
+/* =========================================================
+   UNIT
+========================================================= */
+
+function normalizeUnit(value){
+
+    return String(value??'')
+        .trim()
+        .toUpperCase();
+
+}
+
+
+function getUnitType(value){
+
+    const unit=
+        normalizeUnit(value);
+
+
+    if(unit.startsWith('F'))return 'F';
+
+    if(unit.startsWith('W'))return 'W';
+
+    if(unit.startsWith('D'))return 'D';
+
+    if(unit.startsWith('E'))return 'E';
+
+    return '';
+
+}
+
+
+/* =========================================================
+   PERFORMANCE
+========================================================= */
+
+function getPerformanceLevel(row){
+
+    const remark=
+        String(row.remark??'').trim();
+
+
+    return remark
+        ?'BREAKDOWN'
+        :'NO_BREAKDOWN';
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function applyFilters(){
+
+    const search=
+        document.getElementById(
+            'searchInput'
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    const unitType=
+        document.getElementById(
+            'unitTypeFilter'
+        ).value
+        .toUpperCase();
+
+
+    const performance=
+        document.getElementById(
+            'performanceFilter'
+        ).value
+        .toUpperCase();
+
+
+    filteredData=
+        allData.filter(row=>{
+
+            const searchable=[
+
+                row.unit,
+
+                row.bd,
+
+                row.sb,
+
+                row.hm,
+
+                row.pa,
+
+                row.ma,
+
+                row.remark,
+
+                getMonthLabel(
+                    currentSheet
+                )
+
+            ].join(' ').toLowerCase();
+
+
+            const searchMatch=
+                !search ||
+                searchable.includes(search);
+
+
+            const unitMatch=
+                !unitType ||
+                getUnitType(row.unit)===unitType;
+
+
+            let performanceMatch=true;
+
+
+            if(performance){
+
+                performanceMatch=
+                    getPerformanceLevel(row)===performance;
+
+            }
+
+
+            return(
+                searchMatch &&
+                unitMatch &&
+                performanceMatch
+            );
+
+        });
+
+
+    currentPage=1;
+
+    renderTable();
+
+}
+
+
+function clearFilters(){
+
+    const search=
+        document.getElementById(
+            'searchInput'
+        );
+
+    const unitType=
+        document.getElementById(
+            'unitTypeFilter'
+        );
+
+    const performance=
+        document.getElementById(
+            'performanceFilter'
+        );
+
+
+    if(search)search.value='';
+
+    if(unitType)unitType.value='';
+
+    if(performance)performance.value='';
+
+}
+
+
+function resetFilters(){
+
+    clearFilters();
+
+    filteredData=[...allData];
+
+    currentPage=1;
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   SORTING
+========================================================= */
+
+function sortBy(key){
+
+    if(sortKey===key){
+
+        sortDirection=
+            sortDirection==='asc'
+            ?'desc'
+            :'asc';
+
+    }else{
+
+        sortKey=key;
+
+        sortDirection='asc';
+
+    }
+
+
+    currentPage=1;
+
+    renderTable();
+
+}
+
+
+function getSortedData(data){
+
+    const sorted=[...data];
+
+
+    if(
+        !sortKey ||
+        !sortDirection
+    ){
+
+        return sorted;
+
+    }
+
+
+    return sorted.sort((a,b)=>{
+
+        let valueA;
+
+        let valueB;
+
+
+        switch(sortKey){
+
+            case'number':
+
+                valueA=a.originalIndex;
+                valueB=b.originalIndex;
+
+                break;
+
+
+            case'unit':
+
+                valueA=normalizeUnit(a.unit);
+                valueB=normalizeUnit(b.unit);
+
+                break;
+
+
+            case'bd':
+
+                valueA=parseNumber(a.bd);
+                valueB=parseNumber(b.bd);
+
+                break;
+
+
+            case'sb':
+
+                valueA=parseNumber(a.sb);
+                valueB=parseNumber(b.sb);
+
+                break;
+
+
+            case'hm':
+
+                valueA=parseNumber(a.hm);
+                valueB=parseNumber(b.hm);
+
+                break;
+
+
+            case'pa':
+
+                valueA=parsePercentage(a.pa);
+                valueB=parsePercentage(b.pa);
+
+                break;
+
+
+            case'ma':
+
+                valueA=parsePercentage(a.ma);
+                valueB=parsePercentage(b.ma);
+
+                break;
+
+
+            case'remark':
+
+                valueA=
+                    String(a.remark??'')
+                    .trim()
+                    .toLowerCase();
+
+                valueB=
+                    String(b.remark??'')
+                    .trim()
+                    .toLowerCase();
+
+                break;
+
+
+            default:
+
+                return 0;
+
+        }
+
+
+        const emptyA=
+            valueA==='' ||
+            valueA===null ||
+            valueA===undefined;
+
+
+        const emptyB=
+            valueB==='' ||
+            valueB===null ||
+            valueB===undefined;
+
+
+        if(emptyA&&emptyB)return 0;
+
+        if(emptyA)return 1;
+
+        if(emptyB)return -1;
+
+
+        let comparison;
+
+
+        if(
+            typeof valueA==='number' &&
+            typeof valueB==='number'
+        ){
+
+            comparison=
+                valueA-valueB;
+
+        }else{
+
+            comparison=
+                String(valueA).localeCompare(
+                    String(valueB),
+                    'id',
+                    {
+                        numeric:true,
+                        sensitivity:'base'
+                    }
+                );
+
+        }
+
+
+        return sortDirection==='asc'
+            ?comparison
+            :-comparison;
+
+    });
+
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+function getPerformanceBadge(value){
+
+    const percentage=
+        parsePercentage(value);
+
+
+    if(
+        value===null ||
+        value===undefined ||
+        String(value).trim()===''
+    ){
+
+        return `
+            <span class="performance-badge performance-neutral">
+                -
+            </span>
+        `;
+
+    }
+
+
+    return `
+        <span class="performance-badge ${
+            percentage>=90
+            ?'performance-good'
+            :percentage>=70
+            ?'performance-warning'
+            :'performance-danger'
+        }">
+            ${formatPercentage(percentage)}
+        </span>
+    `;
+
+}
+
+
+function getRemarkDisplay(value){
+
+    const remark=
+        String(value??'').trim();
+
+
+    if(!remark){
+
+        return `
+            <span class="remark-empty">
+                -
+            </span>
+        `;
+
+    }
+
+
+    return `
+        <div
+            class="remark-cell"
+            title="${escapeHtml(remark)}"
+        >
+            ${escapeHtml(remark)}
+        </div>
+    `;
+
+}
+
+
+/* =========================================================
+   TOTAL ROW
+========================================================= */
+
+function renderTotalRow(){
+
+    const footer=
+        document.getElementById(
+            'tableFoot'
+        );
+
+
+    if(!footer)return;
+
+
+    footer.innerHTML='';
+
+
+    const totalBD=
+        allData.reduce(
+            (sum,row)=>
+                sum+parseNumber(row.bd),
+            0
+        );
+
+
+    const totalSB=
+        allData.reduce(
+            (sum,row)=>
+                sum+parseNumber(row.sb),
+            0
+        );
+
+
+    const totalHM=
+        allData.reduce(
+            (sum,row)=>
+                sum+parseNumber(row.hm),
+            0
+        );
+
+
+    let totalPA=0;
+
+    let totalMA=0;
+
+
+    if(allData.length){
+
+        totalPA=
+            allData.reduce(
+                (sum,row)=>
+                    sum+parsePercentage(row.pa),
+                0
+            )/allData.length;
+
+
+        totalMA=
+            allData.reduce(
+                (sum,row)=>
+                    sum+parsePercentage(row.ma),
+                0
+            )/allData.length;
+
+    }
+
+
+    if(
+        !isAllDataMode &&
+        apiData?.total
+    ){
+
+        if(apiData.total[4]!==undefined){
+
+            totalPA=
+                parsePercentage(
+                    apiData.total[4]
+                );
+
+        }
+
+
+        if(apiData.total[5]!==undefined){
+
+            totalMA=
+                parsePercentage(
+                    apiData.total[5]
+                );
+
+        }
+
+    }
+
+
+    const row=
+        document.createElement('tr');
+
+
+    row.className='total-row';
+
+
+    row.innerHTML=`
+
+        <td class="number-cell">
+            —
+        </td>
+
+        <td>
+            <span class="total-badge">
+                TOTAL
+            </span>
+        </td>
+
+        <td class="font-black text-rose-700">
+            ${formatNumber(totalBD)}
+        </td>
+
+        <td class="font-black text-amber-700">
+            ${formatNumber(totalSB)}
+        </td>
+
+        <td class="font-black text-indigo-700">
+            ${formatNumber(totalHM)}
+        </td>
+
+        <td>
+            ${getPerformanceBadge(totalPA)}
+        </td>
+
+        <td>
+            ${getPerformanceBadge(totalMA)}
+        </td>
+
+        <td>
+            <span class="text-[10px] text-slate-500 font-bold">
+                Ringkasan seluruh data yang ditampilkan
+            </span>
+        </td>
+
+    `;
+
+
+    footer.appendChild(row);
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderTable(){
+
+    const tbody=
+        document.getElementById(
+            'tableBody'
+        );
+
+
+    const emptyState=
+        document.getElementById(
+            'emptyState'
+        );
+
+
+    tbody.innerHTML='';
+
+
+    const sortedData=
+        getSortedData(filteredData);
+
+
+    const total=
+        sortedData.length;
+
+
+    const totalPages=
+        Math.max(
+            1,
+            Math.ceil(
+                total/ROWS_PER_PAGE
+            )
+        );
+
+
+    if(currentPage>totalPages){
+
+        currentPage=totalPages;
+
+    }
+
+
+    const start=
+        (currentPage-1)*
+        ROWS_PER_PAGE;
+
+
+    const end=
+        Math.min(
+            start+ROWS_PER_PAGE,
+            total
+        );
+
+
+    const pageData=
+        sortedData.slice(
+            start,
+            end
+        );
+
+
+    if(pageData.length){
+
+        emptyState.classList.remove('show');
+
+
+        pageData.forEach(
+            (row,index)=>{
+
+                const tr=
+                    document.createElement('tr');
+
+
+                const number=
+                    start+index+1;
+
+
+                const unit=
+                    normalizeUnit(row.unit);
+
+
+                const clickable=
+                    isAllDataMode;
+
+
+                tr.innerHTML=`
+
+                    <td class="number-cell">
+                        ${number}
+                    </td>
+
+
+                    <td>
+
+                        <div
+                            class="inline-flex items-center gap-2 ${
+                                clickable
+                                ?'unit-clickable'
+                                :''
+                            }"
+                            ${
+                                clickable
+                                ?`onclick="openUnitDetail('${escapeJs(unit)}')"`
+                                :''
+                            }
+                            title="${
+                                clickable
+                                ?'Klik untuk melihat detail per bulan'
+                                :''
+                            }"
+                        >
+
+                            <span class="unit-badge">
+                                ${escapeHtml(unit)}
+                            </span>
+
+                            ${
+                                clickable
+                                ?`
+                                <i
+                                    data-lucide="chevron-right"
+                                    class="w-3.5 h-3.5 text-slate-400"
+                                ></i>
+                                `
+                                :''
+                            }
+
+                        </div>
+
+                    </td>
+
+
+                    <td class="font-bold text-rose-600">
+                        ${formatNumber(row.bd)}
+                    </td>
+
+
+                    <td class="font-bold text-amber-600">
+                        ${formatNumber(row.sb)}
+                    </td>
+
+
+                    <td class="font-bold text-indigo-600">
+                        ${formatNumber(row.hm)}
+                    </td>
+
+
+                    <td>
+                        ${getPerformanceBadge(row.pa)}
+                    </td>
+
+
+                    <td>
+                        ${getPerformanceBadge(row.ma)}
+                    </td>
+
+
+                    <td>
+                        ${
+                            isAllDataMode
+                            ?`
+                            <div class="remark-cell">
+                                ${
+                                    row.remark
+                                    ?escapeHtml(row.remark)
+                                    :'Tidak ada breakdown'
+                                }
+                            </div>
+                            `
+                            :getRemarkDisplay(row.remark)
+                        }
+                    </td>
+
+                `;
+
+
+                tbody.appendChild(tr);
+
+            }
+        );
+
+    }else{
+
+        emptyState.classList.add('show');
+
+    }
+
+
+    renderTotalRow();
+
+    updateResultInfo(
+        total,
+        start,
+        end
+    );
+
+    renderPagination(totalPages);
+
+    updateSortIndicators();
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   RESULT INFO
+========================================================= */
+
+function updateResultInfo(
+    total,
+    start,
+    end
+){
+
+    const resultInfo=
+        document.getElementById(
+            'resultInfo'
+        );
+
+
+    const paginationInfo=
+        document.getElementById(
+            'paginationInfo'
+        );
+
+
+    if(total===0){
+
+        resultInfo.textContent=
+            'Tidak ada data yang sesuai filter.';
+
+        paginationInfo.textContent=
+            '0 unit';
+
+        return;
+
+    }
+
+
+    const unitLabel=
+        isAllDataMode
+        ?'unit unik'
+        :'unit';
+
+
+    resultInfo.textContent=
+        `Menampilkan ${start+1}–${end} dari ${total.toLocaleString('id-ID')} ${unitLabel}`;
+
+
+    paginationInfo.textContent=
+        `${total.toLocaleString('id-ID')} ${unitLabel} ditemukan`;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination(totalPages){
+
+    const container=
+        document.getElementById(
+            'pagination'
+        );
+
+
+    container.innerHTML='';
+
+
+    if(filteredData.length===0){
+
+        return;
+
+    }
+
+
+    const previous=
+        document.createElement('button');
+
+
+    previous.className=
+        'pagination-button';
+
+
+    previous.innerHTML=`
+        <i
+            data-lucide="chevron-left"
+            class="w-4 h-4"
+        ></i>
+    `;
+
+
+    previous.disabled=
+        currentPage===1;
+
+
+    previous.onclick=()=>{
+
+        if(currentPage>1){
+
+            currentPage--;
+
+            renderTable();
+
+        }
+
+    };
+
+
+    container.appendChild(previous);
+
+
+    getPaginationPages(
+        currentPage,
+        totalPages
+    ).forEach(page=>{
+
+        if(page==='...'){
+
+            const dots=
+                document.createElement('span');
+
+            dots.className=
+                'px-2 text-slate-400 text-xs';
+
+            dots.textContent='...';
+
+            container.appendChild(dots);
+
+            return;
+
+        }
+
+
+        const button=
+            document.createElement('button');
+
+
+        button.className=
+            'pagination-button'+
+            (
+                page===currentPage
+                ?' active'
+                :''
+            );
+
+
+        button.textContent=page;
+
+
+        button.onclick=()=>{
+
+            currentPage=page;
+
+            renderTable();
+
+        };
+
+
+        container.appendChild(button);
+
+    });
+
+
+    const next=
+        document.createElement('button');
+
+
+    next.className=
+        'pagination-button';
+
+
+    next.innerHTML=`
+        <i
+            data-lucide="chevron-right"
+            class="w-4 h-4"
+        ></i>
+    `;
+
+
+    next.disabled=
+        currentPage===totalPages;
+
+
+    next.onclick=()=>{
+
+        if(currentPage<totalPages){
+
+            currentPage++;
+
+            renderTable();
+
+        }
+
+    };
+
+
+    container.appendChild(next);
+
+
+    lucide.createIcons();
+
+}
+
+
+function getPaginationPages(
+    current,
+    total
+){
+
+    if(total<=7){
+
+        return Array.from(
+            {length:total},
+            (_,index)=>index+1
+        );
+
+    }
+
+
+    const pages=[1];
+
+
+    if(current>4){
+
+        pages.push('...');
+
+    }
+
+
+    for(
+        let page=Math.max(2,current-1);
+        page<=Math.min(
+            total-1,
+            current+1
+        );
+        page++
+    ){
+
+        pages.push(page);
+
+    }
+
+
+    if(current<total-3){
+
+        pages.push('...');
+
+    }
+
+
+    pages.push(total);
+
+
+    return pages;
+
+}
+
+
+/* =========================================================
+   SORT INDICATOR
+========================================================= */
+
+function updateSortIndicators(){
+
+    document
+        .querySelectorAll(
+            '[data-sort-key]'
+        )
+        .forEach(button=>{
+
+            const key=
+                button.getAttribute(
+                    'data-sort-key'
+                );
+
+
+            const icon=
+                button.querySelector(
+                    '.sort-icon'
+                );
+
+
+            button.classList.remove(
+                'active'
+            );
+
+
+            if(!icon)return;
+
+
+            icon.setAttribute(
+                'data-lucide',
+                'chevrons-up-down'
+            );
+
+
+            if(
+                sortKey===key &&
+                sortDirection==='asc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-up'
+                );
+
+            }
+
+
+            if(
+                sortKey===key &&
+                sortDirection==='desc'
+            ){
+
+                button.classList.add(
+                    'active'
+                );
+
+                icon.setAttribute(
+                    'data-lucide',
+                    'chevron-down'
+                );
+
+            }
+
+        });
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   DETAIL UNIT - SELURUH DATA
+========================================================= */
+
+function openUnitDetail(unitValue){
+
+    if(!isAllDataMode)return;
+
+
+    const unit=
+        normalizeUnit(unitValue);
+
+
+    const row=
+        allData.find(
+            item=>
+                normalizeUnit(item.unit)===unit
+        );
+
+
+    if(!row)return;
+
+
+    const modal=
+        document.getElementById(
+            'detailModal'
+        );
+
+
+    const title=
+        document.getElementById(
+            'detailModalTitle'
+        );
+
+
+    const content=
+        document.getElementById(
+            'detailModalContent'
+        );
+
+
+    if(!modal||!content)return;
+
+
+    if(title){
+
+        title.textContent=unit;
+
+    }
+
+
+    let html=`
+
+
+        <div class="detail-summary">
+
+
+            <div class="detail-summary-item">
+
+                <div class="detail-summary-label">
+                    Total BD
+                </div>
+
+                <div class="detail-summary-value text-rose-600">
+                    ${formatNumber(row.bd)}
+                </div>
+
+            </div>
+
+
+            <div class="detail-summary-item">
+
+                <div class="detail-summary-label">
+                    Total SB
+                </div>
+
+                <div class="detail-summary-value text-amber-600">
+                    ${formatNumber(row.sb)}
+                </div>
+
+            </div>
+
+
+            <div class="detail-summary-item">
+
+                <div class="detail-summary-label">
+                    Total HM OP
+                </div>
+
+                <div class="detail-summary-value text-indigo-600">
+                    ${formatNumber(row.hm)}
+                </div>
+
+            </div>
+
+
+            <div class="detail-summary-item">
+
+                <div class="detail-summary-label">
+                    Average PA
+                </div>
+
+                <div class="detail-summary-value text-emerald-600">
+                    ${formatPercentage(row.pa)}
+                </div>
+
+            </div>
+
+
+            <div class="detail-summary-item">
+
+                <div class="detail-summary-label">
+                    Average MA
+                </div>
+
+                <div class="detail-summary-value text-cyan-600">
+                    ${formatPercentage(row.ma)}
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="detail-section-title">
+            Detail Performance Per Bulan
+        </div>
+
+
+        <div class="detail-table-wrapper">
+
+        <table class="detail-table">
+
+            <thead>
+
+                <tr>
+
+                    <th style="width:50px">
+                        No
+                    </th>
+
+                    <th style="width:120px">
+                        Bulan
+                    </th>
+
+                    <th>
+                        BD
+                    </th>
+
+                    <th>
+                        SB
+                    </th>
+
+                    <th>
+                        Total HM OP
+                    </th>
+
+                    <th>
+                        PA
+                    </th>
+
+                    <th>
+                        MA
+                    </th>
+
+                    <th>
+                        Breakdown Remark
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+    `;
+
+
+    let rowNumber=1;
+
+
+    MONTH_KEYS.forEach(month=>{
+
+        const detail=
+            row.monthlyDetails?.[month];
+
+
+        if(!detail){
+
+            html+=`
+
+                <tr>
+
+                    <td class="number-cell">
+                        ${rowNumber++}
+                    </td>
+
+                    <td class="detail-month">
+                        ${MONTHS[month]}
+                    </td>
+
+                    <td colspan="6">
+                        <span class="detail-no-data">
+                            Tidak ada record unit pada bulan ini.
+                        </span>
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+        html+=`
+
+            <tr>
+
+                <td class="number-cell">
+                    ${rowNumber++}
+                </td>
+
+                <td class="detail-month">
+                    ${MONTHS[month]}
+                </td>
+
+                <td class="font-bold text-rose-600">
+                    ${formatNumber(detail.bd)}
+                </td>
+
+                <td class="font-bold text-amber-600">
+                    ${formatNumber(detail.sb)}
+                </td>
+
+                <td class="font-bold text-indigo-600">
+                    ${formatNumber(detail.hm)}
+                </td>
+
+                <td>
+                    ${getPerformanceBadge(detail.pa)}
+                </td>
+
+                <td>
+                    ${getPerformanceBadge(detail.ma)}
+                </td>
+
+                <td>
+                    ${
+                        String(
+                            detail.remark??''
+                        ).trim()
+                        ?
+                        `
+                        <div class="text-[10px] text-slate-600 leading-relaxed">
+                            ${escapeHtml(detail.remark)}
+                        </div>
+                        `
+                        :
+                        `
+                        <span class="remark-empty">
+                            -
+                        </span>
+                        `
+                    }
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html+=`
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+
+    content.innerHTML=html;
+
+
+    modal.classList.add('show');
+
+
+    document.body.style.overflow='hidden';
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeDetailModal(){
+
+    const modal=
+        document.getElementById(
+            'detailModal'
+        );
+
+
+    if(modal){
+
+        modal.classList.remove(
+            'show'
+        );
+
+        document.body.style.overflow='';
+
+    }
+
+}
+
+
+function handleModalBackgroundClick(event){
+
+    const modal=
+        document.getElementById(
+            'detailModal'
+        );
+
+
+    if(
+        event.target===modal
+    ){
+
+        closeDetailModal();
+
+    }
+
+}
+
+
+/* =========================================================
+   SECURITY / ESCAPE
+========================================================= */
+
+function escapeJs(value){
+
+    return String(value??'')
+        .replace(/\\/g,'\\\\')
+        .replace(/'/g,"\\'")
+        .replace(/"/g,'\\"')
+        .replace(/\r?\n/g,'\\n');
+
+}
+
+
+function escapeHtml(value){
+
+    return String(value??'')
+
+        .replace(/&/g,'&amp;')
+
+        .replace(/</g,'&lt;')
+
+        .replace(/>/g,'&gt;')
+
+        .replace(/"/g,'&quot;')
+
+        .replace(/'/g,'&#039;');
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+window.addEventListener(
+    'load',
+    async()=>{
+
+        lucide.createIcons();
+
+
+        try{
+
+            await checkSheetAvailability();
+
+
+            /*
+               Cari bulan TERBARU yang memiliki data.
+               Karena MONTH_KEYS tersusun Januari -> Desember,
+               kita cari dari belakang.
+            */
+
+            const latestMonth=
+                [...MONTH_KEYS]
+                .reverse()
+                .find(
+                    month=>
+                        sheetAvailability[month]===true
+                );
+
+
+            if(latestMonth){
+
+                /*
+                   Default:
+                   bulan terbaru + urutan database
+                */
+
+                await loadSheetData(
+                    latestMonth
+                );
+
+            }else{
+
+                /*
+                   Tidak ada satu pun bulan
+                   yang memiliki data.
+                */
+
+                const selector=
+                    document.getElementById(
+                        'sheetSelector'
+                    );
+
+
+                if(selector){
+
+                    selector.value='ALL';
+
+                }
+
+
+                await loadSheetData(
+                    'ALL'
+                );
+
+            }
+
+        }catch(error){
+
+            console.error(
+                'Initial loading error:',
+                error
+            );
+
+            showError(
+                error.message ||
+                'Gagal memuat data.'
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AUTO CHECK SHEET AVAILABILITY
+   Setiap 5 menit
+========================================================= */
+
+setInterval(
+    async()=>{
+
+        try{
+
+            await checkSheetAvailability();
+
+        }catch(error){
+
+            console.warn(
+                'Auto availability check:',
+                error
+            );
+
+        }
+
+    },
+    5*60*1000
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    'keydown',
+    event=>{
+
+        if(event.key==='Escape'){
+
+            const modal=
+                document.getElementById(
+                    'detailModal'
+                );
+
+
+            if(
+                modal &&
+                modal.classList.contains('show')
+            ){
+
+                closeDetailModal();
+
+            }else{
+
+                document.activeElement?.blur();
+
+            }
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

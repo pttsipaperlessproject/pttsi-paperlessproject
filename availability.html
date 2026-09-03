@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Availability Unit - PT TSI</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html { min-width: 0; width: 100%; }
+body { margin: 0; width: 100%; min-width: 0; font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f8fafc, #eef2f7); color: #1e293b; }
+.color-primary { background: #1E3A8A; }
+.text-primary { color: #1E3A8A; }
+.glass-panel { background: rgba(255,255,255,.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.3); }
+.fade-in { animation: fadeIn .5s cubic-bezier(.4,0,.2,1); }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.logo-wrapper { transition: transform .4s cubic-bezier(.175,.885,.32,1.275); }
+.logo-wrapper:hover { transform: scale(1.08) rotate(2deg); }
+.logo-shadow { filter: drop-shadow(0 10px 8px rgba(0,0,0,.04)) drop-shadow(0 4px 3px rgba(0,0,0,.1)); }
+.page-title { font-size: 30px; font-weight: 900; color: #1e293b; letter-spacing: -.025em; }
+.page-subtitle { font-size: 13px; color: #64748b; font-weight: 500; }
+.year-selector { background: #fff; border: 1px solid #dbe3ee; border-radius: 12px; padding: 10px 14px; color: #1e3a8a; font-size: 12px; font-weight: 900; outline: none; cursor: pointer; transition: .2s ease; min-width: 170px; }
+.year-selector:hover { border-color: #93c5fd; }
+.year-selector:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(59,130,246,.10); }
+.year-selector option:disabled { color: #334155; background: #f1f5f9; font-weight: 900; }
+.navigation-button { color: #fff; border-radius: 12px; padding: 10px 14px; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 7px; transition: .2s ease; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; }
+.home-button { background: #475569; box-shadow: 0 5px 12px rgba(71,85,105,.16); }
+.home-button:hover { background: #334155; transform: translateY(-2px); }
+.data-button { background: #1e3a8a; box-shadow: 0 5px 12px rgba(30,58,138,.18); }
+.data-button:hover { background: #1d4ed8; transform: translateY(-2px); }
+.stat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 17px; padding: 17px; transition: .25s ease; position: relative; overflow: hidden; }
+.stat-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(15,23,42,.07); }
+.stat-card::after { content: ""; position: absolute; right: -20px; top: -20px; width: 70px; height: 70px; border-radius: 50%; background: rgba(30,58,138,.035); }
+.kpi-icon { width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; }
+.kpi-blue { background: #eff6ff; color: #1d4ed8; }
+.kpi-orange { background: #fff7ed; color: #ea580c; }
+.kpi-purple { background: #f5f3ff; color: #7c3aed; }
+.kpi-green { background: #ecfdf5; color: #059669; }
+.kpi-red { background: #fef2f2; color: #dc2626; }
+.kpi-amber { background: #fffbeb; color: #d97706; }
+.dashboard-panel { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(15,23,42,.04); }
+.panel-header { padding: 17px 20px; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.panel-title { font-size: 13px; font-weight: 900; color: #334155; }
+.panel-subtitle { font-size: 10px; color: #94a3b8; font-weight: 500; margin-top: 3px; }
+.chart-container { position: relative; width: 100%; height: 310px; padding: 18px 20px 20px; }
+.chart-container-small { position: relative; width: 100%; height: 270px; padding: 15px 20px 20px; }
+.trend-summary-wrapper { border-top: 1px solid #f1f5f9; background: #fff; }
+.trend-summary-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.trend-summary-table { min-width: 980px; width: 100%; border-collapse: separate; border-spacing: 0; }
+.trend-summary-table thead { background: #f8fafc; }
+.trend-summary-table th { padding: 10px 12px; border-bottom: 2px solid #e2e8f0; border-right: 1px solid #f1f5f9; color: #475569; font-size: 8px; font-weight: 900; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; text-align: center; }
+.trend-summary-table th:last-child { border-right: none; }
+.trend-summary-table td { padding: 9px 12px; border-bottom: 1px solid #f1f5f9; border-right: 1px solid #f1f5f9; color: #475569; font-size: 9px; font-weight: 700; white-space: nowrap; text-align: center; }
+.trend-summary-table td:last-child { border-right: none; }
+.trend-summary-table tbody tr:last-child td { border-bottom: none; }
+.trend-summary-table .metric-name { position: sticky; left: 0; background: #fff; z-index: 2; text-align: left; font-weight: 900; color: #334155; min-width: 85px; }
+.trend-summary-table thead .metric-name { background: #f8fafc; z-index: 3; }
+.trend-summary-table .pa-value { color: #1e3a8a; font-weight: 900; }
+.trend-summary-table .ma-value { color: #059669; font-weight: 900; }
+.trend-summary-table .ytd-pa-value { color: #1d4ed8; font-weight: 900; }
+.trend-summary-table .ytd-ma-value { color: #047857; font-weight: 900; }
+.trend-summary-table .std-value { color: #64748b; font-weight: 900; }
+.trend-summary-table .empty-value { color: #cbd5e1; font-weight: 700; }
+.performance-status { display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px; border-radius: 999px; font-size: 8px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; }
+.status-good { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+.status-warning { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+.status-danger { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+.table-panel { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(15,23,42,.04); }
+.table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; min-width: 760px; border-collapse: separate; border-spacing: 0; }
+thead { background: #f8fafc; }
+thead th { padding: 12px 14px; border-bottom: 2px solid #e2e8f0; color: #475569; font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; text-align: left; }
+tbody td { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; color: #334155; font-size: 10px; font-weight: 500; vertical-align: middle; }
+tbody tr { transition: background .15s ease; }
+tbody tr:hover { background: #f8fafc; }
+tbody tr:last-child td { border-bottom: none; }
+.unit-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 64px; padding: 5px 9px; border-radius: 8px; background: #eff6ff; color: #1e3a8a; font-size: 10px; font-weight: 900; }
+.value-good { color: #047857; font-weight: 900; }
+.value-warning { color: #b45309; font-weight: 900; }
+.value-danger { color: #dc2626; font-weight: 900; }
+.remark-badge { display: inline-block; max-width: 250px; padding: 5px 8px; border-radius: 7px; background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; font-size: 8px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.breakdown-list { max-height: 310px; overflow-y: auto; }
+.breakdown-list::-webkit-scrollbar { width: 6px; }
+.breakdown-list::-webkit-scrollbar-track { background: #f8fafc; }
+.breakdown-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+.breakdown-list::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+.breakdown-record { padding: 13px 20px; border-bottom: 1px solid #f1f5f9; transition: background .15s ease; }
+.breakdown-record:last-child { border-bottom: none; }
+.breakdown-record:hover { background: #f8fafc; }
+.breakdown-record-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
+.breakdown-record-unit { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 900; color: #334155; }
+.breakdown-record-unit i { width: 14px; height: 14px; color: #ea580c; }
+.breakdown-record-month { font-size: 8px; font-weight: 800; color: #94a3b8; background: #f8fafc; border: 1px solid #e2e8f0; padding: 4px 7px; border-radius: 6px; white-space: nowrap; }
+.breakdown-record-remark { font-size: 9px; line-height: 1.55; font-weight: 600; color: #64748b; padding-left: 21px; }
+.breakdown-record-bd { display: inline-flex; align-items: center; margin-left: 21px; margin-top: 6px; padding: 3px 7px; border-radius: 6px; background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; font-size: 8px; font-weight: 900; }
+#loading { min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+#dashboardContent { display: none; }
+#dashboardContent.show { display: block; }
+
+@media(max-width:1024px) {
+    body { padding-left: 16px !important; padding-right: 16px !important; }
+    main { padding: 28px !important; border-radius: 24px !important; }
+    .page-title { font-size: 26px; }
+    header { margin-bottom: 28px !important; }
+    .kpi-grid { grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
+    .dashboard-grid { grid-template-columns: 1fr !important; }
+}
+@media(max-width:768px) {
+    body { padding: 10px !important; align-items: stretch !important; }
+    main { width: 100% !important; max-width: none !important; padding: 20px !important; border-radius: 20px !important; box-shadow: 0 10px 30px rgba(15,23,42,.08) !important; }
+    header { margin-bottom: 24px !important; padding-bottom: 20px !important; }
+    .logo-wrapper { margin-bottom: 12px !important; }
+    .logo-wrapper > div { width: 78px !important; height: 78px !important; border-radius: 16px !important; }
+    header > div:nth-child(2) { width: 100% !important; max-width: 100% !important; padding: 13px 16px !important; border-radius: 16px !important; }
+    header h1 { font-size: 18px !important; line-height: 1.3 !important; letter-spacing: .07em !important; }
+    header h2 { font-size: 11px !important; line-height: 1.4 !important; letter-spacing: .12em !important; }
+    header > div:last-child { font-size: 8px !important; letter-spacing: .18em !important; text-align: center; }
+    section > div:first-child { flex-direction: column !important; align-items: stretch !important; gap: 14px !important; }
+    .page-title { font-size: 22px !important; line-height: 1.3 !important; gap: 10px !important; }
+    .page-title > span { padding: 9px !important; flex-shrink: 0; }
+    .page-title i { width: 20px !important; height: 20px !important; }
+    .page-subtitle { font-size: 11px !important; line-height: 1.6 !important; margin-left: 0 !important; }
+    section > div:first-child > div:last-child { width: 100% !important; display: grid !important; grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important; gap: 8px !important; }
+    .year-selector { min-width: 0 !important; width: 100% !important; }
+    .navigation-button { width: 100%; padding-left: 8px; padding-right: 8px; }
+    .kpi-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; gap: 10px !important; }
+    .stat-card { padding: 13px !important; border-radius: 14px !important; }
+    .stat-card p:first-child { font-size: 8px !important; }
+    .stat-card p.text-3xl { font-size: 24px !important; }
+    .kpi-icon { width: 32px; height: 32px; }
+    .dashboard-grid { grid-template-columns: 1fr !important; }
+    .chart-container { height: 280px; padding: 15px; }
+    .chart-container-small { height: 250px; padding: 12px; }
+    .panel-header { padding: 14px; }
+    .table-panel { border-radius: 16px !important; }
+    .table-scroll { overflow-x: auto; }
+    table { min-width: 760px; }
+    footer { margin-top: 20px !important; padding-bottom: 20px !important; }
+    footer p:first-child { font-size: 9px !important; line-height: 1.5 !important; }
+    footer p:last-child { font-size: 8px !important; line-height: 1.6 !important; }
+    .breakdown-list { max-height: 300px; }
+}
+@media(max-width:480px) {
+    body { padding: 6px !important; }
+    main { padding: 15px !important; border-radius: 17px !important; }
+    header { margin-bottom: 20px !important; padding-bottom: 17px !important; }
+    .logo-wrapper > div { width: 68px !important; height: 68px !important; }
+    header > div:nth-child(2) { padding: 12px 10px !important; }
+    header h1 { font-size: 15px !important; }
+    header h2 { font-size: 9px !important; letter-spacing: .08em !important; }
+    header > div:last-child { font-size: 7px !important; letter-spacing: .12em !important; }
+    .page-title { font-size: 19px !important; }
+    .page-subtitle { font-size: 10px !important; }
+    section > div:first-child > div:last-child { grid-template-columns: 1fr !important; }
+    .kpi-grid { gap: 8px !important; }
+    .stat-card { padding: 11px !important; border-radius: 12px !important; }
+    .stat-card p.text-3xl { font-size: 21px !important; }
+    .chart-container { height: 250px; }
+    .chart-container-small { height: 225px; }
+    .panel-title { font-size: 11px; }
+    .panel-subtitle { font-size: 9px; }
+    .panel-header { align-items: flex-start; }
+    .breakdown-record { padding: 12px 14px; }
+    .breakdown-record-remark { padding-left: 0; }
+    .breakdown-record-bd { margin-left: 0; }
+}
+@media(max-width:375px) {
+    main { padding: 12px !important; }
+    .page-title { font-size: 17px !important; }
+    .stat-card p.text-3xl { font-size: 19px !important; }
+    .stat-card p:first-child { font-size: 7px !important; }
+    header h1 { font-size: 14px !important; }
+    header h2 { font-size: 8px !important; }
+}
+</style>
+</head>
+<body class="flex flex-col items-center p-4 sm:p-8">
+
+<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
+    <div class="mb-4 logo-wrapper">
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+            <img src="default_logo.png" alt="Logo PT TSI" class="w-full h-full object-contain" id="companyLogo" onerror="handleLogoError()">
+            <div id="logoFallback" class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white">
+                <span class="font-black text-2xl">TSI</span>
+            </div>
+        </div>
+    </div>
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">PAPERLESS PROJECT</h1>
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">PT TATSUMI SERUNI INDONESIA</h2>
+    </div>
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">Digitalization Initiative v2.0</div>
+</header>
+
+<section>
+<div class="flex items-center justify-between gap-5 mb-6">
+    <div>
+        <h2 class="page-title flex items-center gap-3">
+            <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md"><i data-lucide="layout-dashboard" class="w-6 h-6"></i></span>
+            Dashboard Availability Unit
+        </h2>
+        <p class="page-subtitle mt-2 ml-1">Monitoring dan analisis data Availability Unit secara terintegrasi.</p>
+    </div>
+    <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">Periode</span>
+            <select id="periodSelector" class="year-selector" onchange="changePeriod()">
+                <option value="G1">Januari</option>
+                <option value="G2">Februari</option>
+                <option value="G3">Maret</option>
+                <option value="G4">April</option>
+                <option value="G5">Mei</option>
+                <option value="G6">Juni</option>
+                <option value="G7">Juli</option>
+                <option value="G8">Agustus</option>
+                <option value="G9">September</option>
+                <option value="G10">Oktober</option>
+                <option value="G11">November</option>
+                <option value="G12">Desember</option>
+                <option value="ALL">Seluruh Data</option>
+            </select>
+        </div>
+        <div class="flex items-center gap-2">
+            <a href="index.html" class="navigation-button home-button"><i data-lucide="house" class="w-4 h-4"></i> Kembali ke Home</a>
+            <a href="tavailability.html" class="navigation-button data-button"><i data-lucide="table-2" class="w-4 h-4"></i> Lihat Data</a>
+        </div>
+    </div>
+</div>
+
+<div id="loading">
+    <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+    <p id="loadingText" class="font-semibold text-sm text-slate-400 mt-3">Memuat data availability...</p>
+</div>
+
+<div id="dashboardContent">
+<div class="kpi-grid grid grid-cols-6 gap-4 mb-6">
+    <div class="stat-card">
+        <div class="flex items-start justify-between">
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Unit</p>
+                <p id="kpiTotalUnit" class="text-3xl font-black text-blue-900 mt-2">-</p>
+                <p id="kpiPeriod" class="text-[9px] text-slate-400 font-bold mt-1">-</p>
+            </div>
+            <div class="kpi-icon kpi-blue"><i data-lucide="truck" class="w-5 h-5"></i></div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="flex items-start justify-between">
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Breakdown</p>
+                <p id="kpiBreakdown" class="text-3xl font-black text-orange-600 mt-2">-</p>
+                <p class="text-[9px] text-slate-400 font-bold mt-1">Total BD</p>
+            </div>
+            <div class="kpi-icon kpi-orange"><i data-lucide="triangle-alert" class="w-5 h-5"></i></div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="flex items-start justify-between">
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Standby</p>
+                <p id="kpiStandby" class="text-3xl font-black text-purple-600 mt-2">-</p>
+                <p class="text-[9px] text-slate-400 font-bold mt-1">Total SB</p>
+            </div>
+            <div class="kpi-icon kpi-purple"><i data-lucide="pause-circle" class="w-5 h-5"></i></div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="flex items-start justify-between">
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">HM Operation</p>
+                <p id="kpiHM" class="text-3xl font-black text-indigo-600 mt-2">-</p>
+                <p class="text-[9px] text-slate-400 font-bold mt-1">Total HM OP</p>
+            </div>
+            <div class="kpi-icon kpi-purple"><i data-lucide="gauge" class="w-5 h-5"></i></div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="flex items-start justify-between">
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Average PA</p>
+                <p id="kpiPA" class="text-3xl font-black text-emerald-600 mt-2">-</p>
+                <p class="text-[9px] text-slate-400 font-bold mt-1">Standard &ge; 85%</p>
+            </div>
+            <div class="kpi-icon kpi-green"><i data-lucide="activity" class="w-5 h-5"></i></div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="flex items-start justify-between">
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Average MA</p>
+                <p id="kpiMA" class="text-3xl font-black text-amber-600 mt-2">-</p>
+                <p class="text-[9px] text-slate-400 font-bold mt-1">Standard &ge; 85%</p>
+            </div>
+            <div class="kpi-icon kpi-amber"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-panel mb-6">
+    <div class="panel-header">
+        <div>
+            <h3 class="panel-title">Trend Performance Bulanan</h3>
+            <p class="panel-subtitle">PA dan MA bulanan dibandingkan dengan YTD dan standar perusahaan 85%</p>
+        </div>     
+    </div>
+    <div class="chart-container"><canvas id="monthlyTrendChart"></canvas></div>
+    <div class="trend-summary-wrapper">
+        <div class="trend-summary-scroll">
+            <table class="trend-summary-table">
+                <thead>
+                    <tr>
+                        <th class="metric-name">Metric</th>
+                        <th>Januari</th><th>Februari</th><th>Maret</th><th>April</th><th>Mei</th><th>Juni</th><th>Juli</th><th>Agustus</th><th>September</th><th>Oktober</th><th>November</th><th>Desember</th>
+                    </tr>
+                </thead>
+                <tbody id="trendSummaryBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid grid grid-cols-2 gap-5 mb-6">
+    <div class="dashboard-panel">
+        <div class="panel-header">
+            <div>
+                <h3 class="panel-title">Trend Breakdown, Standby & HM OP</h3>
+                <p class="panel-subtitle">Total BD, SB, dan HM Operation setiap bulan</p>
+            </div>
+            <i data-lucide="trending-up" class="w-4 h-4 text-blue-700"></i>
+        </div>
+        <div class="chart-container"><canvas id="breakdownTrendChart"></canvas></div>
+    </div>
+    <div class="dashboard-panel">
+        <div class="panel-header">
+            <div>
+                <h3 class="panel-title">Unit dengan Breakdown</h3>
+                <p class="panel-subtitle">Unit dan keterangan breakdown berdasarkan periode</p>
+            </div>
+            <i data-lucide="triangle-alert" class="w-4 h-4 text-orange-600"></i>
+        </div>
+        <div id="breakdownUnitList" class="breakdown-list"></div>
+    </div>
+</div>
+
+<div class="dashboard-panel mb-6">
+    <div class="panel-header">
+        <div>
+            <h3 class="panel-title">Top 10 Unit dengan Breakdown Tertinggi</h3>
+            <p class="panel-subtitle">Unit dengan jumlah breakdown terbanyak</p>
+        </div>
+        <i data-lucide="flame" class="w-4 h-4 text-orange-600"></i>
+    </div>
+    <div class="chart-container"><canvas id="topBreakdownChart"></canvas></div>
+</div>
+
+<div class="table-panel">
+    <div class="table-header px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+        <div>
+            <h3 class="font-black text-slate-700 text-sm">Unit Perlu Perhatian</h3>
+            <p class="text-[10px] text-slate-400 mt-1 font-medium">Unit dengan PA atau MA di bawah standar 85%.</p>
+        </div>
+        <div class="flex items-center gap-2 text-[9px] text-slate-400 font-bold">
+            <i data-lucide="database" class="w-3.5 h-3.5"></i>
+            <span id="activePeriodBadge">-</span>
+        </div>
+    </div>
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:55px">No</th>
+                    <th>Unit</th>
+                    <th>BD</th>
+                    <th>SB</th>
+                    <th>HM OP</th>
+                    <th>PA</th>
+                    <th>MA</th>
+                    <th>Status</th>
+                    <th>Remark</th>
+                </tr>
+            </thead>
+            <tbody id="criticalUnitBody"></tbody>
+        </table>
+    </div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+    <p class="font-bold text-slate-500 tracking-tight uppercase">&copy; 2026 Paperless Project - PT TSI. All rights reserved.</p>
+    <p class="text-[10px] mt-1">System Architecture by: <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span> | <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span></p>
+</footer>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbwsMGo8WIhjxsvk7wjxMXORFiKt7Q4oaV_gk0UxmK6gxLfTfAHsG_vVahrsged5gFOJ/exec';
+const PA_STANDARD = 85;
+const MA_STANDARD = 85;
+const MONTH_NAMES = { G1: 'Januari', G2: 'Februari', G3: 'Maret', G4: 'April', G5: 'Mei', G6: 'Juni', G7: 'Juli', G8: 'Agustus', G9: 'September', G10: 'Oktober', G11: 'November', G12: 'Desember' };
+const MONTH_ORDER = ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12'];
+
+let apiData = null;
+let monthlyData = {};
+let monthlyPerformance = {};
+let selectedPeriod = 'G1';
+let charts = {};
+
+function handleLogoError() {
+    const logo = document.getElementById('companyLogo');
+    const fallback = document.getElementById('logoFallback');
+    if (logo) logo.classList.add('hidden');
+    if (fallback) { fallback.classList.remove('hidden'); fallback.classList.add('flex'); }
+}
+
+function escapeHtml(value) {
+    return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+function normalizeUnit(value) { return String(value ?? '').trim().toUpperCase(); }
+
+function parseNumber(value) {
+    if (value === null || value === undefined || value === '') return 0;
+    if (typeof value === 'number') return Number.isFinite(value) ? value : 0;
+    let text = String(value).trim().replace('%','').replace(/\s/g,'');
+    if (!text) return 0;
+    text = text.replace(',', '.');
+    const number = parseFloat(text);
+    if (!Number.isFinite(number)) return 0;
+    if (Math.abs(number) <= 1 && number !== 0) return number * 100;
+    return number;
+}
+
+function formatNumber(value, decimals = 0) {
+    if (!Number.isFinite(value)) return '-';
+    return Number(value).toLocaleString('id-ID', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+}
+
+function formatPercent(value) {
+    if (!Number.isFinite(value)) return '-';
+    return `${formatNumber(value,1)}%`;
+}
+
+function average(values) {
+    const valid = values.filter(v => Number.isFinite(v));
+    if (!valid.length) return 0;
+    return valid.reduce((sum, value) => sum + value, 0) / valid.length;
+}
+
+async function fetchAvailabilityData() {
+    showLoading('Memuat data availability...');
+    try {
+        const response = await fetch(API_URL, { method: 'GET', cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
+        const result = await response.json();
+        if (!result || result.success !== true) throw new Error(result?.error || 'API mengembalikan response tidak valid.');
+        apiData = result;
+        processApiData();
+        const latest = getLatestAvailableMonth();
+        selectedPeriod = latest || 'G1';
+        updatePeriodSelector();
+        renderDashboard();
+        hideLoading();
+    } catch (error) {
+        console.error('Availability API Error:', error);
+        showError(error.message);
+    }
+}
+
+function processApiData() {
+    monthlyData = {};
+    monthlyPerformance = {};
+    const sheets = apiData?.sheets || {};
+    MONTH_ORDER.forEach(sheetName => {
+        const sheet = sheets[sheetName];
+        if (!sheet) return;
+        const rows = Array.isArray(sheet.rows) ? sheet.rows : (Array.isArray(sheet.allData) ? sheet.allData : []);
+        const cleaned = rows.filter(row => row && String(row[0] ?? '').trim() !== '').map((row, index) => ({
+            unit: normalizeUnit(row[0]),
+            bd: parseNumber(row[1]),
+            sb: parseNumber(row[2]),
+            hm: parseNumber(row[3]),
+            pa: parseNumber(row[4]),
+            ma: parseNumber(row[5]),
+            remark: String(row[6] ?? '').trim(),
+            originalIndex: index
+        }));
+        if (cleaned.length) monthlyData[sheetName] = cleaned;
+        const sourceRows = Array.isArray(sheet.allData) ? sheet.allData : rows;
+        if (sourceRows && sourceRows.length >= 57) {
+            const row59 = sourceRows[56];
+            if (row59) {
+                monthlyPerformance[sheetName] = { pa: parseNumber(row59[4]), ma: parseNumber(row59[5]) };
+            }
+        }
+    });
+}
+
+function getLatestAvailableMonth() {
+    for (let i = MONTH_ORDER.length - 1; i >= 0; i--) {
+        const month = MONTH_ORDER[i];
+        if (monthlyData[month] && monthlyData[month].length) return month;
+    }
+    return null;
+}
+
+function changePeriod() {
+    const selector = document.getElementById('periodSelector');
+    const value = selector.value;
+    if (value !== 'ALL' && !monthlyData[value]) { selector.value = selectedPeriod; return; }
+    selectedPeriod = value;
+    renderDashboard();
+}
+
+function updatePeriodSelector() {
+    const selector = document.getElementById('periodSelector');
+    if (!selector) return;
+    Array.from(selector.options).forEach(option => {
+        if (option.value === 'ALL') { option.disabled = false; return; }
+        if (MONTH_ORDER.includes(option.value)) {
+            const hasData = !!(monthlyData[option.value] && monthlyData[option.value].length);
+            option.disabled = !hasData;
+            option.textContent = MONTH_NAMES[option.value];
+            option.title = hasData ? MONTH_NAMES[option.value] : 'Data belum tersedia';
+        }
+    });
+    selector.value = selectedPeriod;
+}
+
+function getPeriodLabel() {
+    if (selectedPeriod === 'ALL') return 'Seluruh Data';
+    return MONTH_NAMES[selectedPeriod] || selectedPeriod;
+}
+
+function getSelectedRows() {
+    if (selectedPeriod === 'ALL') return getAllAggregatedUnits();
+    return monthlyData[selectedPeriod] || [];
+}
+
+function getAllAggregatedUnits() {
+    const map = new Map();
+    MONTH_ORDER.forEach(month => {
+        const rows = monthlyData[month] || [];
+        rows.forEach(row => {
+            const unit = normalizeUnit(row.unit);
+            if (!unit) return;
+            if (!map.has(unit)) {
+                map.set(unit, { unit, bd: 0, sb: 0, hm: 0, paValues: [], maValues: [], remarks: [] });
+            }
+            const item = map.get(unit);
+            item.bd += row.bd;
+            item.sb += row.sb;
+            item.hm += row.hm;
+            if (Number.isFinite(row.pa)) item.paValues.push(row.pa);
+            if (Number.isFinite(row.ma)) item.maValues.push(row.ma);
+            if (row.remark) item.remarks.push(row.remark);
+        });
+    });
+    return Array.from(map.values()).map(item => ({
+        unit: item.unit,
+        bd: item.bd,
+        sb: item.sb,
+        hm: item.hm,
+        pa: average(item.paValues),
+        ma: average(item.maValues),
+        remark: [...new Set(item.remarks)].join(' | ')
+    }));
+}
+
+function getPerformanceStatus(row) {
+    const pa = parseNumber(row.pa);
+    const ma = parseNumber(row.ma);
+    const paGood = pa >= PA_STANDARD;
+    const maGood = ma >= MA_STANDARD;
+    if (paGood && maGood) return { key: 'GOOD', label: 'Memenuhi Standar' };
+    if (!paGood && !maGood) return { key: 'DANGER', label: 'Keduanya < 85%' };
+    return { key: 'WARNING', label: 'Perlu Perhatian' };
+}
+
+function updateKPIs(rows) {
+    const totalUnit = rows.length;
+    const totalBD = rows.reduce((sum,row) => sum + row.bd, 0);
+    const totalSB = rows.reduce((sum,row) => sum + row.sb, 0);
+    const totalHM = rows.reduce((sum,row) => sum + row.hm, 0);
+
+    let displayPA = 0;
+    let displayMA = 0;
+
+    const summaryData = getMonthlyPerformanceSummary();
+
+    if (selectedPeriod === 'ALL') {
+        // Jika seluruh data dipilih, tampilkan YTD PA dan YTD MA pada bulan terakhir
+        const validSummaries = summaryData.filter(item => item.ytdPA !== null && item.ytdMA !== null);
+        if (validSummaries.length) {
+            const lastSummary = validSummaries[validSummaries.length - 1];
+            displayPA = lastSummary.ytdPA;
+            displayMA = lastSummary.ytdMA;
+        }
+    } else {
+        // Jika bulan tertentu dipilih, ambil dari cell E59 (PA) dan F59 (MA) bulanan tersebut
+        const perf = monthlyPerformance[selectedPeriod];
+        if (perf) {
+            displayPA = Number.isFinite(perf.pa) ? perf.pa : 0;
+            displayMA = Number.isFinite(perf.ma) ? perf.ma : 0;
+        } else {
+            displayPA = average(rows.map(row => row.pa));
+            displayMA = average(rows.map(row => row.ma));
+        }
+    }
+
+    document.getElementById('kpiTotalUnit').textContent = totalUnit.toLocaleString('id-ID');
+    document.getElementById('kpiBreakdown').textContent = formatNumber(totalBD);
+    document.getElementById('kpiStandby').textContent = formatNumber(totalSB);
+    document.getElementById('kpiHM').textContent = formatNumber(totalHM,1);
+    document.getElementById('kpiPA').textContent = formatPercent(displayPA);
+    document.getElementById('kpiMA').textContent = formatPercent(displayMA);
+    document.getElementById('kpiPeriod').textContent = getPeriodLabel();
+    document.getElementById('activePeriodBadge').textContent = getPeriodLabel();
+}
+
+function getMonthlyPerformanceSummary() {
+    const summaries = [];
+    let paValues = [];
+    let maValues = [];
+    MONTH_ORDER.forEach(month => {
+        const performance = monthlyPerformance[month];
+        if (!performance) {
+            summaries.push({ month, label: MONTH_NAMES[month], pa: null, ma: null, ytdPA: null, ytdMA: null });
+            return;
+        }
+        const pa = Number.isFinite(performance.pa) ? performance.pa : null;
+        const ma = Number.isFinite(performance.ma) ? performance.ma : null;
+        if (pa !== null) paValues.push(pa);
+        if (ma !== null) maValues.push(ma);
+        summaries.push({
+            month,
+            label: MONTH_NAMES[month],
+            pa,
+            ma,
+            ytdPA: paValues.length ? average(paValues) : null,
+            ytdMA: maValues.length ? average(maValues) : null
+        });
+    });
+    return summaries;
+}
+
+function getPerformanceChartLowerBound(data) {
+    const values = [];
+    data.forEach(item => {
+        if (Number.isFinite(item.pa)) values.push(item.pa);
+        if (Number.isFinite(item.ma)) values.push(item.ma);
+        if (Number.isFinite(item.ytdPA)) values.push(item.ytdPA);
+        if (Number.isFinite(item.ytdMA)) values.push(item.ytdMA);
+    });
+    if (!values.length) return 75;
+    const minimum = Math.min(...values);
+    let lower = Math.floor(minimum / 5) * 5 - 5;
+    lower = Math.max(0, lower);
+    if (minimum >= 80 && lower > 75) lower = 75;
+    return lower;
+}
+
+function renderMonthlyTrendChart() {
+    const data = getMonthlyPerformanceSummary();
+    destroyChart('monthlyTrendChart');
+    const lowerBound = getPerformanceChartLowerBound(data);
+
+    charts.monthlyTrendChart = new Chart(document.getElementById('monthlyTrendChart'), {
+        type: 'line',
+        data: {
+            labels: data.map(item => item.label),
+            datasets: [
+                { label: 'PA', data: data.map(item => item.pa), borderColor: '#1e3a8a', backgroundColor: 'rgba(30,58,138,.06)', tension: .35, fill: false, spanGaps: false, pointRadius: 5, pointHoverRadius: 7, borderWidth: 3 },
+                { label: 'MA', data: data.map(item => item.ma), borderColor: '#059669', backgroundColor: 'rgba(5,150,105,.06)', tension: .35, fill: false, spanGaps: false, pointRadius: 5, pointHoverRadius: 7, borderWidth: 3 },
+                { label: 'YTD PA', data: data.map(item => item.ytdPA), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,.04)', tension: .35, fill: false, spanGaps: false, pointRadius: 4, pointHoverRadius: 6, borderWidth: 2, borderDash: [5,4] },
+                { label: 'YTD MA', data: data.map(item => item.ytdMA), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,.04)', tension: .35, fill: false, spanGaps: false, pointRadius: 4, pointHoverRadius: 6, borderWidth: 2, borderDash: [5,4] },
+                { label: 'Target 85%', data: data.map(() => PA_STANDARD), borderColor: '#dc2626', backgroundColor: 'rgba(220,38,38,.03)', borderDash: [7,6], tension: 0, fill: false, pointRadius: 0, pointHoverRadius: 0, borderWidth: 2 }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            scales: {
+                y: {
+                    position: 'left',
+                    min: lowerBound,
+                    max: 100,
+                    title: { display: true, text: 'Performance (%)', font: { family: 'Inter', size: 10, weight: '700' } },
+                    ticks: { font: { family: 'Inter', size: 9 }, callback: value => value + '%' },
+                    grid: { color: '#f1f5f9' }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { family: 'Inter', size: 9, weight: '700' } }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + (Number.isFinite(context.parsed.y) ? formatPercent(context.parsed.y) : '-');
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function renderTrendSummaryTable() {
+    const tbody = document.getElementById('trendSummaryBody');
+    const data = getMonthlyPerformanceSummary();
+
+    function cellValue(value, className) {
+        if (!Number.isFinite(value)) return `<td class="empty-value">-</td>`;
+        return `<td class="${className}">${formatPercent(value)}</td>`;
+    }
+
+    const paRow = `<tr><td class="metric-name">PA</td>${data.map(item => cellValue(item.pa, 'pa-value')).join('')}</tr>`;
+    const maRow = `<tr><td class="metric-name">MA</td>${data.map(item => cellValue(item.ma, 'ma-value')).join('')}</tr>`;
+    const ytdPARow = `<tr><td class="metric-name">YTD PA</td>${data.map(item => cellValue(item.ytdPA, 'ytd-pa-value')).join('')}</tr>`;
+    const ytdMARow = `<tr><td class="metric-name">YTD MA</td>${data.map(item => cellValue(item.ytdMA, 'ytd-ma-value')).join('')}</tr>`;
+    const stdRow = `<tr><td class="metric-name">STD</td>${MONTH_ORDER.map(() => `<td class="std-value">85%</td>`).join('')}</tr>`;
+
+    tbody.innerHTML = paRow + maRow + ytdPARow + ytdMARow + stdRow;
+}
+
+function getMonthlySummary() {
+    return MONTH_ORDER.filter(month => monthlyData[month] && monthlyData[month].length).map(month => {
+        const rows = monthlyData[month];
+        return {
+            month,
+            label: MONTH_NAMES[month],
+            pa: average(rows.map(row => row.pa)),
+            ma: average(rows.map(row => row.ma)),
+            bd: rows.reduce((sum,row) => sum + row.bd, 0),
+            sb: rows.reduce((sum,row) => sum + row.sb, 0),
+            hm: rows.reduce((sum,row) => sum + row.hm, 0)
+        };
+    });
+}
+
+function renderBreakdownTrendChart() {
+    const data = getMonthlySummary();
+    destroyChart('breakdownTrendChart');
+
+    charts.breakdownTrendChart = new Chart(document.getElementById('breakdownTrendChart'), {
+        type: 'bar',
+        data: {
+            labels: data.map(item => item.label),
+            datasets: [
+                { label: 'Breakdown', data: data.map(item => item.bd), backgroundColor: '#f97316', borderRadius: 6, yAxisID: 'y' },
+                { label: 'Standby', data: data.map(item => item.sb), backgroundColor: '#7c3aed', borderRadius: 6, yAxisID: 'y' },
+                { label: 'HM OP', data: data.map(item => item.hm), backgroundColor: '#0f766e', borderRadius: 6, yAxisID: 'y1' }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true, position: 'left', title: { display: true, text: 'BD / SB' }, ticks: { font: { family: 'Inter', size: 9 } }, grid: { color: '#f1f5f9' } },
+                y1: { beginAtZero: true, position: 'right', title: { display: true, text: 'HM OP' }, grid: { drawOnChartArea: false }, ticks: { font: { family: 'Inter', size: 9 } } },
+                x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 9, weight: '700' } } }
+            },
+            plugins: {
+                legend: { position: 'bottom', labels: { font: { family: 'Inter', size: 9, weight: '700' } } },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + formatNumber(context.parsed.y, context.dataset.label === 'HM OP' ? 1 : 0);
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function getBreakdownRecords() {
+    const records = [];
+    if (selectedPeriod === 'ALL') {
+        MONTH_ORDER.forEach(month => {
+            const rows = monthlyData[month] || [];
+            rows.forEach(row => {
+                if (row.remark && row.remark.trim()) {
+                    records.push({ month, label: MONTH_NAMES[month], unit: row.unit, bd: row.bd, remark: row.remark });
+                } else if (row.bd > 0) {
+                    records.push({ month, label: MONTH_NAMES[month], unit: row.unit, bd: row.bd, remark: 'Remark breakdown tidak diisi.' });
+                }
+            });
+        });
+    } else {
+        const rows = monthlyData[selectedPeriod] || [];
+        rows.forEach(row => {
+            if (row.remark && row.remark.trim()) {
+                records.push({ month: selectedPeriod, label: MONTH_NAMES[selectedPeriod], unit: row.unit, bd: row.bd, remark: row.remark });
+            } else if (row.bd > 0) {
+                records.push({ month: selectedPeriod, label: MONTH_NAMES[selectedPeriod], unit: row.unit, bd: row.bd, remark: 'Remark breakdown tidak diisi.' });
+            }
+        });
+    }
+    return records;
+}
+
+function renderBreakdownUnitList() {
+    const container = document.getElementById('breakdownUnitList');
+    const records = getBreakdownRecords();
+    if (!records.length) {
+        container.innerHTML = `
+            <div class="flex flex-col items-center justify-center py-12 px-5 text-center">
+                <i data-lucide="circle-check" class="w-8 h-8 text-emerald-500 mb-2"></i>
+                <p class="text-[10px] font-bold text-slate-400">Tidak ada breakdown pada periode ini.</p>
+            </div>
+        `;
+        lucide.createIcons();
+        return;
+    }
+    container.innerHTML = records.map(record => `
+        <div class="breakdown-record">
+            <div class="breakdown-record-top">
+                <div class="breakdown-record-unit"><i data-lucide="truck"></i> <span>${escapeHtml(record.unit)}</span></div>
+                <span class="breakdown-record-month">${escapeHtml(record.label)}</span>
+            </div>
+            <div class="breakdown-record-remark">${escapeHtml(record.remark)}</div>
+            <span class="breakdown-record-bd">BD: ${formatNumber(record.bd)}</span>
+        </div>
+    `).join('');
+    lucide.createIcons();
+}
+
+function renderTopBreakdownChart(rows) {
+    const sorted = [...rows].sort((a,b) => b.bd - a.bd).slice(0,10);
+    destroyChart('topBreakdownChart');
+
+    charts.topBreakdownChart = new Chart(document.getElementById('topBreakdownChart'), {
+        type: 'bar',
+        data: {
+            labels: sorted.map(row => row.unit),
+            datasets: [{ label: 'Breakdown', data: sorted.map(row => row.bd), backgroundColor: '#f97316', borderRadius: 6 }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { beginAtZero: true, ticks: { font: { family: 'Inter', size: 9 } }, grid: { color: '#f1f5f9' } },
+                y: { ticks: { font: { family: 'Inter', size: 9, weight: '800' } }, grid: { display: false } }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+}
+
+function renderCriticalTable(rows) {
+    const tbody = document.getElementById('criticalUnitBody');
+    const critical = [...rows].filter(row => row.pa < PA_STANDARD || row.ma < MA_STANDARD).sort((a,b) => {
+        const statusA = getPerformanceStatus(a);
+        const statusB = getPerformanceStatus(b);
+        const rank = { DANGER: 0, WARNING: 1, GOOD: 2 };
+        if (rank[statusA.key] !== rank[statusB.key]) return rank[statusA.key] - rank[statusB.key];
+        return ((a.pa+a.ma)/2) - ((b.pa+b.ma)/2);
+    }).slice(0,15);
+
+    if (!critical.length) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="9" class="text-center py-10 text-slate-400">
+                    <div class="flex flex-col items-center">
+                        <i data-lucide="circle-check" class="w-8 h-8 text-emerald-500 mb-2"></i>
+                        <span class="font-bold">Semua unit memenuhi standar PA & MA 85%.</span>
+                    </div>
+                </td>
+            </tr>
+        `;
+        lucide.createIcons();
+        return;
+    }
+
+    tbody.innerHTML = critical.map((row,index) => {
+        const status = getPerformanceStatus(row);
+        const paClass = row.pa >= PA_STANDARD ? 'value-good' : 'value-danger';
+        const maClass = row.ma >= MA_STANDARD ? 'value-good' : 'value-danger';
+        let statusClass = status.key === 'GOOD' ? 'status-good' : (status.key === 'DANGER' ? 'status-danger' : 'status-warning');
+
+        return `
+            <tr>
+                <td class="text-center font-bold text-slate-400">${index + 1}</td>
+                <td><span class="unit-badge">${escapeHtml(row.unit)}</span></td>
+                <td class="font-bold">${formatNumber(row.bd)}</td>
+                <td class="font-bold">${formatNumber(row.sb)}</td>
+                <td class="font-bold">${formatNumber(row.hm,1)}</td>
+                <td class="${paClass}">${formatPercent(row.pa)}</td>
+                <td class="${maClass}">${formatPercent(row.ma)}</td>
+                <td><span class="performance-status ${statusClass}">${escapeHtml(status.label)}</span></td>
+                <td>${row.remark ? `<span class="remark-badge" title="${escapeHtml(row.remark)}">${escapeHtml(row.remark)}</span>` : `<span class="text-slate-300">-</span>`}</td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function destroyChart(id) {
+    if (charts[id]) { charts[id].destroy(); charts[id] = null; }
+}
+
+function renderDashboard() {
+    const rows = getSelectedRows();
+    updateKPIs(rows);
+    renderMonthlyTrendChart();
+    renderTrendSummaryTable();
+    renderBreakdownTrendChart();
+    renderBreakdownUnitList();
+    renderTopBreakdownChart(rows);
+    renderCriticalTable(rows);
+    lucide.createIcons();
+}
+
+function showLoading(message) {
+    const loading = document.getElementById('loading');
+    const content = document.getElementById('dashboardContent');
+    const loadingText = document.getElementById('loadingText');
+    if (loadingText) loadingText.textContent = message || 'Memuat data...';
+    if (loading) loading.style.display = 'flex';
+    if (content) content.classList.remove('show');
+}
+
+function hideLoading() {
+    const loading = document.getElementById('loading');
+    const content = document.getElementById('dashboardContent');
+    if (loading) loading.style.display = 'none';
+    if (content) content.classList.add('show');
+}
+
+function showError(message) {
+    const loading = document.getElementById('loading');
+    if (!loading) return;
+    loading.style.display = 'flex';
+    loading.innerHTML = `
+        <div class="text-center">
+            <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex"><i data-lucide="alert-circle" class="w-8 h-8"></i></div>
+            <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+            <p class="text-xs text-slate-500 mt-2 max-w-lg mx-auto">${escapeHtml(message)}</p>
+            <button onclick="fetchAvailabilityData()" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">Coba Lagi</button>
+        </div>
+    `;
+    lucide.createIcons();
+}
+
+window.addEventListener('load', () => { lucide.createIcons(); fetchAvailabilityData(); });
+document.addEventListener('keydown', event => { if (event.key === 'Escape') document.activeElement?.blur(); });
+</script>
+
+</body>
+</html>
