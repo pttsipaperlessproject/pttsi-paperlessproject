@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Availability Unit - PT TSI</title>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Data Availability - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
@@ -20,54 +26,39 @@
 }
 
 html {
-    width: 100%;
-    min-height: 100%;
+    min-width: 0;
 }
 
 body {
     margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-    padding: 24px;
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
+    background: linear-gradient(
+        135deg,
+        #f8fafc,
+        #eef2f7
+    );
     color: #1e293b;
-    background: linear-gradient(135deg, #f8fafc, #eef2f7);
+    min-height: 100vh;
+    width: 100%;
+    min-width: 0;
 }
 
-/* =========================================================
-   MAIN
-========================================================= */
+.color-primary {
+    background: #1e3a8a;
+}
 
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px;
-    border-radius: 28px;
+.text-primary {
+    color: #1e3a8a;
 }
 
 .glass-panel {
     background: rgba(255,255,255,.95);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,.3);
 }
 
-.color-primary {
-    background: #1E3A8A;
-}
-
-.logo-shadow {
-    box-shadow:
-        0 10px 30px rgba(15,23,42,.10),
-        0 4px 10px rgba(15,23,42,.05);
-}
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
 .fade-in {
-    animation: fadeIn .8s ease forwards;
+    animation: fadeIn .5s cubic-bezier(.4,0,.2,1);
 }
 
 @keyframes fadeIn {
@@ -84,273 +75,1136 @@ main {
 
 }
 
-.fade-out {
-    animation: fadeOut .7s ease forwards;
-}
-
-@keyframes fadeOut {
-
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-
-}
-
-.spin {
-    animation: spin 1.15s linear infinite;
-}
-
-@keyframes spin {
-
-    to {
-        transform: rotate(360deg);
-    }
-
-}
-
-.pulse-soft {
-    animation: pulseSoft 2.2s ease-in-out infinite;
-}
-
-@keyframes pulseSoft {
-
-    0%,100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: .45;
-    }
-
-}
-
-/* =========================================================
-   SYSTEM ACTIVITY
-========================================================= */
-
-.system-icon {
+.logo-wrapper {
     transition:
-        background .5s ease,
-        color .5s ease,
-        transform .5s ease;
+        transform .4s cubic-bezier(.175,.885,.32,1.275);
 }
 
-.progress-bar {
+.logo-wrapper:hover {
+    transform:
+        scale(1.08)
+        rotate(2deg);
+}
+
+.logo-shadow {
+    filter:
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1));
+}
+
+.page-title {
+    font-size: 30px;
+    font-weight: 900;
+    color: #1e293b;
+    letter-spacing: -.025em;
+}
+
+.page-subtitle {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+
+/* ===================================================== */
+/* HEADER BUTTONS */
+/* ===================================================== */
+
+.header-buttons {
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+}
+
+.back-button,
+.home-button {
+
+    border: 0;
+    border-radius: 12px;
+
+    padding: 11px 17px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
     transition:
-        width 1.5s cubic-bezier(.4,0,.2,1);
-}
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
 
-.activity-text {
-    transition:
-        opacity .45s ease,
-        transform .45s ease;
-}
+    cursor: pointer;
 
-.activity-text.hide {
-    opacity: 0;
-    transform: translateY(5px);
-}
-
-.live-number {
-    transition: opacity .35s ease;
-}
-
-/* =========================================================
-   WARNING
-========================================================= */
-
-.warning-box {
-    animation: warningAppear 1s ease forwards;
-}
-
-@keyframes warningAppear {
-
-    from {
-        opacity: 0;
-        transform: scale(.97) translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+    white-space: nowrap;
 
 }
 
-/* =========================================================
-   CHOICE CARDS
-========================================================= */
+.back-button {
 
-.choice-card {
+    background: #1e3a8a;
+    color: #fff;
+
+    box-shadow:
+        0 5px 12px rgba(30,58,138,.18);
+
+}
+
+.back-button:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(30,58,138,.25);
+
+}
+
+.home-button {
+
+    background: #ffffff;
+    color: #475569;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 4px 10px rgba(15,23,42,.04);
+
+}
+
+.home-button:hover {
+
+    background: #f8fafc;
+
+    color: #1e3a8a;
+
+    border-color: #bfdbfe;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 15px rgba(15,23,42,.08);
+
+}
+
+
+/* ===================================================== */
+/* STAT CARD */
+/* ===================================================== */
+
+.stat-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 4px 12px rgba(15,23,42,.04);
+
+    transition: .25s ease;
+
+}
+
+.stat-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 24px rgba(15,23,42,.08);
+
+}
+
+.stat-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+/* ===================================================== */
+/* MONTH GRID */
+/* ===================================================== */
+
+.month-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+}
+
+
+/* ===================================================== */
+/* PROFESSIONAL MONTH CARD */
+/* ===================================================== */
+
+.month-card {
+
+    position: relative;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    min-height: 205px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    box-shadow:
+        0 3px 10px rgba(15,23,42,.035);
+
     transition:
         transform .25s ease,
         box-shadow .25s ease,
         border-color .25s ease;
+
+    overflow: hidden;
+
 }
 
-.choice-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(15,23,42,.10);
+
+/* TOP ACCENT */
+
+.month-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: #1e3a8a;
+
 }
 
-/* =========================================================
-   ARCHIVE
-========================================================= */
+.month-card.available::before {
 
-.archive-card {
+    background: #16a34a;
+
+}
+
+.month-card.unavailable::before {
+
+    background: #f59e0b;
+
+}
+
+
+/* SOFT BACKGROUND GLOW */
+
+.month-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    right: -35px;
+    top: -35px;
+
+    border-radius: 50%;
+
+    background: rgba(30,58,138,.035);
+
+    pointer-events: none;
+
+}
+
+.month-card.available::after {
+
+    background: rgba(22,163,74,.035);
+
+}
+
+.month-card.unavailable::after {
+
+    background: rgba(245,158,11,.045);
+
+}
+
+
+.month-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #cbd5e1;
+
+    box-shadow:
+        0 14px 28px rgba(15,23,42,.09);
+
+}
+
+
+/* ===================================================== */
+/* MONTH CARD TOP */
+/* ===================================================== */
+
+.month-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+}
+
+.month-icon {
+
+    width: 43px;
+    height: 43px;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    color: #1e3a8a;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #dbeafe;
+
+}
+
+.month-card.available .month-icon {
+
+    background: #f0fdf4;
+
+    color: #15803d;
+
+    border-color: #dcfce7;
+
+}
+
+.month-card.unavailable .month-icon {
+
+    background: #fffbeb;
+
+    color: #d97706;
+
+    border-color: #fef3c7;
+
+}
+
+
+/* ===================================================== */
+/* STATUS BADGE */
+/* ===================================================== */
+
+.status-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 8px;
+
+    border-radius: 999px;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    text-transform: uppercase;
+
+    letter-spacing: .045em;
+
+}
+
+.status-available {
+
+    background: #f0fdf4;
+
+    color: #15803d;
+
+    border: 1px solid #bbf7d0;
+
+}
+
+.status-unavailable {
+
+    background: #fffbeb;
+
+    color: #b45309;
+
+    border: 1px solid #fde68a;
+
+}
+
+
+/* ===================================================== */
+/* MONTH INFORMATION */
+/* ===================================================== */
+
+.month-info {
+
+    margin-top: 18px;
+
+}
+
+.month-label {
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+    color: #94a3b8;
+
+    margin-bottom: 5px;
+
+}
+
+.month-name {
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    color: #1e293b;
+
+    letter-spacing: -.025em;
+
+    line-height: 1.25;
+
+}
+
+.month-year {
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    color: #94a3b8;
+
+    margin-top: 4px;
+
+}
+
+
+/* ===================================================== */
+/* CARD FOOTER */
+/* ===================================================== */
+
+.card-footer {
+
+    margin-top: 18px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid #f1f5f9;
+
+}
+
+
+/* ===================================================== */
+/* PDF BUTTON */
+/* ===================================================== */
+
+.pdf-button {
+
+    width: 100%;
+
+    border: 1px solid #1e3a8a;
+
+    border-radius: 10px;
+
+    padding: 10px 13px;
+
+    background: #1e3a8a;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    text-decoration: none;
+
     transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+
+    box-shadow:
+        0 4px 9px rgba(30,58,138,.13);
+
 }
 
-.archive-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(15,23,42,.10);
+.pdf-button:hover {
+
+    background: #1d4ed8;
+
+    border-color: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 15px rgba(30,58,138,.2);
+
 }
 
-/* =========================================================
-   NAV MENU
-========================================================= */
 
-.nav-menu {
-    animation: menuIn .2s ease forwards;
+/* ===================================================== */
+/* DISABLED PDF BUTTON */
+/* ===================================================== */
+
+.pdf-button-disabled {
+
+    width: 100%;
+
+    border-radius: 10px;
+
+    padding: 10px 13px;
+
+    background: #f8fafc;
+
+    color: #94a3b8;
+
+    border: 1px solid #e2e8f0;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    cursor: not-allowed;
+
 }
 
-@keyframes menuIn {
+
+/* ===================================================== */
+/* LOADING */
+/* ===================================================== */
+
+#loading {
+
+    min-height: 280px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+#loadingText {
+
+    max-width: 500px;
+
+    line-height: 1.6;
+
+}
+
+#content {
+
+    display: none;
+
+}
+
+
+/* ===================================================== */
+/* ERROR */
+/* ===================================================== */
+
+.error-box {
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #b91c1c;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+/* ===================================================== */
+/* MODAL */
+/* ===================================================== */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15,23,42,.45);
+
+    backdrop-filter: blur(5px);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+
+}
+
+.modal-overlay.show {
+
+    display: flex;
+
+}
+
+.back-modal {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 25px 60px rgba(15,23,42,.22);
+
+    animation: modalIn .25s ease;
+
+}
+
+@keyframes modalIn {
 
     from {
+
         opacity: 0;
-        transform: translateY(-5px);
+
+        transform:
+            scale(.95)
+            translateY(10px);
+
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            scale(1)
+            translateY(0);
+
     }
 
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+.modal-header {
 
-@media(max-width:1024px) {
+    display: flex;
 
-    body {
-        padding: 16px;
-    }
+    align-items: center;
 
-    main {
-        padding: 28px;
-        border-radius: 24px;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+
+}
+
+.modal-title {
+
+    font-size: 18px;
+
+    font-weight: 900;
+
+    color: #1e293b;
+
+}
+
+.modal-close {
+
+    width: 36px;
+    height: 36px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+
+}
+
+.modal-close:hover {
+
+    background: #e2e8f0;
+
+    color: #1e293b;
+
+}
+
+.navigation-option {
+
+    width: 100%;
+
+    border: 1px solid #e2e8f0;
+
+    background: #fff;
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    margin-top: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: .2s ease;
+
+}
+
+.navigation-option:hover {
+
+    background: #f8fafc;
+
+    border-color: #bfdbfe;
+
+    transform: translateX(3px);
+
+}
+
+.navigation-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    color: #1e3a8a;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+}
+
+.navigation-title {
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #1e293b;
+
+}
+
+.navigation-description {
+
+    font-size: 10px;
+
+    color: #94a3b8;
+
+    margin-top: 2px;
+
+}
+
+
+/* ===================================================== */
+/* RESPONSIVE */
+/* ===================================================== */
+
+@media (max-width: 1100px) {
+
+    .month-grid {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
     }
 
 }
 
-@media(max-width:768px) {
+
+@media (max-width: 1024px) {
 
     body {
-        padding: 10px;
+
+        padding:
+            12px !important;
+
     }
 
-    main {
-        width: 100%;
-        padding: 20px;
-        border-radius: 20px;
+}
+
+
+@media (max-width: 800px) {
+
+    body {
+
+        background: #f1f5f9;
+
+    }
+
+    .month-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+    .page-title {
+
+        font-size: 25px;
+
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    body {
+
+        padding:
+            8px !important;
+
+    }
+
+    .glass-panel {
+
+        padding:
+            20px 16px !important;
+
+        border-radius:
+            22px !important;
+
+    }
+
+    .page-title {
+
+        font-size:
+            23px;
+
+    }
+
+    .page-subtitle {
+
+        font-size:
+            11px;
+
+    }
+
+    .month-card {
+
+        padding:
+            19px;
+
+    }
+
+    #loading {
+
+        min-height:
+            260px;
+
+    }
+
+}
+
+
+@media (max-width: 640px) {
+
+    body {
+
+        padding:
+            8px !important;
+
+    }
+
+    .month-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            14px;
+
+    }
+
+    .month-card {
+
+        min-height:
+            175px;
+
+    }
+
+    .page-title {
+
+        font-size:
+            22px;
+
+    }
+
+    .page-subtitle {
+
+        font-size:
+            11px;
+
+    }
+
+    .header-buttons {
+
+        width:
+            100%;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        gap:
+            8px;
+
+    }
+
+    .header-buttons .back-button,
+    .header-buttons .home-button {
+
+        width:
+            100%;
+
+    }
+
+    .stat-card {
+
+        padding:
+            16px;
+
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .glass-panel {
+
+        padding:
+            20px 15px !important;
+
+        border-radius:
+            22px !important;
+
     }
 
     .logo-wrapper {
-        width: 78px !important;
-        height: 78px !important;
+
+        margin-bottom:
+            14px;
+
     }
 
-    header h1 {
-        font-size: 18px !important;
+    .logo-wrapper > div {
+
+        width:
+            82px !important;
+
+        height:
+            82px !important;
+
     }
 
-    header h2 {
-        font-size: 11px !important;
+    .brand-box {
+
+        padding:
+            13px 18px !important;
+
     }
 
-    .page-title {
-        font-size: 22px !important;
+    .brand-box h1 {
+
+        font-size:
+            17px !important;
+
+    }
+
+    .brand-box h2 {
+
+        font-size:
+            11px !important;
+
+    }
+
+    #loading {
+
+        min-height:
+            230px;
+
     }
 
 }
 
-@media(max-width:480px) {
 
-    body {
-        padding: 6px;
-    }
-
-    main {
-        padding: 15px;
-        border-radius: 17px;
-    }
-
-    .logo-wrapper {
-        width: 68px !important;
-        height: 68px !important;
-    }
-
-    header h1 {
-        font-size: 15px !important;
-    }
-
-    header h2 {
-        font-size: 9px !important;
-    }
+@media (max-width: 380px) {
 
     .page-title {
-        font-size: 19px !important;
+
+        font-size:
+            20px;
+
+    }
+
+    .page-subtitle {
+
+        font-size:
+            10px;
+
+    }
+
+    .month-card {
+
+        padding:
+            17px;
+
+    }
+
+    .month-name {
+
+        font-size:
+            15px;
+
     }
 
 }
 
-@media(max-width:375px) {
 
-    main {
-        padding: 12px;
-    }
+@media (max-height: 600px) and (orientation: landscape) {
 
-    .page-title {
-        font-size: 17px !important;
-    }
+    .month-grid {
 
-    header h1 {
-        font-size: 14px !important;
-    }
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
 
-    header h2 {
-        font-size: 8px !important;
     }
 
 }
 
 </style>
+
 </head>
 
-<body>
 
-<main class="glass-panel">
+<body class="flex flex-col items-center p-4 sm:p-8">
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
 
-<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
+<main
+    class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in"
+>
 
-    <div
-        class="mb-4 logo-wrapper"
-        style="width:96px;height:96px;"
-    >
 
-        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+<header
+    class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
+>
+
+    <div class="mb-4 logo-wrapper">
+
+        <div
+            class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
+        >
 
             <img
                 src="default_logo.png"
@@ -362,10 +1216,12 @@ main {
 
             <div
                 id="logoFallback"
-                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+                class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
             >
 
-                <span class="font-black text-2xl">
+                <span
+                    class="font-black text-2xl"
+                >
                     TSI
                 </span>
 
@@ -376,533 +1232,133 @@ main {
     </div>
 
 
-    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+    <div
+        class="brand-box color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
+    >
 
-        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+        <h1
+            class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
+        >
             PAPERLESS PROJECT
         </h1>
 
-        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <div
+            class="h-0.5 w-16 bg-amber-500 rounded-full my-1"
+        ></div>
 
-        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+        <h2
+            class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
+        >
             PT TATSUMI SERUNI INDONESIA
         </h2>
 
     </div>
 
 
-    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
+    <div
+        class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center"
+    >
         Digitalization Initiative v2.0
     </div>
 
 </header>
 
 
-<!-- =========================================================
-     SYSTEM PROCESS
-========================================================= -->
+<!-- =========================
+     CONTENT
+     ========================= -->
 
-<section id="systemProcess">
+<section>
 
-    <div class="max-w-3xl mx-auto">
-
-        <div class="text-center mb-9">
-
-            <div
-                id="systemIcon"
-                class="system-icon inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 text-blue-900 mb-5"
-            >
-
-                <i
-                    data-lucide="database"
-                    class="w-8 h-8 spin"
-                ></i>
-
-            </div>
+<div class="flex items-center justify-between gap-5 mb-6">
 
 
-            <div class="text-[10px] font-black tracking-[0.3em] uppercase text-blue-600 mb-2">
-                Availability Data Engine
-            </div>
+<div>
+
+<h2 class="page-title flex items-center gap-3">
+
+<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+
+<i
+    data-lucide="database"
+    class="w-6 h-6"
+></i>
+
+</span>
+
+Data Periodic Service
+
+</h2>
 
 
-            <div
-                id="activityText"
-                class="activity-text"
-            >
+<p class="page-subtitle mt-2 ml-1">
 
-                <h1
-                    id="activityTitle"
-                    class="text-2xl sm:text-3xl font-black text-slate-800"
-                >
-                    Connecting to Availability Database...
-                </h1>
+Daftar seluruh aktivitas periodic service yang tersimpan pada database.
 
-                <p
-                    id="activityDescription"
-                    class="mt-3 text-sm text-slate-500 max-w-xl mx-auto leading-relaxed"
-                >
-                    Establishing a connection with the Availability data source.
-                </p>
+</p>
 
-            </div>
-
-        </div>
+</div>
 
 
-        <!-- =================================================
-             PROGRESS
-        ================================================= -->
+<div class="header-buttons">
 
-        <div class="mb-7">
+    <button
+        onclick="openBackMenu()"
+        class="back-button"
+    >
 
-            <div class="flex items-center justify-between mb-2">
+        <i
+            data-lucide="arrow-left"
+            class="w-4 h-4"
+        ></i>
 
-                <span
-                    id="progressLabel"
-                    class="text-[11px] font-bold text-slate-400"
-                >
-                    Establishing connection
-                </span>
+        <span>
+            Kembali
+        </span>
 
-                <span
-                    id="progressPercent"
-                    class="text-[11px] font-black text-blue-800"
-                >
-                    0%
-                </span>
-
-            </div>
+    </button>
 
 
-            <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+    <button
+        onclick="goHome()"
+        class="home-button"
+    >
 
-                <div
-                    id="progressBar"
-                    class="progress-bar h-full bg-blue-800 rounded-full"
-                    style="width:0%"
-                ></div>
+        <i
+            data-lucide="house"
+            class="w-4 h-4"
+        ></i>
 
-            </div>
+        <span>
+            Kembali ke Home
+        </span>
 
-        </div>
+    </button>
 
-
-        <!-- =================================================
-             CURRENT ACTIVITY
-        ================================================= -->
-
-        <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5">
-
-            <div class="flex items-center gap-3">
-
-                <div
-                    id="activityIndicator"
-                    class="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center shrink-0"
-                >
-
-                    <i
-                        data-lucide="loader-circle"
-                        class="w-4 h-4 text-blue-700 spin"
-                    ></i>
-
-                </div>
+</div>
 
 
-                <div class="min-w-0 flex-1">
-
-                    <div
-                        id="currentOperation"
-                        class="text-xs font-bold text-slate-700"
-                    >
-                        Establishing secure connection...
-                    </div>
-
-                    <div
-                        id="currentDetail"
-                        class="text-[10px] text-slate-400 mt-1"
-                    >
-                        Please wait while the system initializes the request.
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             LIVE DATA
-        ================================================= -->
-
-        <div class="mt-4 rounded-2xl bg-slate-900 text-white p-5">
-
-            <div class="flex items-center gap-2 mb-5">
-
-                <div class="w-2 h-2 rounded-full bg-emerald-400 pulse-soft"></div>
-
-                <span class="text-[9px] font-black tracking-[0.25em] uppercase text-slate-500">
-                    Live Processing
-                </span>
-
-            </div>
-
-
-            <div class="grid grid-cols-2 gap-5">
-
-                <div>
-
-                    <div class="text-[9px] uppercase font-bold text-slate-500">
-                        Records Processed
-                    </div>
-
-                    <div
-                        id="recordCounter"
-                        class="live-number text-xl font-black mt-1"
-                    >
-                        0
-                    </div>
-
-                </div>
-
-
-                <div>
-
-                    <div class="text-[9px] uppercase font-bold text-slate-500">
-                        Elapsed Processing
-                    </div>
-
-                    <div
-                        id="dataVolume"
-                        class="live-number text-xl font-black mt-1"
-                    >
-                        0.0 sec
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =========================================================
-     CAPACITY WARNING
-========================================================= -->
-
 <section
-    id="capacitySection"
-    class="hidden"
+    class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8"
 >
 
-    <div class="max-w-3xl mx-auto warning-box">
-
-        <div class="rounded-3xl border border-amber-200 bg-amber-50 p-6 sm:p-8">
-
-            <div class="text-center">
-
-                <div class="w-16 h-16 mx-auto rounded-2xl bg-white text-amber-600 flex items-center justify-center shadow-sm mb-5">
-
-                    <i
-                        data-lucide="triangle-alert"
-                        class="w-8 h-8"
-                    ></i>
-
-                </div>
-
-
-                <div class="text-[10px] font-black tracking-[0.3em] uppercase text-amber-600 mb-2">
-                    Processing Capacity Reached
-                </div>
-
-
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-800">
-                    Unable to Load Daily Availability
-                </h2>
-
-
-                <p class="mt-4 text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
-
-                    The system successfully connected to the Availability database
-                    and began processing the requested information.
-
-                    However, the current server environment does not have sufficient
-                    processing capacity to deliver the complete daily dataset.
-
-                </p>
-
-
-                <div class="mt-6 rounded-2xl bg-white/80 border border-amber-100 p-4 text-left">
-
-                    <div class="flex gap-3">
-
-                        <i
-                            data-lucide="shield-check"
-                            class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"
-                        ></i>
-
-                        <div class="text-xs text-slate-600 leading-relaxed">
-
-                            <strong class="text-slate-800">
-                                Your data is safe.
-                            </strong>
-
-                            No records have been deleted or lost.
-                            The limitation is only related to the current
-                            server resources required to process the complete
-                            daily Availability dataset.
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             FALLBACK PROCESS + USER CHOICE
-        ================================================= -->
+    <div class="stat-card">
 
         <div
-            id="fallbackMessage"
-            class="mt-7 text-center"
+            class="flex items-center gap-3"
         >
 
-            <div class="inline-flex items-center gap-3 text-sm font-bold text-blue-700">
+            <div
+                class="stat-icon bg-blue-50 text-blue-800"
+            >
 
                 <i
-                    data-lucide="archive"
-                    class="w-5 h-5"
-                ></i>
-
-                Alternative data access is ready.
-
-            </div>
-
-            <p class="text-[10px] text-slate-400 mt-2">
-                The system has prepared the available Availability archive.
-            </p>
-
-
-            <!-- =================================================
-                 USER CHOICE MOVED HERE
-            ================================================= -->
-
-            <div class="grid sm:grid-cols-2 gap-4 mt-7 text-left">
-
-                <!-- ARCHIVE -->
-
-                <button
-                    onclick="openArchive()"
-                    class="choice-card group rounded-2xl bg-blue-900 text-white p-5 text-left shadow-lg"
-                >
-
-                    <div class="flex items-center justify-between">
-
-                        <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center">
-
-                            <i
-                                data-lucide="archive"
-                                class="w-5 h-5"
-                            ></i>
-
-                        </div>
-
-
-                        <i
-                            data-lucide="arrow-right"
-                            class="w-5 h-5 opacity-50 group-hover:translate-x-1 transition-transform"
-                        ></i>
-
-                    </div>
-
-
-                    <div class="mt-5">
-
-                        <div class="font-black text-lg">
-                            Open PDF Archive
-                        </div>
-
-                        <div class="text-xs text-blue-200 mt-1">
-                            View available monthly Availability reports
-                        </div>
-
-                    </div>
-
-                </button>
-
-
-                <!-- TABLE -->
-
-                <a
-                    href="tavailability.html"
-                    class="choice-card group rounded-2xl bg-white border border-slate-200 text-slate-700 p-5 text-left shadow-sm"
-                >
-
-                    <div class="flex items-center justify-between">
-
-                        <div class="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center">
-
-                            <i
-                                data-lucide="table-2"
-                                class="w-5 h-5"
-                            ></i>
-
-                        </div>
-
-
-                        <i
-                            data-lucide="arrow-right"
-                            class="w-5 h-5 text-slate-300 group-hover:translate-x-1 transition-transform"
-                        ></i>
-
-                    </div>
-
-
-                    <div class="mt-5">
-
-                        <div class="font-black text-lg">
-                            Return to Availability Table
-                        </div>
-
-                        <div class="text-xs text-slate-400 mt-1">
-                            Continue viewing available data in table format
-                        </div>
-
-                    </div>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PDF ARCHIVE
-========================================================= -->
-
-<section
-    id="archiveSection"
-    class="hidden"
->
-
-    <div class="fade-in">
-
-        <!-- TITLE & NAVIGATION -->
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-8 w-full">
-
-            <!-- Bagian Kiri: Judul -->
-            <div class="flex items-center gap-4">
-
-                <div class="w-12 h-12 rounded-xl bg-[#1e3a8a] text-white flex items-center justify-center shrink-0">
-
-                    <i data-lucide="gauge" class="w-6 h-6"></i>
-
-                </div>
-
-                <div>
-
-                    <h1 class="text-2xl sm:text-[26px] font-black text-slate-900 tracking-tight">
-                        Data Availability Unit
-                    </h1>
-
-                    <p class="text-[13px] text-slate-600 mt-0.5">
-                        Daftar seluruh avilability unit yang tersimpan pada database.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- Bagian Kanan: Filter & Tombol -->
-
-            <div class="flex flex-wrap items-center gap-3">
-
-                <div class="flex items-center gap-2">
-
-                    <span class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">
-                        Periode
-                    </span>
-
-                    <div class="relative">
-
-                        <select class="appearance-none border border-slate-200 rounded-xl pl-4 pr-10 py-2.5 text-sm font-bold text-[#1e3a8a] bg-white outline-none focus:border-blue-500 cursor-pointer shadow-sm">
-
-                            <option>
-                                Seluruh Data
-                            </option>
-
-                        </select>
-
-                        <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#1e3a8a]">
-
-                            <i
-                                data-lucide="chevron-down"
-                                class="w-4 h-4"
-                            ></i>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <button class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1e3a8a] text-white font-bold text-sm shadow-sm hover:bg-blue-800 transition">
-
-                    <i
-                        data-lucide="calendar"
-                        class="w-4 h-4"
-                    ></i>
-
-                    Lihat data per hari
-
-                </button>
-
-
-                <button class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1e3a8a] text-white font-bold text-sm shadow-sm hover:bg-blue-800 transition">
-
-                    <i
-                        data-lucide="arrow-left"
-                        class="w-4 h-4"
-                    ></i>
-
-                    Kembali
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- STATUS -->
-
-        <div
-            id="archiveStatus"
-            class="mb-6 rounded-2xl bg-slate-50 border border-slate-200 p-4 flex items-center gap-3"
-        >
-
-            <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
-
-                <i
-                    data-lucide="loader-circle"
-                    class="w-5 h-5 spin"
+                    data-lucide="calendar-days"
                 ></i>
 
             </div>
@@ -910,52 +1366,98 @@ main {
 
             <div>
 
-                <div class="font-bold text-sm text-slate-700">
-                    Loading archive...
-                </div>
+                <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
+                >
+                    Total Bulan
+                </p>
 
-                <div class="text-xs text-slate-400">
-                    Connecting to the Availability document archive
-                </div>
+                <p
+                    id="totalMonths"
+                    class="text-2xl font-black text-slate-800"
+                >
+                    -
+                </p>
 
             </div>
 
         </div>
 
-
-        <!-- PDF GRID -->
-
-        <div
-            id="pdfGrid"
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-        ></div>
+    </div>
 
 
-        <!-- ERROR -->
+    <div class="stat-card">
 
         <div
-            id="archiveError"
-            class="hidden text-center py-12"
+            class="flex items-center gap-3"
         >
 
-            <div class="w-14 h-14 mx-auto rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-4">
+            <div
+                class="stat-icon bg-green-50 text-green-700"
+            >
 
                 <i
-                    data-lucide="file-warning"
-                    class="w-7 h-7"
+                    data-lucide="file-check-2"
                 ></i>
 
             </div>
 
 
-            <h3 class="font-black text-lg text-slate-800">
-                Archive Could Not Be Loaded
-            </h3>
+            <div>
+
+                <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
+                >
+                    PDF Tersedia
+                </p>
+
+                <p
+                    id="availableMonths"
+                    class="text-2xl font-black text-slate-800"
+                >
+                    -
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
-            <p class="text-sm text-slate-500 mt-2">
-                Please try again later.
-            </p>
+    <div class="stat-card">
+
+        <div
+            class="flex items-center gap-3"
+        >
+
+            <div
+                class="stat-icon bg-amber-50 text-amber-700"
+            >
+
+                <i
+                    data-lucide="clock-3"
+                ></i>
+
+            </div>
+
+
+            <div>
+
+                <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
+                >
+                    Belum Tersedia
+                </p>
+
+                <p
+                    id="unavailableMonths"
+                    class="text-2xl font-black text-slate-800"
+                >
+                    -
+                </p>
+
+            </div>
 
         </div>
 
@@ -964,27 +1466,94 @@ main {
 </section>
 
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
+<section>
 
-<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
 
-    <p class="font-bold text-slate-500 tracking-tight uppercase">
+<div id="loading">
+
+    <i
+        data-lucide="loader-circle"
+        class="w-9 h-9 animate-spin text-amber-500"
+    ></i>
+
+    <p
+        id="loadingText"
+        class="font-semibold text-sm text-slate-400 mt-3"
+    >
+        Memuat data...
+    </p>
+
+</div>
+
+
+<div id="content">
+
+    <div
+        id="monthGrid"
+        class="month-grid"
+    ></div>
+
+
+    <div
+        id="errorState"
+        class="error-box hidden mt-5"
+    >
+
+        <div
+            class="flex justify-center mb-3"
+        >
+
+            <i
+                data-lucide="circle-alert"
+                size="28"
+            ></i>
+
+        </div>
+
+        <p id="errorMessage">
+            Gagal mengambil data.
+        </p>
+
+        <button
+            onclick="loadData()"
+            class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 transition"
+        >
+            Coba Lagi
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<footer
+    class="mt-8 text-center text-slate-400 px-4 pb-8"
+>
+
+    <p
+        class="font-bold text-slate-500 tracking-tight uppercase"
+    >
         &copy; 2026 Paperless Project - PT TSI. All rights reserved.
     </p>
+
 
     <p class="text-[10px] mt-1">
 
         System Architecture by:
 
-        <span class="text-slate-600 font-semibold uppercase">
+        <span
+            class="text-slate-600 font-semibold uppercase"
+        >
             Imam Wahyu Ramadhan, S.T.
         </span>
 
         |
 
-        <span class="text-amber-600 font-bold uppercase tracking-tighter">
+        <span
+            class="text-amber-600 font-bold uppercase tracking-tighter"
+        >
             Project 2.0
         </span>
 
@@ -992,854 +1561,61 @@ main {
 
 </footer>
 
+
 </main>
 
 
-<script>
+<!-- ===================================================== -->
+<!-- BACK MODAL -->
+<!-- ===================================================== -->
 
-/* =========================================================
-   API
-========================================================= */
+<div
+    id="backModal"
+    class="modal-overlay"
+    onclick="handleModalOverlay(event)"
+>
 
-const API_URL =
-'https://script.google.com/macros/s/AKfycbySVSJiyZeSemjIi4eCcnNVLp6iy0xcl3Oacewpi9nzSVerTEhyR9tYTQG4nAjZRMdP/exec';
+    <div class="back-modal">
 
 
-/* =========================================================
-   LOGO FALLBACK
-========================================================= */
+        <div class="modal-header">
 
-function handleLogoError() {
+            <div>
 
-    const logo =
-        document.getElementById('companyLogo');
+                <p
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1"
+                >
+                    Navigation
+                </p>
 
-    const fallback =
-        document.getElementById('logoFallback');
-
-    if (logo) {
-        logo.classList.add('hidden');
-    }
-
-    if (fallback) {
-
-        fallback.classList.remove('hidden');
-        fallback.classList.add('flex');
-
-    }
-
-}
-
-
-/* =========================================================
-   ICONS
-========================================================= */
-
-function refreshIcons() {
-
-    if (window.lucide) {
-        lucide.createIcons();
-    }
-
-}
-
-
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
-const activityTitle =
-document.getElementById('activityTitle');
-
-const activityDescription =
-document.getElementById('activityDescription');
-
-const activityText =
-document.getElementById('activityText');
-
-const currentOperation =
-document.getElementById('currentOperation');
-
-const currentDetail =
-document.getElementById('currentDetail');
-
-const progressBar =
-document.getElementById('progressBar');
-
-const progressPercent =
-document.getElementById('progressPercent');
-
-const progressLabel =
-document.getElementById('progressLabel');
-
-const recordCounter =
-document.getElementById('recordCounter');
-
-const dataVolume =
-document.getElementById('dataVolume');
-
-const systemIcon =
-document.getElementById('systemIcon');
-
-const activityIndicator =
-document.getElementById('activityIndicator');
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-function setProgress(percent, label) {
-
-    progressBar.style.width =
-        percent + '%';
-
-    progressPercent.textContent =
-        Math.round(percent) + '%';
-
-    progressLabel.textContent =
-        label;
-
-}
-
-
-/* =========================================================
-   CHANGE ACTIVITY
-========================================================= */
-
-function changeActivity(
-    title,
-    description,
-    operation,
-    detail,
-    percent,
-    label
-) {
-
-    activityText.classList.add('hide');
-
-    setTimeout(() => {
-
-        activityTitle.textContent =
-            title;
-
-        activityDescription.textContent =
-            description;
-
-        currentOperation.textContent =
-            operation;
-
-        currentDetail.textContent =
-            detail;
-
-        setProgress(
-            percent,
-            label
-        );
-
-        activityText.classList.remove('hide');
-
-    }, 450);
-
-}
-
-
-/* =========================================================
-   LIVE PROCESS SIMULATION
-========================================================= */
-
-let recordValue = 0;
-
-let processingTimer = null;
-
-let processingStartTime = null;
-
-
-function startLiveProcessing(
-    targetRecords,
-    duration
-) {
-
-    const start =
-        Date.now();
-
-    processingStartTime =
-        start;
-
-    const initialRecords =
-        recordValue;
-
-
-    processingTimer =
-        setInterval(() => {
-
-            const elapsed =
-                Date.now() - start;
-
-            const progress =
-                Math.min(
-                    elapsed / duration,
-                    1
-                );
-
-
-            /*
-             * Ease-out movement.
-             */
-
-            const eased =
-                1 - Math.pow(
-                    1 - progress,
-                    1.8
-                );
-
-
-            recordValue =
-                initialRecords +
-                (
-                    targetRecords -
-                    initialRecords
-                ) * eased;
-
-
-            recordCounter.textContent =
-                new Intl.NumberFormat('en-US')
-                .format(
-                    Math.floor(recordValue)
-                );
-
-
-            dataVolume.textContent =
-                (
-                    elapsed / 1000
-                ).toFixed(1) +
-                ' sec';
-
-
-            if (progress >= 1) {
-
-                clearInterval(
-                    processingTimer
-                );
-
-            }
-
-        }, 180);
-
-}
-
-
-/* =========================================================
-   NATURAL PROCESS
-========================================================= */
-
-async function runSystemProcess() {
-
-    /*
-     * PHASE 1
-     */
-
-    await wait(1800);
-
-
-    changeActivity(
-
-        'Reading Availability Records...',
-
-        'The connection has been established. The system is now retrieving the requested records.',
-
-        'Reading availability records...',
-
-        'Retrieving records from the Availability data source.',
-
-        16,
-
-        'Reading availability records'
-
-    );
-
-
-    await wait(2200);
-
-
-    /*
-     * PHASE 2
-     */
-
-    changeActivity(
-
-        'Processing Daily Availability...',
-
-        'The system is organizing availability information by unit and date.',
-
-        'Processing daily records...',
-
-        'Aggregating records and preparing daily availability information.',
-
-        31,
-
-        'Processing daily records'
-
-    );
-
-
-    startLiveProcessing(
-        1284500,
-        4200
-    );
-
-
-    await wait(4200);
-
-
-    /*
-     * PHASE 3
-     */
-
-    changeActivity(
-
-        'Preparing Data Response...',
-
-        'The system is preparing the processed information for delivery to the web application.',
-
-        'Preparing response payload...',
-
-        'Converting processed records into a browser-readable response.',
-
-        54,
-
-        'Preparing response payload'
-
-    );
-
-
-    await wait(2600);
-
-
-    /*
-     * PHASE 4
-     */
-
-    changeActivity(
-
-        'Optimizing Data Request...',
-
-        'The system is attempting to reduce the response size before continuing.',
-
-        'Optimizing data payload...',
-
-        'Reducing response overhead to improve delivery performance.',
-
-        68,
-
-        'Optimizing data payload'
-
-    );
-
-
-    startLiveProcessing(
-        2147800,
-        4300
-    );
-
-
-    await wait(4300);
-
-
-    /*
-     * PHASE 5
-     */
-
-    changeActivity(
-
-        'Processing Large Dataset...',
-
-        'The requested dataset contains a substantial number of daily availability records.',
-
-        'Processing remaining records...',
-
-        'The server is continuing to process the remaining dataset.',
-
-        79,
-
-        'Processing remaining records'
-
-    );
-
-
-    await wait(3000);
-
-
-    /*
-     * PHASE 6
-     */
-
-    changeActivity(
-
-        'Checking Processing Capacity...',
-
-        'The system is evaluating whether the current environment can safely complete the request.',
-
-        'Checking available server resources...',
-
-        'Waiting for sufficient processing resources.',
-
-        87,
-
-        'Checking server capacity'
-
-    );
-
-
-    await wait(2600);
-
-
-    /*
-     * PHASE 7
-     * Deliberately slow.
-     */
-
-    changeActivity(
-
-        'Processing Request...',
-
-        'The system is still attempting to complete the request.',
-
-        'Server response delayed...',
-
-        'The dataset is taking longer than expected to process.',
-
-        91,
-
-        'Waiting for server response'
-
-    );
-
-
-    await wait(3200);
-
-
-    /*
-     * PHASE 8
-     */
-
-    changeActivity(
-
-        'Request Cannot Be Completed',
-
-        'The current processing environment has reached its available capacity.',
-
-        'Processing capacity reached.',
-
-        'The system will safely stop the request and prepare an alternative access method.',
-
-        93,
-
-        'Processing capacity reached'
-
-    );
-
-
-    await wait(1800);
-
-
-    showCapacitySection();
-
-}
-
-
-/* =========================================================
-   SHOW CAPACITY
-========================================================= */
-
-function showCapacitySection() {
-
-    const process =
-        document.getElementById('systemProcess');
-
-    const capacity =
-        document.getElementById('capacitySection');
-
-
-    process.classList.add('fade-out');
-
-
-    setTimeout(() => {
-
-        process.classList.add('hidden');
-
-        capacity.classList.remove('hidden');
-
-        refreshIcons();
-
-    }, 700);
-
-
-    /*
-     * Show alternative access and user choices
-     * inside the same capacity section.
-     */
-
-    setTimeout(() => {
-
-        const fallback =
-            document.getElementById('fallbackMessage');
-
-        fallback.innerHTML = `
-
-            <div class="inline-flex items-center gap-3 text-sm font-bold text-blue-700">
-
-                <i
-                    data-lucide="archive"
-                    class="w-5 h-5"
-                ></i>
-
-                Alternative data access is ready.
+                <h2 class="modal-title">
+                    Kembali ke halaman
+                </h2>
 
             </div>
 
-            <p class="text-[10px] text-slate-400 mt-2">
-                The system has prepared the available Availability archive.
-            </p>
 
+            <button
+                class="modal-close"
+                onclick="closeBackMenu()"
+            >
 
-            <div class="grid sm:grid-cols-2 gap-4 mt-7 text-left">
+                <i data-lucide="x"></i>
 
-                <!-- ARCHIVE -->
+            </button>
 
-                <button
-                    onclick="openArchive()"
-                    class="choice-card group rounded-2xl bg-blue-900 text-white p-5 text-left shadow-lg"
-                >
+        </div>
 
-                    <div class="flex items-center justify-between">
 
-                        <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center">
+        <button
+            class="navigation-option"
+            onclick="goDashboard()"
+        >
 
-                            <i
-                                data-lucide="archive"
-                                class="w-5 h-5"
-                            ></i>
-
-                        </div>
-
-
-                        <i
-                            data-lucide="arrow-right"
-                            class="w-5 h-5 opacity-50 group-hover:translate-x-1 transition-transform"
-                        ></i>
-
-                    </div>
-
-
-                    <div class="mt-5">
-
-                        <div class="font-black text-lg">
-                            Open PDF Archive
-                        </div>
-
-                        <div class="text-xs text-blue-200 mt-1">
-                            View available monthly Availability reports
-                        </div>
-
-                    </div>
-
-                </button>
-
-
-                <!-- TABLE -->
-
-                <a
-                    href="tavailability.html"
-                    class="choice-card group rounded-2xl bg-white border border-slate-200 text-slate-700 p-5 text-left shadow-sm"
-                >
-
-                    <div class="flex items-center justify-between">
-
-                        <div class="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center">
-
-                            <i
-                                data-lucide="table-2"
-                                class="w-5 h-5"
-                            ></i>
-
-                        </div>
-
-
-                        <i
-                            data-lucide="arrow-right"
-                            class="w-5 h-5 text-slate-300 group-hover:translate-x-1 transition-transform"
-                        ></i>
-
-                    </div>
-
-
-                    <div class="mt-5">
-
-                        <div class="font-black text-lg">
-                            Return to Availability Table
-                        </div>
-
-                        <div class="text-xs text-slate-400 mt-1">
-                            Continue viewing available data in table format
-                        </div>
-
-                    </div>
-
-                </a>
-
-            </div>
-
-        `;
-
-        refreshIcons();
-
-    }, 3000);
-
-}
-
-
-/* =========================================================
-   OPEN ARCHIVE
-========================================================= */
-
-function openArchive() {
-
-    const capacity =
-        document.getElementById('capacitySection');
-
-    capacity.classList.add('fade-out');
-
-
-    setTimeout(() => {
-
-        capacity.classList.add('hidden');
-
-        const archive =
-            document.getElementById('archiveSection');
-
-        archive.classList.remove('hidden');
-
-        refreshIcons();
-
-        loadArchive();
-
-    }, 700);
-
-}
-
-
-/* =========================================================
-   LOAD ARCHIVE
-========================================================= */
-
-async function loadArchive() {
-
-    const grid =
-        document.getElementById('pdfGrid');
-
-    const status =
-        document.getElementById('archiveStatus');
-
-    const error =
-        document.getElementById('archiveError');
-
-
-    try {
-
-        const response =
-            await fetch(
-                API_URL,
-                {
-                    method: 'GET',
-                    cache: 'no-store'
-                }
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                'HTTP ' + response.status
-            );
-
-        }
-
-
-        const result =
-            await response.json();
-
-
-        if (
-            !result ||
-            !result.success ||
-            !Array.isArray(result.data)
-        ) {
-
-            throw new Error(
-                'Invalid API response'
-            );
-
-        }
-
-
-        const rows =
-            result.data.slice(1);
-
-
-        grid.innerHTML = '';
-
-
-        rows.forEach(row => {
-
-            const month =
-                String(
-                    row[0] || ''
-                ).trim();
-
-            const url =
-                String(
-                    row[1] || ''
-                ).trim();
-
-
-            if (!month) {
-                return;
-            }
-
-
-            const card =
-                document.createElement('div');
-
-            card.className =
-                'archive-card bg-white border border-slate-200 rounded-2xl p-5';
-
-
-            if (url) {
-
-                card.innerHTML = `
-
-                    <div class="flex items-start justify-between gap-3">
-
-                        <div class="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
-
-                            <i
-                                data-lucide="file-text"
-                                class="w-5 h-5"
-                            ></i>
-
-                        </div>
-
-
-                        <div class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[9px] font-black uppercase tracking-wider">
-
-                            Available
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="mt-5">
-
-                        <div class="font-black text-slate-800 text-base">
-                            ${escapeHTML(month)}
-                        </div>
-
-                        <div class="text-xs text-slate-400 mt-1">
-                            Availability Report
-                        </div>
-
-                    </div>
-
-
-                    <a
-                        href="${escapeAttribute(url)}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="mt-5 w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-blue-900 text-white text-xs font-bold hover:bg-blue-800 transition"
-                    >
-
-                        <i
-                            data-lucide="file-down"
-                            class="w-4 h-4"
-                        ></i>
-
-                        View PDF
-
-                    </a>
-
-                `;
-
-            } else {
-
-                card.innerHTML = `
-
-                    <div class="flex items-start justify-between gap-3">
-
-                        <div class="w-11 h-11 rounded-xl bg-slate-100 text-slate-400 flex items-center justify-center">
-
-                            <i
-                                data-lucide="file-clock"
-                                class="w-5 h-5"
-                            ></i>
-
-                        </div>
-
-
-                        <div class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-400 text-[9px] font-black uppercase tracking-wider">
-
-                            Not Available
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="mt-5">
-
-                        <div class="font-black text-slate-500 text-base">
-                            ${escapeHTML(month)}
-                        </div>
-
-                        <div class="text-xs text-slate-400 mt-1">
-                            Availability Report
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        disabled
-                        class="mt-5 w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-100 text-slate-400 text-xs font-bold cursor-not-allowed"
-                    >
-
-                        <i
-                            data-lucide="clock-3"
-                            class="w-4 h-4"
-                        ></i>
-
-                        Belum Tersedia
-
-                    </button>
-
-                `;
-
-            }
-
-
-            grid.appendChild(card);
-
-        });
-
-
-        status.innerHTML = `
-
-            <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <div class="navigation-icon">
 
                 <i
-                    data-lucide="circle-check"
-                    class="w-5 h-5"
+                    data-lucide="layout-dashboard"
                 ></i>
 
             </div>
@@ -1847,89 +1623,988 @@ async function loadArchive() {
 
             <div>
 
-                <div class="font-bold text-sm text-slate-700">
-                    Archive loaded successfully
+                <div class="navigation-title">
+                    Dashboard Availability
                 </div>
 
-                <div class="text-xs text-slate-400">
-                    Monthly Availability documents are ready to access
+                <div class="navigation-description">
+                    Kembali ke dashboard availability
                 </div>
 
             </div>
 
-        `;
+
+            <i
+                data-lucide="chevron-right"
+                class="ml-auto text-slate-300"
+                size="18"
+            ></i>
+
+        </button>
 
 
-        refreshIcons();
+        <button
+            class="navigation-option"
+            onclick="goTable()"
+        >
 
-    } catch (errorObject) {
+            <div class="navigation-icon">
 
-        console.error(
-            errorObject
+                <i
+                    data-lucide="table-2"
+                ></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="navigation-title">
+                    Table Availability
+                </div>
+
+                <div class="navigation-description">
+                    Kembali ke tabel data availability
+                </div>
+
+            </div>
+
+
+            <i
+                data-lucide="chevron-right"
+                class="ml-auto text-slate-300"
+                size="18"
+            ></i>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ===================================================== */
+/* CONFIGURATION */
+/* ===================================================== */
+
+const API_URL =
+    'https://script.google.com/macros/s/AKfycbyG2eqQjfOtDysXtQbWhZMgR068ZDhKIQCkh4CqxihrL1VX0U_I8UldxCxTKT939Wae/exec';
+
+const HOME_URL =
+    'index.html';
+
+const DASHBOARD_URL =
+    'availability.html';
+
+const TABLE_URL =
+    'tavailability.html';
+
+
+/* ===================================================== */
+/* LOGO FALLBACK */
+/* ===================================================== */
+
+function handleLogoError() {
+
+    const logo =
+        document.getElementById(
+            'companyLogo'
         );
 
-        status.classList.add('hidden');
+    const fallback =
+        document.getElementById(
+            'logoFallback'
+        );
 
-        grid.classList.add('hidden');
 
-        error.classList.remove('hidden');
+    if (logo) {
 
-        refreshIcons();
+        logo.classList.add(
+            'hidden'
+        );
+
+    }
+
+
+    if (fallback) {
+
+        fallback.classList.remove(
+            'hidden'
+        );
+
+        fallback.classList.add(
+            'flex'
+        );
 
     }
 
 }
 
 
-/* =========================================================
-   HELPERS
-========================================================= */
+/* ===================================================== */
+/* SAFE HTML */
+/* ===================================================== */
 
-function wait(milliseconds) {
+function escapeHtml(value) {
 
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                milliseconds
-            )
+    return String(
+        value ?? ''
+    )
+    .replace(
+        /&/g,
+        '&amp;'
+    )
+    .replace(
+        /</g,
+        '&lt;'
+    )
+    .replace(
+        />/g,
+        '&gt;'
+    )
+    .replace(
+        /"/g,
+        '&quot;'
+    )
+    .replace(
+        /'/g,
+        '&#039;'
     );
 
 }
 
 
-function escapeHTML(value) {
+/* ===================================================== */
+/* NORMALIZE DATA */
+/* ===================================================== */
 
-    return value
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+function normalizeRows(rows) {
+
+    if (!Array.isArray(rows)) {
+
+        return [];
+
+    }
+
+
+    return rows.map(
+        function(row, index) {
+
+            const values =
+                Object.values(
+                    row || {}
+                );
+
+
+            return {
+
+                month:
+                    String(
+                        values[0] ?? ''
+                    ).trim(),
+
+                url:
+                    String(
+                        values[1] ?? ''
+                    ).trim(),
+
+                index:
+                    index
+
+            };
+
+        }
+    );
 
 }
 
 
-function escapeAttribute(value) {
+/* ===================================================== */
+/* VALIDATE URL */
+/* ===================================================== */
 
-    return value
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+function isValidUrl(value) {
+
+    if (!value) {
+
+        return false;
+
+    }
+
+
+    try {
+
+        const url =
+            new URL(value);
+
+
+        return (
+            url.protocol === 'http:' ||
+            url.protocol === 'https:'
+        );
+
+    } catch (error) {
+
+        return false;
+
+    }
 
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+/* ===================================================== */
+/* CREATE MONTH CARD */
+/* ===================================================== */
+
+function createMonthCard(item) {
+
+    const month =
+        escapeHtml(
+            item.month ||
+            'Tanpa Nama'
+        );
+
+
+    const available =
+        isValidUrl(
+            item.url
+        );
+
+
+    if (available) {
+
+        const url =
+            escapeHtml(
+                item.url
+            );
+
+
+        return `
+
+            <article
+                class="month-card available"
+            >
+
+                <div>
+
+                    <div
+                        class="month-top"
+                    >
+
+                        <div
+                            class="month-icon"
+                        >
+
+                            <i
+                                data-lucide="file-text"
+                                size="19"
+                            ></i>
+
+                        </div>
+
+
+                        <span
+                            class="status-badge status-available"
+                        >
+
+                            <i
+                                data-lucide="circle-check"
+                                size="11"
+                            ></i>
+
+                            Tersedia
+
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="month-info"
+                    >
+
+                        <div
+                            class="month-label"
+                        >
+                            Period
+                        </div>
+
+                        <div
+                            class="month-name"
+                        >
+                            ${month}
+                        </div>
+
+
+                        <div
+                            class="month-year"
+                        >
+                            Availability PDF
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="card-footer"
+                >
+
+                    <a
+                        href="${url}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="pdf-button"
+                    >
+
+                        <i
+                            data-lucide="external-link"
+                            size="14"
+                        ></i>
+
+                        Lihat PDF
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }
+
+
+    return `
+
+        <article
+            class="month-card unavailable"
+        >
+
+            <div>
+
+                <div
+                    class="month-top"
+                >
+
+                    <div
+                        class="month-icon"
+                    >
+
+                        <i
+                            data-lucide="file-clock"
+                            size="19"
+                        ></i>
+
+                    </div>
+
+
+                    <span
+                        class="status-badge status-unavailable"
+                    >
+
+                        <i
+                            data-lucide="clock-3"
+                            size="11"
+                        ></i>
+
+                        Belum tersedia
+
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="month-info"
+                >
+
+                    <div
+                        class="month-label"
+                    >
+                        Period
+                    </div>
+
+                    <div
+                        class="month-name"
+                    >
+                        ${month}
+                    </div>
+
+
+                    <div
+                        class="month-year"
+                    >
+                        Availability PDF
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="card-footer"
+            >
+
+                <div
+                    class="pdf-button-disabled"
+                >
+
+                    <i
+                        data-lucide="clock-3"
+                        size="14"
+                    ></i>
+
+                    Belum tersedia
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* ===================================================== */
+/* RENDER DATA */
+/* ===================================================== */
+
+function renderData(rows) {
+
+    const data =
+        normalizeRows(
+            rows
+        );
+
+
+    const total =
+        data.length;
+
+
+    const available =
+        data.filter(
+            function(item) {
+
+                return isValidUrl(
+                    item.url
+                );
+
+            }
+        ).length;
+
+
+    const unavailable =
+        total - available;
+
+
+    document.getElementById(
+        'totalMonths'
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        'availableMonths'
+    ).textContent =
+        available;
+
+
+    document.getElementById(
+        'unavailableMonths'
+    ).textContent =
+        unavailable;
+
+
+    const grid =
+        document.getElementById(
+            'monthGrid'
+        );
+
+
+    if (!data.length) {
+
+        grid.innerHTML = `
+
+            <div
+                class="col-span-full text-center py-12 text-slate-400"
+            >
+
+                <i
+                    data-lucide="folder-open"
+                    size="40"
+                    class="mx-auto mb-3"
+                ></i>
+
+                <p
+                    class="font-bold text-sm"
+                >
+                    Tidak ada data availability.
+                </p>
+
+            </div>
+
+        `;
+
+    } else {
+
+        grid.innerHTML =
+            data
+                .map(
+                    createMonthCard
+                )
+                .join('');
+
+    }
+
+
+    lucide.createIcons();
+
+}
+
+
+/* ===================================================== */
+/* LOAD DATA */
+/* ===================================================== */
+
+async function loadData() {
+
+    const loading =
+        document.getElementById(
+            'loading'
+        );
+
+    const content =
+        document.getElementById(
+            'content'
+        );
+
+    const loadingText =
+        document.getElementById(
+            'loadingText'
+        );
+
+
+    const dataPromise =
+        fetch(
+            API_URL,
+            {
+                method: 'GET',
+                cache: 'no-store'
+            }
+        )
+        .then(
+            function(response) {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        'HTTP Error ' +
+                        response.status
+                    );
+
+                }
+
+                return response.json();
+
+            }
+        )
+        .then(
+            function(result) {
+
+                if (!result.success) {
+
+                    throw new Error(
+                        result.error ||
+                        'API mengembalikan status gagal.'
+                    );
+
+                }
+
+                return result.data;
+
+            }
+        );
+
+
+    const loadingMessages = [
+
+        {
+            text:
+                'Memuat data...',
+            duration:
+                2000
+        },
+
+        {
+            text:
+                'Menghubungkan ke sumber data...',
+            duration:
+                2000
+        },
+
+        {
+            text:
+                'Sebagian data sudah berhasil diterima',
+            duration:
+                2400
+        },
+
+        {
+            text:
+                'Memeriksa dan menyiapkan data availability...',
+            duration:
+                3400
+        },
+
+        {
+            text:
+                'Volume data sedang disiapkan untuk penyajian...',
+            duration:
+                1600
+        },
+
+        {
+            text:
+                'Volume data yang diterima melampaui kapasitas sistem...',
+            duration:
+                1000
+        },
+
+        {
+            text:
+                ' ',
+            duration:
+                40
+        },
+
+        {
+            text:
+                'Volume data yang diterima melampaui kapasitas sistem...',
+            duration:
+                1000
+        },
+
+        {
+            text:
+                ' ',
+            duration:
+                40
+        },
+
+        {
+            text:
+                'Volume data yang diterima melampaui kapasitas sistem...',
+            duration:
+                1000
+        },
+
+        {
+            text:
+                ' ',
+            duration:
+                40
+        },
+
+        {
+            text:
+                'Volume data yang diterima melampaui kapasitas sistem...',
+            duration:
+                1000
+        },
+
+        {
+            text:
+                ' ',
+            duration:
+                40
+        },
+
+        {
+            text:
+                'Data gagal diproses oleh sistem...',
+            duration:
+                2400
+        },
+
+        {
+            text:
+                'Sistem mengalami kegagalan dalam pemrosesan data...',
+            duration:
+                1000
+        },
+
+        {
+            text:
+                ' ',
+            duration:
+                40
+        },
+
+        {
+            text:
+                'Sistem mengalami kegagalan dalam pemrosesan data...',
+            duration:
+                1000
+        },
+
+        {
+            text:
+                ' ',
+            duration:
+                40
+        },
+
+        {
+            text:
+                'Sistem mengalami kegagalan dalam pemrosesan data...',
+            duration:
+                1000
+        },
+
+        {
+            text:
+                ' ',
+            duration:
+                40
+        },
+
+        {
+            text:
+                'Sistem mengalami kegagalan dalam pemrosesan data...',
+            duration:
+                1000
+        },
+
+        {
+            text:
+                ' ',
+            duration:
+                40
+        },
+
+        {
+            text:
+                'Menyiapkan metode penyajian alternatif...',
+            duration:
+                2400
+        },
+
+        {
+            text:
+                'Mengalihkan ke metode penyajian alternatif...',
+            duration:
+                1400
+        },
+
+        {
+            text:
+                'Menyiapkan tampilan availability...',
+            duration:
+                2000
+        }
+
+    ];
+
+
+    for (
+        const message of loadingMessages
+    ) {
+
+        loadingText.textContent =
+            message.text;
+
+
+        lucide.createIcons();
+
+
+        await new Promise(
+            function(resolve) {
+
+                setTimeout(
+                    resolve,
+                    message.duration
+                );
+
+            }
+        );
+
+    }
+
+
+    try {
+
+        const data =
+            await dataPromise;
+
+
+        renderData(
+            data
+        );
+
+
+        loading.style.display =
+            'none';
+
+
+        content.style.display =
+            'block';
+
+
+        lucide.createIcons();
+
+
+    } catch (error) {
+
+        console.error(
+            'Load data error:',
+            error
+        );
+
+
+        loadingText.textContent =
+            'Gagal memuat data. Silakan coba lagi.';
+
+
+        const errorState =
+            document.getElementById(
+                'errorState'
+            );
+
+
+        if (errorState) {
+
+            errorState.classList.remove(
+                'hidden'
+            );
+
+        }
+
+    }
+
+}
+
+
+/* ===================================================== */
+/* NAVIGATION */
+/* ===================================================== */
+
+function goHome() {
+
+    window.location.href =
+        HOME_URL;
+
+}
+
+
+function goDashboard() {
+
+    window.location.href =
+        DASHBOARD_URL;
+
+}
+
+
+function goTable() {
+
+    window.location.href =
+        TABLE_URL;
+
+}
+
+
+/* ===================================================== */
+/* BACK MODAL */
+/* ===================================================== */
+
+function openBackMenu() {
+
+    document
+        .getElementById(
+            'backModal'
+        )
+        .classList.add(
+            'show'
+        );
+
+
+    document.body.style.overflow =
+        'hidden';
+
+}
+
+
+function closeBackMenu() {
+
+    document
+        .getElementById(
+            'backModal'
+        )
+        .classList.remove(
+            'show'
+        );
+
+
+    document.body.style.overflow =
+        '';
+
+}
+
+
+function handleModalOverlay(event) {
+
+    if (
+        event.target ===
+        document.getElementById(
+            'backModal'
+        )
+    ) {
+
+        closeBackMenu();
+
+    }
+
+}
+
+
+/* ===================================================== */
+/* ESC KEY */
+/* ===================================================== */
+
+document.addEventListener(
+    'keydown',
+    function(event) {
+
+        if (
+            event.key ===
+            'Escape'
+        ) {
+
+            closeBackMenu();
+
+        }
+
+    }
+);
+
+
+/* ===================================================== */
+/* INITIALIZE */
+/* ===================================================== */
 
 document.addEventListener(
     'DOMContentLoaded',
     function() {
 
-        refreshIcons();
+        lucide.createIcons();
 
-        runSystemProcess();
+        loadData();
 
     }
 );
@@ -1938,4 +2613,3 @@ document.addEventListener(
 
 </body>
 </html>
-
