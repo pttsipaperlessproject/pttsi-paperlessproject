@@ -1,29 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard Corrective Maintenance Unit - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -31,2463 +16,1065 @@ content="width=device-width, initial-scale=1.0"
    GLOBAL
 ========================================================= */
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    min-width:0;
-}
+html{width:100%;min-width:0;overflow-x:hidden}
 
 body{
-
     margin:0;
-
     width:100%;
-
     min-width:0;
-
-    font-family:'Inter',sans-serif;
-
-    background:#ffffff;
-
-    color:#1e293b;
-
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b
 }
 
-
-/* =========================================================
-   COLOR
-========================================================= */
-
-.color-primary{
-    background:#1E3A8A;
-}
-
-.text-primary{
-    color:#1E3A8A;
-}
-
-
-/* =========================================================
-   MAIN PANEL
-========================================================= */
+.color-primary{background:#1e3a8a}
 
 .glass-panel{
-
-    background:#ffffff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    box-shadow:
-        0 8px 24px
-        rgba(15,23,42,.035);
-
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3)
 }
 
-
-/* =========================================================
-   ANIMATION
-========================================================= */
-
-.fade-in{
-
-    animation:
-        fadeIn
-        .5s
-        cubic-bezier(.4,0,.2,1);
-
-}
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 
 @keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(12px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
-
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo-wrapper{
-
-    transition:
-        transform
-        .4s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        );
-
-}
-
-.logo-wrapper:hover{
-
-    transform:
-        scale(1.05)
-        rotate(1deg);
-
-}
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 
 .logo-shadow{
-
     filter:
-        drop-shadow(
-            0 8px 8px
-            rgba(0,0,0,.04)
-        );
-
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
 
-
 /* =========================================================
-   BUTTON
+   PAGE TITLE & BUTTON
 ========================================================= */
 
-.dashboard-button{
+.page-title{
+    font-size:30px;
+    font-weight:900;
+    color:#1e293b;
+    letter-spacing:-.025em;
+    line-height:1.2
+}
 
-    border-radius:12px;
+.page-subtitle{
+    font-size:13px;
+    color:#64748b;
+    font-weight:500;
+    line-height:1.6
+}
 
-    padding:
-        11px
-        17px;
-
-    font-size:12px;
-
-    font-weight:800;
-
+.page-actions{
     display:flex;
-
     align-items:center;
+    gap:9px;
+    flex-wrap:wrap;
+    flex-shrink:0
+}
 
+.back-button,
+.secondary-button{
+    font-family:inherit;
+    font-size:12px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
     justify-content:center;
-
     gap:8px;
-
-    transition:.2s ease;
-
-    border:none;
-
+    padding:11px 17px;
+    border-radius:12px;
     cursor:pointer;
-
     white-space:nowrap;
-
+    transition:.2s ease
 }
 
-.dashboard-button:hover{
-
-    transform:
-        translateY(-1px);
-
+.back-button{
+    background:#1e3a8a;
+    color:#fff;
+    border:none;
+    box-shadow:0 5px 12px rgba(30,58,138,.18)
 }
 
+.back-button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
+}
 
-/* =========================================================
-   YEAR SELECTOR
-========================================================= */
+.secondary-button{
+    background:#f8fafc;
+    color:#475569;
+    border:1px solid #e2e8f0
+}
+
+.secondary-button:hover{
+    background:#f1f5f9;
+    color:#1e3a8a;
+    border-color:#bfdbfe;
+    transform:translateY(-2px)
+}
 
 .year-selector{
-
     background:#fff;
-
-    border:
-        1px solid
-        #dbe3ee;
-
+    border:1px solid #dbeafe;
     border-radius:12px;
-
-    padding:
-        10px
-        14px;
-
+    padding:10px 14px;
     color:#1e3a8a;
-
+    font-family:inherit;
     font-size:12px;
-
     font-weight:900;
-
     outline:none;
-
     cursor:pointer;
-
     transition:.2s ease;
-
-    min-width:160px;
-
+    min-width:150px
 }
 
-.year-selector:hover{
-
-    border-color:#93c5fd;
-
-}
+.year-selector:hover{border-color:#93c5fd}
 
 .year-selector:focus{
-
     border-color:#60a5fa;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(59,130,246,.08);
-
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
 }
-
 
 /* =========================================================
    STAT CARDS
 ========================================================= */
 
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:16px;
+    margin-bottom:20px
+}
+
 .stat-card{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:17px;
-
-    padding:20px;
-
+    padding:17px;
     transition:.25s ease;
-
+    min-width:0
 }
 
 .stat-card:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 18px
-        rgba(15,23,42,.055);
-
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
 
-
-/* =========================================================
-   UNIT CARD
-========================================================= */
-
-.unit-card{
-
-    background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:17px;
-
-    padding:20px;
-
-    transition:.25s ease;
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.unit-card:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 18px
-        rgba(15,23,42,.055);
-
-}
-
-.unit-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    right:-25px;
-
-    bottom:-30px;
-
-    width:90px;
-
-    height:90px;
-
-    border-radius:50%;
-
-    background:
-        rgba(30,58,138,.035);
-
-}
-
-
-/* =========================================================
-   UNIT LABEL COLORS
-========================================================= */
-
-.unit-label-f{
-    color:#f97316;
-}
-
-.unit-label-w{
-    color:#4f46e5;
-}
-
-.unit-label-d{
-    color:#e11d48;
-}
-
-.unit-label-e{
-    color:#059669;
-}
-
-
-/* =========================================================
-   CHART CARD
-========================================================= */
-
-.chart-card{
-
-    background:#ffffff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:20px;
-
-    padding:22px;
-
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.035);
-
-}
-
-.chart-wrapper{
-
-    position:relative;
-
-    height:330px;
-
-}
-
-
-/* =========================================================
-   OPEN TABLE
-========================================================= */
-
-.open-table-wrapper{
-
-    overflow-x:auto;
-
-    -webkit-overflow-scrolling:touch;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:14px;
-
-}
-
-.open-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    min-width:850px;
-
-}
-
-.open-table th{
-
-    background:#f8fafc;
-
-    color:#64748b;
-
+.stat-label{
     font-size:10px;
-
-    font-weight:900;
-
+    font-weight:700;
+    color:#94a3b8;
     text-transform:uppercase;
-
-    letter-spacing:.08em;
-
-    padding:
-        13px
-        14px;
-
-    text-align:left;
-
-    border-bottom:
-        1px solid
-        #e2e8f0;
-
+    letter-spacing:.06em
 }
 
-.open-table td{
-
-    padding:
-        13px
-        14px;
-
-    font-size:11px;
-
-    font-weight:600;
-
-    color:#334155;
-
-    border-bottom:
-        1px solid
-        #f1f5f9;
-
-    vertical-align:top;
-
-}
-
-.open-table tbody tr{
-
-    transition:.15s ease;
-
-}
-
-.open-table tbody tr:hover{
-
-    background:#f8fafc;
-
-}
-
-.open-table tbody tr:last-child td{
-
-    border-bottom:none;
-
-}
-
-.status-open-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:5px;
-
-    background:#fff7ed;
-
-    color:#c2410c;
-
-    border:
-        1px solid
-        #fed7aa;
-
-    padding:
-        5px
-        9px;
-
-    border-radius:999px;
-
-    font-size:9px;
-
+.stat-value{
+    font-size:30px;
     font-weight:900;
-
+    margin-top:8px;
+    line-height:1.1
 }
 
+.stat-unit{
+    font-size:10px;
+    font-weight:900;
+    color:#94a3b8;
+    margin-left:4px
+}
 
 /* =========================================================
-   EMPTY STATE
+   PANEL & GRID
 ========================================================= */
 
-.empty-open{
-
-    padding:
-        45px
-        20px;
-
-    text-align:center;
-
-    color:#94a3b8;
-
+.dash-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:20px;
+    margin-bottom:20px
 }
 
-.empty-open-icon{
+.dash-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 
-    width:46px;
+.panel{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    box-shadow:0 4px 12px rgba(15,23,42,.04);
+    padding:18px 20px;
+    min-width:0
+}
 
-    height:46px;
+.panel-fill{display:flex;flex-direction:column}
 
-    margin:0 auto;
-
-    border-radius:14px;
-
+.fill-body{
+    flex:1;
     display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:#f0fdf4;
-
-    color:#16a34a;
-
+    flex-direction:column;
+    justify-content:center
 }
 
+.panel-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:14px
+}
+
+.panel-title{
+    font-size:13px;
+    font-weight:900;
+    color:#334155
+}
+
+.panel-subtitle{
+    font-size:10px;
+    color:#94a3b8;
+    font-weight:600;
+    margin-top:3px
+}
+
+.legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px
+}
+
+.legend-item{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:5px 9px;
+    border-radius:999px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.legend-item:hover{border-color:#bfdbfe;color:#1e3a8a}
+
+.legend-item.off{opacity:.45}
+
+.legend-item.on{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.legend-item.on .legend-dot{background:#fff!important}
+
+.legend-item.static{cursor:default}
+.legend-item.static:hover{border-color:#e2e8f0;color:#475569}
+
+.legend-dot{
+    width:9px;
+    height:9px;
+    border-radius:999px;
+    flex-shrink:0
+}
+
+.chart-wrap{width:100%;position:relative}
+
+.chart-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+
+.chart-empty{
+    padding:40px 10px;
+    text-align:center;
+    color:#94a3b8;
+    font-size:11px;
+    font-weight:700
+}
+
+.chart-label{font-size:10px;font-weight:700;fill:#64748b}
+.chart-value{font-size:10px;font-weight:900;fill:#334155}
+.chart-grid{stroke:#eef2f7;stroke-width:1}
+.chart-hit{cursor:pointer}
+.chart-bar{cursor:pointer}
+
+/* =========================================================
+   POPUP NILAI GRAFIK
+========================================================= */
+
+.chart-tip{
+    position:fixed;
+    z-index:2000;
+    pointer-events:none;
+    background:#0f172a;
+    color:#fff;
+    border-radius:10px;
+    padding:9px 11px;
+    font-size:10px;
+    font-weight:700;
+    box-shadow:0 12px 24px rgba(15,23,42,.25);
+    opacity:0;
+    transform:translateY(4px);
+    transition:opacity .12s ease,transform .12s ease;
+    max-width:240px;
+    min-width:130px
+}
+
+.chart-tip.show{
+    opacity:1;
+    transform:translateY(0)
+}
+
+.tip-title{
+    font-size:9px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:#94a3b8;
+    margin-bottom:6px
+}
+
+.tip-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-top:4px
+}
+
+.tip-left{
+    display:inline-flex;
+    align-items:center;
+    gap:6px
+}
+
+.tip-dot{
+    width:8px;
+    height:8px;
+    border-radius:999px;
+    display:inline-block
+}
+
+.tip-val{font-weight:900}
+
+/* =========================================================
+   DONUT
+========================================================= */
+
+.donut-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    width:100%
+}
+
+.donut-chart{width:100%;max-width:200px;margin:0 auto}
+
+.donut-legend{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:8px
+}
+
+.donut-legend-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:8px 10px;
+    border-radius:12px;
+    background:#f8fafc;
+    font-size:10px;
+    font-weight:700;
+    color:#334155
+}
+
+.donut-legend-row .val{font-weight:900;color:#1e293b}
+.donut-legend-row .pct{font-size:9px;color:#94a3b8;font-weight:800;margin-left:6px}
+
+/* =========================================================
+   BATANG HORIZONTAL (sama untuk semua panel batang)
+========================================================= */
+
+.hbar-scroll{
+    max-height:340px;
+    overflow-y:auto;
+    padding-right:4px
+}
+
+.hbar-row{margin-bottom:12px;cursor:default}
+
+.hbar-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    font-size:10px;
+    font-weight:800;
+    color:#334155;
+    margin-bottom:5px
+}
+
+.hbar-head .count{
+    font-size:10px;
+    font-weight:900;
+    color:#1e3a8a;
+    background:#dbeafe;
+    padding:2px 8px;
+    border-radius:999px;
+    white-space:nowrap
+}
+
+.hbar-track{
+    height:9px;
+    border-radius:999px;
+    overflow:hidden;
+    background:#f1f5f9
+}
+
+.hbar-fill{
+    height:100%;
+    border-radius:999px;
+    transition:width .3s ease
+}
+
+/* =========================================================
+   TABEL UNIT STATUS OPEN (5 terlihat, sisanya di-scroll)
+========================================================= */
+
+.ol-scroll{
+    max-height:300px;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin
+}
+
+.ol-scroll::-webkit-scrollbar{width:7px;height:7px}
+.ol-scroll::-webkit-scrollbar-track{background:#f8fafc}
+.ol-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+
+.ol-table{
+    width:100%;
+    min-width:860px;
+    border-collapse:separate;
+    border-spacing:0
+}
+
+.ol-table thead th{
+    position:sticky;
+    top:0;
+    z-index:1;
+    background:#f8fafc;
+    padding:12px 14px;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    text-align:left;
+    white-space:nowrap
+}
+
+.ol-table thead th.ol-no{text-align:center;width:60px}
+
+.ol-table tbody td{
+    padding:12px 14px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:11px;
+    font-weight:600;
+    vertical-align:middle
+}
+
+.ol-table tbody td.ol-no{text-align:center;font-weight:900;color:#94a3b8}
+.ol-table tbody td.ol-desc{white-space:normal;min-width:260px;max-width:360px;line-height:1.5}
+.ol-table tbody tr:hover{background:#f8fafc}
+.ol-table tbody tr:last-child td{border-bottom:none}
+
+.ol-mobile{display:none}
+
+.ol-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:9px
+}
+
+.ol-card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding-bottom:10px;
+    margin-bottom:10px;
+    border-bottom:1px solid #f1f5f9
+}
+
+.ol-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 12px
+}
+
+.ol-label{
+    font-size:8px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:4px
+}
+
+.ol-value{
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    word-break:break-word;
+    line-height:1.45
+}
+
+/* =========================================================
+   BADGES (palet baku Bab 2)
+========================================================= */
+
+.unit-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:56px;
+    padding:4px 9px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    font-size:10px;
+    font-weight:900
+}
+
+.type-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 9px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#475569;
+    font-size:10px;
+    font-weight:800;
+    white-space:nowrap
+}
+
+.status-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:4px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:900;
+    white-space:nowrap
+}
+
+.status-open{background:#fee2e2;color:#991b1b}
+.status-close{background:#dcfce7;color:#166534}
+.status-other{background:#e2e8f0;color:#475569}
+
+.service-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
+    white-space:nowrap;
+    max-width:170px;
+    overflow:hidden;
+    text-overflow:ellipsis
+}
+
+.service-periodic{background:#dbeafe;color:#1e40af}
+.service-general{background:#fef3c7;color:#92400e}
+.service-other{background:#e2e8f0;color:#475569}
 
 /* =========================================================
    LOADING
 ========================================================= */
 
 #loading{
-
-    min-height:450px;
-
+    min-height:350px;
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     justify-content:center;
-
+    text-align:center
 }
 
-#dashboardContent{
+#loading[hidden]{display:none}
 
-    display:none;
-
-}
-
-#dashboardContent.show{
-
-    display:block;
-
-}
-
+#tableContent{display:none}
+#tableContent.show{display:block}
 
 /* =========================================================
-   ERROR
+   BREAKPOINTS (bible Bab 4)
 ========================================================= */
 
-#errorState{
-
-    display:none;
-
+@media(min-width:1920px){
+    main{max-width:1800px}
 }
 
+@media(min-width:768px) and (max-width:1100px){
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+    main{padding:28px!important;border-radius:24px!important}
 
-/* TABLET */
+    .page-title{font-size:25px}
 
-@media(max-width:1024px){
+    .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 
-    body{
+    .dash-grid.two{grid-template-columns:minmax(0,1fr)}
 
-        padding-left:16px !important;
-
-        padding-right:16px !important;
-
-    }
-
-    main{
-
-        padding:28px !important;
-
-    }
+    header{margin-bottom:28px!important}
 
 }
-
-
-/* MOBILE */
 
 @media(max-width:767px){
 
-    body{
-
-        padding:
-            10px !important;
-
-    }
-
+    body{padding:10px!important;align-items:stretch!important}
 
     main{
-
-        width:100% !important;
-
-        max-width:none !important;
-
-        padding:
-            18px !important;
-
-        border-radius:
-            22px !important;
-
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
 
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
 
-    /* HEADER */
+    .logo-wrapper{margin-bottom:14px!important}
 
-    header{
-
-        margin-bottom:
-            22px !important;
-
-        padding-bottom:
-            18px !important;
-
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
     }
-
-
-    .logo-wrapper{
-
-        margin-bottom:
-            14px !important;
-
-    }
-
-
-    .logo-wrapper > div{
-
-        width:78px !important;
-
-        height:78px !important;
-
-    }
-
 
     header .color-primary{
+        width:100%!important;
+        padding:13px 14px!important;
+        border-radius:15px!important
+    }
 
+    header .color-primary h1{
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
+    }
+
+    header .color-primary h2{
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
+    }
+
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
+    }
+
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
+    }
+
+    .page-title{
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important
+    }
+
+    .page-title span{
+        padding:9px!important;
+        border-radius:10px!important;
+        flex-shrink:0
+    }
+
+    .page-title span svg{width:18px!important;height:18px!important}
+
+    .page-subtitle{
+        font-size:10px!important;
+        line-height:1.6!important;
+        margin-top:8px!important
+    }
+
+    .page-actions{
         width:100%;
-
-        padding:
-            14px
-            12px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
-
-    header h1{
-
-        font-size:
-            17px !important;
-
-        line-height:
-            1.3 !important;
-
-        letter-spacing:
-            .06em !important;
-
-    }
-
-
-    header h2{
-
-        font-size:
-            10px !important;
-
-        line-height:
-            1.4 !important;
-
-        letter-spacing:
-            .12em !important;
-
-    }
-
-
-    header > div:last-child{
-
-        font-size:
-            8px !important;
-
-        letter-spacing:
-            .2em !important;
-
-    }
-
-
-    /* PAGE HEADER */
-
-    section.mb-7{
-
-        margin-bottom:
-            18px !important;
-
-    }
-
-
-    section.mb-7 > div{
-
-        gap:
-            16px !important;
-
-    }
-
-
-    section.mb-7 h2{
-
-        font-size:
-            21px !important;
-
-        line-height:
-            1.3 !important;
-
-        align-items:
-            flex-start !important;
-
-    }
-
-
-    section.mb-7 h2 > span{
-
-        padding:
-            9px !important;
-
-        flex-shrink:
-            0;
-
-    }
-
-
-    section.mb-7 h2 i{
-
-        width:
-            20px !important;
-
-        height:
-            20px !important;
-
-    }
-
-
-    section.mb-7 p{
-
-        font-size:
-            11px !important;
-
-        line-height:
-            1.5 !important;
-
-        margin-top:
-            8px !important;
-
-    }
-
-
-    /* NAVIGATION */
-
-    section.mb-7 > div > div:last-child{
-
-        width:100%;
-
-        justify-content:
-            stretch !important;
-
-        align-items:
-            stretch !important;
-
-    }
-
-
-    section.mb-7 > div > div:last-child > div{
-
-        width:100%;
-
         display:grid;
-
-        grid-template-columns:
-            auto
-            minmax(0,1fr);
-
-        align-items:center;
-
+        grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+        gap:8px
     }
 
-
-    .year-selector{
-
+    .page-actions>div:first-child{
+        grid-column:1/-1;
         width:100%;
-
-        min-width:0;
-
-        padding:
-            10px
-            12px;
-
+        gap:6px!important
     }
 
+    .year-selector{min-width:0!important;width:100%!important;padding:10px!important}
 
-    .dashboard-button{
-
-        flex:1;
-
-        min-width:0;
-
-        padding:
-            10px
-            9px;
-
-        font-size:
-            10px;
-
+    .back-button,
+    .secondary-button{
+        width:100%;
+        padding:10px 12px;
+        border-radius:10px;
+        font-size:10px
     }
 
-
-    /* STATISTICS */
-
-    #dashboardContent > div:first-child{
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-        gap:
-            10px !important;
-
-        margin-bottom:
-            14px !important;
-
+    .stats-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:10px!important;
+        margin-bottom:14px!important
     }
 
+    .stats-grid>.stat-card:last-child{grid-column:1/-1}
 
-    .stat-card,
-    .unit-card{
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-label{font-size:8px!important}
+    .stat-value{font-size:24px!important}
 
-        padding:
-            14px !important;
+    .dash-grid,
+    .dash-grid.two{grid-template-columns:minmax(0,1fr)!important;gap:14px!important;margin-bottom:14px!important}
 
-        border-radius:
-            14px !important;
+    .panel{border-radius:16px!important;padding:14px!important}
+    .panel-title{font-size:12px!important}
+    .panel-subtitle{font-size:9px!important}
 
-    }
+    .legend-item{font-size:9px!important;padding:4px 8px!important}
 
+    .donut-wrap{gap:16px}
+    .donut-chart{max-width:170px}
 
-    .stat-card p:first-child,
-    .unit-card p:first-child{
+    .ol-scroll{display:none!important}
+    .ol-mobile{display:block;padding:4px 0}
 
-        font-size:
-            8px !important;
-
-    }
-
-
-    .stat-card p:nth-child(2),
-    .unit-card p:nth-child(2){
-
-        font-size:
-            24px !important;
-
-        line-height:
-            1.1 !important;
-
-        margin-top:
-            8px !important;
-
-    }
-
-
-    .stat-card p:last-child,
-    .unit-card p:last-child{
-
-        font-size:
-            8px !important;
-
-    }
-
-
-    /* CHART ROW */
-
-    #dashboardContent > div:nth-child(2),
-    #dashboardContent > div:nth-child(3){
-
-        grid-template-columns:
-            1fr !important;
-
-        gap:
-            12px !important;
-
-        margin-bottom:
-            12px !important;
-
-    }
-
-
-    .chart-card{
-
-        padding:
-            16px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
-
-    .chart-card h3{
-
-        font-size:
-            12px !important;
-
-        line-height:
-            1.4 !important;
-
-    }
-
-
-    .chart-card p{
-
-        font-size:
-            9px !important;
-
-        line-height:
-            1.4 !important;
-
-    }
-
-
-    .chart-wrapper{
-
-        height:
-            260px;
-
-    }
-
-
-    /* OPEN ACTIVITIES */
-
-    #dashboardContent > div:nth-child(4){
-
-        margin-top:
-            12px !important;
-
-        padding:
-            14px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
-
-    #dashboardContent > div:nth-child(4) > div:first-child{
-
-        align-items:
-            flex-start !important;
-
-    }
-
-
-    #dashboardContent > div:nth-child(4) > div:first-child > div:first-child{
-
-        min-width:0;
-
-    }
-
-
-    #dashboardContent > div:nth-child(4) h3{
-
-        font-size:
-            11px !important;
-
-        line-height:
-            1.4 !important;
-
-    }
-
-
-    #dashboardContent > div:nth-child(4) p{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.4 !important;
-
-    }
-
-
-    #openTableCount{
-
-        font-size:
-            9px !important;
-
-    }
-
-
-    .open-table-wrapper{
-
-        margin-top:
-            10px;
-
-    }
-
-
-    /* DATABASE INFO */
-
-    #dashboardContent > div:nth-child(5){
-
-        margin-top:
-            12px !important;
-
-        padding:
-            14px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
-
-    #dashboardContent > div:nth-child(5) h3{
-
-        font-size:
-            11px !important;
-
-    }
-
-
-    #dashboardContent > div:nth-child(5) p{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.5 !important;
-
-    }
-
-
-    /* LOADING */
-
-    #loading{
-
-        min-height:
-            300px;
-
-    }
-
-
-    /* FOOTER */
-
-    footer{
-
-        margin-top:
-            18px !important;
-
-        padding:
-            0 8px 20px !important;
-
-    }
-
-
-    footer p:first-child{
-
-        font-size:
-            9px !important;
-
-        line-height:
-            1.5 !important;
-
-    }
-
-
-    footer p:last-child{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.5 !important;
-
-    }
+    footer{margin-top:18px!important;padding:0 8px 20px!important}
+    footer p:first-child{font-size:8px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.5!important}
 
 }
 
+@media(max-width:380px){
 
-/* VERY SMALL MOBILE */
+    body{padding:6px!important}
 
-@media(max-width:420px){
+    main{padding:12px!important;border-radius:17px!important}
 
-    main{
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
 
-        padding:
-            14px !important;
+    .logo-wrapper>div{width:70px!important;height:70px!important}
 
-        border-radius:
-            18px !important;
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
 
-    }
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
 
+    .back-button span,
+    .secondary-button span{display:none}
 
-    #dashboardContent > div:first-child{
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-value{font-size:21px!important}
 
-        gap:
-            8px !important;
-
-    }
-
-
-    .stat-card,
-    .unit-card{
-
-        padding:
-            12px !important;
-
-    }
-
-
-    .stat-card p:nth-child(2),
-    .unit-card p:nth-child(2){
-
-        font-size:
-            21px !important;
-
-    }
-
-
-    section.mb-7 h2{
-
-        font-size:
-            19px !important;
-
-    }
-
-
-    .dashboard-button{
-
-        font-size:
-            9px;
-
-        gap:
-            5px;
-
-    }
-
-
-    .dashboard-button svg{
-
-        width:
-            14px !important;
-
-        height:
-            14px !important;
-
-    }
-
-
-    .chart-wrapper{
-
-        height:
-            235px;
-
-    }
+    .ol-card-grid{grid-template-columns:1fr!important}
 
 }
 
 </style>
-
 </head>
 
-<body
-    class="
-        flex
-        flex-col
-        items-center
-        p-4
-        sm:p-8
-    "
->
+<body class="flex flex-col items-center p-4 sm:p-8">
 
-<main
-    class="
-        w-full
-        max-w-7xl
-        flex-grow
-        glass-panel
-        p-6
-        sm:p-10
-        rounded-3xl
-        fade-in
-    "
->
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- ======================================================
+     HEADER (tidak diubah)
+====================================================== -->
 
-<header
-    class="
-        w-full
-        mb-8
-        pb-6
-        border-b
-        border-slate-100
-        flex
-        flex-col
-        items-center
-    "
->
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
-<div class="mb-4 logo-wrapper">
-
-
-<div
-    class="
-        w-24
-        h-24
-        flex
-        items-center
-        justify-center
-        bg-white
-        rounded-2xl
-        logo-shadow
-        overflow-hidden
-        p-2
-    "
->
-
-    <img
-        src="default_logo.png"
-        alt="Logo PT TSI"
-        class="
-            w-full
-            h-full
-            object-contain
-        "
-        id="companyLogo"
-        onerror="handleLogoError()"
-    >
-
-    <div
-        id="logoFallback"
-        class="
-            hidden
-            flex
-            flex-col
-            items-center
-            justify-center
-            bg-blue-900
-            w-full
-            h-full
-            text-white
-        "
-    >
-
-        <span
-            class="
-                font-black
-                text-2xl
-            "
-        >
-            TSI
-        </span>
-
+    <div class="mb-4 logo-wrapper">
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="w-full h-full object-contain"
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+            <div
+                id="logoFallback"
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+            >
+                <span class="font-black text-2xl">TSI</span>
+            </div>
+        </div>
     </div>
 
-</div>
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+            PAPERLESS PROJECT
+        </h1>
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+    </div>
 
-
-</div>
-
-<div
-    class="
-        color-primary
-        text-white
-        px-8
-        py-4
-        rounded-2xl
-        shadow-md
-        flex
-        flex-col
-        items-center
-        gap-1
-    "
->
-
-
-<h1
-    class="
-        text-xl
-        sm:text-2xl
-        font-black
-        uppercase
-        tracking-[0.1em]
-        text-center
-    "
->
-    PAPERLESS PROJECT
-</h1>
-
-<div
-    class="
-        h-0.5
-        w-16
-        bg-amber-500
-        rounded-full
-        my-1
-    "
-></div>
-
-<h2
-    class="
-        text-sm
-        sm:text-lg
-        font-bold
-        uppercase
-        tracking-widest
-        text-blue-100
-        text-center
-    "
->
-    PT TATSUMI SERUNI INDONESIA
-</h2>
-
-
-</div>
-
-<div
-    class="
-        mt-3
-        text-[10px]
-        font-bold
-        text-slate-400
-        tracking-[0.3em]
-        uppercase
-    "
->
-    Digitalization Initiative v2.0
-</div>
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
+        Digitalization Initiative v2.0
+    </div>
 
 </header>
 
-<!-- =====================================================
-     PAGE HEADER
-===================================================== -->
 
-<section class="mb-7">
+<!-- ======================================================
+     SECTION
+====================================================== -->
 
-<div
-    class="
-        flex
-        flex-col
-        lg:flex-row
-        lg:items-center
-        lg:justify-between
-        gap-5
-    "
->
+<section>
 
-<div>
+    <div class="flex items-center justify-between gap-5 mb-6">
 
+        <div>
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="wrench" class="w-6 h-6"></i>
+                </span>
+                Dashboard Corrective Maintenance
+            </h2>
+            <p class="page-subtitle mt-2 ml-1">
+                Ringkasan histori corrective maintenance unit, disajikan dari data database.
+            </p>
+        </div>
 
-<h2
-    class="
-        text-[30px]
-        font-black
-        tracking-tight
-        text-slate-800
-        flex
-        items-center
-        gap-3
-    "
->
+        <div class="page-actions">
 
-    <span
-        class="
-            bg-blue-900
-            text-white
-            p-3
-            rounded-xl
-        "
-    >
+            <div class="flex items-center gap-2">
+                <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">Tahun</span>
+                <select id="yearSelector" class="year-selector" onchange="changeYear()">
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="ALL">Seluruh Data</option>
+                </select>
+            </div>
 
-        <i
-            data-lucide="wrench"
-            class="w-6 h-6"
-        ></i>
+            <button onclick="goHome()" class="secondary-button">
+                <i data-lucide="house" class="w-4 h-4"></i>
+                <span>Home</span>
+            </button>
 
-    </span>
+            <button onclick="goTableAll()" class="back-button">
+                <i data-lucide="table-2" class="w-4 h-4"></i>
+                <span>Data Keseluruhan</span>
+            </button>
 
-    Dashboard Corrective Maintenance Unit
+        </div>
 
-</h2>
-
-
-<p
-    class="
-        text-[13px]
-        text-slate-500
-        font-medium
-        mt-2
-        ml-1
-    "
->
-    Monitoring dan analisis data aktivitas corrective maintenance secara terintegrasi.
-</p>
+    </div>
 
 
-</div>
-
-<!-- =================================================
-     NAVIGATION + YEAR
-================================================= -->
-
-<div
-    class="
-        flex
-        items-center
-        gap-2
-        flex-wrap
-        justify-end
-    "
->
-
-<div
-    class="
-        flex
-        items-center
-        gap-2
-    "
->
-
-<span
-class="
-text-[10px]
-font-black
-uppercase
-tracking-wider
-text-slate-400
-"
-
->
+    <!-- LOADING -->
+    <div id="loading">
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p id="loadingText" class="font-semibold text-sm text-slate-400 mt-3">Memuat ringkasan...</p>
+    </div>
 
 
-Tahun
+    <!-- CONTENT -->
+    <div id="tableContent">
+
+        <!-- KPI -->
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <p class="stat-label">Total Aktivitas</p>
+                <p id="totalData" class="stat-value text-blue-900">-</p>
+                <p id="periodLabel" class="text-[10px] text-slate-400 font-bold mt-1">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="stat-label">Forklift <span class="stat-unit">FD</span></p>
+                <p id="forkliftTotal" class="stat-value text-amber-600">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="stat-label">Wheelloader <span class="stat-unit">W</span></p>
+                <p id="wheelloaderTotal" class="stat-value text-indigo-600">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="stat-label">Dumptruck <span class="stat-unit">D</span></p>
+                <p id="dumptruckTotal" class="stat-value text-red-700">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="stat-label">Excavator <span class="stat-unit">E</span></p>
+                <p id="excavatorTotal" class="stat-value text-emerald-600">-</p>
+            </div>
+
+        </div>
 
 
-</span>
+        <!-- BARIS 1: TREN CORRECTIVE MAINTENANCE (lebar penuh) -->
+        <div class="dash-grid">
 
-<select
-id="yearSelector"
-class="year-selector"
-onchange="changeYear()"
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Tren Corrective Maintenance per Bulan</h3>
+                        <p id="trendSubtitle" class="panel-subtitle">-</p>
+                    </div>
+                </div>
+                <div id="trendChart" class="chart-wrap"></div>
+                <div id="trendLegend" class="legend"></div>
+            </div>
 
->
-
-
-<option value="2026">
-    2026
-</option>
-
-<option value="2025">
-    2025
-</option>
-
-<option value="2024">
-    2024
-</option>
-
-<option value="2023">
-    2023
-</option>
-
-<option value="2022">
-    2022
-</option>
-
-<option value="2021">
-    2021
-</option>
-
-<option value="2020">
-    2020
-</option>
-
-<option value="2019">
-    2019
-</option>
-
-<option value="ALL">
-    Seluruh Data
-</option>
+        </div>
 
 
-</select>
+        <!-- BARIS 2: KOMPOSISI STATUS | MAINTENANCE PER JENIS ALAT -->
+        <div class="dash-grid two">
 
-</div>
+            <div class="panel panel-fill">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Komposisi Status</h3>
+                        <p class="panel-subtitle">Porsi aktivitas berstatus OPEN dan CLOSE</p>
+                    </div>
+                </div>
+                <div id="composition" class="fill-body"></div>
+            </div>
 
-<button
-type="button"
-onclick="goToHome()"
-class="
-dashboard-button
-bg-slate-100
-hover:bg-slate-200
-text-slate-700
-"
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Maintenance per Jenis Alat</h3>
+                        <p class="panel-subtitle">Jumlah aktivitas tiap jenis unit</p>
+                    </div>
+                </div>
+                <div id="typeBars"></div>
+            </div>
 
->
-
-
-<i
-    data-lucide="house"
-    class="w-4 h-4"
-></i>
-
-Kembali ke Home
-
-
-</button>
-
-<button
-type="button"
-onclick="goToTable()"
-class="
-dashboard-button
-bg-blue-800
-hover:bg-blue-700
-text-white
-"
-
->
+        </div>
 
 
-<i
-    data-lucide="table-2"
-    class="w-4 h-4"
-></i>
+        <!-- BARIS 3: UNIT PALING SERING RUSAK | TOP 10 CORRECTIVE MAINTENANCE -->
+        <div class="dash-grid two">
 
-Lihat Data
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Unit Dengan Aktivitas Corrective Maintenance Tertinggi</h3>
+                        <p class="panel-subtitle">10 unit teratas. Pilih Total atau jenis unit</p>
+                    </div>
+                </div>
+                <div id="unitChart" class="hbar-scroll"></div>
+                <div id="unitLegend" class="legend"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Top 10 Corrective Maintenance</h3>
+                        <p id="keywordSubtitle" class="panel-subtitle">Jenis perbaikan yang paling sering muncul pada kolom Maintenance</p>
+                    </div>
+                </div>
+                <div id="keywordBars" class="hbar-scroll"></div>
+            </div>
+
+        </div>
 
 
-</button>
+        <!-- BARIS 4: UNIT STATUS OPEN (tabel) -->
+        <div class="dash-grid">
 
-</div>
+            <div class="panel" style="padding:0;overflow:hidden">
 
-</div>
+                <div style="padding:18px 20px 14px;border-bottom:1px solid #f1f5f9">
+                    <h3 class="panel-title">Unit Status OPEN</h3>
+                    <p id="latestSubtitle" class="panel-subtitle">Seluruh unit yang masih OPEN, terbaru di atas</p>
+                </div>
+
+                <div class="ol-scroll">
+                    <table class="ol-table">
+                        <thead>
+                            <tr>
+                                <th class="ol-no">No</th>
+                                <th>Tanggal</th>
+                                <th>Unit</th>
+                                <th>Jenis Alat</th>
+                                <th>Keterangan Maintenance</th>
+                                <th>Periodic Service</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="olBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="olMobile" class="ol-mobile" style="padding:12px"></div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
-<!-- =====================================================
-     LOADING
-===================================================== -->
-
-<div id="loading">
-
-<i
-data-lucide="loader-circle"
-class="
-w-10
-h-10
-animate-spin
-text-amber-500
-"
-
-> </i>
-
-<p
-    id="loadingText"
-    class="
-        font-semibold
-        text-sm
-        text-slate-400
-        mt-3
-    "
->
-    Memuat dashboard maintenance...
-</p>
-
-</div>
-
-<!-- =====================================================
-     DASHBOARD CONTENT
-===================================================== -->
-
-<div id="dashboardContent">
-
-<!-- =====================================================
-     STATISTICS
-===================================================== -->
-
-<div
-    class="
-        grid
-        grid-cols-6
-        gap-4
-        mb-6
-    "
->
-
-<!-- TOTAL -->
-
-<div class="stat-card">
-
-
-<p
-    class="
-        text-[10px]
-        font-bold
-        text-slate-400
-        uppercase
-        tracking-wider
-    "
->
-    Total Activity
-</p>
-
-<p
-    id="totalData"
-    class="
-        text-3xl
-        font-black
-        text-blue-900
-        mt-2
-    "
->
-    -
-</p>
-
-<p
-    class="
-        text-[9px]
-        text-slate-400
-        font-bold
-        mt-1
-    "
->
-    Maintenance Activity
-</p>
-
-
-</div>
-
-<!-- OPEN -->
-
-<div class="stat-card">
-
-
-<p
-    class="
-        text-[10px]
-        font-bold
-        text-slate-400
-        uppercase
-        tracking-wider
-    "
->
-    Open
-</p>
-
-<p
-    id="openTotal"
-    class="
-        text-3xl
-        font-black
-        text-orange-600
-        mt-2
-    "
->
-    -
-</p>
-
-<p
-    class="
-        text-[9px]
-        text-slate-400
-        font-bold
-        mt-1
-    "
->
-    Belum selesai
-</p>
-
-
-</div>
-
-<!-- FORKLIFT -->
-
-<div class="unit-card">
-
-
-<p
-    class="
-        text-[10px]
-        font-bold
-        text-slate-400
-        uppercase
-        tracking-wider
-    "
->
-    Forklift
-</p>
-
-<p
-    id="forkliftTotal"
-    class="
-        text-3xl
-        font-black
-        text-orange-500
-        mt-2
-    "
->
-    -
-</p>
-
-<p
-    class="
-        text-[9px]
-        font-black
-        unit-label-f
-        mt-1
-        tracking-widest
-    "
->
-    FD
-</p>
-
-
-</div>
-
-<!-- WHEEL LOADER -->
-
-<div class="unit-card">
-
-
-<p
-    class="
-        text-[10px]
-        font-bold
-        text-slate-400
-        uppercase
-        tracking-wider
-    "
->
-    Wheel Loader
-</p>
-
-<p
-    id="wheelLoaderTotal"
-    class="
-        text-3xl
-        font-black
-        text-indigo-600
-        mt-2
-    "
->
-    -
-</p>
-
-<p
-    class="
-        text-[9px]
-        font-black
-        unit-label-w
-        mt-1
-        tracking-widest
-    "
->
-    W
-</p>
-
-
-</div>
-
-<!-- DUMP TRUCK -->
-
-<div class="unit-card">
-
-
-<p
-    class="
-        text-[10px]
-        font-bold
-        text-slate-400
-        uppercase
-        tracking-wider
-    "
->
-    Dump Truck
-</p>
-
-<p
-    id="dumpTruckTotal"
-    class="
-        text-3xl
-        font-black
-        text-rose-600
-        mt-2
-    "
->
-    -
-</p>
-
-<p
-    class="
-        text-[9px]
-        font-black
-        unit-label-d
-        mt-1
-        tracking-widest
-    "
->
-    D
-</p>
-
-
-</div>
-
-<!-- EXCAVATOR -->
-
-<div class="unit-card">
-
-
-<p
-    class="
-        text-[10px]
-        font-bold
-        text-slate-400
-        uppercase
-        tracking-wider
-    "
->
-    Excavator
-</p>
-
-<p
-    id="excavatorTotal"
-    class="
-        text-3xl
-        font-black
-        text-emerald-600
-        mt-2
-    "
->
-    -
-</p>
-
-<p
-    class="
-        text-[9px]
-        font-black
-        unit-label-e
-        mt-1
-        tracking-widest
-    "
->
-    E
-</p>
-
-
-</div>
-
-</div>
-
-<!-- =====================================================
-     CHART ROW 1
-===================================================== -->
-
-<div
-    class="
-        grid
-        grid-cols-2
-        gap-5
-        mb-5
-    "
->
-
-<!-- TREND -->
-
-<div class="chart-card">
-
-<div
-    class="
-        flex
-        items-center
-        justify-between
-        mb-4
-    "
->
-
-<div>
-
-<h3
-    class="
-        font-black
-        text-slate-700
-        text-sm
-    "
->
-    Tren Corrective Maintenance
-</h3>
-
-<p
-    class="
-        text-[10px]
-        text-slate-400
-        mt-1
-        font-medium
-    "
->
-    Jumlah aktivitas corrective maintenance per bulan.
-</p>
-
-</div>
-
-<div
-    class="
-        bg-blue-50
-        text-blue-700
-        px-3
-        py-1.5
-        rounded-lg
-        text-[9px]
-        font-black
-    "
->
-
-<span id="trendYearLabel">
-    2026
-</span>
-
-</div>
-
-</div>
-
-<div class="chart-wrapper">
-
-<canvas id="trendChart"></canvas>
-
-</div>
-
-</div>
-
-<!-- STATUS -->
-
-<div class="chart-card">
-
-<div class="mb-4">
-
-<h3
-    class="
-        font-black
-        text-slate-700
-        text-sm
-    "
->
-    Status Corrective Maintenance
-</h3>
-
-<p
-    class="
-        text-[10px]
-        text-slate-400
-        mt-1
-        font-medium
-    "
->
-    Perbandingan corrective maintenance Open dan Close.
-</p>
-
-</div>
-
-<div
-    class="
-        chart-wrapper
-        flex
-        items-center
-        justify-center
-    "
->
-
-<canvas id="statusChart"></canvas>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =====================================================
-     CHART ROW 2
-===================================================== -->
-
-<div
-    class="
-        grid
-        grid-cols-2
-        gap-5
-    "
->
-
-<!-- TOP CORRECTIVE MAINTENANCE -->
-
-<div class="chart-card">
-
-<div class="mb-4">
-
-<h3
-    class="
-        font-black
-        text-slate-700
-        text-sm
-    "
->
-    Top 10 Corrective Maintenance
-</h3>
-
-<p
-    class="
-        text-[10px]
-        text-slate-400
-        mt-1
-        font-medium
-    "
->
-    Kategori corrective maintenance berdasarkan jenis kerusakan.
-</p>
-
-</div>
-
-<div class="chart-wrapper">
-
-<canvas id="maintenanceChart"></canvas>
-
-</div>
-
-</div>
-
-<!-- DISTRIBUSI UNIT -->
-
-<div class="chart-card">
-
-<div class="mb-4">
-
-<h3
-    class="
-        font-black
-        text-slate-700
-        text-sm
-    "
->
-    Distribusi Corrective Maintenance per Jenis Unit
-</h3>
-
-<p
-    class="
-        text-[10px]
-        text-slate-400
-        mt-1
-        font-medium
-    "
->
-    Total aktivitas corrective maintenance berdasarkan jenis unit.
-</p>
-
-</div>
-
-<div class="chart-wrapper">
-
-<canvas id="unitDistributionChart"></canvas>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =====================================================
-     OPEN ACTIVITIES
-===================================================== -->
-
-<div
-    class="
-        mt-5
-        bg-white
-        border
-        border-slate-200
-        rounded-2xl
-        p-5
-        shadow-sm
-    "
->
-
-<div
-    class="
-        flex
-        items-center
-        justify-between
-        gap-4
-        mb-4
-    "
->
-
-<div
-    class="
-        flex
-        items-center
-        gap-3
-    "
->
-
-<span
-class="
-bg-orange-100
-text-orange-600
-p-2.5
-rounded-lg
-"
-
->
-
-<i
-data-lucide="alert-triangle"
-class="w-4 h-4"
-
-> </i>
-
-</span>
-
-<div>
-
-<h3
-    class="
-        text-sm
-        font-black
-        text-slate-700
-    "
->
-    Aktivitas Corrective Maintenance OPEN
-</h3>
-
-<p
-    class="
-        text-[10px]
-        text-slate-400
-        font-medium
-        mt-1
-    "
->
-    Daftar aktivitas corrective maintenance yang masih dalam proses perbaikan.
-</p>
-
-</div>
-
-</div>
-
-<div
-    class="
-        bg-orange-50
-        text-orange-700
-        px-3
-        py-1.5
-        rounded-lg
-        text-[9px]
-        font-black
-        uppercase
-    "
->
-
-<span id="openTableCount">
-    0
-</span>
-
-OPEN
-
-</div>
-
-</div>
-
-<div class="open-table-wrapper">
-
-<table class="open-table">
-
-<thead>
-
-<tr>
-
-<th style="width:55px;">
-    No
-</th>
-
-<th style="width:130px;">
-    Tanggal
-</th>
-
-<th style="width:160px;">
-    Unit
-</th>
-
-<th>
-    Corrective Maintenance
-</th>
-
-<th style="width:160px;">
-    Periodic Service
-</th>
-
-<th style="width:100px;">
-    Status
-</th>
-
-</tr>
-
-</thead>
-
-<tbody id="openActivitiesBody">
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<!-- =====================================================
-     DATA SUMMARY
-===================================================== -->
-
-<div
-    class="
-        mt-5
-        bg-slate-50
-        border
-        border-slate-200
-        rounded-2xl
-        p-5
-    "
->
-
-<div
-    class="
-        flex
-        items-center
-        gap-3
-    "
->
-
-<span
-class="
-bg-blue-100
-text-blue-700
-p-2
-rounded-lg
-"
-
->
-
-<i
-data-lucide="database"
-class="w-4 h-4"
-
-> </i>
-
-</span>
-
-<div>
-
-<h3
-    class="
-        text-sm
-        font-black
-        text-slate-700
-    "
->
-    Database Corrective Maintenance
-</h3>
-
-<p
-    id="databaseInfo"
-    class="
-        text-[10px]
-        text-slate-400
-        font-medium
-        mt-1
-    "
->
-    Data berhasil dimuat.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =====================================================
-     ERROR STATE
-===================================================== -->
-
-<div
-    id="errorState"
-    class="py-20 text-center"
->
-
-<div
-    class="
-        bg-red-50
-        text-red-600
-        p-4
-        rounded-full
-        inline-flex
-    "
->
-
-<i
-data-lucide="alert-circle"
-class="w-9 h-9"
-
-> </i>
-
-</div>
-
-<h3
-    class="
-        font-bold
-        text-red-700
-        mt-4
-    "
->
-    Gagal memuat data
-</h3>
-
-<p
-    id="errorMessage"
-    class="
-        text-xs
-        text-slate-500
-        mt-2
-        max-w-lg
-        mx-auto
-    "
->
-    Terjadi kesalahan.
-</p>
-
-<button
-onclick="loadYearData(currentYear)"
-class="
-mt-5
-bg-blue-800
-hover:bg-blue-700
-text-white
-font-bold
-px-5
-py-2.5
-rounded-xl
-text-sm
-"
-
->
-
-
-Coba Lagi
-
-
-</button>
-
-</div>
-
 </main>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- POPUP NILAI GRAFIK -->
+<div id="chartTip" class="chart-tip"></div>
 
-<footer
-    class="
-        mt-8
-        text-center
-        text-slate-400
-        px-4
-        pb-8
-    "
->
-
-<p
-    class="
-        font-bold
-        text-slate-500
-        tracking-tight
-        uppercase
-    "
->
-    &copy; 2026 Paperless Project - PT TSI.
-    All rights reserved.
-</p>
-
-<p
-    class="
-        text-[10px]
-        mt-1
-    "
->
-
-System Architecture by:
-
-<span
-class="
-text-slate-600
-font-semibold
-uppercase
-"
-
->
-
-
-Imam Wahyu Ramadhan, S.T.
-
-
-</span>
-
-|
-
-<span
-class="
-text-amber-600
-font-bold
-uppercase
-tracking-tighter
-"
-
->
-
-
-Project 2.0
-
-
-</span>
-
-</p>
-
+<!-- FOOTER (tidak diubah) -->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+    <p class="text-[10px] mt-1">
+        System Architecture by:
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
+        |
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
+    </p>
 </footer>
+
+
+<script>
+/* Tidak menampilkan notifikasi "Data terbaru tersedia" di halaman ini */
+window.DATACACHE_NOTIFY=false;
+</script>
 
 <script>
 
@@ -2495,2704 +1082,994 @@ Project 2.0
    CONFIGURATION
 ========================================================= */
 
-const API_URL =
+const API_URL=
 'https://script.google.com/macros/s/AKfycbzOF2dJ29DEp2opZ41wz-2zpG0BJXYprI5AkgSdmeipmYeCnqWrjigS_GYl1Olx1HuRfQ/exec';
 
+const INDEX_URL='index.html';
+const TABLE_URL='tmaintenance.html';
 
-const TABLE_URL =
-'tmaintenance.html';
+const YEARS=['2026','2025','2024','2023','2022','2021','2020','2019'];
 
+const TREND_MONTHS_ALL=24;
+const TOP_UNITS=10;
+const TOP_KEYWORDS=10;
 
-const HOME_URL =
-'index.html';
+const MONTH_SHORT=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+const MONTH_NAMES=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-let currentYear =
-'2026';
-
-
-let allData =
-[];
-
-
-let trendChart =
-null;
-
-
-let statusChart =
-null;
-
-
-let maintenanceChart =
-null;
-
-
-let unitDistributionChart =
-null;
-
-
-/* =========================================================
-   CHART THEME
-========================================================= */
-
-const CHART_COLORS = {
-
-    navy:
-        '#1E3A8A',
-
-    amber:
-        '#F59E0B',
-
-    orange:
-        '#F97316',
-
-    indigo:
-        '#4F46E5',
-
-    rose:
-        '#E11D48',
-
-    emerald:
-        '#059669'
-
+const MONTHS={
+    januari:1,jan:1,january:1,februari:2,feb:2,february:2,maret:3,mar:3,march:3,
+    april:4,apr:4,mei:5,may:5,juni:6,jun:6,june:6,juli:7,jul:7,july:7,
+    agustus:8,agu:8,aug:8,august:8,september:9,sep:9,oktober:10,okt:10,oct:10,october:10,
+    november:11,nov:11,desember:12,des:12,dec:12,december:12
 };
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function goToHome(){
-
-    window.location.href =
-        HOME_URL;
-
-}
-
-
-function goToTable(){
-
-    window.location.href =
-        TABLE_URL;
-
-}
-
-
-/* =========================================================
-   LOGO ERROR
-========================================================= */
-
-function handleLogoError(){
-
-    const logo =
-        document.getElementById(
-            'companyLogo'
-        );
-
-
-    const fallback =
-        document.getElementById(
-            'logoFallback'
-        );
-
-
-    if(logo){
-
-        logo.classList.add(
-            'hidden'
-        );
-
-    }
-
-
-    if(fallback){
-
-        fallback.classList.remove(
-            'hidden'
-        );
-
-        fallback.classList.add(
-            'flex'
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   CHANGE YEAR
-========================================================= */
-
-function changeYear(){
-
-    const selector =
-        document.getElementById(
-            'yearSelector'
-        );
-
-
-    if(!selector){
-
-        return;
-
-    }
-
-
-    currentYear =
-        selector.value;
-
-
-    loadYearData(
-        currentYear
-    );
-
-}
-
-
-/* =========================================================
-   LOAD DATA
-========================================================= */
-
-async function loadYearData(
-    year
-){
-
-    currentYear =
-        String(year);
-
-
-    showLoading(
-        currentYear === 'ALL'
-        ?
-        'Memuat seluruh data maintenance...'
-        :
-        `Memuat data maintenance ${currentYear}...`
-    );
-
-
-    try{
-
-        const response =
-            await fetch(
-                `${API_URL}?year=${encodeURIComponent(currentYear)}`,
-                {
-                    method:'GET',
-                    cache:'no-store'
-                }
-            );
-
-
-        if(!response.ok){
-
-            throw new Error(
-                `HTTP Error ${response.status}`
-            );
-
-        }
-
-
-        const result =
-            await response.json();
-
-
-        if(
-            !result ||
-            result.success !== true
-        ){
-
-            throw new Error(
-                result?.error ||
-                'API mengembalikan response tidak valid.'
-            );
-
-        }
-
-
-        allData =
-            extractData(
-                result,
-                currentYear
-            );
-
-
-        updateYearUI(
-            currentYear
-        );
-
-
-        updateStatistics(
-            allData
-        );
-
-
-        renderTrendChart(
-            allData
-        );
-
-
-        renderStatusChart(
-            allData
-        );
-
-
-        renderMaintenanceChart(
-            allData
-        );
-
-
-        renderUnitDistributionChart(
-            allData
-        );
-
-
-        renderOpenActivities(
-            allData
-        );
-
-
-        updateDatabaseInfo(
-            allData
-        );
-
-
-        hideLoading();
-
-    }
-    catch(error){
-
-        console.error(
-            'Dashboard API Error:',
-            error
-        );
-
-
-        showError(
-            error.message
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   EXTRACT DATA
-========================================================= */
-
-function extractData(
-    result,
-    year
-){
-
-    const output =
-        [];
-
-
-    /* =====================================================
-       MODE TAHUN TERTENTU
-    ===================================================== */
-
-    if(
-        year !== 'ALL'
-    ){
-
-        const sheet =
-            result.sheets?.[
-                year
-            ];
-
-
-        if(!sheet){
-
-            throw new Error(
-                `Data sheet ${year} tidak ditemukan.`
-            );
-
-        }
-
-
-        const rows =
-            Array.isArray(
-                sheet.data
-            )
-            ?
-            sheet.data
-            :
-            [];
-
-
-        rows.forEach(
-            (
-                row,
-                index
-            )=>{
-
-                output.push({
-
-                    originalIndex:
-                        index,
-
-                    date:
-                        row[0] ?? '',
-
-                    unit:
-                        row[1] ?? '',
-
-                    maintenance:
-                        row[2] ?? '',
-
-                    periodic:
-                        row[3] ?? '',
-
-                    status:
-                        row[4] ?? '',
-
-                    dataYear:
-                        year
-
-                });
-
-            }
-        );
-
-
-        return output;
-
-    }
-
-
-    /* =====================================================
-       MODE SELURUH DATA
-    ===================================================== */
-
-    const sheets =
-        result.sheets || {};
-
-
-    Object.keys(
-        sheets
-    )
-    .forEach(
-        sheetYear=>{
-
-            const sheet =
-                sheets[
-                    sheetYear
-                ];
-
-
-            const rows =
-                Array.isArray(
-                    sheet?.data
-                )
-                ?
-                sheet.data
-                :
-                [];
-
-
-            rows.forEach(
-                (
-                    row,
-                    index
-                )=>{
-
-                    output.push({
-
-                        originalIndex:
-                            output.length,
-
-                        date:
-                            row[0] ?? '',
-
-                        unit:
-                            row[1] ?? '',
-
-                        maintenance:
-                            row[2] ?? '',
-
-                        periodic:
-                            row[3] ?? '',
-
-                        status:
-                            row[4] ?? '',
-
-                        dataYear:
-                            sheetYear
-
-                    });
-
-                }
-            );
-
-        }
-    );
-
-
-    return output;
-
-}
-
-
-/* =========================================================
-   SHOW LOADING
-========================================================= */
-
-function showLoading(
-    message
-){
-
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    const content =
-        document.getElementById(
-            'dashboardContent'
-        );
-
-
-    const error =
-        document.getElementById(
-            'errorState'
-        );
-
-
-    const loadingText =
-        document.getElementById(
-            'loadingText'
-        );
-
-
-    if(loadingText){
-
-        loadingText.textContent =
-            message ||
-            'Memuat data...';
-
-    }
-
-
-    if(loading){
-
-        loading.style.display =
-            'flex';
-
-    }
-
-
-    if(content){
-
-        content.classList.remove(
-            'show'
-        );
-
-    }
-
-
-    if(error){
-
-        error.style.display =
-            'none';
-
-    }
-
-}
-
-
-/* =========================================================
-   HIDE LOADING
-========================================================= */
-
-function hideLoading(){
-
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    const content =
-        document.getElementById(
-            'dashboardContent'
-        );
-
-
-    if(loading){
-
-        loading.style.display =
-            'none';
-
-    }
-
-
-    if(content){
-
-        content.classList.add(
-            'show'
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   SHOW ERROR
-========================================================= */
-
-function showError(
-    message
-){
-
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    const content =
-        document.getElementById(
-            'dashboardContent'
-        );
-
-
-    const error =
-        document.getElementById(
-            'errorState'
-        );
-
-
-    const errorMessage =
-        document.getElementById(
-            'errorMessage'
-        );
-
-
-    if(loading){
-
-        loading.style.display =
-            'none';
-
-    }
-
-
-    if(content){
-
-        content.classList.remove(
-            'show'
-        );
-
-    }
-
-
-    if(error){
-
-        error.style.display =
-            'block';
-
-    }
-
-
-    if(errorMessage){
-
-        errorMessage.textContent =
-            message ||
-            'Terjadi kesalahan saat mengambil data.';
-
-    }
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   UPDATE YEAR UI
-========================================================= */
-
-function updateYearUI(
-    year
-){
-
-    const displayYear =
-        year === 'ALL'
-        ?
-        'Seluruh Data'
-        :
-        year;
-
-
-    const selector =
-        document.getElementById(
-            'yearSelector'
-        );
-
-
-    const trendLabel =
-        document.getElementById(
-            'trendYearLabel'
-        );
-
-
-    if(selector){
-
-        selector.value =
-            String(year);
-
-    }
-
-
-    if(trendLabel){
-
-        trendLabel.textContent =
-            displayYear;
-
-    }
-
-}
-
-
-/* =========================================================
-   UNIT CLASSIFICATION
-========================================================= */
-
-/*
-
-    DATABASE MENGGUNAKAN KODE UNIT:
-
-    FORKLIFT:
-    FD100-09
-    FD70-17
-    FD30-23
-
-    WHEEL LOADER:
-    W-23
-    WA150-03
-    ZW140-02
-
-    DUMP TRUCK:
-    D-19
-
-    EXCAVATOR:
-    E-13
-
-*/
-
-
-function getUnitType(
-    value
-){
-
-    const text =
-        String(
-            value ?? ''
-        )
-        .trim()
-        .toUpperCase();
-
-
-    if(!text){
-
-        return null;
-
-    }
-
-
-    /* FORKLIFT */
-
-    if(
-        /^FD(?:[\s_-]|\d)/i.test(
-            text
-        )
-    ){
-
-        return 'FD';
-
-    }
-
-
-    /* WHEEL LOADER */
-
-    if(
-        /^W(?:[\s_-]|\d|$)/i.test(
-            text
-        ) ||
-        /^WA/i.test(
-            text
-        ) ||
-        /^ZW/i.test(
-            text
-        )
-    ){
-
-        return 'W';
-
-    }
-
-
-    /* DUMP TRUCK */
-
-    if(
-        /^D(?:[\s_-]|\d|$)/i.test(
-            text
-        )
-    ){
-
-        return 'D';
-
-    }
-
-
-    /* EXCAVATOR */
-
-    if(
-        /^E(?:[\s_-]|\d|$)/i.test(
-            text
-        )
-    ){
-
-        return 'E';
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =========================================================
-   UPDATE STATISTICS
-========================================================= */
-
-function updateStatistics(
-    data
-){
-
-    let open =
-        0;
-
-
-    let forklift =
-        0;
-
-
-    let wheelLoader =
-        0;
-
-
-    let dumpTruck =
-        0;
-
-
-    let excavator =
-        0;
-
-
-    data.forEach(
-        row=>{
-
-            const status =
-                normalizeText(
-                    row.status
-                );
-
-
-            const unitType =
-                getUnitType(
-                    row.unit
-                );
-
-
-            if(
-                status === 'open'
-            ){
-
-                open++;
-
-            }
-
-
-            switch(
-                unitType
-            ){
-
-                case 'FD':
-
-                    forklift++;
-
-                    break;
-
-
-                case 'W':
-
-                    wheelLoader++;
-
-                    break;
-
-
-                case 'D':
-
-                    dumpTruck++;
-
-                    break;
-
-
-                case 'E':
-
-                    excavator++;
-
-                    break;
-
-            }
-
-        }
-    );
-
-
-    const total =
-        data.length;
-
-
-    const totalElement =
-        document.getElementById(
-            'totalData'
-        );
-
-
-    const openElement =
-        document.getElementById(
-            'openTotal'
-        );
-
-
-    const forkliftElement =
-        document.getElementById(
-            'forkliftTotal'
-        );
-
-
-    const wheelLoaderElement =
-        document.getElementById(
-            'wheelLoaderTotal'
-        );
-
-
-    const dumpTruckElement =
-        document.getElementById(
-            'dumpTruckTotal'
-        );
-
-
-    const excavatorElement =
-        document.getElementById(
-            'excavatorTotal'
-        );
-
-
-    if(totalElement){
-
-        totalElement.textContent =
-            total.toLocaleString(
-                'id-ID'
-            );
-
-    }
-
-
-    if(openElement){
-
-        openElement.textContent =
-            open.toLocaleString(
-                'id-ID'
-            );
-
-    }
-
-
-    if(forkliftElement){
-
-        forkliftElement.textContent =
-            forklift.toLocaleString(
-                'id-ID'
-            );
-
-    }
-
-
-    if(wheelLoaderElement){
-
-        wheelLoaderElement.textContent =
-            wheelLoader.toLocaleString(
-                'id-ID'
-            );
-
-    }
-
-
-    if(dumpTruckElement){
-
-        dumpTruckElement.textContent =
-            dumpTruck.toLocaleString(
-                'id-ID'
-            );
-
-    }
-
-
-    if(excavatorElement){
-
-        excavatorElement.textContent =
-            excavator.toLocaleString(
-                'id-ID'
-            );
-
-    }
-
-}
-
-
-/* =========================================================
-   NORMALIZE TEXT
-========================================================= */
-
-function normalizeText(
-    value
-){
-
-    return String(
-        value ?? ''
-    )
-    .trim()
-    .toLowerCase();
-
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHTML(
-    value
-){
-
-    return String(
-        value ?? ''
-    )
-    .replace(
-        /&/g,
-        '&amp;'
-    )
-    .replace(
-        /</g,
-        '&lt;'
-    )
-    .replace(
-        />/g,
-        '&gt;'
-    )
-    .replace(
-        /"/g,
-        '&quot;'
-    )
-    .replace(
-        /'/g,
-        '&#039;'
-    );
-
-}
-
-
-/* =========================================================
-   PARSE DATE
-========================================================= */
-
-function parseDate(
-    value
-){
-
-    const text =
-        String(
-            value ?? ''
-        )
-        .trim();
-
-
-    if(!text){
-
-        return null;
-
-    }
-
-
-    const match =
-        text.match(
-            /^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/i
-        );
-
-
-    if(match){
-
-        const day =
-            Number(
-                match[1]
-            );
-
-
-        const monthName =
-            match[2]
-                .toLowerCase();
-
-
-        const year =
-            Number(
-                match[3]
-            );
-
-
-        const months = {
-
-            january:0,
-            february:1,
-            march:2,
-            april:3,
-            may:4,
-            june:5,
-            july:6,
-            august:7,
-            september:8,
-            october:9,
-            november:10,
-            december:11
-
-        };
-
-
-        if(
-            months[
-                monthName
-            ] !== undefined
-        ){
-
-            return new Date(
-                year,
-                months[
-                    monthName
-                ],
-                day
-            );
-
-        }
-
-    }
-
-
-    const iso =
-        text.match(
-            /^(\d{4})-(\d{2})-(\d{2})/
-        );
-
-
-    if(iso){
-
-        return new Date(
-            Number(iso[1]),
-            Number(iso[2]) - 1,
-            Number(iso[3])
-        );
-
-    }
-
-
-    const dmy =
-        text.match(
-            /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
-        );
-
-
-    if(dmy){
-
-        return new Date(
-            Number(dmy[3]),
-            Number(dmy[2]) - 1,
-            Number(dmy[1])
-        );
-
-    }
-
-
-    const fallback =
-        new Date(
-            text
-        );
-
-
-    if(
-        !isNaN(
-            fallback.getTime()
-        )
-    ){
-
-        return fallback;
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =========================================================
-   FORMAT DATE
-========================================================= */
-
-function formatDate(
-    value
-){
-
-    const date =
-        parseDate(
-            value
-        );
-
-
-    if(!date){
-
-        return value || '-';
-
-    }
-
-
-    const day =
-        String(
-            date.getDate()
-        )
-        .padStart(
-            2,
-            '0'
-        );
-
-
-    const month =
-        String(
-            date.getMonth() + 1
-        )
-        .padStart(
-            2,
-            '0'
-        );
-
-
-    const year =
-        date.getFullYear();
-
-
-    return `${day}/${month}/${year}`;
-
-}
-
-
-/* =========================================================
-   MONTH NAME
-========================================================= */
-
-const MONTHS = [
-
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
-
+/* Warna sesuai palet yang disepakati */
+const COLORS={
+    total:'#1e3a8a',     /* Total / Ringkasan: Navy */
+    W:'#4f46e5',         /* Wheelloader: Indigo */
+    F:'#d97706',         /* Forklift: Amber */
+    D:'#b91c1c',         /* Dumptruck: Merah */
+    E:'#059669',         /* Excavator: Emerald */
+    open:'#991b1b',      /* Open: Merah Tua */
+    close:'#166534',     /* Close: Hijau Tua */
+    other:'#475569',     /* Status lain: Abu-abu */
+    periodic:'#2563eb',  /* Periodic service: Biru */
+    general:'#d97706'    /* General service: Amber */
+};
+
+const TYPE_LABELS={W:'Wheelloader',F:'Forklift',D:'Dumptruck',E:'Excavator',other:'Lainnya'};
+
+const UNIT_KEYS=['W','F','D','E'];
+
+const REPAIR_KEYWORDS=[
+    {label:'Tyre',         re:/\b(tyre|tire|ban)\b/i},
+    {label:'Oil Leakage',  re:/(oil\s*leak|leakage|bocor\s*oli|rembes)/i},
+    {label:'Hose',         re:/\b(hose|selang)\b/i},
+    {label:'Lamp',         re:/\b(lamp|lampu|light)\b/i},
+    {label:'Bucket',       re:/\bbucket\b/i},
+    {label:'Engine',       re:/\b(engine|mesin)\b/i},
+    {label:'AC',           re:/\b(ac|air\s*conditioner)\b/i},
+    {label:'Transmission', re:/\b(transmission|transmisi|gearbox)\b/i},
+    {label:'Hydraulic',    re:/\b(hydraulic|hidrolik)\b/i},
+    {label:'Brake',        re:/\b(brake|rem)\b/i},
+    {label:'Steering',     re:/\b(steering|kemudi)\b/i},
+    {label:'Radiator',     re:/\b(radiator|coolant)\b/i},
+    {label:'Battery',      re:/\b(battery|aki|accu)\b/i},
+    {label:'Filter',       re:/\b(filter)\b/i},
+    {label:'Wiper',        re:/\b(wiper)\b/i}
+];
+
+const UNIT_OPTIONS=[
+    {key:'total',label:'Total'},
+    {key:'W',label:'Wheelloader (W)'},
+    {key:'F',label:'Forklift (FD)'},
+    {key:'D',label:'Dumptruck (D)'},
+    {key:'E',label:'Excavator (E)'}
+];
+
+const TREND_DEF=[
+    {key:'total',label:'Total',       color:COLORS.total},
+    {key:'W',    label:'Wheelloader', color:COLORS.W},
+    {key:'F',    label:'Forklift',    color:COLORS.F},
+    {key:'D',    label:'Dumptruck',   color:COLORS.D},
+    {key:'E',    label:'Excavator',   color:COLORS.E}
 ];
 
 
 /* =========================================================
-   COMMON CHART OPTIONS
+   STATE
 ========================================================= */
 
-const commonTooltip = {
+const yearCache={};
+const yearInflight={};
 
-    backgroundColor:
-        '#ffffff',
+let selectedYear=YEARS.includes(String(new Date().getFullYear()))
+    ?String(new Date().getFullYear())
+    :YEARS[0];
 
-    titleColor:
-        '#0f172a',
-
-    bodyColor:
-        '#475569',
-
-    borderColor:
-        '#e2e8f0',
-
-    borderWidth:
-        1,
-
-    cornerRadius:
-        10,
-
-    padding:
-        12,
-
-    displayColors:
-        true,
-
-    titleFont:{
-        family:'Inter',
-        size:11,
-        weight:'700'
-    },
-
-    bodyFont:{
-        family:'Inter',
-        size:10,
-        weight:'600'
-    }
-
-};
+let periodRows=[];
+const trendOff=new Set(['total']);     // default: Total tidak tampil
+let unitFilter='total';
 
 
 /* =========================================================
-   TREND CHART
+   HELPERS
 ========================================================= */
 
-function renderTrendChart(
-    data
-){
+const $=id=>document.getElementById(id);
 
-    const canvas =
-        document.getElementById(
-            'trendChart'
-        );
+const pad=n=>String(n).padStart(2,'0');
 
-
-    if(!canvas){
-
-        return;
-
-    }
-
-
-    if(trendChart){
-
-        trendChart.destroy();
-
-    }
-
-
-    const counts =
-        Array(
-            12
-        )
-        .fill(0);
-
-
-    data.forEach(
-        row=>{
-
-            const date =
-                parseDate(
-                    row.date
-                );
-
-
-            if(date){
-
-                const month =
-                    date.getMonth();
-
-
-                if(
-                    month >= 0 &&
-                    month <= 11
-                ){
-
-                    counts[
-                        month
-                    ]++;
-
-                }
-
-            }
-
-        }
-    );
-
-
-    trendChart =
-        new Chart(
-            canvas,
-            {
-
-                type:'line',
-
-                data:{
-
-                    labels:
-                        MONTHS,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Maintenance',
-
-                            data:
-                                counts,
-
-                            borderColor:
-                                CHART_COLORS.navy,
-
-                            backgroundColor:
-                                'rgba(30,58,138,.06)',
-
-                            borderWidth:
-                                2.5,
-
-                            tension:
-                                .35,
-
-                            pointRadius:
-                                3,
-
-                            pointHoverRadius:
-                                5,
-
-                            pointBackgroundColor:
-                                CHART_COLORS.navy,
-
-                            pointBorderWidth:
-                                0,
-
-                            fill:
-                                true
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    interaction:{
-
-                        intersect:false,
-
-                        mode:'index'
-
-                    },
-
-                    plugins:{
-
-                        legend:{
-
-                            display:false
-
-                        },
-
-                        tooltip:{
-
-                            ...commonTooltip,
-
-                            callbacks:{
-
-                                label:
-                                    context =>
-                                        ` ${context.raw.toLocaleString('id-ID')} aktivitas`
-
-                            }
-
-                        }
-
-                    },
-
-                    scales:{
-
-                        x:{
-
-                            border:{
-                                display:false
-                            },
-
-                            grid:{
-
-                                display:false
-
-                            },
-
-                            ticks:{
-
-                                color:'#64748b',
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:10,
-
-                                    weight:'600'
-
-                                }
-
-                            }
-
-                        },
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            border:{
-                                display:false
-                            },
-
-                            grid:{
-
-                                color:
-                                    'rgba(148,163,184,.12)',
-
-                                drawTicks:false
-
-                            },
-
-                            ticks:{
-
-                                color:'#64748b',
-
-                                precision:0,
-
-                                padding:8,
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:10,
-
-                                    weight:'600'
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
+function fmt(n){
+    return Math.round(Number(n||0)).toLocaleString('id-ID');
 }
 
-
-/* =========================================================
-   STATUS CHART
-========================================================= */
-
-function renderStatusChart(
-    data
-){
-
-    const canvas =
-        document.getElementById(
-            'statusChart'
-        );
-
-
-    if(!canvas){
-
-        return;
-
-    }
-
-
-    if(statusChart){
-
-        statusChart.destroy();
-
-    }
-
-
-    let open =
-        0;
-
-
-    let close =
-        0;
-
-
-    data.forEach(
-        row=>{
-
-            const status =
-                normalizeText(
-                    row.status
-                );
-
-
-            if(
-                status === 'open'
-            ){
-
-                open++;
-
-            }
-
-            else if(
-                status === 'close'
-            ){
-
-                close++;
-
-            }
-
-        }
-    );
-
-
-    statusChart =
-        new Chart(
-            canvas,
-            {
-
-                type:'doughnut',
-
-                data:{
-
-                    labels:[
-                        'Open',
-                        'Close'
-                    ],
-
-                    datasets:[
-
-                        {
-
-                            data:[
-                                open,
-                                close
-                            ],
-
-                            backgroundColor:[
-
-                                CHART_COLORS.amber,
-
-                                CHART_COLORS.navy
-
-                            ],
-
-                            borderColor:
-                                '#ffffff',
-
-                            borderWidth:
-                                4,
-
-                            hoverOffset:
-                                4
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    cutout:'68%',
-
-                    plugins:{
-
-                        legend:{
-
-                            position:'bottom',
-
-                            labels:{
-
-                                usePointStyle:true,
-
-                                pointStyle:'circle',
-
-                                padding:18,
-
-                                color:'#475569',
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:10,
-
-                                    weight:'700'
-
-                                }
-
-                            }
-
-                        },
-
-                        tooltip:{
-
-                            ...commonTooltip
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
 }
 
+function handleLogoError(){
+    $('companyLogo').classList.add('hidden');
+    const fb=$('logoFallback');
+    fb.classList.remove('hidden');
+    fb.classList.add('flex');
+}
 
-/* =========================================================
-   MAINTENANCE CATEGORY
-========================================================= */
+function goHome(){ window.location.href=INDEX_URL; }
+function goTableAll(){ window.location.href=TABLE_URL; }
+
+function periodLabel(){
+    return selectedYear==='ALL'?'Seluruh Data':`Tahun ${selectedYear}`;
+}
+
+function chartWidth(elId){
+    const el=$(elId);
+    return Math.max(320,Math.round((el&&el.clientWidth)||760));
+}
+
+function niceStep(raw){
+    const p=Math.pow(10,Math.floor(Math.log10(raw)));
+    const n=raw/p;
+    const m=n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10;
+    return m*p;
+}
+
+function scaleFor(values){
+    const vals=values.filter(v=>v!==null&&v!==undefined&&isFinite(v));
+    const hi=vals.length?Math.max(...vals):1;
+    const step=niceStep(Math.max(hi,1)/4);
+    const max=Math.max(step*4,Math.ceil(hi/step)*step);
+    return {min:0,max:max,step:max/4};
+}
+
+function normalizeUnit(value){
+    return String(value??'').trim().toUpperCase();
+}
+
+/* Jenis unit dari huruf awal kode unit */
+function getUnitType(unit){
+    const v=normalizeUnit(unit);
+    if(v.startsWith('F')) return 'F';
+    if(v.startsWith('W')) return 'W';
+    if(v.startsWith('D')) return 'D';
+    if(v.startsWith('E')) return 'E';
+    return 'other';
+}
+
+/* Jenis service dari kolom Periodic Service */
+function pkOf(value){
+    const v=String(value??'').trim().toLowerCase();
+    if(v.includes('periodic')) return 'periodic';
+    if(v.includes('general')) return 'general';
+    return 'other';
+}
+
+function formatLongDate(d){
+    return `${d.getDate()} ${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function formatShortDate(d){
+    return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}`;
+}
+
+function mk(y,m,d){
+    const x=new Date(y,m-1,d);
+    return x.getMonth()===m-1?x:null;
+}
+
+/* Tanggal serial Google Sheets (jumlah hari sejak 30 Des 1899) */
+function fromSerial(n){
+    const d=new Date(1899,11,30);
+    d.setDate(d.getDate()+Math.floor(n));
+    return d;
+}
 
 /*
-
-   HANYA KATEGORI BERIKUT YANG DIPERHITUNGKAN:
-
-   Tyre
-   Brake
-   Lamp
-   Engine
-   Hose
-   Leakage
-   Bucket
-   Hydraulic
-   Transmission
-   Differential
-   AC
-
-   Tidak ada "Lainnya".
-
+   Parser tanggal yang mendukung:
+   - angka serial (Google Sheets), contoh 46082
+   - dd/mm/yyyy, dd-mm-yyyy, dd.mm.yyyy
+   - yyyy-mm-dd (dengan atau tanpa jam, termasuk format ISO)
+   - "12 Jan 2026", "12-Jan-2026", "12 Januari 2026"
+   - "Jan 2026", "Januari 2026"
+   - format lain yang dikenali Date()
 */
+function parseDate(value){
 
-function getMaintenanceCategory(
-    value
-){
+    if(value===null||value===undefined||value==='') return null;
 
-    const text =
-        normalizeText(
-            value
-        );
+    if(value instanceof Date) return isNaN(value)?null:value;
 
-
-    if(!text){
-
-        return null;
-
+    if(typeof value==='number'){
+        return value>20000&&value<100000?fromSerial(value):null;
     }
 
+    const raw=String(value).trim();
+    if(!raw) return null;
 
-    if(
-        text.includes('tyre') ||
-        text.includes('tire')
-    ){
-
-        return 'Tyre';
-
+    if(/^\d+(\.\d+)?$/.test(raw)){
+        const n=Number(raw);
+        return n>20000&&n<100000?fromSerial(n):null;
     }
 
+    const t=raw.replace(/T\d{1,2}:\d{2}(:\d{2})?.*$/,'').trim();
 
-    if(
-        text.includes('brake')
-    ){
+    let m;
 
-        return 'Brake';
+    if((m=t.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})(?:\D.*)?$/))&&mk(+m[1],+m[2],+m[3])) return mk(+m[1],+m[2],+m[3]);
 
+    if((m=t.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})(?:\D.*)?$/))){
+        return mk(+m[3],+m[2],+m[1])||mk(+m[3],+m[1],+m[2]);
     }
 
-
-    if(
-        text.includes('lamp')
-    ){
-
-        return 'Lamp';
-
+    if((m=t.match(/^(\d{1,2})[\s\-\/]+([A-Za-z]+)\.?[\s\-\/,]+(\d{4})$/))&&MONTHS[m[2].toLowerCase()]){
+        return mk(+m[3],MONTHS[m[2].toLowerCase()],+m[1]);
     }
 
-
-    if(
-        text.includes('engine')
-    ){
-
-        return 'Engine';
-
+    if((m=t.match(/^([A-Za-z]+)\.?\s+(\d{1,2}),?\s*(\d{4})$/))&&MONTHS[m[1].toLowerCase()]){
+        return mk(+m[3],MONTHS[m[1].toLowerCase()],+m[2]);
     }
 
-
-    if(
-        text.includes('hose')
-    ){
-
-        return 'Hose';
-
+    if((m=t.match(/^([A-Za-z]+)\.?,?\s*(\d{4})$/))&&MONTHS[m[1].toLowerCase()]){
+        return mk(+m[2],MONTHS[m[1].toLowerCase()],1);
     }
 
-
-    if(
-        text.includes('leakage') ||
-        text.includes('leak')
-    ){
-
-        return 'Leakage';
-
-    }
-
-
-    if(
-        text.includes('bucket')
-    ){
-
-        return 'Bucket';
-
-    }
-
-
-    if(
-        text.includes('hydraulic')
-    ){
-
-        return 'Hydraulic';
-
-    }
-
-
-    if(
-        text.includes('transmission')
-    ){
-
-        return 'Transmission';
-
-    }
-
-
-    if(
-        text.includes('differential')
-    ){
-
-        return 'Differential';
-
-    }
-
-
-    if(
-        text === 'ac' ||
-        text.includes(' ac ') ||
-        text.startsWith('ac ') ||
-        text.endsWith(' ac') ||
-        text.includes('air conditioner') ||
-        text.includes('air conditioning')
-    ){
-
-        return 'AC';
-
-    }
-
-
-    return null;
-
+    const d=new Date(t);
+    return isNaN(d.getTime())?null:d;
 }
 
 
 /* =========================================================
-   MAINTENANCE CHART
+   NORMALISASI
 ========================================================= */
 
-function renderMaintenanceChart(
-    data
-){
-
-    const canvas =
-        document.getElementById(
-            'maintenanceChart'
-        );
-
-
-    if(!canvas){
-
-        return;
-
-    }
-
-
-    if(maintenanceChart){
-
-        maintenanceChart.destroy();
-
-    }
-
-
-    const allowedCategories = [
-
-        'Tyre',
-        'Brake',
-        'Lamp',
-        'Engine',
-        'Hose',
-        'Leakage',
-        'Bucket',
-        'Hydraulic',
-        'Transmission',
-        'Differential',
-        'AC'
-
-    ];
-
-
-    const counts = {};
-
-
-    allowedCategories.forEach(
-        category=>{
-
-            counts[
-                category
-            ] =
-                0;
-
-        }
-    );
-
-
-    data.forEach(
-        row=>{
-
-            const category =
-                getMaintenanceCategory(
-                    row.maintenance
-                );
-
-
-            if(
-                category &&
-                counts[
-                    category
-                ] !== undefined
-            ){
-
-                counts[
-                    category
-                ]++;
-
-            }
-
-        }
-    );
-
-
-    const sorted =
-        allowedCategories
-        .map(
-            category=>[
-                category,
-                counts[
-                    category
-                ]
-            ]
-        )
-        .sort(
-            (
-                a,
-                b
-            ) =>
-                b[1] -
-                a[1]
-        )
-        .slice(
-            0,
-            10
-        );
-
-
-    const labels =
-        sorted.map(
-            item =>
-                item[0]
-        );
-
-
-    const values =
-        sorted.map(
-            item =>
-                item[1]
-        );
-
-
-    maintenanceChart =
-        new Chart(
-            canvas,
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:
-                        labels,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Activity',
-
-                            data:
-                                values,
-
-                            backgroundColor:
-                                CHART_COLORS.navy,
-
-                            hoverBackgroundColor:
-                                CHART_COLORS.amber,
-
-                            borderWidth:
-                                0,
-
-                            borderRadius:
-                                7,
-
-                            borderSkipped:
-                                false,
-
-                            barPercentage:
-                                .65,
-
-                            categoryPercentage:
-                                .78
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    indexAxis:'y',
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-
-                            display:false
-
-                        },
-
-                        tooltip:{
-
-                            ...commonTooltip,
-
-                            callbacks:{
-
-                                label:
-                                    context =>
-                                        ` ${context.raw.toLocaleString('id-ID')} aktivitas`
-
-                            }
-
-                        }
-
-                    },
-
-                    scales:{
-
-                        x:{
-
-                            beginAtZero:true,
-
-                            border:{
-                                display:false
-                            },
-
-                            grid:{
-
-                                color:
-                                    'rgba(148,163,184,.10)',
-
-                                drawTicks:false
-
-                            },
-
-                            ticks:{
-
-                                color:'#64748b',
-
-                                precision:0,
-
-                                padding:8,
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:10,
-
-                                    weight:'600'
-
-                                }
-
-                            }
-
-                        },
-
-                        y:{
-
-                            border:{
-                                display:false
-                            },
-
-                            grid:{
-
-                                display:false
-
-                            },
-
-                            ticks:{
-
-                                color:'#475569',
-
-                                padding:8,
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:10,
-
-                                    weight:'700'
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   UNIT DISTRIBUTION CHART
-========================================================= */
-
-function renderUnitDistributionChart(
-    data
-){
-
-    const canvas =
-        document.getElementById(
-            'unitDistributionChart'
-        );
-
-
-    if(!canvas){
-
-        return;
-
-    }
-
-
-    if(unitDistributionChart){
-
-        unitDistributionChart.destroy();
-
-    }
-
-
-    const counts = {
-
-        FD:0,
-
-        W:0,
-
-        D:0,
-
-        E:0
-
+/* Baris mentah dari API: [tanggal, unit, maintenance, periodic service, status] */
+function toRow(row,year){
+
+    const dt=parseDate(row[0]);
+    const unit=normalizeUnit(row[1]);
+    const status=String(row[4]??'').trim().toUpperCase();
+
+    return {
+        year:year,
+        dt:dt,
+        rawDate:row[0]??'',
+        month:dt?`${dt.getFullYear()}-${pad(dt.getMonth()+1)}`:'',
+        unit:unit,
+        type:getUnitType(unit),
+        maintenance:String(row[2]??'').trim(),
+        periodic:String(row[3]??'').trim(),
+        pk:pkOf(row[3]),
+        status:status,
+        sk:status==='OPEN'?'open':status==='CLOSE'?'close':'other'
     };
 
-
-    data.forEach(
-        row=>{
-
-            const unitType =
-                getUnitType(
-                    row.unit
-                );
+}
 
 
-            if(
-                unitType &&
-                counts[
-                    unitType
-                ] !== undefined
-            ){
+/* =========================================================
+   LOAD DATA (cache per tahun, dedup request, prefetch di background)
+========================================================= */
 
-                counts[
-                    unitType
-                ]++;
+function fetchYear(year){
 
+    const y=String(year);
+
+    if(yearCache[y]) return Promise.resolve(yearCache[y]);
+    if(yearInflight[y]) return yearInflight[y];
+
+    yearInflight[y]=(async()=>{
+        try{
+
+            const response=await fetch(
+                `${API_URL}?year=${encodeURIComponent(y)}`,
+                {method:'GET',cache:'no-store'}
+            );
+
+            if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
+
+            const result=await response.json();
+
+            if(!result||result.success!==true){
+                throw new Error(result?.error||`Data ${y} tidak valid.`);
             }
 
+            const sheet=result.sheets?.[y];
+            if(!sheet) throw new Error(`Data sheet ${y} tidak ditemukan.`);
+
+            const rows=Array.isArray(sheet.data)
+                ?sheet.data.map(row=>toRow(row,y))
+                :[];
+
+            yearCache[y]=rows;
+
+            return rows;
+
+        }finally{
+            delete yearInflight[y];
         }
-    );
+    })();
 
+    return yearInflight[y];
+}
 
-    unitDistributionChart =
-        new Chart(
-            canvas,
-            {
+function prefetchOtherYears(current){
 
-                type:'bar',
+    YEARS
+        .filter(y=>y!==current&&!yearCache[y])
+        .forEach(y=>{
+            fetchYear(y).catch(error=>console.warn(`Prefetch ${y}:`,error.message));
+        });
 
-                data:{
+}
 
-                    labels:[
+async function loadPeriod(year){
 
-                        'FD',
+    selectedYear=String(year);
+    $('yearSelector').value=selectedYear;
 
-                        'W',
+    const needed=selectedYear==='ALL'?YEARS:[selectedYear];
 
-                        'D',
-
-                        'E'
-
-                    ],
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Maintenance',
-
-                            data:[
-
-                                counts.FD,
-
-                                counts.W,
-
-                                counts.D,
-
-                                counts.E
-
-                            ],
-
-                            backgroundColor:[
-
-                                CHART_COLORS.orange,
-
-                                CHART_COLORS.indigo,
-
-                                CHART_COLORS.rose,
-
-                                CHART_COLORS.emerald
-
-                            ],
-
-                            borderWidth:
-                                0,
-
-                            borderRadius:
-                                9,
-
-                            borderSkipped:
-                                false,
-
-                            barPercentage:
-                                .52,
-
-                            categoryPercentage:
-                                .65
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-
-                            display:false
-
-                        },
-
-                        tooltip:{
-
-                            ...commonTooltip,
-
-                            callbacks:{
-
-                                title:
-                                    context => {
-
-                                        const label =
-                                            context[0]?.label || '';
-
-                                        const names = {
-
-                                            FD:
-                                                'Forklift',
-
-                                            W:
-                                                'Wheel Loader',
-
-                                            D:
-                                                'Dump Truck',
-
-                                            E:
-                                                'Excavator'
-
-                                        };
-
-                                        return `${label} - ${names[label] || ''}`;
-
-                                    },
-
-                                label:
-                                    context =>
-                                        ` ${context.raw.toLocaleString('id-ID')} aktivitas`
-
-                            }
-
-                        }
-
-                    },
-
-                    scales:{
-
-                        x:{
-
-                            border:{
-                                display:false
-                            },
-
-                            grid:{
-
-                                display:false
-
-                            },
-
-                            ticks:{
-
-                                color:'#475569',
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:11,
-
-                                    weight:'800'
-
-                                }
-
-                            }
-
-                        },
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            border:{
-                                display:false
-                            },
-
-                            grid:{
-
-                                color:
-                                    'rgba(148,163,184,.10)',
-
-                                drawTicks:false
-
-                            },
-
-                            ticks:{
-
-                                color:'#64748b',
-
-                                precision:0,
-
-                                padding:8,
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:10,
-
-                                    weight:'600'
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
+    if(!needed.every(y=>yearCache[y])){
+        showLoading(
+            selectedYear==='ALL'
+            ?'Memuat seluruh histori maintenance...'
+            :`Memuat data maintenance ${selectedYear}...`
         );
+    }
+
+    try{
+
+        await Promise.all(needed.map(fetchYear));
+
+        periodRows=needed.flatMap(y=>yearCache[y]);
+
+        $('loading').hidden=true;
+        $('tableContent').classList.add('show');
+
+        renderAll();
+
+        if(selectedYear!=='ALL') prefetchOtherYears(selectedYear);
+
+    }catch(error){
+
+        console.error('Maintenance API Error:',error);
+        showError(error.message);
+
+    }
+
+}
+
+function changeYear(){
+    loadPeriod($('yearSelector').value);
+}
+
+function showLoading(message){
+    $('loadingText').textContent=message||'Memuat ringkasan...';
+    $('loading').hidden=false;
+    $('tableContent').classList.remove('show');
+}
+
+function showError(message){
+
+    $('loading').hidden=false;
+    $('loading').innerHTML=`
+        <div class="text-center">
+            <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                <i data-lucide="alert-circle" class="w-8 h-8"></i>
+            </div>
+            <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+            <p class="text-xs text-slate-500 mt-2 max-w-md mx-auto">${escapeHtml(message)}</p>
+            <button onclick="loadPeriod(selectedYear)" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
+                Coba Lagi
+            </button>
+        </div>
+    `;
+
+    $('tableContent').classList.remove('show');
+    lucide.createIcons();
 
 }
 
 
 /* =========================================================
-   OPEN ACTIVITIES
+   POPUP NILAI (event delegation)
 ========================================================= */
 
-function renderOpenActivities(
-    data
-){
+function placeTip(e){
 
-    const body =
-        document.getElementById(
-            'openActivitiesBody'
-        );
+    const tip=$('chartTip');
+    const gap=14;
 
+    let x=e.clientX+gap;
+    let y=e.clientY+gap;
 
-    const countElement =
-        document.getElementById(
-            'openTableCount'
-        );
+    const r=tip.getBoundingClientRect();
 
+    if(x+r.width>window.innerWidth-8) x=e.clientX-r.width-gap;
+    if(y+r.height>window.innerHeight-8) y=e.clientY-r.height-gap;
 
-    if(!body){
+    tip.style.left=Math.max(8,x)+'px';
+    tip.style.top=Math.max(8,y)+'px';
+}
 
+function hideTip(){
+    $('chartTip').classList.remove('show');
+}
+
+document.addEventListener('mouseover',e=>{
+
+    const target=e.target.closest?e.target.closest('[data-tip]'):null;
+
+    if(!target){
+        hideTip();
         return;
-
     }
 
+    const tip=$('chartTip');
+    tip.innerHTML=target.getAttribute('data-tip');
+    tip.classList.add('show');
+    placeTip(e);
 
-    const openData =
-        data.filter(
-            row =>
-                normalizeText(
-                    row.status
-                ) === 'open'
-        );
+});
 
+document.addEventListener('mousemove',e=>{
 
-    openData.sort(
-        (
-            a,
-            b
-        )=>{
+    const target=e.target.closest?e.target.closest('[data-tip]'):null;
 
-            const dateA =
-                parseDate(
-                    a.date
-                );
+    if(!target){
+        hideTip();
+        return;
+    }
 
+    placeTip(e);
 
-            const dateB =
-                parseDate(
-                    b.date
-                );
+});
 
+document.addEventListener('mouseout',e=>{
+    if(!e.relatedTarget) hideTip();
+});
 
-            if(!dateA && !dateB){
-
-                return 0;
-
-            }
-
-
-            if(!dateA){
-
-                return 1;
-
-            }
-
-
-            if(!dateB){
-
-                return -1;
-
-            }
-
-
-            return (
-                dateB.getTime() -
-                dateA.getTime()
-            );
-
+let resizeTimer=null;
+window.addEventListener('resize',()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=>{
+        if($('tableContent').classList.contains('show')){
+            renderTrend();
         }
-    );
+    },150);
+});
 
 
-    if(countElement){
+/* =========================================================
+   GRAFIK GARIS (sama dengan Tren Availability)
+========================================================= */
 
-        countElement.textContent =
-            openData.length.toLocaleString(
-                'id-ID'
-            );
+function lineChartHtml(cfg){
 
+    const W=cfg.width||760,H=300,pl=54,pr=22,pt=22,pb=38;
+    const n=cfg.labels.length;
+    const s=cfg.scale;
+
+    const x=i=>pl+(n===1?(W-pl-pr)/2:i*(W-pl-pr)/(n-1));
+    const y=v=>pt+(H-pt-pb)*(1-(v-s.min)/(s.max-s.min));
+
+    const visible=cfg.series.filter(sr=>sr.visible);
+
+    const tipFor=i=>{
+        const rowsHtml=visible
+            .filter(sr=>sr.values[i]!==null&&sr.values[i]!==undefined)
+            .map(sr=>`<div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${sr.color}"></span>${escapeHtml(sr.label)}</span><span class="tip-val">${fmt(sr.values[i])}</span></div>`)
+            .join('');
+        return `<div class="tip-title">${escapeHtml(cfg.fullLabels[i])}</div>${rowsHtml||'<div class="tip-row"><span>Tidak ada data</span></div>'}`;
+    };
+
+    let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${escapeHtml(cfg.aria)}">`;
+
+    for(let v=s.min; v<=s.max+1e-9; v+=s.step){
+        const yy=y(v);
+        svg+=`<line class="chart-grid" x1="${pl}" x2="${W-pr}" y1="${yy}" y2="${yy}"></line>`;
+        svg+=`<text class="chart-label" x="${pl-8}" y="${yy+3}" text-anchor="end">${fmt(v)}</text>`;
     }
 
+    cfg.labels.forEach((l,i)=>{
+        svg+=`<text class="chart-label" x="${x(i)}" y="${H-12}" text-anchor="middle">${escapeHtml(l)}</text>`;
+    });
 
-    if(
-        openData.length === 0
-    ){
+    visible.forEach(sr=>{
 
-        body.innerHTML = `
+        const pts=sr.values
+            .map((v,i)=>v===null||v===undefined?null:`${x(i)},${y(v)}`)
+            .filter(Boolean)
+            .join(' ');
 
-            <tr>
+        svg+=`<polyline fill="none" stroke="${sr.color}" stroke-width="${sr.width||2.2}"
+            stroke-linejoin="round" stroke-linecap="round" points="${pts}"
+            ${sr.dashed?'stroke-dasharray="5 4"':''}></polyline>`;
 
-                <td
-                    colspan="6"
-                    class="p-0"
-                >
+        sr.values.forEach((v,i)=>{
+            if(v===null||v===undefined) return;
+            svg+=`<circle cx="${x(i)}" cy="${y(v)}" r="${sr.width>=3?4.5:3.5}" fill="#fff" stroke="${sr.color}" stroke-width="2"></circle>`;
+        });
 
-                    <div class="empty-open">
+    });
 
-                        <div class="empty-open-icon">
+    /* area sentuh hanya di titik data */
+    visible.forEach(sr=>{
+        sr.values.forEach((v,i)=>{
+            if(v===null||v===undefined) return;
+            svg+=`<circle cx="${x(i)}" cy="${y(v)}" r="11" fill="transparent" class="chart-hit" data-tip="${escapeHtml(tipFor(i))}"></circle>`;
+        });
+    });
 
-                            <i
-                                data-lucide="check-circle-2"
-                                class="w-6 h-6"
-                            ></i>
+    svg+='</svg>';
 
-                        </div>
-
-
-                        <p
-                            class="
-                                text-sm
-                                font-black
-                                text-slate-600
-                                mt-3
-                            "
-                        >
-                            Tidak ada aktivitas OPEN
-                        </p>
+    return svg;
+}
 
 
-                        <p
-                            class="
-                                text-[10px]
-                                font-medium
-                                text-slate-400
-                                mt-1
-                            "
-                        >
-                            Seluruh aktivitas maintenance
-                            pada periode ini telah selesai.
-                        </p>
+/* =========================================================
+   AGREGASI
+========================================================= */
 
+/* Daftar bulan berurutan dari data, diambil TREND_MONTHS_ALL terakhir (mode Seluruh Data) */
+function monthRange(keys){
+
+    const list=[...keys].filter(Boolean).sort();
+    if(!list.length) return [];
+
+    const first=list[0].split('-').map(Number);
+    const last=list[list.length-1].split('-').map(Number);
+
+    const all=[];
+    let y=first[0], m=first[1];
+
+    while(y<last[0]||(y===last[0]&&m<=last[1])){
+        all.push(`${y}-${pad(m)}`);
+        m++;
+        if(m>12){m=1;y++;}
+    }
+
+    return all.slice(-TREND_MONTHS_ALL);
+}
+
+/* Tren: tahun = 12 bulan Jan–Des; bulan setelah data terakhir = null (garis berhenti) */
+function buildMonthly(){
+
+    const map=new Map();
+    const empty=()=>({total:0,W:0,F:0,D:0,E:0});
+
+    periodRows.forEach(r=>{
+        if(!r.month) return;
+        if(!map.has(r.month)) map.set(r.month,empty());
+        const m=map.get(r.month);
+        m.total++;
+        if(UNIT_KEYS.includes(r.type)) m[r.type]++;
+    });
+
+    if(!map.size) return {months:[],data:{},lastKey:null};
+
+    const latest=[...map.keys()].sort().pop();
+
+    const months=selectedYear==='ALL'
+        ?monthRange(map.keys())
+        :Array.from({length:12},(_,i)=>`${selectedYear}-${pad(i+1)}`);
+
+    const data={};
+    months.forEach(k=>{
+        data[k]=k<=latest?(map.get(k)||empty()):null;
+    });
+
+    return {months,data,lastKey:latest};
+}
+
+function buildTypeCounts(){
+
+    const byType={W:0,F:0,D:0,E:0,other:0};
+
+    periodRows.forEach(r=>{
+        const t=byType[r.type]!==undefined?r.type:'other';
+        byType[t]++;
+    });
+
+    return byType;
+}
+
+function buildTopUnits(filter){
+
+    const map=new Map();
+
+    periodRows.forEach(r=>{
+
+        if(!r.unit) return;
+        if(!UNIT_KEYS.includes(r.type)) return;
+        if(filter!=='total'&&r.type!==filter) return;
+
+        if(!map.has(r.unit)){
+            map.set(r.unit,{unit:r.unit,type:r.type,total:0,open:0,close:0,other:0});
+        }
+
+        const u=map.get(r.unit);
+        u.total++;
+        u[r.sk]++;
+
+    });
+
+    return [...map.values()]
+        .sort((a,b)=>b.total-a.total||a.unit.localeCompare(b.unit,'id',{numeric:true}))
+        .slice(0,TOP_UNITS);
+}
+
+function sortedByDate(rows){
+    return [...rows].sort((a,b)=>{
+        if(!a.dt&&!b.dt) return 0;
+        if(!a.dt) return 1;
+        if(!b.dt) return -1;
+        return b.dt-a.dt;
+    });
+}
+
+
+/* =========================================================
+   RENDER: KPI
+========================================================= */
+
+function renderKpi(){
+
+    const t=buildTypeCounts();
+
+    $('totalData').textContent=fmt(periodRows.length);
+    $('periodLabel').textContent=periodLabel();
+    $('forkliftTotal').textContent=fmt(t.F);
+    $('wheelloaderTotal').textContent=fmt(t.W);
+    $('dumptruckTotal').textContent=fmt(t.D);
+    $('excavatorTotal').textContent=fmt(t.E);
+
+}
+
+
+/* =========================================================
+   RENDER: TREN (line chart, Total mati default)
+========================================================= */
+
+function renderTrend(){
+
+    const {months,data,lastKey}=buildMonthly();
+
+    const series=TREND_DEF.map(s=>({
+        key:s.key,
+        label:s.label,
+        color:s.color,
+        width:s.key==='total'?3:2.4,
+        dashed:false,
+        values:months.map(k=>data[k]?data[k][s.key]:null),
+        visible:!trendOff.has(s.key)
+    }));
+
+    const shownValues=series.filter(s=>s.visible).flatMap(s=>s.values);
+
+    const lastLabel=lastKey?`${MONTH_NAMES[Number(lastKey.split('-')[1])-1]} ${lastKey.split('-')[0]}`:'';
+
+    $('trendSubtitle').textContent=months.length
+        ?`${periodLabel()} · data tersedia sampai ${lastLabel} · klik legenda untuk menampilkan atau menyembunyikan garis`
+        :'Belum ada data bertanggal';
+
+    $('trendChart').innerHTML=months.length
+        ?lineChartHtml({
+            aria:'Tren corrective maintenance per bulan',
+            labels:months.map(k=>`${MONTH_SHORT[Number(k.split('-')[1])-1]} ${k.split('-')[0].slice(2)}`),
+            fullLabels:months.map(k=>`${MONTH_NAMES[Number(k.split('-')[1])-1]} ${k.split('-')[0]}`),
+            series:series,
+            scale:scaleFor(shownValues),
+            width:chartWidth('trendChart')
+        })
+        :'<div class="chart-empty">Tidak ada data dengan tanggal yang bisa dibaca.</div>';
+
+    $('trendLegend').innerHTML=TREND_DEF.map(s=>`
+        <button class="legend-item ${trendOff.has(s.key)?'off':'on'}" onclick="toggleTrend('${s.key}')">
+            <span class="legend-dot" style="background:${s.color}"></span>${s.label}
+        </button>
+    `).join('');
+
+}
+
+function toggleTrend(key){
+
+    const visibleCount=TREND_DEF.filter(s=>!trendOff.has(s.key)).length;
+
+    if(trendOff.has(key)){
+        trendOff.delete(key);
+    }else if(visibleCount>1){
+        trendOff.add(key);
+    }
+
+    renderTrend();
+
+}
+
+
+/* =========================================================
+   RENDER: KOMPOSISI STATUS (donat)
+========================================================= */
+
+function donutHtml(segs,centerLabel,ariaLabel){
+
+    const list=segs.filter(s=>s.value>0);
+    const total=list.reduce((sum,s)=>sum+s.value,0);
+
+    if(!total) return '<div class="chart-empty">Belum ada data.</div>';
+
+    const R=70,SW=22,C=2*Math.PI*R;
+    let offset=0;
+
+    const arcs=list.map(s=>{
+        const len=(s.value/total)*C;
+        const tip=`<div class="tip-title">${escapeHtml(s.label)}</div><div class="tip-row"><span>Jumlah</span><span class="tip-val">${fmt(s.value)} (${Math.round(s.value/total*100)}%)</span></div>`;
+        const arc=`<circle cx="90" cy="90" r="${R}" fill="none" stroke="${s.color}" stroke-width="${SW}"
+            stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-offset}"
+            transform="rotate(-90 90 90)" data-tip="${escapeHtml(tip)}"></circle>`;
+        offset+=len;
+        return arc;
+    }).join('');
+
+    return `
+        <div class="donut-wrap">
+            <div class="donut-chart">
+                <svg viewBox="0 0 180 180" role="img" aria-label="${escapeHtml(ariaLabel)}" style="width:100%;height:auto;display:block">
+                    <circle cx="90" cy="90" r="${R}" fill="none" stroke="#f1f5f9" stroke-width="${SW}"></circle>
+                    ${arcs}
+                    <text x="90" y="88" text-anchor="middle" font-size="22" font-weight="900" fill="#1e293b">${fmt(total)}</text>
+                    <text x="90" y="106" text-anchor="middle" font-size="9" font-weight="800" fill="#94a3b8">${centerLabel}</text>
+                </svg>
+            </div>
+            <div class="donut-legend">
+                ${list.map(s=>`
+                    <div class="donut-legend-row">
+                        <span class="flex items-center gap-2">
+                            <span class="legend-dot" style="background:${s.color}"></span>${escapeHtml(s.label)}
+                        </span>
+                        <span>
+                            <span class="val">${fmt(s.value)}</span>
+                            <span class="pct">${Math.round(s.value/total*100)}%</span>
+                        </span>
                     </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
 
-                </td>
+function renderComposition(){
 
-            </tr>
+    const c={open:0,close:0,other:0};
+    periodRows.forEach(r=>c[r.sk]++);
 
-        `;
+    $('composition').innerHTML=donutHtml([
+        {label:'OPEN',   value:c.open,  color:COLORS.open},
+        {label:'CLOSE',  value:c.close, color:COLORS.close},
+        {label:'Lainnya',value:c.other, color:COLORS.other}
+    ],'AKTIVITAS','Komposisi status');
+
+}
 
 
-        lucide.createIcons();
+/* =========================================================
+   RENDER: MAINTENANCE PER JENIS ALAT (batang)
+========================================================= */
 
+function renderTypeBars(){
 
+    const byType=buildTypeCounts();
+
+    const types=['W','F','D','E','other'].filter(t=>byType[t]>0);
+    const el=$('typeBars');
+
+    if(!types.length){
+        el.innerHTML='<div class="chart-empty">Belum ada data.</div>';
         return;
-
     }
 
+    const max=Math.max(...types.map(t=>byType[t]));
+    const colorOf=t=>COLORS[t]||COLORS.other;
 
-    body.innerHTML =
-        openData
-        .map(
-            (
-                row,
-                index
-            )=>{
+    el.innerHTML=types.map(t=>{
+        const tip=`<div class="tip-title">${escapeHtml(TYPE_LABELS[t])}</div>
+            <div class="tip-row"><span>Aktivitas</span><span class="tip-val">${fmt(byType[t])}</span></div>`;
+        return `
+            <div class="hbar-row" data-tip="${escapeHtml(tip)}">
+                <div class="hbar-head">
+                    <span>${TYPE_LABELS[t]}</span>
+                    <span class="count">${fmt(byType[t])}</span>
+                </div>
+                <div class="hbar-track">
+                    <div class="hbar-fill" style="width:${Math.round(byType[t]/max*100)}%;background:${colorOf(t)}"></div>
+                </div>
+            </div>
+        `;
+    }).join('');
 
-                return `
-
-                    <tr>
-
-                        <td>
-                            ${index + 1}
-                        </td>
-
-
-                        <td>
-
-                            <span
-                                class="
-                                    font-bold
-                                    text-slate-700
-                                "
-                            >
-                                ${escapeHTML(
-                                    formatDate(
-                                        row.date
-                                    )
-                                )}
-                            </span>
-
-                        </td>
+}
 
 
-                        <td>
+/* =========================================================
+   RENDER: UNIT PALING SERING RUSAK (pilihan tunggal)
+========================================================= */
 
-                            <div
-                                class="
-                                    flex
-                                    items-center
-                                    gap-2
-                                "
-                            >
+function setUnitFilter(key){
+    unitFilter=key;
+    renderUnitChart();
+}
 
-                                <span
-                                    class="
-                                        bg-blue-50
-                                        text-blue-700
-                                        p-1.5
-                                        rounded-md
-                                    "
-                                >
+function renderUnitChart(){
 
-                                    <i
-                                        data-lucide="truck"
-                                        class="w-3 h-3"
-                                    ></i>
+    $('unitLegend').innerHTML=UNIT_OPTIONS.map(o=>`
+        <button class="legend-item ${o.key===unitFilter?'on':''}" onclick="setUnitFilter('${o.key}')">
+            <span class="legend-dot" style="background:${COLORS[o.key]}"></span>${o.label}
+        </button>
+    `).join('');
 
-                                </span>
+    const list=buildTopUnits(unitFilter);
+    const el=$('unitChart');
 
+    if(!list.length){
+        el.innerHTML='<div class="chart-empty">Belum ada data unit untuk pilihan ini.</div>';
+        return;
+    }
 
-                                <span
-                                    class="
-                                        font-black
-                                        text-slate-700
-                                    "
-                                >
-                                    ${escapeHTML(
-                                        row.unit || '-'
-                                    )}
-                                </span>
+    const max=list[0].total;
+    const color=COLORS[unitFilter];
 
-                            </div>
+    el.innerHTML=list.map((u,i)=>{
+        const tip=`<div class="tip-title">${escapeHtml(u.unit)}</div>
+            <div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${COLORS.open}"></span>Open</span><span class="tip-val">${fmt(u.open)}</span></div>
+            <div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${COLORS.close}"></span>Close</span><span class="tip-val">${fmt(u.close)}</span></div>
+`;
+        return `
+            <div class="hbar-row" data-tip="${escapeHtml(tip)}">
+                <div class="hbar-head">
+                    <span>${i+1}. ${escapeHtml(u.unit)}</span>
+                    <span class="count">${fmt(u.total)} aktivitas</span>
+                </div>
+                <div class="hbar-track">
+                    <div class="hbar-fill" style="width:${Math.round(u.total/max*100)}%;background:${color}"></div>
+                </div>
+            </div>
+        `;
+    }).join('');
 
-                        </td>
-
-
-                        <td>
-
-                            <div
-                                class="
-                                    font-semibold
-                                    text-slate-700
-                                "
-                            >
-                                ${escapeHTML(
-                                    row.maintenance || '-'
-                                )}
-                            </div>
-
-                        </td>
+}
 
 
-                        <td>
+/* =========================================================
+   RENDER: TOP 10 CORRECTIVE MAINTENANCE (kata kunci)
+========================================================= */
 
-                            <span
-                                class="
-                                    text-[10px]
-                                    font-semibold
-                                    text-slate-500
-                                "
-                            >
-                                ${escapeHTML(
-                                    row.periodic || '-'
-                                )}
-                            </span>
+function renderTopKeywords(){
 
-                        </td>
+    const counts=REPAIR_KEYWORDS.map(k=>({label:k.label,count:0}));
+    let matchedRows=0;
 
-
-                        <td>
-
-                            <span
-                                class="status-open-badge"
-                            >
-
-                                <span
-                                    class="
-                                        w-1.5
-                                        h-1.5
-                                        rounded-full
-                                        bg-orange-500
-                                    "
-                                ></span>
-
-                                OPEN
-
-                            </span>
-
-                        </td>
-
-                    </tr>
-
-                `;
-
+    periodRows.forEach(r=>{
+        const text=String(r.maintenance??'');
+        let hit=false;
+        REPAIR_KEYWORDS.forEach((k,i)=>{
+            if(k.re.test(text)){
+                counts[i].count++;
+                hit=true;
             }
-        )
-        .join('');
+        });
+        if(hit) matchedRows++;
+    });
 
+    const list=counts
+        .filter(c=>c.count>0)
+        .sort((a,b)=>b.count-a.count||a.label.localeCompare(b.label,'id'))
+        .slice(0,TOP_KEYWORDS);
+
+    $('keywordSubtitle').textContent=matchedRows
+        ?`${fmt(matchedRows)} aktivitas memuat kata kunci perbaikan`
+        :'Jenis perbaikan yang paling sering muncul pada kolom Maintenance';
+
+    const el=$('keywordBars');
+
+    if(!list.length){
+        el.innerHTML='<div class="chart-empty">Belum ada kata kunci yang cocok.</div>';
+        return;
+    }
+
+    const max=list[0].count;
+
+    el.innerHTML=list.map((c,i)=>{
+        const tip=`<div class="tip-title">${escapeHtml(c.label)}</div>
+            <div class="tip-row"><span>Aktivitas</span><span class="tip-val">${fmt(c.count)}</span></div>`;
+        return `
+            <div class="hbar-row" data-tip="${escapeHtml(tip)}">
+                <div class="hbar-head">
+                    <span>${i+1}. ${escapeHtml(c.label)}</span>
+                    <span class="count">${fmt(c.count)}</span>
+                </div>
+                <div class="hbar-track">
+                    <div class="hbar-fill" style="width:${Math.round(c.count/max*100)}%;background:${COLORS.total}"></div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+}
+
+
+/* =========================================================
+   RENDER: TABEL UNIT STATUS OPEN
+========================================================= */
+
+function renderOpenTable(){
+
+    const list=sortedByDate(periodRows.filter(r=>r.sk==='open'));
+
+    $('latestSubtitle').textContent=list.length
+        ?`${fmt(list.length)} unit masih OPEN · terbaru di atas · scroll untuk melihat semua`
+        :'Tidak ada unit dengan status OPEN';
+
+    const body=$('olBody');
+    const mobile=$('olMobile');
+
+    if(!list.length){
+        body.innerHTML='<tr><td colspan="7" class="text-center text-slate-400 py-6">Tidak ada unit dengan status OPEN.</td></tr>';
+        mobile.innerHTML='<div class="chart-empty">Tidak ada unit dengan status OPEN.</div>';
+        return;
+    }
+
+    const serviceCls=pk=>pk==='periodic'?'service-periodic':pk==='general'?'service-general':'service-other';
+
+    body.innerHTML=list.map((r,i)=>`
+        <tr>
+            <td class="ol-no">${i+1}</td>
+            <td>${r.dt?formatShortDate(r.dt):escapeHtml(String(r.rawDate))}</td>
+            <td><span class="unit-badge">${escapeHtml(r.unit)||'-'}</span></td>
+            <td><span class="type-badge">${escapeHtml(TYPE_LABELS[r.type]||'Lainnya')}</span></td>
+            <td class="ol-desc">${escapeHtml(r.maintenance)||'<span class="text-slate-300">Tidak ada keterangan</span>'}</td>
+            <td><span class="service-badge ${serviceCls(r.pk)}">${escapeHtml(r.periodic||'-')}</span></td>
+            <td><span class="status-badge status-open">OPEN</span></td>
+        </tr>
+    `).join('');
+
+    mobile.innerHTML=list.map((r,i)=>`
+        <div class="ol-card">
+            <div class="ol-card-top">
+                <span class="unit-badge">${i+1} · ${escapeHtml(r.unit)||'-'}</span>
+                <span class="status-badge status-open">OPEN</span>
+            </div>
+            <div class="ol-card-grid">
+                <div><div class="ol-label">Tanggal</div><div class="ol-value">${r.dt?formatShortDate(r.dt):escapeHtml(String(r.rawDate))}</div></div>
+                <div><div class="ol-label">Jenis Alat</div><div class="ol-value">${escapeHtml(TYPE_LABELS[r.type]||'Lainnya')}</div></div>
+                <div style="grid-column:1/-1"><div class="ol-label">Keterangan</div><div class="ol-value">${escapeHtml(r.maintenance)||'-'}</div></div>
+            </div>
+        </div>
+    `).join('');
+
+}
+
+
+/* =========================================================
+   RENDER SEMUA
+========================================================= */
+
+function renderAll(){
+
+    $('yearSelector').value=selectedYear;
+
+    renderKpi();
+    renderTrend();
+    renderComposition();
+    renderTypeBars();
+    renderUnitChart();
+    renderTopKeywords();
+    renderOpenTable();
 
     lucide.createIcons();
 
@@ -5200,82 +2077,16 @@ function renderOpenActivities(
 
 
 /* =========================================================
-   DATABASE INFO
+   START
 ========================================================= */
 
-function updateDatabaseInfo(
-    data
-){
-
-    const element =
-        document.getElementById(
-            'databaseInfo'
-        );
-
-
-    if(!element){
-
-        return;
-
-    }
-
-
-    const yearText =
-        currentYear === 'ALL'
-        ?
-        'seluruh tahun'
-        :
-        `tahun ${currentYear}`;
-
-
-    element.textContent =
-        `${data.length.toLocaleString('id-ID')} aktivitas maintenance berhasil dimuat dari database untuk ${yearText}.`;
-
-}
-
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-window.addEventListener(
-    'load',
-    ()=>{
-
-        lucide.createIcons();
-
-
-        loadYearData(
-            '2026'
-        );
-
-    }
-);
-
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
-document.addEventListener(
-    'keydown',
-    event=>{
-
-        if(
-            event.key === 'Escape'
-        ){
-
-            document
-                .activeElement
-                ?.blur();
-
-        }
-
-    }
-);
+window.addEventListener('load',()=>{
+    lucide.createIcons();
+    loadPeriod(selectedYear);
+});
 
 </script>
-
+<script src="nav.js"></script>
+<script src="datacache.js"></script>
 </body>
-
 </html>
