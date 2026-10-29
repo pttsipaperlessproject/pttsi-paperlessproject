@@ -3,1183 +3,616 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Availability - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
-* {
-    box-sizing: border-box;
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{box-sizing:border-box}
+
+html{width:100%;min-width:0;overflow-x:hidden}
+
+body{
+    margin:0;
+    width:100%;
+    min-width:0;
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b
 }
 
-html {
-    min-width: 0;
+.color-primary{background:#1e3a8a}
+
+.glass-panel{
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3)
 }
 
-body {
-    margin: 0;
-    font-family: Inter, sans-serif;
-    background: linear-gradient(
-        135deg,
-        #f8fafc,
-        #eef2f7
-    );
-    color: #1e293b;
-    min-height: 100vh;
-    width: 100%;
-    min-width: 0;
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-.color-primary {
-    background: #1e3a8a;
-}
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 
-.text-primary {
-    color: #1e3a8a;
-}
-
-.glass-panel {
-    background: rgba(255,255,255,.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,.3);
-}
-
-.fade-in {
-    animation: fadeIn .5s cubic-bezier(.4,0,.2,1);
-}
-
-@keyframes fadeIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-.logo-wrapper {
-    transition:
-        transform .4s cubic-bezier(.175,.885,.32,1.275);
-}
-
-.logo-wrapper:hover {
-    transform:
-        scale(1.08)
-        rotate(2deg);
-}
-
-.logo-shadow {
+.logo-shadow{
     filter:
         drop-shadow(0 10px 8px rgba(0,0,0,.04))
-        drop-shadow(0 4px 3px rgba(0,0,0,.1));
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
 
-.page-title {
-    font-size: 30px;
-    font-weight: 900;
-    color: #1e293b;
-    letter-spacing: -.025em;
+/* =========================================================
+   PAGE TITLE & BUTTONS
+========================================================= */
+
+.page-title{
+    font-size:30px;
+    font-weight:900;
+    color:#1e293b;
+    letter-spacing:-.025em;
+    line-height:1.2
 }
 
-.page-subtitle {
-    font-size: 13px;
-    color: #64748b;
-    font-weight: 500;
+.page-subtitle{
+    font-size:13px;
+    color:#64748b;
+    font-weight:500;
+    line-height:1.6
 }
 
-
-/* ===================================================== */
-/* HEADER BUTTONS */
-/* ===================================================== */
-
-.header-buttons {
-
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
+.header-buttons{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    flex-shrink:0
 }
 
-.back-button,
-.home-button {
-
-    border: 0;
-    border-radius: 12px;
-
-    padding: 11px 17px;
-
-    font-size: 12px;
-    font-weight: 800;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 8px;
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
-
-    cursor: pointer;
-
-    white-space: nowrap;
-
+/* Tombol primer */
+.back-button{
+    background:#1e3a8a;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:11px 17px;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    cursor:pointer;
+    white-space:nowrap;
+    box-shadow:0 5px 12px rgba(30,58,138,.18);
+    transition:.2s ease
 }
 
-.back-button {
-
-    background: #1e3a8a;
-    color: #fff;
-
-    box-shadow:
-        0 5px 12px rgba(30,58,138,.18);
-
+.back-button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
 }
 
-.back-button:hover {
-
-    background: #1d4ed8;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 18px rgba(30,58,138,.25);
-
+/* Tombol sekunder (bible 6.2) */
+.home-button{
+    background:#f8fafc;
+    color:#475569;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:11px 17px;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.2s ease
 }
 
-.home-button {
-
-    background: #ffffff;
-    color: #475569;
-
-    border: 1px solid #e2e8f0;
-
-    box-shadow:
-        0 4px 10px rgba(15,23,42,.04);
-
+.home-button:hover{
+    background:#f1f5f9;
+    color:#1e3a8a;
+    border-color:#bfdbfe;
+    transform:translateY(-2px)
 }
 
-.home-button:hover {
+/* =========================================================
+   STAT CARDS
+========================================================= */
 
-    background: #f8fafc;
-
-    color: #1e3a8a;
-
-    border-color: #bfdbfe;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 7px 15px rgba(15,23,42,.08);
-
+.stat-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:17px;
+    transition:.25s ease;
+    min-width:0
 }
 
-
-/* ===================================================== */
-/* STAT CARD */
-/* ===================================================== */
-
-.stat-card {
-
-    background: #ffffff;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 18px;
-
-    padding: 18px;
-
-    box-shadow:
-        0 4px 12px rgba(15,23,42,.04);
-
-    transition: .25s ease;
-
+.stat-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
 
-.stat-card:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 24px rgba(15,23,42,.08);
-
+.stat-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0
 }
 
-.stat-icon {
+.stat-icon-total{background:#eff6ff;color:#1e3a8a}
+.stat-icon-ok{background:#dcfce7;color:#166534}
+.stat-icon-wait{background:#fef3c7;color:#92400e}
 
-    width: 42px;
-    height: 42px;
+/* =========================================================
+   MONTH GRID & CARD
+========================================================= */
 
-    border-radius: 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+.month-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:16px
 }
 
-
-/* ===================================================== */
-/* MONTH GRID */
-/* ===================================================== */
-
-.month-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 18px;
-
+.month-card{
+    position:relative;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:20px;
+    min-height:200px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden;
+    transition:.25s ease
 }
 
-
-/* ===================================================== */
-/* PROFESSIONAL MONTH CARD */
-/* ===================================================== */
-
-.month-card {
-
-    position: relative;
-
-    background: #ffffff;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 18px;
-
-    padding: 20px;
-
-    min-height: 205px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    box-shadow:
-        0 3px 10px rgba(15,23,42,.035);
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
-
-    overflow: hidden;
-
+.month-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:#1e3a8a
 }
 
+.month-card.available::before{background:#166534}
+.month-card.unavailable::before{background:#d97706}
 
-/* TOP ACCENT */
-
-.month-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 3px;
-
-    background: #1e3a8a;
-
+.month-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
 
-.month-card.available::before {
-
-    background: #16a34a;
-
+.month-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px
 }
 
-.month-card.unavailable::before {
-
-    background: #f59e0b;
-
+.month-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    background:#eff6ff;
+    color:#1e3a8a
 }
 
+.month-card.available .month-icon{background:#dcfce7;color:#166534}
+.month-card.unavailable .month-icon{background:#fef3c7;color:#92400e}
 
-/* SOFT BACKGROUND GLOW */
-
-.month-card::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 90px;
-    height: 90px;
-
-    right: -35px;
-    top: -35px;
-
-    border-radius: 50%;
-
-    background: rgba(30,58,138,.035);
-
-    pointer-events: none;
-
+/* Status pill (bible 6.5: 999px, 9px/800) */
+.status-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
+    white-space:nowrap
 }
 
-.month-card.available::after {
+.status-available{background:#dcfce7;color:#166534}
+.status-unavailable{background:#fef3c7;color:#92400e}
 
-    background: rgba(22,163,74,.035);
+.month-info{margin-top:16px}
 
+.month-label{
+    font-size:9px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:5px
 }
 
-.month-card.unavailable::after {
-
-    background: rgba(245,158,11,.045);
-
+.month-name{
+    font-size:17px;
+    font-weight:900;
+    color:#1e293b;
+    letter-spacing:-.025em;
+    line-height:1.25
 }
 
-
-.month-card:hover {
-
-    transform: translateY(-4px);
-
-    border-color: #cbd5e1;
-
-    box-shadow:
-        0 14px 28px rgba(15,23,42,.09);
-
+.month-year{
+    font-size:10px;
+    font-weight:600;
+    color:#94a3b8;
+    margin-top:4px
 }
 
-
-/* ===================================================== */
-/* MONTH CARD TOP */
-/* ===================================================== */
-
-.month-top {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 10px;
-
+.card-footer{
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid #f1f5f9
 }
 
-.month-icon {
-
-    width: 43px;
-    height: 43px;
-
-    border-radius: 12px;
-
-    background: #eff6ff;
-
-    color: #1e3a8a;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid #dbeafe;
-
+.pdf-button{
+    width:100%;
+    border-radius:12px;
+    padding:10px 13px;
+    background:#1e3a8a;
+    color:#fff;
+    font-size:10px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    text-decoration:none;
+    transition:.2s ease;
+    box-shadow:0 4px 9px rgba(30,58,138,.13)
 }
 
-.month-card.available .month-icon {
-
-    background: #f0fdf4;
-
-    color: #15803d;
-
-    border-color: #dcfce7;
-
+.pdf-button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 7px 15px rgba(30,58,138,.2)
 }
 
-.month-card.unavailable .month-icon {
-
-    background: #fffbeb;
-
-    color: #d97706;
-
-    border-color: #fef3c7;
-
+.pdf-button-disabled{
+    width:100%;
+    border-radius:12px;
+    padding:10px 13px;
+    background:#f8fafc;
+    color:#94a3b8;
+    border:1px solid #e2e8f0;
+    font-size:10px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    cursor:not-allowed
 }
 
+/* =========================================================
+   LOADING, ERROR, CONTENT
+========================================================= */
 
-/* ===================================================== */
-/* STATUS BADGE */
-/* ===================================================== */
-
-.status-badge {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 5px;
-
-    padding: 5px 8px;
-
-    border-radius: 999px;
-
-    font-size: 8px;
-
-    font-weight: 800;
-
-    white-space: nowrap;
-
-    text-transform: uppercase;
-
-    letter-spacing: .045em;
-
+#loading{
+    min-height:280px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center
 }
 
-.status-available {
+#loading[hidden]{display:none}
 
-    background: #f0fdf4;
+#content{display:none}
+#content.show{display:block}
 
-    color: #15803d;
-
-    border: 1px solid #bbf7d0;
-
+.error-box{
+    background:#fef2f2;
+    border:1px solid #fecaca;
+    color:#991b1b;
+    border-radius:17px;
+    padding:20px;
+    text-align:center;
+    font-size:12px;
+    font-weight:600
 }
 
-.status-unavailable {
+.error-box[hidden]{display:none}
 
-    background: #fffbeb;
+/* =========================================================
+   MODAL NAVIGASI
+========================================================= */
 
-    color: #b45309;
-
-    border: 1px solid #fde68a;
-
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.45);
+    backdrop-filter:blur(5px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:1000
 }
 
+.modal-overlay.show{display:flex}
 
-/* ===================================================== */
-/* MONTH INFORMATION */
-/* ===================================================== */
-
-.month-info {
-
-    margin-top: 18px;
-
+.back-modal{
+    width:100%;
+    max-width:430px;
+    background:#fff;
+    border-radius:22px;
+    padding:24px;
+    box-shadow:0 25px 60px rgba(15,23,42,.22);
+    animation:modalIn .25s ease
 }
 
-.month-label {
-
-    font-size: 9px;
-
-    font-weight: 700;
-
-    text-transform: uppercase;
-
-    letter-spacing: .08em;
-
-    color: #94a3b8;
-
-    margin-bottom: 5px;
-
+@keyframes modalIn{
+    from{opacity:0;transform:scale(.95) translateY(10px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
 }
 
-.month-name {
+.modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px
+}
 
-    font-size: 17px;
+.modal-title{
+    font-size:18px;
+    font-weight:900;
+    color:#1e293b
+}
 
-    font-weight: 900;
+.modal-close{
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:10px;
+    background:#f1f5f9;
+    color:#64748b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.2s ease
+}
 
-    color: #1e293b;
+.modal-close:hover{background:#e2e8f0;color:#1e293b}
 
-    letter-spacing: -.025em;
+.navigation-option{
+    width:100%;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    border-radius:15px;
+    padding:15px;
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    cursor:pointer;
+    text-align:left;
+    transition:.2s ease
+}
 
-    line-height: 1.25;
+.navigation-option:hover{
+    background:#f8fafc;
+    border-color:#bfdbfe;
+    transform:translateX(3px)
+}
+
+.navigation-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0
+}
+
+.navigation-title{
+    font-size:12px;
+    font-weight:800;
+    color:#1e293b
+}
+
+.navigation-description{
+    font-size:10px;
+    color:#94a3b8;
+    margin-top:2px
+}
+
+/* =========================================================
+   BREAKPOINTS (bible Bab 4)
+========================================================= */
+
+@media(min-width:1920px){
+    main{max-width:1800px}
+}
+
+@media(min-width:768px) and (max-width:1100px){
+
+    main{padding:28px!important;border-radius:24px!important}
+
+    .page-title{font-size:25px}
+
+    .month-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+    header{margin-bottom:28px!important}
 
 }
 
-.month-year {
-
-    font-size: 10px;
-
-    font-weight: 600;
-
-    color: #94a3b8;
-
-    margin-top: 4px;
-
-}
-
-
-/* ===================================================== */
-/* CARD FOOTER */
-/* ===================================================== */
-
-.card-footer {
-
-    margin-top: 18px;
-
-    padding-top: 14px;
-
-    border-top: 1px solid #f1f5f9;
-
-}
-
-
-/* ===================================================== */
-/* PDF BUTTON */
-/* ===================================================== */
-
-.pdf-button {
-
-    width: 100%;
-
-    border: 1px solid #1e3a8a;
-
-    border-radius: 10px;
-
-    padding: 10px 13px;
-
-    background: #1e3a8a;
-
-    color: white;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 7px;
-
-    text-decoration: none;
-
-    transition:
-        background .2s ease,
-        transform .2s ease,
-        box-shadow .2s ease;
-
-    box-shadow:
-        0 4px 9px rgba(30,58,138,.13);
-
-}
-
-.pdf-button:hover {
-
-    background: #1d4ed8;
-
-    border-color: #1d4ed8;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 7px 15px rgba(30,58,138,.2);
-
-}
-
-
-/* ===================================================== */
-/* DISABLED PDF BUTTON */
-/* ===================================================== */
-
-.pdf-button-disabled {
-
-    width: 100%;
-
-    border-radius: 10px;
-
-    padding: 10px 13px;
-
-    background: #f8fafc;
-
-    color: #94a3b8;
-
-    border: 1px solid #e2e8f0;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 7px;
-
-    cursor: not-allowed;
-
-}
-
-
-/* ===================================================== */
-/* LOADING */
-/* ===================================================== */
-
-#loading {
-
-    min-height: 280px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-}
-
-#loadingText {
-
-    max-width: 500px;
-
-    line-height: 1.6;
-
-}
-
-#content {
-
-    display: none;
-
-}
-
-
-/* ===================================================== */
-/* ERROR */
-/* ===================================================== */
-
-.error-box {
-
-    background: #fef2f2;
-
-    border: 1px solid #fecaca;
-
-    color: #b91c1c;
-
-    border-radius: 16px;
-
-    padding: 20px;
-
-    text-align: center;
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-}
-
-
-/* ===================================================== */
-/* MODAL */
-/* ===================================================== */
-
-.modal-overlay {
-
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(15,23,42,.45);
-
-    backdrop-filter: blur(5px);
-
-    display: none;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    z-index: 1000;
-
-}
-
-.modal-overlay.show {
-
-    display: flex;
-
-}
-
-.back-modal {
-
-    width: 100%;
-
-    max-width: 430px;
-
-    background: white;
-
-    border-radius: 24px;
-
-    padding: 24px;
-
-    box-shadow:
-        0 25px 60px rgba(15,23,42,.22);
-
-    animation: modalIn .25s ease;
-
-}
-
-@keyframes modalIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            scale(.95)
-            translateY(10px);
-
+@media(max-width:767px){
+
+    body{padding:10px!important;align-items:stretch!important}
+
+    main{
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
 
-    to {
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
 
-        opacity: 1;
+    .logo-wrapper{margin-bottom:14px!important}
 
-        transform:
-            scale(1)
-            translateY(0);
-
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
     }
+
+    header .color-primary{
+        width:100%!important;
+        padding:13px 14px!important;
+        border-radius:15px!important
+    }
+
+    header .color-primary h1{
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
+    }
+
+    header .color-primary h2{
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
+    }
+
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
+    }
+
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
+    }
+
+    .page-title{
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important
+    }
+
+    .page-title span{
+        padding:9px!important;
+        border-radius:10px!important;
+        flex-shrink:0
+    }
+
+    .page-title span svg{width:18px!important;height:18px!important}
+
+    .page-subtitle{
+        font-size:10px!important;
+        line-height:1.6!important;
+        margin-top:8px!important
+    }
+
+    .header-buttons{
+        width:100%;
+        display:grid;
+        grid-template-columns:minmax(0,1fr) minmax(0,1fr)
+    }
+
+    .back-button,
+    .home-button{
+        width:100%;
+        padding:10px 12px;
+        border-radius:10px;
+        font-size:10px
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:10px!important;
+        margin-bottom:14px!important
+    }
+
+    .stats-grid>.stat-card:last-child{grid-column:1/-1}
+
+    .stat-card{padding:13px!important;border-radius:14px!important}
+
+    .stat-card .stat-icon{width:34px!important;height:34px!important;border-radius:10px!important}
+
+    .stat-card .text-2xl{font-size:20px!important}
+
+    .month-grid{
+        grid-template-columns:1fr;
+        gap:12px
+    }
+
+    .month-card{
+        min-height:0;
+        padding:17px;
+        border-radius:15px
+    }
+
+    .month-name{font-size:15px!important}
+
+    #loading{min-height:230px}
+
+    footer{margin-top:18px!important;padding-bottom:20px!important}
+    footer p:first-child{font-size:9px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.6!important}
 
 }
 
-.modal-header {
+@media(max-width:380px){
 
-    display: flex;
+    body{padding:6px!important}
 
-    align-items: center;
+    main{padding:12px!important;border-radius:17px!important}
 
-    justify-content: space-between;
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
 
-    margin-bottom: 20px;
+    .logo-wrapper>div{width:70px!important;height:70px!important}
 
-}
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
 
-.modal-title {
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
 
-    font-size: 18px;
+    .month-name{font-size:14px!important}
 
-    font-weight: 900;
-
-    color: #1e293b;
-
-}
-
-.modal-close {
-
-    width: 36px;
-    height: 36px;
-
-    border: 0;
-
-    border-radius: 10px;
-
-    background: #f1f5f9;
-
-    color: #64748b;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    transition: .2s ease;
-
-}
-
-.modal-close:hover {
-
-    background: #e2e8f0;
-
-    color: #1e293b;
-
-}
-
-.navigation-option {
-
-    width: 100%;
-
-    border: 1px solid #e2e8f0;
-
-    background: #fff;
-
-    border-radius: 15px;
-
-    padding: 15px;
-
-    margin-top: 10px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 13px;
-
-    cursor: pointer;
-
-    text-align: left;
-
-    transition: .2s ease;
-
-}
-
-.navigation-option:hover {
-
-    background: #f8fafc;
-
-    border-color: #bfdbfe;
-
-    transform: translateX(3px);
-
-}
-
-.navigation-icon {
-
-    width: 42px;
-    height: 42px;
-
-    border-radius: 12px;
-
-    background: #eff6ff;
-
-    color: #1e3a8a;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-}
-
-.navigation-title {
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    color: #1e293b;
-
-}
-
-.navigation-description {
-
-    font-size: 10px;
-
-    color: #94a3b8;
-
-    margin-top: 2px;
-
-}
-
-
-/* ===================================================== */
-/* RESPONSIVE */
-/* ===================================================== */
-
-@media (max-width: 1100px) {
-
-    .month-grid {
-
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-
-    }
-
-}
-
-
-@media (max-width: 1024px) {
-
-    body {
-
-        padding:
-            12px !important;
-
-    }
-
-}
-
-
-@media (max-width: 800px) {
-
-    body {
-
-        background: #f1f5f9;
-
-    }
-
-    .month-grid {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-    }
-
-    .page-title {
-
-        font-size: 25px;
-
-    }
-
-}
-
-
-@media (max-width: 767px) {
-
-    body {
-
-        padding:
-            8px !important;
-
-    }
-
-    .glass-panel {
-
-        padding:
-            20px 16px !important;
-
-        border-radius:
-            22px !important;
-
-    }
-
-    .page-title {
-
-        font-size:
-            23px;
-
-    }
-
-    .page-subtitle {
-
-        font-size:
-            11px;
-
-    }
-
-    .month-card {
-
-        padding:
-            19px;
-
-    }
-
-    #loading {
-
-        min-height:
-            260px;
-
-    }
-
-}
-
-
-@media (max-width: 640px) {
-
-    body {
-
-        padding:
-            8px !important;
-
-    }
-
-    .month-grid {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            14px;
-
-    }
-
-    .month-card {
-
-        min-height:
-            175px;
-
-    }
-
-    .page-title {
-
-        font-size:
-            22px;
-
-    }
-
-    .page-subtitle {
-
-        font-size:
-            11px;
-
-    }
-
-    .header-buttons {
-
-        width:
-            100%;
-
-        display:
-            flex;
-
-        flex-direction:
-            column;
-
-        gap:
-            8px;
-
-    }
-
-    .header-buttons .back-button,
-    .header-buttons .home-button {
-
-        width:
-            100%;
-
-    }
-
-    .stat-card {
-
-        padding:
-            16px;
-
-    }
-
-}
-
-
-@media (max-width: 420px) {
-
-    .glass-panel {
-
-        padding:
-            20px 15px !important;
-
-        border-radius:
-            22px !important;
-
-    }
-
-    .logo-wrapper {
-
-        margin-bottom:
-            14px;
-
-    }
-
-    .logo-wrapper > div {
-
-        width:
-            82px !important;
-
-        height:
-            82px !important;
-
-    }
-
-    .brand-box {
-
-        padding:
-            13px 18px !important;
-
-    }
-
-    .brand-box h1 {
-
-        font-size:
-            17px !important;
-
-    }
-
-    .brand-box h2 {
-
-        font-size:
-            11px !important;
-
-    }
-
-    #loading {
-
-        min-height:
-            230px;
-
-    }
-
-}
-
-
-@media (max-width: 380px) {
-
-    .page-title {
-
-        font-size:
-            20px;
-
-    }
-
-    .page-subtitle {
-
-        font-size:
-            10px;
-
-    }
-
-    .month-card {
-
-        padding:
-            17px;
-
-    }
-
-    .month-name {
-
-        font-size:
-            15px;
-
-    }
-
-}
-
-
-@media (max-height: 600px) and (orientation: landscape) {
-
-    .month-grid {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-    }
+    .stat-card .text-2xl{font-size:18px!important}
 
 }
 
@@ -1187,25 +620,18 @@ body {
 
 </head>
 
-
 <body class="flex flex-col items-center p-4 sm:p-8">
 
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-<main
-    class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in"
->
+<!-- ======================================================
+     HEADER
+====================================================== -->
 
-
-<header
-    class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
->
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
     <div class="mb-4 logo-wrapper">
-
-        <div
-            class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
-        >
-
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
             <img
                 src="default_logo.png"
                 alt="Logo PT TSI"
@@ -1213,469 +639,192 @@ body {
                 id="companyLogo"
                 onerror="handleLogoError()"
             >
-
             <div
                 id="logoFallback"
-                class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
             >
-
-                <span
-                    class="font-black text-2xl"
-                >
-                    TSI
-                </span>
-
+                <span class="font-black text-2xl">TSI</span>
             </div>
-
         </div>
-
     </div>
 
-
-    <div
-        class="brand-box color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
-    >
-
-        <h1
-            class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
-        >
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
             PAPERLESS PROJECT
         </h1>
-
-        <div
-            class="h-0.5 w-16 bg-amber-500 rounded-full my-1"
-        ></div>
-
-        <h2
-            class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
-        >
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
             PT TATSUMI SERUNI INDONESIA
         </h2>
-
     </div>
 
-
-    <div
-        class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center"
-    >
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
         Digitalization Initiative v2.0
     </div>
 
 </header>
 
 
-<!-- =========================
-     CONTENT
-     ========================= -->
+<!-- ======================================================
+     SECTION
+====================================================== -->
 
 <section>
 
-<div class="flex items-center justify-between gap-5 mb-6">
+    <div class="flex items-center justify-between gap-5 mb-6">
 
-
-<div>
-
-<h2 class="page-title flex items-center gap-3">
-
-<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
-
-<i
-    data-lucide="database"
-    class="w-6 h-6"
-></i>
-
-</span>
-
-Data Availability Unit
-
-</h2>
-
-
-<p class="page-subtitle mt-2 ml-1">
-
-Daftar seluruh availability unit yang tersimpan pada database.
-
-</p>
-
-</div>
-
-
-<div class="header-buttons">
-
-    <button
-        onclick="openBackMenu()"
-        class="back-button"
-    >
-
-        <i
-            data-lucide="arrow-left"
-            class="w-4 h-4"
-        ></i>
-
-        <span>
-            Kembali
-        </span>
-
-    </button>
-
-
-    <button
-        onclick="goHome()"
-        class="home-button"
-    >
-
-        <i
-            data-lucide="house"
-            class="w-4 h-4"
-        ></i>
-
-        <span>
-            Kembali ke Home
-        </span>
-
-    </button>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<section
-    class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8"
->
-
-    <div class="stat-card">
-
-        <div
-            class="flex items-center gap-3"
-        >
-
-            <div
-                class="stat-icon bg-blue-50 text-blue-800"
-            >
-
-                <i
-                    data-lucide="calendar-days"
-                ></i>
-
-            </div>
-
-
-            <div>
-
-                <p
-                    class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
-                >
-                    Total Bulan
-                </p>
-
-                <p
-                    id="totalMonths"
-                    class="text-2xl font-black text-slate-800"
-                >
-                    -
-                </p>
-
-            </div>
-
+        <div>
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="database" class="w-6 h-6"></i>
+                </span>
+                Data Availability Unit
+            </h2>
+            <p class="page-subtitle mt-2 ml-1">
+                Daftar seluruh availability unit yang tersimpan pada database.
+            </p>
         </div>
 
-    </div>
-
-
-    <div class="stat-card">
-
-        <div
-            class="flex items-center gap-3"
-        >
-
-            <div
-                class="stat-icon bg-green-50 text-green-700"
-            >
-
-                <i
-                    data-lucide="file-check-2"
-                ></i>
-
-            </div>
-
-
-            <div>
-
-                <p
-                    class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
-                >
-                    PDF Tersedia
-                </p>
-
-                <p
-                    id="availableMonths"
-                    class="text-2xl font-black text-slate-800"
-                >
-                    -
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <div
-            class="flex items-center gap-3"
-        >
-
-            <div
-                class="stat-icon bg-amber-50 text-amber-700"
-            >
-
-                <i
-                    data-lucide="clock-3"
-                ></i>
-
-            </div>
-
-
-            <div>
-
-                <p
-                    class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
-                >
-                    Belum Tersedia
-                </p>
-
-                <p
-                    id="unavailableMonths"
-                    class="text-2xl font-black text-slate-800"
-                >
-                    -
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section>
-
-
-<div id="loading">
-
-    <i
-        data-lucide="loader-circle"
-        class="w-9 h-9 animate-spin text-amber-500"
-    ></i>
-
-    <p
-        id="loadingText"
-        class="font-semibold text-sm text-slate-400 mt-3"
-    >
-        Memuat data...
-    </p>
-
-</div>
-
-
-<div id="content">
-
-    <div
-        id="monthGrid"
-        class="month-grid"
-    ></div>
-
-
-    <div
-        id="errorState"
-        class="error-box hidden mt-5"
-    >
-
-        <div
-            class="flex justify-center mb-3"
-        >
-
-            <i
-                data-lucide="circle-alert"
-                size="28"
-            ></i>
-
-        </div>
-
-        <p id="errorMessage">
-            Gagal mengambil data.
-        </p>
-
-        <button
-            onclick="loadData()"
-            class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 transition"
-        >
-            Coba Lagi
-        </button>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<footer
-    class="mt-8 text-center text-slate-400 px-4 pb-8"
->
-
-    <p
-        class="font-bold text-slate-500 tracking-tight uppercase"
-    >
-        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
-    </p>
-
-
-    <p class="text-[10px] mt-1">
-
-        System Architecture by:
-
-        <span
-            class="text-slate-600 font-semibold uppercase"
-        >
-            Imam Wahyu Ramadhan, S.T.
-        </span>
-
-        |
-
-        <span
-            class="text-amber-600 font-bold uppercase tracking-tighter"
-        >
-            Project 2.0
-        </span>
-
-    </p>
-
-</footer>
-
-
-</main>
-
-
-<!-- ===================================================== -->
-<!-- BACK MODAL -->
-<!-- ===================================================== -->
-
-<div
-    id="backModal"
-    class="modal-overlay"
-    onclick="handleModalOverlay(event)"
->
-
-    <div class="back-modal">
-
-
-        <div class="modal-header">
-
-            <div>
-
-                <p
-                    class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1"
-                >
-                    Navigation
-                </p>
-
-                <h2 class="modal-title">
-                    Kembali ke halaman
-                </h2>
-
-            </div>
-
-
-            <button
-                class="modal-close"
-                onclick="closeBackMenu()"
-            >
-
-                <i data-lucide="x"></i>
-
+        <div class="header-buttons">
+
+            <button onclick="openBackMenu()" class="back-button">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Kembali</span>
+            </button>
+
+            <button onclick="goHome()" class="home-button">
+                <i data-lucide="house" class="w-4 h-4"></i>
+                <span>Kembali ke Home</span>
             </button>
 
         </div>
 
+    </div>
 
-        <button
-            class="navigation-option"
-            onclick="goDashboard()"
-        >
 
-            <div class="navigation-icon">
+    <!-- STATISTIK -->
+    <div class="stats-grid grid grid-cols-3 gap-4 mb-8">
 
-                <i
-                    data-lucide="layout-dashboard"
-                ></i>
-
+        <div class="stat-card">
+            <div class="flex items-center gap-3">
+                <div class="stat-icon stat-icon-total">
+                    <i data-lucide="calendar-days" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Bulan</p>
+                    <p id="totalMonths" class="text-2xl font-black text-blue-900">-</p>
+                </div>
             </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="flex items-center gap-3">
+                <div class="stat-icon stat-icon-ok">
+                    <i data-lucide="file-check-2" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">PDF Tersedia</p>
+                    <p id="availableMonths" class="text-2xl font-black text-emerald-600">-</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="flex items-center gap-3">
+                <div class="stat-icon stat-icon-wait">
+                    <i data-lucide="clock-3" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Belum Tersedia</p>
+                    <p id="unavailableMonths" class="text-2xl font-black text-amber-600">-</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
+    <!-- LOADING -->
+    <div id="loading">
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p id="loadingText" class="font-semibold text-sm text-slate-400 mt-3">Memuat data availability...</p>
+    </div>
+
+
+    <!-- KONTEN -->
+    <div id="content">
+
+        <div id="monthGrid" class="month-grid"></div>
+
+        <div id="errorState" class="error-box mt-5" hidden>
+            <div class="flex justify-center mb-3">
+                <i data-lucide="circle-alert" class="w-7 h-7"></i>
+            </div>
+            <p id="errorMessage">Gagal mengambil data.</p>
+            <button
+                onclick="loadData()"
+                class="mt-4 px-4 py-2 bg-red-700 text-white rounded-xl text-xs font-bold hover:bg-red-800 transition"
+            >
+                Coba Lagi
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+    <p class="text-[10px] mt-1">
+        System Architecture by:
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
+        |
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
+    </p>
+</footer>
+
+</main>
+
+
+<!-- MODAL NAVIGASI -->
+<div id="backModal" class="modal-overlay" onclick="handleModalOverlay(event)">
+
+    <div class="back-modal">
+
+        <div class="modal-header">
             <div>
-
-                <div class="navigation-title">
-                    Dashboard Availability
-                </div>
-
-                <div class="navigation-description">
-                    Kembali ke dashboard availability
-                </div>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Navigation</p>
+                <h2 class="modal-title">Kembali ke halaman</h2>
             </div>
+            <button class="modal-close" onclick="closeBackMenu()">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
 
-
-            <i
-                data-lucide="chevron-right"
-                class="ml-auto text-slate-300"
-                size="18"
-            ></i>
-
+        <button class="navigation-option" onclick="goDashboard()">
+            <div class="navigation-icon">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+            </div>
+            <div>
+                <div class="navigation-title">Dashboard Availability</div>
+                <div class="navigation-description">Kembali ke dashboard availability</div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 ml-auto text-slate-300"></i>
         </button>
 
-
-        <button
-            class="navigation-option"
-            onclick="goTable()"
-        >
-
+        <button class="navigation-option" onclick="goTable()">
             <div class="navigation-icon">
-
-                <i
-                    data-lucide="table-2"
-                ></i>
-
+                <i data-lucide="table-2" class="w-5 h-5"></i>
             </div>
-
-
             <div>
-
-                <div class="navigation-title">
-                    Table Availability
-                </div>
-
-                <div class="navigation-description">
-                    Kembali ke tabel data availability
-                </div>
-
+                <div class="navigation-title">Table Availability</div>
+                <div class="navigation-description">Kembali ke tabel data availability</div>
             </div>
-
-
-            <i
-                data-lucide="chevron-right"
-                class="ml-auto text-slate-300"
-                size="18"
-            ></i>
-
+            <i data-lucide="chevron-right" class="w-4 h-4 ml-auto text-slate-300"></i>
         </button>
 
     </div>
@@ -1685,931 +834,282 @@ Daftar seluruh availability unit yang tersimpan pada database.
 
 <script>
 
-/* ===================================================== */
-/* CONFIGURATION */
-/* ===================================================== */
+/* =========================================================
+   CONFIGURATION
+========================================================= */
 
-const API_URL =
-    'https://script.google.com/macros/s/AKfycbyG2eqQjfOtDysXtQbWhZMgR068ZDhKIQCkh4CqxihrL1VX0U_I8UldxCxTKT939Wae/exec';
+const API_URL=
+'https://script.google.com/macros/s/AKfycbyG2eqQjfOtDysXtQbWhZMgR068ZDhKIQCkh4CqxihrL1VX0U_I8UldxCxTKT939Wae/exec';
 
-const HOME_URL =
-    'index.html';
-
-const DASHBOARD_URL =
-    'availability.html';
-
-const TABLE_URL =
-    'tavailability.html';
+const HOME_URL='index.html';
+const DASHBOARD_URL='availability.html';
+const TABLE_URL='tavailability.html';
 
 
-/* ===================================================== */
-/* LOGO FALLBACK */
-/* ===================================================== */
+/* =========================================================
+   HELPERS
+========================================================= */
 
-function handleLogoError() {
-
-    const logo =
-        document.getElementById(
-            'companyLogo'
-        );
-
-    const fallback =
-        document.getElementById(
-            'logoFallback'
-        );
-
-
-    if (logo) {
-
-        logo.classList.add(
-            'hidden'
-        );
-
-    }
-
-
-    if (fallback) {
-
-        fallback.classList.remove(
-            'hidden'
-        );
-
-        fallback.classList.add(
-            'flex'
-        );
-
-    }
-
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
 }
 
-
-/* ===================================================== */
-/* SAFE HTML */
-/* ===================================================== */
-
-function escapeHtml(value) {
-
-    return String(
-        value ?? ''
-    )
-    .replace(
-        /&/g,
-        '&amp;'
-    )
-    .replace(
-        /</g,
-        '&lt;'
-    )
-    .replace(
-        />/g,
-        '&gt;'
-    )
-    .replace(
-        /"/g,
-        '&quot;'
-    )
-    .replace(
-        /'/g,
-        '&#039;'
-    );
-
+function handleLogoError(){
+    document.getElementById('companyLogo').classList.add('hidden');
+    const fb=document.getElementById('logoFallback');
+    fb.classList.remove('hidden');
+    fb.classList.add('flex');
 }
 
-
-/* ===================================================== */
-/* NORMALIZE DATA */
-/* ===================================================== */
-
-function normalizeRows(rows) {
-
-    if (!Array.isArray(rows)) {
-
-        return [];
-
-    }
-
-
-    return rows.map(
-        function(row, index) {
-
-            const values =
-                Object.values(
-                    row || {}
-                );
-
-
-            return {
-
-                month:
-                    String(
-                        values[0] ?? ''
-                    ).trim(),
-
-                url:
-                    String(
-                        values[1] ?? ''
-                    ).trim(),
-
-                index:
-                    index
-
-            };
-
-        }
-    );
-
-}
-
-
-/* ===================================================== */
-/* VALIDATE URL */
-/* ===================================================== */
-
-function isValidUrl(value) {
-
-    if (!value) {
-
+/* URL valid hanya jika http / https */
+function isValidUrl(value){
+    if(!value) return false;
+    try{
+        const url=new URL(value);
+        return url.protocol==='http:'||url.protocol==='https:';
+    }catch(error){
         return false;
-
     }
+}
 
+/* Data bisa berupa array baris atau objek; ambil bulan (kolom 0) dan url (kolom 1) */
+function normalizeRows(rows){
 
-    try {
+    if(!Array.isArray(rows)) return [];
 
-        const url =
-            new URL(value);
+    return rows.map((row,index)=>{
 
+        const values=Array.isArray(row)?row:Object.values(row||{});
 
-        return (
-            url.protocol === 'http:' ||
-            url.protocol === 'https:'
-        );
+        return {
+            month:String(values[0]??'').trim(),
+            url:String(values[1]??'').trim(),
+            index:index
+        };
 
-    } catch (error) {
-
-        return false;
-
-    }
+    });
 
 }
 
 
-/* ===================================================== */
-/* CREATE MONTH CARD */
-/* ===================================================== */
+/* =========================================================
+   NAVIGASI
+========================================================= */
 
-function createMonthCard(item) {
+function goHome(){ window.location.href=HOME_URL; }
+function goDashboard(){ window.location.href=DASHBOARD_URL; }
+function goTable(){ window.location.href=TABLE_URL; }
 
-    const month =
-        escapeHtml(
-            item.month ||
-            'Tanpa Nama'
-        );
+function openBackMenu(){
+    document.getElementById('backModal').classList.add('show');
+    document.body.style.overflow='hidden';
+}
+
+function closeBackMenu(){
+    document.getElementById('backModal').classList.remove('show');
+    document.body.style.overflow='';
+}
+
+function handleModalOverlay(event){
+    if(event.target===document.getElementById('backModal')) closeBackMenu();
+}
+
+document.addEventListener('keydown',event=>{
+    if(event.key==='Escape') closeBackMenu();
+});
 
 
-    const available =
-        isValidUrl(
-            item.url
-        );
+/* =========================================================
+   RENDER
+========================================================= */
 
+function createMonthCard(item){
 
-    if (available) {
+    const month=escapeHtml(item.month||'Tanpa Nama');
 
-        const url =
-            escapeHtml(
-                item.url
-            );
-
+    if(isValidUrl(item.url)){
 
         return `
-
-            <article
-                class="month-card available"
-            >
-
+            <article class="month-card available">
                 <div>
-
-                    <div
-                        class="month-top"
-                    >
-
-                        <div
-                            class="month-icon"
-                        >
-
-                            <i
-                                data-lucide="file-text"
-                                size="19"
-                            ></i>
-
+                    <div class="month-top">
+                        <div class="month-icon">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
                         </div>
-
-
-                        <span
-                            class="status-badge status-available"
-                        >
-
-                            <i
-                                data-lucide="circle-check"
-                                size="11"
-                            ></i>
-
+                        <span class="status-badge status-available">
+                            <i data-lucide="circle-check" class="w-3 h-3"></i>
                             Tersedia
-
                         </span>
-
                     </div>
-
-
-                    <div
-                        class="month-info"
-                    >
-
-                        <div
-                            class="month-label"
-                        >
-                            Period
-                        </div>
-
-                        <div
-                            class="month-name"
-                        >
-                            ${month}
-                        </div>
-
-
-                        <div
-                            class="month-year"
-                        >
-                            Availability PDF
-                        </div>
-
+                    <div class="month-info">
+                        <div class="month-label">Period</div>
+                        <div class="month-name">${month}</div>
+                        <div class="month-year">Availability PDF</div>
                     </div>
-
                 </div>
-
-
-                <div
-                    class="card-footer"
-                >
-
+                <div class="card-footer">
                     <a
-                        href="${url}"
+                        href="${escapeHtml(item.url)}"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="pdf-button"
                     >
-
-                        <i
-                            data-lucide="external-link"
-                            size="14"
-                        ></i>
-
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                         Lihat PDF
-
                     </a>
-
                 </div>
-
             </article>
-
         `;
 
     }
 
-
     return `
-
-        <article
-            class="month-card unavailable"
-        >
-
+        <article class="month-card unavailable">
             <div>
-
-                <div
-                    class="month-top"
-                >
-
-                    <div
-                        class="month-icon"
-                    >
-
-                        <i
-                            data-lucide="file-clock"
-                            size="19"
-                        ></i>
-
+                <div class="month-top">
+                    <div class="month-icon">
+                        <i data-lucide="file-clock" class="w-5 h-5"></i>
                     </div>
-
-
-                    <span
-                        class="status-badge status-unavailable"
-                    >
-
-                        <i
-                            data-lucide="clock-3"
-                            size="11"
-                        ></i>
-
+                    <span class="status-badge status-unavailable">
+                        <i data-lucide="clock-3" class="w-3 h-3"></i>
                         Belum tersedia
-
                     </span>
-
                 </div>
-
-
-                <div
-                    class="month-info"
-                >
-
-                    <div
-                        class="month-label"
-                    >
-                        Period
-                    </div>
-
-                    <div
-                        class="month-name"
-                    >
-                        ${month}
-                    </div>
-
-
-                    <div
-                        class="month-year"
-                    >
-                        Availability PDF
-                    </div>
-
+                <div class="month-info">
+                    <div class="month-label">Period</div>
+                    <div class="month-name">${month}</div>
+                    <div class="month-year">Availability PDF</div>
                 </div>
-
             </div>
-
-
-            <div
-                class="card-footer"
-            >
-
-                <div
-                    class="pdf-button-disabled"
-                >
-
-                    <i
-                        data-lucide="clock-3"
-                        size="14"
-                    ></i>
-
+            <div class="card-footer">
+                <div class="pdf-button-disabled">
+                    <i data-lucide="clock-3" class="w-3.5 h-3.5"></i>
                     Belum tersedia
-
                 </div>
-
             </div>
-
         </article>
-
     `;
 
 }
 
+function renderData(rows){
 
-/* ===================================================== */
-/* RENDER DATA */
-/* ===================================================== */
+    const data=normalizeRows(rows);
 
-function renderData(rows) {
+    const total=data.length;
+    const available=data.filter(item=>isValidUrl(item.url)).length;
 
-    const data =
-        normalizeRows(
-            rows
-        );
+    document.getElementById('totalMonths').textContent=total;
+    document.getElementById('availableMonths').textContent=available;
+    document.getElementById('unavailableMonths').textContent=total-available;
 
+    const grid=document.getElementById('monthGrid');
 
-    const total =
-        data.length;
+    if(!data.length){
 
-
-    const available =
-        data.filter(
-            function(item) {
-
-                return isValidUrl(
-                    item.url
-                );
-
-            }
-        ).length;
-
-
-    const unavailable =
-        total - available;
-
-
-    document.getElementById(
-        'totalMonths'
-    ).textContent =
-        total;
-
-
-    document.getElementById(
-        'availableMonths'
-    ).textContent =
-        available;
-
-
-    document.getElementById(
-        'unavailableMonths'
-    ).textContent =
-        unavailable;
-
-
-    const grid =
-        document.getElementById(
-            'monthGrid'
-        );
-
-
-    if (!data.length) {
-
-        grid.innerHTML = `
-
-            <div
-                class="col-span-full text-center py-12 text-slate-400"
-            >
-
-                <i
-                    data-lucide="folder-open"
-                    size="40"
-                    class="mx-auto mb-3"
-                ></i>
-
-                <p
-                    class="font-bold text-sm"
-                >
-                    Tidak ada data availability.
-                </p>
-
+        grid.innerHTML=`
+            <div class="col-span-full text-center py-12 text-slate-400">
+                <i data-lucide="folder-open" class="w-10 h-10 mx-auto mb-3"></i>
+                <p class="font-bold text-sm">Tidak ada data availability.</p>
             </div>
-
         `;
 
-    } else {
+    }else{
 
-        grid.innerHTML =
-            data
-                .map(
-                    createMonthCard
-                )
-                .join('');
+        grid.innerHTML=data.map(createMonthCard).join('');
 
     }
-
 
     lucide.createIcons();
 
 }
 
 
-/* ===================================================== */
-/* LOAD DATA */
-/* ===================================================== */
+/* =========================================================
+   LOAD DATA
+   Data langsung ditampilkan begitu diterima dari server.
+   Tidak ada jeda buatan.
+========================================================= */
 
-async function loadData() {
+function showLoading(){
+    document.getElementById('loading').hidden=false;
+    document.getElementById('content').classList.remove('show');
+    document.getElementById('errorState').hidden=true;
+}
 
-    const loading =
-        document.getElementById(
-            'loading'
-        );
+function showContent(){
+    document.getElementById('loading').hidden=true;
+    document.getElementById('content').classList.add('show');
+}
 
-    const content =
-        document.getElementById(
-            'content'
-        );
+function showError(message){
 
-    const loadingText =
-        document.getElementById(
-            'loadingText'
-        );
+    document.getElementById('loading').hidden=true;
+    document.getElementById('content').classList.add('show');
 
+    document.getElementById('monthGrid').innerHTML='';
+    document.getElementById('errorMessage').textContent=
+        'Gagal memuat data: '+message;
+    document.getElementById('errorState').hidden=false;
 
-    const dataPromise =
-        fetch(
-            API_URL,
-            {
-                method: 'GET',
-                cache: 'no-store'
+    lucide.createIcons();
+
+}
+
+/* Request data dimulai SEKARANG, berjalan di background selama urutan loading */
+function fetchAvailability(){
+
+    return fetch(API_URL,{method:'GET',cache:'no-store'})
+        .then(response=>{
+            if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
+            return response.json();
+        })
+        .then(result=>{
+            if(!result.success){
+                throw new Error(result.error||'API mengembalikan status gagal.');
             }
-        )
-        .then(
-            function(response) {
+            return result.data;
+        });
 
-                if (!response.ok) {
+}
 
-                    throw new Error(
-                        'HTTP Error ' +
-                        response.status
-                    );
+async function loadData(){
 
-                }
+    showLoading();
 
-                return response.json();
+    try{
 
-            }
-        )
-        .then(
-            function(result) {
+        const data=await fetchAvailability();
 
-                if (!result.success) {
+        renderData(data);
+        showContent();
 
-                    throw new Error(
-                        result.error ||
-                        'API mengembalikan status gagal.'
-                    );
+    }catch(error){
 
-                }
-
-                return result.data;
-
-            }
-        );
-
-
-    const loadingMessages = [
-
-        {
-            text:
-                'Memuat data...',
-            duration:
-                2000
-        },
-
-        {
-            text:
-                'Menghubungkan ke sumber data...',
-            duration:
-                2000
-        },
-
-        {
-            text:
-                'Sebagian data sudah berhasil diterima',
-            duration:
-                2400
-        },
-
-        {
-            text:
-                'Memeriksa dan menyiapkan data availability...',
-            duration:
-                3400
-        },
-
-        {
-            text:
-                'Volume data sedang disiapkan untuk penyajian...',
-            duration:
-                1600
-        },
-
-        {
-            text:
-                'Volume data yang diterima melampaui kapasitas sistem...',
-            duration:
-                1000
-        },
-
-        {
-            text:
-                ' ',
-            duration:
-                40
-        },
-
-        {
-            text:
-                'Volume data yang diterima melampaui kapasitas sistem...',
-            duration:
-                1000
-        },
-
-        {
-            text:
-                ' ',
-            duration:
-                40
-        },
-
-        {
-            text:
-                'Volume data yang diterima melampaui kapasitas sistem...',
-            duration:
-                1000
-        },
-
-        {
-            text:
-                ' ',
-            duration:
-                40
-        },
-
-        {
-            text:
-                'Volume data yang diterima melampaui kapasitas sistem...',
-            duration:
-                1000
-        },
-
-        {
-            text:
-                ' ',
-            duration:
-                40
-        },
-
-        {
-            text:
-                'Data gagal diproses oleh sistem...',
-            duration:
-                2400
-        },
-
-        {
-            text:
-                'Sistem mengalami kegagalan dalam pemrosesan data...',
-            duration:
-                1000
-        },
-
-        {
-            text:
-                ' ',
-            duration:
-                40
-        },
-
-        {
-            text:
-                'Sistem mengalami kegagalan dalam pemrosesan data...',
-            duration:
-                1000
-        },
-
-        {
-            text:
-                ' ',
-            duration:
-                40
-        },
-
-        {
-            text:
-                'Sistem mengalami kegagalan dalam pemrosesan data...',
-            duration:
-                1000
-        },
-
-        {
-            text:
-                ' ',
-            duration:
-                40
-        },
-
-        {
-            text:
-                'Sistem mengalami kegagalan dalam pemrosesan data...',
-            duration:
-                1000
-        },
-
-        {
-            text:
-                ' ',
-            duration:
-                40
-        },
-
-        {
-            text:
-                'Menyiapkan metode penyajian alternatif...',
-            duration:
-                2400
-        },
-
-        {
-            text:
-                'Mengalihkan ke metode penyajian alternatif...',
-            duration:
-                1400
-        },
-
-        {
-            text:
-                'Menyiapkan tampilan availability...',
-            duration:
-                2000
-        }
-
-    ];
-
-
-    for (
-        const message of loadingMessages
-    ) {
-
-        loadingText.textContent =
-            message.text;
-
-
-        lucide.createIcons();
-
-
-        await new Promise(
-            function(resolve) {
-
-                setTimeout(
-                    resolve,
-                    message.duration
-                );
-
-            }
-        );
-
-    }
-
-
-    try {
-
-        const data =
-            await dataPromise;
-
-
-        renderData(
-            data
-        );
-
-
-        loading.style.display =
-            'none';
-
-
-        content.style.display =
-            'block';
-
-
-        lucide.createIcons();
-
-
-    } catch (error) {
-
-        console.error(
-            'Load data error:',
-            error
-        );
-
-
-        loadingText.textContent =
-            'Gagal memuat data. Silakan coba lagi.';
-
-
-        const errorState =
-            document.getElementById(
-                'errorState'
-            );
-
-
-        if (errorState) {
-
-            errorState.classList.remove(
-                'hidden'
-            );
-
-        }
+        console.error('Availability load error:',error);
+        showError(error.message);
 
     }
 
 }
 
 
-/* ===================================================== */
-/* NAVIGATION */
-/* ===================================================== */
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
-function goHome() {
-
-    window.location.href =
-        HOME_URL;
-
-}
-
-
-function goDashboard() {
-
-    window.location.href =
-        DASHBOARD_URL;
-
-}
-
-
-function goTable() {
-
-    window.location.href =
-        TABLE_URL;
-
-}
-
-
-/* ===================================================== */
-/* BACK MODAL */
-/* ===================================================== */
-
-function openBackMenu() {
-
-    document
-        .getElementById(
-            'backModal'
-        )
-        .classList.add(
-            'show'
-        );
-
-
-    document.body.style.overflow =
-        'hidden';
-
-}
-
-
-function closeBackMenu() {
-
-    document
-        .getElementById(
-            'backModal'
-        )
-        .classList.remove(
-            'show'
-        );
-
-
-    document.body.style.overflow =
-        '';
-
-}
-
-
-function handleModalOverlay(event) {
-
-    if (
-        event.target ===
-        document.getElementById(
-            'backModal'
-        )
-    ) {
-
-        closeBackMenu();
-
-    }
-
-}
-
-
-/* ===================================================== */
-/* ESC KEY */
-/* ===================================================== */
-
-document.addEventListener(
-    'keydown',
-    function(event) {
-
-        if (
-            event.key ===
-            'Escape'
-        ) {
-
-            closeBackMenu();
-
-        }
-
-    }
-);
-
-
-/* ===================================================== */
-/* INITIALIZE */
-/* ===================================================== */
-
-document.addEventListener(
-    'DOMContentLoaded',
-    function() {
-
-        lucide.createIcons();
-
-        loadData();
-
-    }
-);
+document.addEventListener('DOMContentLoaded',()=>{
+    lucide.createIcons();
+    loadData();
+});
 
 </script>
-
+<script src="nav.js"></script>
+   <script src="datacache.js"></script>
 </body>
 </html>
