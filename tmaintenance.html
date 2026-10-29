@@ -1,26 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Corrective Maintenance Unit - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -28,3084 +16,1215 @@
    GLOBAL
 ========================================================= */
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    min-width:0;
-    width:100%;
-}
+html{width:100%;min-width:0;overflow-x:hidden}
 
 body{
-
     margin:0;
-
     width:100%;
     min-width:0;
-
-    font-family:'Inter',sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #eef2f7
-        );
-
-    color:#1e293b;
-
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b
 }
 
-
-/* =========================================================
-   COLOR
-========================================================= */
-
-.color-primary{
-    background:#1E3A8A;
-}
-
-.text-primary{
-    color:#1E3A8A;
-}
-
-
-/* =========================================================
-   GLASS
-========================================================= */
+.color-primary{background:#1e3a8a}
+.text-primary{color:#1e3a8a}
 
 .glass-panel{
-
     background:rgba(255,255,255,.95);
-
     backdrop-filter:blur(10px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
+    border:1px solid rgba(255,255,255,.3)
 }
 
-
-/* =========================================================
-   ANIMATION
-========================================================= */
-
-.fade-in{
-
-    animation:
-        fadeIn
-        .5s
-        cubic-bezier(.4,0,.2,1);
-
-}
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 
 @keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(12px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
-
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo-wrapper{
-
-    transition:
-        transform
-        .4s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        );
-
-}
-
-.logo-wrapper:hover{
-
-    transform:
-        scale(1.08)
-        rotate(2deg);
-
-}
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 
 .logo-shadow{
-
     filter:
-        drop-shadow(
-            0 10px 8px
-            rgba(0,0,0,.04)
-        )
-        drop-shadow(
-            0 4px 3px
-            rgba(0,0,0,.1)
-        );
-
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
 
-
 /* =========================================================
-   PAGE TITLE
+   PAGE TITLE, BUTTON, YEAR SELECTOR
 ========================================================= */
 
 .page-title{
-
     font-size:30px;
-
     font-weight:900;
-
     color:#1e293b;
-
     letter-spacing:-.025em;
-
+    line-height:1.2
 }
 
 .page-subtitle{
-
     font-size:13px;
-
     color:#64748b;
-
     font-weight:500;
-
+    line-height:1.6
 }
 
-
-/* =========================================================
-   BUTTON
-========================================================= */
+.page-actions{
+    display:flex;
+    align-items:center;
+    gap:12px
+}
 
 .back-button{
-
     background:#1e3a8a;
-
     color:#fff;
-
     border-radius:12px;
-
-    padding:
-        11px
-        17px;
-
+    padding:11px 17px;
     font-size:12px;
-
     font-weight:800;
-
     display:flex;
-
     align-items:center;
-
+    justify-content:center;
     gap:8px;
-
-    transition:
-        .2s ease;
-
-    box-shadow:
-        0 5px 12px
-        rgba(30,58,138,.18);
-
+    transition:.2s ease;
+    box-shadow:0 5px 12px rgba(30,58,138,.18);
     border:none;
-
     cursor:pointer;
-
+    flex-shrink:0;
+    white-space:nowrap
 }
 
 .back-button:hover{
-
     background:#1d4ed8;
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 18px
-        rgba(30,58,138,.25);
-
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
 }
-
-
-/* =========================================================
-   YEAR SELECTOR
-========================================================= */
 
 .year-selector{
-
     background:#fff;
-
-    border:
-        1px solid
-        #dbe3ee;
-
+    border:1px solid #dbeafe;
     border-radius:12px;
-
-    padding:
-        10px
-        14px;
-
+    padding:10px 14px;
     color:#1e3a8a;
-
+    font-family:inherit;
     font-size:12px;
-
     font-weight:900;
-
     outline:none;
-
     cursor:pointer;
-
     transition:.2s ease;
-
-    min-width:150px;
-
+    min-width:150px
 }
 
-.year-selector:hover{
-
-    border-color:#93c5fd;
-
-}
+.year-selector:hover{border-color:#93c5fd}
 
 .year-selector:focus{
-
     border-color:#60a5fa;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(59,130,246,.10);
-
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
 }
-
 
 /* =========================================================
    STAT CARDS
 ========================================================= */
 
 .stat-card{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:17px;
-
     padding:17px;
-
-    transition:
-        .25s ease;
-
+    transition:.25s ease;
+    min-width:0
 }
 
 .stat-card:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 10px 20px
-        rgba(15,23,42,.07);
-
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
 
-
 /* =========================================================
-   TABLE PANEL
+   TABLE PANEL & TABLE
 ========================================================= */
 
 .table-panel{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:20px;
-
     overflow:hidden;
-
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.04);
-
+    box-shadow:0 4px 12px rgba(15,23,42,.04)
 }
-
-
-/* =========================================================
-   TABLE
-========================================================= */
 
 .table-scroll{
-
     width:100%;
-
     overflow-x:auto;
-
     overflow-y:hidden;
-
     -webkit-overflow-scrolling:touch;
-
+    scrollbar-width:thin
 }
+
+.table-scroll::-webkit-scrollbar{height:7px}
+.table-scroll::-webkit-scrollbar-track{background:#f8fafc}
+.table-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+.table-scroll::-webkit-scrollbar-thumb:hover{background:#94a3b8}
 
 table{
-
     width:100%;
-
     min-width:760px;
-
     border-collapse:separate;
-
-    border-spacing:0;
-
+    border-spacing:0
 }
 
-thead{
-
-    background:#f8fafc;
-
-}
+thead{background:#f8fafc}
 
 thead th{
-
     padding:0;
-
-    border-bottom:
-        2px solid
-        #e2e8f0;
-
+    border-bottom:2px solid #e2e8f0;
     color:#475569;
-
     font-size:10px;
-
     font-weight:900;
-
     text-transform:uppercase;
-
     letter-spacing:.08em;
-
     white-space:nowrap;
-
-    text-align:left;
-
+    text-align:left
 }
-
-
-.sort-button{
-
-    width:100%;
-
-    padding:
-        14px;
-
-    background:transparent;
-
-    border:none;
-
-    color:#475569;
-
-    font-family:inherit;
-
-    font-size:10px;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-
-    letter-spacing:.08em;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:8px;
-
-    cursor:pointer;
-
-    transition:.2s ease;
-
-    text-align:left;
-
-}
-
-.sort-button:hover{
-
-    background:#eff6ff;
-
-    color:#1e3a8a;
-
-}
-
-.sort-button.active{
-
-    color:#1e3a8a;
-
-    background:#eff6ff;
-
-}
-
-.sort-icon{
-
-    width:14px;
-
-    height:14px;
-
-    flex-shrink:0;
-
-    opacity:.35;
-
-    transition:.2s ease;
-
-}
-
-.sort-button:hover .sort-icon{
-
-    opacity:.8;
-
-}
-
-.sort-button.active .sort-icon{
-
-    opacity:1;
-
-}
-
 
 tbody td{
-
-    padding:
-        13px
-        14px;
-
-    border-bottom:
-        1px solid
-        #f1f5f9;
-
+    padding:13px 14px;
+    border-bottom:1px solid #f1f5f9;
     color:#334155;
-
     font-size:11px;
-
     font-weight:500;
-
-    vertical-align:middle;
-
+    vertical-align:middle
 }
 
-tbody tr{
-
-    transition:
-        background
-        .15s ease;
-
-}
-
-tbody tr:hover{
-
-    background:#f8fafc;
-
-}
-
-tbody tr:last-child td{
-
-    border-bottom:none;
-
-}
-
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:#f8fafc}
+tbody tr:last-child td{border-bottom:none}
 
 /* =========================================================
-   UNIT BADGE
+   COLUMN HEADER (Excel-style: sort + filter di header)
+========================================================= */
+
+.col-header{
+    width:100%;
+    padding:13px 14px;
+    background:transparent;
+    border:none;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    cursor:pointer;
+    transition:.18s ease;
+    text-align:left
+}
+
+.col-header:hover,
+.col-header.active{
+    background:#eff6ff;
+    color:#1e3a8a
+}
+
+.col-icons{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    flex-shrink:0
+}
+
+.col-sort-icon{
+    width:12px;
+    height:12px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-sort-icon.on{
+    opacity:1;
+    color:#1e3a8a
+}
+
+.col-filter-icon{
+    width:11px;
+    height:11px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-filter-icon.on{
+    opacity:1;
+    color:#f59e0b
+}
+
+.col-header:hover .col-sort-icon,
+.col-header:hover .col-filter-icon{opacity:.8}
+
+/* =========================================================
+   COLUMN DROPDOWN (popup filter & sort)
+========================================================= */
+
+.col-dropdown{
+    position:fixed;
+    z-index:1100;
+    width:240px;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(15,23,42,.13);
+    padding:8px;
+    animation:ddIn .15s ease
+}
+
+.col-dropdown[hidden]{display:none}
+
+@keyframes ddIn{
+    from{opacity:0;transform:translateY(-4px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.dd-sort{display:flex;gap:6px;padding:4px}
+
+.dd-sort-btn{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-sort-btn:hover{background:#eff6ff;color:#1e3a8a}
+
+.dd-sort-btn.on{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.dd-divider{height:1px;background:#f1f5f9;margin:8px 0}
+
+.dd-search-wrap{position:relative}
+
+.dd-search-icon{
+    position:absolute;
+    left:9px;
+    top:50%;
+    transform:translateY(-50%);
+    width:12px;
+    height:12px;
+    color:#94a3b8;
+    pointer-events:none
+}
+
+.dd-search{
+    width:100%;
+    padding:7px 8px 7px 28px;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    background:#f8fafc;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    outline:none
+}
+
+.dd-search:focus{
+    background:#fff;
+    border-color:#93c5fd;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
+}
+
+.dd-list{
+    max-height:160px;
+    overflow-y:auto;
+    margin-top:6px
+}
+
+.dd-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+    color:#334155
+}
+
+.dd-item:hover{background:#f8fafc}
+
+.dd-item input{
+    accent-color:#1e3a8a;
+    width:13px;
+    height:13px;
+    flex-shrink:0;
+    cursor:pointer
+}
+
+.dd-item-label{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+
+.dd-item-count{
+    font-size:9px;
+    font-weight:700;
+    color:#94a3b8
+}
+
+.dd-all{
+    border-bottom:1px solid #f1f5f9;
+    border-radius:0;
+    margin-bottom:4px;
+    padding-bottom:8px
+}
+
+.dd-empty{
+    font-size:10px;
+    color:#94a3b8;
+    padding:10px;
+    text-align:center
+}
+
+.dd-footer{
+    display:flex;
+    gap:6px;
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px solid #f1f5f9
+}
+
+.dd-reset{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-reset:hover{background:#fee2e2;color:#991b1b}
+
+.dd-apply{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:none;
+    background:#1e3a8a;
+    color:#fff;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-apply:hover{background:#1d4ed8}
+
+/* =========================================================
+   ACTIVE FILTER CHIPS
+========================================================= */
+
+.active-filters-bar{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 20px;
+    background:#fffbeb;
+    border-bottom:1px solid #fde68a
+}
+
+.active-filters-bar[hidden]{display:none}
+
+.active-filter-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 6px 4px 10px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#92400e;
+    font-size:9px;
+    font-weight:800
+}
+
+.active-filter-chip button{
+    border:none;
+    background:transparent;
+    color:#92400e;
+    cursor:pointer;
+    font-size:12px;
+    line-height:1;
+    padding:0 4px;
+    border-radius:999px
+}
+
+.active-filter-chip button:hover{background:#fde68a}
+
+.clear-all-btn{
+    margin-left:auto;
+    font-size:9px;
+    font-weight:800;
+    color:#92400e;
+    border:1px solid #fde68a;
+    background:#fff;
+    border-radius:999px;
+    padding:4px 10px;
+    cursor:pointer;
+    font-family:inherit
+}
+
+/* =========================================================
+   BADGES (palet baku Bab 2)
 ========================================================= */
 
 .unit-badge{
-
     display:inline-flex;
-
     align-items:center;
-
     justify-content:center;
-
-    min-width:64px;
-
-    padding:
-        5px
-        9px;
-
+    min-width:58px;
+    padding:5px 9px;
     border-radius:8px;
-
     background:#eff6ff;
-
     color:#1e3a8a;
-
     font-size:10px;
-
-    font-weight:900;
-
+    font-weight:900
 }
 
-
-/* =========================================================
-   STATUS BADGE
-========================================================= */
-
-.status-badge{
-
+.type-badge{
     display:inline-flex;
-
     align-items:center;
-
-    gap:5px;
-
-    padding:
-        6px
-        10px;
-
-    border-radius:999px;
-
-    font-size:9px;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-
-    letter-spacing:.04em;
-
-}
-
-.status-open{
-
-    background:#fff7ed;
-
-    color:#c2410c;
-
-    border:
-        1px solid
-        #fed7aa;
-
-}
-
-.status-close{
-
-    background:#ecfdf5;
-
-    color:#047857;
-
-    border:
-        1px solid
-        #a7f3d0;
-
-}
-
-
-/* =========================================================
-   PERIODIC SERVICE
-========================================================= */
-
-.periodic-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
     justify-content:center;
-
-    padding:
-        5px
-        9px;
-
+    padding:5px 9px;
     border-radius:8px;
-
-    background:#f8fafc;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    color:#64748b;
-
     font-size:9px;
-
     font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.03em
+}
 
-    letter-spacing:.03em;
+.type-forklift{background:#fef3c7;color:#92400e}
+.type-wheelloader{background:#dbeafe;color:#1e40af}
+.type-dumptruck{background:#fee2e2;color:#991b1b}
+.type-excavator{background:#dcfce7;color:#166534}
+.type-unknown{background:#e2e8f0;color:#475569}
 
-    max-width:150px;
+/* status: OPEN = Rusak (belum selesai), CLOSE = Baik (selesai) */
+.status-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:900;
+    white-space:nowrap
+}
 
+.status-open{background:#fee2e2;color:#991b1b}
+.status-close{background:#dcfce7;color:#166534}
+.status-other{background:#e2e8f0;color:#475569}
+
+/* service: pola badge service Bab 2 */
+.service-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:5px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
     white-space:nowrap;
-
+    max-width:150px;
     overflow:hidden;
-
-    text-overflow:ellipsis;
-
+    text-overflow:ellipsis
 }
 
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-.filter-input{
-
-    width:100%;
-
-    background:#f8fafc;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:11px;
-
-    padding:
-        10px
-        12px;
-
-    color:#334155;
-
-    font-size:11px;
-
-    font-weight:600;
-
-    outline:none;
-
-    transition:.2s ease;
-
-}
-
-.filter-input:focus{
-
-    background:#fff;
-
-    border-color:#93c5fd;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(59,130,246,.10);
-
-}
-
-select.filter-input{
-
-    cursor:pointer;
-
-}
-
+.service-periodic{background:#dbeafe;color:#1e40af}
+.service-general{background:#fef3c7;color:#92400e}
+.service-other{background:#e2e8f0;color:#475569}
 
 /* =========================================================
    PAGINATION
 ========================================================= */
 
 .pagination-button{
-
     width:34px;
-
     height:34px;
-
     min-width:34px;
-
     border-radius:9px;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     background:#fff;
-
     color:#475569;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:11px;
-
     font-weight:800;
-
     cursor:pointer;
-
-    transition:.2s ease;
-
+    transition:.2s ease
 }
 
 .pagination-button:hover:not(:disabled){
-
     background:#eff6ff;
-
     color:#1e3a8a;
-
-    border-color:#bfdbfe;
-
+    border-color:#bfdbfe
 }
 
 .pagination-button.active{
-
     background:#1e3a8a;
-
     color:#fff;
-
-    border-color:#1e3a8a;
-
+    border-color:#1e3a8a
 }
 
-.pagination-button:disabled{
-
-    opacity:.4;
-
-    cursor:not-allowed;
-
-}
-
+.pagination-button:disabled{opacity:.4;cursor:not-allowed}
 
 /* =========================================================
-   LOADING
+   LOADING & EMPTY
 ========================================================= */
 
 #loading{
-
     min-height:350px;
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
+    justify-content:center
+}
 
+#tableContent{display:none}
+#tableContent.show{display:block}
+#emptyState{display:none}
+#emptyState.show{display:block}
+
+/* =========================================================
+   MOBILE FILTER BAR & CARDS (≤767px)
+========================================================= */
+
+.mobile-filter-bar{
+    display:none;
+    gap:6px;
+    overflow-x:auto;
+    padding:10px 12px;
+    background:#fff;
+    border-bottom:1px solid #f1f5f9;
+    scrollbar-width:none
+}
+
+.mobile-filter-bar::-webkit-scrollbar{display:none}
+
+.mobile-filter-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:7px 10px;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    font-family:inherit;
+    font-size:9px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    cursor:pointer
+}
+
+.mobile-filter-btn.active{
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe
+}
+
+.mobile-filter-count{
+    background:#1e3a8a;
+    color:#fff;
+    border-radius:999px;
+    padding:1px 6px;
+    font-size:8px
+}
+
+.mobile-data-list{display:none}
+
+.mobile-data-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:10px;
+    box-shadow:0 3px 10px rgba(15,23,42,.035);
+    transition:.2s ease
+}
+
+.mobile-data-card:active{transform:scale(.995)}
+
+.mobile-card-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:12px;
+    margin-bottom:12px;
+    border-bottom:1px solid #f1f5f9
+}
+
+.mobile-unit{
+    font-size:16px;
+    font-weight:900;
+    color:#1e3a8a;
+    line-height:1.2;
+    display:flex;
+    align-items:center;
+    gap:8px
+}
+
+.mobile-date{
+    font-size:10px;
+    font-weight:700;
+    color:#64748b;
+    margin-top:4px;
+    display:flex;
+    align-items:center;
+    gap:4px
+}
+
+.mobile-number{
+    display:inline-flex;
+    align-items:center;
     justify-content:center;
-
+    min-width:27px;
+    height:27px;
+    padding:0 7px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#64748b;
+    font-size:9px;
+    font-weight:900
 }
 
-#tableContent{
-
-    display:none;
-
+.mobile-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px 14px
 }
 
-#tableContent.show{
+.mobile-field{min-width:0}
+.mobile-field.full{grid-column:1/-1}
 
-    display:block;
-
+.mobile-label{
+    font-size:8px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:4px
 }
 
+.mobile-value{
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    word-break:break-word;
+    line-height:1.45
+}
+
+.mobile-box{
+    background:#f8fafc;
+    border-radius:10px;
+    padding:9px 10px;
+    color:#475569;
+    font-size:10px;
+    line-height:1.5;
+    word-break:break-word
+}
 
 /* =========================================================
-   EMPTY
+   BREAKPOINTS (bible Bab 4)
 ========================================================= */
 
-#emptyState{
-
-    display:none;
-
+@media(min-width:1920px){
+    main{max-width:1800px}
 }
 
-#emptyState.show{
+@media(min-width:768px) and (max-width:1100px){
 
-    display:block;
+    main{padding:28px!important;border-radius:24px!important}
 
-}
+    .page-title{font-size:25px}
 
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media(max-width:1024px){
-
-    body{
-
-        padding-left:16px !important;
-        padding-right:16px !important;
-
+    #tableContent>div:first-child{
+        grid-template-columns:repeat(3,minmax(0,1fr))!important
     }
+
+    header{margin-bottom:28px!important}
+
+}
+
+@media(max-width:767px){
+
+    body{padding:10px!important;align-items:stretch!important}
 
     main{
-
-        padding:28px !important;
-
-        border-radius:24px !important;
-
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
 
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
 
-    /* PAGE TITLE */
+    .logo-wrapper{margin-bottom:14px!important}
+
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
+    }
+
+    header .color-primary{
+        width:100%!important;
+        padding:13px 14px!important;
+        border-radius:15px!important
+    }
+
+    header .color-primary h1{
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
+    }
+
+    header .color-primary h2{
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
+    }
+
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
+    }
+
+    /* title row: judul di atas, aksi (tahun + kembali) di bawah */
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
+    }
 
     .page-title{
-
-        font-size:26px;
-
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important;
+        align-items:flex-start!important
     }
 
-
-    /* STATISTICS */
-
-    #tableContent > div:first-child{
-
-        grid-template-columns:
-            repeat(3,minmax(0,1fr));
-
+    .page-title span{
+        padding:9px!important;
+        border-radius:10px!important;
+        flex-shrink:0
     }
 
-
-    /* FILTER */
-
-    .filter-grid{
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-    }
-
-
-    /* HEADER */
-
-    header{
-
-        margin-bottom:28px !important;
-
-    }
-
-
-    /* TABLE */
-
-    .table-panel{
-
-        border-radius:18px;
-
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:768px){
-
-    body{
-
-        padding:
-            10px !important;
-
-        align-items:
-            stretch !important;
-
-    }
-
-
-    main{
-
-        width:100% !important;
-
-        max-width:none !important;
-
-        padding:
-            20px !important;
-
-        border-radius:
-            20px !important;
-
-        box-shadow:
-            0 10px 30px
-            rgba(15,23,42,.08) !important;
-
-    }
-
-
-    /* =====================================================
-       HEADER
-    ===================================================== */
-
-    header{
-
-        margin-bottom:
-            24px !important;
-
-        padding-bottom:
-            20px !important;
-
-    }
-
-
-    .logo-wrapper{
-
-        margin-bottom:
-            12px !important;
-
-    }
-
-
-    .logo-wrapper > div{
-
-        width:
-            78px !important;
-
-        height:
-            78px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
-
-    header > div:nth-child(2){
-
-        width:
-            100% !important;
-
-        max-width:
-            100% !important;
-
-        padding:
-            13px 16px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
-
-    header h1{
-
-        font-size:
-            18px !important;
-
-        line-height:
-            1.3 !important;
-
-        letter-spacing:
-            .07em !important;
-
-    }
-
-
-    header h2{
-
-        font-size:
-            11px !important;
-
-        line-height:
-            1.4 !important;
-
-        letter-spacing:
-            .12em !important;
-
-    }
-
-
-    header > div:last-child{
-
-        font-size:
-            8px !important;
-
-        letter-spacing:
-            .18em !important;
-
-        text-align:center;
-
-    }
-
-
-    /* =====================================================
-       PAGE TITLE
-    ===================================================== */
-
-    section > div:first-child{
-
-        flex-direction:
-            column !important;
-
-        align-items:
-            stretch !important;
-
-        gap:
-            14px !important;
-
-    }
-
-
-    .page-title{
-
-        font-size:
-            22px !important;
-
-        line-height:
-            1.3 !important;
-
-        gap:
-            10px !important;
-
-    }
-
-
-    .page-title > span{
-
-        padding:
-            9px !important;
-
-        flex-shrink:
-            0;
-
-    }
-
-
-    .page-title i{
-
-        width:
-            20px !important;
-
-        height:
-            20px !important;
-
-    }
-
+    .page-title span svg{width:18px!important;height:18px!important}
 
     .page-subtitle{
-
-        font-size:
-            11px !important;
-
-        line-height:
-            1.6 !important;
-
-        margin-left:
-            0 !important;
-
+        font-size:10px!important;
+        line-height:1.6!important;
+        margin-top:8px!important
     }
 
-
-    /* YEAR + BACK BUTTON */
-
-    section > div:first-child > div:last-child{
-
-        width:
-            100% !important;
-
-        display:
-            grid !important;
-
-        grid-template-columns:
-            minmax(0,1fr)
-            minmax(0,1fr) !important;
-
-        gap:
-            8px !important;
-
+    .page-actions{
+        width:100%;
+        display:grid;
+        grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+        gap:8px
     }
 
+    .page-actions>div{width:100%;gap:5px!important}
 
-    section > div:first-child > div:last-child > div{
-
-        width:
-            100% !important;
-
-        gap:
-            5px !important;
-
-    }
-
-
-    .year-selector{
-
-        min-width:
-            0 !important;
-
-        width:
-            100% !important;
-
-        padding:
-            10px !important;
-
-    }
-
+    .year-selector{min-width:0!important;width:100%!important;padding:10px!important}
 
     .back-button{
-
-        width:
-            100%;
-
-        justify-content:
-            center;
-
-        padding:
-            10px 12px;
-
+        width:100%;
+        padding:10px 12px;
+        border-radius:10px!important;
+        font-size:10px!important
     }
 
-
-    /* =====================================================
-       STATISTICS
-    ===================================================== */
-
-    #tableContent > div:first-child{
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-        gap:
-            10px !important;
-
-        margin-bottom:
-            16px !important;
-
+    /* stat grid */
+    #tableContent>div:first-child{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:10px!important;
+        margin-bottom:14px!important
     }
 
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-card p:first-child{font-size:8px!important;line-height:1.4!important}
+    .stat-card p.text-3xl{font-size:23px!important;line-height:1!important}
+    .stat-card span{font-size:9px!important}
 
-    .stat-card{
+    .table-panel{border-radius:16px!important}
+    .table-panel>div:first-child{padding:13px 14px!important}
+    .table-panel>div:first-child h3{font-size:12px!important}
+    .table-panel>div:first-child p{font-size:9px!important}
+    .table-panel>div:first-child>div:last-child{display:none!important}
 
-        padding:
-            13px !important;
+    .active-filters-bar{padding:10px 14px}
 
-        border-radius:
-            14px !important;
+    /* tabel desktop disembunyikan, diganti filter bar + kartu */
+    .table-scroll{display:none!important}
 
+    .mobile-filter-bar{display:flex}
+
+    .mobile-data-list{
+        display:block!important;
+        padding:9px!important;
+        background:#f8fafc
     }
 
+    .mobile-data-card{padding:14px!important;border-radius:15px!important;margin-bottom:9px!important}
+    .mobile-card-header{gap:8px!important;padding-bottom:11px!important;margin-bottom:11px!important}
+    .mobile-unit{font-size:15px!important}
+    .mobile-date{font-size:9px!important}
+    .mobile-card-grid{gap:10px 12px!important}
+    .mobile-label{font-size:7px!important;margin-bottom:4px!important}
+    .mobile-value{font-size:10px!important;line-height:1.45!important}
+    .mobile-box{font-size:9px!important;padding:8px 9px!important}
+    .mobile-number{min-width:25px!important;height:25px!important;font-size:8px!important}
 
-    .stat-card p:first-child{
+    .status-badge{padding:5px 8px!important;font-size:8px!important}
+    .status-badge svg{width:11px!important;height:11px!important}
+    .type-badge{padding:5px 8px!important;font-size:8px!important}
+    .service-badge{padding:5px 8px!important;font-size:8px!important}
 
-        font-size:
-            8px !important;
-
-        line-height:
-            1.4 !important;
-
+    /* popup jadi bottom sheet */
+    .col-dropdown.is-sheet{
+        left:16px!important;
+        right:16px!important;
+        top:auto!important;
+        bottom:16px!important;
+        width:auto!important;
+        max-height:70vh;
+        border-radius:14px;
+        overflow-y:auto
     }
 
+    .col-dropdown.is-sheet .dd-list{max-height:40vh}
 
-    .stat-card p.text-3xl{
+    .table-panel>div:last-child{padding:11px 12px!important;gap:10px}
 
-        font-size:
-            24px !important;
-
-        line-height:
-            1 !important;
-
-    }
-
-
-    .stat-card span{
-
-        font-size:
-            9px !important;
-
-    }
-
-
-    /* =====================================================
-       FILTER PANEL
-    ===================================================== */
-
-    .filter-panel{
-
-        padding:
-            15px !important;
-
-    }
-
-
-    .filter-grid{
-
-        grid-template-columns:
-            1fr !important;
-
-        gap:
-            11px !important;
-
-    }
-
-
-    /* =====================================================
-       TABLE PANEL
-    ===================================================== */
-
-    .table-panel{
-
-        border-radius:
-            16px !important;
-
-    }
-
-
-    .table-header{
-
-        padding:
-            14px !important;
-
-    }
-
-
-    .table-header-info{
-
-        min-width:
-            0;
-
-    }
-
-
-    .table-header-database{
-
-        font-size:
-            8px !important;
-
-        white-space:
-            nowrap;
-
-    }
-
-
-    .table-header-database svg{
-
-        width:
-            12px !important;
-
-        height:
-            12px !important;
-
-    }
-
-
-    .table-header-database #activeYearBadge{
-
-        padding:
-            4px 6px !important;
-
-    }
-
-
-    table{
-
-        min-width:
-            760px;
-
-    }
-
-
-    thead th{
-
-        font-size:
-            9px;
-
-    }
-
-
-    .sort-button{
-
-        padding:
-            11px 10px !important;
-
-        font-size:
-            9px !important;
-
-    }
-
-
-    .sort-icon{
-
-        width:
-            12px !important;
-
-        height:
-            12px !important;
-
-    }
-
-
-    tbody td{
-
-        padding:
-            11px 10px !important;
-
-        font-size:
-            10px !important;
-
-    }
-
-
-    /* =====================================================
-       PAGINATION
-    ===================================================== */
-
-    .pagination-footer{
-
-        padding:
-            12px 14px !important;
-
-        gap:
-            10px;
-
-    }
-
-
-    #paginationInfo{
-
-        font-size:
-            9px !important;
-
-        white-space:
-            nowrap;
-
-    }
-
+    #paginationInfo{font-size:9px!important;white-space:nowrap}
 
     #pagination{
-
-        max-width:
-            100%;
-
-        overflow-x:
-            auto;
-
-        padding-bottom:
-            2px;
-
-        scrollbar-width:
-            none;
-
+        max-width:100%;
+        overflow-x:auto;
+        padding-bottom:2px;
+        scrollbar-width:none
     }
 
-
-    #pagination::-webkit-scrollbar{
-
-        display:none;
-
-    }
-
+    #pagination::-webkit-scrollbar{display:none}
 
     .pagination-button{
-
-        width:
-            31px;
-
-        height:
-            31px;
-
-        min-width:
-            31px;
-
-        font-size:
-            10px;
-
+        width:30px!important;
+        height:30px!important;
+        min-width:30px!important;
+        font-size:9px!important;
+        border-radius:8px!important
     }
 
-
-    /* =====================================================
-       FOOTER
-    ===================================================== */
-
-    footer{
-
-        margin-top:
-            20px !important;
-
-        padding-bottom:
-            20px !important;
-
-    }
-
-
-    footer p:first-child{
-
-        font-size:
-            9px !important;
-
-        line-height:
-            1.5 !important;
-
-    }
-
-
-    footer p:last-child{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.6 !important;
-
-    }
+    footer{margin-top:18px!important;padding:0 10px 20px!important}
+    footer p:first-child{font-size:9px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.7!important}
 
 }
 
+@media(max-width:380px){
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
+    body{padding:6px!important}
 
-@media(max-width:480px){
+    main{padding:12px!important;border-radius:17px!important}
 
-    body{
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
 
-        padding:
-            6px !important;
+    .logo-wrapper>div{width:70px!important;height:70px!important}
 
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
+
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
+    .page-title span{padding:8px!important}
+    .page-title span svg{width:18px!important;height:18px!important}
+
+    #tableContent>div:first-child{gap:8px!important}
+
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-card p.text-3xl{font-size:21px!important}
+    .stat-card p:first-child{font-size:7px!important}
+
+    .mobile-card-grid{grid-template-columns:1fr!important}
+    .mobile-field.full{grid-column:auto}
+
+    .table-panel>div:last-child{
+        justify-content:center!important;
+        flex-direction:column!important;
+        align-items:stretch!important
     }
 
-
-    main{
-
-        padding:
-            15px !important;
-
-        border-radius:
-            17px !important;
-
-    }
-
-
-    /* HEADER */
-
-    header{
-
-        margin-bottom:
-            20px !important;
-
-        padding-bottom:
-            17px !important;
-
-    }
-
-
-    .logo-wrapper > div{
-
-        width:
-            68px !important;
-
-        height:
-            68px !important;
-
-    }
-
-
-    header > div:nth-child(2){
-
-        padding:
-            12px 10px !important;
-
-    }
-
-
-    header h1{
-
-        font-size:
-            15px !important;
-
-    }
-
-
-    header h2{
-
-        font-size:
-            9px !important;
-
-        letter-spacing:
-            .08em !important;
-
-    }
-
-
-    header > div:last-child{
-
-        font-size:
-            7px !important;
-
-        letter-spacing:
-            .12em !important;
-
-    }
-
-
-    /* PAGE TITLE */
-
-    .page-title{
-
-        font-size:
-            19px !important;
-
-    }
-
-
-    .page-subtitle{
-
-        font-size:
-            10px !important;
-
-    }
-
-
-    .page-title > span{
-
-        padding:
-            8px !important;
-
-    }
-
-
-    .page-title i{
-
-        width:
-            18px !important;
-
-        height:
-            18px !important;
-
-    }
-
-
-    section > div:first-child > div:last-child{
-
-        grid-template-columns:
-            1fr !important;
-
-    }
-
-
-    /* STATISTICS */
-
-    #tableContent > div:first-child{
-
-        gap:
-            8px !important;
-
-    }
-
-
-    .stat-card{
-
-        padding:
-            11px !important;
-
-        border-radius:
-            12px !important;
-
-    }
-
-
-    .stat-card p.text-3xl{
-
-        font-size:
-            21px !important;
-
-    }
-
-
-    /* FILTER */
-
-    .filter-panel{
-
-        padding:
-            13px !important;
-
-        border-radius:
-            14px !important;
-
-    }
-
-
-    /* TABLE HEADER */
-
-    .table-header{
-
-        flex-direction:
-            column !important;
-
-        align-items:
-            flex-start !important;
-
-        gap:
-            10px !important;
-
-    }
-
-
-    .table-header-database{
-
-        width:
-            100%;
-
-        justify-content:
-            flex-start;
-
-    }
-
-
-    /* PAGINATION */
-
-    .pagination-footer{
-
-        flex-direction:
-            column !important;
-
-        align-items:
-            stretch !important;
-
-    }
-
-
-    #paginationInfo{
-
-        text-align:
-            center;
-
-    }
-
-
-    #pagination{
-
-        justify-content:
-            center;
-
-    }
-
-}
-
-
-/* =========================================================
-   EXTRA SMALL MOBILE
-========================================================= */
-
-@media(max-width:375px){
-
-    main{
-
-        padding:
-            12px !important;
-
-    }
-
-
-    .page-title{
-
-        font-size:
-            17px !important;
-
-    }
-
-
-    .stat-card p.text-3xl{
-
-        font-size:
-            19px !important;
-
-    }
-
-
-    .stat-card p:first-child{
-
-        font-size:
-            7px !important;
-
-    }
-
-
-    header h1{
-
-        font-size:
-            14px !important;
-
-    }
-
-
-    header h2{
-
-        font-size:
-            8px !important;
-
-    }
-
-
-    .table-panel{
-
-        border-radius:
-            13px !important;
-
-    }
+    #paginationInfo{text-align:center}
+    #pagination{justify-content:center}
 
 }
 
 </style>
-
 </head>
 
+<body class="flex flex-col items-center p-4 sm:p-8">
 
-<body
-    class="
-        flex
-        flex-col
-        items-center
-        p-4
-        sm:p-8
-    "
->
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-
-<main
-    class="
-        w-full
-        max-w-7xl
-        flex-grow
-        glass-panel
-        p-6
-        sm:p-10
-        rounded-3xl
-        shadow-2xl
-        fade-in
-    "
->
-
-
-<!-- =====================================================
+<!-- ======================================================
      HEADER
-===================================================== -->
+====================================================== -->
 
-<header
-    class="
-        w-full
-        mb-8
-        pb-6
-        border-b-2
-        border-slate-100
-        flex
-        flex-col
-        items-center
-    "
->
-
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
     <div class="mb-4 logo-wrapper">
-
-        <div
-            class="
-                w-24
-                h-24
-                flex
-                items-center
-                justify-center
-                bg-white
-                rounded-2xl
-                logo-shadow
-                overflow-hidden
-                p-2
-            "
-        >
-
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
             <img
                 src="default_logo.png"
                 alt="Logo PT TSI"
-                class="
-                    w-full
-                    h-full
-                    object-contain
-                "
+                class="w-full h-full object-contain"
                 id="companyLogo"
                 onerror="handleLogoError()"
             >
-
-
             <div
                 id="logoFallback"
-                class="
-                    hidden
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    bg-blue-900
-                    w-full
-                    h-full
-                    text-white
-                "
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
             >
-
-                <span
-                    class="
-                        font-black
-                        text-2xl
-                    "
-                >
-                    TSI
-                </span>
-
+                <span class="font-black text-2xl">TSI</span>
             </div>
-
         </div>
-
     </div>
 
-
-    <div
-        class="
-            color-primary
-            text-white
-            px-8
-            py-4
-            rounded-2xl
-            shadow-lg
-            flex
-            flex-col
-            items-center
-            gap-1
-        "
-    >
-
-        <h1
-            class="
-                text-xl
-                sm:text-2xl
-                font-black
-                uppercase
-                tracking-[0.1em]
-                text-center
-            "
-        >
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
             PAPERLESS PROJECT
         </h1>
-
-
-        <div
-            class="
-                h-0.5
-                w-16
-                bg-amber-500
-                rounded-full
-                my-1
-            "
-        ></div>
-
-
-        <h2
-            class="
-                text-sm
-                sm:text-lg
-                font-bold
-                uppercase
-                tracking-widest
-                text-blue-100
-                text-center
-            "
-        >
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
             PT TATSUMI SERUNI INDONESIA
         </h2>
-
     </div>
 
-
-    <div
-        class="
-            mt-3
-            text-[10px]
-            font-bold
-            text-slate-400
-            tracking-[0.3em]
-            uppercase
-        "
-    >
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
         Digitalization Initiative v2.0
     </div>
 
 </header>
 
 
-<!-- =====================================================
-     PAGE TITLE
-===================================================== -->
+<!-- ======================================================
+     SECTION
+====================================================== -->
 
 <section>
 
-
-    <div
-        class="
-            flex
-            items-center
-            justify-between
-            gap-5
-            mb-6
-        "
-    >
-
+    <div class="flex items-center justify-between gap-5 mb-6">
 
         <div>
-
-            <h2
-                class="
-                    page-title
-                    flex
-                    items-center
-                    gap-3
-                "
-            >
-
-                <span
-                    class="
-                        bg-blue-900
-                        text-white
-                        p-3
-                        rounded-xl
-                        shadow-md
-                    "
-                >
-
-                    <i
-                        data-lucide="wrench"
-                        class="w-6 h-6"
-                    ></i>
-
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="wrench" class="w-6 h-6"></i>
                 </span>
-
                 Data Corrective Maintenance Unit
-
             </h2>
-
-
-            <p
-                class="
-                    page-subtitle
-                    mt-2
-                    ml-1
-                "
-            >
-
-                Daftar seluruh histori corrective maintenance unit
-                yang tersimpan pada database.
-
+            <p class="page-subtitle mt-2 ml-1">
+                Daftar seluruh histori corrective maintenance unit yang tersimpan pada database.
             </p>
-
         </div>
 
+        <div class="page-actions">
 
-        <div class="flex items-center gap-3">
-
-            <!-- YEAR -->
-
-            <div
-                class="
-                    flex
-                    items-center
-                    gap-2
-                "
-            >
-
-                <span
-                    class="
-                        text-[10px]
-                        font-black
-                        uppercase
-                        tracking-wider
-                        text-slate-400
-                    "
-                >
-                    Tahun
-                </span>
-
-
-                <select
-                    id="yearSelector"
-                    class="year-selector"
-                    onchange="changeYear()"
-                >
-
-                    <option value="2026">
-                        2026
-                    </option>
-
-                    <option value="2025">
-                        2025
-                    </option>
-
-                    <option value="2024">
-                        2024
-                    </option>
-
-                    <option value="2023">
-                        2023
-                    </option>
-
-                    <option value="2022">
-                        2022
-                    </option>
-
-                    <option value="2021">
-                        2021
-                    </option>
-
-                    <option value="2020">
-                        2020
-                    </option>
-
-                    <option value="2019">
-                        2019
-                    </option>
-
-                    <option value="ALL">
-                        Seluruh Data
-                    </option>
-
+            <div class="flex items-center gap-2">
+                <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">Tahun</span>
+                <select id="yearSelector" class="year-selector" onchange="changeYear()">
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="ALL">Seluruh Data</option>
                 </select>
-
             </div>
 
-
-            <button
-                onclick="goToDashboard()"
-                class="back-button"
-            >
-
-                <i
-                    data-lucide="arrow-left"
-                    class="w-4 h-4"
-                ></i>
-
+            <button onclick="goToDashboard()" class="back-button">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
                 Kembali
-
             </button>
 
         </div>
 
-
     </div>
 
 
-    <!-- =================================================
-         LOADING
-    ================================================= -->
-
+    <!-- LOADING -->
     <div id="loading">
-
-        <i
-            data-lucide="loader-circle"
-            class="
-                w-9
-                h-9
-                animate-spin
-                text-amber-500
-            "
-        ></i>
-
-
-        <p
-            id="loadingText"
-            class="
-                font-semibold
-                text-sm
-                text-slate-400
-                mt-3
-            "
-        >
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p id="loadingText" class="font-semibold text-sm text-slate-400 mt-3">
             Memuat data maintenance...
         </p>
-
     </div>
 
 
-    <!-- =================================================
-         TABLE CONTENT
-    ================================================= -->
-
+    <!-- TABLE CONTENT -->
     <div id="tableContent">
 
-
-        <!-- =================================================
-             STATISTICS
-        ================================================= -->
-
-        <div
-            class="
-                grid
-                grid-cols-5
-                gap-4
-                mb-6
-            "
-        >
-
-
-            <!-- TOTAL -->
+        <!-- STAT CARDS (dihitung dari baris yang lolos filter) -->
+        <div class="grid grid-cols-5 gap-4 mb-6">
 
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Total Activity
-                </p>
-
-
-                <p
-                    id="totalData"
-                    class="
-                        text-3xl
-                        font-black
-                        text-blue-900
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-
-                <p
-                    id="selectedYearLabel"
-                    class="
-                        text-[9px]
-                        text-slate-400
-                        font-bold
-                        mt-1
-                    "
-                >
-                    Tahun 2026
-                </p>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Activity</p>
+                <p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
+                <p id="selectedYearLabel" class="text-[9px] text-slate-400 font-bold mt-1">Tahun 2026</p>
             </div>
-
-
-            <!-- FORKLIFT -->
 
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Forklift
-                </p>
-
-
-                <div
-                    class="
-                        flex
-                        items-end
-                        gap-2
-                        mt-2
-                    "
-                >
-
-                    <p
-                        id="forkliftTotal"
-                        class="
-                            text-3xl
-                            font-black
-                            text-orange-600
-                        "
-                    >
-                        -
-                    </p>
-
-
-                    <span
-                        class="
-                            mb-1
-                            text-[11px]
-                            font-black
-                            text-slate-400
-                        "
-                    >
-                        F
-                    </span>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Forklift</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="forkliftTotal" class="text-3xl font-black text-amber-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">F</span>
                 </div>
-
             </div>
-
-
-            <!-- WHEELLOADER -->
 
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Wheelloader
-                </p>
-
-
-                <div
-                    class="
-                        flex
-                        items-end
-                        gap-2
-                        mt-2
-                    "
-                >
-
-                    <p
-                        id="wheelloaderTotal"
-                        class="
-                            text-3xl
-                            font-black
-                            text-indigo-600
-                        "
-                    >
-                        -
-                    </p>
-
-
-                    <span
-                        class="
-                            mb-1
-                            text-[11px]
-                            font-black
-                            text-slate-400
-                        "
-                    >
-                        W
-                    </span>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Wheelloader</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="wheelloaderTotal" class="text-3xl font-black text-indigo-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">W</span>
                 </div>
-
             </div>
-
-
-            <!-- DUMPTRUCK -->
 
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Dumptruck
-                </p>
-
-
-                <div
-                    class="
-                        flex
-                        items-end
-                        gap-2
-                        mt-2
-                    "
-                >
-
-                    <p
-                        id="dumptruckTotal"
-                        class="
-                            text-3xl
-                            font-black
-                            text-rose-600
-                        "
-                    >
-                        -
-                    </p>
-
-
-                    <span
-                        class="
-                            mb-1
-                            text-[11px]
-                            font-black
-                            text-slate-400
-                        "
-                    >
-                        D
-                    </span>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Dumptruck</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="dumptruckTotal" class="text-3xl font-black text-red-700">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">D</span>
                 </div>
-
             </div>
-
-
-            <!-- EXCAVATOR -->
 
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Excavator
-                </p>
-
-
-                <div
-                    class="
-                        flex
-                        items-end
-                        gap-2
-                        mt-2
-                    "
-                >
-
-                    <p
-                        id="excavatorTotal"
-                        class="
-                            text-3xl
-                            font-black
-                            text-emerald-600
-                        "
-                    >
-                        -
-                    </p>
-
-
-                    <span
-                        class="
-                            mb-1
-                            text-[11px]
-                            font-black
-                            text-slate-400
-                        "
-                    >
-                        E
-                    </span>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Excavator</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="excavatorTotal" class="text-3xl font-black text-emerald-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">E</span>
                 </div>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =================================================
-             FILTER PANEL
-        ================================================= -->
-
-        <div
-            class="
-                filter-panel
-                bg-white
-                border
-                border-slate-200
-                rounded-2xl
-                p-5
-                mb-5
-                shadow-sm
-            "
-        >
-
-
-            <div
-                class="
-                    flex
-                    items-center
-                    gap-3
-                    mb-4
-                "
-            >
-
-                <span
-                    class="
-                        bg-blue-100
-                        text-blue-700
-                        p-2
-                        rounded-lg
-                    "
-                >
-
-                    <i
-                        data-lucide="filter"
-                        class="w-4 h-4"
-                    ></i>
-
-                </span>
-
-
-                <div>
-
-                    <h3
-                        class="
-                            text-sm
-                            font-black
-                            text-slate-700
-                        "
-                    >
-                        Filter Data
-                    </h3>
-
-
-                    <p
-                        class="
-                            text-[10px]
-                            text-slate-400
-                            font-medium
-                        "
-                    >
-                        Gunakan filter untuk mencari data tertentu.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div
-                class="
-                    filter-grid
-                    grid
-                    grid-cols-4
-                    gap-4
-                "
-            >
-
-
-                <!-- SEARCH -->
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Cari Data
-                    </label>
-
-
-                    <div class="relative">
-
-                        <i
-                            data-lucide="search"
-                            class="
-                                absolute
-                                left-3
-                                top-1/2
-                                -translate-y-1/2
-                                w-4
-                                h-4
-                                text-slate-400
-                            "
-                        ></i>
-
-
-                        <input
-                            id="searchInput"
-                            type="text"
-                            placeholder="Unit, maintenance..."
-                            class="
-                                filter-input
-                                pl-10
-                            "
-                            oninput="applyFilters()"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- UNIT TYPE -->
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Jenis Unit
-                    </label>
-
-
-                    <select
-                        id="unitTypeFilter"
-                        class="filter-input"
-                        onchange="applyFilters()"
-                    >
-
-                        <option value="">
-                            Semua Unit
-                        </option>
-
-                        <option value="F">
-                            Forklift
-                        </option>
-
-                        <option value="W">
-                            Wheelloader
-                        </option>
-
-                        <option value="D">
-                            Dumptruck
-                        </option>
-
-                        <option value="E">
-                            Excavator
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- STATUS -->
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Status
-                    </label>
-
-
-                    <select
-                        id="statusFilter"
-                        class="filter-input"
-                        onchange="applyFilters()"
-                    >
-
-                        <option value="">
-                            Semua Status
-                        </option>
-
-                        <option value="OPEN">
-                            Open
-                        </option>
-
-                        <option value="CLOSE">
-                            Close
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- RESET -->
-
-                <div
-                    class="
-                        flex
-                        items-end
-                    "
-                >
-
-                    <button
-                        onclick="resetFilters()"
-                        class="
-                            w-full
-                            h-[38px]
-                            rounded-xl
-                            border
-                            border-slate-200
-                            bg-slate-50
-                            hover:bg-slate-100
-                            text-slate-600
-                            font-bold
-                            text-[11px]
-                            transition
-                            flex
-                            items-center
-                            justify-center
-                            gap-2
-                        "
-                    >
-
-                        <i
-                            data-lucide="rotate-ccw"
-                            class="w-4 h-4"
-                        ></i>
-
-                        Reset Filter
-
-                    </button>
-
-                </div>
-
-
             </div>
 
         </div>
 
 
-        <!-- =================================================
-             TABLE
-        ================================================= -->
-
+        <!-- TABLE PANEL (tanpa panel filter terpisah) -->
         <div class="table-panel">
 
-
-            <!-- TABLE HEADER -->
-
-            <div
-                class="
-                    table-header
-                    px-5
-                    py-4
-                    border-b
-                    border-slate-100
-                    flex
-                    items-center
-                    justify-between
-                "
-            >
-
+            <!-- HEADER PANEL -->
+            <div class="table-header px-5 py-4 border-b border-slate-100 flex items-center justify-between">
                 <div class="table-header-info">
-
-                    <h3
-                        class="
-                            font-black
-                            text-slate-700
-                            text-sm
-                        "
-                    >
-                        Histori Corrective Maintenance
-                    </h3>
-
-
-                    <p
-                        id="resultInfo"
-                        class="
-                            text-[10px]
-                            text-slate-400
-                            mt-1
-                            font-medium
-                        "
-                    >
-                        -
-                    </p>
-
+                    <h3 class="font-black text-slate-700 text-sm">Histori Corrective Maintenance</h3>
+                    <p id="resultInfo" class="text-[10px] text-slate-400 mt-1 font-medium">-</p>
                 </div>
-
-
-                <div
-                    class="
-                        table-header-database
-                        flex
-                        items-center
-                        gap-2
-                        text-[10px]
-                        text-slate-400
-                        font-semibold
-                    "
-                >
-
-                    <i
-                        data-lucide="database"
-                        class="w-3.5 h-3.5"
-                    ></i>
-
+                <div class="table-header-database flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
+                    <i data-lucide="database" class="w-3.5 h-3.5"></i>
                     Database Spreadsheet
-
-                    <span
-                        id="activeYearBadge"
-                        class="
-                            bg-blue-50
-                            text-blue-700
-                            px-2
-                            py-1
-                            rounded-md
-                            font-black
-                        "
-                    >
-                        2026
-                    </span>
-
+                    <span id="activeYearBadge" class="bg-blue-50 text-blue-700 px-2 py-1 rounded-md font-black">2026</span>
                 </div>
-
             </div>
 
+            <!-- CHIP FILTER AKTIF -->
+            <div id="activeFilters" class="active-filters-bar" hidden></div>
 
-            <!-- TABLE -->
-
+            <!-- TABEL DESKTOP -->
             <div class="table-scroll">
-
                 <table>
-
                     <thead>
-
-                        <tr>
-
-                            <!-- NUMBER -->
-
-                            <th
-                                style="width:55px"
-                            >
-
-                                <button
-                                    class="sort-button"
-                                    onclick="sortBy('number')"
-                                    data-sort-key="number"
-                                >
-
-                                    <span>No</span>
-
-                                    <i
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </button>
-
-                            </th>
-
-
-                            <!-- DATE -->
-
-                            <th
-                                style="width:150px"
-                            >
-
-                                <button
-                                    class="sort-button"
-                                    onclick="sortBy('date')"
-                                    data-sort-key="date"
-                                >
-
-                                    <span>Date</span>
-
-                                    <i
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </button>
-
-                            </th>
-
-
-                            <!-- UNIT -->
-
-                            <th
-                                style="width:120px"
-                            >
-
-                                <button
-                                    class="sort-button"
-                                    onclick="sortBy('unit')"
-                                    data-sort-key="unit"
-                                >
-
-                                    <span>Unit</span>
-
-                                    <i
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </button>
-
-                            </th>
-
-
-                            <!-- MAINTENANCE -->
-
-                            <th>
-
-                                <button
-                                    class="sort-button"
-                                    onclick="sortBy('maintenance')"
-                                    data-sort-key="maintenance"
-                                >
-
-                                    <span>Maintenance</span>
-
-                                    <i
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </button>
-
-                            </th>
-
-
-                            <!-- PERIODIC -->
-
-                            <th
-                                style="width:160px"
-                            >
-
-                                <button
-                                    class="sort-button"
-                                    onclick="sortBy('periodic')"
-                                    data-sort-key="periodic"
-                                >
-
-                                    <span>Periodic Service</span>
-
-                                    <i
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </button>
-
-                            </th>
-
-
-                            <!-- STATUS -->
-
-                            <th
-                                style="width:120px"
-                            >
-
-                                <button
-                                    class="sort-button"
-                                    onclick="sortBy('status')"
-                                    data-sort-key="status"
-                                >
-
-                                    <span>Status</span>
-
-                                    <i
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </button>
-
-                            </th>
-
-                        </tr>
-
+                        <tr id="tableHeadRow"></tr>
                     </thead>
-
-
                     <tbody id="tableBody"></tbody>
-
                 </table>
-
             </div>
 
+            <!-- MOBILE: bar filter + kartu -->
+            <div id="mobileFilterBar" class="mobile-filter-bar"></div>
+            <div id="mobileDataList" class="mobile-data-list"></div>
 
-            <!-- EMPTY -->
-
-            <div
-                id="emptyState"
-            >
-
-                <div
-                    class="
-                        py-16
-                        text-center
-                    "
-                >
-
-                    <div
-                        class="
-                            inline-flex
-                            items-center
-                            justify-center
-                            bg-slate-100
-                            text-slate-400
-                            p-4
-                            rounded-full
-                        "
-                    >
-
-                        <i
-                            data-lucide="search-x"
-                            class="w-8 h-8"
-                        ></i>
-
+            <!-- EMPTY STATE -->
+            <div id="emptyState">
+                <div class="py-16 text-center">
+                    <div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
+                        <i data-lucide="search-x" class="w-8 h-8"></i>
                     </div>
-
-
-                    <h3
-                        class="
-                            font-bold
-                            text-slate-600
-                            mt-4
-                        "
-                    >
-                        Data tidak ditemukan
-                    </h3>
-
-
-                    <p
-                        class="
-                            text-xs
-                            text-slate-400
-                            mt-1
-                        "
-                    >
-                        Coba ubah kata pencarian atau filter.
-                    </p>
-
+                    <h3 class="font-bold text-slate-600 mt-4">Data tidak ditemukan</h3>
+                    <p class="text-xs text-slate-400 mt-1">Coba ubah filter pada header kolom.</p>
                 </div>
-
             </div>
-
 
             <!-- PAGINATION -->
-
-            <div
-                class="
-                    pagination-footer
-                    px-5
-                    py-4
-                    border-t
-                    border-slate-100
-                    flex
-                    items-center
-                    justify-between
-                "
-            >
-
-                <div
-                    id="paginationInfo"
-                    class="
-                        text-[10px]
-                        font-semibold
-                        text-slate-400
-                    "
-                >
-                    -
-                </div>
-
-
-                <div
-                    id="pagination"
-                    class="
-                        flex
-                        items-center
-                        gap-1
-                    "
-                >
-                </div>
-
+            <div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
+                <div id="paginationInfo" class="text-[10px] font-semibold text-slate-400">-</div>
+                <div id="pagination" class="flex items-center gap-1"></div>
             </div>
 
-
         </div>
-
 
     </div>
 
 </section>
 
-
 </main>
 
+<!-- POPUP FILTER & SORT KOLOM (satu instance, position fixed) -->
+<div id="colDropdown" class="col-dropdown" hidden></div>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer
-    class="
-        mt-8
-        text-center
-        text-slate-400
-        px-4
-        pb-8
-    "
->
-
-    <p
-        class="
-            font-bold
-            text-slate-500
-            tracking-tight
-            uppercase
-        "
-    >
-
-        &copy; 2026 Paperless Project - PT TSI.
-        All rights reserved.
-
+<!-- FOOTER -->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
     </p>
-
-
-    <p
-        class="
-            text-[10px]
-            mt-1
-        "
-    >
-
+    <p class="text-[10px] mt-1">
         System Architecture by:
-
-        <span
-            class="
-                text-slate-600
-                font-semibold
-                uppercase
-            "
-        >
-            Imam Wahyu Ramadhan, S.T.
-        </span>
-
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
         |
-
-        <span
-            class="
-                text-amber-600
-                font-bold
-                uppercase
-                tracking-tighter
-            "
-        >
-            Project 2.0
-        </span>
-
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
     </p>
-
 </footer>
 
 
@@ -3115,986 +1234,396 @@ select.filter-input{
    CONFIGURATION
 ========================================================= */
 
-const API_URL =
+const API_URL=
 'https://script.google.com/macros/s/AKfycbzOF2dJ29DEp2opZ41wz-2zpG0BJXYprI5AkgSdmeipmYeCnqWrjigS_GYl1Olx1HuRfQ/exec';
 
+const DASHBOARD_URL='maintenance.html';
 
-const DASHBOARD_URL =
-'maintenance.html';
+const ROWS_PER_PAGE=15;
 
-
-const ROWS_PER_PAGE = 15;
-
-
-/* =========================================================
-   GLOBAL VARIABLES
-========================================================= */
-
-let apiData = null;
-
-let allData = [];
-
-let filteredData = [];
-
-let currentPage = 1;
-
-let currentYear = '2026';
-
-
-/*
-   DEFAULT SORTING
-
-   Date terbaru -> terlama
-*/
-
-let sortKey = 'date';
-
-let sortDirection = 'desc';
+/* Definisi kolom tabel (Bible Bab 10) */
+const COLUMNS=[
+    {key:'number',      label:'No',              type:'number', filterable:false, width:'55px'},
+    {key:'date',        label:'Date',            type:'date',   filterable:true,  width:'150px'},
+    {key:'unit',        label:'Unit',            type:'text',   filterable:true,  width:'120px'},
+    {key:'maintenance', label:'Maintenance',     type:'text',   filterable:true,  width:'30%'},
+    {key:'periodic',    label:'Periodic Service',type:'text',   filterable:true,  width:'160px'},
+    {key:'status',      label:'Status',          type:'text',   filterable:true,  width:'120px'}
+];
 
 
 /* =========================================================
-   NAVIGATION
+   STATE
 ========================================================= */
 
-function goToDashboard(){
+let allData=[];          // seluruh data (_idx = urutan database)
+let rowsView=[];         // baris yang lolos semua filter kolom
+let columnFilters={};    // { key: Set(nilai terpilih) }
+let sortKey='date';      // default: tanggal terbaru
+let sortDir='desc';
+let currentPage=1;
+let currentYear='2026';
 
-    window.location.href =
-        DASHBOARD_URL;
+let openColumn=null;
+let ddValues=[];
+let draftSelection=new Set();
+let ddQuery='';
 
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $=id=>document.getElementById(id);
+
+const getColumn=key=>COLUMNS.find(c=>c.key===key);
+
+const isEmpty=v=>v===''||v===null||v===undefined;
+
+const pad=n=>String(n).padStart(2,'0');
+
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
 }
-
-
-/* =========================================================
-   LOGO
-========================================================= */
 
 function handleLogoError(){
+    $('companyLogo').classList.add('hidden');
+    const fb=$('logoFallback');
+    fb.classList.remove('hidden');
+    fb.classList.add('flex');
+}
 
-    const logo =
-        document.getElementById(
-            'companyLogo'
-        );
+function goToDashboard(){
+    window.location.href=DASHBOARD_URL;
+}
 
+function normalizeUnit(value){
+    return String(value??'').trim().toUpperCase();
+}
 
-    const fallback =
-        document.getElementById(
-            'logoFallback'
-        );
+function getUnitType(unit){
+    const v=normalizeUnit(unit);
+    return ['F','W','D','E'].find(t=>v.startsWith(t))||'';
+}
 
+function getUnitTypeName(unit){
+    return({F:'Forklift',W:'Wheelloader',D:'Dumptruck',E:'Excavator'})[getUnitType(unit)]||'Unknown';
+}
 
-    if(logo){
+/* Parse tanggal: "12 January 2026", "12/01/2026", "2026-01-12" */
+function parseDate(value){
 
-        logo.classList.add(
-            'hidden'
-        );
+    const text=String(value??'').trim();
+    if(!text) return null;
 
+    const named=text.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/i);
+    if(named){
+        const months={
+            january:0,february:1,march:2,april:3,may:4,june:5,
+            july:6,august:7,september:8,october:9,november:10,december:11,
+            januari:0,februari:1,maret:2,mei:4,juni:5,
+            juli:6,agustus:7,oktober:9,desember:11
+        };
+        const m=months[named[2].toLowerCase()];
+        if(m!==undefined) return new Date(Number(named[3]),m,Number(named[1]));
     }
 
+    const dmy=text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if(dmy) return new Date(Number(dmy[3]),Number(dmy[2])-1,Number(dmy[1]));
 
-    if(fallback){
+    const iso=text.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if(iso) return new Date(Number(iso[1]),Number(iso[2])-1,Number(iso[3]));
 
-        fallback.classList.remove(
-            'hidden'
-        );
+    const fb=new Date(text);
+    return isNaN(fb.getTime())?null:fb;
+}
 
-        fallback.classList.add(
-            'flex'
-        );
+/* Normalisasi tanggal ke yyyy-mm-dd (dipakai filter & sort) */
+function dateKey(value){
+    if(!String(value??'').trim()) return '';
+    const d=parseDate(value);
+    if(!d) return String(value).trim();
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
 
+function formatDate(value){
+    const k=dateKey(value);
+    if(!k) return '-';
+    const m=k.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return m?`${m[3]}/${m[2]}/${m[1]}`:k;
+}
+
+/* Nilai yang dipakai untuk filter & sort, per kolom */
+function getCellValue(row,key){
+    switch(key){
+        case 'date':        return dateKey(row.date);
+        case 'unit':        return normalizeUnit(row.unit);
+        case 'maintenance': return String(row.maintenance??'').trim();
+        case 'periodic':    return String(row.periodic??'').trim();
+        case 'status':      return String(row.status??'').trim().toUpperCase();
+        default:            return '';
     }
+}
 
+/* Teks yang tampil di popup & chip */
+function getValueLabel(key,value){
+    const col=getColumn(key);
+    if(col&&col.type==='date') return value?formatDate(value):'(Kosong)';
+    return value||'(Kosong)';
 }
 
 
 /* =========================================================
-   CHANGE YEAR
+   LOAD DATA
 ========================================================= */
 
-function changeYear(){
+/* Daftar tahun yang tersedia (urut terbaru → terlama) */
+const YEARS=['2026','2025','2024','2023','2022','2021','2020','2019'];
 
-    const selector =
-        document.getElementById(
-            'yearSelector'
-        );
+/* CACHE: tahun → array baris yang sudah dinormalisasi */
+const yearCache={};
 
+/* Request yang sedang berjalan, agar satu tahun tidak di-fetch dua kali */
+const yearInflight={};
 
-    const year =
-        selector.value;
+function toRow(row,yearKey){
+    return {
+        sourceYear:yearKey,
+        date:row[0]??'',
+        unit:row[1]??'',
+        maintenance:row[2]??'',
+        periodic:row[3]??'',
+        status:row[4]??''
+    };
+}
 
+/*
+   Ambil data satu tahun. Jika sudah di cache → langsung dikembalikan
+   tanpa request. Jika sedang dimuat → ikut menunggu request yang sama.
+*/
+function fetchYear(year){
 
-    loadYearData(
-        year
-    );
+    const y=String(year);
+
+    if(yearCache[y]) return Promise.resolve(yearCache[y]);
+
+    if(yearInflight[y]) return yearInflight[y];
+
+    yearInflight[y]=(async()=>{
+        try{
+
+            const response=await fetch(
+                `${API_URL}?year=${encodeURIComponent(y)}`,
+                {method:'GET',cache:'no-store'}
+            );
+
+            if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
+
+            const result=await response.json();
+
+            if(!result||result.success!==true){
+                throw new Error(result?.error||`Data ${y} tidak valid.`);
+            }
+
+            const sheet=result.sheets?.[y];
+
+            if(!sheet) throw new Error(`Data sheet ${y} tidak ditemukan.`);
+
+            const rows=Array.isArray(sheet.data)
+                ?sheet.data.map(row=>toRow(row,y))
+                :[];
+
+            yearCache[y]=rows;
+
+            return rows;
+
+        }finally{
+            delete yearInflight[y];
+        }
+    })();
+
+    return yearInflight[y];
+}
+
+/*
+   Muat tahun lain di background (tanpa memblokir tampilan).
+   Tahun yang sudah di cache atau sedang dimuat dilewati.
+*/
+function prefetchOtherYears(currentY){
+
+    YEARS
+        .filter(y=>y!==currentY&&!yearCache[y])
+        .forEach(y=>{
+            fetchYear(y).catch(error=>
+                console.warn(`Prefetch ${y}:`,error.message)
+            );
+        });
 
 }
 
+async function loadYearData(year){
 
-/* =========================================================
-   LOAD YEAR DATA
-========================================================= */
+    currentYear=String(year);
 
-async function loadYearData(
-    year
-){
+    $('yearSelector').value=currentYear;
 
-    currentYear =
-        String(year);
+    const isAll=currentYear==='ALL';
+    const needed=isAll?YEARS:[currentYear];
 
+    /* Tampilkan loading hanya jika ada tahun yang belum di cache */
+    const allCached=needed.every(y=>yearCache[y]);
 
-    showLoading(
-        currentYear === 'ALL'
-            ?
-            'Memuat seluruh data maintenance...'
-            :
-            `Memuat data maintenance ${currentYear}...`
-    );
-
-
-    allData = [];
-
-    filteredData = [];
-
-    currentPage = 1;
-
-
-    sortKey = 'date';
-
-    sortDirection = 'desc';
-
+    if(!allCached){
+        showLoading(
+            isAll
+            ?'Memuat seluruh data maintenance...'
+            :`Memuat data maintenance ${currentYear}...`
+        );
+    }
 
     try{
 
-        let requestUrl;
+        /* Sudah di cache → resolve seketika */
+        await Promise.all(needed.map(fetchYear));
 
+        allData=needed
+            .flatMap(y=>yearCache[y])
+            .map((row,i)=>({...row,_idx:i}));
 
-        if(
-            currentYear === 'ALL'
-        ){
+        columnFilters={};
+        sortKey='date';
+        sortDir='desc';
+        currentPage=1;
 
-            requestUrl =
-                API_URL;
+        rowsView=[...allData];
 
-        }
-
-        else{
-
-            requestUrl =
-                `${API_URL}?year=${encodeURIComponent(currentYear)}`;
-
-        }
-
-
-        const response =
-            await fetch(
-                requestUrl,
-                {
-                    method:'GET',
-                    cache:'no-store'
-                }
-            );
-
-
-        if(!response.ok){
-
-            throw new Error(
-                `HTTP Error ${response.status}`
-            );
-
-        }
-
-
-        const result =
-            await response.json();
-
-
-        if(
-            !result ||
-            result.success !== true
-        ){
-
-            throw new Error(
-                result?.error ||
-                'API mengembalikan response tidak valid.'
-            );
-
-        }
-
-
-        apiData =
-            result;
-
-
-        if(
-            currentYear === 'ALL'
-        ){
-
-            const sheets =
-                result.sheets || {};
-
-
-            const years =
-                Object.keys(
-                    sheets
-                );
-
-
-            years.forEach(
-                yearKey=>{
-
-                    const sheet =
-                        sheets[
-                            yearKey
-                        ];
-
-
-                    if(
-                        !sheet ||
-                        !Array.isArray(
-                            sheet.data
-                        )
-                    ){
-
-                        return;
-
-                    }
-
-
-                    sheet.data.forEach(
-                        (
-                            row,
-                            index
-                        )=>{
-
-                            allData.push({
-
-                                originalIndex:
-                                    allData.length,
-
-                                sourceYear:
-                                    yearKey,
-
-                                date:
-                                    row[0] ?? '',
-
-                                unit:
-                                    row[1] ?? '',
-
-                                maintenance:
-                                    row[2] ?? '',
-
-                                periodic:
-                                    row[3] ?? '',
-
-                                status:
-                                    row[4] ?? ''
-
-                            });
-
-                        }
-                    );
-
-                }
-            );
-
-        }
-
-        else{
-
-            const sheet =
-                result.sheets?.[
-                    currentYear
-                ];
-
-
-            if(!sheet){
-
-                throw new Error(
-                    `Data sheet ${currentYear} tidak ditemukan.`
-                );
-
-            }
-
-
-            const rows =
-                Array.isArray(
-                    sheet.data
-                )
-                ?
-                sheet.data
-                :
-                [];
-
-
-            allData =
-                rows.map(
-                    (
-                        row,
-                        index
-                    )=>({
-
-                        originalIndex:
-                            index,
-
-                        sourceYear:
-                            currentYear,
-
-                        date:
-                            row[0] ?? '',
-
-                        unit:
-                            row[1] ?? '',
-
-                        maintenance:
-                            row[2] ?? '',
-
-                        periodic:
-                            row[3] ?? '',
-
-                        status:
-                            row[4] ?? ''
-
-                    })
-                );
-
-        }
-
-
-        filteredData =
-            [...allData];
-
-
-        updateStatistics(
-            allData
-        );
-
-
-        updateYearUI(
-            currentYear
-        );
-
-
-        clearFilters();
-
-
+        updateYearUI(currentYear);
         renderTable();
-
-
         hideLoading();
 
+        /* Tahun lain dimuat di background */
+        if(!isAll) prefetchOtherYears(currentYear);
 
-    }
-    catch(error){
+    }catch(error){
 
-        console.error(
-            'Maintenance API Error:',
-            error
-        );
-
-
-        showError(
-            error.message
-        );
+        console.error('Maintenance API Error:',error);
+        showError(error.message);
 
     }
 
 }
 
-
-/* =========================================================
-   SHOW LOADING
-========================================================= */
-
-function showLoading(
-    message
-){
-
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    const tableContent =
-        document.getElementById(
-            'tableContent'
-        );
-
-
-    const loadingText =
-        document.getElementById(
-            'loadingText'
-        );
-
-
-    if(loadingText){
-
-        loadingText.textContent =
-            message ||
-            'Memuat data...';
-
-    }
-
-
-    if(loading){
-
-        loading.style.display =
-            'flex';
-
-    }
-
-
-    if(tableContent){
-
-        tableContent.classList.remove(
-            'show'
-        );
-
-    }
-
+function changeYear(){
+    loadYearData($('yearSelector').value);
 }
 
 
 /* =========================================================
-   HIDE LOADING
+   LOADING & ERROR
 ========================================================= */
+
+function showLoading(message){
+
+    $('loadingText').textContent=message||'Memuat data...';
+    $('loading').style.display='flex';
+    $('tableContent').classList.remove('show');
+
+}
 
 function hideLoading(){
 
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    const tableContent =
-        document.getElementById(
-            'tableContent'
-        );
-
-
-    if(loading){
-
-        loading.style.display =
-            'none';
-
-    }
-
-
-    if(tableContent){
-
-        tableContent.classList.add(
-            'show'
-        );
-
-    }
+    $('loading').style.display='none';
+    $('tableContent').classList.add('show');
 
 }
 
+function showError(message){
 
-/* =========================================================
-   SHOW ERROR
-========================================================= */
+    const loading=$('loading');
+    loading.style.display='flex';
 
-function showError(
-    message
-){
-
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    if(!loading){
-
-        return;
-
-    }
-
-
-    loading.style.display =
-        'flex';
-
-
-    loading.innerHTML = `
-
+    loading.innerHTML=`
         <div class="text-center">
-
-            <div
-                class="
-                    bg-red-50
-                    text-red-600
-                    p-4
-                    rounded-full
-                    inline-flex
-                "
-            >
-
-                <i
-                    data-lucide="alert-circle"
-                    class="w-8 h-8"
-                ></i>
-
+            <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                <i data-lucide="alert-circle" class="w-8 h-8"></i>
             </div>
-
-
-            <h3
-                class="
-                    font-bold
-                    text-red-700
-                    mt-3
-                "
-            >
-                Gagal memuat data
-            </h3>
-
-
-            <p
-                class="
-                    text-xs
-                    text-slate-500
-                    mt-2
-                    max-w-lg
-                    mx-auto
-                "
-            >
-                ${escapeHtml(
-                    message
-                )}
-            </p>
-
-
-            <button
-                onclick="loadYearData(currentYear)"
-                class="
-                    mt-4
-                    bg-blue-800
-                    hover:bg-blue-700
-                    text-white
-                    font-bold
-                    px-5
-                    py-2.5
-                    rounded-xl
-                    text-sm
-                "
-            >
-
+            <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+            <p class="text-xs text-slate-500 mt-2 max-w-lg mx-auto">${escapeHtml(message)}</p>
+            <button onclick="loadYearData(currentYear)" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
                 Coba Lagi
-
             </button>
-
         </div>
-
     `;
-
 
     lucide.createIcons();
 
 }
 
+function updateYearUI(year){
 
-/* =========================================================
-   UPDATE YEAR UI
-========================================================= */
+    const label=year==='ALL'?'Seluruh Data':`Tahun ${year}`;
 
-function updateYearUI(
-    year
-){
+    $('selectedYearLabel').textContent=label;
+    $('activeYearBadge').textContent=year==='ALL'?'Seluruh Data':year;
 
-    const label =
-        document.getElementById(
-            'selectedYearLabel'
-        );
-
-
-    const badge =
-        document.getElementById(
-            'activeYearBadge'
-        );
-
-
-    const displayYear =
-        year === 'ALL'
-            ?
-            'Seluruh Data'
-            :
-            year;
-
-
-    if(label){
-
-        label.textContent =
-            displayYear === 'Seluruh Data'
-                ?
-                displayYear
-                :
-                `Tahun ${displayYear}`;
-
-    }
-
-
-    if(badge){
-
-        badge.textContent =
-            displayYear;
-
-    }
-
-
-    const selector =
-        document.getElementById(
-            'yearSelector'
-        );
-
-
-    if(
-        selector &&
-        selector.value !== String(year)
-    ){
-
-        selector.value =
-            String(year);
-
+    if($('yearSelector').value!==String(year)){
+        $('yearSelector').value=String(year);
     }
 
 }
 
 
 /* =========================================================
-   NORMALIZE UNIT
+   FILTER ENGINE (Excel-style, saling mempengaruhi)
 ========================================================= */
 
-function normalizeUnit(
-    value
-){
-
-    return String(
-        value ?? ''
-    )
-    .trim()
-    .toUpperCase();
-
+/* Baris lolos semua filter, KECUALI filter kolom excludeKey */
+function rowPasses(row,excludeKey){
+    return Object.keys(columnFilters).every(key=>{
+        if(key===excludeKey) return true;
+        const set=columnFilters[key];
+        return !set||set.has(getCellValue(row,key));
+    });
 }
 
-
-/* =========================================================
-   GET UNIT TYPE
-========================================================= */
-
-function getUnitType(
-    unit
-){
-
-    const value =
-        normalizeUnit(
-            unit
-        );
-
-
-    if(
-        value.startsWith('F')
-    ){
-
-        return 'F';
-
-    }
-
-
-    if(
-        value.startsWith('W')
-    ){
-
-        return 'W';
-
-    }
-
-
-    if(
-        value.startsWith('D')
-    ){
-
-        return 'D';
-
-    }
-
-
-    if(
-        value.startsWith('E')
-    ){
-
-        return 'E';
-
-    }
-
-
-    return '';
-
+/* Nilai unik + jumlah, dari baris yang lolos filter KOLOM LAIN */
+function distinctValues(key){
+    const map=new Map();
+    allData.forEach(row=>{
+        if(!rowPasses(row,key)) return;
+        const v=getCellValue(row,key);
+        map.set(v,(map.get(v)||0)+1);
+    });
+    const isDate=getColumn(key).type==='date';
+    return [...map.entries()]
+        .map(([value,count])=>({value,count}))
+        .sort((a,b)=>{
+            if(a.value===''||b.value==='') return (a.value==='')-(b.value==='');
+            return isDate
+                ?a.value.localeCompare(b.value)
+                :a.value.localeCompare(b.value,'id',{numeric:true,sensitivity:'base'});
+        });
 }
 
-
-/* =========================================================
-   UPDATE STATISTICS
-========================================================= */
-
-function updateStatistics(
-    data
-){
-
-    const counts = {
-
-        F:0,
-
-        W:0,
-
-        D:0,
-
-        E:0
-
-    };
-
-
-    data.forEach(
-        row=>{
-
-            const type =
-                getUnitType(
-                    row.unit
-                );
-
-
-            if(
-                counts[type] !== undefined
-            ){
-
-                counts[type]++;
-
-            }
-
-        }
-    );
-
-
-    document
-        .getElementById(
-            'totalData'
-        )
-        .textContent =
-            data.length.toLocaleString(
-                'id-ID'
-            );
-
-
-    document
-        .getElementById(
-            'forkliftTotal'
-        )
-        .textContent =
-            counts.F.toLocaleString(
-                'id-ID'
-            );
-
-
-    document
-        .getElementById(
-            'wheelloaderTotal'
-        )
-        .textContent =
-            counts.W.toLocaleString(
-                'id-ID'
-            );
-
-
-    document
-        .getElementById(
-            'dumptruckTotal'
-        )
-        .textContent =
-            counts.D.toLocaleString(
-                'id-ID'
-            );
-
-
-    document
-        .getElementById(
-            'excavatorTotal'
-        )
-        .textContent =
-            counts.E.toLocaleString(
-                'id-ID'
-            );
-
-}
-
-
-/* =========================================================
-   APPLY FILTERS
-========================================================= */
-
-function applyFilters(){
-
-    const search =
-        document
-            .getElementById(
-                'searchInput'
-            )
-            .value
-            .trim()
-            .toLowerCase();
-
-
-    const unitType =
-        document
-            .getElementById(
-                'unitTypeFilter'
-            )
-            .value
-            .toUpperCase();
-
-
-    const status =
-        document
-            .getElementById(
-                'statusFilter'
-            )
-            .value
-            .toUpperCase();
-
-
-    filteredData =
-        allData.filter(
-            row=>{
-
-                const searchable = [
-
-                    row.date,
-
-                    row.unit,
-
-                    row.maintenance,
-
-                    row.periodic,
-
-                    row.status,
-
-                    row.sourceYear
-
-                ]
-                .join(' ')
-                .toLowerCase();
-
-
-                const matchSearch =
-                    !search ||
-                    searchable.includes(
-                        search
-                    );
-
-
-                const matchUnitType =
-                    !unitType ||
-                    getUnitType(
-                        row.unit
-                    ) === unitType;
-
-
-                const matchStatus =
-                    !status ||
-                    String(
-                        row.status || ''
-                    )
-                    .trim()
-                    .toUpperCase()
-                    ===
-                    status;
-
-
-                return (
-
-                    matchSearch &&
-
-                    matchUnitType &&
-
-                    matchStatus
-
-                );
-
-            }
-        );
-
-
-    currentPage = 1;
-
-
+function applyAllFilters(){
+    rowsView=allData.filter(row=>rowPasses(row,null));
+    currentPage=1;
     renderTable();
-
 }
 
-
-/* =========================================================
-   CLEAR FILTERS
-========================================================= */
-
-function clearFilters(){
-
-    const search =
-        document.getElementById(
-            'searchInput'
-        );
-
-
-    const unitType =
-        document.getElementById(
-            'unitTypeFilter'
-        );
-
-
-    const status =
-        document.getElementById(
-            'statusFilter'
-        );
-
-
-    if(search){
-
-        search.value = '';
-
-    }
-
-
-    if(unitType){
-
-        unitType.value = '';
-
-    }
-
-
-    if(status){
-
-        status.value = '';
-
-    }
-
+function removeColumnFilter(key){
+    delete columnFilters[key];
+    applyAllFilters();
 }
 
-
-/* =========================================================
-   RESET FILTER
-========================================================= */
-
-function resetFilters(){
-
-    clearFilters();
-
-
-    filteredData =
-        [...allData];
-
-
-    currentPage = 1;
-
-
-    renderTable();
-
+function clearAllFilters(){
+    columnFilters={};
+    applyAllFilters();
 }
 
 
@@ -4102,964 +1631,503 @@ function resetFilters(){
    SORT
 ========================================================= */
 
-function sortBy(
-    key
-){
+function getSortedData(rows){
 
-    if(
-        sortKey !== key
-    ){
+    const list=[...rows];
 
-        sortKey =
-            key;
-
-        sortDirection =
-            'asc';
-
+    if(!sortKey||!sortDir){
+        return list.sort((a,b)=>a._idx-b._idx);
     }
 
-    else if(
-        sortDirection === 'asc'
-    ){
+    return list.sort((a,b)=>{
 
-        sortDirection =
-            'desc';
-
-    }
-
-    else{
-
-        if(
-            key === 'date'
-        ){
-
-            sortKey =
-                'date';
-
-            sortDirection =
-                'desc';
-
+        if(sortKey==='number'){
+            const c=a._idx-b._idx;
+            return sortDir==='asc'?c:-c;
         }
 
-        else{
+        const va=getCellValue(a,sortKey);
+        const vb=getCellValue(b,sortKey);
 
-            sortKey =
-                null;
+        /* Kosong SELALU di paling akhir (Bible 10.4) */
+        if(isEmpty(va)!==isEmpty(vb)) return isEmpty(va)?1:-1;
+        if(isEmpty(va)) return 0;
 
-            sortDirection =
-                null;
+        const isDate=getColumn(sortKey).type==='date';
+        const c=isDate
+            ?va.localeCompare(vb)
+            :va.localeCompare(vb,'id',{numeric:true,sensitivity:'base'});
 
-        }
+        return sortDir==='asc'?c:-c;
 
-    }
-
-
-    currentPage = 1;
-
-
-    renderTable();
-
+    });
 }
 
 
 /* =========================================================
-   GET SORTED DATA
+   POPUP FILTER & SORT
 ========================================================= */
 
-function getSortedData(
-    data
-){
+function openColumnMenu(key,anchor){
 
-    const result =
-        [...data];
-
-
-    if(
-        !sortKey ||
-        !sortDirection
-    ){
-
-        return result;
-
+    if(openColumn===key){
+        closeColumnMenu();
+        return;
     }
 
+    closeColumnMenu();
 
-    result.sort(
-        (
-            a,
-            b
-        )=>{
+    const col=getColumn(key);
 
-            let valueA;
+    openColumn=key;
+    ddQuery='';
 
-            let valueB;
+    ddValues=col.filterable?distinctValues(key):[];
 
-
-            switch(sortKey){
-
-                case 'number':
-
-                    valueA =
-                        a.originalIndex;
-
-                    valueB =
-                        b.originalIndex;
-
-                    break;
-
-
-                case 'date':
-
-                    valueA =
-                        getDateSortValue(
-                            a.date
-                        );
-
-                    valueB =
-                        getDateSortValue(
-                            b.date
-                        );
-
-                    break;
-
-
-                case 'unit':
-
-                    valueA =
-                        normalizeUnit(
-                            a.unit
-                        );
-
-                    valueB =
-                        normalizeUnit(
-                            b.unit
-                        );
-
-                    break;
-
-
-                case 'maintenance':
-
-                    valueA =
-                        String(
-                            a.maintenance ?? ''
-                        )
-                        .trim()
-                        .toLowerCase();
-
-                    valueB =
-                        String(
-                            b.maintenance ?? ''
-                        )
-                        .trim()
-                        .toLowerCase();
-
-                    break;
-
-
-                case 'periodic':
-
-                    valueA =
-                        String(
-                            a.periodic ?? ''
-                        )
-                        .trim()
-                        .toLowerCase();
-
-                    valueB =
-                        String(
-                            b.periodic ?? ''
-                        )
-                        .trim()
-                        .toLowerCase();
-
-                    break;
-
-
-                case 'status':
-
-                    valueA =
-                        String(
-                            a.status ?? ''
-                        )
-                        .trim()
-                        .toLowerCase();
-
-                    valueB =
-                        String(
-                            b.status ?? ''
-                        )
-                        .trim()
-                        .toLowerCase();
-
-                    break;
-
-
-                default:
-
-                    return 0;
-
-            }
-
-
-            const emptyA =
-                valueA === '' ||
-                valueA === null ||
-                valueA === undefined;
-
-
-            const emptyB =
-                valueB === '' ||
-                valueB === null ||
-                valueB === undefined;
-
-
-            if(
-                emptyA &&
-                emptyB
-            ){
-
-                return 0;
-
-            }
-
-
-            if(emptyA){
-
-                return 1;
-
-            }
-
-
-            if(emptyB){
-
-                return -1;
-
-            }
-
-
-            let comparison = 0;
-
-
-            if(
-                typeof valueA === 'number' &&
-                typeof valueB === 'number'
-            ){
-
-                comparison =
-                    valueA -
-                    valueB;
-
-            }
-
-            else{
-
-                comparison =
-                    String(
-                        valueA
-                    )
-                    .localeCompare(
-                        String(
-                            valueB
-                        ),
-                        'id',
-                        {
-                            numeric:true,
-                            sensitivity:'base'
-                        }
-                    );
-
-            }
-
-
-            return sortDirection === 'asc'
-                ? comparison
-                : -comparison;
-
-        }
+    draftSelection=new Set(
+        columnFilters[key]
+            ?[...columnFilters[key]]
+            :ddValues.map(v=>v.value)
     );
 
+    const dd=$('colDropdown');
 
-    return result;
+    dd.innerHTML=buildDropdown(col);
+    dd.hidden=false;
+
+    positionColumnMenu(anchor);
+    renderDdList();
+    lucide.createIcons();
+
+    if(!window.matchMedia('(max-width:767px)').matches){
+        const s=dd.querySelector('.dd-search');
+        if(s) s.focus();
+    }
 
 }
 
-
-/* =========================================================
-   DATE SORT VALUE
-========================================================= */
-
-function getDateSortValue(
-    value
-){
-
-    const date =
-        parseDate(
-            value
-        );
-
-
-    if(!date){
-
-        return '';
-
-    }
-
-
-    return date.getTime();
-
+function closeColumnMenu(){
+    const dd=$('colDropdown');
+    dd.hidden=true;
+    dd.innerHTML='';
+    openColumn=null;
 }
 
+function positionColumnMenu(anchor){
 
-/* =========================================================
-   PARSE DATE
-========================================================= */
+    const dd=$('colDropdown');
 
-function parseDate(
-    value
-){
-
-    const text =
-        String(
-            value ?? ''
-        )
-        .trim();
-
-
-    if(!text){
-
-        return null;
-
+    if(window.matchMedia('(max-width:767px)').matches){
+        dd.classList.add('is-sheet');
+        dd.style.left='';
+        dd.style.top='';
+        return;
     }
 
+    dd.classList.remove('is-sheet');
 
-    const match =
-        text.match(
-            /^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/i
-        );
+    const r=anchor.getBoundingClientRect();
+    const w=dd.offsetWidth||240;
+    const h=dd.offsetHeight||0;
 
+    let left=r.left;
+    if(left+w>window.innerWidth-8) left=Math.max(8,r.right-w);
 
-    if(match){
+    let top=r.bottom+6;
+    if(top+h>window.innerHeight-8) top=Math.max(8,r.top-h-6);
 
-        const day =
-            Number(
-                match[1]
-            );
-
-
-        const monthName =
-            match[2]
-                .toLowerCase();
-
-
-        const year =
-            Number(
-                match[3]
-            );
-
-
-        const months = {
-
-            january:0,
-            february:1,
-            march:2,
-            april:3,
-            may:4,
-            june:5,
-            july:6,
-            august:7,
-            september:8,
-            october:9,
-            november:10,
-            december:11
-
-        };
-
-
-        if(
-            months[
-                monthName
-            ] !== undefined
-        ){
-
-            return new Date(
-                year,
-                months[
-                    monthName
-                ],
-                day
-            );
-
-        }
-
-    }
-
-
-    const dmy =
-        text.match(
-            /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
-        );
-
-
-    if(dmy){
-
-        return new Date(
-            Number(dmy[3]),
-            Number(dmy[2]) - 1,
-            Number(dmy[1])
-        );
-
-    }
-
-
-    const iso =
-        text.match(
-            /^(\d{4})-(\d{2})-(\d{2})/
-        );
-
-
-    if(iso){
-
-        return new Date(
-            Number(iso[1]),
-            Number(iso[2]) - 1,
-            Number(iso[3])
-        );
-
-    }
-
-
-    const fallback =
-        new Date(
-            text
-        );
-
-
-    if(
-        !isNaN(
-            fallback.getTime()
-        )
-    ){
-
-        return fallback;
-
-    }
-
-
-    return null;
-
+    dd.style.left=left+'px';
+    dd.style.top=top+'px';
 }
 
+function buildDropdown(col){
 
-/* =========================================================
-   FORMAT DATE
-========================================================= */
+    const labels=
+        col.type==='date'?['Lama→Baru','Baru→Lama']:
+        col.type==='number'?['Naik','Turun']:
+        ['A→Z','Z→A'];
 
-function formatDate(
-    value
-){
+    const current=sortKey===col.key?sortDir:null;
 
-    if(
-        value === null ||
-        value === undefined ||
-        value === ''
-    ){
-
-        return '-';
-
-    }
-
-
-    const date =
-        parseDate(
-            value
-        );
-
-
-    if(!date){
-
-        return escapeHtml(
-            String(
-                value
-            )
-        );
-
-    }
-
-
-    const day =
-        String(
-            date.getDate()
-        )
-        .padStart(
-            2,
-            '0'
-        );
-
-
-    const month =
-        String(
-            date.getMonth() + 1
-        )
-        .padStart(
-            2,
-            '0'
-        );
-
-
-    const year =
-        date.getFullYear();
-
-
-    return `${day}/${month}/${year}`;
-
-}
-
-
-/* =========================================================
-   UNIT DISPLAY
-========================================================= */
-
-function getUnitBadge(
-    unit
-){
-
-    const value =
-        normalizeUnit(
-            unit
-        );
-
-
-    if(!value){
-
-        return `
-
-            <span
-                class="
-                    text-slate-300
-                    font-semibold
-                "
-            >
-                -
-            </span>
-
-        `;
-
-    }
-
-
-    return `
-
-        <span
-            class="
-                font-black
-                text-blue-900
-                tracking-wide
-            "
-        >
-
-            ${escapeHtml(
-                value
-            )}
-
-        </span>
-
+    const sortHtml=`
+        <div class="dd-sort">
+            <button class="dd-sort-btn ${current==='asc'?'on':''}" onclick="ddSetSort('asc')">${labels[0]}</button>
+            <button class="dd-sort-btn ${current==='desc'?'on':''}" onclick="ddSetSort('desc')">${labels[1]}</button>
+        </div>
     `;
 
+    if(!col.filterable) return sortHtml;
+
+    return sortHtml+`
+        <div class="dd-divider"></div>
+        <div class="dd-search-wrap">
+            <i data-lucide="search" class="dd-search-icon"></i>
+            <input class="dd-search" type="text" placeholder="Cari ${escapeHtml(col.label)}..." oninput="ddSearch(this.value)">
+        </div>
+        <div class="dd-list" id="ddList"></div>
+        <div class="dd-footer">
+            <button class="dd-reset" onclick="ddReset()">Reset</button>
+            <button class="dd-apply" onclick="ddApply()">Terapkan</button>
+        </div>
+    `;
 }
 
+function ddVisible(){
+    return ddValues.filter(v=>
+        !ddQuery||getValueLabel(openColumn,v.value).toLowerCase().includes(ddQuery)
+    );
+}
 
-/* =========================================================
-   STATUS BADGE
-========================================================= */
+function renderDdList(){
 
-function getStatusBadge(
-    status
-){
+    const list=$('ddList');
+    if(!list) return;
 
-    const value =
-        String(
-            status ?? ''
-        )
-        .trim()
-        .toUpperCase();
+    const prevScroll=list.scrollTop;
+    const visible=ddVisible();
 
-
-    if(
-        value === 'OPEN'
-    ){
-
-        return `
-
-            <span
-                class="
-                    status-badge
-                    status-open
-                "
-            >
-
-                <i
-                    data-lucide="circle-dot"
-                    class="w-3 h-3"
-                ></i>
-
-                OPEN
-
-            </span>
-
-        `;
-
+    if(!visible.length){
+        list.innerHTML='<div class="dd-empty">Tidak ada nilai</div>';
+        return;
     }
 
+    const allChecked=visible.every(v=>draftSelection.has(v.value));
 
-    if(
-        value === 'CLOSE'
-    ){
-
-        return `
-
-            <span
-                class="
-                    status-badge
-                    status-close
-                "
-            >
-
-                <i
-                    data-lucide="circle-check"
-                    class="w-3 h-3"
-                ></i>
-
-                CLOSE
-
-            </span>
-
-        `;
-
-    }
-
-
-    return `
-
-        <span
-            class="
-                status-badge
-                type-unknown
-            "
-        >
-            ${escapeHtml(
-                value || '-'
-            )}
-        </span>
-
+    list.innerHTML=`
+        <label class="dd-item dd-all">
+            <input type="checkbox" ${allChecked?'checked':''} onchange="ddToggleAll(this.checked)">
+            <span class="dd-item-label">(Pilih Semua)</span>
+        </label>
+        ${visible.map(v=>`
+            <label class="dd-item">
+                <input
+                    type="checkbox"
+                    ${draftSelection.has(v.value)?'checked':''}
+                    onchange="ddToggle(${ddValues.indexOf(v)},this.checked)"
+                >
+                <span class="dd-item-label">${escapeHtml(getValueLabel(openColumn,v.value))}</span>
+                <span class="dd-item-count">${v.count}</span>
+            </label>
+        `).join('')}
     `;
 
+    list.scrollTop=prevScroll;
 }
+
+function ddSearch(query){
+    ddQuery=String(query).trim().toLowerCase();
+    renderDdList();
+}
+
+function ddToggle(index,checked){
+    const v=ddValues[index].value;
+    if(checked) draftSelection.add(v);
+    else draftSelection.delete(v);
+    renderDdList();
+}
+
+function ddToggleAll(checked){
+    ddVisible().forEach(v=>{
+        if(checked) draftSelection.add(v.value);
+        else draftSelection.delete(v.value);
+    });
+    renderDdList();
+}
+
+function ddSetSort(dir){
+    sortKey=openColumn;
+    sortDir=dir;
+    closeColumnMenu();
+    currentPage=1;
+    renderTable();
+}
+
+function ddApply(){
+    if(!openColumn) return;
+    const allSelected=ddValues.every(v=>draftSelection.has(v.value));
+    if(allSelected) delete columnFilters[openColumn];
+    else columnFilters[openColumn]=new Set(draftSelection);
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+function ddReset(){
+    if(!openColumn) return;
+    delete columnFilters[openColumn];
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+/* Tutup popup: klik di luar, scroll halaman, resize, Escape */
+document.addEventListener('mousedown',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    if(e.target.closest('[data-col-trigger]')) return;
+    closeColumnMenu();
+});
+
+window.addEventListener('scroll',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    closeColumnMenu();
+},true);
+
+window.addEventListener('resize',closeColumnMenu);
+
+document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+        closeColumnMenu();
+        document.activeElement?.blur();
+    }
+});
 
 
 /* =========================================================
-   PERIODIC BADGE
+   RENDER HEADER, FILTER BAR, CHIP, STATISTIK
 ========================================================= */
 
-function getPeriodicBadge(
-    value
-){
+function renderTableHead(){
 
-    const text =
-        String(
-            value ?? ''
-        )
-        .trim();
+    $('tableHeadRow').innerHTML=COLUMNS.map(col=>{
 
+        const sorted=sortKey===col.key&&!!sortDir;
+        const filtered=!!columnFilters[col.key];
+        const active=sorted||filtered;
 
-    if(!text){
+        const sortIcon=
+            !sorted?'chevrons-up-down':
+            sortDir==='asc'?'chevron-up':'chevron-down';
 
         return `
-
-            <span
-                class="text-slate-300"
-            >
-                -
-            </span>
-
+            <th style="${col.width?`width:${col.width}`:''}">
+                <button
+                    class="col-header ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    <span>${col.label}</span>
+                    <span class="col-icons">
+                        <i data-lucide="${sortIcon}" class="col-sort-icon ${sorted?'on':''}"></i>
+                        ${col.filterable
+                            ?`<i data-lucide="filter" class="col-filter-icon ${filtered?'on':''}"></i>`
+                            :''}
+                    </span>
+                </button>
+            </th>
         `;
 
+    }).join('');
+
+}
+
+function renderMobileFilterBar(){
+
+    $('mobileFilterBar').innerHTML=COLUMNS
+        .filter(c=>c.filterable)
+        .map(col=>{
+
+            const f=columnFilters[col.key];
+            const sorted=sortKey===col.key&&!!sortDir;
+            const active=!!f||sorted;
+
+            return `
+                <button
+                    class="mobile-filter-btn ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    ${col.label}
+                    ${f?`<span class="mobile-filter-count">${f.size}</span>`:''}
+                    ${sorted
+                        ?`<i data-lucide="${sortDir==='asc'?'chevron-up':'chevron-down'}" class="w-3 h-3"></i>`
+                        :''}
+                </button>
+            `;
+
+        }).join('');
+
+}
+
+function renderActiveFilters(){
+
+    const bar=$('activeFilters');
+    const keys=Object.keys(columnFilters);
+
+    if(!keys.length){
+        bar.hidden=true;
+        bar.innerHTML='';
+        return;
     }
 
+    bar.hidden=false;
 
-    return `
+    bar.innerHTML=keys.map(key=>{
 
-        <span
-            class="periodic-badge"
-            title="${escapeHtml(text)}"
-        >
+        const labels=[...columnFilters[key]].map(v=>getValueLabel(key,v));
 
-            ${escapeHtml(
-                text
-            )}
+        const text=labels.length
+            ?labels[0]+(labels.length>1?`, +${labels.length-1}`:'')
+            :'(Tidak ada)';
 
-        </span>
+        return `
+            <span class="active-filter-chip">
+                ${escapeHtml(getColumn(key).label)}: ${escapeHtml(text)}
+                <button onclick="removeColumnFilter('${key}')" aria-label="Hapus filter">×</button>
+            </span>
+        `;
 
-    `;
+    }).join('')+`<button class="clear-all-btn" onclick="clearAllFilters()">Hapus Semua</button>`;
+
+}
+
+function updateStatistics(rows){
+
+    const c={F:0,W:0,D:0,E:0};
+
+    rows.forEach(row=>{
+        const t=getUnitType(row.unit);
+        if(c[t]!==undefined) c[t]++;
+    });
+
+    $('totalData').textContent=rows.length.toLocaleString('id-ID');
+    $('forkliftTotal').textContent=c.F.toLocaleString('id-ID');
+    $('wheelloaderTotal').textContent=c.W.toLocaleString('id-ID');
+    $('dumptruckTotal').textContent=c.D.toLocaleString('id-ID');
+    $('excavatorTotal').textContent=c.E.toLocaleString('id-ID');
 
 }
 
 
 /* =========================================================
-   RENDER TABLE
+   BADGES & CELL CONTENT
+========================================================= */
+
+function getUnitBadge(unit){
+    const v=normalizeUnit(unit);
+    if(!v) return '<span class="text-slate-300">-</span>';
+    return `<span class="unit-badge">${escapeHtml(v)}</span>`;
+}
+
+function getUnitTypeBadge(unit){
+    const cls={
+        F:'type-forklift',
+        W:'type-wheelloader',
+        D:'type-dumptruck',
+        E:'type-excavator'
+    }[getUnitType(unit)]||'type-unknown';
+    return `<span class="type-badge ${cls}">${escapeHtml(getUnitTypeName(unit))}</span>`;
+}
+
+function getStatusBadge(status){
+    const v=String(status??'').trim().toUpperCase();
+    if(v==='OPEN') return `<span class="status-badge status-open"><i data-lucide="circle-dot" class="w-3 h-3"></i>OPEN</span>`;
+    if(v==='CLOSE') return `<span class="status-badge status-close"><i data-lucide="circle-check" class="w-3 h-3"></i>CLOSE</span>`;
+    return `<span class="status-badge status-other">${escapeHtml(v||'-')}</span>`;
+}
+
+function getServiceBadge(value){
+    const text=String(value??'').trim();
+    if(!text) return '<span class="text-slate-300">-</span>';
+    const l=text.toLowerCase();
+    const cls=l.includes('periodic')?'service-periodic':l.includes('general')?'service-general':'service-other';
+    return `<span class="service-badge ${cls}" title="${escapeHtml(text)}">${escapeHtml(text)}</span>`;
+}
+
+
+/* =========================================================
+   RENDER TABLE + KARTU MOBILE
 ========================================================= */
 
 function renderTable(){
 
-    const tbody =
-        document.getElementById(
-            'tableBody'
-        );
-
-
-    const emptyState =
-        document.getElementById(
-            'emptyState'
-        );
-
-
-    tbody.innerHTML =
-        '';
-
-
-    const sortedData =
-        getSortedData(
-            filteredData
-        );
-
-
-    const total =
-        sortedData.length;
-
-
-    const totalPages =
-        Math.max(
-            1,
-            Math.ceil(
-                total /
-                ROWS_PER_PAGE
-            )
-        );
-
-
-    if(
-        currentPage >
-        totalPages
-    ){
-
-        currentPage =
-            totalPages;
-
-    }
-
-
-    const start =
-        (
-            currentPage - 1
-        ) *
-        ROWS_PER_PAGE;
-
-
-    const end =
-        Math.min(
-            start +
-            ROWS_PER_PAGE,
-            total
-        );
-
-
-    const pageData =
-        sortedData.slice(
-            start,
-            end
-        );
-
-
-    if(
-        !pageData.length
-    ){
-
-        emptyState
-            .classList
-            .add('show');
-
-    }
-
-    else{
-
-        emptyState
-            .classList
-            .remove('show');
-
-
-        pageData.forEach(
-            (
-                row,
-                index
-            )=>{
-
-                const tr =
-                    document.createElement(
-                        'tr'
-                    );
-
-
-                const number =
-                    start +
-                    index +
-                    1;
-
-
-                tr.innerHTML = `
-
-                    <!-- NO -->
-
-                    <td
-                        class="
-                            text-center
-                            font-bold
-                            text-slate-400
-                        "
-                    >
-
-                        ${number}
-
-                    </td>
-
-
-                    <!-- DATE -->
-
-                    <td
-                        class="
-                            whitespace-nowrap
-                            font-semibold
-                        "
-                    >
-
-                        <div
-                            class="
-                                flex
-                                items-center
-                                gap-2
-                            "
-                        >
-
-                            <i
-                                data-lucide="calendar-days"
-                                class="
-                                    w-3.5
-                                    h-3.5
-                                    text-slate-400
-                                "
-                            ></i>
-
-                            ${formatDate(
-                                row.date
-                            )}
-
-                        </div>
-
-                    </td>
-
-
-                    <!-- UNIT -->
-
-                    <td>
-
-                        ${getUnitBadge(
-                            row.unit
-                        )}
-
-                    </td>
-
-
-                    <!-- MAINTENANCE -->
-
-                    <td
-                        class="
-                            max-w-[420px]
-                        "
-                    >
-
-                        <div
-                            class="
-                                font-semibold
-                                text-slate-700
-                                max-w-[420px]
-                                leading-relaxed
-                            "
-                            title="${escapeHtml(
-                                row.maintenance
-                            )}"
-                        >
-
-                            ${
-                                escapeHtml(
-                                    row.maintenance
-                                )
-                                ||
-                                '<span class="text-slate-300">-</span>'
-                            }
-
-                        </div>
-
-                    </td>
-
-
-                    <!-- PERIODIC -->
-
-                    <td>
-
-                        ${getPeriodicBadge(
-                            row.periodic
-                        )}
-
-                    </td>
-
-
-                    <!-- STATUS -->
-
-                    <td>
-
-                        ${getStatusBadge(
-                            row.status
-                        )}
-
-                    </td>
-
-                `;
-
-
-                tbody.appendChild(
-                    tr
-                );
-
-            }
-        );
-
-    }
-
-
-    updateResultInfo(
-        total,
-        start,
-        end
-    );
-
-
-    renderPagination(
-        totalPages
-    );
-
-
-    updateSortIndicators();
-
-
+    renderTableHead();
+    renderMobileFilterBar();
+    renderActiveFilters();
+    updateStatistics(rowsView);
+
+    const tbody=$('tableBody');
+    const mobileList=$('mobileDataList');
+
+    tbody.innerHTML='';
+    mobileList.innerHTML='';
+
+    const sorted=getSortedData(rowsView);
+    const total=sorted.length;
+    const totalPages=Math.max(1,Math.ceil(total/ROWS_PER_PAGE));
+
+    if(currentPage>totalPages) currentPage=totalPages;
+
+    const start=(currentPage-1)*ROWS_PER_PAGE;
+    const end=Math.min(start+ROWS_PER_PAGE,total);
+    const pageData=sorted.slice(start,end);
+
+    $('emptyState').classList.toggle('show',pageData.length===0);
+
+    pageData.forEach((row,index)=>{
+
+        const no=start+index+1;
+
+        /* ---- baris desktop ---- */
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+            <td class="text-center font-bold text-slate-400">${no}</td>
+            <td class="whitespace-nowrap font-semibold">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="calendar-days" class="w-3.5 h-3.5 text-slate-400"></i>
+                    ${escapeHtml(formatDate(row.date))}
+                </div>
+            </td>
+            <td>${getUnitBadge(row.unit)}</td>
+            <td>
+                <div class="font-semibold text-slate-700 leading-relaxed" title="${escapeHtml(row.maintenance)}">
+                    ${escapeHtml(row.maintenance)||'<span class="text-slate-300">-</span>'}
+                </div>
+            </td>
+            <td>${getServiceBadge(row.periodic)}</td>
+            <td>${getStatusBadge(row.status)}</td>
+        `;
+        tbody.appendChild(tr);
+
+        /* ---- kartu mobile ---- */
+        const card=document.createElement('div');
+        card.className='mobile-data-card';
+        card.innerHTML=`
+            <div class="mobile-card-header">
+                <div>
+                    <div class="mobile-unit">
+                        <span class="mobile-number">${no}</span>
+                        ${escapeHtml(normalizeUnit(row.unit))||'<span class="text-slate-300">-</span>'}
+                    </div>
+                    <div class="mobile-date">
+                        <i data-lucide="calendar-days" class="w-3 h-3"></i>
+                        ${escapeHtml(formatDate(row.date))}
+                    </div>
+                </div>
+                ${getStatusBadge(row.status)}
+            </div>
+            <div class="mobile-card-grid">
+                <div class="mobile-field">
+                    <div class="mobile-label">Jenis Unit</div>
+                    <div class="mobile-value">${getUnitTypeBadge(row.unit)}</div>
+                </div>
+                <div class="mobile-field">
+                    <div class="mobile-label">Periodic Service</div>
+                    <div class="mobile-value">${getServiceBadge(row.periodic)}</div>
+                </div>
+                <div class="mobile-field full">
+                    <div class="mobile-label">Maintenance</div>
+                    <div class="mobile-box">
+                        ${escapeHtml(row.maintenance)||'<span class="text-slate-300">Tidak ada keterangan</span>'}
+                    </div>
+                </div>
+            </div>
+        `;
+        mobileList.appendChild(card);
+
+    });
+
+    updateResultInfo(total,start,end);
+    renderPagination(totalPages);
     lucide.createIcons();
 
 }
@@ -5069,47 +2137,19 @@ function renderTable(){
    RESULT INFO
 ========================================================= */
 
-function updateResultInfo(
-    total,
-    start,
-    end
-){
+function updateResultInfo(total,start,end){
 
-    const resultInfo =
-        document.getElementById(
-            'resultInfo'
-        );
+    const ri=$('resultInfo');
+    const pi=$('paginationInfo');
 
-
-    const paginationInfo =
-        document.getElementById(
-            'paginationInfo'
-        );
-
-
-    if(
-        total === 0
-    ){
-
-        resultInfo.textContent =
-            'Tidak ada data yang sesuai filter.';
-
-
-        paginationInfo.textContent =
-            '0 data';
-
-
+    if(total===0){
+        ri.textContent='Tidak ada data yang sesuai filter.';
+        pi.textContent='0 data';
         return;
-
     }
 
-
-    resultInfo.textContent =
-        `Menampilkan ${start + 1}–${end} dari ${total.toLocaleString('id-ID')} aktivitas`;
-
-
-    paginationInfo.textContent =
-        `${total.toLocaleString('id-ID')} aktivitas ditemukan`;
+    ri.textContent=`Menampilkan ${start+1}–${end} dari ${total.toLocaleString('id-ID')} aktivitas`;
+    pi.textContent=`${total.toLocaleString('id-ID')} aktivitas ditemukan`;
 
 }
 
@@ -5118,463 +2158,72 @@ function updateResultInfo(
    PAGINATION
 ========================================================= */
 
-function renderPagination(
-    totalPages
-){
+function renderPagination(totalPages){
 
-    const container =
-        document.getElementById(
-            'pagination'
-        );
+    const c=$('pagination');
+    c.innerHTML='';
 
+    if(!rowsView.length) return;
 
-    container.innerHTML =
-        '';
-
-
-    if(
-        filteredData.length === 0
-    ){
-
-        return;
-
-    }
-
-
-    /* PREVIOUS */
-
-    const prev =
-        document.createElement(
-            'button'
-        );
-
-
-    prev.className =
-        'pagination-button';
-
-
-    prev.innerHTML = `
-
-        <i
-            data-lucide="chevron-left"
-            class="w-4 h-4"
-        ></i>
-
-    `;
-
-
-    prev.disabled =
-        currentPage === 1;
-
-
-    prev.onclick = ()=>{
-
-        if(
-            currentPage > 1
-        ){
-
-            currentPage--;
-
-            renderTable();
-
-        }
-
+    const add=(content,cls,disabled,fn)=>{
+        const b=document.createElement('button');
+        b.className='pagination-button'+(cls?' '+cls:'');
+        b.disabled=!!disabled;
+        const s=String(content);
+        if(s.startsWith('<')) b.innerHTML=s;
+        else b.textContent=s;
+        if(fn) b.onclick=fn;
+        c.appendChild(b);
     };
 
+    add('<i data-lucide="chevron-left" class="w-4 h-4"></i>','',currentPage===1,()=>{
+        if(currentPage>1){currentPage--;renderTable();}
+    });
 
-    container.appendChild(
-        prev
-    );
-
-
-    /* PAGE NUMBERS */
-
-    const pages =
-        getPaginationPages(
-            currentPage,
-            totalPages
-        );
-
-
-    pages.forEach(
-        page=>{
-
-            if(
-                page === '...'
-            ){
-
-                const span =
-                    document.createElement(
-                        'span'
-                    );
-
-
-                span.className =
-                    'px-2 text-slate-400 text-xs';
-
-
-                span.textContent =
-                    '...';
-
-
-                container.appendChild(
-                    span
-                );
-
-
-                return;
-
-            }
-
-
-            const button =
-                document.createElement(
-                    'button'
-                );
-
-
-            button.className =
-                'pagination-button' +
-                (
-                    page === currentPage
-                    ? ' active'
-                    : ''
-                );
-
-
-            button.textContent =
-                page;
-
-
-            button.onclick = ()=>{
-
-                currentPage =
-                    page;
-
-
-                renderTable();
-
-            };
-
-
-            container.appendChild(
-                button
-            );
-
+    getPaginationPages(currentPage,totalPages).forEach(p=>{
+        if(p==='...'){
+            const s=document.createElement('span');
+            s.className='px-2 text-slate-400 text-xs';
+            s.textContent='...';
+            c.appendChild(s);
+            return;
         }
-    );
+        add(p,p===currentPage?'active':'',false,()=>{currentPage=p;renderTable();});
+    });
 
-
-    /* NEXT */
-
-    const next =
-        document.createElement(
-            'button'
-        );
-
-
-    next.className =
-        'pagination-button';
-
-
-    next.innerHTML = `
-
-        <i
-            data-lucide="chevron-right"
-            class="w-4 h-4"
-        ></i>
-
-    `;
-
-
-    next.disabled =
-        currentPage === totalPages;
-
-
-    next.onclick = ()=>{
-
-        if(
-            currentPage <
-            totalPages
-        ){
-
-            currentPage++;
-
-            renderTable();
-
-        }
-
-    };
-
-
-    container.appendChild(
-        next
-    );
-
+    add('<i data-lucide="chevron-right" class="w-4 h-4"></i>','',currentPage===totalPages,()=>{
+        if(currentPage<totalPages){currentPage++;renderTable();}
+    });
 
     lucide.createIcons();
 
 }
 
-
-/* =========================================================
-   PAGINATION RANGE
-========================================================= */
-
-function getPaginationPages(
-    current,
-    total
-){
-
-    if(
-        total <= 7
-    ){
-
-        return Array.from(
-            {
-                length:total
-            },
-            (
-                _,
-                i
-            ) =>
-                i + 1
-        );
-
-    }
-
-
-    const pages = [];
-
-
-    pages.push(1);
-
-
-    if(
-        current > 4
-    ){
-
-        pages.push(
-            '...'
-        );
-
-    }
-
-
-    const start =
-        Math.max(
-            2,
-            current - 1
-        );
-
-
-    const end =
-        Math.min(
-            total - 1,
-            current + 1
-        );
-
-
-    for(
-        let i = start;
-        i <= end;
-        i++
-    ){
-
-        pages.push(i);
-
-    }
-
-
-    if(
-        current <
-        total - 3
-    ){
-
-        pages.push(
-            '...'
-        );
-
-    }
-
-
-    pages.push(
-        total
-    );
-
-
-    return pages;
-
+function getPaginationPages(current,total){
+    if(total<=7) return Array.from({length:total},(_,i)=>i+1);
+    const p=[1];
+    if(current>4) p.push('...');
+    for(let i=Math.max(2,current-1);i<=Math.min(total-1,current+1);i++) p.push(i);
+    if(current<total-3) p.push('...');
+    p.push(total);
+    return p;
 }
 
 
 /* =========================================================
-   SORT INDICATORS
+   START
 ========================================================= */
 
-function updateSortIndicators(){
-
-    const buttons =
-        document.querySelectorAll(
-            '[data-sort-key]'
-        );
-
-
-    buttons.forEach(
-        button=>{
-
-            const key =
-                button.getAttribute(
-                    'data-sort-key'
-                );
-
-
-            const icon =
-                button.querySelector(
-                    '.sort-icon'
-                );
-
-
-            button.classList.remove(
-                'active'
-            );
-
-
-            if(!icon){
-
-                return;
-
-            }
-
-
-            icon.setAttribute(
-                'data-lucide',
-                'chevrons-up-down'
-            );
-
-
-            if(
-                sortKey === key &&
-                sortDirection === 'asc'
-            ){
-
-                button.classList.add(
-                    'active'
-                );
-
-
-                icon.setAttribute(
-                    'data-lucide',
-                    'chevron-up'
-                );
-
-            }
-
-
-            else if(
-                sortKey === key &&
-                sortDirection === 'desc'
-            ){
-
-                button.classList.add(
-                    'active'
-                );
-
-
-                icon.setAttribute(
-                    'data-lucide',
-                    'chevron-down'
-                );
-
-            }
-
-        }
-    );
-
-
+window.addEventListener('load',()=>{
     lucide.createIcons();
 
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(
-    value
-){
-
-    return String(
-        value ?? ''
-    )
-    .replace(
-        /&/g,
-        '&amp;'
-    )
-    .replace(
-        /</g,
-        '&lt;'
-    )
-    .replace(
-        />/g,
-        '&gt;'
-    )
-    .replace(
-        /"/g,
-        '&quot;'
-    )
-    .replace(
-        /'/g,
-        '&#039;'
-    );
-
-}
-
-
-/* =========================================================
-   START APPLICATION
-========================================================= */
-
-window.addEventListener(
-    'load',
-    ()=>{
-
-        lucide.createIcons();
-
-
-        loadYearData(
-            '2026'
-        );
-
-    }
-);
-
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
-document.addEventListener(
-    'keydown',
-    event=>{
-
-        if(
-            event.key === 'Escape'
-        ){
-
-            document
-                .activeElement
-                ?.blur();
-
-        }
-
-    }
-);
+    /* Mulai dari tahun berjalan; fallback ke tahun terbaru di daftar */
+    const thisYear=String(new Date().getFullYear());
+    loadYearData(YEARS.includes(thisYear)?thisYear:YEARS[0]);
+});
 
 </script>
-
-
+<script src="nav.js"></script>
+   <script src="datacache.js"></script>
 </body>
-
 </html>
