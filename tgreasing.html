@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Greasing Activity - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -26,3200 +16,1306 @@
    GLOBAL
 ========================================================= */
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    min-width:0;
-}
+html{width:100%;min-width:0;overflow-x:hidden}
 
 body{
-
     margin:0;
-
-    font-family:'Inter',sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #eef2f7
-        );
-
-    color:#1e293b;
-
     width:100%;
-
+    min-width:0;
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b
 }
 
-
-/* =========================================================
-   COLOR
-========================================================= */
-
-.color-primary{
-    background:#1E3A8A;
-}
-
-.text-primary{
-    color:#1E3A8A;
-}
-
-
-/* =========================================================
-   GLASS
-========================================================= */
+.color-primary{background:#1e3a8a}
 
 .glass-panel{
-
     background:rgba(255,255,255,.95);
-
     backdrop-filter:blur(10px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
+    border:1px solid rgba(255,255,255,.3)
 }
 
-
-/* =========================================================
-   ANIMATION
-========================================================= */
-
-.fade-in{
-
-    animation:
-        fadeIn
-        .5s
-        cubic-bezier(.4,0,.2,1);
-
-}
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 
 @keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo-wrapper{
-
-    transition:
-        transform
-        .4s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        );
-
-}
-
-.logo-wrapper:hover{
-
-    transform:
-        scale(1.08)
-        rotate(2deg);
-
-}
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 
 .logo-shadow{
-
     filter:
-        drop-shadow(
-            0 10px 8px
-            rgba(0,0,.04)
-        )
-        drop-shadow(
-            0 4px 3px
-            rgba(0,0,.1)
-        );
-
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
 
-
 /* =========================================================
-   PAGE TITLE
+   PAGE TITLE & BUTTON
 ========================================================= */
 
 .page-title{
-
     font-size:30px;
-
     font-weight:900;
-
     color:#1e293b;
-
     letter-spacing:-.025em;
-
+    line-height:1.2
 }
 
 .page-subtitle{
-
     font-size:13px;
-
     color:#64748b;
-
     font-weight:500;
-
+    line-height:1.6
 }
 
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
 .back-button{
-
     background:#1e3a8a;
-
     color:#fff;
-
+    border:none;
     border-radius:12px;
-
-    padding:
-        11px
-        17px;
-
+    padding:11px 17px;
+    font-family:inherit;
     font-size:12px;
-
     font-weight:800;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:8px;
-
-    transition:
-        .2s ease;
-
-    box-shadow:
-        0 5px 12px
-        rgba(30,58,138,.18);
-
+    cursor:pointer;
+    white-space:nowrap;
     flex-shrink:0;
-
+    box-shadow:0 5px 12px rgba(30,58,138,.18);
+    transition:.2s ease
 }
 
 .back-button:hover{
-
     background:#1d4ed8;
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 18px
-        rgba(30,58,138,.25);
-
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
 }
-
 
 /* =========================================================
    STAT CARDS
 ========================================================= */
 
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:16px;
+    margin-bottom:24px
+}
+
 .stat-card{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:17px;
-
     padding:17px;
-
-    transition:
-        .25s ease;
-
+    transition:.25s ease;
+    min-width:0
 }
 
 .stat-card:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 10px 20px
-        rgba(15,23,42,.07);
-
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
 
-
 /* =========================================================
-   TABLE PANEL
+   TABLE PANEL & TABLE
 ========================================================= */
 
 .table-panel{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:20px;
-
     overflow:hidden;
-
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.04);
-
+    box-shadow:0 4px 12px rgba(15,23,42,.04)
 }
-
-
-/* =========================================================
-   TABLE SCROLL
-========================================================= */
 
 .table-scroll{
-
     width:100%;
-
     overflow-x:auto;
-
     overflow-y:hidden;
-
     -webkit-overflow-scrolling:touch;
-
+    scrollbar-width:thin
 }
 
-.table-scroll table{
-
-    min-width:850px;
-
-}
-
-
-/* =========================================================
-   TABLE
-========================================================= */
+.table-scroll::-webkit-scrollbar{height:7px}
+.table-scroll::-webkit-scrollbar-track{background:#f8fafc}
+.table-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+.table-scroll::-webkit-scrollbar-thumb:hover{background:#94a3b8}
 
 table{
-
     width:100%;
-
+    min-width:900px;
     border-collapse:separate;
-
     border-spacing:0;
-
+    table-layout:fixed
 }
 
-thead{
+/* Proporsi kolom: No 5% · Tanggal 11% · Shift 9% · PIC 12% · Code Unit 22% · Deskripsi 25% · PAP 16% */
+.col-no{width:5%}
+.col-tanggal{width:11%}
+.col-shift{width:9%}
+.col-pic{width:12%}
+.col-unit{width:22%}
+.col-deskripsi{width:25%}
+.col-pap{width:16%}
 
-    background:#f8fafc;
-
-}
+thead{background:#f8fafc}
 
 thead th{
-
-    padding:
-        14px
-        14px;
-
-    border-bottom:
-        2px solid
-        #e2e8f0;
-
+    padding:0;
+    border-bottom:2px solid #e2e8f0;
     color:#475569;
-
     font-size:10px;
-
     font-weight:900;
-
     text-transform:uppercase;
-
     letter-spacing:.08em;
-
     white-space:nowrap;
-
-    text-align:left;
-
+    text-align:left
 }
-
-
-/* =========================================================
-   SORTABLE HEADER
-========================================================= */
-
-.sortable-header{
-
-    cursor:pointer;
-
-    user-select:none;
-
-    transition:
-        background .15s ease,
-        color .15s ease;
-
-}
-
-.sortable-header:hover{
-
-    background:#eff6ff;
-
-    color:#1e3a8a;
-
-}
-
-.sort-header-content{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:8px;
-
-}
-
-.sort-icon{
-
-    width:14px;
-
-    height:14px;
-
-    color:#94a3b8;
-
-    flex-shrink:0;
-
-    transition:
-        color .15s ease,
-        transform .15s ease;
-
-}
-
-.sortable-header:hover .sort-icon{
-
-    color:#3b82f6;
-
-}
-
-.sortable-header.sort-asc{
-
-    color:#1e3a8a;
-
-    background:#eff6ff;
-
-}
-
-.sortable-header.sort-asc .sort-icon{
-
-    color:#1e3a8a;
-
-}
-
-.sortable-header.sort-desc{
-
-    color:#1e3a8a;
-
-    background:#eff6ff;
-
-}
-
-.sortable-header.sort-desc .sort-icon{
-
-    color:#1e3a8a;
-
-}
-
-
-/* =========================================================
-   TABLE BODY
-========================================================= */
 
 tbody td{
-
-    padding:
-        13px
-        14px;
-
-    border-bottom:
-        1px solid
-        #f1f5f9;
-
+    padding:13px 14px;
+    border-bottom:1px solid #f1f5f9;
     color:#334155;
-
     font-size:11px;
-
     font-weight:500;
-
-    vertical-align:middle;
-
+    vertical-align:middle
 }
 
-tbody tr{
-
-    transition:
-        background
-        .15s ease;
-
-}
-
-tbody tr:hover{
-
-    background:#f8fafc;
-
-}
-
-tbody tr:last-child td{
-
-    border-bottom:none;
-
-}
-
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:#f8fafc}
+tbody tr:last-child td{border-bottom:none}
 
 /* =========================================================
-   PAP LINK
+   COLUMN HEADER (Excel-style: sort + filter di header)
 ========================================================= */
 
-.pap-link{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:6px;
-
-    padding:
-        6px
-        10px;
-
-    border-radius:8px;
-
-    background:#eff6ff;
-
-    color:#1d4ed8;
-
-    border:
-        1px solid
-        #dbeafe;
-
+.col-header{
+    width:100%;
+    padding:13px 14px;
+    background:transparent;
+    border:none;
+    color:#475569;
+    font-family:inherit;
     font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    cursor:pointer;
+    transition:.18s ease;
+    text-align:left
+}
 
+.col-header:hover,
+.col-header.active{
+    background:#eff6ff;
+    color:#1e3a8a
+}
+
+.col-static{
+    padding:13px 14px;
+    display:block
+}
+
+.col-icons{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    flex-shrink:0
+}
+
+.col-sort-icon{
+    width:12px;
+    height:12px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-sort-icon.on{
+    opacity:1;
+    color:#1e3a8a
+}
+
+.col-filter-icon{
+    width:11px;
+    height:11px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-filter-icon.on{
+    opacity:1;
+    color:#f59e0b
+}
+
+.col-header:hover .col-sort-icon,
+.col-header:hover .col-filter-icon{opacity:.8}
+
+/* =========================================================
+   COLUMN DROPDOWN (popup filter & sort)
+========================================================= */
+
+.col-dropdown{
+    position:fixed;
+    z-index:1100;
+    width:240px;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(15,23,42,.13);
+    padding:8px;
+    animation:ddIn .15s ease
+}
+
+.col-dropdown[hidden]{display:none}
+
+@keyframes ddIn{
+    from{opacity:0;transform:translateY(-4px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.dd-sort{display:flex;gap:6px;padding:4px}
+
+.dd-sort-btn{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
     font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
 
+.dd-sort-btn:hover{background:#eff6ff;color:#1e3a8a}
+
+.dd-sort-btn.on{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.dd-divider{height:1px;background:#f1f5f9;margin:8px 0}
+
+.dd-search-wrap{position:relative}
+
+.dd-search-icon{
+    position:absolute;
+    left:9px;
+    top:50%;
+    transform:translateY(-50%);
+    width:12px;
+    height:12px;
+    color:#94a3b8;
+    pointer-events:none
+}
+
+.dd-search{
+    width:100%;
+    padding:7px 8px 7px 28px;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    background:#f8fafc;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    outline:none
+}
+
+.dd-search:focus{
+    background:#fff;
+    border-color:#93c5fd;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
+}
+
+.dd-list{
+    max-height:160px;
+    overflow-y:auto;
+    margin-top:6px
+}
+
+.dd-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+    color:#334155
+}
+
+.dd-item:hover{background:#f8fafc}
+
+.dd-item input{
+    accent-color:#1e3a8a;
+    width:13px;
+    height:13px;
+    flex-shrink:0;
+    cursor:pointer
+}
+
+.dd-item-label{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+
+.dd-item-count{
+    font-size:9px;
+    font-weight:700;
+    color:#94a3b8
+}
+
+.dd-all{
+    border-bottom:1px solid #f1f5f9;
+    border-radius:0;
+    margin-bottom:4px;
+    padding-bottom:8px
+}
+
+.dd-empty{
+    font-size:10px;
+    color:#94a3b8;
+    padding:10px;
+    text-align:center
+}
+
+.dd-footer{
+    display:flex;
+    gap:6px;
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px solid #f1f5f9
+}
+
+.dd-reset{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-reset:hover{background:#fee2e2;color:#991b1b}
+
+.dd-apply{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:none;
+    background:#1e3a8a;
+    color:#fff;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-apply:hover{background:#1d4ed8}
+
+/* =========================================================
+   ACTIVE FILTER CHIPS
+========================================================= */
+
+.active-filters-bar{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 20px;
+    background:#fffbeb;
+    border-bottom:1px solid #fde68a
+}
+
+.active-filters-bar[hidden]{display:none}
+
+.active-filter-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 6px 4px 10px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#92400e;
+    font-size:9px;
+    font-weight:800
+}
+
+.active-filter-chip button{
+    border:none;
+    background:transparent;
+    color:#92400e;
+    cursor:pointer;
+    font-size:12px;
+    line-height:1;
+    padding:0 4px;
+    border-radius:999px
+}
+
+.active-filter-chip button:hover{background:#fde68a}
+
+.clear-all-btn{
+    margin-left:auto;
+    font-size:9px;
+    font-weight:800;
+    color:#92400e;
+    border:1px solid #fde68a;
+    background:#fff;
+    border-radius:999px;
+    padding:4px 10px;
+    cursor:pointer;
+    font-family:inherit
+}
+
+/* =========================================================
+   BADGES (palet baku Bab 2)
+========================================================= */
+
+.shift-badge{
+    display:inline-flex;
+    align-items:center;
+    border-radius:999px;
+    padding:5px 9px;
+    font-size:9px;
+    font-weight:800;
     white-space:nowrap;
+    background:#dbeafe;
+    color:#1e40af
+}
 
+.unit-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:50px;
+    padding:5px 8px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    font-size:10px;
+    font-weight:900
+}
+
+.pap-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:6px 10px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1d4ed8;
+    border:1px solid #dbeafe;
+    font-size:10px;
+    font-weight:800;
+    white-space:nowrap;
     text-decoration:none;
-
-    transition:
-        .2s ease;
-
+    transition:.2s ease
 }
 
 .pap-link:hover{
-
     background:#dbeafe;
-
     border-color:#bfdbfe;
-
     color:#1e40af;
-
-    transform:
-        translateY(-1px);
-
-    box-shadow:
-        0 3px 8px
-        rgba(37,99,235,.12);
-
+    transform:translateY(-1px);
+    box-shadow:0 3px 8px rgba(37,99,235,.12)
 }
-
-
-/* =========================================================
-   UNIT BADGE
-========================================================= */
-
-.unit-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    min-width:50px;
-
-    padding:
-        5px
-        8px;
-
-    border-radius:8px;
-
-    background:#eff6ff;
-
-    color:#1e3a8a;
-
-    font-size:10px;
-
-    font-weight:900;
-
-}
-
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-.filter-input{
-
-    width:100%;
-
-    background:#f8fafc;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:11px;
-
-    padding:
-        10px
-        12px;
-
-    color:#334155;
-
-    font-size:11px;
-
-    font-weight:600;
-
-    outline:none;
-
-    transition:
-        .2s ease;
-
-}
-
-.filter-input:focus{
-
-    background:#fff;
-
-    border-color:#93c5fd;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(59,130,246,.10);
-
-}
-
-select.filter-input{
-
-    cursor:pointer;
-
-}
-
 
 /* =========================================================
    PAGINATION
 ========================================================= */
 
 .pagination-button{
-
     width:34px;
-
     height:34px;
-
+    min-width:34px;
     border-radius:9px;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     background:#fff;
-
     color:#475569;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:11px;
-
     font-weight:800;
-
     cursor:pointer;
-
-    transition:.2s ease;
-
-    flex-shrink:0;
-
+    transition:.2s ease
 }
 
 .pagination-button:hover:not(:disabled){
-
     background:#eff6ff;
-
     color:#1e3a8a;
-
-    border-color:#bfdbfe;
-
+    border-color:#bfdbfe
 }
 
 .pagination-button.active{
-
     background:#1e3a8a;
-
     color:#fff;
-
-    border-color:#1e3a8a;
-
+    border-color:#1e3a8a
 }
 
-.pagination-button:disabled{
-
-    opacity:.4;
-
-    cursor:not-allowed;
-
-}
-
+.pagination-button:disabled{opacity:.4;cursor:not-allowed}
 
 /* =========================================================
-   EMPTY / LOADING
+   LOADING & EMPTY
 ========================================================= */
 
 #loading{
-
     min-height:350px;
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
-    justify-content:center;
-
+    justify-content:center
 }
 
-#tableContent{
+#tableContent{display:none}
+#tableContent.show{display:block}
+#emptyState{display:none}
+#emptyState.show{display:block}
 
+/* =========================================================
+   MOBILE FILTER BAR & CARDS (≤767px)
+========================================================= */
+
+.mobile-filter-bar{
     display:none;
-
+    gap:6px;
+    overflow-x:auto;
+    padding:10px 12px;
+    background:#fff;
+    border-bottom:1px solid #f1f5f9;
+    scrollbar-width:none
 }
 
-#tableContent.show{
+.mobile-filter-bar::-webkit-scrollbar{display:none}
 
-    display:block;
-
+.mobile-filter-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:7px 10px;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    font-family:inherit;
+    font-size:9px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    cursor:pointer
 }
 
+.mobile-filter-btn.active{
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe
+}
+
+.mobile-filter-count{
+    background:#1e3a8a;
+    color:#fff;
+    border-radius:999px;
+    padding:1px 6px;
+    font-size:8px
+}
+
+.mobile-data-list{display:none}
+
+.mobile-data-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:10px;
+    box-shadow:0 3px 10px rgba(15,23,42,.035);
+    transition:.2s ease
+}
+
+.mobile-data-card:active{transform:scale(.995)}
+
+.mobile-card-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:12px;
+    margin-bottom:12px;
+    border-bottom:1px solid #f1f5f9
+}
+
+.mobile-unit-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    flex:1;
+    min-width:0
+}
+
+.mobile-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:27px;
+    height:27px;
+    padding:0 7px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#64748b;
+    font-size:9px;
+    font-weight:900;
+    flex-shrink:0
+}
+
+.mobile-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px 14px
+}
+
+.mobile-field{min-width:0}
+.mobile-field.full{grid-column:1/-1}
+
+.mobile-label{
+    font-size:8px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:4px
+}
+
+.mobile-value{
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    word-break:break-word;
+    line-height:1.45
+}
+
+.mobile-remark{
+    background:#f8fafc;
+    border-radius:10px;
+    padding:9px 10px;
+    color:#475569;
+    font-size:10px;
+    line-height:1.5;
+    word-break:break-word
+}
+
+.mobile-pap{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid #f1f5f9
+}
 
 /* =========================================================
    LEADERBOARD
 ========================================================= */
 
 #leaderboardButton{
-
     position:fixed;
-
     right:28px;
-
     bottom:28px;
-
     z-index:90;
-
     width:68px;
-
     height:68px;
-
     border-radius:20px;
-
     background:#1e3a8a;
-
     color:#fff;
-
-    border:
-        2px solid
-        rgba(255,255,255,.45);
-
-    box-shadow:
-        0 12px 30px
-        rgba(15,23,42,.28);
-
+    border:2px solid rgba(255,255,255,.45);
+    box-shadow:0 12px 30px rgba(15,23,42,.28);
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     cursor:pointer;
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-
+    transition:transform .25s ease,box-shadow .25s ease
 }
 
 #leaderboardButton:hover{
-
-    transform:
-        translateY(-4px)
-        scale(1.05);
-
-    box-shadow:
-        0 18px 38px
-        rgba(15,23,42,.34);
-
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 18px 38px rgba(15,23,42,.34)
 }
 
 #leaderboardButton.leader-pulse{
-
-    animation:
-        leaderPulse
-        1.5s
-        ease-in-out;
-
+    animation:leaderPulse 1.5s ease-in-out
 }
 
 @keyframes leaderPulse{
-
-    0%{
-
-        transform:scale(1);
-
-        box-shadow:
-            0 12px 30px
-            rgba(15,23,42,.28);
-
-    }
-
-    20%{
-
-        transform:
-            scale(1.18);
-
-        box-shadow:
-            0 0 0 12px
-            rgba(30,58,138,.12),
-            0 16px 38px
-            rgba(15,23,42,.32);
-
-    }
-
-    40%{
-
-        transform:
-            scale(.98);
-
-    }
-
-    60%{
-
-        transform:
-            scale(1.12);
-
-        box-shadow:
-            0 0 0 8px
-            rgba(30,58,138,.10),
-            0 16px 38px
-            rgba(15,23,42,.32);
-
-    }
-
-    100%{
-
-        transform:scale(1);
-
-        box-shadow:
-            0 12px 30px
-            rgba(15,23,42,.28);
-
-    }
-
+    0%,100%{transform:scale(1);box-shadow:0 12px 30px rgba(15,23,42,.28)}
+    20%{transform:scale(1.18);box-shadow:0 0 0 12px rgba(30,58,138,.12),0 16px 38px rgba(15,23,42,.32)}
+    40%{transform:scale(.98)}
+    60%{transform:scale(1.12);box-shadow:0 0 0 8px rgba(30,58,138,.1),0 16px 38px rgba(15,23,42,.32)}
 }
 
 .leader-tooltip{
-
     position:absolute;
-
     right:0;
-
     bottom:78px;
-
     white-space:nowrap;
-
     background:#0f172a;
-
     color:#fff;
-
     font-size:10px;
-
     font-weight:700;
-
-    padding:
-        7px
-        10px;
-
+    padding:7px 10px;
     border-radius:8px;
-
     opacity:0;
-
     pointer-events:none;
-
-    transform:
-        translateY(5px);
-
-    transition:.2s;
-
+    transform:translateY(5px);
+    transition:.2s
 }
 
-#leaderboardButton:hover
-.leader-tooltip{
-
-    opacity:1;
-
-    transform:
-        translateY(0);
-
-}
-
-
-/* =========================================================
-   LEADERBOARD OVERLAY
-========================================================= */
+#leaderboardButton:hover .leader-tooltip{opacity:1;transform:translateY(0)}
 
 #leaderboardOverlay{
-
     position:fixed;
-
     inset:0;
-
     z-index:95;
-
-    background:
-        rgba(15,23,42,.28);
-
-    backdrop-filter:
-        blur(3px);
-
+    background:rgba(15,23,42,.28);
+    backdrop-filter:blur(3px);
     display:none;
-
     align-items:center;
-
     justify-content:center;
-
-    padding:20px;
-
+    padding:20px
 }
 
-#leaderboardOverlay.show{
-
-    display:flex;
-
-}
-
+#leaderboardOverlay.show{display:flex}
 
 #leaderboardModal{
-
-    width:
-        min(430px,100%);
-
+    width:min(430px,100%);
     max-height:80vh;
-
     overflow:hidden;
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:22px;
-
-    box-shadow:
-        0 25px 60px
-        rgba(15,23,42,.25);
-
-    animation:
-        leaderModalIn
-        .25s ease;
-
+    box-shadow:0 25px 60px rgba(15,23,42,.25);
+    animation:leaderModalIn .25s ease
 }
 
 @keyframes leaderModalIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(12px)
-            scale(.97);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
+    from{opacity:0;transform:translateY(12px) scale(.97)}
+    to{opacity:1;transform:translateY(0) scale(1)}
 }
-
 
 .leader-row{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
-    padding:
-        12px
-        14px;
-
+    padding:12px 14px;
     border-radius:14px;
-
     margin-bottom:7px;
-
     background:#f8fafc;
-
-    border:
-        1px solid
-        #f1f5f9;
-
+    border:1px solid #f1f5f9
 }
 
-.leader-row.top-1{
-
-    background:#fffbeb;
-
-    border-color:#fde68a;
-
-}
-
-.leader-row.top-2{
-
-    background:#f8fafc;
-
-    border-color:#cbd5e1;
-
-}
-
-.leader-row.top-3{
-
-    background:#fff7ed;
-
-    border-color:#fed7aa;
-
-}
+.leader-row.top-1{background:#fffbeb;border-color:#fde68a}
+.leader-row.top-2{border-color:#cbd5e1}
+.leader-row.top-3{background:#fff7ed;border-color:#fed7aa}
 
 .leader-rank{
-
     width:30px;
-
     height:30px;
-
     border-radius:10px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:12px;
-
     font-weight:900;
-
     background:#e2e8f0;
-
     color:#475569;
-
-    flex-shrink:0;
-
+    flex-shrink:0
 }
 
-.top-1 .leader-rank{
-
-    background:#fbbf24;
-
-    color:#78350f;
-
-}
-
-.top-2 .leader-rank{
-
-    background:#cbd5e1;
-
-    color:#334155;
-
-}
-
-.top-3 .leader-rank{
-
-    background:#fdba74;
-
-    color:#7c2d12;
-
-}
+.top-1 .leader-rank{background:#fbbf24;color:#78350f}
+.top-2 .leader-rank{background:#cbd5e1;color:#334155}
+.top-3 .leader-rank{background:#fdba74;color:#7c2d12}
 
 .leader-name{
-
     font-size:12px;
-
     font-weight:800;
-
     color:#334155;
-
     flex:1;
-
-    min-width:0;
-
+    min-width:0
 }
 
 .leader-count{
-
     font-size:11px;
-
     font-weight:900;
-
     color:#1e3a8a;
-
     background:#dbeafe;
-
-    padding:
-        5px
-        9px;
-
+    padding:5px 9px;
     border-radius:999px;
+    white-space:nowrap
+}
 
-    white-space:nowrap;
+/* =========================================================
+   BREAKPOINTS (bible Bab 4)
+========================================================= */
+
+@media(min-width:1920px){
+    main{max-width:1800px}
+}
+
+@media(min-width:768px) and (max-width:1100px){
+
+    main{padding:28px!important;border-radius:24px!important}
+
+    .page-title{font-size:25px}
+
+    .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    header{margin-bottom:28px!important}
 
 }
 
+@media(max-width:767px){
 
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media(max-width:1024px){
-
-    body{
-        padding:16px !important;
-    }
+    body{padding:10px!important;align-items:stretch!important}
 
     main{
-        padding:28px !important;
-        border-radius:26px !important;
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
 
-    .page-title{
-        font-size:26px;
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
+
+    .logo-wrapper{margin-bottom:14px!important}
+
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
     }
-
-    .stat-card{
-        padding:15px;
-    }
-
-    .table-scroll table{
-        min-width:820px;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:768px){
-
-    body{
-        padding:10px !important;
-        align-items:stretch !important;
-    }
-
-
-    main{
-
-        width:100% !important;
-
-        max-width:none !important;
-
-        padding:20px !important;
-
-        border-radius:22px !important;
-
-    }
-
-
-    /* HEADER */
-
-    header{
-
-        margin-bottom:24px !important;
-
-        padding-bottom:20px !important;
-
-    }
-
-
-    .logo-wrapper{
-        margin-bottom:14px !important;
-    }
-
-
-    .logo-wrapper > div{
-
-        width:78px !important;
-
-        height:78px !important;
-
-        border-radius:16px !important;
-
-    }
-
 
     header .color-primary{
-
-        width:100%;
-
-        padding:
-            13px
-            12px !important;
-
-        border-radius:16px !important;
-
+        width:100%!important;
+        padding:13px 14px!important;
+        border-radius:15px!important
     }
 
-
-    header h1{
-
-        font-size:18px !important;
-
-        line-height:1.25 !important;
-
+    header .color-primary h1{
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
     }
 
-
-    header h2{
-
-        font-size:11px !important;
-
-        line-height:1.4 !important;
-
-        letter-spacing:.12em !important;
-
+    header .color-primary h2{
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
     }
 
-
-    header .mt-3{
-
-        font-size:8px !important;
-
-        letter-spacing:.2em !important;
-
-        text-align:center;
-
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
     }
 
-
-    /* PAGE TITLE */
-
-    section > div:first-child{
-
-        align-items:flex-start !important;
-
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
     }
-
 
     .page-title{
-
-        font-size:21px;
-
-        line-height:1.25;
-
-        gap:9px !important;
-
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important;
+        align-items:flex-start!important
     }
 
-
-    .page-title > span{
-
-        padding:9px !important;
-
-        border-radius:10px !important;
-
+    .page-title span{
+        padding:9px!important;
+        border-radius:10px!important;
+        flex-shrink:0
     }
 
-
-    .page-title i{
-
-        width:20px !important;
-
-        height:20px !important;
-
-    }
-
+    .page-title span svg{width:18px!important;height:18px!important}
 
     .page-subtitle{
-
-        font-size:11px;
-
-        line-height:1.5;
-
-        margin-top:7px !important;
-
+        font-size:10px!important;
+        line-height:1.6!important;
+        margin-top:8px!important
     }
-
 
     .back-button{
-
-        padding:
-            9px
-            12px;
-
-        font-size:10px;
-
-        border-radius:10px;
-
-    }
-
-
-    .back-button i{
-
-        width:14px !important;
-
-        height:14px !important;
-
-    }
-
-
-    /* STATISTICS */
-
-    #tableContent > .grid{
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-        gap:10px !important;
-
-        margin-bottom:16px !important;
-
-    }
-
-
-    .stat-card{
-
-        padding:13px;
-
-        border-radius:14px;
-
-    }
-
-
-    .stat-card p:first-child{
-
-        font-size:8px !important;
-
-        letter-spacing:.04em !important;
-
-    }
-
-
-    .stat-card p[id]{
-
-        font-size:25px !important;
-
-        margin-top:6px !important;
-
-    }
-
-
-    .stat-card span{
-
-        font-size:9px !important;
-
-    }
-
-
-    /* FILTER */
-
-    #tableContent .bg-white.border.rounded-2xl{
-
-        padding:15px !important;
-
-        border-radius:16px !important;
-
-        margin-bottom:14px !important;
-
-    }
-
-
-    #tableContent .bg-white.border.rounded-2xl
-    > .flex.items-center.gap-3{
-
-        margin-bottom:13px !important;
-
-    }
-
-
-    #tableContent .bg-white.border.rounded-2xl
-    > .flex.items-center.gap-3 span{
-
-        padding:7px !important;
-
-    }
-
-
-    #tableContent .bg-white.border.rounded-2xl
-    > .flex.items-center.gap-3 i{
-
-        width:15px !important;
-
-        height:15px !important;
-
-    }
-
-
-    #tableContent .bg-white.border.rounded-2xl
-    h3{
-
-        font-size:12px !important;
-
-    }
-
-
-    #tableContent .bg-white.border.rounded-2xl
-    p{
-
-        font-size:9px !important;
-
-        line-height:1.4;
-
-    }
-
-
-    #tableContent .grid.grid-cols-4{
-
-        grid-template-columns:
-            1fr !important;
-
-        gap:10px !important;
-
-    }
-
-
-    #tableContent .grid.grid-cols-4 label{
-
-        font-size:8px !important;
-
-        margin-bottom:5px !important;
-
-    }
-
-
-    .filter-input{
-
-        font-size:10px;
-
-        padding:
-            9px
-            10px;
-
-        border-radius:10px;
-
-    }
-
-
-    /* TABLE PANEL */
-
-    .table-panel{
-
-        border-radius:16px;
-
-    }
-
-
-    .table-panel
-    > .px-5.py-4{
-
-        padding:
-            13px
-            14px !important;
-
-        gap:10px;
-
-        align-items:flex-start !important;
-
-    }
-
-
-    .table-panel
-    > .px-5.py-4 h3{
-
-        font-size:12px !important;
-
-    }
-
-
-    .table-panel
-    > .px-5.py-4 p{
-
-        font-size:8px !important;
-
-        line-height:1.4;
-
-    }
-
-
-    .table-panel
-    > .px-5.py-4
-    > div:last-child{
-
-        font-size:8px !important;
-
-        white-space:nowrap;
-
-    }
-
-
-    .table-scroll{
-
         width:100%;
-
-        overflow-x:auto;
-
-        overflow-y:hidden;
-
-        border-top:0;
-
+        padding:10px 12px;
+        border-radius:10px!important;
+        font-size:10px!important
     }
 
-
-    .table-scroll table{
-
-        min-width:820px;
-
+    .stats-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:10px!important;
+        margin-bottom:14px!important
     }
 
+    .stats-grid>.stat-card:last-child{grid-column:1/-1}
 
-    thead th{
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-card p:first-child{font-size:8px!important;line-height:1.4!important}
+    .stat-card p.text-3xl{font-size:23px!important;line-height:1!important}
+    .stat-card span{font-size:9px!important}
 
-        padding:
-            11px
-            10px;
+    .table-panel{border-radius:16px!important}
+    .table-panel>div:first-child{padding:13px 14px!important}
+    .table-panel>div:first-child h3{font-size:12px!important}
+    .table-panel>div:first-child p{font-size:9px!important}
+    .table-panel>div:first-child>div:last-child{display:none!important}
 
-        font-size:8px;
+    .active-filters-bar{padding:10px 14px}
 
+    /* tabel desktop disembunyikan, diganti filter bar + kartu */
+    .table-scroll{display:none!important}
+
+    .mobile-filter-bar{display:flex}
+
+    .mobile-data-list{
+        display:block!important;
+        padding:9px!important;
+        background:#f8fafc
     }
 
+    .mobile-data-card{padding:14px!important;border-radius:15px!important;margin-bottom:9px!important}
+    .mobile-card-header{gap:8px!important;padding-bottom:11px!important;margin-bottom:11px!important}
+    .mobile-card-grid{gap:10px 12px!important}
+    .mobile-label{font-size:7px!important;margin-bottom:4px!important}
+    .mobile-value{font-size:10px!important;line-height:1.45!important}
+    .mobile-remark{font-size:9px!important;padding:8px 9px!important}
+    .mobile-pap{margin-top:11px!important;padding-top:11px!important}
+    .mobile-number{min-width:25px!important;height:25px!important;font-size:8px!important}
 
-    tbody td{
+    .shift-badge{padding:4px 8px!important;font-size:8px!important}
+    .unit-badge{padding:4px 7px!important;font-size:8px!important}
+    .pap-link{padding:6px 9px!important;font-size:9px!important}
+    .pap-link svg{width:13px!important;height:13px!important}
 
-        padding:
-            10px
-            10px;
-
-        font-size:10px;
-
+    /* popup jadi bottom sheet */
+    .col-dropdown.is-sheet{
+        left:16px!important;
+        right:16px!important;
+        top:auto!important;
+        bottom:16px!important;
+        width:auto!important;
+        max-height:70vh;
+        border-radius:14px;
+        overflow-y:auto
     }
 
+    .col-dropdown.is-sheet .dd-list{max-height:40vh}
 
-    .sort-icon{
+    .table-panel>div:last-child{padding:10px!important;gap:7px!important}
 
-        width:12px;
-
-        height:12px;
-
-    }
-
-
-    .unit-badge{
-
-        min-width:42px;
-
-        padding:
-            4px
-            6px;
-
-        font-size:9px;
-
-        border-radius:7px;
-
-    }
-
-
-    .pap-link{
-
-        padding:
-            5px
-            8px;
-
-        font-size:9px;
-
-        border-radius:7px;
-
-    }
-
-
-    /* PAGINATION */
-
-    .table-panel
-    > .px-5.py-4:last-child{
-
-        padding:
-            11px
-            12px !important;
-
-        gap:10px;
-
-    }
-
-
-    #paginationInfo{
-
-        font-size:8px !important;
-
-        white-space:nowrap;
-
-    }
-
+    #paginationInfo{font-size:8px!important;white-space:nowrap}
 
     #pagination{
-
-        max-width:100%;
-
+        gap:3px!important;
         overflow-x:auto;
-
+        max-width:65%;
         padding-bottom:2px;
-
-        scrollbar-width:none;
-
+        scrollbar-width:none
     }
 
-
-    #pagination::-webkit-scrollbar{
-
-        display:none;
-
-    }
-
+    #pagination::-webkit-scrollbar{display:none}
 
     .pagination-button{
-
-        width:30px;
-
-        height:30px;
-
-        border-radius:8px;
-
-        font-size:10px;
-
+        width:30px!important;
+        height:30px!important;
+        min-width:30px!important;
+        font-size:9px!important;
+        border-radius:8px!important
     }
 
-
-    /* FOOTER */
-
-    footer{
-
-        margin-top:18px !important;
-
-        padding:
-            0
-            8px
-            20px !important;
-
-    }
-
-
-    footer p:first-child{
-
-        font-size:9px !important;
-
-        line-height:1.5;
-
-    }
-
-
-    footer p:last-child{
-
-        font-size:8px !important;
-
-        line-height:1.6;
-
-    }
-
-
-    /* LEADERBOARD BUTTON */
+    footer{margin-top:18px!important;padding:0 8px 90px!important}
+    footer p:first-child{font-size:8px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.5!important}
 
     #leaderboardButton{
-
+        width:55px;
+        height:55px;
         right:16px;
-
         bottom:16px;
-
-        width:54px;
-
-        height:54px;
-
-        border-radius:16px;
-
+        border-radius:17px;
+        box-shadow:0 10px 25px rgba(15,23,42,.25)
     }
 
+    #leaderboardButton svg{width:23px;height:23px}
 
-    #leaderboardButton > i{
+    .leader-tooltip{display:none}
 
-        width:23px !important;
+    #leaderboardOverlay{padding:10px}
 
-        height:23px !important;
+    #leaderboardModal{width:100%;max-height:85vh;border-radius:18px}
 
-    }
+    #leaderboardModal>div:first-child{padding:13px!important}
 
+    #leaderboardList{padding:12px!important;max-height:65vh!important}
 
-    .leader-tooltip{
+    .leader-row{padding:10px!important;gap:9px!important;border-radius:12px!important}
 
-        display:none;
+    .leader-rank{width:28px!important;height:28px!important;border-radius:9px!important;font-size:11px!important}
 
-    }
+    .leader-name{font-size:10px!important}
 
-
-    /* LEADERBOARD MODAL */
-
-    #leaderboardOverlay{
-
-        padding:12px;
-
-    }
-
-
-    #leaderboardModal{
-
-        width:100%;
-
-        max-width:none;
-
-        max-height:82vh;
-
-        border-radius:18px;
-
-    }
-
-
-    #leaderboardModal
-    > .px-5.py-4{
-
-        padding:
-            13px
-            14px !important;
-
-    }
-
-
-    #leaderboardModal h3{
-
-        font-size:13px !important;
-
-    }
-
-
-    #leaderboardModal
-    h3 span{
-
-        padding:7px !important;
-
-    }
-
-
-    #leaderboardModal
-    h3 i{
-
-        width:17px !important;
-
-        height:17px !important;
-
-    }
-
-
-    #leaderboardModal
-    p{
-
-        font-size:8px !important;
-
-    }
-
-
-    #leaderboardList{
-
-        padding:13px !important;
-
-        max-height:65vh !important;
-
-    }
-
-
-    .leader-row{
-
-        gap:9px;
-
-        padding:
-            10px
-            11px;
-
-        border-radius:11px;
-
-    }
-
-
-    .leader-rank{
-
-        width:27px;
-
-        height:27px;
-
-        border-radius:8px;
-
-        font-size:11px;
-
-    }
-
-
-    .leader-name{
-
-        font-size:10px;
-
-    }
-
-
-    .leader-count{
-
-        font-size:9px;
-
-        padding:
-            4px
-            7px;
-
-    }
+    .leader-count{font-size:8px!important;padding:4px 7px!important}
 
 }
 
+@media(max-width:380px){
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
+    body{padding:6px!important}
 
-@media(max-width:480px){
+    main{padding:12px!important;border-radius:17px!important}
 
-    body{
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
 
-        padding:6px !important;
+    .logo-wrapper>div{width:70px!important;height:70px!important}
 
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
+
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
+    .page-title span{padding:8px!important}
+    .page-title span svg{width:18px!important;height:18px!important}
+
+    .back-button span{display:none}
+
+    .stats-grid{gap:8px!important}
+
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-card p.text-3xl{font-size:21px!important}
+
+    .mobile-card-grid{grid-template-columns:1fr!important}
+    .mobile-field.full{grid-column:auto}
+
+    .table-panel>div:last-child{
+        justify-content:center!important;
+        flex-direction:column!important;
+        align-items:stretch!important
     }
 
-
-    main{
-
-        padding:14px !important;
-
-        border-radius:18px !important;
-
-    }
-
-
-    header{
-
-        margin-bottom:20px !important;
-
-        padding-bottom:17px !important;
-
-    }
-
-
-    .logo-wrapper > div{
-
-        width:68px !important;
-
-        height:68px !important;
-
-        border-radius:14px !important;
-
-    }
-
-
-    header .color-primary{
-
-        padding:
-            11px
-            8px !important;
-
-        border-radius:14px !important;
-
-    }
-
-
-    header h1{
-
-        font-size:15px !important;
-
-    }
-
-
-    header h2{
-
-        font-size:9px !important;
-
-        letter-spacing:.09em !important;
-
-    }
-
-
-    header .mt-3{
-
-        font-size:7px !important;
-
-        letter-spacing:.14em !important;
-
-    }
-
-
-    .page-title{
-
-        font-size:18px;
-
-    }
-
-
-    .page-title > span{
-
-        padding:8px !important;
-
-    }
-
-
-    .page-title i{
-
-        width:17px !important;
-
-        height:17px !important;
-
-    }
-
-
-    .page-subtitle{
-
-        font-size:9px;
-
-    }
-
-
-    .back-button{
-
-        padding:
-            8px
-            10px;
-
-        font-size:9px;
-
-        gap:5px;
-
-    }
-
-
-    #tableContent > .grid{
-
-        gap:8px !important;
-
-    }
-
-
-    .stat-card{
-
-        padding:11px;
-
-        border-radius:12px;
-
-    }
-
-
-    .stat-card p[id]{
-
-        font-size:22px !important;
-
-    }
-
-
-    #tableContent .bg-white.border.rounded-2xl{
-
-        padding:12px !important;
-
-    }
-
-
-    .table-panel
-    > .px-5.py-4{
-
-        padding:
-            11px
-            12px !important;
-
-    }
-
-
-    .table-panel
-    > .px-5.py-4
-    > div:last-child{
-
-        display:none;
-
-    }
-
-
-    .table-scroll table{
-
-        min-width:800px;
-
-    }
-
-
-    thead th{
-
-        padding:
-            10px
-            9px;
-
-        font-size:7px;
-
-    }
-
-
-    tbody td{
-
-        padding:
-            9px
-            9px;
-
-        font-size:9px;
-
-    }
-
-
-    .table-panel
-    > .px-5.py-4:last-child{
-
-        flex-direction:column;
-
-        align-items:stretch !important;
-
-    }
-
-
-    #paginationInfo{
-
-        text-align:center;
-
-    }
-
-
-    #pagination{
-
-        justify-content:center;
-
-        width:100%;
-
-    }
-
-
-    footer p:first-child{
-
-        font-size:8px !important;
-
-    }
-
-
-    #leaderboardButton{
-
-        right:12px;
-
-        bottom:12px;
-
-        width:50px;
-
-        height:50px;
-
-        border-radius:14px;
-
-    }
-
-
-    #leaderboardButton > i{
-
-        width:21px !important;
-
-        height:21px !important;
-
-    }
-
-}
-
-
-/* =========================================================
-   EXTRA SMALL MOBILE
-========================================================= */
-
-@media(max-width:375px){
-
-    main{
-
-        padding:11px !important;
-
-    }
-
-
-    .page-title{
-
-        font-size:16px;
-
-    }
-
-
-    .page-title > span{
-
-        padding:7px !important;
-
-    }
-
-
-    .page-subtitle{
-
-        font-size:8px;
-
-    }
-
-
-    .back-button{
-
-        padding:
-            7px
-            9px;
-
-        font-size:8px;
-
-    }
-
-
-    #tableContent > .grid{
-
-        gap:7px !important;
-
-    }
-
-
-    .stat-card{
-
-        padding:9px;
-
-    }
-
-
-    .stat-card p:first-child{
-
-        font-size:7px !important;
-
-    }
-
-
-    .stat-card p[id]{
-
-        font-size:20px !important;
-
-    }
-
-
-    .stat-card span{
-
-        font-size:8px !important;
-
-    }
-
-
-    #leaderboardModal{
-
-        border-radius:15px;
-
-    }
+    #paginationInfo{text-align:center}
+    #pagination{max-width:100%;justify-content:center}
 
 }
 
 </style>
-
 </head>
 
+<body class="flex flex-col items-center p-4 sm:p-8">
 
-<body
-    class="
-        flex
-        flex-col
-        items-center
-        p-4
-        sm:p-8
-    "
->
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-
-<main
-    class="
-        w-full
-        max-w-7xl
-        flex-grow
-        glass-panel
-        p-6
-        sm:p-10
-        rounded-3xl
-        shadow-2xl
-        fade-in
-    "
->
-
-
-<!-- =====================================================
+<!-- ======================================================
      HEADER
-===================================================== -->
+====================================================== -->
 
-<header
-    class="
-        w-full
-        mb-8
-        pb-6
-        border-b-2
-        border-slate-100
-        flex
-        flex-col
-        items-center
-    "
->
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
     <div class="mb-4 logo-wrapper">
-
-        <div
-            class="
-                w-24
-                h-24
-                flex
-                items-center
-                justify-center
-                bg-white
-                rounded-2xl
-                logo-shadow
-                overflow-hidden
-                p-2
-            "
-        >
-
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
             <img
                 src="default_logo.png"
                 alt="Logo PT TSI"
-                class="
-                    w-full
-                    h-full
-                    object-contain
-                "
+                class="w-full h-full object-contain"
                 id="companyLogo"
                 onerror="handleLogoError()"
             >
-
             <div
                 id="logoFallback"
-                class="
-                    hidden
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    bg-blue-900
-                    w-full
-                    h-full
-                    text-white
-                "
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
             >
-
-                <span
-                    class="
-                        font-black
-                        text-2xl
-                    "
-                >
-                    TSI
-                </span>
-
+                <span class="font-black text-2xl">TSI</span>
             </div>
-
         </div>
-
     </div>
 
-
-    <div
-        class="
-            color-primary
-            text-white
-            px-8
-            py-4
-            rounded-2xl
-            shadow-lg
-            flex
-            flex-col
-            items-center
-            gap-1
-        "
-    >
-
-        <h1
-            class="
-                text-xl
-                sm:text-2xl
-                font-black
-                uppercase
-                tracking-[0.1em]
-                text-center
-            "
-        >
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
             PAPERLESS PROJECT
         </h1>
-
-        <div
-            class="
-                h-0.5
-                w-16
-                bg-amber-500
-                rounded-full
-                my-1
-            "
-        ></div>
-
-        <h2
-            class="
-                text-sm
-                sm:text-lg
-                font-bold
-                uppercase
-                tracking-widest
-                text-blue-100
-                text-center
-            "
-        >
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
             PT TATSUMI SERUNI INDONESIA
         </h2>
-
     </div>
 
-
-    <div
-        class="
-            mt-3
-            text-[10px]
-            font-bold
-            text-slate-400
-            tracking-[0.3em]
-            uppercase
-        "
-    >
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
         Digitalization Initiative v2.0
     </div>
 
 </header>
 
 
-<!-- =====================================================
-     PAGE TITLE
-===================================================== -->
+<!-- ======================================================
+     SECTION
+====================================================== -->
 
 <section>
 
-    <div
-        class="
-            flex
-            items-center
-            justify-between
-            gap-5
-            mb-6
-        "
-    >
+    <div class="flex items-center justify-between gap-5 mb-6">
 
         <div>
-
-            <h2
-                class="
-                    page-title
-                    flex
-                    items-center
-                    gap-3
-                "
-            >
-
-                <span
-                    class="
-                        bg-blue-900
-                        text-white
-                        p-3
-                        rounded-xl
-                        shadow-md
-                    "
-                >
-
-                    <i
-                        data-lucide="database"
-                        class="w-6 h-6"
-                    ></i>
-
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="database" class="w-6 h-6"></i>
                 </span>
-
                 Data Greasing Activity
-
             </h2>
-
-
-            <p
-                class="
-                    page-subtitle
-                    mt-2
-                    ml-1
-                "
-            >
-                Daftar seluruh aktivitas greasing
-                yang tersimpan pada database.
+            <p class="page-subtitle mt-2 ml-1">
+                Daftar seluruh aktivitas greasing yang tersimpan pada database.
             </p>
-
         </div>
 
-
-        <button
-            onclick="goToDashboard()"
-            class="back-button"
-        >
-
-            <i
-                data-lucide="arrow-left"
-                class="w-4 h-4"
-            ></i>
-
-            Kembali
-
+        <button onclick="goToDashboard()" class="back-button">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Kembali</span>
         </button>
 
     </div>
 
 
     <!-- LOADING -->
-
     <div id="loading">
-
-        <i
-            data-lucide="loader-circle"
-            class="
-                w-9
-                h-9
-                animate-spin
-                text-amber-500
-            "
-        ></i>
-
-        <p
-            class="
-                font-semibold
-                text-sm
-                text-slate-400
-                mt-3
-            "
-        >
-            Memuat data...
-        </p>
-
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p class="font-semibold text-sm text-slate-400 mt-3">Memuat data...</p>
     </div>
 
 
     <!-- TABLE CONTENT -->
-
     <div id="tableContent">
 
-        <!-- STATISTICS -->
-
-        <div
-            class="
-                grid
-                grid-cols-5
-                gap-4
-                mb-6
-            "
-        >
+        <!-- STAT CARDS (dihitung dari baris yang lolos filter) -->
+        <div class="stats-grid">
 
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Total Activity
-                </p>
-
-                <p
-                    id="totalData"
-                    class="
-                        text-3xl
-                        font-black
-                        text-blue-900
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Activity</p>
+                <p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
             </div>
 
-
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Wheelloader
-                </p>
-
-                <div
-                    class="
-                        flex
-                        items-end
-                        gap-2
-                        mt-2
-                    "
-                >
-
-                    <p
-                        id="wheelloaderTotal"
-                        class="
-                            text-3xl
-                            font-black
-                            text-indigo-600
-                        "
-                    >
-                        -
-                    </p>
-
-                    <span
-                        class="
-                            mb-1
-                            text-[11px]
-                            font-black
-                            text-slate-400
-                        "
-                    >
-                        W
-                    </span>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Wheelloader</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="wheelloaderTotal" class="text-3xl font-black text-indigo-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">W</span>
                 </div>
-
             </div>
 
-
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Forklift
-                </p>
-
-                <div
-                    class="
-                        flex
-                        items-end
-                        gap-2
-                        mt-2
-                    "
-                >
-
-                    <p
-                        id="forkliftTotal"
-                        class="
-                            text-3xl
-                            font-black
-                            text-amber-600
-                        "
-                    >
-                        -
-                    </p>
-
-                    <span
-                        class="
-                            mb-1
-                            text-[11px]
-                            font-black
-                            text-slate-400
-                        "
-                    >
-                        FD
-                    </span>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Forklift</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="forkliftTotal" class="text-3xl font-black text-amber-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">FD</span>
                 </div>
-
             </div>
 
-
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Dumptruck
-                </p>
-
-                <div
-                    class="
-                        flex
-                        items-end
-                        gap-2
-                        mt-2
-                    "
-                >
-
-                    <p
-                        id="dumptruckTotal"
-                        class="
-                            text-3xl
-                            font-black
-                            text-rose-600
-                        "
-                    >
-                        -
-                    </p>
-
-                    <span
-                        class="
-                            mb-1
-                            text-[11px]
-                            font-black
-                            text-slate-400
-                        "
-                    >
-                        D
-                    </span>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Dumptruck</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="dumptruckTotal" class="text-3xl font-black text-red-700">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">D</span>
                 </div>
-
             </div>
 
-
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Excavator
-                </p>
-
-                <div
-                    class="
-                        flex
-                        items-end
-                        gap-2
-                        mt-2
-                    "
-                >
-
-                    <p
-                        id="excavatorTotal"
-                        class="
-                            text-3xl
-                            font-black
-                            text-emerald-600
-                        "
-                    >
-                        -
-                    </p>
-
-                    <span
-                        class="
-                            mb-1
-                            text-[11px]
-                            font-black
-                            text-slate-400
-                        "
-                    >
-                        E
-                    </span>
-
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Excavator</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="excavatorTotal" class="text-3xl font-black text-emerald-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">E</span>
                 </div>
-
             </div>
 
         </div>
 
 
-        <!-- FILTER -->
-
-        <div
-            class="
-                bg-white
-                border
-                border-slate-200
-                rounded-2xl
-                p-5
-                mb-5
-                shadow-sm
-            "
-        >
-
-            <div
-                class="
-                    flex
-                    items-center
-                    gap-3
-                    mb-4
-                "
-            >
-
-                <span
-                    class="
-                        bg-blue-100
-                        text-blue-700
-                        p-2
-                        rounded-lg
-                    "
-                >
-
-                    <i
-                        data-lucide="filter"
-                        class="w-4 h-4"
-                    ></i>
-
-                </span>
-
-
-                <div>
-
-                    <h3
-                        class="
-                            text-sm
-                            font-black
-                            text-slate-700
-                        "
-                    >
-                        Filter Data
-                    </h3>
-
-                    <p
-                        class="
-                            text-[10px]
-                            text-slate-400
-                            font-medium
-                        "
-                    >
-                        Gunakan filter untuk mencari data tertentu.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div
-                class="
-                    grid
-                    grid-cols-4
-                    gap-4
-                "
-            >
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Cari Data
-                    </label>
-
-                    <div class="relative">
-
-                        <i
-                            data-lucide="search"
-                            class="
-                                absolute
-                                left-3
-                                top-1/2
-                                -translate-y-1/2
-                                w-4
-                                h-4
-                                text-slate-400
-                            "
-                        ></i>
-
-                        <input
-                            id="searchInput"
-                            type="text"
-                            placeholder="Unit, PIC, deskripsi..."
-                            class="
-                                filter-input
-                                pl-10
-                            "
-                            oninput="applyFilters()"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div>
-
-                    <label
-                        class="
-                            block
-                            text-[10px]
-                            font-bold
-                            text-slate-500
-                            uppercase
-                            tracking-wider
-                            mb-2
-                        "
-                    >
-                        Jenis Unit
-                    </label>
-
-                    <select
-                        id="unitTypeFilter"
-                        class="filter-input"
-                        onchange="applyFilters()"
-                    >
-
-                        <option value="">
-                            Semua Unit
-                        </option>
-
-                        <option value="W">
-                            Wheelloader
-                        </option>
-
-                        <option value="FD">
-                            Forklift
-                        </option>
-
-                        <option value="D">
-                            Dumptruck
-                        </option>
-
-                        <option value="E">
-                            Excavator
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div
-                    class="
-                        flex
-                        items-end
-                    "
-                >
-
-                    <button
-                        onclick="resetFilters()"
-                        class="
-                            w-full
-                            h-[38px]
-                            rounded-xl
-                            border
-                            border-slate-200
-                            bg-slate-50
-                            hover:bg-slate-100
-                            text-slate-600
-                            font-bold
-                            text-[11px]
-                            transition
-                            flex
-                            items-center
-                            justify-center
-                            gap-2
-                        "
-                    >
-
-                        <i
-                            data-lucide="rotate-ccw"
-                            class="w-4 h-4"
-                        ></i>
-
-                        Reset Filter
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- TABLE -->
-
+        <!-- TABLE PANEL (tanpa panel filter terpisah) -->
         <div class="table-panel">
 
-            <div
-                class="
-                    px-5
-                    py-4
-                    border-b
-                    border-slate-100
-                    flex
-                    items-center
-                    justify-between
-                "
-            >
-
+            <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-4">
                 <div>
-
-                    <h3
-                        class="
-                            font-black
-                            text-slate-700
-                            text-sm
-                        "
-                    >
-                        Daftar Aktivitas Greasing
-                    </h3>
-
-                    <p
-                        id="resultInfo"
-                        class="
-                            text-[10px]
-                            text-slate-400
-                            mt-1
-                            font-medium
-                        "
-                    >
-                        -
-                    </p>
-
+                    <h3 class="font-black text-slate-700 text-sm">Daftar Aktivitas Greasing</h3>
+                    <p id="resultInfo" class="text-[10px] text-slate-400 mt-1 font-medium">-</p>
                 </div>
-
-
-                <div
-                    class="
-                        flex
-                        items-center
-                        gap-2
-                        text-[10px]
-                        text-slate-400
-                        font-semibold
-                    "
-                >
-
-                    <i
-                        data-lucide="refresh-cw"
-                        class="w-3.5 h-3.5"
-                    ></i>
-
+                <div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
+                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
                     Data langsung dari Database
-
                 </div>
-
             </div>
 
+            <!-- CHIP FILTER AKTIF -->
+            <div id="activeFilters" class="active-filters-bar" hidden></div>
 
+            <!-- TABEL DESKTOP -->
             <div class="table-scroll">
-
                 <table>
-
+                    <colgroup>
+                        <col class="col-no">
+                        <col class="col-tanggal">
+                        <col class="col-shift">
+                        <col class="col-pic">
+                        <col class="col-unit">
+                        <col class="col-deskripsi">
+                        <col class="col-pap">
+                    </colgroup>
                     <thead>
-
-                        <tr>
-
-                            <th style="width:50px">
-
-                                <div class="sort-header-content">
-                                    <span>No</span>
-                                </div>
-
-                            </th>
-
-
-                            <th
-                                class="sortable-header"
-                                data-sort="tanggal"
-                                onclick="handleSort('tanggal')"
-                            >
-
-                                <div class="sort-header-content">
-
-                                    <span>Tanggal</span>
-
-                                    <i
-                                        id="sortIcon-tanggal"
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </div>
-
-                            </th>
-
-
-                            <th
-                                class="sortable-header"
-                                data-sort="shift"
-                                onclick="handleSort('shift')"
-                            >
-
-                                <div class="sort-header-content">
-
-                                    <span>Shift</span>
-
-                                    <i
-                                        id="sortIcon-shift"
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </div>
-
-                            </th>
-
-
-                            <th
-                                class="sortable-header"
-                                data-sort="pic"
-                                onclick="handleSort('pic')"
-                            >
-
-                                <div class="sort-header-content">
-
-                                    <span>PIC</span>
-
-                                    <i
-                                        id="sortIcon-pic"
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </div>
-
-                            </th>
-
-
-                            <th
-                                class="sortable-header"
-                                data-sort="codeUnit"
-                                onclick="handleSort('codeUnit')"
-                            >
-
-                                <div class="sort-header-content">
-
-                                    <span>Code Unit</span>
-
-                                    <i
-                                        id="sortIcon-codeUnit"
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </div>
-
-                            </th>
-
-
-                            <th
-                                class="sortable-header"
-                                data-sort="deskripsi"
-                                onclick="handleSort('deskripsi')"
-                            >
-
-                                <div class="sort-header-content">
-
-                                    <span>Deskripsi Foto Kerusakan</span>
-
-                                    <i
-                                        id="sortIcon-deskripsi"
-                                        data-lucide="chevrons-up-down"
-                                        class="sort-icon"
-                                    ></i>
-
-                                </div>
-
-                            </th>
-
-
-                            <th>
-
-                                <div class="sort-header-content">
-                                    <span>PAP</span>
-                                </div>
-
-                            </th>
-
-                        </tr>
-
+                        <tr id="tableHeadRow"></tr>
                     </thead>
-
-
                     <tbody id="tableBody"></tbody>
-
                 </table>
-
             </div>
 
+            <!-- MOBILE: bar filter + kartu -->
+            <div id="mobileFilterBar" class="mobile-filter-bar"></div>
+            <div id="mobileDataList" class="mobile-data-list"></div>
 
-            <!-- EMPTY -->
-
-            <div
-                id="emptyState"
-                class="hidden"
-            >
-
-                <div
-                    class="
-                        py-16
-                        text-center
-                    "
-                >
-
-                    <div
-                        class="
-                            inline-flex
-                            items-center
-                            justify-center
-                            bg-slate-100
-                            text-slate-400
-                            p-4
-                            rounded-full
-                        "
-                    >
-
-                        <i
-                            data-lucide="search-x"
-                            class="w-8 h-8"
-                        ></i>
-
+            <!-- EMPTY STATE -->
+            <div id="emptyState" class="hidden">
+                <div class="py-16 text-center">
+                    <div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
+                        <i data-lucide="search-x" class="w-8 h-8"></i>
                     </div>
-
-                    <h3
-                        class="
-                            font-bold
-                            text-slate-600
-                            mt-4
-                        "
-                    >
-                        Data tidak ditemukan
-                    </h3>
-
-                    <p
-                        class="
-                            text-xs
-                            text-slate-400
-                            mt-1
-                        "
-                    >
-                        Coba ubah kata pencarian atau filter.
-                    </p>
-
+                    <h3 class="font-bold text-slate-600 mt-4">Data tidak ditemukan</h3>
+                    <p class="text-xs text-slate-400 mt-1">Coba ubah filter pada header kolom.</p>
                 </div>
-
             </div>
-
 
             <!-- PAGINATION -->
-
-            <div
-                class="
-                    px-5
-                    py-4
-                    border-t
-                    border-slate-100
-                    flex
-                    items-center
-                    justify-between
-                "
-            >
-
-                <div
-                    id="paginationInfo"
-                    class="
-                        text-[10px]
-                        font-semibold
-                        text-slate-400
-                    "
-                >
-                    -
-                </div>
-
-
-                <div
-                    id="pagination"
-                    class="
-                        flex
-                        items-center
-                        gap-1
-                    "
-                ></div>
-
+            <div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
+                <div id="paginationInfo" class="text-[10px] font-semibold text-slate-400">-</div>
+                <div id="pagination" class="flex items-center gap-1"></div>
             </div>
 
         </div>
@@ -3230,197 +1326,55 @@ select.filter-input{
 
 </main>
 
+<!-- POPUP FILTER & SORT KOLOM (satu instance, position fixed) -->
+<div id="colDropdown" class="col-dropdown" hidden></div>
 
 <!-- FOOTER -->
-
-<footer
-    class="
-        mt-8
-        text-center
-        text-slate-400
-        px-4
-        pb-8
-    "
->
-
-    <p
-        class="
-            font-bold
-            text-slate-500
-            tracking-tight
-            uppercase
-        "
-    >
-        &copy; 2026 Paperless Project - PT TSI.
-        All rights reserved.
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
     </p>
-
-
     <p class="text-[10px] mt-1">
-
         System Architecture by:
-
-        <span
-            class="
-                text-slate-600
-                font-semibold
-                uppercase
-            "
-        >
-            Imam Wahyu Ramadhan, S.T.
-        </span>
-
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
         |
-
-        <span
-            class="
-                text-amber-600
-                font-bold
-                uppercase
-                tracking-tighter
-            "
-        >
-            Project 2.0
-        </span>
-
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
     </p>
-
 </footer>
 
 
-<!-- FLOATING LEADERBOARD -->
-
-<button
-    id="leaderboardButton"
-    onclick="openLeaderboard()"
-    aria-label="Leaderboard"
->
-
-    <i
-        data-lucide="trophy"
-        class="w-7 h-7"
-    ></i>
-
-    <span class="leader-tooltip">
-        Leaderboard PIC
-    </span>
-
+<!-- LEADERBOARD -->
+<button id="leaderboardButton" onclick="openLeaderboard()" aria-label="Leaderboard">
+    <i data-lucide="trophy" class="w-7 h-7"></i>
+    <span class="leader-tooltip">Leaderboard PIC</span>
 </button>
 
-
-<!-- LEADERBOARD -->
-
-<div
-    id="leaderboardOverlay"
-    onclick="closeLeaderboardOutside(event)"
->
-
+<div id="leaderboardOverlay" onclick="closeLeaderboardOutside(event)">
     <div id="leaderboardModal">
 
-        <div
-            class="
-                px-5
-                py-4
-                border-b
-                border-slate-100
-                flex
-                items-center
-                justify-between
-            "
-        >
-
+        <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
             <div>
-
-                <h3
-                    class="
-                        font-black
-                        text-slate-800
-                        flex
-                        items-center
-                        gap-2
-                    "
-                >
-
-                    <span
-                        class="
-                            bg-amber-100
-                            text-amber-600
-                            p-2
-                            rounded-xl
-                        "
-                    >
-
-                        <i
-                            data-lucide="trophy"
-                            class="w-5 h-5"
-                        ></i>
-
+                <h3 class="font-black text-slate-800 flex items-center gap-2">
+                    <span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
+                        <i data-lucide="trophy" class="w-5 h-5"></i>
                     </span>
-
                     Leaderboard PIC
-
                 </h3>
-
-                <p
-                    class="
-                        text-[10px]
-                        text-slate-400
-                        font-medium
-                        mt-1
-                    "
-                >
-                    Berdasarkan total aktivitas
-                </p>
-
+                <p class="text-[10px] text-slate-400 font-medium mt-1">Berdasarkan total aktivitas</p>
             </div>
-
-
             <button
                 onclick="closeLeaderboard()"
-                class="
-                    text-slate-400
-                    hover:text-slate-700
-                    hover:bg-slate-100
-                    p-2
-                    rounded-xl
-                    transition
-                "
+                class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
             >
-
-                <i
-                    data-lucide="x"
-                    class="w-5 h-5"
-                ></i>
-
+                <i data-lucide="x" class="w-5 h-5"></i>
             </button>
-
         </div>
 
-
-        <div
-            id="leaderboardList"
-            class="
-                p-5
-                overflow-y-auto
-                max-h-[60vh]
-            "
-        >
-
-            <div
-                class="
-                    text-center
-                    text-slate-400
-                    text-sm
-                    py-6
-                "
-            >
-                Memuat leaderboard...
-            </div>
-
+        <div id="leaderboardList" class="p-5 overflow-y-auto max-h-[60vh]">
+            <div class="text-center text-slate-400 text-sm py-6">Memuat leaderboard...</div>
         </div>
 
     </div>
-
 </div>
 
 
@@ -3430,78 +1384,860 @@ select.filter-input{
    CONFIGURATION
 ========================================================= */
 
-const API_URL =
+const API_URL=
 'https://script.google.com/macros/s/AKfycbxaigiQMvkAzZ-Gue2R68z2eTJlAU7pe-O3D2XJ_D4mkd2K3EDqpyLKiw4FcyXzq90Y/exec';
 
+const DASHBOARD_URL='greasing.html';
 
-const DASHBOARD_URL =
-'greasing.html';
+const ROWS_PER_PAGE=15;
 
-
-const ROWS_PER_PAGE = 15;
-
-
-/* =========================================================
-   GLOBAL DATA
-========================================================= */
-
-let apiData = null;
-
-let allData = [];
-
-let filteredData = [];
-
-let currentPage = 1;
-
-
-/*
-   ==========================================================
-   SORT STATE
-
-   direction:
-
-   null = ORIGINAL
-   asc  = ASCENDING
-   desc = DESCENDING
-*/
-
-let sortState = {
-
-    column:null,
-
-    direction:null
-
-};
+/* Kolom tabel (Bible Bab 10). Code Unit berisi beberapa unit dalam satu sel. */
+const COLUMNS=[
+    {key:'number',    label:'No',                     type:'number', filterable:false, sortable:true},
+    {key:'tanggal',   label:'Tanggal',                type:'date',   filterable:true,  sortable:true},
+    {key:'shift',     label:'Shift',                  type:'text',   filterable:true,  sortable:true},
+    {key:'pic',       label:'PIC',                    type:'text',   filterable:true,  sortable:true},
+    {key:'codeUnit',  label:'Code Unit',              type:'units',  filterable:true,  sortable:true},
+    {key:'deskripsi', label:'Deskripsi Foto Kerusakan', type:'text', filterable:true,  sortable:true},
+    {key:'pap',       label:'PAP',                    type:'link',   filterable:true,  sortable:true}
+];
 
 
 /* =========================================================
-   NAVIGATION
+   STATE
 ========================================================= */
+
+let allData=[];          // seluruh aktivitas (__originalIndex = urutan sumber)
+let rowsView=[];         // aktivitas yang lolos semua filter kolom
+let columnFilters={};    // { key: Set(nilai terpilih) }
+let sortKey=null;
+let sortDir=null;
+let currentPage=1;
+
+let openColumn=null;
+let ddValues=[];
+let draftSelection=new Set();
+let ddQuery='';
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $=id=>document.getElementById(id);
+
+const getColumn=key=>COLUMNS.find(c=>c.key===key);
+
+const isEmpty=v=>v===''||v===null||v===undefined;
+
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+}
+
+function handleLogoError(){
+    $('companyLogo').classList.add('hidden');
+    const fb=$('logoFallback');
+    fb.classList.remove('hidden');
+    fb.classList.add('flex');
+}
 
 function goToDashboard(){
+    window.location.href=DASHBOARD_URL;
+}
 
-    window.location.href =
-        DASHBOARD_URL;
+/* Daftar unit dari sel Code Unit (dipisah koma) */
+function splitUnits(value){
+    return String(value??'')
+        .split(',')
+        .map(u=>u.trim().toUpperCase())
+        .filter(Boolean);
+}
+
+/* Klasifikasi jenis unit. FD (forklift) dicek sebelum W dan D. */
+function getUnitType(unit){
+    const u=String(unit).trim().toUpperCase();
+    if(u.startsWith('FD')) return 'FD';
+    if(u.startsWith('W'))  return 'W';
+    if(u.startsWith('D'))  return 'D';
+    if(u.startsWith('E'))  return 'E';
+    return '';
+}
+
+
+/* =========================================================
+   TANGGAL
+========================================================= */
+
+function parseDateValue(value){
+
+    if(value===null||value===undefined) return null;
+
+    const text=String(value).trim();
+    if(!text) return null;
+
+    let m=text.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/);
+    if(m){
+        const d=+m[1],mo=+m[2],y=+m[3];
+        if(d>=1&&d<=31&&mo>=1&&mo<=12) return {day:d,month:mo,year:y};
+    }
+
+    m=text.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/);
+    if(m){
+        const y=+m[1],mo=+m[2],d=+m[3];
+        if(d>=1&&d<=31&&mo>=1&&mo<=12) return {day:d,month:mo,year:y};
+    }
+
+    const p=new Date(text);
+    return isNaN(p.getTime())
+        ? null
+        : {day:p.getDate(),month:p.getMonth()+1,year:p.getFullYear()};
+}
+
+function dateSortNumber(value){
+    const d=parseDateValue(value);
+    return d?d.year*10000+d.month*100+d.day:null;
+}
+
+
+/* =========================================================
+   FILTER ENGINE (Excel-style, saling mempengaruhi)
+
+   Nilai per baris:
+   - Code Unit → daftar unit dalam sel (satu baris bisa punya lebih dari satu nilai).
+   - kolom lain → satu nilai teks. Kosong = '(Kosong)'.
+   Baris lolos filter kolom jika salah satu nilainya dipilih.
+========================================================= */
+
+function getRowValues(row,key){
+
+    if(key==='codeUnit'){
+        const units=splitUnits(row.codeUnit);
+        return units.length?[...new Set(units)]:[''];
+    }
+
+    /* PAP: difilter sebagai ada/tidak ada, bukan URL */
+    if(key==='pap'){
+        return [String(row.pap??'').trim()?'Ada':''];
+    }
+
+    return [String(row[key]??'').trim()];
+
+}
+
+function getValueLabel(key,value){
+    return value||'(Kosong)';
+}
+
+function rowPasses(row,excludeKey){
+    return Object.keys(columnFilters).every(key=>{
+        if(key===excludeKey) return true;
+        const set=columnFilters[key];
+        return getRowValues(row,key).some(v=>set.has(v));
+    });
+}
+
+/* Nilai unik + jumlah baris, dari baris yang lolos filter KOLOM LAIN */
+function distinctValues(key){
+
+    const map=new Map();
+
+    allData.forEach(row=>{
+        if(!rowPasses(row,key)) return;
+        getRowValues(row,key).forEach(v=>map.set(v,(map.get(v)||0)+1));
+    });
+
+    const col=getColumn(key);
+
+    return [...map.entries()]
+        .map(([value,count])=>({value,count}))
+        .sort((a,b)=>{
+
+            if(a.value===''||b.value==='') return (a.value==='')-(b.value==='');
+
+            if(col.type==='date'){
+                const da=dateSortNumber(a.value);
+                const db=dateSortNumber(b.value);
+                if(da===null||db===null) return a.value.localeCompare(b.value,'id');
+                return da-db;
+            }
+
+            return a.value.localeCompare(b.value,'id',{numeric:true,sensitivity:'base'});
+
+        });
+}
+
+function applyAllFilters(){
+    rowsView=allData.filter(row=>rowPasses(row,null));
+    currentPage=1;
+    renderTable();
+}
+
+function removeColumnFilter(key){
+    delete columnFilters[key];
+    applyAllFilters();
+}
+
+function clearAllFilters(){
+    columnFilters={};
+    applyAllFilters();
+}
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+function getSortValue(row,key){
+
+    switch(key){
+
+        case 'number':    return row.__originalIndex;
+        case 'tanggal':   return dateSortNumber(row.tanggal);
+        case 'codeUnit':  return splitUnits(row.codeUnit).join(' ').toLowerCase();
+        default:          return String(row[key]??'').trim().toLowerCase();
+
+    }
+
+}
+
+function getSortedData(rows){
+
+    const list=[...rows];
+
+    if(!sortKey||!sortDir){
+        return list.sort((a,b)=>a.__originalIndex-b.__originalIndex);
+    }
+
+    return list.sort((a,b)=>{
+
+        const va=getSortValue(a,sortKey);
+        const vb=getSortValue(b,sortKey);
+
+        /* Kosong selalu di paling akhir */
+        if(isEmpty(va)!==isEmpty(vb)) return isEmpty(va)?1:-1;
+        if(isEmpty(va)) return a.__originalIndex-b.__originalIndex;
+
+        let c;
+
+        if(typeof va==='number'&&typeof vb==='number'){
+            c=va-vb;
+        }else{
+            c=String(va).localeCompare(String(vb),'id',{numeric:true,sensitivity:'base'});
+        }
+
+        if(c===0) c=a.__originalIndex-b.__originalIndex;
+
+        return sortDir==='asc'?c:-c;
+
+    });
+}
+
+
+/* =========================================================
+   POPUP FILTER & SORT
+========================================================= */
+
+function openColumnMenu(key,anchor){
+
+    if(openColumn===key){
+        closeColumnMenu();
+        return;
+    }
+
+    closeColumnMenu();
+
+    const col=getColumn(key);
+
+    openColumn=key;
+    ddQuery='';
+
+    ddValues=col.filterable?distinctValues(key):[];
+
+    draftSelection=new Set(
+        columnFilters[key]
+            ?[...columnFilters[key]]
+            :ddValues.map(v=>v.value)
+    );
+
+    const dd=$('colDropdown');
+
+    dd.innerHTML=buildDropdown(col);
+    dd.hidden=false;
+
+    positionColumnMenu(anchor);
+    renderDdList();
+    lucide.createIcons();
+
+    if(!window.matchMedia('(max-width:767px)').matches){
+        const s=dd.querySelector('.dd-search');
+        if(s) s.focus();
+    }
+
+}
+
+function closeColumnMenu(){
+    const dd=$('colDropdown');
+    dd.hidden=true;
+    dd.innerHTML='';
+    openColumn=null;
+}
+
+function positionColumnMenu(anchor){
+
+    const dd=$('colDropdown');
+
+    if(window.matchMedia('(max-width:767px)').matches){
+        dd.classList.add('is-sheet');
+        dd.style.left='';
+        dd.style.top='';
+        return;
+    }
+
+    dd.classList.remove('is-sheet');
+
+    const r=anchor.getBoundingClientRect();
+    const w=dd.offsetWidth||240;
+    const h=dd.offsetHeight||0;
+
+    let left=r.left;
+    if(left+w>window.innerWidth-8) left=Math.max(8,r.right-w);
+
+    let top=r.bottom+6;
+    if(top+h>window.innerHeight-8) top=Math.max(8,r.top-h-6);
+
+    dd.style.left=left+'px';
+    dd.style.top=top+'px';
+}
+
+function buildDropdown(col){
+
+    const labels=col.type==='date'
+        ?['Lama→Baru','Baru→Lama']
+        :col.type==='number'
+            ?['Naik','Turun']
+            :['A→Z','Z→A'];
+
+    const current=sortKey===col.key?sortDir:null;
+
+    const sortHtml=`
+        <div class="dd-sort">
+            <button class="dd-sort-btn ${current==='asc'?'on':''}" onclick="ddSetSort('asc')">${labels[0]}</button>
+            <button class="dd-sort-btn ${current==='desc'?'on':''}" onclick="ddSetSort('desc')">${labels[1]}</button>
+        </div>
+    `;
+
+    if(!col.filterable) return sortHtml;
+
+    return sortHtml+`
+        <div class="dd-divider"></div>
+        <div class="dd-search-wrap">
+            <i data-lucide="search" class="dd-search-icon"></i>
+            <input class="dd-search" type="text" placeholder="Cari ${escapeHtml(col.label)}..." oninput="ddSearch(this.value)">
+        </div>
+        <div class="dd-list" id="ddList"></div>
+        <div class="dd-footer">
+            <button class="dd-reset" onclick="ddReset()">Reset</button>
+            <button class="dd-apply" onclick="ddApply()">Terapkan</button>
+        </div>
+    `;
+}
+
+function ddVisible(){
+    return ddValues.filter(v=>
+        !ddQuery||getValueLabel(openColumn,v.value).toLowerCase().includes(ddQuery)
+    );
+}
+
+function renderDdList(){
+
+    const list=$('ddList');
+    if(!list) return;
+
+    const prevScroll=list.scrollTop;
+    const visible=ddVisible();
+
+    if(!visible.length){
+        list.innerHTML='<div class="dd-empty">Tidak ada nilai</div>';
+        return;
+    }
+
+    const allChecked=visible.every(v=>draftSelection.has(v.value));
+
+    list.innerHTML=`
+        <label class="dd-item dd-all">
+            <input type="checkbox" ${allChecked?'checked':''} onchange="ddToggleAll(this.checked)">
+            <span class="dd-item-label">(Pilih Semua)</span>
+        </label>
+        ${visible.map(v=>`
+            <label class="dd-item">
+                <input
+                    type="checkbox"
+                    ${draftSelection.has(v.value)?'checked':''}
+                    onchange="ddToggle(${ddValues.indexOf(v)},this.checked)"
+                >
+                <span class="dd-item-label">${escapeHtml(getValueLabel(openColumn,v.value))}</span>
+                <span class="dd-item-count">${v.count}</span>
+            </label>
+        `).join('')}
+    `;
+
+    list.scrollTop=prevScroll;
+}
+
+function ddSearch(query){
+    ddQuery=String(query).trim().toLowerCase();
+    renderDdList();
+}
+
+function ddToggle(index,checked){
+    const v=ddValues[index].value;
+    if(checked) draftSelection.add(v);
+    else draftSelection.delete(v);
+    renderDdList();
+}
+
+function ddToggleAll(checked){
+    ddVisible().forEach(v=>{
+        if(checked) draftSelection.add(v.value);
+        else draftSelection.delete(v.value);
+    });
+    renderDdList();
+}
+
+function ddSetSort(dir){
+    sortKey=openColumn;
+    sortDir=dir;
+    closeColumnMenu();
+    currentPage=1;
+    renderTable();
+}
+
+function ddApply(){
+    if(!openColumn) return;
+    const allSelected=ddValues.every(v=>draftSelection.has(v.value));
+    if(allSelected) delete columnFilters[openColumn];
+    else columnFilters[openColumn]=new Set(draftSelection);
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+function ddReset(){
+    if(!openColumn) return;
+    delete columnFilters[openColumn];
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+/* Tutup popup: klik di luar, scroll halaman, resize, Escape */
+document.addEventListener('mousedown',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    if(e.target.closest('[data-col-trigger]')) return;
+    closeColumnMenu();
+});
+
+window.addEventListener('scroll',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    closeColumnMenu();
+},true);
+
+window.addEventListener('resize',closeColumnMenu);
+
+
+/* =========================================================
+   RENDER HEADER, FILTER BAR, CHIP, STATISTIK
+========================================================= */
+
+function renderTableHead(){
+
+    $('tableHeadRow').innerHTML=COLUMNS.map(col=>{
+
+        const sorted=sortKey===col.key&&!!sortDir;
+        const filtered=!!columnFilters[col.key];
+        const active=sorted||filtered;
+
+        const sortIcon=
+            !sorted?'chevrons-up-down':
+            sortDir==='asc'?'chevron-up':'chevron-down';
+
+        return `
+            <th>
+                <button
+                    class="col-header ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    <span>${col.label}</span>
+                    <span class="col-icons">
+                        <i data-lucide="${sortIcon}" class="col-sort-icon ${sorted?'on':''}"></i>
+                        ${col.filterable
+                            ?`<i data-lucide="filter" class="col-filter-icon ${filtered?'on':''}"></i>`
+                            :''}
+                    </span>
+                </button>
+            </th>
+        `;
+
+    }).join('');
+
+}
+
+function renderMobileFilterBar(){
+
+    $('mobileFilterBar').innerHTML=COLUMNS
+        .filter(c=>c.filterable)
+        .map(col=>{
+
+            const f=columnFilters[col.key];
+            const sorted=sortKey===col.key&&!!sortDir;
+            const active=!!f||sorted;
+
+            return `
+                <button
+                    class="mobile-filter-btn ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    ${col.label}
+                    ${f?`<span class="mobile-filter-count">${f.size}</span>`:''}
+                    ${sorted?`<i data-lucide="${sortDir==='asc'?'chevron-up':'chevron-down'}" class="w-3 h-3"></i>`:''}
+                </button>
+            `;
+
+        }).join('');
+
+}
+
+function renderActiveFilters(){
+
+    const bar=$('activeFilters');
+    const keys=Object.keys(columnFilters);
+
+    if(!keys.length){
+        bar.hidden=true;
+        bar.innerHTML='';
+        return;
+    }
+
+    bar.hidden=false;
+
+    bar.innerHTML=keys.map(key=>{
+
+        const labels=[...columnFilters[key]].map(v=>getValueLabel(key,v));
+
+        const text=labels.length
+            ?labels[0]+(labels.length>1?`, +${labels.length-1}`:'')
+            :'(Tidak ada)';
+
+        return `
+            <span class="active-filter-chip">
+                ${escapeHtml(getColumn(key).label)}: ${escapeHtml(text)}
+                <button onclick="removeColumnFilter('${key}')" aria-label="Hapus filter">×</button>
+            </span>
+        `;
+
+    }).join('')+`<button class="clear-all-btn" onclick="clearAllFilters()">Hapus Semua</button>`;
+
+}
+
+/* Statistik dihitung dari aktivitas yang lolos filter (per jenis unit) */
+function updateStatistics(rows){
+
+    const c={W:0,FD:0,D:0,E:0};
+
+    rows.forEach(row=>{
+        splitUnits(row.codeUnit).forEach(u=>{
+            const t=getUnitType(u);
+            if(c[t]!==undefined) c[t]++;
+        });
+    });
+
+    $('totalData').textContent=c.W+c.FD+c.D+c.E;
+    $('wheelloaderTotal').textContent=c.W;
+    $('forkliftTotal').textContent=c.FD;
+    $('dumptruckTotal').textContent=c.D;
+    $('excavatorTotal').textContent=c.E;
 
 }
 
 
 /* =========================================================
-   LOGO
+   BADGE HELPERS
 ========================================================= */
 
-function handleLogoError(){
+function getUnitBadges(codeUnit){
 
-    document
-        .getElementById('companyLogo')
-        .classList
-        .add('hidden');
+    const units=splitUnits(codeUnit);
+
+    if(!units.length) return '<span class="text-slate-300">-</span>';
+
+    return units
+        .map(u=>`<span class="unit-badge mr-1 mb-1">${escapeHtml(u)}</span>`)
+        .join('');
+
+}
+
+function getPapLink(pap){
+
+    const value=String(pap??'').trim();
+
+    if(!value) return '<span class="text-slate-300">-</span>';
+
+    let url;
+
+    try{
+        url=new URL(value);
+    }catch{
+        return `<span class="text-slate-400 text-[10px] font-medium" title="${escapeHtml(value)}">${escapeHtml(value)}</span>`;
+    }
+
+    if(url.protocol!=='http:'&&url.protocol!=='https:'){
+        return '<span class="text-slate-400">-</span>';
+    }
+
+    return `
+        <a href="${escapeHtml(url.href)}" target="_blank" rel="noopener noreferrer"
+            class="pap-link" title="Lihat gambar PAP">
+            <i data-lucide="image" class="w-3.5 h-3.5"></i>
+            Lihat PAP
+        </a>`;
+
+}
 
 
-    document
-        .getElementById('logoFallback')
-        .classList
-        .remove('hidden');
+/* =========================================================
+   RENDER TABLE + KARTU MOBILE
+========================================================= */
+
+function renderTable(){
+
+    renderTableHead();
+    renderMobileFilterBar();
+    renderActiveFilters();
+    updateStatistics(rowsView);
+
+    const tbody=$('tableBody');
+    const mobileList=$('mobileDataList');
+
+    tbody.innerHTML='';
+    mobileList.innerHTML='';
+
+    const sorted=getSortedData(rowsView);
+    const total=sorted.length;
+    const totalPages=Math.max(1,Math.ceil(total/ROWS_PER_PAGE));
+
+    if(currentPage>totalPages) currentPage=totalPages;
+
+    const start=(currentPage-1)*ROWS_PER_PAGE;
+    const end=Math.min(start+ROWS_PER_PAGE,total);
+    const pageData=sorted.slice(start,end);
+
+    $('emptyState').classList.toggle('hidden',pageData.length>0);
+
+    pageData.forEach((row,index)=>{
+
+        const no=start+index+1;
+
+        /* ---- baris tabel (desktop) ---- */
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+            <td class="text-center font-bold text-slate-400">${no}</td>
+            <td class="whitespace-nowrap">${escapeHtml(row.tanggal)}</td>
+            <td><span class="shift-badge">${escapeHtml(row.shift)}</span></td>
+            <td class="font-semibold text-slate-700">${escapeHtml(row.pic)}</td>
+            <td class="max-w-[380px]">${getUnitBadges(row.codeUnit)}</td>
+            <td class="max-w-[280px] truncate" title="${escapeHtml(row.deskripsi)}">
+                ${escapeHtml(row.deskripsi)||'<span class="text-slate-300">-</span>'}
+            </td>
+            <td>${getPapLink(row.pap)}</td>
+        `;
+        tbody.appendChild(tr);
+
+        /* ---- kartu mobile ---- */
+        const card=document.createElement('div');
+        card.className='mobile-data-card';
+        card.innerHTML=`
+            <div class="mobile-card-header">
+                <div class="flex items-center gap-2 flex-1 min-w-0">
+                    <span class="mobile-number">${no}</span>
+                    <div class="mobile-unit-group">${getUnitBadges(row.codeUnit)}</div>
+                </div>
+                <span class="shift-badge flex-shrink-0">${escapeHtml(row.shift)}</span>
+            </div>
+
+            <div class="mobile-card-grid">
+                <div class="mobile-field">
+                    <div class="mobile-label">Tanggal</div>
+                    <div class="mobile-value">${escapeHtml(row.tanggal)||'-'}</div>
+                </div>
+                <div class="mobile-field">
+                    <div class="mobile-label">PIC</div>
+                    <div class="mobile-value">${escapeHtml(row.pic)||'-'}</div>
+                </div>
+                <div class="mobile-field full">
+                    <div class="mobile-label">Deskripsi Foto Kerusakan</div>
+                    <div class="mobile-remark">
+                        ${escapeHtml(row.deskripsi)||'<span class="text-slate-300">Tidak ada deskripsi</span>'}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile-pap">${getPapLink(row.pap)}</div>
+        `;
+        mobileList.appendChild(card);
+
+    });
+
+    updateResultInfo(total,start,end);
+    renderPagination(totalPages);
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   RESULT INFO & PAGINATION
+========================================================= */
+
+function updateResultInfo(total,start,end){
+
+    if(total===0){
+        $('resultInfo').textContent='Tidak ada data yang sesuai filter.';
+        $('paginationInfo').textContent='0 data';
+        return;
+    }
+
+    $('resultInfo').textContent=`Menampilkan ${start+1}–${end} dari ${total} aktivitas`;
+    $('paginationInfo').textContent=`${total} aktivitas ditemukan`;
+
+}
+
+function renderPagination(totalPages){
+
+    const c=$('pagination');
+    c.innerHTML='';
+
+    if(!rowsView.length) return;
+
+    const add=(content,cls,disabled,fn)=>{
+        const b=document.createElement('button');
+        b.className='pagination-button'+(cls?' '+cls:'');
+        b.disabled=!!disabled;
+        const s=String(content);
+        if(s.startsWith('<')) b.innerHTML=s;
+        else b.textContent=s;
+        if(fn) b.onclick=fn;
+        c.appendChild(b);
+    };
+
+    add('<i data-lucide="chevron-left" class="w-4 h-4"></i>','',currentPage===1,()=>{
+        if(currentPage>1){currentPage--;renderTable();}
+    });
+
+    getPaginationPages(currentPage,totalPages).forEach(p=>{
+        if(p==='...'){
+            const s=document.createElement('span');
+            s.className='px-2 text-slate-400 text-xs';
+            s.textContent='...';
+            c.appendChild(s);
+            return;
+        }
+        add(p,p===currentPage?'active':'',false,()=>{currentPage=p;renderTable();});
+    });
+
+    add('<i data-lucide="chevron-right" class="w-4 h-4"></i>','',currentPage===totalPages,()=>{
+        if(currentPage<totalPages){currentPage++;renderTable();}
+    });
+
+    lucide.createIcons();
+
+}
+
+function getPaginationPages(current,total){
+    if(total<=7) return Array.from({length:total},(_,i)=>i+1);
+    const p=[1];
+    if(current>4) p.push('...');
+    for(let i=Math.max(2,current-1);i<=Math.min(total-1,current+1);i++) p.push(i);
+    if(current<total-3) p.push('...');
+    p.push(total);
+    return p;
+}
+
+
+/* =========================================================
+   LEADERBOARD (jumlah unit per PIC, dari seluruh data)
+========================================================= */
+
+function updateLeaderboardFromData(data){
+
+    const list=$('leaderboardList');
+
+    const picCounts={};
+
+    data.forEach(row=>{
+        const pic=String(row.pic||'').trim();
+        if(!pic) return;
+        picCounts[pic]=(picCounts[pic]||0)+splitUnits(row.codeUnit).length;
+    });
+
+    const ranking=Object.entries(picCounts)
+        .map(([name,count])=>({name,count}))
+        .filter(p=>p.count>0)
+        .sort((a,b)=>b.count-a.count);
+
+    if(!ranking.length){
+        list.innerHTML='<div class="text-center text-slate-400 text-sm py-6">Belum ada data PIC.</div>';
+        return;
+    }
+
+    list.innerHTML=ranking.map((person,i)=>{
+        const rank=i+1;
+        const cls=rank<=3?`top-${rank}`:'';
+        const medal=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
+        return `
+            <div class="leader-row ${cls}">
+                <div class="leader-rank">${medal}</div>
+                <div class="leader-name truncate" title="${escapeHtml(person.name)}">${escapeHtml(person.name)}</div>
+                <div class="leader-count">${person.count} aktivitas</div>
+            </div>`;
+    }).join('');
+
+}
+
+function openLeaderboard(){
+    updateLeaderboardFromData(allData);
+    $('leaderboardOverlay').classList.add('show');
+    document.body.style.overflow='hidden';
+}
+
+function closeLeaderboard(){
+    $('leaderboardOverlay').classList.remove('show');
+    document.body.style.overflow='';
+}
+
+function closeLeaderboardOutside(event){
+    if(event.target===$('leaderboardOverlay')) closeLeaderboard();
+}
+
+function scheduleLeaderboardPulse(){
+
+    const button=$('leaderboardButton');
+    const delay=12000+Math.random()*14000;
+
+    setTimeout(()=>{
+        if(!$('leaderboardOverlay').classList.contains('show')){
+            button.classList.remove('leader-pulse');
+            void button.offsetWidth;
+            button.classList.add('leader-pulse');
+        }
+        scheduleLeaderboardPulse();
+    },delay);
 
 }
 
@@ -3514,2074 +2250,57 @@ async function loadTable(){
 
     try{
 
-        const response =
-            await fetch(
-                API_URL,
-                {
-                    method:'GET',
-                    cache:'no-store'
-                }
-            );
+        const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
 
+        if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
 
-        if(!response.ok){
+        const result=await response.json();
 
-            throw new Error(
-                `HTTP Error ${response.status}`
-            );
+        const rows=Array.isArray(result.data)?result.data:[];
 
-        }
+        allData=rows.map((row,i)=>({
+            tanggal:row.tanggal??'',
+            shift:row.shift??'',
+            pic:row.pic??'',
+            codeUnit:row.codeUnit??'',
+            deskripsi:row.deskripsi??'',
+            pap:row.pap??'',
+            __originalIndex:i
+        }));
 
+        columnFilters={};
+        sortKey=null;
+        sortDir=null;
+        currentPage=1;
 
-        const result =
-            await response.json();
+        rowsView=[...allData];
 
-
-        apiData =
-            result;
-
-
-        /*
-           Simpan index original.
-
-           Ini sangat penting untuk mode:
-           ORIGINAL
-
-           sehingga ketika klik ke-3,
-           data benar-benar kembali ke
-           urutan database/API.
-        */
-
-        allData =
-            Array.isArray(result.data)
-            ? result.data.map(
-                (row,index)=>({
-
-                    ...row,
-
-                    __originalIndex:index
-
-                })
-            )
-            : [];
-
-
-        updateStatistics(
-            allData
-        );
-
-
-        updateLeaderboardFromData(
-            allData
-        );
-
-
-        filteredData =
-            [...allData];
-
-
-        currentPage = 1;
-
-
+        updateLeaderboardFromData(allData);
         renderTable();
 
+        $('loading').style.display='none';
+        $('tableContent').classList.add('show');
 
-        document
-            .getElementById('loading')
-            .style
-            .display='none';
+    }catch(error){
 
+        console.error('Greasing API Error:',error);
 
-        document
-            .getElementById('tableContent')
-            .classList
-            .add('show');
-
-
-    }
-    catch(error){
-
-        document
-            .getElementById('loading')
-            .innerHTML = `
-
-                <div class="text-center">
-
-                    <div
-                        class="
-                            bg-red-50
-                            text-red-600
-                            p-4
-                            rounded-full
-                            inline-flex
-                        "
-                    >
-
-                        <i
-                            data-lucide="alert-circle"
-                            class="w-8 h-8"
-                        ></i>
-
-                    </div>
-
-
-                    <h3
-                        class="
-                            font-bold
-                            text-red-700
-                            mt-3
-                        "
-                    >
-                        Gagal memuat data
-                    </h3>
-
-
-                    <p
-                        class="
-                            text-xs
-                            text-slate-500
-                            mt-2
-                            max-w-md
-                        "
-                    >
-                        ${escapeHtml(error.message)}
-                    </p>
-
-
-                    <button
-                        onclick="loadTable()"
-                        class="
-                            mt-4
-                            bg-blue-800
-                            hover:bg-blue-700
-                            text-white
-                            font-bold
-                            px-5
-                            py-2.5
-                            rounded-xl
-                            text-sm
-                        "
-                    >
-                        Coba Lagi
-                    </button>
-
+        $('loading').innerHTML=`
+            <div class="text-center">
+                <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
                 </div>
-
-            `;
-
+                <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+                <p class="text-xs text-slate-500 mt-2 max-w-md">${escapeHtml(error.message)}</p>
+                <button onclick="loadTable()" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
+                    Coba Lagi
+                </button>
+            </div>
+        `;
 
         lucide.createIcons();
 
     }
-
-}
-
-
-/* =========================================================
-   SORTING
-========================================================= */
-
-/*
-   SISTEM SORTING 3 STATE
-
-   Klik 1:
-   ORIGINAL -> ASC
-
-   Klik 2:
-   ASC -> DESC
-
-   Klik 3:
-   DESC -> ORIGINAL
-
-   Klik 4:
-   ORIGINAL -> ASC
-*/
-
-
-function handleSort(column){
-
-    /*
-       Jika klik kolom yang sama,
-       ubah arah sorting.
-    */
-
-    if(
-        sortState.column === column
-    ){
-
-        if(
-            sortState.direction === null
-        ){
-
-            sortState.direction =
-                'asc';
-
-        }
-        else if(
-            sortState.direction === 'asc'
-        ){
-
-            sortState.direction =
-                'desc';
-
-        }
-        else{
-
-            /*
-               DESC -> ORIGINAL
-            */
-
-            sortState.column =
-                null;
-
-            sortState.direction =
-                null;
-
-        }
-
-    }
-    else{
-
-        /*
-           Klik kolom baru:
-           langsung ASC.
-        */
-
-        sortState.column =
-            column;
-
-        sortState.direction =
-            'asc';
-
-    }
-
-
-    /*
-       Kembali ke halaman pertama
-       setiap kali sorting berubah.
-    */
-
-    currentPage = 1;
-
-
-    /*
-       Terapkan sorting.
-    */
-
-    applyCurrentSort();
-
-
-    /*
-       Update tampilan icon.
-    */
-
-    updateSortIndicators();
-
-
-    /*
-       Render ulang.
-    */
-
-    renderTable();
-
-}
-
-
-/* =========================================================
-   APPLY CURRENT SORT
-========================================================= */
-
-function applyCurrentSort(){
-
-    /*
-       Jangan mengubah allData.
-
-       filteredData selalu dibuat sebagai
-       salinan sehingga urutan database
-       asli tetap aman.
-    */
-
-    if(
-        !sortState.column ||
-        !sortState.direction
-    ){
-
-        /*
-           ORIGINAL ORDER
-        */
-
-        filteredData =
-            [...filteredData]
-            .sort(
-                (
-                    a,
-                    b
-                )=>
-                    getOriginalIndex(a) -
-                    getOriginalIndex(b)
-            );
-
-        return;
-
-    }
-
-
-    const column =
-        sortState.column;
-
-
-    const direction =
-        sortState.direction === 'asc'
-        ? 1
-        : -1;
-
-
-    filteredData =
-        [...filteredData]
-        .sort(
-            (a,b)=>{
-
-                const result =
-                    compareSortValues(
-                        a[column],
-                        b[column],
-                        column
-                    );
-
-
-                /*
-                   Jika nilai sama,
-                   pertahankan urutan
-                   database asli.
-
-                   Ini membuat sorting stabil.
-                */
-
-                if(result === 0){
-
-                    return (
-                        getOriginalIndex(a) -
-                        getOriginalIndex(b)
-                    );
-
-                }
-
-
-                return result * direction;
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   ORIGINAL INDEX
-========================================================= */
-
-function getOriginalIndex(row){
-
-    const index =
-        Number(
-            row.__originalIndex
-        );
-
-
-    return Number.isFinite(index)
-        ? index
-        : 0;
-
-}
-
-
-/* =========================================================
-   COMPARE SORT VALUES
-========================================================= */
-
-function compareSortValues(
-    valueA,
-    valueB,
-    column
-){
-
-    /*
-       TANGGAL MENGGUNAKAN
-       SORTING KHUSUS.
-    */
-
-    if(
-        column === 'tanggal'
-    ){
-
-        return compareDatesByDay(
-            valueA,
-            valueB
-        );
-
-    }
-
-
-    /*
-       Semua kolom teks:
-       sorting berdasarkan alfabet.
-    */
-
-    const a =
-        String(
-            valueA ?? ''
-        )
-        .trim()
-        .toLowerCase();
-
-
-    const b =
-        String(
-            valueB ?? ''
-        )
-        .trim()
-        .toLowerCase();
-
-
-    /*
-       Data kosong diletakkan
-       di bagian bawah.
-    */
-
-    if(!a && !b){
-
-        return 0;
-
-    }
-
-    if(!a){
-
-        return 1;
-
-    }
-
-    if(!b){
-
-        return -1;
-
-    }
-
-
-    return a.localeCompare(
-        b,
-        'id',
-        {
-            numeric:true,
-            sensitivity:'base'
-        }
-    );
-
-}
-
-
-/* =========================================================
-   DATE SORT
-========================================================= */
-
-function compareDatesByDay(
-    valueA,
-    valueB
-){
-
-    const dateA =
-        parseDateValue(
-            valueA
-        );
-
-
-    const dateB =
-        parseDateValue(
-            valueB
-        );
-
-
-    if(
-        !dateA &&
-        !dateB
-    ){
-
-        return 0;
-
-    }
-
-
-    if(!dateA){
-
-        return 1;
-
-    }
-
-
-    if(!dateB){
-
-        return -1;
-
-    }
-
-
-    if(
-        dateA.day !==
-        dateB.day
-    ){
-
-        return (
-            dateA.day -
-            dateB.day
-        );
-
-    }
-
-
-    if(
-        dateA.month !==
-        dateB.month
-    ){
-
-        return (
-            dateA.month -
-            dateB.month
-        );
-
-    }
-
-
-    return (
-        dateA.year -
-        dateB.year
-    );
-
-}
-
-
-/* =========================================================
-   PARSE DATE
-========================================================= */
-
-function parseDateValue(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return null;
-
-    }
-
-
-    const text =
-        String(value)
-        .trim();
-
-
-    if(!text){
-
-        return null;
-
-    }
-
-
-    let match =
-        text.match(
-            /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
-        );
-
-
-    if(match){
-
-        const day =
-            Number(match[1]);
-
-        const month =
-            Number(match[2]);
-
-        const year =
-            Number(match[3]);
-
-
-        if(
-            day >= 1 &&
-            day <= 31 &&
-            month >= 1 &&
-            month <= 12
-        ){
-
-            return {
-                day,
-                month,
-                year
-            };
-
-        }
-
-    }
-
-
-    match =
-        text.match(
-            /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
-        );
-
-
-    if(match){
-
-        const year =
-            Number(match[1]);
-
-        const month =
-            Number(match[2]);
-
-        const day =
-            Number(match[3]);
-
-
-        if(
-            day >= 1 &&
-            day <= 31 &&
-            month >= 1 &&
-            month <= 12
-        ){
-
-            return {
-                day,
-                month,
-                year
-            };
-
-        }
-
-    }
-
-
-    const parsed =
-        new Date(value);
-
-
-    if(
-        !Number.isNaN(
-            parsed.getTime()
-        )
-    ){
-
-        return {
-
-            day:
-                parsed.getDate(),
-
-            month:
-                parsed.getMonth() + 1,
-
-            year:
-                parsed.getFullYear()
-
-        };
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =========================================================
-   SORT INDICATORS
-========================================================= */
-
-function updateSortIndicators(){
-
-    const columns = [
-
-        'tanggal',
-        'shift',
-        'pic',
-        'codeUnit',
-        'deskripsi'
-
-    ];
-
-
-    columns.forEach(
-        column=>{
-
-            const header =
-                document.querySelector(
-                    `[data-sort="${column}"]`
-                );
-
-
-            const icon =
-                document.getElementById(
-                    `sortIcon-${column}`
-                );
-
-
-            if(!header || !icon){
-
-                return;
-
-            }
-
-
-            header.classList.remove(
-                'sort-asc',
-                'sort-desc'
-            );
-
-
-            if(
-                sortState.column !== column ||
-                !sortState.direction
-            ){
-
-                icon.setAttribute(
-                    'data-lucide',
-                    'chevrons-up-down'
-                );
-
-                return;
-
-            }
-
-
-            if(
-                sortState.direction === 'asc'
-            ){
-
-                header.classList.add(
-                    'sort-asc'
-                );
-
-                icon.setAttribute(
-                    'data-lucide',
-                    'chevron-up'
-                );
-
-            }
-            else{
-
-                header.classList.add(
-                    'sort-desc'
-                );
-
-                icon.setAttribute(
-                    'data-lucide',
-                    'chevron-down'
-                );
-
-            }
-
-        }
-    );
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   PARSE CODE UNIT
-========================================================= */
-
-function getUnitCounts(data){
-
-    const counts = {
-
-        W:0,
-        FD:0,
-        D:0,
-        E:0
-
-    };
-
-
-    data.forEach(row=>{
-
-        const codeUnit =
-            String(
-                row.codeUnit || ''
-            )
-            .trim();
-
-
-        if(!codeUnit){
-
-            return;
-
-        }
-
-
-        const units =
-            codeUnit
-                .split(',')
-                .map(
-                    unit =>
-                        unit
-                            .trim()
-                            .toUpperCase()
-                )
-                .filter(Boolean);
-
-
-        units.forEach(unit=>{
-
-            if(
-                unit.startsWith('FD')
-            ){
-
-                counts.FD++;
-
-            }
-            else if(
-                unit.startsWith('W')
-            ){
-
-                counts.W++;
-
-            }
-            else if(
-                unit.startsWith('D')
-            ){
-
-                counts.D++;
-
-            }
-            else if(
-                unit.startsWith('E')
-            ){
-
-                counts.E++;
-
-            }
-
-        });
-
-    });
-
-
-    return counts;
-
-}
-
-
-/* =========================================================
-   STATISTICS
-========================================================= */
-
-function updateStatistics(data){
-
-    const counts =
-        getUnitCounts(data);
-
-
-    const totalActivity =
-        counts.W +
-        counts.FD +
-        counts.D +
-        counts.E;
-
-
-    document
-        .getElementById('totalData')
-        .textContent =
-            totalActivity;
-
-
-    document
-        .getElementById('wheelloaderTotal')
-        .textContent =
-            counts.W;
-
-
-    document
-        .getElementById('forkliftTotal')
-        .textContent =
-            counts.FD;
-
-
-    document
-        .getElementById('dumptruckTotal')
-        .textContent =
-            counts.D;
-
-
-    document
-        .getElementById('excavatorTotal')
-        .textContent =
-            counts.E;
-
-}
-
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-function applyFilters(){
-
-    const search =
-        document
-            .getElementById('searchInput')
-            .value
-            .trim()
-            .toLowerCase();
-
-
-    const unitType =
-        document
-            .getElementById('unitTypeFilter')
-            .value
-            .toUpperCase();
-
-
-    filteredData =
-        allData.filter(row=>{
-
-            const searchable = [
-
-                row.tanggal,
-                row.shift,
-                row.pic,
-                row.codeUnit,
-                row.deskripsi,
-                row.pap
-
-            ]
-            .join(' ')
-            .toLowerCase();
-
-
-            const matchSearch =
-                !search ||
-                searchable.includes(search);
-
-
-            const matchUnitType =
-                !unitType ||
-                rowContainsUnitType(
-                    row.codeUnit,
-                    unitType
-                );
-
-
-            return (
-                matchSearch &&
-                matchUnitType
-            );
-
-        });
-
-
-    currentPage = 1;
-
-
-    applyCurrentSort();
-
-    renderTable();
-
-}
-
-
-/* =========================================================
-   CHECK UNIT TYPE
-========================================================= */
-
-function rowContainsUnitType(
-    codeUnit,
-    unitType
-){
-
-    const units =
-        String(
-            codeUnit || ''
-        )
-        .split(',')
-        .map(
-            unit =>
-                unit
-                    .trim()
-                    .toUpperCase()
-        )
-        .filter(Boolean);
-
-
-    return units.some(
-        unit =>
-            unit.startsWith(
-                unitType
-            )
-    );
-
-}
-
-
-/* =========================================================
-   RESET FILTER
-========================================================= */
-
-function resetFilters(){
-
-    document
-        .getElementById('searchInput')
-        .value='';
-
-
-    document
-        .getElementById('unitTypeFilter')
-        .value='';
-
-
-    filteredData =
-        [...allData];
-
-
-    currentPage = 1;
-
-
-    applyCurrentSort();
-
-    renderTable();
-
-}
-
-
-/* =========================================================
-   RENDER TABLE
-========================================================= */
-
-function renderTable(){
-
-    const tbody =
-        document
-            .getElementById('tableBody');
-
-
-    const emptyState =
-        document
-            .getElementById('emptyState');
-
-
-    tbody.innerHTML='';
-
-
-    const total =
-        filteredData.length;
-
-
-    const totalPages =
-        Math.max(
-            1,
-            Math.ceil(
-                total /
-                ROWS_PER_PAGE
-            )
-        );
-
-
-    if(
-        currentPage >
-        totalPages
-    ){
-
-        currentPage =
-            totalPages;
-
-    }
-
-
-    const start =
-        (
-            currentPage - 1
-        ) *
-        ROWS_PER_PAGE;
-
-
-    const end =
-        Math.min(
-            start +
-            ROWS_PER_PAGE,
-            total
-        );
-
-
-    const pageData =
-        filteredData.slice(
-            start,
-            end
-        );
-
-
-    if(
-        !pageData.length
-    ){
-
-        emptyState
-            .classList
-            .remove('hidden');
-
-    }
-    else{
-
-        emptyState
-            .classList
-            .add('hidden');
-
-
-        pageData.forEach(
-            (row,index)=>{
-
-                const tr =
-                    document.createElement(
-                        'tr'
-                    );
-
-
-                const number =
-                    start +
-                    index +
-                    1;
-
-
-                tr.innerHTML = `
-
-                    <td class="
-                        text-center
-                        font-bold
-                        text-slate-400
-                    ">
-                        ${number}
-                    </td>
-
-
-                    <td class="whitespace-nowrap">
-
-                        ${escapeHtml(
-                            row.tanggal
-                        )}
-
-                    </td>
-
-
-                    <td>
-
-                        <span
-                            class="
-                                service-badge
-                                service-periodic
-                            "
-                        >
-                            ${escapeHtml(
-                                row.shift
-                            )}
-                        </span>
-
-                    </td>
-
-
-                    <td class="
-                        font-semibold
-                        text-slate-700
-                    ">
-                        ${escapeHtml(
-                            row.pic
-                        )}
-                    </td>
-
-
-                    <td class="max-w-[380px]">
-
-                        ${getUnitBadges(
-                            row.codeUnit
-                        )}
-
-                    </td>
-
-
-                    <td
-                        class="
-                            max-w-[280px]
-                            truncate
-                        "
-                        title="${escapeHtml(
-                            row.deskripsi
-                        )}"
-                    >
-
-                        ${
-                            escapeHtml(
-                                row.deskripsi
-                            ) ||
-                            '<span class="text-slate-300">-</span>'
-                        }
-
-                    </td>
-
-
-                    <td>
-
-                        ${getPapLink(
-                            row.pap
-                        )}
-
-                    </td>
-
-                `;
-
-
-                tbody.appendChild(
-                    tr
-                );
-
-            }
-        );
-
-    }
-
-
-    updateResultInfo(
-        total,
-        start,
-        end
-    );
-
-
-    renderPagination(
-        totalPages
-    );
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   UNIT BADGES
-========================================================= */
-
-function getUnitBadges(
-    codeUnit
-){
-
-    const value =
-        String(
-            codeUnit || ''
-        ).trim();
-
-
-    if(!value){
-
-        return `
-            <span class="text-slate-300">
-                -
-            </span>
-        `;
-
-    }
-
-
-    const units =
-        value
-            .split(',')
-            .map(
-                unit =>
-                    unit.trim()
-            )
-            .filter(Boolean);
-
-
-    return units
-        .map(unit=>{
-
-            return `
-
-                <span
-                    class="
-                        unit-badge
-                        mr-1
-                        mb-1
-                    "
-                >
-                    ${escapeHtml(
-                        unit
-                    )}
-                </span>
-
-            `;
-
-        })
-        .join('');
-
-}
-
-
-/* =========================================================
-   PAP LINK
-========================================================= */
-
-function getPapLink(pap){
-
-    const value =
-        String(
-            pap || ''
-        ).trim();
-
-
-    if(!value){
-
-        return `
-            <span class="text-slate-300">
-                -
-            </span>
-        `;
-
-    }
-
-
-    let url;
-
-
-    try{
-
-        url =
-            new URL(value);
-
-    }
-    catch(error){
-
-        return `
-            <span
-                class="
-                    text-slate-400
-                    text-[10px]
-                    font-medium
-                "
-                title="${escapeHtml(value)}"
-            >
-                ${escapeHtml(value)}
-            </span>
-        `;
-
-    }
-
-
-    if(
-        url.protocol !== 'http:' &&
-        url.protocol !== 'https:'
-    ){
-
-        return `
-            <span class="text-slate-400">
-                -
-            </span>
-        `;
-
-    }
-
-
-    return `
-
-        <a
-            href="${escapeHtml(url.href)}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="pap-link"
-            title="Lihat gambar PAP"
-        >
-
-            <i
-                data-lucide="image"
-                class="w-3.5 h-3.5"
-            ></i>
-
-            Lihat PAP
-
-        </a>
-
-    `;
-
-}
-
-
-/* =========================================================
-   RESULT INFO
-========================================================= */
-
-function updateResultInfo(
-    total,
-    start,
-    end
-){
-
-    const resultInfo =
-        document
-            .getElementById('resultInfo');
-
-
-    const paginationInfo =
-        document
-            .getElementById('paginationInfo');
-
-
-    if(total === 0){
-
-        resultInfo.textContent =
-            'Tidak ada data yang sesuai filter.';
-
-
-        paginationInfo.textContent =
-            '0 data';
-
-        return;
-
-    }
-
-
-    resultInfo.textContent =
-        `Menampilkan ${start + 1}–${end} dari ${total} aktivitas`;
-
-
-    paginationInfo.textContent =
-        `${total} aktivitas ditemukan`;
-
-}
-
-
-/* =========================================================
-   PAGINATION
-========================================================= */
-
-function renderPagination(
-    totalPages
-){
-
-    const container =
-        document
-            .getElementById('pagination');
-
-
-    container.innerHTML='';
-
-
-    if(
-        filteredData.length === 0
-    ){
-
-        return;
-
-    }
-
-
-    const prev =
-        document.createElement('button');
-
-
-    prev.className =
-        'pagination-button';
-
-
-    prev.innerHTML = `
-        <i
-            data-lucide="chevron-left"
-            class="w-4 h-4"
-        ></i>
-    `;
-
-
-    prev.disabled =
-        currentPage === 1;
-
-
-    prev.onclick = ()=>{
-
-        if(
-            currentPage > 1
-        ){
-
-            currentPage--;
-
-            renderTable();
-
-        }
-
-    };
-
-
-    container.appendChild(
-        prev
-    );
-
-
-    const pages =
-        getPaginationPages(
-            currentPage,
-            totalPages
-        );
-
-
-    pages.forEach(page=>{
-
-        if(
-            page === '...'
-        ){
-
-            const span =
-                document.createElement('span');
-
-
-            span.className =
-                'px-2 text-slate-400 text-xs';
-
-
-            span.textContent =
-                '...';
-
-
-            container.appendChild(
-                span
-            );
-
-
-            return;
-
-        }
-
-
-        const button =
-            document.createElement('button');
-
-
-        button.className =
-            'pagination-button' +
-            (
-                page === currentPage
-                ? ' active'
-                : ''
-            );
-
-
-        button.textContent =
-            page;
-
-
-        button.onclick = ()=>{
-
-            currentPage =
-                page;
-
-
-            renderTable();
-
-        };
-
-
-        container.appendChild(
-            button
-        );
-
-    });
-
-
-    const next =
-        document.createElement('button');
-
-
-    next.className =
-        'pagination-button';
-
-
-    next.innerHTML = `
-        <i
-            data-lucide="chevron-right"
-            class="w-4 h-4"
-        ></i>
-    `;
-
-
-    next.disabled =
-        currentPage === totalPages;
-
-
-    next.onclick = ()=>{
-
-        if(
-            currentPage <
-            totalPages
-        ){
-
-            currentPage++;
-
-            renderTable();
-
-        }
-
-    };
-
-
-    container.appendChild(
-        next
-    );
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   PAGINATION RANGE
-========================================================= */
-
-function getPaginationPages(
-    current,
-    total
-){
-
-    if(
-        total <= 7
-    ){
-
-        return Array.from(
-            {
-                length:total
-            },
-            (_,i)=>i+1
-        );
-
-    }
-
-
-    const pages = [];
-
-
-    pages.push(1);
-
-
-    if(
-        current > 4
-    ){
-
-        pages.push('...');
-
-    }
-
-
-    const start =
-        Math.max(
-            2,
-            current - 1
-        );
-
-
-    const end =
-        Math.min(
-            total - 1,
-            current + 1
-        );
-
-
-    for(
-        let i=start;
-        i<=end;
-        i++
-    ){
-
-        pages.push(i);
-
-    }
-
-
-    if(
-        current <
-        total - 3
-    ){
-
-        pages.push('...');
-
-    }
-
-
-    pages.push(total);
-
-
-    return pages;
-
-}
-
-
-/* =========================================================
-   LEADERBOARD
-========================================================= */
-
-function updateLeaderboardFromData(
-    data
-){
-
-    const list =
-        document
-            .getElementById(
-                'leaderboardList'
-            );
-
-
-    const picCounts = {};
-
-
-    if(
-        !Array.isArray(data) ||
-        data.length === 0
-    ){
-
-        list.innerHTML = `
-
-            <div
-                class="
-                    text-center
-                    text-slate-400
-                    text-sm
-                    py-6
-                "
-            >
-                Belum ada data PIC.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    data.forEach(row=>{
-
-        const pic =
-            String(
-                row.pic || ''
-            )
-            .trim();
-
-
-        if(!pic){
-
-            return;
-
-        }
-
-
-        const codeUnit =
-            String(
-                row.codeUnit || ''
-            )
-            .trim();
-
-
-        const units =
-            codeUnit
-                ? codeUnit
-                    .split(',')
-                    .map(
-                        unit =>
-                            unit.trim()
-                    )
-                    .filter(Boolean)
-                : [];
-
-
-        const activityCount =
-            units.length;
-
-
-        if(
-            !picCounts[pic]
-        ){
-
-            picCounts[pic] = 0;
-
-        }
-
-
-        picCounts[pic] +=
-            activityCount;
-
-    });
-
-
-    const ranking =
-        Object.entries(
-            picCounts
-        )
-        .map(
-            ([name,count])=>({
-
-                name,
-                count
-
-            })
-        )
-        .filter(
-            person =>
-                person.count > 0
-        )
-        .sort(
-            (a,b)=>
-                b.count -
-                a.count
-        );
-
-
-    if(
-        ranking.length === 0
-    ){
-
-        list.innerHTML = `
-
-            <div
-                class="
-                    text-center
-                    text-slate-400
-                    text-sm
-                    py-6
-                "
-            >
-                Belum ada data PIC.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    list.innerHTML =
-        ranking
-            .map(
-                (person,index)=>{
-
-                    const rank =
-                        index + 1;
-
-
-                    const cls =
-                        rank <= 3
-                        ? `top-${rank}`
-                        : '';
-
-
-                    const medal =
-                        rank === 1
-                        ? '🥇'
-                        : rank === 2
-                        ? '🥈'
-                        : rank === 3
-                        ? '🥉'
-                        : rank;
-
-
-                    return `
-
-                        <div
-                            class="
-                                leader-row
-                                ${cls}
-                            "
-                        >
-
-                            <div
-                                class="leader-rank"
-                            >
-                                ${medal}
-                            </div>
-
-
-                            <div
-                                class="
-                                    leader-name
-                                    truncate
-                                "
-                                title="${escapeHtml(
-                                    person.name
-                                )}"
-                            >
-                                ${escapeHtml(
-                                    person.name
-                                )}
-                            </div>
-
-
-                            <div
-                                class="leader-count"
-                            >
-                                ${person.count}
-                                aktivitas
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            )
-            .join('');
-
-}
-
-
-/* =========================================================
-   OPEN LEADERBOARD
-========================================================= */
-
-function openLeaderboard(){
-
-    updateLeaderboardFromData(
-        allData
-    );
-
-
-    document
-        .getElementById(
-            'leaderboardOverlay'
-        )
-        .classList
-        .add('show');
-
-
-    document.body.style.overflow =
-        'hidden';
-
-}
-
-
-/* =========================================================
-   CLOSE LEADERBOARD
-========================================================= */
-
-function closeLeaderboard(){
-
-    document
-        .getElementById(
-            'leaderboardOverlay'
-        )
-        .classList
-        .remove('show');
-
-
-    document.body.style.overflow =
-        '';
-
-}
-
-
-/* =========================================================
-   CLOSE OUTSIDE
-========================================================= */
-
-function closeLeaderboardOutside(
-    event
-){
-
-    if(
-        event.target ===
-        document.getElementById(
-            'leaderboardOverlay'
-        )
-    ){
-
-        closeLeaderboard();
-
-    }
-
-}
-
-
-/* =========================================================
-   LEADERBOARD PULSE
-========================================================= */
-
-function scheduleLeaderboardPulse(){
-
-    const button =
-        document.getElementById(
-            'leaderboardButton'
-        );
-
-
-    const delay =
-        12000 +
-        Math.random() * 14000;
-
-
-    setTimeout(()=>{
-
-        const overlay =
-            document.getElementById(
-                'leaderboardOverlay'
-            );
-
-
-        if(
-            !overlay.classList.contains(
-                'show'
-            )
-        ){
-
-            button.classList.remove(
-                'leader-pulse'
-            );
-
-
-            void button.offsetWidth;
-
-
-            button.classList.add(
-                'leader-pulse'
-            );
-
-        }
-
-
-        scheduleLeaderboardPulse();
-
-
-    },delay);
-
-}
-
-
-/* =========================================================
-   SECURITY
-========================================================= */
-
-function escapeHtml(value){
-
-    return String(
-        value ?? ''
-    )
-    .replace(
-        /&/g,
-        '&amp;'
-    )
-    .replace(
-        /</g,
-        '&lt;'
-    )
-    .replace(
-        />/g,
-        '&gt;'
-    )
-    .replace(
-        /"/g,
-        '&quot;'
-    )
-    .replace(
-        /'/g,
-        '&#039;'
-    );
 
 }
 
@@ -5590,40 +2309,20 @@ function escapeHtml(value){
    START
 ========================================================= */
 
-window.addEventListener(
-    'load',
-    ()=>{
+window.addEventListener('load',()=>{
+    lucide.createIcons();
+    loadTable();
+    scheduleLeaderboardPulse();
+});
 
-        lucide.createIcons();
-
-        loadTable();
-
-        scheduleLeaderboardPulse();
-
-    }
-);
-
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
-document.addEventListener(
-    'keydown',
-    event=>{
-
-        if(
-            event.key === 'Escape'
-        ){
-
-            closeLeaderboard();
-
-        }
-
-    }
-);
+document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape') return;
+    closeColumnMenu();
+    closeLeaderboard();
+});
 
 </script>
-
+<script src="nav.js"></script>
+   <script src="datacache.js"></script>
 </body>
 </html>
