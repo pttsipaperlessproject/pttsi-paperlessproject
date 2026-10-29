@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>LPH Dashboard - PT TSI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Kerusakan pada LPH Unit - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -30,2125 +16,989 @@
    GLOBAL
 ========================================================= */
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    min-width:0;
-    width:100%;
-}
+html{width:100%;min-width:0;overflow-x:hidden}
 
 body{
-
     margin:0;
-
     width:100%;
     min-width:0;
-
-    font-family:'Inter',sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #eef2f7
-        );
-
-    color:#1e293b;
-
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b
 }
 
-
-/* =========================================================
-   COLOR
-========================================================= */
-
-.color-primary{
-    background:#1E3A8A;
-}
-
-.text-primary{
-    color:#1E3A8A;
-}
-
-
-/* =========================================================
-   GLASS
-========================================================= */
+.color-primary{background:#1e3a8a}
 
 .glass-panel{
-
     background:rgba(255,255,255,.95);
-
     backdrop-filter:blur(10px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
+    border:1px solid rgba(255,255,255,.3)
 }
 
-
-/* =========================================================
-   ANIMATION
-========================================================= */
-
-.fade-in{
-
-    animation:
-        fadeIn
-        .5s
-        cubic-bezier(.4,0,.2,1);
-
-}
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 
 @keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(12px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
-
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo-wrapper{
-
-    transition:
-        transform
-        .4s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        );
-
-}
-
-.logo-wrapper:hover{
-
-    transform:
-        scale(1.08)
-        rotate(2deg);
-
-}
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 
 .logo-shadow{
-
     filter:
-        drop-shadow(
-            0 10px 8px
-            rgba(0,0,0,.04)
-        )
-        drop-shadow(
-            0 4px 3px
-            rgba(0,0,0,.1)
-        );
-
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
 
-
 /* =========================================================
-   STAT CARDS
+   PAGE TITLE & BUTTON
 ========================================================= */
 
+.page-title{
+    font-size:30px;
+    font-weight:900;
+    color:#1e293b;
+    letter-spacing:-.025em;
+    line-height:1.2
+}
+
+.page-subtitle{
+    font-size:13px;
+    color:#64748b;
+    font-weight:500;
+    line-height:1.6
+}
+
+.page-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    flex-wrap:wrap;
+    flex-shrink:0
+}
+
+.back-button,
+.secondary-button{
+    font-family:inherit;
+    font-size:12px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:11px 17px;
+    border-radius:12px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.2s ease
+}
+
+.back-button{
+    background:#1e3a8a;
+    color:#fff;
+    border:none;
+    box-shadow:0 5px 12px rgba(30,58,138,.18)
+}
+
+.back-button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
+}
+
+.secondary-button{
+    background:#f8fafc;
+    color:#475569;
+    border:1px solid #e2e8f0
+}
+
+.secondary-button:hover{
+    background:#f1f5f9;
+    color:#1e3a8a;
+    border-color:#bfdbfe;
+    transform:translateY(-2px)
+}
+
+/* =========================================================
+   KPI CARDS
+========================================================= */
+
+.kpi-row{
+    display:grid;
+    gap:16px;
+    margin-bottom:16px
+}
+
+.kpi-row.main{grid-template-columns:repeat(3,minmax(0,1fr))}
+.kpi-row.units{grid-template-columns:repeat(4,minmax(0,1fr))}
+
 .stat-card{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:17px;
-
-    padding:18px;
-
+    padding:17px;
     transition:.25s ease;
-
+    min-width:0
 }
 
 .stat-card:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 10px 20px
-        rgba(15,23,42,.07);
-
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
 
-
-/* =========================================================
-   CHART PANEL
-========================================================= */
-
-.chart-panel{
-
-    background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:20px;
-
-    padding:20px;
-
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.04);
-
-    min-width:0;
-
-}
-
-.chart-container{
-
-    position:relative;
-
-    height:300px;
-
-    width:100%;
-
-}
-
-
-/* =========================================================
-   OPEN LPH
-========================================================= */
-
-.open-row{
-
-    border-bottom:
-        1px solid
-        #f1f5f9;
-
-    transition:
-        background
-        .15s ease;
-
-}
-
-.open-row:hover{
-
-    background:#f8fafc;
-
-}
-
-.open-row:last-child{
-
-    border-bottom:none;
-
-}
-
-
-/* =========================================================
-   BADGES
-========================================================= */
-
-.unit-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    min-width:58px;
-
-    padding:
-        5px
-        9px;
-
-    border-radius:8px;
-
-    background:#eff6ff;
-
-    color:#1e3a8a;
-
+.stat-label{
     font-size:10px;
-
-    font-weight:900;
-
+    font-weight:700;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.06em
 }
+
+.stat-value{
+    font-size:30px;
+    font-weight:900;
+    margin-top:8px;
+    line-height:1.1
+}
+
+.unit-code{
+    font-size:10px;
+    font-weight:900;
+    color:#94a3b8;
+    margin-left:4px
+}
+
+/* =========================================================
+   PANEL & GRID
+========================================================= */
+
+.dash-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:20px;
+    margin-bottom:20px
+}
+
+.dash-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+.panel{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    box-shadow:0 4px 12px rgba(15,23,42,.04);
+    padding:18px 20px;
+    min-width:0
+}
+
+.panel-fill{display:flex;flex-direction:column}
+
+.fill-body{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center
+}
+
+.panel-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:14px
+}
+
+.panel-title{
+    font-size:13px;
+    font-weight:900;
+    color:#334155
+}
+
+.panel-subtitle{
+    font-size:10px;
+    color:#94a3b8;
+    font-weight:600;
+    margin-top:3px
+}
+
+.legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px
+}
+
+.legend-item{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:5px 9px;
+    border-radius:999px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.legend-item:hover{border-color:#bfdbfe;color:#1e3a8a}
+
+.legend-item.off{opacity:.45}
+
+.legend-item.on{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.legend-item.on .legend-dot{background:#fff!important}
+
+.legend-item.static{cursor:default}
+.legend-item.static:hover{border-color:#e2e8f0;color:#475569}
+
+.legend-dot{
+    width:9px;
+    height:9px;
+    border-radius:999px;
+    flex-shrink:0
+}
+
+.chart-wrap{width:100%;position:relative}
+
+.chart-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+
+.chart-empty{
+    padding:40px 10px;
+    text-align:center;
+    color:#94a3b8;
+    font-size:11px;
+    font-weight:700
+}
+
+.chart-label{font-size:10px;font-weight:700;fill:#64748b}
+.chart-value{font-size:10px;font-weight:900;fill:#334155}
+.chart-grid{stroke:#eef2f7;stroke-width:1}
+.chart-hit{cursor:pointer}
+.chart-bar{cursor:pointer}
+
+/* =========================================================
+   POPUP NILAI GRAFIK
+========================================================= */
+
+.chart-tip{
+    position:fixed;
+    z-index:2000;
+    pointer-events:none;
+    background:#0f172a;
+    color:#fff;
+    border-radius:10px;
+    padding:9px 11px;
+    font-size:10px;
+    font-weight:700;
+    box-shadow:0 12px 24px rgba(15,23,42,.25);
+    opacity:0;
+    transform:translateY(4px);
+    transition:opacity .12s ease,transform .12s ease;
+    max-width:240px;
+    min-width:130px
+}
+
+.chart-tip.show{
+    opacity:1;
+    transform:translateY(0)
+}
+
+.tip-title{
+    font-size:9px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:#94a3b8;
+    margin-bottom:6px
+}
+
+.tip-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-top:4px
+}
+
+.tip-left{
+    display:inline-flex;
+    align-items:center;
+    gap:6px
+}
+
+.tip-dot{
+    width:8px;
+    height:8px;
+    border-radius:999px;
+    display:inline-block
+}
+
+.tip-val{font-weight:900}
+
+/* =========================================================
+   DONUT
+========================================================= */
+
+.donut-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    width:100%
+}
+
+.donut-chart{width:100%;max-width:200px;margin:0 auto}
+
+.donut-legend{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:8px
+}
+
+.donut-legend-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:8px 10px;
+    border-radius:12px;
+    background:#f8fafc;
+    font-size:10px;
+    font-weight:700;
+    color:#334155
+}
+
+.donut-legend-row .val{font-weight:900;color:#1e293b}
+.donut-legend-row .pct{font-size:9px;color:#94a3b8;font-weight:800;margin-left:6px}
+
+/* =========================================================
+   BATANG HORIZONTAL (unit paling sering rusak)
+========================================================= */
+
+.hbar-scroll{
+    max-height:340px;
+    overflow-y:auto;
+    padding-right:4px
+}
+
+.hbar-row{margin-bottom:10px}
+
+.hbar-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    font-size:10px;
+    font-weight:800;
+    color:#334155;
+    margin-bottom:5px
+}
+
+.hbar-head .count{
+    font-size:10px;
+    font-weight:900;
+    color:#1e3a8a;
+    background:#dbeafe;
+    padding:2px 8px;
+    border-radius:999px;
+    white-space:nowrap
+}
+
+.hbar-track{
+    height:9px;
+    border-radius:999px;
+    overflow:hidden;
+    background:#f1f5f9
+}
+
+.hbar-fill{
+    height:100%;
+    border-radius:999px;
+    transition:width .3s ease
+}
+
+/* =========================================================
+   TABEL LAPORAN OPEN (5 terlihat, sisanya di-scroll)
+========================================================= */
+
+.ol-scroll{
+    max-height:300px;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin
+}
+
+.ol-scroll::-webkit-scrollbar{width:7px;height:7px}
+.ol-scroll::-webkit-scrollbar-track{background:#f8fafc}
+.ol-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+
+.ol-table{
+    width:100%;
+    min-width:820px;
+    border-collapse:separate;
+    border-spacing:0
+}
+
+.ol-table thead th{
+    position:sticky;
+    top:0;
+    z-index:1;
+    background:#f8fafc;
+    padding:12px 14px;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    text-align:left;
+    white-space:nowrap
+}
+
+.ol-table thead th.ol-no{text-align:center;width:60px}
+
+.ol-table tbody td{
+    padding:12px 14px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:11px;
+    font-weight:600;
+    vertical-align:middle
+}
+
+.ol-table tbody td.ol-no{text-align:center;font-weight:900;color:#94a3b8}
+.ol-table tbody td.ol-problem{white-space:normal;min-width:260px;max-width:360px;line-height:1.5}
+.ol-table tbody tr:hover{background:#f8fafc}
+.ol-table tbody tr:last-child td{border-bottom:none}
+
+.ol-mobile{display:none}
+
+.ol-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:9px
+}
+
+.ol-card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding-bottom:10px;
+    margin-bottom:10px;
+    border-bottom:1px solid #f1f5f9
+}
+
+.ol-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 12px
+}
+
+.ol-label{
+    font-size:8px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:4px
+}
+
+.ol-value{
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    word-break:break-word;
+    line-height:1.45
+}
+
+/* =========================================================
+   BADGES (palet baku Bab 2)
+========================================================= */
 
 .status-badge{
-
     display:inline-flex;
-
     align-items:center;
-
-    gap:5px;
-
-    padding:
-        6px
-        10px;
-
+    padding:4px 9px;
     border-radius:999px;
-
     font-size:9px;
-
     font-weight:900;
-
-    text-transform:uppercase;
-
+    white-space:nowrap
 }
 
-.status-open{
+.status-open{background:#fee2e2;color:#991b1b}
+.status-close{background:#dcfce7;color:#166534}
+.status-other{background:#e2e8f0;color:#475569}
 
-    background:#fff7ed;
-
-    color:#c2410c;
-
-    border:
-        1px solid
-        #fed7aa;
-
-}
-
-.status-close{
-
-    background:#ecfdf5;
-
-    color:#047857;
-
-    border:
-        1px solid
-        #a7f3d0;
-
-}
-
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-.dashboard-button{
-
-    background:#1e3a8a;
-
-    color:#fff;
-
-    border-radius:12px;
-
-    padding:
-        11px
-        17px;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    display:flex;
-
+.unit-badge{
+    display:inline-flex;
     align-items:center;
-
     justify-content:center;
-
-    gap:8px;
-
-    transition:.2s ease;
-
-    box-shadow:
-        0 5px 12px
-        rgba(30,58,138,.18);
-
-    border:none;
-
-    cursor:pointer;
-
+    min-width:56px;
+    padding:4px 9px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    font-size:10px;
+    font-weight:900
 }
 
-.dashboard-button:hover{
-
-    background:#1d4ed8;
-
-    transform:
-        translateY(-2px);
-
+.type-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 9px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#475569;
+    font-size:10px;
+    font-weight:800;
+    white-space:nowrap
 }
-
 
 /* =========================================================
    LOADING
 ========================================================= */
 
 #loading{
-
-    min-height:450px;
-
+    min-height:350px;
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
-    justify-content:center;
-
+    justify-content:center
 }
 
+#loading[hidden]{display:none}
+
+#tableContent{display:none}
+#tableContent.show{display:block}
 
 /* =========================================================
-   DASHBOARD
+   BREAKPOINTS (bible Bab 4)
 ========================================================= */
 
-#dashboardContent{
+@media(min-width:1920px){
+    main{max-width:1800px}
+}
 
-    display:none;
+@media(min-width:768px) and (max-width:1100px){
+
+    main{padding:28px!important;border-radius:24px!important}
+
+    .page-title{font-size:25px}
+
+    .dash-grid.three{grid-template-columns:minmax(0,1fr)}
+
+    header{margin-bottom:28px!important}
 
 }
 
-#dashboardContent.show{
+@media(max-width:767px){
 
-    display:block;
-
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-/* TABLET */
-
-@media(max-width:1024px){
-
-    body{
-        padding:16px;
-    }
+    body{padding:10px!important;align-items:stretch!important}
 
     main{
-        padding:24px !important;
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
 
-    .chart-container{
-        height:280px;
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
+
+    .logo-wrapper{margin-bottom:14px!important}
+
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
     }
-
-}
-
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-    body{
-
-        padding:
-            8px;
-
-    }
-
-    main{
-
-        width:100%;
-
-        max-width:none;
-
-        padding:
-            16px !important;
-
-        border-radius:
-            20px !important;
-
-    }
-
-
-    /* HEADER */
-
-    header{
-
-        margin-bottom:
-            20px !important;
-
-        padding-bottom:
-            18px !important;
-
-    }
-
-
-    .logo-wrapper{
-
-        margin-bottom:
-            14px !important;
-
-    }
-
-
-    .logo-wrapper > div{
-
-        width:
-            72px !important;
-
-        height:
-            72px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
 
     header .color-primary{
+        width:100%!important;
+        padding:13px 14px!important;
+        border-radius:15px!important
+    }
 
+    header .color-primary h1{
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
+    }
+
+    header .color-primary h2{
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
+    }
+
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
+    }
+
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
+    }
+
+    .page-title{
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important
+    }
+
+    .page-title span{
+        padding:9px!important;
+        border-radius:10px!important;
+        flex-shrink:0
+    }
+
+    .page-title span svg{width:18px!important;height:18px!important}
+
+    .page-subtitle{
+        font-size:10px!important;
+        line-height:1.6!important;
+        margin-top:8px!important
+    }
+
+    .page-actions{
         width:100%;
-
-        padding:
-            14px
-            12px !important;
-
-        border-radius:
-            16px !important;
-
+        display:grid;
+        grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+        gap:8px
     }
 
-
-    header h1{
-
-        font-size:
-            16px !important;
-
-        letter-spacing:
-            .06em !important;
-
-    }
-
-
-    header h2{
-
-        font-size:
-            10px !important;
-
-        letter-spacing:
-            .08em !important;
-
-    }
-
-
-    header > div:last-child{
-
-        font-size:
-            8px !important;
-
-        letter-spacing:
-            .18em !important;
-
-    }
-
-
-    /* PAGE TITLE */
-
-    section > div:first-child{
-
-        flex-direction:
-            column;
-
-        align-items:
-            stretch;
-
-        gap:
-            16px !important;
-
-        margin-bottom:
-            20px !important;
-
-    }
-
-
-    section > div:first-child > div:first-child{
-
+    .back-button,
+    .secondary-button{
         width:100%;
-
+        padding:10px 12px;
+        border-radius:10px;
+        font-size:10px
     }
 
+    .kpi-row{gap:10px!important;margin-bottom:14px!important}
+    .kpi-row.main{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .kpi-row.main .stat-card:last-child{grid-column:1/-1}
+    .kpi-row.units{grid-template-columns:repeat(2,minmax(0,1fr))}
 
-    section h2{
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-label{font-size:8px!important}
+    .stat-value{font-size:24px!important}
 
-        font-size:
-            22px !important;
+    .dash-grid{gap:14px!important;margin-bottom:14px!important}
+    .dash-grid.three{grid-template-columns:minmax(0,1fr)!important}
 
-        line-height:
-            1.25;
+    .panel{border-radius:16px!important;padding:14px!important}
+    .panel-title{font-size:12px!important}
+    .panel-subtitle{font-size:9px!important}
 
-        gap:
-            10px !important;
+    .legend-item{font-size:9px!important;padding:4px 8px!important}
 
-    }
+    .donut-wrap{gap:16px}
+    .donut-chart{max-width:170px}
 
+    .ol-scroll{display:none!important}
+    .ol-mobile{display:block;padding:4px 0}
 
-    section h2 span{
-
-        padding:
-            9px !important;
-
-    }
-
-
-    section h2 span i{
-
-        width:
-            20px !important;
-
-        height:
-            20px !important;
-
-    }
-
-
-    section p{
-
-        font-size:
-            11px !important;
-
-        line-height:
-            1.5;
-
-    }
-
-
-    /* NAVIGATION */
-
-    section > div:first-child > div:last-child{
-
-        width:100% !important;
-
-        flex-direction:
-            column !important;
-
-    }
-
-
-    .dashboard-button{
-
-        width:100%;
-
-        min-height:
-            44px;
-
-        font-size:
-            11px;
-
-    }
-
-
-    /* KPI */
-
-    #dashboardContent > div:first-child{
-
-        grid-template-columns:
-            repeat(1,minmax(0,1fr)) !important;
-
-        gap:
-            10px !important;
-
-        margin-bottom:
-            10px !important;
-
-    }
-
-
-    /* UNIT KPI */
-
-    #dashboardContent > div:nth-child(2){
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-        gap:
-            10px !important;
-
-        margin-bottom:
-            10px !important;
-
-    }
-
-
-    .stat-card{
-
-        padding:
-            14px;
-
-        border-radius:
-            14px;
-
-    }
-
-
-    .stat-card p.text-3xl{
-
-        font-size:
-            25px !important;
-
-    }
-
-
-    /* CHART ROWS */
-
-    #dashboardContent > div:nth-child(3),
-    #dashboardContent > div:nth-child(5){
-
-        grid-template-columns:
-            1fr !important;
-
-        gap:
-            12px !important;
-
-        margin-bottom:
-            12px !important;
-
-    }
-
-
-    /* CHART PANEL */
-
-    .chart-panel{
-
-        padding:
-            14px;
-
-        border-radius:
-            16px;
-
-    }
-
-
-    .chart-container{
-
-        height:
-            260px;
-
-    }
-
-
-    /* TREND */
-
-    #dashboardContent > .chart-panel{
-
-        margin-bottom:
-            12px !important;
-
-    }
-
-
-    /* OPEN TABLE */
-
-    #dashboardContent > div:last-child{
-
-        border-radius:
-            16px;
-
-    }
-
-
-    #openTable{
-
-        width:100%;
-
-        overflow-x:auto;
-
-        -webkit-overflow-scrolling:touch;
-
-    }
-
-
-    #openTable table{
-
-        min-width:
-            700px;
-
-    }
-
-
-    /* FOOTER */
-
-    footer{
-
-        margin-top:
-            18px !important;
-
-        padding:
-            0 8px 20px !important;
-
-    }
-
-
-    footer p{
-
-        font-size:
-            9px !important;
-
-        line-height:
-            1.5;
-
-    }
+    footer{margin-top:18px!important;padding:0 8px 20px!important}
+    footer p:first-child{font-size:8px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.5!important}
 
 }
 
+@media(max-width:380px){
 
-/* SMALL MOBILE */
+    body{padding:6px!important}
 
-@media(max-width:480px){
+    main{padding:12px!important;border-radius:17px!important}
 
-    body{
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
 
-        padding:
-            5px;
+    .logo-wrapper>div{width:70px!important;height:70px!important}
 
-    }
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
 
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
 
-    main{
+    .back-button span,
+    .secondary-button span{display:none}
 
-        padding:
-            12px !important;
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-value{font-size:21px!important}
 
-        border-radius:
-            16px !important;
+    .kpi-row.units{grid-template-columns:minmax(0,1fr)}
 
-    }
-
-
-    header{
-
-        margin-bottom:
-            16px !important;
-
-        padding-bottom:
-            15px !important;
-
-    }
-
-
-    .logo-wrapper > div{
-
-        width:
-            64px !important;
-
-        height:
-            64px !important;
-
-    }
-
-
-    header h1{
-
-        font-size:
-            14px !important;
-
-    }
-
-
-    header h2{
-
-        font-size:
-            8px !important;
-
-    }
-
-
-    section h2{
-
-        font-size:
-            19px !important;
-
-    }
-
-
-    section h2 span{
-
-        padding:
-            8px !important;
-
-    }
-
-
-    section p{
-
-        font-size:
-            10px !important;
-
-    }
-
-
-    .stat-card{
-
-        padding:
-            12px;
-
-    }
-
-
-    .stat-card p.text-3xl{
-
-        font-size:
-            23px !important;
-
-    }
-
-
-    .chart-panel{
-
-        padding:
-            12px;
-
-    }
-
-
-    .chart-container{
-
-        height:
-            230px;
-
-    }
-
-
-    #dashboardContent > div:nth-child(2){
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-    }
-
-}
-
-
-/* =========================================================
-   PREVENT CHART OVERFLOW
-========================================================= */
-
-canvas{
-
-    max-width:100%;
-
-}
-
-
-/* =========================================================
-   MOBILE TABLE
-========================================================= */
-
-@media(max-width:768px){
-
-    .overflow-x-auto{
-
-        overflow-x:auto;
-
-        max-width:100%;
-
-        -webkit-overflow-scrolling:touch;
-
-    }
-
-}
-
-
-/* =========================================================
-   TOUCH DEVICE
-========================================================= */
-
-@media(hover:none){
-
-    .stat-card:hover{
-
-        transform:none;
-
-        box-shadow:none;
-
-    }
-
-
-    .logo-wrapper:hover{
-
-        transform:none;
-
-    }
-
-
-    .dashboard-button:hover{
-
-        transform:none;
-
-    }
+    .ol-card-grid{grid-template-columns:1fr!important}
 
 }
 
 </style>
-
 </head>
 
+<body class="flex flex-col items-center p-4 sm:p-8">
 
-<body
-    class="
-        flex
-        flex-col
-        items-center
-        p-4
-        sm:p-8
-    "
->
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
+<!-- ======================================================
+     HEADER (tidak diubah)
+====================================================== -->
 
-<main
-    class="
-        w-full
-        max-w-7xl
-        flex-grow
-        glass-panel
-        p-6
-        sm:p-10
-        rounded-3xl
-        shadow-2xl
-        fade-in
-    "
->
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header
-    class="
-        w-full
-        mb-8
-        pb-6
-        border-b-2
-        border-slate-100
-        flex
-        flex-col
-        items-center
-    "
->
-
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
     <div class="mb-4 logo-wrapper">
-
-        <div
-            class="
-                w-24
-                h-24
-                flex
-                items-center
-                justify-center
-                bg-white
-                rounded-2xl
-                logo-shadow
-                overflow-hidden
-                p-2
-            "
-        >
-
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
             <img
                 src="default_logo.png"
                 alt="Logo PT TSI"
-                class="
-                    w-full
-                    h-full
-                    object-contain
-                "
+                class="w-full h-full object-contain"
                 id="companyLogo"
                 onerror="handleLogoError()"
             >
-
-
             <div
                 id="logoFallback"
-                class="
-                    hidden
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    bg-blue-900
-                    w-full
-                    h-full
-                    text-white
-                "
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
             >
-
-                <span
-                    class="
-                        font-black
-                        text-2xl
-                    "
-                >
-                    TSI
-                </span>
-
+                <span class="font-black text-2xl">TSI</span>
             </div>
-
         </div>
-
     </div>
 
-
-    <div
-        class="
-            color-primary
-            text-white
-            px-8
-            py-4
-            rounded-2xl
-            shadow-lg
-            flex
-            flex-col
-            items-center
-            gap-1
-        "
-    >
-
-        <h1
-            class="
-                text-xl
-                sm:text-2xl
-                font-black
-                uppercase
-                tracking-[0.1em]
-                text-center
-            "
-        >
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
             PAPERLESS PROJECT
         </h1>
-
-
-        <div
-            class="
-                h-0.5
-                w-16
-                bg-amber-500
-                rounded-full
-                my-1
-            "
-        ></div>
-
-
-        <h2
-            class="
-                text-sm
-                sm:text-lg
-                font-bold
-                uppercase
-                tracking-widest
-                text-blue-100
-                text-center
-            "
-        >
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
             PT TATSUMI SERUNI INDONESIA
         </h2>
-
     </div>
 
-
-    <div
-        class="
-            mt-3
-            text-[10px]
-            font-bold
-            text-slate-400
-            tracking-[0.3em]
-            uppercase
-        "
-    >
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
         Digitalization Initiative v2.0
     </div>
 
 </header>
 
 
-<!-- =====================================================
-     PAGE TITLE
-===================================================== -->
+<!-- ======================================================
+     SECTION
+====================================================== -->
 
 <section>
 
-
-    <div
-        class="
-            flex
-            items-center
-            justify-between
-            gap-5
-            mb-6
-        "
-    >
-
+    <div class="flex items-center justify-between gap-5 mb-6">
 
         <div>
-
-            <h2
-                class="
-                    text-3xl
-                    font-black
-                    tracking-tight
-                    text-slate-800
-                    flex
-                    items-center
-                    gap-3
-                "
-            >
-
-                <span
-                    class="
-                        bg-blue-900
-                        text-white
-                        p-3
-                        rounded-xl
-                        shadow-md
-                    "
-                >
-
-                    <i
-                        data-lucide="layout-dashboard"
-                        class="w-6 h-6"
-                    ></i>
-
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="wrench" class="w-6 h-6"></i>
                 </span>
-
-                Dashboard LPH
-
+                Dashboard Kerusakan pada LPH
             </h2>
-
-
-            <p
-                class="
-                    text-[13px]
-                    text-slate-500
-                    font-medium
-                    mt-2
-                    ml-1
-                "
-            >
-
-                Monitoring dan analisis data laporan kerusakan unit pada LPH secara terintegrasi.
-
+            <p class="page-subtitle mt-2 ml-1">
+                Ringkasan laporan kerusakan LPH unit, disajikan dari data database.
             </p>
-
         </div>
 
-
-        <!-- =================================================
-             NAVIGATION
-        ================================================= -->
-
-        <div
-            class="
-                flex
-                flex-col
-                sm:flex-row
-                gap-2
-                w-full
-                lg:w-auto
-            "
-        >
-
-
-            <!-- HOME -->
-
-            <button
-                type="button"
-                onclick="goToHome()"
-                class="
-                    dashboard-button
-                    bg-slate-100
-                    hover:bg-slate-200
-                    text-slate-700
-                    shadow-sm
-                "
-            >
-
-                <i
-                    data-lucide="house"
-                    class="w-4 h-4"
-                ></i>
-
-                Kembali ke Home
-
+        <div class="page-actions">
+            <button onclick="goHome()" class="secondary-button">
+                <i data-lucide="house" class="w-4 h-4"></i>
+                <span>Home</span>
             </button>
-
-
-            <!-- LIHAT DATA -->
-
-            <button
-                type="button"
-                onclick="goToTable()"
-                class="
-                    dashboard-button
-                    bg-blue-800
-                    hover:bg-blue-700
-                    text-white
-                    shadow-md
-                "
-            >
-
-                <i
-                    data-lucide="table-2"
-                    class="w-4 h-4"
-                ></i>
-
-                Lihat Data
-
+            <button onclick="goTableAll()" class="back-button">
+                <i data-lucide="table-2" class="w-4 h-4"></i>
+                <span>Data Keseluruhan</span>
             </button>
-
-
         </div>
-
 
     </div>
 
 
-    <!-- =================================================
-         LOADING
-    ================================================= -->
-
+    <!-- LOADING -->
     <div id="loading">
-
-        <i
-            data-lucide="loader-circle"
-            class="
-                w-9
-                h-9
-                animate-spin
-                text-amber-500
-            "
-        ></i>
-
-
-        <p
-            class="
-                font-semibold
-                text-sm
-                text-slate-400
-                mt-3
-            "
-        >
-            Memuat dashboard LPH...
-        </p>
-
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p class="font-semibold text-sm text-slate-400 mt-3">Memuat ringkasan...</p>
     </div>
 
 
-    <!-- =================================================
-         DASHBOARD CONTENT
-    ================================================= -->
+    <!-- CONTENT -->
+    <div id="tableContent">
 
-    <div id="dashboardContent">
-
-
-        <!-- =================================================
-             KPI CARDS
-        ================================================= -->
-
-        <div
-            class="
-                grid
-                grid-cols-3
-                gap-4
-                mb-6
-            "
-        >
-
-
-            <!-- TOTAL -->
+        <!-- KPI: total, open, close -->
+        <div class="kpi-row main">
 
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Total LPH
-                </p>
-
-
-                <p
-                    id="totalKpi"
-                    class="
-                        text-3xl
-                        font-black
-                        text-blue-900
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-
-                <p
-                    class="
-                        text-[10px]
-                        text-slate-400
-                        mt-1
-                    "
-                >
-                    Seluruh aktivitas
-                </p>
-
+                <p class="stat-label">Total Laporan</p>
+                <p id="kpiTotal" class="stat-value text-blue-900">-</p>
             </div>
-
-
-            <!-- OPEN -->
 
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Open LPH
-                </p>
-
-
-                <p
-                    id="openKpi"
-                    class="
-                        text-3xl
-                        font-black
-                        text-orange-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-
-                <p
-                    class="
-                        text-[10px]
-                        text-slate-400
-                        mt-1
-                    "
-                >
-                    Masih berjalan
-                </p>
-
+                <p class="stat-label">Open</p>
+                <p id="kpiOpen" class="stat-value" style="color:#991b1b">-</p>
             </div>
-
-
-            <!-- CLOSE -->
 
             <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Close LPH
-                </p>
-
-
-                <p
-                    id="closeKpi"
-                    class="
-                        text-3xl
-                        font-black
-                        text-emerald-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-
-                <p
-                    class="
-                        text-[10px]
-                        text-slate-400
-                        mt-1
-                    "
-                >
-                    Selesai
-                </p>
-
+                <p class="stat-label">Close</p>
+                <p id="kpiClose" class="stat-value" style="color:#166534">-</p>
             </div>
 
+        </div>
+
+        <!-- KPI: satu kartu per jenis unit -->
+        <div class="kpi-row units">
+
+            <div class="stat-card" style="border-top:3px solid #2563eb">
+                <p class="stat-label">Wheelloader <span class="unit-code">W</span></p>
+                <p id="kpiW" class="stat-value" style="color:#2563eb">-</p>
+            </div>
+
+            <div class="stat-card" style="border-top:3px solid #d97706">
+                <p class="stat-label">Forklift <span class="unit-code">FD</span></p>
+                <p id="kpiF" class="stat-value" style="color:#d97706">-</p>
+            </div>
+
+            <div class="stat-card" style="border-top:3px solid #b91c1c">
+                <p class="stat-label">Dumptruck <span class="unit-code">D</span></p>
+                <p id="kpiD" class="stat-value" style="color:#b91c1c">-</p>
+            </div>
+
+            <div class="stat-card" style="border-top:3px solid #059669">
+                <p class="stat-label">Excavator <span class="unit-code">E</span></p>
+                <p id="kpiE" class="stat-value" style="color:#059669">-</p>
+            </div>
 
         </div>
 
 
-        <!-- =================================================
-             UNIT KPI
-        ================================================= -->
+        <!-- BARIS 1: TREN LAPORAN (lebar penuh) -->
+        <div class="dash-grid">
 
-        <div
-            class="
-                grid
-                grid-cols-4
-                gap-4
-                mb-6
-            "
-        >
-
-
-            <!-- WHEELLOADER -->
-
-            <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Wheelloader
-                </p>
-
-
-                <p
-                    id="wheelloaderKpi"
-                    class="
-                        text-3xl
-                        font-black
-                        text-indigo-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-            </div>
-
-
-            <!-- FORKLIFT -->
-
-            <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Forklift
-                </p>
-
-
-                <p
-                    id="forkliftKpi"
-                    class="
-                        text-3xl
-                        font-black
-                        text-amber-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-
-                <p
-                    class="
-                        text-[10px]
-                        text-slate-400
-                        mt-1
-                    "
-                >
-                    Unit prefix F
-                </p>
-
-            </div>
-
-
-            <!-- DUMPTRUCK -->
-
-            <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Dumptruck
-                </p>
-
-
-                <p
-                    id="dumptruckKpi"
-                    class="
-                        text-3xl
-                        font-black
-                        text-rose-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-            </div>
-
-
-            <!-- EXCAVATOR -->
-
-            <div class="stat-card">
-
-                <p
-                    class="
-                        text-[10px]
-                        font-bold
-                        text-slate-400
-                        uppercase
-                        tracking-wider
-                    "
-                >
-                    Excavator
-                </p>
-
-
-                <p
-                    id="excavatorKpi"
-                    class="
-                        text-3xl
-                        font-black
-                        text-emerald-600
-                        mt-2
-                    "
-                >
-                    -
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =================================================
-             FIRST CHART ROW
-        ================================================= -->
-
-        <div
-            class="
-                grid
-                grid-cols-2
-                gap-5
-                mb-5
-            "
-        >
-
-
-            <!-- STATUS -->
-
-            <div class="chart-panel">
-
-                <div
-                    class="
-                        flex
-                        items-center
-                        justify-between
-                        mb-4
-                    "
-                >
-
+            <div class="panel">
+                <div class="panel-header">
                     <div>
-
-                        <h3
-                            class="
-                                text-sm
-                                font-black
-                                text-slate-700
-                            "
-                        >
-                            Status LPH
-                        </h3>
-
-                        <p
-                            class="
-                                text-[10px]
-                                text-slate-400
-                                mt-1
-                            "
-                        >
-                            Perbandingan Open dan Close.
-                        </p>
-
+                        <h3 class="panel-title">Tren Laporan per Bulan</h3>
+                        <p id="trendSubtitle" class="panel-subtitle">-</p>
                     </div>
-
-                    <i
-                        data-lucide="pie-chart"
-                        class="w-5 h-5 text-slate-300"
-                    ></i>
-
                 </div>
-
-
-                <div class="chart-container">
-
-                    <canvas
-                        id="statusChart"
-                    ></canvas>
-
-                </div>
-
+                <div id="trendChart" class="chart-wrap"></div>
+                <div id="trendLegend" class="legend"></div>
             </div>
 
+        </div>
 
-            <!-- UNIT TYPE -->
 
-            <div class="chart-panel">
+        <!-- BARIS 2: KOMPOSISI STATUS | LAPORAN PER JENIS ALAT | UNIT PALING SERING RUSAK -->
+        <div class="dash-grid three">
 
-                <div
-                    class="
-                        flex
-                        items-center
-                        justify-between
-                        mb-4
-                    "
-                >
-
+            <div class="panel panel-fill">
+                <div class="panel-header">
                     <div>
-
-                        <h3
-                            class="
-                                text-sm
-                                font-black
-                                text-slate-700
-                            "
-                        >
-                            Aktivitas per Jenis Unit
-                        </h3>
-
-                        <p
-                            class="
-                                text-[10px]
-                                text-slate-400
-                                mt-1
-                            "
-                        >
-                            Distribusi LPH berdasarkan unit.
-                        </p>
-
+                        <h3 class="panel-title">Komposisi Status</h3>
+                        <p class="panel-subtitle">Porsi laporan Open dan Close</p>
                     </div>
-
-                    <i
-                        data-lucide="bar-chart-3"
-                        class="w-5 h-5 text-slate-300"
-                    ></i>
-
                 </div>
-
-
-                <div class="chart-container">
-
-                    <canvas
-                        id="unitChart"
-                    ></canvas>
-
-                </div>
-
+                <div id="composition" class="fill-body"></div>
             </div>
 
-
-        </div>
-
-
-        <!-- =================================================
-             TREND
-        ================================================= -->
-
-        <div
-            class="
-                chart-panel
-                mb-5
-            "
-        >
-
-            <div
-                class="
-                    flex
-                    items-center
-                    justify-between
-                    mb-4
-                "
-            >
-
-                <div>
-
-                    <h3
-                        class="
-                            text-sm
-                            font-black
-                            text-slate-700
-                        "
-                    >
-                        Trend Aktivitas LPH
-                    </h3>
-
-                    <p
-                        class="
-                            text-[10px]
-                            text-slate-400
-                            mt-1
-                        "
-                    >
-                        Jumlah aktivitas berdasarkan tanggal mulai.
-                    </p>
-
-                </div>
-
-
-                <i
-                    data-lucide="trending-up"
-                    class="w-5 h-5 text-slate-300"
-                ></i>
-
-            </div>
-
-
-            <div class="chart-container">
-
-                <canvas
-                    id="trendChart"
-                ></canvas>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             TOP UNIT + TOP PROBLEM
-        ================================================= -->
-
-        <div
-            class="
-                grid
-                grid-cols-2
-                gap-5
-                mb-5
-            "
-        >
-
-
-            <!-- TOP UNIT -->
-
-            <div class="chart-panel">
-
-                <div
-                    class="
-                        flex
-                        items-center
-                        justify-between
-                        mb-4
-                    "
-                >
-
+            <div class="panel">
+                <div class="panel-header">
                     <div>
-
-                        <h3
-                            class="
-                                text-sm
-                                font-black
-                                text-slate-700
-                            "
-                        >
-                            Top Unit
-                        </h3>
-
-                        <p
-                            class="
-                                text-[10px]
-                                text-slate-400
-                                mt-1
-                            "
-                        >
-                            Unit dengan aktivitas LPH terbanyak.
-                        </p>
-
+                        <h3 class="panel-title">Laporan per Jenis Alat</h3>
+                        <p class="panel-subtitle">Open dan Close pada tiap jenis unit. Klik legenda untuk menampilkan atau menyembunyikan</p>
                     </div>
-
-
-                    <i
-                        data-lucide="trophy"
-                        class="w-5 h-5 text-slate-300"
-                    ></i>
-
                 </div>
-
-
-                <div class="chart-container">
-
-                    <canvas
-                        id="topUnitChart"
-                    ></canvas>
-
-                </div>
-
+                <div id="typeChart" class="chart-wrap"></div>
+                <div id="typeLegend" class="legend"></div>
             </div>
 
-
-            <!-- TOP PROBLEM -->
-
-            <div class="chart-panel">
-
-                <div
-                    class="
-                        flex
-                        items-center
-                        justify-between
-                        mb-4
-                    "
-                >
-
+            <div class="panel">
+                <div class="panel-header">
                     <div>
-
-                        <h3
-                            class="
-                                text-sm
-                                font-black
-                                text-slate-700
-                            "
-                        >
-                            Top Problem
-                        </h3>
-
-                        <p
-                            class="
-                                text-[10px]
-                                text-slate-400
-                                mt-1
-                            "
-                        >
-                            Problem yang paling sering muncul.
-                        </p>
-
+                        <h3 class="panel-title">Unit Paling Sering Rusak</h3>
+                        <p class="panel-subtitle">10 unit teratas. Pilih Total atau jenis unit</p>
                     </div>
-
-
-                    <i
-                        data-lucide="alert-triangle"
-                        class="w-5 h-5 text-slate-300"
-                    ></i>
-
                 </div>
-
-
-                <div class="chart-container">
-
-                    <canvas
-                        id="topProblemChart"
-                    ></canvas>
-
-                </div>
-
+                <div id="unitChart" class="hbar-scroll"></div>
+                <div id="unitLegend" class="legend"></div>
             </div>
-
 
         </div>
 
 
-        <!-- =================================================
-             OPEN LPH TABLE
-        ================================================= -->
+        <!-- BARIS 3: LAPORAN LPH YANG MASIH OPEN (tabel) -->
+        <div class="dash-grid">
 
-        <div
-            class="
-                bg-white
-                border
-                border-slate-200
-                rounded-2xl
-                overflow-hidden
-                shadow-sm
-            "
-        >
+            <div class="panel" style="padding:0;overflow:hidden">
 
-
-            <div
-                class="
-                    px-5
-                    py-4
-                    border-b
-                    border-slate-100
-                    flex
-                    items-center
-                    justify-between
-                "
-            >
-
-                <div>
-
-                    <h3
-                        class="
-                            font-black
-                            text-slate-700
-                            text-sm
-                            flex
-                            items-center
-                            gap-2
-                        "
-                    >
-
-                        <span
-                            class="
-                                w-2
-                                h-2
-                                rounded-full
-                                bg-orange-500
-                            "
-                        ></span>
-
-                        Open LPH
-
-                    </h3>
-
-
-                    <p
-                        class="
-                            text-[10px]
-                            text-slate-400
-                            mt-1
-                            font-medium
-                        "
-                    >
-                        Aktivitas yang belum selesai.
-                    </p>
-
+                <div style="padding:18px 20px 14px;border-bottom:1px solid #f1f5f9">
+                    <h3 class="panel-title">Laporan LPH yang masih OPEN</h3>
+                    <p id="openSubtitle" class="panel-subtitle">5 laporan terbaru tampil. Scroll ke bawah untuk melihat semua</p>
                 </div>
 
+                <div class="ol-scroll">
+                    <table class="ol-table">
+                        <thead>
+                            <tr>
+                                <th class="ol-no">No</th>
+                                <th>Date Report</th>
+                                <th>Unit</th>
+                                <th>Jenis Alat</th>
+                                <th>Problem</th>
+                                <th>Berjalan</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="olBody"></tbody>
+                    </table>
+                </div>
 
-                <span
-                    id="openTableCount"
-                    class="
-                        text-[10px]
-                        font-black
-                        text-orange-600
-                        bg-orange-50
-                        border
-                        border-orange-100
-                        px-3
-                        py-1.5
-                        rounded-full
-                    "
-                >
-                    0 Open
-                </span>
+                <div id="olMobile" class="ol-mobile" style="padding:12px"></div>
 
             </div>
 
-
-            <div
-                id="openTable"
-            ></div>
-
-
         </div>
-
 
     </div>
 
 </section>
 
-
 </main>
 
+<!-- POPUP NILAI GRAFIK -->
+<div id="chartTip" class="chart-tip"></div>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer
-    class="
-        mt-8
-        text-center
-        text-slate-400
-        px-4
-        pb-8
-    "
->
-
-    <p
-        class="
-            font-bold
-            text-slate-500
-            tracking-tight
-            uppercase
-        "
-    >
-
-        &copy; 2026 Paperless Project - PT TSI.
-        All rights reserved.
-
+<!-- FOOTER (tidak diubah) -->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
     </p>
-
-
-    <p
-        class="
-            text-[10px]
-            mt-1
-        "
-    >
-
+    <p class="text-[10px] mt-1">
         System Architecture by:
-
-        <span
-            class="
-                text-slate-600
-                font-semibold
-                uppercase
-            "
-        >
-            Imam Wahyu Ramadhan, S.T.
-        </span>
-
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
         |
-
-        <span
-            class="
-                text-amber-600
-                font-bold
-                uppercase
-                tracking-tighter
-            "
-        >
-            Project 2.0
-        </span>
-
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
     </p>
-
 </footer>
 
 
@@ -2158,378 +1008,831 @@ canvas{
    CONFIGURATION
 ========================================================= */
 
-const API_URL =
+const API_URL=
 'https://script.google.com/macros/s/AKfycbw8ZzXABtXrKNLM3vHvfM5NblG3Eu-eXkRCPX9CTU-7pQP9zD8aOflVn4c-x0nY_sj1Sw/exec';
 
+const INDEX_URL='index.html';
+const TABLE_URL='tlph.html';
 
-const TABLE_URL =
-'tlph.html';
+const TOP_UNITS=10;
+const OPEN_ROWS=5;
 
+const MONTH_SHORT=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+const MONTH_NAMES=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
-const HOME_URL =
-'index.html';
+const MONTHS={
+    januari:1,jan:1,februari:2,feb:2,maret:3,mar:3,april:4,apr:4,
+    mei:5,may:5,juni:6,jun:6,juli:7,jul:7,agustus:8,agu:8,aug:8,
+    september:9,sep:9,oktober:10,okt:10,oct:10,november:11,nov:11,
+    desember:12,des:12,dec:12
+};
+
+const TYPE_LABELS={W:'Wheelloader',F:'Forklift',D:'Dumptruck',E:'Excavator',other:'Lainnya'};
+
+/* Palet proyek (sama dengan periodic.html):
+   utama #1e3a8a · biru #2563eb · amber #d97706 · merah #991b1b · hijau #166534 · lainnya #94a3b8 */
+/* Palet grafik (disamakan dengan periodic.html):
+   navy = total · biru = seri 1 · amber = seri 2 · abu-abu = lainnya */
+const COLORS={
+    total:'#1e3a8a',   /* Total / Ringkasan: Navy */
+    W:'#4f46e5',       /* Wheelloader: Indigo */
+    F:'#d97706',       /* Forklift: Amber */
+    D:'#b91c1c',       /* Dumptruck: Merah */
+    E:'#059669',       /* Excavator: Emerald */
+    open:'#991b1b',    /* Open: Merah Tua */
+    close:'#166534',   /* Close: Hijau Tua */
+    other:'#475569'    /* Status lain: Abu-abu */
+};
 
 
 /* =========================================================
-   GLOBAL VARIABLES
+   STATE
 ========================================================= */
 
-let allData = [];
-
-let filteredData = [];
-
-let charts = {};
+let rows=[];
+const trendOff=new Set(['total']);     // default: Total tidak tampil
+const statusOff=new Set();              // default: Open & Close tampil
+let unitFilter='total';
 
 
 /* =========================================================
-   NAVIGATION
+   HELPERS
 ========================================================= */
 
-function goToTable(){
+const $=id=>document.getElementById(id);
 
-    window.location.href =
-        TABLE_URL;
+const pad=n=>String(n).padStart(2,'0');
 
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
 }
-
-
-function goToHome(){
-
-    window.location.href =
-        HOME_URL;
-
-}
-
-
-/* =========================================================
-   LOGO
-========================================================= */
 
 function handleLogoError(){
+    $('companyLogo').classList.add('hidden');
+    const fb=$('logoFallback');
+    fb.classList.remove('hidden');
+    fb.classList.add('flex');
+}
 
-    document
-        .getElementById(
-            'companyLogo'
-        )
-        .classList
-        .add('hidden');
+function goHome(){ window.location.href=INDEX_URL; }
+function goTableAll(){ window.location.href=TABLE_URL; }
+
+function fmt(n){
+    return Number(n||0).toLocaleString('id-ID');
+}
+
+function chartWidth(elId){
+    const el=$(elId);
+    return Math.max(320,Math.round((el&&el.clientWidth)||760));
+}
+
+function niceStep(raw){
+    const p=Math.pow(10,Math.floor(Math.log10(raw)));
+    const n=raw/p;
+    const m=n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10;
+    return m*p;
+}
+
+function scaleFor(values){
+    const vals=values.filter(v=>v!==null&&v!==undefined&&isFinite(v));
+    const hi=vals.length?Math.max(...vals):1;
+    const step=niceStep(Math.max(hi,1)/4);
+    const max=Math.max(step*4,Math.ceil(hi/step)*step);
+    return {min:0,max:max,step:max/4};
+}
+
+function mk(y,m,d){
+    const x=new Date(y,m-1,d);
+    return x.getMonth()===m-1?x:null;
+}
+
+/* Tanggal serial Google Sheets (jumlah hari sejak 30 Des 1899) */
+function fromSerial(n){
+    const d=new Date(1899,11,30);
+    d.setDate(d.getDate()+Math.floor(n));
+    return d;
+}
+
+/*
+   Parser tanggal yang mendukung:
+   - angka serial (Google Sheets), contoh 46082
+   - dd/mm/yyyy, dd-mm-yyyy, dd.mm.yyyy
+   - yyyy-mm-dd (dengan atau tanpa jam, termasuk format ISO)
+   - "12 Jan 2026", "12-Jan-2026", "12 Januari 2026"
+   - "Jan 2026", "Januari 2026"
+   - format lain yang dikenali Date()
+*/
+function parseDate(value){
+
+    if(value===null||value===undefined||value==='') return null;
+
+    if(value instanceof Date) return isNaN(value)?null:value;
+
+    if(typeof value==='number'){
+        return value>20000&&value<100000?fromSerial(value):null;
+    }
+
+    const t=String(value).trim().replace(/T\d{1,2}:\d{2}(:\d{2})?.*$/,'').trim();
+
+    if(!t) return null;
+
+    if(/^\d+(\.\d+)?$/.test(t)){
+        const n=Number(t);
+        return n>20000&&n<100000?fromSerial(n):null;
+    }
+
+    let m;
+
+    if((m=t.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/))) return mk(+m[1],+m[2],+m[3]);
+
+    if((m=t.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})(?:\D.*)?$/))){
+        return mk(+m[3],+m[2],+m[1])||mk(+m[3],+m[1],+m[2]);
+    }
+
+    if((m=t.match(/^(\d{1,2})[\s\-\/]+([A-Za-z]+)[\s\-\/,]+(\d{4})$/))&&MONTHS[m[2].toLowerCase()]){
+        return mk(+m[3],MONTHS[m[2].toLowerCase()],+m[1]);
+    }
+
+    if((m=t.match(/^([A-Za-z]+)\s*,?\s*(\d{4})$/))&&MONTHS[m[1].toLowerCase()]){
+        return mk(+m[2],MONTHS[m[1].toLowerCase()],1);
+    }
+
+    const d=new Date(t);
+    return isNaN(d.getTime())?null:d;
+}
+
+/* Jenis alat dari huruf awal kode unit */
+function getUnitType(unit){
+    const v=String(unit??'').trim().toUpperCase();
+    if(v.startsWith('F')) return 'F';
+    if(v.startsWith('W')) return 'W';
+    if(v.startsWith('D')) return 'D';
+    if(v.startsWith('E')) return 'E';
+    return 'other';
+}
+
+function statusKey(status){
+    const v=String(status??'').trim().toUpperCase();
+    if(v==='OPEN') return 'open';
+    if(v==='CLOSE') return 'close';
+    return 'other';
+}
+
+function formatLongDate(d){
+    return `${d.getDate()} ${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function daysBetween(a,b){
+    return Math.round((b-a)/86400000);
+}
 
 
-    document
-        .getElementById(
-            'logoFallback'
-        )
-        .classList
-        .remove('hidden');
+/* =========================================================
+   NORMALISASI
+========================================================= */
+
+function normalizeRows(data){
+
+    const today=new Date();
+    today.setHours(0,0,0,0);
+
+    return data.map(r=>{
+
+        const start=parseDate(r.startDate);
+        const sk=statusKey(r.status);
+
+        return {
+            unit:String(r.unit??'').trim().toUpperCase(),
+            type:getUnitType(r.unit),
+            problem:String(r.problem??'').trim(),
+            startRaw:r.startDate??'',
+            start:start,
+            startMonth:start?`${start.getFullYear()}-${pad(start.getMonth()+1)}`:'',
+            status:String(r.status??'').trim().toUpperCase(),
+            sk:sk,
+            berjalan:sk==='open'&&start?Math.max(0,daysBetween(start,today)):null
+        };
+
+    });
 
 }
 
 
 /* =========================================================
-   NORMALIZE UNIT
+   AGREGASI
 ========================================================= */
 
-function normalizeUnit(
-    value
-){
+/* Tren: tahun mengikuti data terakhir, sumbu Januari–Desember */
+function buildMonthly(){
 
-    return String(
-        value ?? ''
-    )
-    .trim()
-    .toUpperCase();
+    const map=new Map();
+
+    rows.forEach(r=>{
+        if(!r.startMonth) return;
+        if(!map.has(r.startMonth)) map.set(r.startMonth,{total:0,W:0,F:0,D:0,E:0});
+        const m=map.get(r.startMonth);
+        m.total++;
+        if(['W','F','D','E'].includes(r.type)) m[r.type]++;
+    });
+
+    if(!map.size) return {year:null,lastMonth:0,months:[],data:{}};
+
+    const latest=[...map.keys()].sort().pop();
+    const year=Number(latest.split('-')[0]);
+    const lastMonth=Number(latest.split('-')[1]);
+
+    const months=Array.from({length:12},(_,i)=>`${year}-${pad(i+1)}`);
+
+    const data={};
+
+    months.forEach(k=>{
+        /* bulan setelah data terakhir = null, garis berhenti di sini */
+        data[k]=k<=latest?(map.get(k)||{total:0,W:0,F:0,D:0,E:0}):null;
+    });
+
+    return {year,lastMonth,months,data};
+}
+
+/* Laporan per jenis alat, dibagi open/close */
+function buildByType(){
+
+    const result={};
+
+    ['W','F','D','E','other'].forEach(t=>result[t]={open:0,close:0,other:0,total:0});
+
+    rows.forEach(r=>{
+        const t=result[r.type]?r.type:'other';
+        result[t][r.sk]++;
+        result[t].total++;
+    });
+
+    return result;
+}
+
+/* Total laporan per jenis unit (W, FD, D, E) */
+function buildTypeTotals(){
+    const t={W:0,F:0,D:0,E:0};
+    rows.forEach(r=>{ if(t[r.type]!==undefined) t[r.type]++; });
+    return t;
+}
+
+/* 10 unit paling sering rusak */
+function buildTopUnits(filter){
+
+    const map=new Map();
+
+    rows.forEach(r=>{
+
+        if(!r.unit) return;
+        if(!['W','F','D','E'].includes(r.type)) return;
+        if(filter!=='total'&&r.type!==filter) return;
+
+        if(!map.has(r.unit)){
+            map.set(r.unit,{unit:r.unit,type:r.type,total:0,open:0,close:0});
+        }
+
+        const u=map.get(r.unit);
+        u.total++;
+        if(r.sk==='open') u.open++;
+        if(r.sk==='close') u.close++;
+
+    });
+
+    return [...map.values()]
+        .sort((a,b)=>b.total-a.total||a.unit.localeCompare(b.unit,'id',{numeric:true}))
+        .slice(0,TOP_UNITS);
+}
+
+/* Semua laporan open, terbaru di atas */
+function buildOpenList(){
+
+    return rows
+        .filter(r=>r.sk==='open')
+        .sort((a,b)=>{
+            if(!a.start&&!b.start) return 0;
+            if(!a.start) return 1;
+            if(!b.start) return -1;
+            return b.start-a.start;
+        });
+}
+
+
+/* =========================================================
+   POPUP NILAI (event delegation)
+========================================================= */
+
+function placeTip(e){
+
+    const tip=$('chartTip');
+    const gap=14;
+
+    let x=e.clientX+gap;
+    let y=e.clientY+gap;
+
+    const r=tip.getBoundingClientRect();
+
+    if(x+r.width>window.innerWidth-8) x=e.clientX-r.width-gap;
+    if(y+r.height>window.innerHeight-8) y=e.clientY-r.height-gap;
+
+    tip.style.left=Math.max(8,x)+'px';
+    tip.style.top=Math.max(8,y)+'px';
+}
+
+function hideTip(){
+    $('chartTip').classList.remove('show');
+}
+
+document.addEventListener('mouseover',e=>{
+
+    const target=e.target.closest?e.target.closest('[data-tip]'):null;
+
+    if(!target){
+        hideTip();
+        return;
+    }
+
+    const tip=$('chartTip');
+    tip.innerHTML=target.getAttribute('data-tip');
+    tip.classList.add('show');
+    placeTip(e);
+
+});
+
+document.addEventListener('mousemove',e=>{
+
+    const target=e.target.closest?e.target.closest('[data-tip]'):null;
+
+    if(!target){
+        hideTip();
+        return;
+    }
+
+    placeTip(e);
+
+});
+
+document.addEventListener('mouseout',e=>{
+    if(!e.relatedTarget) hideTip();
+});
+
+let resizeTimer=null;
+window.addEventListener('resize',()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=>{
+        if($('tableContent').classList.contains('show')){
+            renderTrend();
+            renderTypeChart();
+        }
+    },150);
+});
+
+
+/* =========================================================
+   GRAFIK GARIS (sama dengan Tren Availability)
+========================================================= */
+
+function lineChartHtml(cfg){
+
+    const W=cfg.width||760,H=300,pl=54,pr=22,pt=22,pb=38;
+    const n=cfg.labels.length;
+    const s=cfg.scale;
+
+    const x=i=>pl+(n===1?(W-pl-pr)/2:i*(W-pl-pr)/(n-1));
+    const y=v=>pt+(H-pt-pb)*(1-(v-s.min)/(s.max-s.min));
+
+    const visible=cfg.series.filter(sr=>sr.visible);
+
+    const tipFor=i=>{
+        const rowsHtml=visible
+            .filter(sr=>sr.values[i]!==null&&sr.values[i]!==undefined)
+            .map(sr=>`<div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${sr.color}"></span>${escapeHtml(sr.label)}</span><span class="tip-val">${fmt(sr.values[i])}</span></div>`)
+            .join('');
+        return `<div class="tip-title">${escapeHtml(cfg.fullLabels[i])}</div>${rowsHtml||'<div class="tip-row"><span>Tidak ada data</span></div>'}`;
+    };
+
+    let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${escapeHtml(cfg.aria)}">`;
+
+    for(let v=s.min; v<=s.max+1e-9; v+=s.step){
+        const yy=y(v);
+        svg+=`<line class="chart-grid" x1="${pl}" x2="${W-pr}" y1="${yy}" y2="${yy}"></line>`;
+        svg+=`<text class="chart-label" x="${pl-8}" y="${yy+3}" text-anchor="end">${fmt(v)}</text>`;
+    }
+
+    cfg.labels.forEach((l,i)=>{
+        svg+=`<text class="chart-label" x="${x(i)}" y="${H-12}" text-anchor="middle">${escapeHtml(l)}</text>`;
+    });
+
+    visible.forEach(sr=>{
+
+        const pts=sr.values
+            .map((v,i)=>v===null||v===undefined?null:`${x(i)},${y(v)}`)
+            .filter(Boolean)
+            .join(' ');
+
+        svg+=`<polyline fill="none" stroke="${sr.color}" stroke-width="${sr.width||2.2}"
+            stroke-linejoin="round" stroke-linecap="round" points="${pts}"
+            ${sr.dashed?'stroke-dasharray="5 4"':''}></polyline>`;
+
+        sr.values.forEach((v,i)=>{
+            if(v===null||v===undefined) return;
+            svg+=`<circle cx="${x(i)}" cy="${y(v)}" r="${sr.width>=3?4.5:3.5}" fill="#fff" stroke="${sr.color}" stroke-width="2"></circle>`;
+        });
+
+    });
+
+    /* area sentuh hanya di titik data */
+    visible.forEach(sr=>{
+        sr.values.forEach((v,i)=>{
+            if(v===null||v===undefined) return;
+            svg+=`<circle cx="${x(i)}" cy="${y(v)}" r="11" fill="transparent" class="chart-hit" data-tip="${escapeHtml(tipFor(i))}"></circle>`;
+        });
+    });
+
+    svg+='</svg>';
+
+    return svg;
+}
+
+
+/* =========================================================
+   RENDER: TREN LAPORAN
+========================================================= */
+
+const TREND_DEF=[
+    {key:'total',label:'Total',           color:COLORS.total},
+    {key:'W',    label:'Wheelloader (W)', color:COLORS.W},
+    {key:'F',    label:'Forklift (FD)',   color:COLORS.F},
+    {key:'D',    label:'Dumptruck (D)',   color:COLORS.D},
+    {key:'E',    label:'Excavator (E)',   color:COLORS.E}
+];
+
+function renderTrend(){
+
+    const {year,lastMonth,months,data}=buildMonthly();
+
+    const series=TREND_DEF.map(s=>({
+        key:s.key,
+        label:s.label,
+        color:s.color,
+        width:s.key==='total'?3:2.4,
+        dashed:false,
+        values:months.map(k=>data[k]?data[k][s.key]:null),
+        visible:!trendOff.has(s.key)
+    }));
+
+    const shownValues=series.filter(s=>s.visible).flatMap(s=>s.values);
+
+    $('trendSubtitle').textContent=year
+        ?`Tahun ${year} · data tersedia sampai ${MONTH_NAMES[lastMonth-1]} · klik legenda untuk menampilkan atau menyembunyikan garis`
+        :'Belum ada data tanggal yang bisa dibaca';
+
+    $('trendChart').innerHTML=year
+        ?lineChartHtml({
+            aria:'Tren laporan per bulan',
+            labels:months.map((k,i)=>`${MONTH_SHORT[i]} ${String(year).slice(2)}`),
+            fullLabels:months.map((k,i)=>`${MONTH_NAMES[i]} ${year}`),
+            series:series,
+            scale:scaleFor(shownValues),
+            width:chartWidth('trendChart')
+        })
+        :'<div class="chart-empty">Tidak ada data tanggal yang bisa dibaca.</div>';
+
+    $('trendLegend').innerHTML=TREND_DEF.map(s=>`
+        <button class="legend-item ${trendOff.has(s.key)?'off':'on'}" onclick="toggleTrend('${s.key}')">
+            <span class="legend-dot" style="background:${s.color}"></span>${s.label}
+        </button>
+    `).join('');
+
+}
+
+function toggleTrend(key){
+
+    const visibleCount=TREND_DEF.filter(s=>!trendOff.has(s.key)).length;
+
+    if(trendOff.has(key)){
+        trendOff.delete(key);
+    }else if(visibleCount>1){
+        trendOff.add(key);
+    }
+
+    renderTrend();
 
 }
 
 
 /* =========================================================
-   GET UNIT TYPE
+   RENDER: KPI
 ========================================================= */
 
-function getUnitType(
-    unit
-){
+function renderKpi(){
 
-    const value =
-        normalizeUnit(
-            unit
-        );
+    const open=rows.filter(r=>r.sk==='open').length;
+    const close=rows.filter(r=>r.sk==='close').length;
+    const t=buildTypeTotals();
 
+    $('kpiTotal').textContent=fmt(rows.length);
+    $('kpiOpen').textContent=fmt(open);
+    $('kpiClose').textContent=fmt(close);
 
-    if(
-        value.startsWith('F')
-    ){
-
-        return 'F';
-
-    }
-
-
-    if(
-        value.startsWith('W')
-    ){
-
-        return 'W';
-
-    }
-
-
-    if(
-        value.startsWith('D')
-    ){
-
-        return 'D';
-
-    }
-
-
-    if(
-        value.startsWith('E')
-    ){
-
-        return 'E';
-
-    }
-
-
-    return '';
+    $('kpiW').textContent=fmt(t.W);
+    $('kpiF').textContent=fmt(t.F);
+    $('kpiD').textContent=fmt(t.D);
+    $('kpiE').textContent=fmt(t.E);
 
 }
 
 
 /* =========================================================
-   GET UNIT TYPE NAME
+   RENDER: KOMPOSISI STATUS (donat, mengisi panel)
 ========================================================= */
 
-function getUnitTypeName(
-    unit
-){
+function donutHtml(segs,centerLabel,ariaLabel){
 
-    switch(
-        getUnitType(unit)
-    ){
+    const list=segs.filter(s=>s.value>0);
+    const total=list.reduce((sum,s)=>sum+s.value,0);
 
-        case 'F':
-            return 'Forklift';
+    if(!total) return '<div class="chart-empty">Belum ada data.</div>';
 
-        case 'W':
-            return 'Wheelloader';
+    const R=70,SW=22,C=2*Math.PI*R;
+    let offset=0;
 
-        case 'D':
-            return 'Dumptruck';
+    const arcs=list.map(s=>{
+        const len=(s.value/total)*C;
+        const tip=`<div class="tip-title">${escapeHtml(s.label)}</div><div class="tip-row"><span>Jumlah</span><span class="tip-val">${fmt(s.value)} (${Math.round(s.value/total*100)}%)</span></div>`;
+        const arc=`<circle cx="90" cy="90" r="${R}" fill="none" stroke="${s.color}" stroke-width="${SW}"
+            stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-offset}"
+            transform="rotate(-90 90 90)" data-tip="${escapeHtml(tip)}"></circle>`;
+        offset+=len;
+        return arc;
+    }).join('');
 
-        case 'E':
-            return 'Excavator';
+    return `
+        <div class="donut-wrap">
+            <div class="donut-chart">
+                <svg viewBox="0 0 180 180" role="img" aria-label="${escapeHtml(ariaLabel)}" style="width:100%;height:auto;display:block">
+                    <circle cx="90" cy="90" r="${R}" fill="none" stroke="#f1f5f9" stroke-width="${SW}"></circle>
+                    ${arcs}
+                    <text x="90" y="88" text-anchor="middle" font-size="22" font-weight="900" fill="#1e293b">${fmt(total)}</text>
+                    <text x="90" y="106" text-anchor="middle" font-size="9" font-weight="800" fill="#94a3b8">${centerLabel}</text>
+                </svg>
+            </div>
+            <div class="donut-legend">
+                ${list.map(s=>`
+                    <div class="donut-legend-row">
+                        <span class="flex items-center gap-2">
+                            <span class="legend-dot" style="background:${s.color}"></span>${escapeHtml(s.label)}
+                        </span>
+                        <span>
+                            <span class="val">${fmt(s.value)}</span>
+                            <span class="pct">${Math.round(s.value/total*100)}%</span>
+                        </span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
 
-        default:
-            return 'Unknown';
+function renderComposition(){
 
-    }
+    const c={open:0,close:0,other:0};
+    rows.forEach(r=>c[r.sk]++);
+
+    $('composition').innerHTML=donutHtml([
+        {label:'Open',   value:c.open,  color:COLORS.open},
+        {label:'Close',  value:c.close, color:COLORS.close},
+        {label:'Lainnya',value:c.other, color:COLORS.other}
+    ],'LAPORAN','Komposisi status laporan');
 
 }
 
 
 /* =========================================================
-   FORMAT DATE
+   RENDER: LAPORAN PER JENIS ALAT (batang berkelompok, legenda bisa diklik)
 ========================================================= */
 
-function formatDate(
-    value
-){
+const STATUS_DEF=[
+    {key:'open', label:'Open', color:COLORS.open},
+    {key:'close',label:'Close',color:COLORS.close}
+];
 
-    if(
-        !value
-    ){
+function renderTypeChart(){
 
-        return '-';
+    const byType=buildByType();
+
+    const types=['W','F','D','E'];
+    const series=STATUS_DEF.filter(s=>!statusOff.has(s.key));
+
+    const el=$('typeChart');
+
+    if(!rows.length||!series.length){
+        el.innerHTML='<div class="chart-empty">'+(rows.length?'Pilih minimal satu status pada legenda.':'Belum ada data.')+'</div>';
+    }else{
+
+        const W=chartWidth('typeChart'),H=300,pl=44,pr=14,pt=22,pb=44;
+
+        const maxVal=Math.max(1,...types.flatMap(t=>series.map(s=>byType[t][s.key])));
+        const step=niceStep(maxVal/4);
+        const yMax=Math.max(step*4,Math.ceil(maxVal/step)*step);
+
+        const groupW=(W-pl-pr)/types.length;
+        const barW=Math.max(10,Math.min(34,groupW*0.3));
+        const gap=5;
+
+        const y=v=>pt+(H-pt-pb)*(1-v/yMax);
+        const baseY=H-pb;
+
+        let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Laporan per jenis alat">`;
+
+        for(let v=0; v<=yMax+1e-9; v+=yMax/4){
+            const yy=y(v);
+            svg+=`<line class="chart-grid" x1="${pl}" x2="${W-pr}" y1="${yy}" y2="${yy}"></line>`;
+            svg+=`<text class="chart-label" x="${pl-8}" y="${yy+3}" text-anchor="end">${fmt(v)}</text>`;
+        }
+
+        types.forEach((t,ti)=>{
+
+            const cx=pl+groupW*ti+groupW/2;
+            const totalW=series.length*barW+(series.length-1)*gap;
+            const startX=cx-totalW/2;
+
+            series.forEach((s,si)=>{
+
+                const v=byType[t][s.key];
+                const bx=startX+si*(barW+gap);
+                const by=y(v);
+                const h=Math.max(baseY-by,0);
+
+                const tip=`<div class="tip-title">${escapeHtml(TYPE_LABELS[t])}</div>
+                    <div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${s.color}"></span>${s.label}</span><span class="tip-val">${fmt(v)}</span></div>`;
+
+                svg+=`<rect class="chart-bar" x="${bx}" y="${by}" width="${barW}" height="${h}" rx="6" fill="${s.color}" data-tip="${escapeHtml(tip)}"></rect>`;
+
+            });
+
+            svg+=`<text class="chart-label" x="${cx}" y="${H-16}" text-anchor="middle" font-weight="800">${escapeHtml(TYPE_LABELS[t])}</text>`;
+
+        });
+
+        svg+='</svg>';
+
+        el.innerHTML=svg;
 
     }
 
+    $('typeLegend').innerHTML=STATUS_DEF.map(s=>`
+        <button class="legend-item ${statusOff.has(s.key)?'off':'on'}" onclick="toggleStatus('${s.key}')">
+            <span class="legend-dot" style="background:${s.color}"></span>${s.label}
+        </button>
+    `).join('');
 
-    const text =
-        String(
-            value
-        ).trim();
+}
 
+function toggleStatus(key){
 
-    const match =
-        text.match(
-            /^(\d{4})-(\d{2})-(\d{2})/
-        );
+    const visibleCount=STATUS_DEF.filter(s=>!statusOff.has(s.key)).length;
 
-
-    if(match){
-
-        return `${match[3]}/${match[2]}/${match[1]}`;
-
+    if(statusOff.has(key)){
+        statusOff.delete(key);
+    }else if(visibleCount>1){
+        statusOff.add(key);
     }
 
-
-    const date =
-        new Date(text);
-
-
-    if(
-        !isNaN(
-            date.getTime()
-        )
-    ){
-
-        const day =
-            String(
-                date.getDate()
-            )
-            .padStart(
-                2,
-                '0'
-            );
-
-
-        const month =
-            String(
-                date.getMonth() + 1
-            )
-            .padStart(
-                2,
-                '0'
-            );
-
-
-        const year =
-            date.getFullYear();
-
-
-        return `${day}/${month}/${year}`;
-
-    }
-
-
-    return escapeHtml(
-        text
-    );
+    renderTypeChart();
 
 }
 
 
 /* =========================================================
-   GET DATE OBJECT
+   RENDER: UNIT PALING SERING RUSAK (pilihan tunggal)
 ========================================================= */
 
-function parseDate(
-    value
-){
+const UNIT_OPTIONS=[
+    {key:'total',label:'Total'},
+    {key:'W',label:'Wheelloader (W)'},
+    {key:'F',label:'Forklift (FD)'},
+    {key:'D',label:'Dumptruck (D)'},
+    {key:'E',label:'Excavator (E)'}
+];
 
-    if(
-        !value
-    ){
+function setUnitFilter(key){
+    unitFilter=key;
+    renderUnitChart();
+}
 
-        return null;
+function renderUnitChart(){
 
+    $('unitLegend').innerHTML=UNIT_OPTIONS.map(o=>`
+        <button class="legend-item ${o.key===unitFilter?'on':''}" onclick="setUnitFilter('${o.key}')">
+            <span class="legend-dot" style="background:${COLORS[o.key]||COLORS.total}"></span>${o.label}
+        </button>
+    `).join('');
+
+    const list=buildTopUnits(unitFilter);
+    const el=$('unitChart');
+
+    if(!list.length){
+        el.innerHTML='<div class="chart-empty">Belum ada data unit untuk pilihan ini.</div>';
+        return;
     }
 
+    const max=list[0].total;
+    const color=COLORS[unitFilter]||COLORS.total;
 
-    const text =
-        String(
-            value
-        ).trim();
-
-
-    const match =
-        text.match(
-            /^(\d{4})-(\d{2})-(\d{2})/
-        );
-
-
-    if(!match){
-
-        return null;
-
-    }
-
-
-    return new Date(
-        Number(match[1]),
-        Number(match[2]) - 1,
-        Number(match[3])
-    );
+    el.innerHTML=list.map((u,i)=>{
+        const tip=`<div class="tip-title">${escapeHtml(u.unit)}</div>
+            <div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${COLORS.open}"></span>Open</span><span class="tip-val">${fmt(u.open)}</span></div>
+            <div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${COLORS.close}"></span>Close</span><span class="tip-val">${fmt(u.close)}</span></div>`;
+        return `
+            <div class="hbar-row" data-tip="${escapeHtml(tip)}">
+                <div class="hbar-head">
+                    <span>${i+1}. ${escapeHtml(u.unit)}</span>
+                    <span class="count">${fmt(u.total)} laporan</span>
+                </div>
+                <div class="hbar-track">
+                    <div class="hbar-fill" style="width:${Math.round(u.total/max*100)}%;background:${color}"></div>
+                </div>
+            </div>
+        `;
+    }).join('');
 
 }
 
 
 /* =========================================================
-   GET MONTH KEY
+   RENDER: TABEL LAPORAN OPEN
 ========================================================= */
 
-function getMonthKey(
-    value
-){
+function openDuration(r){
+    return r.berjalan===null?'-':`${r.berjalan} hari`;
+}
 
-    const date =
-        parseDate(
-            value
-        );
+function renderOpenTable(){
 
+    const list=buildOpenList();
 
-    if(!date){
+    $('openSubtitle').textContent=list.length
+        ?`${fmt(list.length)} laporan masih open · ${Math.min(OPEN_ROWS,list.length)} terbaru tampil, scroll untuk melihat semua`
+        :'Tidak ada laporan yang masih open';
 
-        return null;
+    const body=$('olBody');
+    const mobile=$('olMobile');
 
+    if(!list.length){
+        body.innerHTML='<tr><td colspan="7" class="text-center text-slate-400 py-6">Tidak ada laporan yang masih open.</td></tr>';
+        mobile.innerHTML='<div class="chart-empty">Tidak ada laporan yang masih open.</div>';
+        return;
     }
 
+    body.innerHTML=list.map((r,i)=>`
+        <tr>
+            <td class="ol-no">${i+1}</td>
+            <td>${r.start?formatLongDate(r.start):escapeHtml(String(r.startRaw))}</td>
+            <td><span class="unit-badge">${escapeHtml(r.unit)||'-'}</span></td>
+            <td><span class="type-badge">${escapeHtml(TYPE_LABELS[r.type])}</span></td>
+            <td class="ol-problem">${escapeHtml(r.problem)||'<span class="text-slate-300">Tidak ada deskripsi</span>'}</td>
+            <td class="font-bold text-amber-600">${openDuration(r)}</td>
+            <td><span class="status-badge status-open">OPEN</span></td>
+        </tr>
+    `).join('');
 
-    return `${date.getFullYear()}-${String(
-        date.getMonth() + 1
-    ).padStart(2,'0')}`;
+    mobile.innerHTML=list.map((r,i)=>`
+        <div class="ol-card">
+            <div class="ol-card-top">
+                <span class="unit-badge">${i+1} · ${escapeHtml(r.unit)||'-'}</span>
+                <span class="status-badge status-open">OPEN</span>
+            </div>
+            <div class="ol-card-grid">
+                <div><div class="ol-label">Date Report</div><div class="ol-value">${r.start?formatLongDate(r.start):escapeHtml(String(r.startRaw))}</div></div>
+                <div><div class="ol-label">Berjalan</div><div class="ol-value">${openDuration(r)}</div></div>
+                <div><div class="ol-label">Jenis Alat</div><div class="ol-value">${escapeHtml(TYPE_LABELS[r.type])}</div></div>
+                <div><div class="ol-label">Problem</div><div class="ol-value">${escapeHtml(r.problem)||'-'}</div></div>
+            </div>
+        </div>
+    `).join('');
 
 }
 
 
 /* =========================================================
-   GET MONTH LABEL
+   RENDER SEMUA
 ========================================================= */
 
-function getMonthLabel(
-    key
-){
+function renderAll(){
 
-    if(!key){
+    renderKpi();
+    renderTrend();
+    renderComposition();
+    renderTypeChart();
+    renderUnitChart();
+    renderOpenTable();
 
-        return '';
-
-    }
-
-
-    const parts =
-        key.split('-');
-
-
-    const year =
-        Number(parts[0]);
-
-
-    const month =
-        Number(parts[1]);
-
-
-    const names = [
-
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-
-    ];
-
-
-    return `${names[month - 1]} ${year}`;
+    lucide.createIcons();
 
 }
 
@@ -2542,1628 +1845,46 @@ async function loadDashboard(){
 
     try{
 
-        const response =
-            await fetch(
-                API_URL,
-                {
-                    method:'GET',
-                    cache:'no-store'
-                }
-            );
+        const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
 
+        if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
 
-        if(
-            !response.ok
-        ){
+        const result=await response.json();
 
-            throw new Error(
-                `HTTP Error ${response.status}`
-            );
+        const data=
+            Array.isArray(result)?result:
+            Array.isArray(result.data)?result.data:
+            [];
 
-        }
+        rows=normalizeRows(data);
 
+        $('loading').hidden=true;
+        $('tableContent').classList.add('show');
 
-        const result =
-            await response.json();
+        renderAll();
 
+    }catch(error){
 
-        if(
-            Array.isArray(result)
-        ){
+        console.error('LPH API Error:',error);
 
-            allData =
-                result;
-
-        }
-
-        else if(
-            Array.isArray(
-                result.data
-            )
-        ){
-
-            allData =
-                result.data;
-
-        }
-
-        else{
-
-            allData = [];
-
-        }
-
-
-        filteredData =
-            [...allData];
-
-
-        updateDashboard();
-
-
-        document
-            .getElementById(
-                'loading'
-            )
-            .style
-            .display =
-                'none';
-
-
-        document
-            .getElementById(
-                'dashboardContent'
-            )
-            .classList
-            .add('show');
-
-    }
-    catch(error){
-
-        console.error(
-            error
-        );
-
-
-        document
-            .getElementById(
-                'loading'
-            )
-            .innerHTML = `
-
-                <div
-                    class="text-center"
-                >
-
-                    <div
-                        class="
-                            bg-red-50
-                            text-red-600
-                            p-4
-                            rounded-full
-                            inline-flex
-                        "
-                    >
-
-                        <i
-                            data-lucide="alert-circle"
-                            class="w-8 h-8"
-                        ></i>
-
-                    </div>
-
-
-                    <h3
-                        class="
-                            font-bold
-                            text-red-700
-                            mt-3
-                        "
-                    >
-                        Gagal memuat dashboard
-                    </h3>
-
-
-                    <p
-                        class="
-                            text-xs
-                            text-slate-500
-                            mt-2
-                            max-w-md
-                        "
-                    >
-                        ${escapeHtml(
-                            error.message
-                        )}
-                    </p>
-
-
-                    <button
-                        onclick="loadDashboard()"
-                        class="
-                            mt-4
-                            bg-blue-800
-                            hover:bg-blue-700
-                            text-white
-                            font-bold
-                            px-5
-                            py-2.5
-                            rounded-xl
-                            text-sm
-                        "
-                    >
-
-                        Coba Lagi
-
-                    </button>
-
-
+        $('loading').hidden=false;
+        $('loading').innerHTML=`
+            <div class="text-center">
+                <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
                 </div>
-
-            `;
-
-
-        lucide.createIcons();
-
-    }
-
-}
-
-
-/* =========================================================
-   UPDATE DASHBOARD
-========================================================= */
-
-function updateDashboard(){
-
-    updateKPI();
-
-    updateStatusChart();
-
-    updateUnitChart();
-
-    updateTrendChart();
-
-    updateTopUnitChart();
-
-    updateTopProblemChart();
-
-    updateOpenTable();
-
-}
-
-
-/* =========================================================
-   UPDATE KPI
-========================================================= */
-
-function updateKPI(){
-
-    const total =
-        filteredData.length;
-
-
-    let open = 0;
-
-    let close = 0;
-
-
-    const counts = {
-
-        F:0,
-
-        W:0,
-
-        D:0,
-
-        E:0
-
-    };
-
-
-    filteredData.forEach(
-        row=>{
-
-            const status =
-                String(
-                    row.status ?? ''
-                )
-                .trim()
-                .toUpperCase();
-
-
-            if(
-                status === 'OPEN'
-            ){
-
-                open++;
-
-            }
-
-            else if(
-                status === 'CLOSE'
-            ){
-
-                close++;
-
-            }
-
-
-            const type =
-                getUnitType(
-                    row.unit
-                );
-
-
-            if(
-                counts[type] !== undefined
-            ){
-
-                counts[type]++;
-
-            }
-
-        }
-    );
-
-
-    document
-        .getElementById(
-            'totalKpi'
-        )
-        .textContent =
-            total;
-
-
-    document
-        .getElementById(
-            'openKpi'
-        )
-        .textContent =
-            open;
-
-
-    document
-        .getElementById(
-            'closeKpi'
-        )
-        .textContent =
-            close;
-
-
-    document
-        .getElementById(
-            'forkliftKpi'
-        )
-        .textContent =
-            counts.F;
-
-
-    document
-        .getElementById(
-            'wheelloaderKpi'
-        )
-        .textContent =
-            counts.W;
-
-
-    document
-        .getElementById(
-            'dumptruckKpi'
-        )
-        .textContent =
-            counts.D;
-
-
-    document
-        .getElementById(
-            'excavatorKpi'
-        )
-        .textContent =
-            counts.E;
-
-}
-
-
-/* =========================================================
-   CHART DEFAULT
-========================================================= */
-
-function chartDefaults(){
-
-    return {
-
-        responsive:true,
-
-        maintainAspectRatio:false,
-
-        plugins:{
-
-            legend:{
-
-                labels:{
-
-                    font:{
-
-                        family:'Inter',
-
-                        size:10,
-
-                        weight:'700'
-
-                    },
-
-                    padding:15
-
-                }
-
-            }
-
-        }
-
-    };
-
-}
-
-
-/* =========================================================
-   DESTROY CHART
-========================================================= */
-
-function destroyChart(
-    name
-){
-
-    if(
-        charts[name]
-    ){
-
-        charts[name].destroy();
-
-        charts[name] =
-            null;
-
-    }
-
-}
-
-
-/* =========================================================
-   STATUS CHART
-========================================================= */
-
-function updateStatusChart(){
-
-    destroyChart(
-        'status'
-    );
-
-
-    let open = 0;
-
-    let close = 0;
-
-
-    filteredData.forEach(
-        row=>{
-
-            const status =
-                String(
-                    row.status ?? ''
-                )
-                .trim()
-                .toUpperCase();
-
-
-            if(
-                status === 'OPEN'
-            ){
-
-                open++;
-
-            }
-
-            else if(
-                status === 'CLOSE'
-            ){
-
-                close++;
-
-            }
-
-        }
-    );
-
-
-    const ctx =
-        document
-            .getElementById(
-                'statusChart'
-            );
-
-
-    charts.status =
-        new Chart(
-            ctx,
-            {
-
-                type:'doughnut',
-
-                data:{
-
-                    labels:[
-                        'Open',
-                        'Close'
-                    ],
-
-                    datasets:[
-
-                        {
-
-                            data:[
-                                open,
-                                close
-                            ],
-
-                            backgroundColor:[
-                                '#f97316',
-                                '#10b981'
-                            ],
-
-                            borderWidth:0,
-
-                            hoverOffset:6
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    ...chartDefaults(),
-
-                    cutout:'68%',
-
-                    plugins:{
-
-                        legend:{
-
-                            position:'bottom',
-
-                            labels:{
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:10,
-
-                                    weight:'700'
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   UNIT CHART
-========================================================= */
-
-function updateUnitChart(){
-
-    destroyChart(
-        'unit'
-    );
-
-
-    const counts = {
-
-        Forklift:0,
-
-        Wheelloader:0,
-
-        Dumptruck:0,
-
-        Excavator:0
-
-    };
-
-
-    filteredData.forEach(
-        row=>{
-
-            const name =
-                getUnitTypeName(
-                    row.unit
-                );
-
-
-            if(
-                counts[name] !== undefined
-            ){
-
-                counts[name]++;
-
-            }
-
-        }
-    );
-
-
-    const ctx =
-        document
-            .getElementById(
-                'unitChart'
-            );
-
-
-    charts.unit =
-        new Chart(
-            ctx,
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:[
-                        'Forklift',
-                        'Wheelloader',
-                        'Dumptruck',
-                        'Excavator'
-                    ],
-
-                    datasets:[
-
-                        {
-
-                            label:'Jumlah LPH',
-
-                            data:[
-
-                                counts.Forklift,
-
-                                counts.Wheelloader,
-
-                                counts.Dumptruck,
-
-                                counts.Excavator
-
-                            ],
-
-                            backgroundColor:[
-                                '#f97316',
-                                '#6366f1',
-                                '#f43f5e',
-                                '#10b981'
-                            ],
-
-                            borderRadius:8,
-
-                            borderSkipped:false
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    ...chartDefaults(),
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-
-                                precision:0,
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:9
-
-                                }
-
-                            },
-
-                            grid:{
-
-                                color:'#f1f5f9'
-
-                            }
-
-                        },
-
-                        x:{
-
-                            ticks:{
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:9,
-
-                                    weight:'700'
-
-                                }
-
-                            },
-
-                            grid:{
-                                display:false
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   TREND CHART
-========================================================= */
-
-function updateTrendChart(){
-
-    destroyChart(
-        'trend'
-    );
-
-
-    const months = {};
-
-
-    filteredData.forEach(
-        row=>{
-
-            const key =
-                getMonthKey(
-                    row.startDate
-                );
-
-
-            if(!key){
-
-                return;
-
-            }
-
-
-            if(
-                !months[key]
-            ){
-
-                months[key] = 0;
-
-            }
-
-
-            months[key]++;
-
-        }
-    );
-
-
-    const keys =
-        Object.keys(
-            months
-        )
-        .sort();
-
-
-    const labels =
-        keys.map(
-            getMonthLabel
-        );
-
-
-    const values =
-        keys.map(
-            key =>
-                months[key]
-        );
-
-
-    const ctx =
-        document
-            .getElementById(
-                'trendChart'
-            );
-
-
-    charts.trend =
-        new Chart(
-            ctx,
-            {
-
-                type:'line',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            label:'Aktivitas LPH',
-
-                            data:values,
-
-                            borderColor:'#1e3a8a',
-
-                            backgroundColor:
-                                'rgba(30,58,138,.08)',
-
-                            fill:true,
-
-                            tension:.35,
-
-                            pointRadius:4,
-
-                            pointHoverRadius:6,
-
-                            pointBackgroundColor:
-                                '#1e3a8a'
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    ...chartDefaults(),
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-
-                                precision:0
-
-                            },
-
-                            grid:{
-
-                                color:'#f1f5f9'
-
-                            }
-
-                        },
-
-                        x:{
-
-                            grid:{
-                                display:false
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   TOP UNIT CHART
-========================================================= */
-
-function updateTopUnitChart(){
-
-    destroyChart(
-        'topUnit'
-    );
-
-
-    const counts = {};
-
-
-    filteredData.forEach(
-        row=>{
-
-            const unit =
-                normalizeUnit(
-                    row.unit
-                );
-
-
-            if(!unit){
-
-                return;
-
-            }
-
-
-            counts[unit] =
-                (
-                    counts[unit] ||
-                    0
-                ) + 1;
-
-        }
-    );
-
-
-    const sorted =
-        Object.entries(
-            counts
-        )
-        .sort(
-            (
-                a,
-                b
-            ) =>
-                b[1] - a[1]
-        )
-        .slice(
-            0,
-            8
-        );
-
-
-    const labels =
-        sorted.map(
-            item=>item[0]
-        );
-
-
-    const values =
-        sorted.map(
-            item=>item[1]
-        );
-
-
-    const ctx =
-        document
-            .getElementById(
-                'topUnitChart'
-            );
-
-
-    charts.topUnit =
-        new Chart(
-            ctx,
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            label:'Jumlah LPH',
-
-                            data:values,
-
-                            backgroundColor:'#1e3a8a',
-
-                            borderRadius:7,
-
-                            borderSkipped:false
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    ...chartDefaults(),
-
-                    indexAxis:'y',
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        x:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            },
-
-                            grid:{
-
-                                color:'#f1f5f9'
-
-                            }
-
-                        },
-
-                        y:{
-
-                            grid:{
-                                display:false
-                            },
-
-                            ticks:{
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:9,
-
-                                    weight:'800'
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   TOP PROBLEM CHART
-========================================================= */
-
-function updateTopProblemChart(){
-
-    destroyChart(
-        'topProblem'
-    );
-
-
-    const counts = {};
-
-
-    filteredData.forEach(
-        row=>{
-
-            const problem =
-                String(
-                    row.problem ?? ''
-                )
-                .trim();
-
-
-            if(!problem){
-
-                return;
-
-            }
-
-
-            counts[problem] =
-                (
-                    counts[problem] ||
-                    0
-                ) + 1;
-
-        }
-    );
-
-
-    const sorted =
-        Object.entries(
-            counts
-        )
-        .sort(
-            (
-                a,
-                b
-            ) =>
-                b[1] - a[1]
-        )
-        .slice(
-            0,
-            8
-        );
-
-
-    const labels =
-        sorted.map(
-            item=>{
-
-                const text =
-                    item[0];
-
-
-                return text.length > 30
-                    ? text.substring(
-                        0,
-                        30
-                    ) + '...'
-                    : text;
-
-            }
-        );
-
-
-    const values =
-        sorted.map(
-            item=>item[1]
-        );
-
-
-    const ctx =
-        document
-            .getElementById(
-                'topProblemChart'
-            );
-
-
-    charts.topProblem =
-        new Chart(
-            ctx,
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            label:'Jumlah',
-
-                            data:values,
-
-                            backgroundColor:'#f59e0b',
-
-                            borderRadius:7,
-
-                            borderSkipped:false
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    ...chartDefaults(),
-
-                    indexAxis:'y',
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        x:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            },
-
-                            grid:{
-
-                                color:'#f1f5f9'
-
-                            }
-
-                        },
-
-                        y:{
-
-                            grid:{
-                                display:false
-                            },
-
-                            ticks:{
-
-                                font:{
-
-                                    family:'Inter',
-
-                                    size:8,
-
-                                    weight:'700'
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   OPEN TABLE
-========================================================= */
-
-function updateOpenTable(){
-
-    const container =
-        document
-            .getElementById(
-                'openTable'
-            );
-
-
-    const countBadge =
-        document
-            .getElementById(
-                'openTableCount'
-            );
-
-
-    const openData =
-        filteredData.filter(
-            row =>
-                String(
-                    row.status ?? ''
-                )
-                .trim()
-                .toUpperCase()
-                ===
-                'OPEN'
-        );
-
-
-    countBadge.textContent =
-        `${openData.length} Open`;
-
-
-    if(
-        openData.length === 0
-    ){
-
-        container.innerHTML = `
-
-            <div
-                class="
-                    py-12
-                    text-center
-                "
-            >
-
-                <div
-                    class="
-                        inline-flex
-                        items-center
-                        justify-center
-                        bg-emerald-50
-                        text-emerald-500
-                        p-4
-                        rounded-full
-                    "
-                >
-
-                    <i
-                        data-lucide="circle-check"
-                        class="w-7 h-7"
-                    ></i>
-
-                </div>
-
-
-                <h3
-                    class="
-                        font-bold
-                        text-slate-600
-                        mt-3
-                    "
-                >
-                    Tidak ada Open LPH
-                </h3>
-
-
-                <p
-                    class="
-                        text-xs
-                        text-slate-400
-                        mt-1
-                    "
-                >
-                    Semua aktivitas pada filter saat ini sudah selesai.
-                </p>
-
+                <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+                <p class="text-xs text-slate-500 mt-2 max-w-md">${escapeHtml(error.message)}</p>
+                <button onclick="loadDashboard()" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
+                    Coba Lagi
+                </button>
             </div>
-
         `;
 
-
+        $('tableContent').classList.remove('show');
         lucide.createIcons();
 
-        return;
-
     }
-
-
-    const rows =
-        openData
-        .slice(
-            0,
-            10
-        );
-
-
-    container.innerHTML = `
-
-        <div
-            class="
-                overflow-x-auto
-            "
-        >
-
-            <table
-                class="w-full"
-            >
-
-                <thead
-                    class="bg-slate-50"
-                >
-
-                    <tr>
-
-                        <th
-                            class="
-                                text-left
-                                px-5
-                                py-3
-                                text-[9px]
-                                font-black
-                                text-slate-400
-                                uppercase
-                            "
-                        >
-                            Unit
-                        </th>
-
-
-                        <th
-                            class="
-                                text-left
-                                px-5
-                                py-3
-                                text-[9px]
-                                font-black
-                                text-slate-400
-                                uppercase
-                            "
-                        >
-                            Problem
-                        </th>
-
-
-                        <th
-                            class="
-                                text-left
-                                px-5
-                                py-3
-                                text-[9px]
-                                font-black
-                                text-slate-400
-                                uppercase
-                            "
-                        >
-                            Start Date
-                        </th>
-
-
-                        <th
-                            class="
-                                text-left
-                                px-5
-                                py-3
-                                text-[9px]
-                                font-black
-                                text-slate-400
-                                uppercase
-                            "
-                        >
-                            Jenis Unit
-                        </th>
-
-
-                        <th
-                            class="
-                                text-left
-                                px-5
-                                py-3
-                                text-[9px]
-                                font-black
-                                text-slate-400
-                                uppercase
-                            "
-                        >
-                            Status
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                    ${rows.map(
-                        row=>`
-
-                            <tr
-                                class="open-row"
-                            >
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <span
-                                        class="unit-badge"
-                                    >
-                                        ${escapeHtml(
-                                            normalizeUnit(
-                                                row.unit
-                                            ) || '-'
-                                        )}
-                                    </span>
-
-                                </td>
-
-
-                                <td
-                                    class="
-                                        px-5
-                                        py-3
-                                        text-[11px]
-                                        font-semibold
-                                        text-slate-700
-                                    "
-                                >
-
-                                    <div
-                                        class="max-w-[420px] truncate"
-                                        title="${escapeHtml(
-                                            row.problem
-                                        )}"
-                                    >
-
-                                        ${
-                                            escapeHtml(
-                                                row.problem
-                                            )
-                                            ||
-                                            '-'
-                                        }
-
-                                    </div>
-
-                                </td>
-
-
-                                <td
-                                    class="
-                                        px-5
-                                        py-3
-                                        text-[11px]
-                                        font-medium
-                                        text-slate-500
-                                        whitespace-nowrap
-                                    "
-                                >
-
-                                    ${formatDate(
-                                        row.startDate
-                                    )}
-
-                                </td>
-
-
-                                <td
-                                    class="
-                                        px-5
-                                        py-3
-                                        text-[11px]
-                                        font-bold
-                                        text-slate-600
-                                    "
-                                >
-
-                                    ${escapeHtml(
-                                        getUnitTypeName(
-                                            row.unit
-                                        )
-                                    )}
-
-                                </td>
-
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <span
-                                        class="
-                                            status-badge
-                                            status-open
-                                        "
-                                    >
-
-                                        <i
-                                            data-lucide="circle-dot"
-                                            class="w-3 h-3"
-                                        ></i>
-
-                                        OPEN
-
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-                        `
-                    ).join('')}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-
-        ${
-            openData.length > 10
-            ?
-            `
-                <div
-                    class="
-                        px-5
-                        py-3
-                        border-t
-                        border-slate-100
-                        text-center
-                        text-[10px]
-                        font-semibold
-                        text-slate-400
-                    "
-                >
-
-                    Menampilkan 10 dari
-                    ${openData.length}
-                    Open LPH.
-
-                    <button
-                        onclick="goToTable()"
-                        class="
-                            text-blue-700
-                            font-black
-                            ml-1
-                        "
-                    >
-                        Lihat semua →
-                    </button>
-
-                </div>
-            `
-            :
-            ''
-        }
-
-    `;
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   SECURITY
-========================================================= */
-
-function escapeHtml(
-    value
-){
-
-    return String(
-        value ?? ''
-    )
-    .replace(
-        /&/g,
-        '&amp;'
-    )
-    .replace(
-        /</g,
-        '&lt;'
-    )
-    .replace(
-        />/g,
-        '&gt;'
-    )
-    .replace(
-        /"/g,
-        '&quot;'
-    )
-    .replace(
-        /'/g,
-        '&#039;'
-    );
 
 }
 
@@ -4172,43 +1893,13 @@ function escapeHtml(
    START
 ========================================================= */
 
-window.addEventListener(
-    'load',
-    ()=>{
-
-        lucide.createIcons();
-
-        loadDashboard();
-
-    }
-);
-
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
-document.addEventListener(
-    'keydown',
-    event=>{
-
-        if(
-            event.key === 'Escape'
-        ){
-
-            document
-                .activeElement
-                ?.blur();
-
-        }
-
-    }
-);
+window.addEventListener('load',()=>{
+    lucide.createIcons();
+    loadDashboard();
+});
 
 </script>
-
-
+<script src="nav.js"></script>
+<script src="datacache.js"></script>
 </body>
-
 </html>
-
