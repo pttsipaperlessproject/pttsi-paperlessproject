@@ -3,49 +3,33 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Periodic Service - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-    box-sizing:border-box
-}
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-html{
-    min-width:0
-}
+*{box-sizing:border-box}
+
+html{width:100%;min-width:0;overflow-x:hidden}
 
 body{
     margin:0;
+    width:100%;
+    min-width:0;
     font-family:Inter,sans-serif;
     background:linear-gradient(135deg,#f8fafc,#eef2f7);
-    color:#1e293b;
-    min-height:100vh;
-    width:100%;
-    min-width:0
+    color:#1e293b
 }
 
-.color-primary{
-    background:#1e3a8a
-}
-
-.text-primary{
-    color:#1e3a8a
-}
+.color-primary{background:#1e3a8a}
 
 .glass-panel{
     background:rgba(255,255,255,.95);
@@ -53,31 +37,15 @@ body{
     border:1px solid rgba(255,255,255,.3)
 }
 
-.fade-in{
-    animation:fadeIn .5s cubic-bezier(.4,0,.2,1)
-}
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 
 @keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(12px)
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0)
-    }
-
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-.logo-wrapper{
-    transition:transform .4s cubic-bezier(.175,.885,.32,1.275)
-}
-
-.logo-wrapper:hover{
-    transform:scale(1.08) rotate(2deg)
-}
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 
 .logo-shadow{
     filter:
@@ -85,35 +53,43 @@ body{
         drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
 
+/* =========================================================
+   PAGE TITLE & BUTTON
+========================================================= */
+
 .page-title{
     font-size:30px;
     font-weight:900;
     color:#1e293b;
-    letter-spacing:-.025em
+    letter-spacing:-.025em;
+    line-height:1.2
 }
 
 .page-subtitle{
     font-size:13px;
     color:#64748b;
-    font-weight:500
+    font-weight:500;
+    line-height:1.6
 }
 
 .back-button{
     background:#1e3a8a;
     color:#fff;
-    border:0;
+    border:none;
     border-radius:12px;
     padding:11px 17px;
+    font-family:inherit;
     font-size:12px;
     font-weight:800;
     display:flex;
     align-items:center;
     justify-content:center;
     gap:8px;
-    transition:.2s ease;
-    box-shadow:0 5px 12px rgba(30,58,138,.18);
     cursor:pointer;
-    white-space:nowrap
+    white-space:nowrap;
+    flex-shrink:0;
+    box-shadow:0 5px 12px rgba(30,58,138,.18);
+    transition:.2s ease
 }
 
 .back-button:hover{
@@ -122,18 +98,34 @@ body{
     box-shadow:0 8px 18px rgba(30,58,138,.25)
 }
 
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:16px;
+    margin-bottom:24px
+}
+
 .stat-card{
     background:#fff;
     border:1px solid #e2e8f0;
     border-radius:17px;
     padding:17px;
-    transition:.25s ease
+    transition:.25s ease;
+    min-width:0
 }
 
 .stat-card:hover{
     transform:translateY(-2px);
     box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
+
+/* =========================================================
+   TABLE PANEL & TABLE
+========================================================= */
 
 .table-panel{
     background:#fff;
@@ -144,20 +136,39 @@ body{
 }
 
 .table-scroll{
+    width:100%;
     overflow-x:auto;
-    -webkit-overflow-scrolling:touch
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin
 }
+
+.table-scroll::-webkit-scrollbar{height:7px}
+.table-scroll::-webkit-scrollbar-track{background:#f8fafc}
+.table-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+.table-scroll::-webkit-scrollbar-thumb:hover{background:#94a3b8}
 
 table{
     width:100%;
+    min-width:950px;
     border-collapse:separate;
     border-spacing:0;
-    min-width:950px
+    table-layout:fixed
 }
 
-thead{
-    background:#f8fafc
-}
+/* Proporsi kolom: No 5 · Tanggal 10 · Unit 11 · HM 9 · Service 12 · Status 9 · PIC 12 · Item Rusak 12 · Remark 12 · PAP 8 */
+.col-no{width:5%}
+.col-tanggal{width:10%}
+.col-unit{width:11%}
+.col-hm{width:9%}
+.col-service{width:12%}
+.col-status{width:9%}
+.col-pic{width:12%}
+.col-item{width:12%}
+.col-remark{width:12%}
+.col-pap{width:8%}
+
+thead{background:#f8fafc}
 
 thead th{
     padding:0;
@@ -171,67 +182,360 @@ thead th{
     text-align:left
 }
 
-.sort-button{
-    width:100%;
-    padding:14px;
-    background:transparent;
-    border:0;
-    color:#475569;
-    font-family:inherit;
-    font-size:10px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    text-align:left;
-    display:flex;
-    align-items:center;
-    gap:7px;
-    cursor:pointer;
-    transition:.18s ease
-}
-
-.sort-button:hover,
-.sort-button.sort-active{
-    background:#eff6ff;
-    color:#1e3a8a
-}
-
-.sort-icon{
-    width:14px;
-    height:14px;
-    flex-shrink:0;
-    color:#94a3b8;
-    transition:.18s ease
-}
-
-.sort-button.sort-active .sort-icon{
-    color:#1e3a8a
-}
-
-.sort-button.sort-normal .sort-icon{
-    opacity:.45
-}
-
 tbody td{
     padding:13px 14px;
     border-bottom:1px solid #f1f5f9;
     color:#334155;
     font-size:11px;
     font-weight:500;
-    vertical-align:middle
+    vertical-align:middle;
+    overflow:hidden
 }
 
-tbody tr{
-    transition:background .15s ease
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:#f8fafc}
+tbody tr:last-child td{border-bottom:none}
+
+/* =========================================================
+   COLUMN HEADER (Excel-style: sort + filter di header)
+========================================================= */
+
+.col-header{
+    width:100%;
+    padding:13px 14px;
+    background:transparent;
+    border:none;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    cursor:pointer;
+    transition:.18s ease;
+    text-align:left
 }
 
-tbody tr:hover{
-    background:#f8fafc
+.col-header:hover,
+.col-header.active{
+    background:#eff6ff;
+    color:#1e3a8a
 }
 
-tbody tr:last-child td{
-    border-bottom:0
+.col-icons{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    flex-shrink:0
 }
+
+.col-sort-icon{
+    width:12px;
+    height:12px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-sort-icon.on{
+    opacity:1;
+    color:#1e3a8a
+}
+
+.col-filter-icon{
+    width:11px;
+    height:11px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-filter-icon.on{
+    opacity:1;
+    color:#f59e0b
+}
+
+.col-header:hover .col-sort-icon,
+.col-header:hover .col-filter-icon{opacity:.8}
+
+/* =========================================================
+   COLUMN DROPDOWN (popup filter & sort)
+========================================================= */
+
+.col-dropdown{
+    position:fixed;
+    z-index:1100;
+    width:240px;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(15,23,42,.13);
+    padding:8px;
+    animation:ddIn .15s ease
+}
+
+.col-dropdown[hidden]{display:none}
+
+@keyframes ddIn{
+    from{opacity:0;transform:translateY(-4px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.dd-sort{display:flex;gap:6px;padding:4px}
+
+.dd-sort-btn{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-sort-btn:hover{background:#eff6ff;color:#1e3a8a}
+
+.dd-sort-btn.on{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.dd-divider{height:1px;background:#f1f5f9;margin:8px 0}
+
+.dd-search-wrap{position:relative}
+
+.dd-search-icon{
+    position:absolute;
+    left:9px;
+    top:50%;
+    transform:translateY(-50%);
+    width:12px;
+    height:12px;
+    color:#94a3b8;
+    pointer-events:none
+}
+
+.dd-search{
+    width:100%;
+    padding:7px 8px 7px 28px;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    background:#f8fafc;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    outline:none
+}
+
+.dd-search:focus{
+    background:#fff;
+    border-color:#93c5fd;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
+}
+
+.dd-list{
+    max-height:160px;
+    overflow-y:auto;
+    margin-top:6px
+}
+
+.dd-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+    color:#334155
+}
+
+.dd-item:hover{background:#f8fafc}
+
+.dd-item input{
+    accent-color:#1e3a8a;
+    width:13px;
+    height:13px;
+    flex-shrink:0;
+    cursor:pointer
+}
+
+.dd-item-label{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+
+.dd-item-count{
+    font-size:9px;
+    font-weight:700;
+    color:#94a3b8
+}
+
+.dd-all{
+    border-bottom:1px solid #f1f5f9;
+    border-radius:0;
+    margin-bottom:4px;
+    padding-bottom:8px
+}
+
+.dd-empty{
+    font-size:10px;
+    color:#94a3b8;
+    padding:10px;
+    text-align:center
+}
+
+.dd-footer{
+    display:flex;
+    gap:6px;
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px solid #f1f5f9
+}
+
+.dd-reset{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-reset:hover{background:#fee2e2;color:#991b1b}
+
+.dd-apply{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:none;
+    background:#1e3a8a;
+    color:#fff;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-apply:hover{background:#1d4ed8}
+
+/* =========================================================
+   ACTIVE FILTER CHIPS
+========================================================= */
+
+.active-filters-bar{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 20px;
+    background:#fffbeb;
+    border-bottom:1px solid #fde68a
+}
+
+.active-filters-bar[hidden]{display:none}
+
+.active-filter-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 6px 4px 10px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#92400e;
+    font-size:9px;
+    font-weight:800
+}
+
+.active-filter-chip button{
+    border:none;
+    background:transparent;
+    color:#92400e;
+    cursor:pointer;
+    font-size:12px;
+    line-height:1;
+    padding:0 4px;
+    border-radius:999px
+}
+
+.active-filter-chip button:hover{background:#fde68a}
+
+.clear-all-btn{
+    margin-left:auto;
+    font-size:9px;
+    font-weight:800;
+    color:#92400e;
+    border:1px solid #fde68a;
+    background:#fff;
+    border-radius:999px;
+    padding:4px 10px;
+    cursor:pointer;
+    font-family:inherit
+}
+
+/* =========================================================
+   BADGES (palet baku Bab 2)
+========================================================= */
+
+.unit-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:50px;
+    padding:5px 8px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    font-size:10px;
+    font-weight:900
+}
+
+.service-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:5px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
+    white-space:nowrap
+}
+
+.service-periodic{background:#dbeafe;color:#1e40af}
+.service-general{background:#fef3c7;color:#92400e}
+.service-other{background:#e2e8f0;color:#475569}
+
+.status-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
+    white-space:nowrap
+}
+
+.status-good{background:#dcfce7;color:#166534}
+.status-bad{background:#fee2e2;color:#991b1b}
+.status-other{background:#e2e8f0;color:#475569}
 
 .pap-link{
     display:inline-flex;
@@ -258,95 +562,14 @@ tbody tr:last-child td{
     box-shadow:0 3px 8px rgba(37,99,235,.12)
 }
 
-.service-badge,
-.status-badge{
-    display:inline-flex;
-    align-items:center;
-    border-radius:999px;
-    font-weight:800;
-    white-space:nowrap
-}
-
-.service-badge{
-    padding:5px 9px;
-    font-size:9px
-}
-
-.service-periodic{
-    background:#dbeafe;
-    color:#1e40af
-}
-
-.service-general{
-    background:#fef3c7;
-    color:#92400e
-}
-
-.service-other{
-    background:#e2e8f0;
-    color:#475569
-}
-
-.status-badge{
-    gap:5px;
-    padding:5px 9px;
-    font-size:9px
-}
-
-.status-good{
-    background:#dcfce7;
-    color:#166534
-}
-
-.status-bad{
-    background:#fee2e2;
-    color:#991b1b
-}
-
-.status-other{
-    background:#e2e8f0;
-    color:#475569
-}
-
-.unit-badge{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:50px;
-    padding:5px 8px;
-    border-radius:8px;
-    background:#eff6ff;
-    color:#1e3a8a;
-    font-size:10px;
-    font-weight:900
-}
-
-.filter-input{
-    width:100%;
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-    border-radius:11px;
-    padding:10px 12px;
-    color:#334155;
-    font-size:11px;
-    font-weight:600;
-    outline:0;
-    transition:.2s ease
-}
-
-.filter-input:focus{
-    background:#fff;
-    border-color:#93c5fd;
-    box-shadow:0 0 0 3px rgba(59,130,246,.1)
-}
-
-select.filter-input{
-    cursor:pointer
-}
+/* =========================================================
+   PAGINATION
+========================================================= */
 
 .pagination-button{
     width:34px;
     height:34px;
+    min-width:34px;
     border-radius:9px;
     border:1px solid #e2e8f0;
     background:#fff;
@@ -372,10 +595,11 @@ select.filter-input{
     border-color:#1e3a8a
 }
 
-.pagination-button:disabled{
-    opacity:.4;
-    cursor:not-allowed
-}
+.pagination-button:disabled{opacity:.4;cursor:not-allowed}
+
+/* =========================================================
+   LOADING & EMPTY
+========================================================= */
 
 #loading{
     min-height:350px;
@@ -385,22 +609,60 @@ select.filter-input{
     justify-content:center
 }
 
-#tableContent{
-    display:none
+#tableContent{display:none}
+#tableContent.show{display:block}
+#emptyState{display:none}
+#emptyState.show{display:block}
+
+/* =========================================================
+   MOBILE FILTER BAR & CARDS (≤767px)
+========================================================= */
+
+.mobile-filter-bar{
+    display:none;
+    gap:6px;
+    overflow-x:auto;
+    padding:10px 12px;
+    background:#fff;
+    border-bottom:1px solid #f1f5f9;
+    scrollbar-width:none
 }
 
-#tableContent.show{
-    display:block
+.mobile-filter-bar::-webkit-scrollbar{display:none}
+
+.mobile-filter-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:7px 10px;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    font-family:inherit;
+    font-size:9px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    cursor:pointer
 }
 
-
-/* =========================
-   MOBILE DATA CARD
-   ========================= */
-
-.mobile-data-list{
-    display:none
+.mobile-filter-btn.active{
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe
 }
+
+.mobile-filter-count{
+    background:#1e3a8a;
+    color:#fff;
+    border-radius:999px;
+    padding:1px 6px;
+    font-size:8px
+}
+
+.mobile-data-list{display:none}
 
 .mobile-data-card{
     background:#fff;
@@ -412,9 +674,7 @@ select.filter-input{
     transition:.2s ease
 }
 
-.mobile-data-card:active{
-    transform:scale(.995)
-}
+.mobile-data-card:active{transform:scale(.995)}
 
 .mobile-card-header{
     display:flex;
@@ -430,14 +690,34 @@ select.filter-input{
     font-size:16px;
     font-weight:900;
     color:#1e3a8a;
-    line-height:1.2
+    line-height:1.2;
+    display:flex;
+    align-items:center;
+    gap:8px
 }
 
 .mobile-date{
     font-size:10px;
     font-weight:700;
     color:#64748b;
-    margin-top:4px
+    margin-top:4px;
+    display:flex;
+    align-items:center;
+    gap:4px
+}
+
+.mobile-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:27px;
+    height:27px;
+    padding:0 7px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#64748b;
+    font-size:9px;
+    font-weight:900
 }
 
 .mobile-card-grid{
@@ -446,13 +726,8 @@ select.filter-input{
     gap:11px 14px
 }
 
-.mobile-field{
-    min-width:0
-}
-
-.mobile-field.full{
-    grid-column:1/-1
-}
+.mobile-field{min-width:0}
+.mobile-field.full{grid-column:1/-1}
 
 .mobile-label{
     font-size:8px;
@@ -487,24 +762,9 @@ select.filter-input{
     border-top:1px solid #f1f5f9
 }
 
-.mobile-number{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:27px;
-    height:27px;
-    padding:0 7px;
-    border-radius:8px;
-    background:#f1f5f9;
-    color:#64748b;
-    font-size:9px;
-    font-weight:900
-}
-
-
-/* =========================
+/* =========================================================
    LEADERBOARD
-   ========================= */
+========================================================= */
 
 #leaderboardButton{
     position:fixed;
@@ -522,9 +782,7 @@ select.filter-input{
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease
+    transition:transform .25s ease,box-shadow .25s ease
 }
 
 #leaderboardButton:hover{
@@ -537,30 +795,10 @@ select.filter-input{
 }
 
 @keyframes leaderPulse{
-
-    0%,100%{
-        transform:scale(1);
-        box-shadow:0 12px 30px rgba(15,23,42,.28)
-    }
-
-    20%{
-        transform:scale(1.18);
-        box-shadow:
-            0 0 0 12px rgba(30,58,138,.12),
-            0 16px 38px rgba(15,23,42,.32)
-    }
-
-    40%{
-        transform:scale(.98)
-    }
-
-    60%{
-        transform:scale(1.12);
-        box-shadow:
-            0 0 0 8px rgba(30,58,138,.1),
-            0 16px 38px rgba(15,23,42,.32)
-    }
-
+    0%,100%{transform:scale(1);box-shadow:0 12px 30px rgba(15,23,42,.28)}
+    20%{transform:scale(1.18);box-shadow:0 0 0 12px rgba(30,58,138,.12),0 16px 38px rgba(15,23,42,.32)}
+    40%{transform:scale(.98)}
+    60%{transform:scale(1.12);box-shadow:0 0 0 8px rgba(30,58,138,.1),0 16px 38px rgba(15,23,42,.32)}
 }
 
 .leader-tooltip{
@@ -580,10 +818,7 @@ select.filter-input{
     transition:.2s
 }
 
-#leaderboardButton:hover .leader-tooltip{
-    opacity:1;
-    transform:translateY(0)
-}
+#leaderboardButton:hover .leader-tooltip{opacity:1;transform:translateY(0)}
 
 #leaderboardOverlay{
     position:fixed;
@@ -597,9 +832,7 @@ select.filter-input{
     padding:20px
 }
 
-#leaderboardOverlay.show{
-    display:flex
-}
+#leaderboardOverlay.show{display:flex}
 
 #leaderboardModal{
     width:min(430px,100%);
@@ -613,17 +846,8 @@ select.filter-input{
 }
 
 @keyframes leaderModalIn{
-
-    from{
-        opacity:0;
-        transform:translateY(12px) scale(.97)
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1)
-    }
-
+    from{opacity:0;transform:translateY(12px) scale(.97)}
+    to{opacity:1;transform:translateY(0) scale(1)}
 }
 
 .leader-row{
@@ -637,19 +861,9 @@ select.filter-input{
     border:1px solid #f1f5f9
 }
 
-.leader-row.top-1{
-    background:#fffbeb;
-    border-color:#fde68a
-}
-
-.leader-row.top-2{
-    border-color:#cbd5e1
-}
-
-.leader-row.top-3{
-    background:#fff7ed;
-    border-color:#fed7aa
-}
+.leader-row.top-1{background:#fffbeb;border-color:#fde68a}
+.leader-row.top-2{border-color:#cbd5e1}
+.leader-row.top-3{background:#fff7ed;border-color:#fed7aa}
 
 .leader-rank{
     width:30px;
@@ -665,20 +879,9 @@ select.filter-input{
     flex-shrink:0
 }
 
-.top-1 .leader-rank{
-    background:#fbbf24;
-    color:#78350f
-}
-
-.top-2 .leader-rank{
-    background:#cbd5e1;
-    color:#334155
-}
-
-.top-3 .leader-rank{
-    background:#fdba74;
-    color:#7c2d12
-}
+.top-1 .leader-rank{background:#fbbf24;color:#78350f}
+.top-2 .leader-rank{background:#cbd5e1;color:#334155}
+.top-3 .leader-rank{background:#fdba74;color:#7c2d12}
 
 .leader-name{
     font-size:12px;
@@ -698,62 +901,40 @@ select.filter-input{
     white-space:nowrap
 }
 
+/* =========================================================
+   BREAKPOINTS (bible Bab 4)
+========================================================= */
 
-/* =========================
-   TABLET
-   ========================= */
+@media(min-width:1920px){
+    main{max-width:1800px}
+}
 
 @media(min-width:768px) and (max-width:1100px){
 
-    main{
-        padding:25px!important
-    }
+    main{padding:28px!important;border-radius:24px!important}
 
-    .page-title{
-        font-size:25px
-    }
+    .page-title{font-size:25px}
 
-    #tableContent>div:first-child{
-        grid-template-columns:repeat(2,1fr)
-    }
+    .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 
-    #tableContent>div:nth-child(2)>div:last-child{
-        grid-template-columns:repeat(2,1fr)
-    }
+    header{margin-bottom:28px!important}
 
 }
 
-
-/* =========================
-   MOBILE
-   ========================= */
-
 @media(max-width:767px){
 
-    body{
-        padding:8px!important;
-        background:#f1f5f9
-    }
+    body{padding:10px!important;align-items:stretch!important}
 
     main{
-        padding:16px!important;
-        border-radius:22px!important;
-        box-shadow:0 8px 25px rgba(15,23,42,.06)!important
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
 
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
 
-    /* =========================
-       HEADER
-       ========================= */
-
-    header{
-        margin-bottom:20px!important;
-        padding-bottom:18px!important
-    }
-
-    .logo-wrapper{
-        margin-bottom:12px!important
-    }
+    .logo-wrapper{margin-bottom:14px!important}
 
     .logo-wrapper>div{
         width:76px!important;
@@ -761,20 +942,19 @@ select.filter-input{
         border-radius:18px!important
     }
 
-    .color-primary{
+    header .color-primary{
         width:100%!important;
         padding:13px 14px!important;
-        border-radius:15px!important;
-        gap:1px!important
+        border-radius:15px!important
     }
 
-    .color-primary h1{
+    header .color-primary h1{
         font-size:15px!important;
         line-height:1.2!important;
         letter-spacing:.06em!important
     }
 
-    .color-primary h2{
+    header .color-primary h2{
         font-size:10px!important;
         line-height:1.3!important;
         letter-spacing:.1em!important
@@ -783,167 +963,66 @@ select.filter-input{
     header>div:last-child{
         font-size:8px!important;
         letter-spacing:.18em!important;
-        line-height:1.4!important;
-        text-align:center!important
+        text-align:center
     }
 
-
-    /* =========================
-       PAGE TITLE
-       ========================= */
-
     section>div:first-child{
-        align-items:flex-start!important;
-        gap:10px!important;
-        margin-bottom:17px!important
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
     }
 
     .page-title{
         font-size:20px!important;
         line-height:1.3!important;
-        gap:8px!important
+        gap:10px!important
     }
 
     .page-title span{
         padding:9px!important;
-        border-radius:10px!important
+        border-radius:10px!important;
+        flex-shrink:0
     }
 
-    .page-title svg{
-        width:18px!important;
-        height:18px!important
-    }
+    .page-title span svg{width:18px!important;height:18px!important}
 
     .page-subtitle{
         font-size:10px!important;
-        line-height:1.5!important;
-        margin-top:6px!important
+        line-height:1.6!important;
+        margin-top:8px!important
     }
 
     .back-button{
-        padding:9px 11px!important;
-        font-size:10px!important;
+        width:100%;
+        padding:10px 12px;
         border-radius:10px!important;
-        gap:5px!important
+        font-size:10px!important
     }
 
-    .back-button svg{
-        width:14px!important;
-        height:14px!important
+    .stats-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:10px!important;
+        margin-bottom:14px!important
     }
 
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-card p:first-child{font-size:8px!important;line-height:1.4!important}
+    .stat-card p.text-3xl{font-size:23px!important;line-height:1!important}
+    .stat-card span{font-size:9px!important}
 
-    /* =========================
-       STATISTICS
-       ========================= */
+    .table-panel{border-radius:16px!important}
+    .table-panel>div:first-child{padding:13px 14px!important}
+    .table-panel>div:first-child h3{font-size:12px!important}
+    .table-panel>div:first-child p{font-size:9px!important}
+    .table-panel>div:first-child>div:last-child{display:none!important}
 
-    #tableContent>div:first-child{
-        grid-template-columns:1fr 1fr!important;
-        gap:9px!important;
-        margin-bottom:12px!important
-    }
+    .active-filters-bar{padding:10px 14px}
 
-    .stat-card{
-        padding:13px!important;
-        border-radius:14px!important
-    }
+    /* tabel desktop disembunyikan, diganti filter bar + kartu */
+    .table-scroll{display:none!important}
 
-    .stat-card p:first-child{
-        font-size:8px!important;
-        line-height:1.3!important
-    }
-
-    .stat-card p:last-child{
-        font-size:23px!important;
-        line-height:1!important;
-        margin-top:7px!important
-    }
-
-
-    /* =========================
-       FILTER
-       ========================= */
-
-    #tableContent>div:nth-child(2){
-        padding:13px!important;
-        border-radius:15px!important;
-        margin-bottom:12px!important
-    }
-
-    #tableContent>div:nth-child(2)>div:first-child{
-        margin-bottom:12px!important;
-        gap:9px!important
-    }
-
-    #tableContent>div:nth-child(2)>div:first-child span{
-        padding:7px!important;
-        border-radius:8px!important
-    }
-
-    #tableContent>div:nth-child(2)>div:first-child svg{
-        width:14px!important;
-        height:14px!important
-    }
-
-    #tableContent>div:nth-child(2)>div:first-child h3{
-        font-size:12px!important
-    }
-
-    #tableContent>div:nth-child(2)>div:first-child p{
-        font-size:8px!important;
-        line-height:1.4!important
-    }
-
-    #tableContent>div:nth-child(2)>div:last-child{
-        grid-template-columns:1fr!important;
-        gap:10px!important
-    }
-
-    #tableContent>div:nth-child(2) label{
-        font-size:8px!important;
-        margin-bottom:5px!important
-    }
-
-    .filter-input{
-        font-size:10px!important;
-        padding:10px!important;
-        min-height:38px
-    }
-
-
-    /* =========================
-       TABLE PANEL
-       ========================= */
-
-    .table-panel{
-        border-radius:16px!important
-    }
-
-    .table-panel>div:first-child{
-        padding:13px!important
-    }
-
-    .table-panel>div:first-child h3{
-        font-size:11px!important
-    }
-
-    .table-panel>div:first-child p{
-        font-size:8px!important
-    }
-
-    .table-panel>div:first-child>div:last-child{
-        display:none!important
-    }
-
-
-    /* Hide desktop table */
-
-    .table-scroll{
-        display:none!important
-    }
-
-
-    /* Show mobile cards */
+    .mobile-filter-bar{display:flex}
 
     .mobile-data-list{
         display:block!important;
@@ -951,113 +1030,41 @@ select.filter-input{
         background:#f8fafc
     }
 
-    .mobile-data-card{
-        padding:14px!important;
-        border-radius:15px!important;
-        margin-bottom:9px!important
+    .mobile-data-card{padding:14px!important;border-radius:15px!important;margin-bottom:9px!important}
+    .mobile-card-header{gap:8px!important;padding-bottom:11px!important;margin-bottom:11px!important}
+    .mobile-unit{font-size:15px!important}
+    .mobile-date{font-size:9px!important}
+    .mobile-card-grid{gap:10px 12px!important}
+    .mobile-label{font-size:7px!important;margin-bottom:4px!important}
+    .mobile-value{font-size:10px!important;line-height:1.45!important}
+    .mobile-remark{font-size:9px!important;padding:8px 9px!important}
+    .mobile-pap{margin-top:11px!important;padding-top:11px!important}
+    .mobile-number{min-width:25px!important;height:25px!important;font-size:8px!important}
+
+    .service-badge{padding:4px 8px!important;font-size:8px!important}
+    .status-badge{padding:4px 8px!important;font-size:8px!important}
+    .status-badge svg{width:11px!important;height:11px!important}
+    .unit-badge{padding:4px 7px!important;font-size:8px!important}
+    .pap-link{padding:6px 9px!important;font-size:9px!important}
+    .pap-link svg{width:13px!important;height:13px!important}
+
+    /* popup jadi bottom sheet */
+    .col-dropdown.is-sheet{
+        left:16px!important;
+        right:16px!important;
+        top:auto!important;
+        bottom:16px!important;
+        width:auto!important;
+        max-height:70vh;
+        border-radius:14px;
+        overflow-y:auto
     }
 
-    .mobile-card-header{
-        gap:8px!important;
-        padding-bottom:11px!important;
-        margin-bottom:11px!important
-    }
+    .col-dropdown.is-sheet .dd-list{max-height:40vh}
 
-    .mobile-unit{
-        font-size:15px!important
-    }
+    .table-panel>div:last-child{padding:10px!important;gap:7px!important}
 
-    .mobile-date{
-        font-size:9px!important
-    }
-
-    .mobile-card-grid{
-        gap:10px 12px!important
-    }
-
-    .mobile-label{
-        font-size:7px!important;
-        margin-bottom:4px!important
-    }
-
-    .mobile-value{
-        font-size:10px!important;
-        line-height:1.45!important
-    }
-
-    .mobile-remark{
-        font-size:9px!important;
-        padding:8px 9px!important
-    }
-
-    .mobile-pap{
-        margin-top:11px!important;
-        padding-top:11px!important
-    }
-
-    .mobile-number{
-        min-width:25px!important;
-        height:25px!important;
-        font-size:8px!important
-    }
-
-    .service-badge{
-        padding:5px 8px!important;
-        font-size:8px!important
-    }
-
-    .status-badge{
-        padding:5px 8px!important;
-        font-size:8px!important
-    }
-
-    .status-badge svg{
-        width:11px!important;
-        height:11px!important
-    }
-
-    .pap-link{
-        padding:6px 9px!important;
-        font-size:9px!important
-    }
-
-    .pap-link svg{
-        width:13px!important;
-        height:13px!important
-    }
-
-
-    /* =========================
-       EMPTY STATE
-       ========================= */
-
-    #emptyState .py-16{
-        padding-top:35px!important;
-        padding-bottom:35px!important
-    }
-
-    #emptyState h3{
-        font-size:13px!important
-    }
-
-    #emptyState p{
-        font-size:9px!important
-    }
-
-
-    /* =========================
-       PAGINATION
-       ========================= */
-
-    .table-panel>div:last-child{
-        padding:10px!important;
-        gap:7px!important
-    }
-
-    #paginationInfo{
-        font-size:8px!important;
-        white-space:nowrap
-    }
+    #paginationInfo{font-size:8px!important;white-space:nowrap}
 
     #pagination{
         gap:3px!important;
@@ -1067,9 +1074,7 @@ select.filter-input{
         scrollbar-width:none
     }
 
-    #pagination::-webkit-scrollbar{
-        display:none
-    }
+    #pagination::-webkit-scrollbar{display:none}
 
     .pagination-button{
         width:30px!important;
@@ -1079,30 +1084,9 @@ select.filter-input{
         border-radius:8px!important
     }
 
-
-    /* =========================
-       FOOTER
-       ========================= */
-
-    footer{
-        margin-top:18px!important;
-        padding:0 8px 90px!important
-    }
-
-    footer p:first-child{
-        font-size:8px!important;
-        line-height:1.5!important
-    }
-
-    footer p:last-child{
-        font-size:8px!important;
-        line-height:1.5!important
-    }
-
-
-    /* =========================
-       LEADERBOARD BUTTON
-       ========================= */
+    footer{margin-top:18px!important;padding:0 8px 90px!important}
+    footer p:first-child{font-size:8px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.5!important}
 
     #leaderboardButton{
         width:55px;
@@ -1113,2565 +1097,1252 @@ select.filter-input{
         box-shadow:0 10px 25px rgba(15,23,42,.25)
     }
 
-    #leaderboardButton svg{
-        width:23px;
-        height:23px
-    }
+    #leaderboardButton svg{width:23px;height:23px}
 
-    .leader-tooltip{
-        display:none
-    }
+    .leader-tooltip{display:none}
 
+    #leaderboardOverlay{padding:10px}
 
-    /* =========================
-       LEADERBOARD MODAL
-       ========================= */
+    #leaderboardModal{width:100%;max-height:85vh;border-radius:18px}
 
-    #leaderboardOverlay{
-        padding:10px
-    }
+    #leaderboardModal>div:first-child{padding:13px!important}
 
-    #leaderboardModal{
-        width:100%;
-        max-height:85vh;
-        border-radius:18px
-    }
+    #leaderboardList{padding:12px!important;max-height:65vh!important}
 
-    #leaderboardModal>div:first-child{
-        padding:13px!important
-    }
+    .leader-row{padding:10px!important;gap:9px!important;border-radius:12px!important}
 
-    #leaderboardList{
-        padding:12px!important;
-        max-height:65vh!important
-    }
+    .leader-rank{width:28px!important;height:28px!important;border-radius:9px!important;font-size:11px!important}
 
-    .leader-row{
-        padding:10px!important;
-        gap:9px!important;
-        border-radius:12px!important
-    }
+    .leader-name{font-size:10px!important}
 
-    .leader-rank{
-        width:28px!important;
-        height:28px!important;
-        border-radius:9px!important;
-        font-size:11px!important
-    }
-
-    .leader-name{
-        font-size:10px!important
-    }
-
-    .leader-count{
-        font-size:8px!important;
-        padding:4px 7px!important
-    }
+    .leader-count{font-size:8px!important;padding:4px 7px!important}
 
 }
 
-
-/* =========================
-   VERY SMALL PHONE
-   ========================= */
-
 @media(max-width:380px){
 
-    body{
-        padding:5px!important
+    body{padding:6px!important}
+
+    main{padding:12px!important;border-radius:17px!important}
+
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
+
+    .logo-wrapper>div{width:70px!important;height:70px!important}
+
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
+
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
+
+    .back-button span{display:none}
+
+    .mobile-card-grid{grid-template-columns:1fr!important}
+    .mobile-field.full{grid-column:auto}
+
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-card p.text-3xl{font-size:21px!important}
+
+    .table-panel>div:last-child{
+        justify-content:center!important;
+        flex-direction:column!important;
+        align-items:stretch!important
     }
 
-    main{
-        padding:12px!important
-    }
-
-
-    /* HEADER */
-
-    .logo-wrapper>div{
-        width:70px!important;
-        height:70px!important;
-        border-radius:16px!important
-    }
-
-    .color-primary{
-        padding:12px 10px!important;
-        border-radius:14px!important
-    }
-
-    .color-primary h1{
-        font-size:13px!important
-    }
-
-    .color-primary h2{
-        font-size:8px!important
-    }
-
-    header>div:last-child{
-        font-size:7px!important;
-        letter-spacing:.15em!important
-    }
-
-
-    /* PAGE TITLE */
-
-    .page-title{
-        font-size:18px!important
-    }
-
-    .page-subtitle{
-        font-size:9px!important
-    }
-
-    .back-button{
-        padding:8px!important
-    }
-
-    .back-button span{
-        display:none
-    }
-
-
-    /* MOBILE DATA */
-
-    .mobile-card-grid{
-        grid-template-columns:1fr!important
-    }
-
-    .mobile-field.full{
-        grid-column:auto
-    }
-
-
-    /* PAGINATION */
-
-    #pagination{
-        max-width:58%
-    }
-
-
-    /* STATISTICS */
-
-    .stat-card p:last-child{
-        font-size:21px!important
-    }
-
-    .mobile-card-header{
-        align-items:flex-start!important
-    }
+    #paginationInfo{text-align:center}
+    #pagination{max-width:100%;justify-content:center}
 
 }
 
 </style>
 </head>
 
-
 <body class="flex flex-col items-center p-4 sm:p-8">
 
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
-
-
-<!-- =========================
+<!-- ======================================================
      HEADER
-     ========================= -->
+====================================================== -->
 
 <header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
+    <div class="mb-4 logo-wrapper">
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="w-full h-full object-contain"
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+            <div
+                id="logoFallback"
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+            >
+                <span class="font-black text-2xl">TSI</span>
+            </div>
+        </div>
+    </div>
 
-<div class="mb-4 logo-wrapper">
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+            PAPERLESS PROJECT
+        </h1>
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+    </div>
 
-<div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-
-<img
-    src="default_logo.png"
-    alt="Logo PT TSI"
-    class="w-full h-full object-contain"
-    id="companyLogo"
-    onerror="handleLogoError()"
->
-
-<div
-    id="logoFallback"
-    class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
->
-
-<span class="font-black text-2xl">
-TSI
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
-
-<h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
-PAPERLESS PROJECT
-</h1>
-
-<div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-
-<h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
-PT TATSUMI SERUNI INDONESIA
-</h2>
-
-</div>
-
-
-<div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
-Digitalization Initiative v2.0
-</div>
-
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
+        Digitalization Initiative v2.0
+    </div>
 
 </header>
 
 
-<!-- =========================
-     CONTENT
-     ========================= -->
+<!-- ======================================================
+     SECTION
+====================================================== -->
 
 <section>
 
-
-<div class="flex items-center justify-between gap-5 mb-6">
-
-
-<div>
-
-<h2 class="page-title flex items-center gap-3">
-
-<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
-
-<i
-    data-lucide="database"
-    class="w-6 h-6"
-></i>
-
-</span>
-
-Data Periodic Service
-
-</h2>
-
-
-<p class="page-subtitle mt-2 ml-1">
-
-Daftar seluruh aktivitas periodic service yang tersimpan pada database.
-
-</p>
-
-</div>
-
-
-<button
-    onclick="goToDashboard()"
-    class="back-button"
->
-
-<i
-    data-lucide="arrow-left"
-    class="w-4 h-4"
-></i>
-
-<span>
-Kembali
-</span>
-
-</button>
-
-
-</div>
-
-
-<!-- =========================
-     LOADING
-     ========================= -->
-
-<div id="loading">
-
-<i
-    data-lucide="loader-circle"
-    class="w-9 h-9 animate-spin text-amber-500"
-></i>
-
-<p class="font-semibold text-sm text-slate-400 mt-3">
-Memuat data...
-</p>
-
-</div>
-
-
-<div id="tableContent">
-
-
-<!-- =========================
-     STATISTICS
-     ========================= -->
-
-<div class="grid grid-cols-4 gap-4 mb-6">
-
-
-<div class="stat-card">
-
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-Total Data
-</p>
-
-<p
-    id="totalData"
-    class="text-3xl font-black text-blue-900 mt-2"
->
--
-</p>
-
-</div>
-
-
-<div class="stat-card">
-
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-Periodic Service
-</p>
-
-<p
-    id="periodicTotal"
-    class="text-3xl font-black text-indigo-600 mt-2"
->
--
-</p>
-
-</div>
-
-
-<div class="stat-card">
-
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-General Service
-</p>
-
-<p
-    id="generalTotal"
-    class="text-3xl font-black text-amber-600 mt-2"
->
--
-</p>
-
-</div>
-
-
-<div class="stat-card">
-
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-Status Baik
-</p>
-
-<p
-    id="baikTotal"
-    class="text-3xl font-black text-emerald-600 mt-2"
->
--
-</p>
-
-</div>
-
-
-</div>
-
-
-<!-- =========================
-     FILTER
-     ========================= -->
-
-<div class="bg-white border border-slate-200 rounded-2xl p-5 mb-5 shadow-sm">
-
-
-<div class="flex items-center gap-3 mb-4">
-
-
-<span class="bg-blue-100 text-blue-700 p-2 rounded-lg">
-
-<i
-    data-lucide="filter"
-    class="w-4 h-4"
-></i>
-
-</span>
-
-
-<div>
-
-<h3 class="text-sm font-black text-slate-700">
-Filter Data
-</h3>
-
-<p class="text-[10px] text-slate-400 font-medium">
-Gunakan filter untuk mencari data tertentu.
-</p>
-
-</div>
-
-
-</div>
-
-
-<div class="grid grid-cols-4 gap-4">
-
-
-<div>
-
-<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
-Cari Data
-</label>
-
-
-<div class="relative">
-
-<i
-    data-lucide="search"
-    class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
-></i>
-
-
-<input
-    id="searchInput"
-    type="text"
-    placeholder="Unit, PIC, remark..."
-    class="filter-input pl-10"
-    oninput="applyFilters()"
->
-
-</div>
-
-</div>
-
-
-<div>
-
-<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
-Jenis Service
-</label>
-
-
-<select
-    id="serviceFilter"
-    class="filter-input"
-    onchange="applyFilters()"
->
-
-<option value="">
-Semua Service
-</option>
-
-<option value="Periodic Service">
-Periodic Service
-</option>
-
-<option value="General Service">
-General Service
-</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
-Status
-</label>
-
-
-<select
-    id="statusFilter"
-    class="filter-input"
-    onchange="applyFilters()"
->
-
-<option value="">
-Semua Status
-</option>
-
-<option value="Baik">
-Baik
-</option>
-
-<option value="Rusak">
-Rusak
-</option>
-
-</select>
-
-</div>
-
-
-<div class="flex items-end">
-
-<button
-    onclick="resetFilters()"
-    class="w-full h-[38px] rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold text-[11px] transition flex items-center justify-center gap-2"
->
-
-<i
-    data-lucide="rotate-ccw"
-    class="w-4 h-4"
-></i>
-
-Reset Filter
-
-</button>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     TABLE
-     ========================= -->
-
-<div class="table-panel">
-
-
-<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-
-
-<div>
-
-<h3 class="font-black text-slate-700 text-sm">
-Daftar Aktivitas Periodic Service
-</h3>
-
-<p
-    id="resultInfo"
-    class="text-[10px] text-slate-400 mt-1 font-medium"
->
--
-</p>
-
-</div>
-
-
-<div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
-
-<i
-    data-lucide="refresh-cw"
-    class="w-3.5 h-3.5"
-></i>
-
-Data langsung dari Database
-
-</div>
-
-
-</div>
-
-
-<!-- DESKTOP TABLE -->
-
-<div class="table-scroll">
-
-<table>
-
-<thead>
-
-<tr>
-
-
-<th style="width:50px">
-
-<div class="sort-button">
-No
-</div>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="tanggal"
-    onclick="toggleSort('tanggal')"
->
-
-Tanggal
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="unit"
-    onclick="toggleSort('unit')"
->
-
-Unit
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="hm"
-    onclick="toggleSort('hm')"
->
-
-HM
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="service"
-    onclick="toggleSort('service')"
->
-
-Service
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="status"
-    onclick="toggleSort('status')"
->
-
-Status
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="pic"
-    onclick="toggleSort('pic')"
->
-
-PIC / Mekanik
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="itemRusak"
-    onclick="toggleSort('itemRusak')"
->
-
-Item Rusak
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="remark"
-    onclick="toggleSort('remark')"
->
-
-Remark
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<div class="sort-button">
-PAP
-</div>
-
-</th>
-
-
-</tr>
-
-</thead>
-
-
-<tbody id="tableBody"></tbody>
-
-</table>
-
-</div>
-
-
-<!-- =========================
-     MOBILE DATA
-     ========================= -->
-
-<div
-    id="mobileDataList"
-    class="mobile-data-list"
-></div>
-
-
-<!-- =========================
-     EMPTY STATE
-     ========================= -->
-
-<div
-    id="emptyState"
-    class="hidden"
->
-
-<div class="py-16 text-center">
-
-
-<div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
-
-<i
-    data-lucide="search-x"
-    class="w-8 h-8"
-></i>
-
-</div>
-
-
-<h3 class="font-bold text-slate-600 mt-4">
-Data tidak ditemukan
-</h3>
-
-
-<p class="text-xs text-slate-400 mt-1">
-Coba ubah kata pencarian atau filter.
-</p>
-
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     PAGINATION
-     ========================= -->
-
-<div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
-
-
-<div
-    id="paginationInfo"
-    class="text-[10px] font-semibold text-slate-400"
->
--
-</div>
-
-
-<div
-    id="pagination"
-    class="flex items-center gap-1"
-></div>
-
-
-</div>
-
-
-</div>
-
-
-</div>
+    <div class="flex items-center justify-between gap-5 mb-6">
+
+        <div>
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="database" class="w-6 h-6"></i>
+                </span>
+                Data Periodic Service
+            </h2>
+            <p class="page-subtitle mt-2 ml-1">
+                Daftar seluruh aktivitas periodic service yang tersimpan pada database.
+            </p>
+        </div>
+
+        <button onclick="goToDashboard()" class="back-button">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Kembali</span>
+        </button>
+
+    </div>
+
+
+    <!-- LOADING -->
+    <div id="loading">
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p class="font-semibold text-sm text-slate-400 mt-3">Memuat data...</p>
+    </div>
+
+
+    <!-- TABLE CONTENT -->
+    <div id="tableContent">
+
+        <!-- STAT CARDS (dihitung dari baris yang lolos filter) -->
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Data</p>
+                <p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Periodic Service</p>
+                <p id="periodicTotal" class="text-3xl font-black text-indigo-600 mt-2">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">General Service</p>
+                <p id="generalTotal" class="text-3xl font-black text-amber-600 mt-2">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Status Baik</p>
+                <p id="baikTotal" class="text-3xl font-black text-emerald-600 mt-2">-</p>
+            </div>
+
+        </div>
+
+
+        <!-- TABLE PANEL (tanpa panel filter terpisah) -->
+        <div class="table-panel">
+
+            <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-4">
+                <div>
+                    <h3 class="font-black text-slate-700 text-sm">Daftar Aktivitas Periodic Service</h3>
+                    <p id="resultInfo" class="text-[10px] text-slate-400 mt-1 font-medium">-</p>
+                </div>
+                <div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
+                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                    Data langsung dari Database
+                </div>
+            </div>
+
+            <!-- CHIP FILTER AKTIF -->
+            <div id="activeFilters" class="active-filters-bar" hidden></div>
+
+            <!-- TABEL DESKTOP -->
+            <div class="table-scroll">
+                <table>
+                    <colgroup>
+                        <col class="col-no">
+                        <col class="col-tanggal">
+                        <col class="col-unit">
+                        <col class="col-hm">
+                        <col class="col-service">
+                        <col class="col-status">
+                        <col class="col-pic">
+                        <col class="col-item">
+                        <col class="col-remark">
+                        <col class="col-pap">
+                    </colgroup>
+                    <thead>
+                        <tr id="tableHeadRow"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- MOBILE: bar filter + kartu -->
+            <div id="mobileFilterBar" class="mobile-filter-bar"></div>
+            <div id="mobileDataList" class="mobile-data-list"></div>
+
+            <!-- EMPTY STATE -->
+            <div id="emptyState" class="hidden">
+                <div class="py-16 text-center">
+                    <div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
+                        <i data-lucide="search-x" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-600 mt-4">Data tidak ditemukan</h3>
+                    <p class="text-xs text-slate-400 mt-1">Coba ubah filter pada header kolom.</p>
+                </div>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
+                <div id="paginationInfo" class="text-[10px] font-semibold text-slate-400">-</div>
+                <div id="pagination" class="flex items-center gap-1"></div>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 </main>
 
+<!-- POPUP FILTER & SORT KOLOM (satu instance, position fixed) -->
+<div id="colDropdown" class="col-dropdown" hidden></div>
 
-<!-- =========================
-     FOOTER
-     ========================= -->
-
+<!-- FOOTER -->
 <footer class="mt-8 text-center text-slate-400 px-4 pb-8">
-
-
-<p class="font-bold text-slate-500 tracking-tight uppercase">
-
-&copy; 2026 Paperless Project - PT TSI. All rights reserved.
-
-</p>
-
-
-<p class="text-[10px] mt-1">
-
-System Architecture by:
-
-<span class="text-slate-600 font-semibold uppercase">
-Imam Wahyu Ramadhan, S.T.
-</span>
-
-|
-
-<span class="text-amber-600 font-bold uppercase tracking-tighter">
-Project 2.0
-</span>
-
-</p>
-
-
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+    <p class="text-[10px] mt-1">
+        System Architecture by:
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
+        |
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
+    </p>
 </footer>
 
 
-<!-- =========================
-     LEADERBOARD BUTTON
-     ========================= -->
-
-<button
-    id="leaderboardButton"
-    onclick="openLeaderboard()"
-    aria-label="Leaderboard"
->
-
-<i
-    data-lucide="trophy"
-    class="w-7 h-7"
-></i>
-
-
-<span class="leader-tooltip">
-Leaderboard Mekanik
-</span>
-
+<!-- LEADERBOARD -->
+<button id="leaderboardButton" onclick="openLeaderboard()" aria-label="Leaderboard">
+    <i data-lucide="trophy" class="w-7 h-7"></i>
+    <span class="leader-tooltip">Leaderboard Mekanik</span>
 </button>
 
+<div id="leaderboardOverlay" onclick="closeLeaderboardOutside(event)">
+    <div id="leaderboardModal">
 
-<!-- =========================
-     LEADERBOARD MODAL
-     ========================= -->
+        <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+            <div>
+                <h3 class="font-black text-slate-800 flex items-center gap-2">
+                    <span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
+                        <i data-lucide="trophy" class="w-5 h-5"></i>
+                    </span>
+                    Leaderboard Mekanik
+                </h3>
+                <p class="text-[10px] text-slate-400 font-medium mt-1">Berdasarkan total aktivitas periodic service</p>
+            </div>
+            <button
+                onclick="closeLeaderboard()"
+                class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
+            >
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
 
-<div
-    id="leaderboardOverlay"
-    onclick="closeLeaderboardOutside(event)"
->
+        <div id="leaderboardList" class="p-5 overflow-y-auto max-h-[60vh]">
+            <div class="text-center text-slate-400 text-sm py-6">Memuat leaderboard...</div>
+        </div>
 
-
-<div id="leaderboardModal">
-
-
-<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-
-
-<div>
-
-<h3 class="font-black text-slate-800 flex items-center gap-2">
-
-
-<span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
-
-<i
-    data-lucide="trophy"
-    class="w-5 h-5"
-></i>
-
-</span>
-
-
-Leaderboard Mekanik
-
-</h3>
-
-
-<p class="text-[10px] text-slate-400 font-medium mt-1">
-Berdasarkan total aktivitas periodic service
-</p>
-
-</div>
-
-
-<button
-    onclick="closeLeaderboard()"
-    class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
->
-
-<i
-    data-lucide="x"
-    class="w-5 h-5"
-></i>
-
-</button>
-
-
-</div>
-
-
-<div
-    id="leaderboardList"
-    class="p-5 overflow-y-auto max-h-[60vh]"
->
-
-<div class="text-center text-slate-400 text-sm py-6">
-Memuat leaderboard...
-</div>
-
-</div>
-
-
-</div>
-
+    </div>
 </div>
 
 
 <script>
 
+/* =========================================================
+   CONFIGURATION
+========================================================= */
 
-const API_URL='https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec',
+const API_URL=
+'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
 
-DASHBOARD_URL='periodic.html',
+const DASHBOARD_URL='periodic.html';
 
-ROWS_PER_PAGE=15;
+const ROWS_PER_PAGE=15;
 
-
-let apiData=null,
-allData=[],
-filteredData=[],
-currentPage=1,
-sortState={
-    key:null,
-    direction:0
-};
-
-
-const $=id=>
-document.getElementById(id);
-
-
-const safe=v=>
-String(v??'').replace(
-    /[&<>"']/g,
-    m=>({
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        '"':'&quot;',
-        "'":'&#039;'
-    }[m])
-);
+/* Kolom tabel (Bible Bab 10). PAP difilter sebagai Ada / Kosong. */
+const COLUMNS=[
+    {key:'number',    label:'No',         type:'number', filterable:false, sortable:true},
+    {key:'tanggal',   label:'Tanggal',    type:'date',   filterable:true,  sortable:true},
+    {key:'unit',      label:'Unit',       type:'text',   filterable:true,  sortable:true},
+    {key:'hm',        label:'HM',         type:'text',   filterable:true,  sortable:true},
+    {key:'service',   label:'Service',    type:'text',   filterable:true,  sortable:true},
+    {key:'status',    label:'Status',     type:'text',   filterable:true,  sortable:true},
+    {key:'pic',       label:'PIC / Mekanik', type:'text', filterable:true, sortable:true},
+    {key:'itemRusak', label:'Item Rusak', type:'text',   filterable:true,  sortable:true},
+    {key:'remark',    label:'Remark',     type:'text',   filterable:true,  sortable:true},
+    {key:'pap',       label:'PAP',        type:'link',   filterable:true,  sortable:true}
+];
 
 
-function goToDashboard(){
+/* =========================================================
+   STATE
+========================================================= */
 
-    location.href=DASHBOARD_URL
+let apiData=null;
+let allData=[];          // seluruh baris (__originalIndex = urutan sumber)
+let rowsView=[];         // baris yang lolos semua filter kolom
+let columnFilters={};    // { key: Set(nilai terpilih) }
+let sortKey=null;
+let sortDir=null;
+let currentPage=1;
 
+let openColumn=null;
+let ddValues=[];
+let draftSelection=new Set();
+let ddQuery='';
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $=id=>document.getElementById(id);
+
+const getColumn=key=>COLUMNS.find(c=>c.key===key);
+
+const isEmpty=v=>v===''||v===null||v===undefined;
+
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
 }
-
 
 function handleLogoError(){
-
     $('companyLogo').classList.add('hidden');
-
-    $('logoFallback').classList.remove('hidden')
-
+    const fb=$('logoFallback');
+    fb.classList.remove('hidden');
+    fb.classList.add('flex');
 }
 
-
-async function loadTable(){
-
-try{
-
-
-const r=await fetch(
-    API_URL,
-    {
-        method:'GET',
-        cache:'no-store'
-    }
-);
-
-
-if(!r.ok)
-    throw Error(`HTTP Error ${r.status}`);
-
-
-const result=await r.json();
-
-
-apiData=result;
-
-
-allData=
-Array.isArray(result.data)
-    ?result.data.map(
-        (row,index)=>({
-            ...row,
-            _originalIndex:index
-        })
-    )
-    :[];
-
-
-updateStatistics(result);
-
-
-updateLeaderboardFromData(
-    result.chart?.mechanic||[]
-);
-
-
-filteredData=[...allData];
-
-
-currentPage=1;
-
-
-sortState={
-    key:null,
-    direction:0
-};
-
-
-updateSortHeaders();
-
-
-renderTable();
-
-
-$('loading').style.display='none';
-
-
-$('tableContent').classList.add('show');
-
-
-}catch(error){
-
-
-$('loading').innerHTML=`
-
-<div class="text-center">
-
-<div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
-
-<i data-lucide="alert-circle" class="w-8 h-8"></i>
-
-</div>
-
-<h3 class="font-bold text-red-700 mt-3">
-Gagal memuat data
-</h3>
-
-<p class="text-xs text-slate-500 mt-2 max-w-md">
-${safe(error.message)}
-</p>
-
-<button
-    onclick="loadTable()"
-    class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
->
-Coba Lagi
-</button>
-
-</div>
-`;
-
-
-lucide.createIcons();
-
+function goToDashboard(){
+    window.location.href=DASHBOARD_URL;
 }
-
-}
-
-
-function updateStatistics(result){
-
-const data=result.data||[],
-chart=result.chart||{},
-types=chart.serviceByType||{};
-
-
-const total=
-data.length||
-Object.values(types).reduce(
-    (a,b)=>a+Number(b),
-    0
-);
-
-
-const count=k=>
-Object.entries(types)
-.filter(
-    ([x])=>x.toLowerCase().includes(k)
-)
-.reduce(
-    (a,[,v])=>a+Number(v),
-    0
-);
-
-
-$('totalData').textContent=total;
-
-
-$('periodicTotal').textContent=
-count('periodic');
-
-
-$('generalTotal').textContent=
-count('general');
-
-
-$('baikTotal').textContent=
-Number(chart.status?.Baik||0);
-
-}
-
-
-function applyFilters(){
-
-
-const search=
-$('searchInput').value.trim().toLowerCase();
-
-
-const service=
-$('serviceFilter').value;
-
-
-const status=
-$('statusFilter').value;
-
-
-filteredData=allData.filter(row=>{
-
-
-const text=[
-
-    'tanggal',
-    'unit',
-    'hm',
-    'service',
-    'status',
-    'pic',
-    'itemRusak',
-    'remark',
-    'pap'
-
-]
-.map(k=>row[k])
-.join(' ')
-.toLowerCase();
-
-
-return(
-
-    (!search||text.includes(search))&&
-
-    (!service||
-        String(row.service||'')
-        .trim()
-        .toLowerCase()===service.toLowerCase()
-    )&&
-
-    (!status||
-        String(row.status||'')
-        .trim()
-        .toLowerCase()===status.toLowerCase()
-    )
-
-);
-
-});
-
-
-currentPage=1;
-
-
-applyCurrentSort();
-
-
-renderTable();
-
-}
-
-
-function resetFilters(){
-
-
-$('searchInput').value='';
-$('serviceFilter').value='';
-$('statusFilter').value='';
-
-
-filteredData=[...allData];
-
-
-currentPage=1;
-
-
-applyCurrentSort();
-
-
-renderTable();
-
-}
-
-
-function toggleSort(key){
-
-
-if(sortState.key===key){
-
-
-sortState.direction=
-sortState.direction===0
-    ?1
-    :sortState.direction===1
-        ?-1
-        :0;
-
-
-}else{
-
-
-sortState.key=key;
-
-sortState.direction=1;
-
-}
-
-
-applyCurrentSort();
-
-
-currentPage=1;
-
-
-updateSortHeaders();
-
-
-renderTable();
-
-}
-
-
-function applyCurrentSort(){
-
-
-if(!sortState.key||!sortState.direction){
-
-
-filteredData.sort(
-    (a,b)=>
-        a._originalIndex-b._originalIndex
-);
-
-
-return;
-
-}
-
-
-const{
-    direction
-}=sortState;
-
-
-const key=sortState.key;
-
-
-filteredData.sort((a,b)=>{
-
-
-const c=
-compareRows(a,b,key);
-
-
-return c
-    ?c*direction
-    :a._originalIndex-b._originalIndex;
-
-});
-
-}
-
-
-function compareRows(a,b,key){
-
-
-if(key==='tanggal'){
-
-
-const x=
-parseIndonesianDate(a.tanggal),
-
-y=
-parseIndonesianDate(b.tanggal);
-
-
-if(x===null&&y===null)
-    return 0;
-
-
-if(x===null)
-    return 1;
-
-
-if(y===null)
-    return -1;
-
-
-return x-y;
-
-}
-
-
-if(key==='hm'){
-
-
-const x=parseNumber(a.hm),
-y=parseNumber(b.hm);
-
-
-if(x===null&&y===null)
-    return 0;
-
-
-if(x===null)
-    return 1;
-
-
-if(y===null)
-    return -1;
-
-
-return x-y;
-
-}
-
-
-const x=
-String(a[key]??'')
-.trim()
-.toLowerCase();
-
-
-const y=
-String(b[key]??'')
-.trim()
-.toLowerCase();
-
-
-if(!x&&!y)
-    return 0;
-
-
-if(!x)
-    return 1;
-
-
-if(!y)
-    return -1;
-
-
-return x.localeCompare(
-    y,
-    'id',
-    {
-        numeric:true,
-        sensitivity:'base'
-    }
-);
-
-}
-
-
-function parseIndonesianDate(value){
-
-
-if(value==null)
-    return null;
-
-
-if(value instanceof Date)
-
-return Number.isNaN(value.getTime())
-    ?null
-    :value.getTime();
-
-
-let t=
-String(value).trim();
-
-
-if(!t)
-    return null;
-
-
-t=t.replace(
-    /T\d{1,2}:\d{2}(:\d{2})?.*$/,
-    ''
-).trim();
-
-
-let m=t.match(
-    /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
-);
-
-
-if(m)
-
-return validDate(
-    +m[3],
-    +m[2],
-    +m[1]
-);
-
-
-m=t.match(
-    /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
-);
-
-
-if(m)
-
-return validDate(
-    +m[1],
-    +m[2],
-    +m[3]
-);
-
-
-if(/^\d+(\.\d+)?$/.test(t)){
-
-
-const n=Number(t);
-
-
-if(n>20000&&n<100000)
-
-return Date.UTC(1899,11,30)+
-n*86400000;
-
-}
-
-
-const d=new Date(t);
-
-
-return Number.isNaN(d.getTime())
-    ?null
-    :d.getTime();
-
-}
-
-
-function validDate(y,m,d){
-
-
-const x=new Date(
-    Date.UTC(y,m-1,d)
-);
-
-
-return x.getUTCFullYear()===y&&
-x.getUTCMonth()===m-1&&
-x.getUTCDate()===d
-
-    ?x.getTime()
-
-    :null;
-
-}
-
 
 function parseNumber(value){
-
-
-if(
-    value==null||
-    String(value).trim()===''
-)
-
-return null;
-
-
-const n=Number(
-    String(value)
-    .trim()
-    .replace(/\s/g,'')
-    .replace(/,/g,'')
-);
-
-
-return Number.isNaN(n)
-    ?null
-    :n;
-
+    if(value===null||value===undefined||String(value).trim()==='') return null;
+    const n=Number(String(value).trim().replace(/\s/g,'').replace(/,/g,''));
+    return Number.isNaN(n)?null:n;
 }
 
 
-function updateSortHeaders(){
+/* =========================================================
+   TANGGAL
+========================================================= */
+
+function parseDateValue(value){
+
+    if(value===null||value===undefined) return null;
+
+    const text=String(value).trim();
+    if(!text) return null;
+
+    let m=text.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/);
+    if(m){
+        const d=+m[1],mo=+m[2],y=+m[3];
+        if(d>=1&&d<=31&&mo>=1&&mo<=12) return {day:d,month:mo,year:y};
+    }
+
+    m=text.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/);
+    if(m){
+        const y=+m[1],mo=+m[2],d=+m[3];
+        if(d>=1&&d<=31&&mo>=1&&mo<=12) return {day:d,month:mo,year:y};
+    }
+
+    const p=new Date(text);
+    return isNaN(p.getTime())
+        ? null
+        : {day:p.getDate(),month:p.getMonth()+1,year:p.getFullYear()};
+}
+
+function dateSortNumber(value){
+    const d=parseDateValue(value);
+    return d?d.year*10000+d.month*100+d.day:null;
+}
 
 
-document
-.querySelectorAll(
-    '.sort-button[data-sort-key]'
-)
-.forEach(b=>{
+/* =========================================================
+   FILTER ENGINE (Excel-style, saling mempengaruhi)
+========================================================= */
+
+/* Satu nilai per baris. PAP difilter sebagai 'Ada' atau kosong. */
+function getRowValues(row,key){
+
+    if(key==='pap'){
+        return [String(row.pap??'').trim()?'Ada':''];
+    }
+
+    return [String(row[key]??'').trim()];
+
+}
+
+function getValueLabel(key,value){
+    return value||'(Kosong)';
+}
+
+function rowPasses(row,excludeKey){
+    return Object.keys(columnFilters).every(key=>{
+        if(key===excludeKey) return true;
+        const set=columnFilters[key];
+        return getRowValues(row,key).some(v=>set.has(v));
+    });
+}
+
+/* Nilai unik + jumlah, dari baris yang lolos filter KOLOM LAIN */
+function distinctValues(key){
+
+    const map=new Map();
+
+    allData.forEach(row=>{
+        if(!rowPasses(row,key)) return;
+        getRowValues(row,key).forEach(v=>map.set(v,(map.get(v)||0)+1));
+    });
+
+    const col=getColumn(key);
+
+    return [...map.entries()]
+        .map(([value,count])=>({value,count}))
+        .sort((a,b)=>{
+
+            if(a.value===''||b.value==='') return (a.value==='')-(b.value==='');
+
+            if(col.type==='date'){
+                const da=dateSortNumber(a.value);
+                const db=dateSortNumber(b.value);
+                if(da===null||db===null) return a.value.localeCompare(b.value,'id');
+                return da-db;
+            }
+
+            return a.value.localeCompare(b.value,'id',{numeric:true,sensitivity:'base'});
+
+        });
+}
+
+function applyAllFilters(){
+    rowsView=allData.filter(row=>rowPasses(row,null));
+    currentPage=1;
+    renderTable();
+}
+
+function removeColumnFilter(key){
+    delete columnFilters[key];
+    applyAllFilters();
+}
+
+function clearAllFilters(){
+    columnFilters={};
+    applyAllFilters();
+}
 
 
-const active=
-sortState.key===b.dataset.sortKey&&
-sortState.direction!==0;
+/* =========================================================
+   SORT
+========================================================= */
+
+function getSortValue(row,key){
+
+    switch(key){
+
+        case 'number':  return row.__originalIndex;
+        case 'tanggal': return dateSortNumber(row.tanggal);
+        case 'hm':      return parseNumber(row.hm);
+        default:        return String(row[key]??'').trim().toLowerCase();
+
+    }
+
+}
+
+function getSortedData(rows){
+
+    const list=[...rows];
+
+    if(!sortKey||!sortDir){
+        return list.sort((a,b)=>a.__originalIndex-b.__originalIndex);
+    }
+
+    return list.sort((a,b)=>{
+
+        const va=getSortValue(a,sortKey);
+        const vb=getSortValue(b,sortKey);
+
+        /* Kosong selalu di paling akhir */
+        if(isEmpty(va)!==isEmpty(vb)) return isEmpty(va)?1:-1;
+        if(isEmpty(va)) return a.__originalIndex-b.__originalIndex;
+
+        let c;
+
+        if(typeof va==='number'&&typeof vb==='number'){
+            c=va-vb;
+        }else{
+            c=String(va).localeCompare(String(vb),'id',{numeric:true,sensitivity:'base'});
+        }
+
+        if(c===0) c=a.__originalIndex-b.__originalIndex;
+
+        return sortDir==='asc'?c:-c;
+
+    });
+}
 
 
-b.classList.toggle(
-    'sort-active',
-    active
-);
+/* =========================================================
+   POPUP FILTER & SORT
+========================================================= */
 
+function openColumnMenu(key,anchor){
 
-b.classList.toggle(
-    'sort-normal',
-    !active
-);
+    if(openColumn===key){
+        closeColumnMenu();
+        return;
+    }
 
+    closeColumnMenu();
 
-const icon=
-b.querySelector('.sort-icon');
+    const col=getColumn(key);
 
+    openColumn=key;
+    ddQuery='';
 
-if(icon)
+    ddValues=col.filterable?distinctValues(key):[];
 
-icon.setAttribute(
-    'data-lucide',
-    active
+    draftSelection=new Set(
+        columnFilters[key]
+            ?[...columnFilters[key]]
+            :ddValues.map(v=>v.value)
+    );
 
-        ?(
-            sortState.direction===1
-                ?'arrow-up'
-                :'arrow-down'
-        )
+    const dd=$('colDropdown');
 
-        :'arrow-up-down'
-);
+    dd.innerHTML=buildDropdown(col);
+    dd.hidden=false;
 
+    positionColumnMenu(anchor);
+    renderDdList();
+    lucide.createIcons();
 
-b.title=
-active
+    if(!window.matchMedia('(max-width:767px)').matches){
+        const s=dd.querySelector('.dd-search');
+        if(s) s.focus();
+    }
 
-    ?(
-        sortState.direction===1
-            ?'Urutan naik (ASC)'
-            :'Urutan turun (DESC)'
-    )
+}
 
-    :'Klik: ASC → DESC → Urutan Normal';
+function closeColumnMenu(){
+    const dd=$('colDropdown');
+    dd.hidden=true;
+    dd.innerHTML='';
+    openColumn=null;
+}
 
+function positionColumnMenu(anchor){
+
+    const dd=$('colDropdown');
+
+    if(window.matchMedia('(max-width:767px)').matches){
+        dd.classList.add('is-sheet');
+        dd.style.left='';
+        dd.style.top='';
+        return;
+    }
+
+    dd.classList.remove('is-sheet');
+
+    const r=anchor.getBoundingClientRect();
+    const w=dd.offsetWidth||240;
+    const h=dd.offsetHeight||0;
+
+    let left=r.left;
+    if(left+w>window.innerWidth-8) left=Math.max(8,r.right-w);
+
+    let top=r.bottom+6;
+    if(top+h>window.innerHeight-8) top=Math.max(8,r.top-h-6);
+
+    dd.style.left=left+'px';
+    dd.style.top=top+'px';
+}
+
+function buildDropdown(col){
+
+    const labels=col.type==='date'
+        ?['Lama→Baru','Baru→Lama']
+        :col.type==='number'
+            ?['Naik','Turun']
+            :['A→Z','Z→A'];
+
+    const current=sortKey===col.key?sortDir:null;
+
+    const sortHtml=`
+        <div class="dd-sort">
+            <button class="dd-sort-btn ${current==='asc'?'on':''}" onclick="ddSetSort('asc')">${labels[0]}</button>
+            <button class="dd-sort-btn ${current==='desc'?'on':''}" onclick="ddSetSort('desc')">${labels[1]}</button>
+        </div>
+    `;
+
+    if(!col.filterable) return sortHtml;
+
+    return sortHtml+`
+        <div class="dd-divider"></div>
+        <div class="dd-search-wrap">
+            <i data-lucide="search" class="dd-search-icon"></i>
+            <input class="dd-search" type="text" placeholder="Cari ${escapeHtml(col.label)}..." oninput="ddSearch(this.value)">
+        </div>
+        <div class="dd-list" id="ddList"></div>
+        <div class="dd-footer">
+            <button class="dd-reset" onclick="ddReset()">Reset</button>
+            <button class="dd-apply" onclick="ddApply()">Terapkan</button>
+        </div>
+    `;
+}
+
+function ddVisible(){
+    return ddValues.filter(v=>
+        !ddQuery||getValueLabel(openColumn,v.value).toLowerCase().includes(ddQuery)
+    );
+}
+
+function renderDdList(){
+
+    const list=$('ddList');
+    if(!list) return;
+
+    const prevScroll=list.scrollTop;
+    const visible=ddVisible();
+
+    if(!visible.length){
+        list.innerHTML='<div class="dd-empty">Tidak ada nilai</div>';
+        return;
+    }
+
+    const allChecked=visible.every(v=>draftSelection.has(v.value));
+
+    list.innerHTML=`
+        <label class="dd-item dd-all">
+            <input type="checkbox" ${allChecked?'checked':''} onchange="ddToggleAll(this.checked)">
+            <span class="dd-item-label">(Pilih Semua)</span>
+        </label>
+        ${visible.map(v=>`
+            <label class="dd-item">
+                <input
+                    type="checkbox"
+                    ${draftSelection.has(v.value)?'checked':''}
+                    onchange="ddToggle(${ddValues.indexOf(v)},this.checked)"
+                >
+                <span class="dd-item-label">${escapeHtml(getValueLabel(openColumn,v.value))}</span>
+                <span class="dd-item-count">${v.count}</span>
+            </label>
+        `).join('')}
+    `;
+
+    list.scrollTop=prevScroll;
+}
+
+function ddSearch(query){
+    ddQuery=String(query).trim().toLowerCase();
+    renderDdList();
+}
+
+function ddToggle(index,checked){
+    const v=ddValues[index].value;
+    if(checked) draftSelection.add(v);
+    else draftSelection.delete(v);
+    renderDdList();
+}
+
+function ddToggleAll(checked){
+    ddVisible().forEach(v=>{
+        if(checked) draftSelection.add(v.value);
+        else draftSelection.delete(v.value);
+    });
+    renderDdList();
+}
+
+function ddSetSort(dir){
+    sortKey=openColumn;
+    sortDir=dir;
+    closeColumnMenu();
+    currentPage=1;
+    renderTable();
+}
+
+function ddApply(){
+    if(!openColumn) return;
+    const allSelected=ddValues.every(v=>draftSelection.has(v.value));
+    if(allSelected) delete columnFilters[openColumn];
+    else columnFilters[openColumn]=new Set(draftSelection);
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+function ddReset(){
+    if(!openColumn) return;
+    delete columnFilters[openColumn];
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+/* Tutup popup: klik di luar, scroll halaman, resize, Escape */
+document.addEventListener('mousedown',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    if(e.target.closest('[data-col-trigger]')) return;
+    closeColumnMenu();
 });
 
+window.addEventListener('scroll',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    closeColumnMenu();
+},true);
 
-lucide.createIcons();
+window.addEventListener('resize',closeColumnMenu);
+
+
+/* =========================================================
+   RENDER HEADER, FILTER BAR, CHIP, STATISTIK
+========================================================= */
+
+function renderTableHead(){
+
+    $('tableHeadRow').innerHTML=COLUMNS.map(col=>{
+
+        const sorted=sortKey===col.key&&!!sortDir;
+        const filtered=!!columnFilters[col.key];
+        const active=sorted||filtered;
+
+        const sortIcon=
+            !sorted?'chevrons-up-down':
+            sortDir==='asc'?'chevron-up':'chevron-down';
+
+        return `
+            <th>
+                <button
+                    class="col-header ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    <span>${col.label}</span>
+                    <span class="col-icons">
+                        <i data-lucide="${sortIcon}" class="col-sort-icon ${sorted?'on':''}"></i>
+                        ${col.filterable
+                            ?`<i data-lucide="filter" class="col-filter-icon ${filtered?'on':''}"></i>`
+                            :''}
+                    </span>
+                </button>
+            </th>
+        `;
+
+    }).join('');
+
+}
+
+function renderMobileFilterBar(){
+
+    $('mobileFilterBar').innerHTML=COLUMNS
+        .filter(c=>c.filterable)
+        .map(col=>{
+
+            const f=columnFilters[col.key];
+            const sorted=sortKey===col.key&&!!sortDir;
+            const active=!!f||sorted;
+
+            return `
+                <button
+                    class="mobile-filter-btn ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    ${col.label}
+                    ${f?`<span class="mobile-filter-count">${f.size}</span>`:''}
+                    ${sorted?`<i data-lucide="${sortDir==='asc'?'chevron-up':'chevron-down'}" class="w-3 h-3"></i>`:''}
+                </button>
+            `;
+
+        }).join('');
+
+}
+
+function renderActiveFilters(){
+
+    const bar=$('activeFilters');
+    const keys=Object.keys(columnFilters);
+
+    if(!keys.length){
+        bar.hidden=true;
+        bar.innerHTML='';
+        return;
+    }
+
+    bar.hidden=false;
+
+    bar.innerHTML=keys.map(key=>{
+
+        const labels=[...columnFilters[key]].map(v=>getValueLabel(key,v));
+
+        const text=labels.length
+            ?labels[0]+(labels.length>1?`, +${labels.length-1}`:'')
+            :'(Tidak ada)';
+
+        return `
+            <span class="active-filter-chip">
+                ${escapeHtml(getColumn(key).label)}: ${escapeHtml(text)}
+                <button onclick="removeColumnFilter('${key}')" aria-label="Hapus filter">×</button>
+            </span>
+        `;
+
+    }).join('')+`<button class="clear-all-btn" onclick="clearAllFilters()">Hapus Semua</button>`;
+
+}
+
+/* Statistik dihitung dari baris yang lolos filter */
+function updateStatistics(rows){
+
+    const isPeriodic=r=>String(r.service||'').toLowerCase().includes('periodic');
+    const isGeneral=r=>String(r.service||'').toLowerCase().includes('general');
+    const isBaik=r=>String(r.status||'').trim().toLowerCase()==='baik';
+
+    $('totalData').textContent=rows.length.toLocaleString('id-ID');
+    $('periodicTotal').textContent=rows.filter(isPeriodic).length.toLocaleString('id-ID');
+    $('generalTotal').textContent=rows.filter(isGeneral).length.toLocaleString('id-ID');
+    $('baikTotal').textContent=rows.filter(isBaik).length.toLocaleString('id-ID');
 
 }
 
 
-function renderTable(){
-
-
-const tbody=
-$('tableBody');
-
-
-const mobile=
-$('mobileDataList');
-
-
-const empty=
-$('emptyState');
-
-
-tbody.innerHTML='';
-
-
-mobile.innerHTML='';
-
-
-const total=
-filteredData.length;
-
-
-const pages=
-Math.max(
-    1,
-    Math.ceil(
-        total/ROWS_PER_PAGE
-    )
-);
-
-
-currentPage=
-Math.min(
-    currentPage,
-    pages
-);
-
-
-const start=
-(currentPage-1)*ROWS_PER_PAGE;
-
-
-const end=
-Math.min(
-    start+ROWS_PER_PAGE,
-    total
-);
-
-
-const rows=
-filteredData.slice(
-    start,
-    end
-);
-
-
-empty.classList.toggle(
-    'hidden',
-    !!rows.length
-);
-
-
-if(rows.length){
-
-
-rows.forEach((row,i)=>{
-
-
-const no=
-start+i+1;
-
-
-const tr=
-document.createElement('tr');
-
-
-tr.innerHTML=`
-
-<td class="text-center font-bold text-slate-400">
-${no}
-</td>
-
-
-<td class="whitespace-nowrap">
-${safe(row.tanggal)}
-</td>
-
-
-<td>
-
-<span class="unit-badge">
-${safe(row.unit)}
-</span>
-
-</td>
-
-
-<td class="whitespace-nowrap font-semibold text-slate-600">
-${safe(row.hm)}
-</td>
-
-
-<td>
-${getServiceBadge(row.service)}
-</td>
-
-
-<td>
-${getStatusBadge(row.status)}
-</td>
-
-
-<td class="font-semibold text-slate-700">
-${safe(row.pic)}
-</td>
-
-
-<td
-    class="max-w-[180px] truncate"
-    title="${safe(row.itemRusak)}"
->
-
-${safe(row.itemRusak)||
-'<span class="text-slate-300">-</span>'}
-
-</td>
-
-
-<td
-    class="max-w-[220px] truncate"
-    title="${safe(row.remark)}"
->
-
-${safe(row.remark)||
-'<span class="text-slate-300">-</span>'}
-
-</td>
-
-
-<td>
-${getPapLink(row.pap)}
-</td>
-
-`;
-
-
-tbody.appendChild(tr);
-
-
-/* =========================
-   MOBILE CARD
-   ========================= */
-
-
-const card=
-document.createElement('div');
-
-
-card.className=
-'mobile-data-card';
-
-
-card.innerHTML=`
-
-<div class="mobile-card-header">
-
-
-<div>
-
-
-<div class="flex items-center gap-2">
-
-
-<span class="mobile-number">
-${no}
-</span>
-
-
-<div class="mobile-unit">
-${safe(row.unit)}
-</div>
-
-
-</div>
-
-
-<div class="mobile-date">
-
-
-<i
-    data-lucide="calendar-days"
-    class="inline w-3 h-3 mr-1"
-></i>
-
-
-${safe(row.tanggal)}
-
-
-</div>
-
-
-</div>
-
-
-<div>
-
-${getStatusBadge(row.status)}
-
-</div>
-
-
-</div>
-
-
-<div class="mobile-card-grid">
-
-
-<div class="mobile-field">
-
-
-<div class="mobile-label">
-HM
-</div>
-
-
-<div class="mobile-value">
-${safe(row.hm)||'-'}
-</div>
-
-
-</div>
-
-
-<div class="mobile-field">
-
-
-<div class="mobile-label">
-Service
-</div>
-
-
-<div>
-
-${getServiceBadge(row.service)}
-
-</div>
-
-
-</div>
-
-
-<div class="mobile-field">
-
-
-<div class="mobile-label">
-PIC / Mekanik
-</div>
-
-
-<div class="mobile-value">
-${safe(row.pic)||'-'}
-</div>
-
-
-</div>
-
-
-<div class="mobile-field">
-
-
-<div class="mobile-label">
-Item Rusak
-</div>
-
-
-<div class="mobile-value">
-
-${safe(row.itemRusak)||
-'<span class="text-slate-300">-</span>'}
-
-</div>
-
-
-</div>
-
-
-<div class="mobile-field full">
-
-
-<div class="mobile-label">
-Remark
-</div>
-
-
-<div class="mobile-remark">
-
-${safe(row.remark)||
-'<span class="text-slate-300">Tidak ada remark</span>'}
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-<div class="mobile-pap">
-
-${getPapLink(row.pap)}
-
-</div>
-
-`;
-
-
-mobile.appendChild(card);
-
-});
-
-}
-
-
-updateResultInfo(
-    total,
-    start,
-    end
-);
-
-
-renderPagination(pages);
-
-
-lucide.createIcons();
-
-}
-
-
-function getPapLink(pap){
-
-
-const value=
-String(pap||'').trim();
-
-
-if(!value)
-
-return '<span class="text-slate-300">-</span>';
-
-
-let url;
-
-
-try{
-
-url=new URL(value);
-
-}catch{
-
-
-return `
-
-<span
-    class="text-slate-400 text-[10px] font-medium"
-    title="${safe(value)}"
->
-${safe(value)}
-</span>
-
-`;
-
-}
-
-
-if(
-    !['http:','https:']
-    .includes(url.protocol)
-)
-
-return '<span class="text-slate-400">-</span>';
-
-
-return `
-
-<a
-    href="${safe(url.href)}"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="pap-link"
-    title="Lihat gambar PAP"
->
-
-<i
-    data-lucide="image"
-    class="w-3.5 h-3.5"
-></i>
-
-Lihat PAP
-
-</a>
-
-`;
-
-}
-
+/* =========================================================
+   BADGE & CELL HELPERS
+========================================================= */
 
 function getServiceBadge(service){
 
+    const value=String(service??'').trim();
+    const l=value.toLowerCase();
 
-const value=
-String(service||'').trim();
+    const cls=l.includes('periodic')
+        ?'service-periodic'
+        :l.includes('general')
+            ?'service-general'
+            :'service-other';
 
-
-const l=
-value.toLowerCase();
-
-
-const cls=
-l.includes('periodic')
-
-    ?'service-periodic'
-
-    :l.includes('general')
-
-        ?'service-general'
-
-        :'service-other';
-
-
-return `
-
-<span class="service-badge ${cls}">
-${safe(value||'-')}
-</span>
-
-`;
+    return `<span class="service-badge ${cls}">${escapeHtml(value||'-')}</span>`;
 
 }
-
 
 function getStatusBadge(status){
 
+    const value=String(status??'').trim();
+    const l=value.toLowerCase();
 
-const value=
-String(status||'').trim();
+    const cls=l==='baik'?'status-good':l==='rusak'?'status-bad':'status-other';
+    const icon=l==='baik'?'circle-check':l==='rusak'?'circle-alert':'circle';
 
-
-const l=
-value.toLowerCase();
-
-
-const good=
-l==='baik';
-
-
-const bad=
-l==='rusak';
-
-
-return `
-
-<span class="status-badge ${
-
-    good
-
-        ?'status-good'
-
-        :bad
-
-            ?'status-bad'
-
-            :'status-other'
-
-}">
-
-
-<i
-    data-lucide="${
-
-        good
-
-            ?'circle-check'
-
-            :bad
-
-                ?'circle-alert'
-
-                :'circle'
-
-    }"
-    class="w-3 h-3"
-></i>
-
-
-${safe(value||'-')}
-
-
-</span>
-
-`;
+    return `
+        <span class="status-badge ${cls}">
+            <i data-lucide="${icon}" class="w-3 h-3"></i>
+            ${escapeHtml(value||'-')}
+        </span>
+    `;
 
 }
 
+function getPapLink(pap){
+
+    const value=String(pap??'').trim();
+
+    if(!value) return '<span class="text-slate-300">-</span>';
+
+    let url;
+
+    try{
+        url=new URL(value);
+    }catch{
+        return `<span class="text-slate-400 text-[10px] font-medium" title="${escapeHtml(value)}">${escapeHtml(value)}</span>`;
+    }
+
+    if(url.protocol!=='http:'&&url.protocol!=='https:'){
+        return '<span class="text-slate-400">-</span>';
+    }
+
+    return `
+        <a href="${escapeHtml(url.href)}" target="_blank" rel="noopener noreferrer"
+            class="pap-link" title="Lihat gambar PAP">
+            <i data-lucide="image" class="w-3.5 h-3.5"></i>
+            Lihat PAP
+        </a>`;
+
+}
+
+
+/* =========================================================
+   RENDER TABLE + KARTU MOBILE
+========================================================= */
+
+function renderTable(){
+
+    renderTableHead();
+    renderMobileFilterBar();
+    renderActiveFilters();
+    updateStatistics(rowsView);
+
+    const tbody=$('tableBody');
+    const mobile=$('mobileDataList');
+
+    tbody.innerHTML='';
+    mobile.innerHTML='';
+
+    const sorted=getSortedData(rowsView);
+    const total=sorted.length;
+    const pages=Math.max(1,Math.ceil(total/ROWS_PER_PAGE));
+
+    if(currentPage>pages) currentPage=pages;
+
+    const start=(currentPage-1)*ROWS_PER_PAGE;
+    const end=Math.min(start+ROWS_PER_PAGE,total);
+    const rows=sorted.slice(start,end);
+
+    $('emptyState').classList.toggle('hidden',rows.length>0);
+
+    rows.forEach((row,index)=>{
+
+        const no=start+index+1;
+
+        /* ---- baris tabel (desktop) ---- */
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+            <td class="text-center font-bold text-slate-400">${no}</td>
+            <td class="whitespace-nowrap">${escapeHtml(row.tanggal)}</td>
+            <td><span class="unit-badge">${escapeHtml(row.unit)}</span></td>
+            <td class="whitespace-nowrap font-semibold text-slate-600">${escapeHtml(row.hm)}</td>
+            <td>${getServiceBadge(row.service)}</td>
+            <td>${getStatusBadge(row.status)}</td>
+            <td class="font-semibold text-slate-700">${escapeHtml(row.pic)}</td>
+            <td class="truncate" title="${escapeHtml(row.itemRusak)}">
+                ${escapeHtml(row.itemRusak)||'<span class="text-slate-300">-</span>'}
+            </td>
+            <td class="truncate" title="${escapeHtml(row.remark)}">
+                ${escapeHtml(row.remark)||'<span class="text-slate-300">-</span>'}
+            </td>
+            <td>${getPapLink(row.pap)}</td>
+        `;
+        tbody.appendChild(tr);
+
+        /* ---- kartu mobile ---- */
+        const card=document.createElement('div');
+        card.className='mobile-data-card';
+        card.innerHTML=`
+            <div class="mobile-card-header">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="mobile-number">${no}</span>
+                        <div class="mobile-unit">${escapeHtml(row.unit)}</div>
+                    </div>
+                    <div class="mobile-date">
+                        <i data-lucide="calendar-days" class="w-3 h-3"></i>
+                        ${escapeHtml(row.tanggal)}
+                    </div>
+                </div>
+                <div>${getStatusBadge(row.status)}</div>
+            </div>
+
+            <div class="mobile-card-grid">
+                <div class="mobile-field">
+                    <div class="mobile-label">HM</div>
+                    <div class="mobile-value">${escapeHtml(row.hm)||'-'}</div>
+                </div>
+                <div class="mobile-field">
+                    <div class="mobile-label">Service</div>
+                    <div>${getServiceBadge(row.service)}</div>
+                </div>
+                <div class="mobile-field">
+                    <div class="mobile-label">PIC / Mekanik</div>
+                    <div class="mobile-value">${escapeHtml(row.pic)||'-'}</div>
+                </div>
+                <div class="mobile-field">
+                    <div class="mobile-label">Item Rusak</div>
+                    <div class="mobile-value">${escapeHtml(row.itemRusak)||'<span class="text-slate-300">-</span>'}</div>
+                </div>
+                <div class="mobile-field full">
+                    <div class="mobile-label">Remark</div>
+                    <div class="mobile-remark">
+                        ${escapeHtml(row.remark)||'<span class="text-slate-300">Tidak ada remark</span>'}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile-pap">${getPapLink(row.pap)}</div>
+        `;
+        mobile.appendChild(card);
+
+    });
+
+    updateResultInfo(total,start,end);
+    renderPagination(pages);
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   RESULT INFO & PAGINATION
+========================================================= */
 
 function updateResultInfo(total,start,end){
 
+    if(!total){
+        $('resultInfo').textContent='Tidak ada data yang sesuai filter.';
+        $('paginationInfo').textContent='0 data';
+        return;
+    }
 
-if(!total){
-
-
-$('resultInfo').textContent=
-'Tidak ada data yang sesuai filter.';
-
-
-$('paginationInfo').textContent=
-'0 data';
-
-
-return;
+    $('resultInfo').textContent=`Menampilkan ${start+1}–${end} dari ${total} data`;
+    $('paginationInfo').textContent=`${total} data ditemukan`;
 
 }
-
-
-$('resultInfo').textContent=
-`Menampilkan ${start+1}–${end} dari ${total} data`;
-
-
-$('paginationInfo').textContent=
-`${total} data ditemukan`;
-
-}
-
 
 function renderPagination(totalPages){
 
+    const c=$('pagination');
+    c.innerHTML='';
 
-const c=
-$('pagination');
+    if(!rowsView.length) return;
 
+    const add=(content,cls,disabled,fn)=>{
+        const b=document.createElement('button');
+        b.className='pagination-button'+(cls?' '+cls:'');
+        b.disabled=!!disabled;
+        const s=String(content);
+        if(s.startsWith('<')) b.innerHTML=s;
+        else b.textContent=s;
+        if(fn) b.onclick=fn;
+        c.appendChild(b);
+    };
 
-c.innerHTML='';
+    add('<i data-lucide="chevron-left" class="w-4 h-4"></i>','',currentPage===1,()=>{
+        if(currentPage>1){currentPage--;renderTable();}
+    });
 
-
-if(!filteredData.length)
-return;
-
-
-const add=(
-    content,
-    cls='',
-    disabled=false,
-    fn=null
-)=>{
-
-
-const b=
-document.createElement('button');
-
-
-b.className=
-'pagination-button'+
-(cls?' '+cls:'');
-
-
-b.disabled=
-disabled;
-
-
-typeof content==='string'&&
-content.startsWith('<i')
-
-    ?b.innerHTML=content
-
-    :b.textContent=content;
-
-
-if(fn)
-b.onclick=fn;
-
-
-c.appendChild(b);
-
-};
-
-
-add(
-
-    '<i data-lucide="chevron-left" class="w-4 h-4"></i>',
-
-    '',
-
-    currentPage===1,
-
-    ()=>{
-
-        if(currentPage>1){
-
-            currentPage--;
-
-            renderTable();
-
-        }
-
-    }
-
-);
-
-
-getPaginationPages(
-    currentPage,
-    totalPages
-)
-.forEach(
-
-    p=>
-
-    p==='...'
-
-        ?(()=>{
-
-            const s=
-            document.createElement('span');
-
-            s.className=
-            'px-2 text-slate-400 text-xs';
-
+    getPaginationPages(currentPage,totalPages).forEach(p=>{
+        if(p==='...'){
+            const s=document.createElement('span');
+            s.className='px-2 text-slate-400 text-xs';
             s.textContent='...';
-
             c.appendChild(s);
-
-        })()
-
-        :add(
-
-            p,
-
-            p===currentPage?'active':'',
-
-            false,
-
-            ()=>{
-
-                currentPage=p;
-
-                renderTable();
-
-            }
-
-        )
-
-);
-
-
-add(
-
-    '<i data-lucide="chevron-right" class="w-4 h-4"></i>',
-
-    '',
-
-    currentPage===totalPages,
-
-    ()=>{
-
-        if(currentPage<totalPages){
-
-            currentPage++;
-
-            renderTable();
-
+            return;
         }
+        add(p,p===currentPage?'active':'',false,()=>{currentPage=p;renderTable();});
+    });
 
-    }
+    add('<i data-lucide="chevron-right" class="w-4 h-4"></i>','',currentPage===totalPages,()=>{
+        if(currentPage<totalPages){currentPage++;renderTable();}
+    });
 
-);
-
-
-lucide.createIcons();
+    lucide.createIcons();
 
 }
-
 
 function getPaginationPages(current,total){
-
-
-if(total<=7)
-
-return Array.from(
-    {length:total},
-    (_,i)=>i+1
-);
-
-
-const p=[1];
-
-
-if(current>4)
-p.push('...');
-
-
-for(
-
-    let i=Math.max(2,current-1);
-
-    i<=Math.min(total-1,current+1);
-
-    i++
-
-)
-
-p.push(i);
-
-
-if(current<total-3)
-p.push('...');
-
-
-p.push(total);
-
-
-return p;
-
+    if(total<=7) return Array.from({length:total},(_,i)=>i+1);
+    const p=[1];
+    if(current>4) p.push('...');
+    for(let i=Math.max(2,current-1);i<=Math.min(total-1,current+1);i++) p.push(i);
+    if(current<total-3) p.push('...');
+    p.push(total);
+    return p;
 }
 
+
+/* =========================================================
+   LEADERBOARD (dari chart API)
+========================================================= */
 
 function updateLeaderboardFromData(data){
 
+    const list=$('leaderboardList');
 
-const list=
-$('leaderboardList');
+    if(!Array.isArray(data)||!data.length){
+        list.innerHTML='<div class="text-center text-slate-400 text-sm py-6">Belum ada data mekanik.</div>';
+        return;
+    }
 
-
-if(!data.length){
-
-
-list.innerHTML=
-`
-
-<div class="text-center text-slate-400 text-sm py-6">
-Belum ada data mekanik.
-</div>
-
-`;
-
-return;
-
-}
-
-
-list.innerHTML=
-
-[...data]
-.sort(
-
-    (a,b)=>
-        Number(b.count||0)-
-        Number(a.count||0)
-
-)
-.map((m,i)=>{
-
-
-const rank=
-i+1;
-
-
-const cls=
-rank<=3
-    ?`top-${rank}`
-    :'';
-
-
-const medal=
-rank===1
-    ?'🥇'
-    :rank===2
-        ?'🥈'
-        :rank===3
-            ?'🥉'
-            :rank;
-
-
-return `
-
-<div class="leader-row ${cls}">
-
-
-<div class="leader-rank">
-${medal}
-</div>
-
-
-<div class="leader-name truncate">
-${safe(m.name)}
-</div>
-
-
-<div class="leader-count">
-${Number(m.count||0)} pekerjaan
-</div>
-
-
-</div>
-
-`;
-
-})
-.join('');
+    list.innerHTML=[...data]
+        .sort((a,b)=>Number(b.count||0)-Number(a.count||0))
+        .map((m,i)=>{
+            const rank=i+1;
+            const cls=rank<=3?`top-${rank}`:'';
+            const medal=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
+            return `
+                <div class="leader-row ${cls}">
+                    <div class="leader-rank">${medal}</div>
+                    <div class="leader-name truncate">${escapeHtml(m.name)}</div>
+                    <div class="leader-count">${Number(m.count||0)} pekerjaan</div>
+                </div>`;
+        })
+        .join('');
 
 }
-
 
 function openLeaderboard(){
-
-
-if(apiData?.chart?.mechanic)
-
-updateLeaderboardFromData(
-    apiData.chart.mechanic
-);
-
-
-$('leaderboardOverlay')
-.classList.add('show');
-
-
-document.body.style.overflow='hidden';
-
+    if(apiData?.chart?.mechanic) updateLeaderboardFromData(apiData.chart.mechanic);
+    $('leaderboardOverlay').classList.add('show');
+    document.body.style.overflow='hidden';
 }
-
 
 function closeLeaderboard(){
-
-
-$('leaderboardOverlay')
-.classList.remove('show');
-
-
-document.body.style.overflow='';
-
+    $('leaderboardOverlay').classList.remove('show');
+    document.body.style.overflow='';
 }
-
 
 function closeLeaderboardOutside(e){
-
-
-if(
-    e.target===
-    $('leaderboardOverlay')
-)
-
-closeLeaderboard();
-
+    if(e.target===$('leaderboardOverlay')) closeLeaderboard();
 }
-
 
 function scheduleLeaderboardPulse(){
 
+    const button=$('leaderboardButton');
+    const delay=12000+Math.random()*14000;
 
-const button=
-$('leaderboardButton');
-
-
-const delay=
-12000+
-Math.random()*14000;
-
-
-setTimeout(()=>{
-
-
-const overlay=
-$('leaderboardOverlay');
-
-
-if(
-    !overlay.classList.contains('show')
-){
-
-
-button.classList.remove(
-    'leader-pulse'
-);
-
-
-void button.offsetWidth;
-
-
-button.classList.add(
-    'leader-pulse'
-);
+    setTimeout(()=>{
+        if(!$('leaderboardOverlay').classList.contains('show')){
+            button.classList.remove('leader-pulse');
+            void button.offsetWidth;
+            button.classList.add('leader-pulse');
+        }
+        scheduleLeaderboardPulse();
+    },delay);
 
 }
 
 
-scheduleLeaderboardPulse();
+/* =========================================================
+   LOAD DATA
+========================================================= */
 
+async function loadTable(){
 
-},delay);
+    try{
 
-}
+        const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
 
+        if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
 
-window.addEventListener(
-    'load',
-    ()=>{
+        const result=await response.json();
+
+        apiData=result;
+
+        const rows=Array.isArray(result.data)?result.data:[];
+
+        allData=rows.map((row,i)=>({
+            tanggal:row.tanggal??'',
+            unit:row.unit??'',
+            hm:row.hm??'',
+            service:row.service??'',
+            status:row.status??'',
+            pic:row.pic??'',
+            itemRusak:row.itemRusak??'',
+            remark:row.remark??'',
+            pap:row.pap??'',
+            __originalIndex:i
+        }));
+
+        columnFilters={};
+        sortKey=null;
+        sortDir=null;
+        currentPage=1;
+
+        rowsView=[...allData];
+
+        updateLeaderboardFromData(result.chart?.mechanic||[]);
+        renderTable();
+
+        $('loading').style.display='none';
+        $('tableContent').classList.add('show');
+
+    }catch(error){
+
+        console.error('Periodic API Error:',error);
+
+        $('loading').innerHTML=`
+            <div class="text-center">
+                <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
+                </div>
+                <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+                <p class="text-xs text-slate-500 mt-2 max-w-md">${escapeHtml(error.message)}</p>
+                <button onclick="loadTable()" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
+                    Coba Lagi
+                </button>
+            </div>
+        `;
 
         lucide.createIcons();
 
-        loadTable();
-
-        scheduleLeaderboardPulse();
-
     }
-);
+
+}
 
 
-document.addEventListener(
-    'keydown',
-    e=>{
+/* =========================================================
+   START
+========================================================= */
 
-        if(e.key==='Escape')
-            closeLeaderboard();
+window.addEventListener('load',()=>{
+    lucide.createIcons();
+    loadTable();
+    scheduleLeaderboardPulse();
+});
 
-    }
-);
+document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape') return;
+    closeColumnMenu();
+    closeLeaderboard();
+});
 
 </script>
-
+<script src="nav.js"></script>
+   <script src="datacache.js"></script>
 </body>
 </html>
