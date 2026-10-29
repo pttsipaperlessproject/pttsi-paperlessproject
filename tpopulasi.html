@@ -3,49 +3,33 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Populasi Unit - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-    box-sizing:border-box
-}
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-html{
-    min-width:0
-}
+*{box-sizing:border-box}
+
+html{width:100%;min-width:0;overflow-x:hidden}
 
 body{
     margin:0;
+    width:100%;
+    min-width:0;
     font-family:Inter,sans-serif;
     background:linear-gradient(135deg,#f8fafc,#eef2f7);
-    color:#1e293b;
-    min-height:100vh;
-    width:100%;
-    min-width:0
+    color:#1e293b
 }
 
-.color-primary{
-    background:#1e3a8a
-}
-
-.text-primary{
-    color:#1e3a8a
-}
+.color-primary{background:#1e3a8a}
 
 .glass-panel{
     background:rgba(255,255,255,.95);
@@ -53,31 +37,15 @@ body{
     border:1px solid rgba(255,255,255,.3)
 }
 
-.fade-in{
-    animation:fadeIn .5s cubic-bezier(.4,0,.2,1)
-}
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 
 @keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(12px)
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0)
-    }
-
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-.logo-wrapper{
-    transition:transform .4s cubic-bezier(.175,.885,.32,1.275)
-}
-
-.logo-wrapper:hover{
-    transform:scale(1.08) rotate(2deg)
-}
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 
 .logo-shadow{
     filter:
@@ -85,23 +53,28 @@ body{
         drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
 
+/* =========================================================
+   PAGE TITLE & BUTTON
+========================================================= */
+
 .page-title{
     font-size:30px;
     font-weight:900;
     color:#1e293b;
-    letter-spacing:-.025em
+    letter-spacing:-.025em;
+    line-height:1.2
 }
 
 .page-subtitle{
     font-size:13px;
     color:#64748b;
-    font-weight:500
+    font-weight:500;
+    line-height:1.6
 }
 
 .back-button{
     background:#1e3a8a;
     color:#fff;
-    border:0;
     border-radius:12px;
     padding:11px 17px;
     font-size:12px;
@@ -112,7 +85,9 @@ body{
     gap:8px;
     transition:.2s ease;
     box-shadow:0 5px 12px rgba(30,58,138,.18);
+    border:none;
     cursor:pointer;
+    flex-shrink:0;
     white-space:nowrap
 }
 
@@ -122,15 +97,8 @@ body{
     box-shadow:0 8px 18px rgba(30,58,138,.25)
 }
 
-
-/* =========================
-   BACK MENU
-   ========================= */
-
-.back-menu-wrapper{
-    position:relative;
-    flex-shrink:0
-}
+/* Menu kembali (dropdown) */
+.back-menu-wrapper{position:relative;flex-shrink:0}
 
 .back-menu{
     position:absolute;
@@ -141,17 +109,12 @@ body{
     border:1px solid #e2e8f0;
     border-radius:15px;
     padding:7px;
-    box-shadow:
-        0 18px 40px rgba(15,23,42,.15),
-        0 4px 10px rgba(15,23,42,.05);
+    box-shadow:0 18px 40px rgba(15,23,42,.15),0 4px 10px rgba(15,23,42,.05);
     opacity:0;
     visibility:hidden;
     transform:translateY(-5px) scale(.98);
     transform-origin:top right;
-    transition:
-        opacity .18s ease,
-        transform .18s ease,
-        visibility .18s ease;
+    transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
     z-index:80
 }
 
@@ -185,9 +148,7 @@ body{
     font-family:inherit
 }
 
-.back-menu-item:hover{
-    background:#eff6ff
-}
+.back-menu-item:hover{background:#eff6ff}
 
 .back-menu-icon{
     width:32px;
@@ -201,13 +162,9 @@ body{
     flex-shrink:0
 }
 
-.back-menu-item:hover .back-menu-icon{
-    background:#dbeafe
-}
+.back-menu-item:hover .back-menu-icon{background:#dbeafe}
 
-.back-menu-text{
-    min-width:0
-}
+.back-menu-text{min-width:0}
 
 .back-menu-main{
     display:block;
@@ -225,10 +182,9 @@ body{
     margin-top:2px
 }
 
-
-/* =========================
-   STAT CARD
-   ========================= */
+/* =========================================================
+   STAT CARDS
+========================================================= */
 
 .stat-card{
     background:#fff;
@@ -236,20 +192,7 @@ body{
     border-radius:17px;
     padding:17px;
     transition:.25s ease;
-    position:relative;
-    overflow:hidden
-}
-
-.stat-card::after{
-    content:"";
-    position:absolute;
-    width:70px;
-    height:70px;
-    right:-25px;
-    bottom:-30px;
-    border-radius:50%;
-    background:#eff6ff;
-    opacity:.7
+    min-width:0
 }
 
 .stat-card:hover{
@@ -257,399 +200,369 @@ body{
     box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
 
+/* =========================================================
+   TABLE PANEL & TABLE
+========================================================= */
 
-/* =========================
-   FILTER PANEL
-   ========================= */
-
-.filter-panel{
+.table-panel{
     background:#fff;
-    border:1px solid #dbe3ee;
-    border-radius:18px;
-    padding:18px;
-    margin-bottom:20px;
-    box-shadow:
-        0 5px 18px rgba(15,23,42,.045),
-        0 1px 3px rgba(15,23,42,.025)
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(15,23,42,.04)
 }
 
-.filter-header{
+.table-scroll{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin
+}
+
+.table-scroll::-webkit-scrollbar{height:7px}
+.table-scroll::-webkit-scrollbar-track{background:#f8fafc}
+.table-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+.table-scroll::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+
+table{
+    width:100%;
+    min-width:760px;
+    border-collapse:separate;
+    border-spacing:0
+}
+
+thead{background:#f8fafc}
+
+thead th{
+    padding:0;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    white-space:nowrap;
+    text-align:left
+}
+
+tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:11px;
+    font-weight:500;
+    vertical-align:middle
+}
+
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:#f8fafc}
+tbody tr:last-child td{border-bottom:none}
+
+/* =========================================================
+   COLUMN HEADER (Excel-style: sort + filter di header)
+========================================================= */
+
+.col-header{
+    width:100%;
+    padding:13px 14px;
+    background:transparent;
+    border:none;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:15px;
-    margin-bottom:15px
+    gap:8px;
+    cursor:pointer;
+    transition:.18s ease;
+    text-align:left
 }
 
-.filter-title-wrapper{
-    display:flex;
-    align-items:center;
-    gap:11px
-}
-
-.filter-icon{
-    width:35px;
-    height:35px;
-    border-radius:10px;
+.col-header:hover,
+.col-header.active{
     background:#eff6ff;
-    color:#1e3a8a;
-    display:flex;
+    color:#1e3a8a
+}
+
+.col-icons{
+    display:inline-flex;
     align-items:center;
-    justify-content:center;
+    gap:4px;
     flex-shrink:0
 }
 
-.filter-title{
-    font-size:13px;
-    font-weight:900;
-    color:#334155
+.col-sort-icon{
+    width:12px;
+    height:12px;
+    opacity:.3;
+    transition:.18s ease
 }
 
-.filter-subtitle{
-    font-size:9px;
-    color:#94a3b8;
-    font-weight:600;
-    margin-top:3px
+.col-sort-icon.on{
+    opacity:1;
+    color:#1e3a8a
 }
 
-.filter-status{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    font-size:9px;
-    color:#94a3b8;
-    font-weight:700
+.col-filter-icon{
+    width:11px;
+    height:11px;
+    opacity:.3;
+    transition:.18s ease
 }
 
-.filter-status-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#22c55e;
-    box-shadow:0 0 0 3px #dcfce7
+.col-filter-icon.on{
+    opacity:1;
+    color:#f59e0b
 }
 
-.filter-grid{
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:12px
-}
+.col-header:hover .col-sort-icon,
+.col-header:hover .col-filter-icon{opacity:.8}
 
-.filter-field label{
-    display:block;
-    font-size:9px;
-    font-weight:900;
-    color:#64748b;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    margin-bottom:6px
-}
+/* =========================================================
+   COLUMN DROPDOWN (popup filter & sort)
+========================================================= */
 
-.filter-input{
-    width:100%;
-    height:40px;
-    background:#f8fafc;
-    border:1px solid #dbe3ee;
-    border-radius:10px;
-    padding:9px 12px;
-    color:#334155;
-    font-size:10px;
-    font-weight:600;
-    outline:0;
-    transition:.2s ease
-}
-
-.filter-input:focus{
+.col-dropdown{
+    position:fixed;
+    z-index:1100;
+    width:240px;
     background:#fff;
-    border-color:#93c5fd;
-    box-shadow:0 0 0 3px rgba(59,130,246,.1)
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(15,23,42,.13);
+    padding:8px;
+    animation:ddIn .15s ease
 }
 
-select.filter-input{
-    cursor:pointer
+.col-dropdown[hidden]{display:none}
+
+@keyframes ddIn{
+    from{opacity:0;transform:translateY(-4px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-.search-wrapper{
-    position:relative
+.dd-sort{display:flex;gap:6px;padding:4px}
+
+.dd-sort-btn{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
 }
 
-.search-wrapper .filter-input{
-    padding-left:36px
+.dd-sort-btn:hover{background:#eff6ff;color:#1e3a8a}
+
+.dd-sort-btn.on{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
 }
 
-.search-icon{
+.dd-divider{height:1px;background:#f1f5f9;margin:8px 0}
+
+.dd-search-wrap{position:relative}
+
+.dd-search-icon{
     position:absolute;
-    left:12px;
+    left:9px;
     top:50%;
     transform:translateY(-50%);
-    width:15px;
-    height:15px;
+    width:12px;
+    height:12px;
     color:#94a3b8;
     pointer-events:none
 }
 
-.reset-button{
+.dd-search{
     width:100%;
-    height:40px;
-    border-radius:10px;
-    border:1px solid #dbe3ee;
+    padding:7px 8px 7px 28px;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
     background:#f8fafc;
-    color:#475569;
-    font-size:10px;
-    font-weight:800;
-    cursor:pointer;
-    transition:.2s ease;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:7px
+    font-family:inherit;
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    outline:none
 }
 
-.reset-button:hover{
-    background:#eff6ff;
-    border-color:#bfdbfe;
-    color:#1e3a8a
-}
-
-
-/* =========================
-   PROFESSIONAL TABLE
-   ========================= */
-
-.table-panel{
+.dd-search:focus{
     background:#fff;
-    border:1px solid #dbe3ee;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:
-        0 10px 28px rgba(15,23,42,.06),
-        0 2px 6px rgba(15,23,42,.025)
+    border-color:#93c5fd;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
 }
 
-.table-panel-header{
-    padding:18px 20px;
-    border-bottom:1px solid #e8edf4;
+.dd-list{
+    max-height:160px;
+    overflow-y:auto;
+    margin-top:6px
+}
+
+.dd-item{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    background:linear-gradient(180deg,#fff,#fbfdff)
-}
-
-.table-heading{
-    display:flex;
-    align-items:center;
-    gap:11px
-}
-
-.table-heading-icon{
-    width:36px;
-    height:36px;
-    border-radius:10px;
-    background:#eff6ff;
-    color:#1e3a8a;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0
-}
-
-.table-heading-title{
-    font-size:13px;
-    font-weight:900;
+    gap:8px;
+    padding:6px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
     color:#334155
 }
 
-.table-heading-subtitle{
-    font-size:9px;
-    color:#94a3b8;
-    font-weight:600;
-    margin-top:3px
-}
+.dd-item:hover{background:#f8fafc}
 
-.table-live-status{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    padding:7px 10px;
-    border:1px solid #e2e8f0;
-    border-radius:9px;
-    background:#f8fafc;
-    color:#64748b;
-    font-size:9px;
-    font-weight:700;
-    white-space:nowrap
-}
-
-.table-live-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#22c55e;
-    box-shadow:0 0 0 3px #dcfce7
-}
-
-.table-scroll{
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:thin;
-    scrollbar-color:#cbd5e1 transparent
-}
-
-.table-scroll::-webkit-scrollbar{
-    height:8px
-}
-
-.table-scroll::-webkit-scrollbar-track{
-    background:#f8fafc
-}
-
-.table-scroll::-webkit-scrollbar-thumb{
-    background:#cbd5e1;
-    border-radius:999px
-}
-
-.table-scroll::-webkit-scrollbar-thumb:hover{
-    background:#94a3b8
-}
-
-table{
-    width:100%;
-    border-collapse:separate;
-    border-spacing:0;
-    min-width:780px
-}
-
-thead{
-    background:#f8fafc
-}
-
-thead tr{
-    box-shadow:
-        0 1px 0 #dbe3ee,
-        0 2px 5px rgba(15,23,42,.025)
-}
-
-thead th{
-    padding:0;
-    border-bottom:1px solid #dbe3ee;
-    color:#64748b;
-    font-size:8px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:.1em;
-    white-space:nowrap;
-    text-align:left;
-    position:relative
-}
-
-thead th:first-child{
-    text-align:center
-}
-
-thead th:not(:last-child)::after{
-    content:"";
-    position:absolute;
-    right:0;
-    top:11px;
-    bottom:11px;
-    width:1px;
-    background:#e2e8f0
-}
-
-.sort-button{
-    width:100%;
-    min-height:50px;
-    padding:13px 15px;
-    background:transparent;
-    border:0;
-    color:#64748b;
-    font-family:inherit;
-    font-size:8px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:.1em;
-    text-align:left;
-    display:flex;
-    align-items:center;
-    gap:7px;
-    cursor:pointer;
-    transition:
-        background .18s ease,
-        color .18s ease
-}
-
-thead th:first-child .sort-button{
-    justify-content:center
-}
-
-.sort-button:hover,
-.sort-button.sort-active{
-    background:#eaf2ff;
-    color:#1e3a8a
-}
-
-.sort-icon{
+.dd-item input{
+    accent-color:#1e3a8a;
     width:13px;
     height:13px;
     flex-shrink:0;
-    color:#94a3b8;
-    transition:.18s ease
+    cursor:pointer
 }
 
-.sort-button.sort-active .sort-icon{
-    color:#1e3a8a
+.dd-item-label{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
 }
 
-.sort-button.sort-normal .sort-icon{
-    opacity:.5
+.dd-item-count{
+    font-size:9px;
+    font-weight:700;
+    color:#94a3b8
 }
 
-tbody{
-    background:#fff
+.dd-all{
+    border-bottom:1px solid #f1f5f9;
+    border-radius:0;
+    margin-bottom:4px;
+    padding-bottom:8px
 }
 
-tbody td{
-    padding:13px 15px;
-    border-bottom:1px solid #eef2f7;
-    color:#334155;
+.dd-empty{
     font-size:10px;
-    font-weight:500;
-    vertical-align:middle;
-    height:58px
-}
-
-tbody tr{
-    transition:
-        background .16s ease,
-        box-shadow .16s ease,
-        transform .16s ease
-}
-
-tbody tr:nth-child(even){
-    background:#fcfdff
-}
-
-tbody tr:hover{
-    background:#f5f9ff;
-    box-shadow:inset 3px 0 0 #2563eb
-}
-
-tbody tr:last-child td{
-    border-bottom:0
-}
-
-tbody td:first-child{
-    text-align:center;
     color:#94a3b8;
+    padding:10px;
+    text-align:center
+}
+
+.dd-footer{
+    display:flex;
+    gap:6px;
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px solid #f1f5f9
+}
+
+.dd-reset{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-reset:hover{background:#fee2e2;color:#991b1b}
+
+.dd-apply{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:none;
+    background:#1e3a8a;
+    color:#fff;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-apply:hover{background:#1d4ed8}
+
+/* =========================================================
+   ACTIVE FILTER CHIPS
+========================================================= */
+
+.active-filters-bar{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 20px;
+    background:#fffbeb;
+    border-bottom:1px solid #fde68a
+}
+
+.active-filters-bar[hidden]{display:none}
+
+.active-filter-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 6px 4px 10px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#92400e;
+    font-size:9px;
+    font-weight:800
+}
+
+.active-filter-chip button{
+    border:none;
+    background:transparent;
+    color:#92400e;
+    cursor:pointer;
+    font-size:12px;
+    line-height:1;
+    padding:0 4px;
+    border-radius:999px
+}
+
+.active-filter-chip button:hover{background:#fde68a}
+
+.clear-all-btn{
+    margin-left:auto;
     font-size:9px;
     font-weight:800;
-    font-variant-numeric:tabular-nums
+    color:#92400e;
+    border:1px solid #fde68a;
+    background:#fff;
+    border-radius:999px;
+    padding:4px 10px;
+    cursor:pointer;
+    font-family:inherit
 }
 
-tbody td:last-child{
-    color:#334155;
-    font-weight:700
+/* =========================================================
+   BADGES (palet baku Bab 2)
+========================================================= */
+
+.unit-code{
+    font-size:10px;
+    font-weight:900;
+    color:#1e3a8a;
+    letter-spacing:.03em
 }
 
 .unit-cell{
@@ -660,36 +573,36 @@ tbody td:last-child{
 
 .unit-indicator{
     width:5px;
-    height:27px;
+    height:24px;
     border-radius:999px;
     flex-shrink:0
 }
 
-.unit-indicator-wheel-loader{
-    background:#3b82f6
+.unit-indicator-wheel-loader{background:#1e40af}
+.unit-indicator-forklift{background:#d97706}
+.unit-indicator-dumptruck{background:#991b1b}
+.unit-indicator-excavator{background:#166534}
+.unit-indicator-other{background:#94a3b8}
+
+/* Brand: lima warna dari palet status & service */
+.brand-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:5px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
+    white-space:nowrap;
+    max-width:150px;
+    overflow:hidden;
+    text-overflow:ellipsis
 }
 
-.unit-indicator-forklift{
-    background:#f59e0b
-}
-
-.unit-indicator-dumptruck{
-    background:#ef4444
-}
-
-.unit-indicator-excavator{
-    background:#10b981
-}
-
-.unit-indicator-other{
-    background:#8b5cf6
-}
-
-.unit-code{
-    font-size:10px;
-    font-weight:900;
-    color:#1e293b
-}
+.brand-blue{background:#dbeafe;color:#1e40af}
+.brand-amber{background:#fef3c7;color:#92400e}
+.brand-green{background:#dcfce7;color:#166534}
+.brand-red{background:#fee2e2;color:#991b1b}
+.brand-slate{background:#e2e8f0;color:#475569}
 
 .model-text{
     font-size:10px;
@@ -697,175 +610,19 @@ tbody td:last-child{
     color:#475569
 }
 
-.date-wrapper{
-    display:flex;
-    align-items:center;
-    gap:7px
-}
+/* Tanggal delivery: hijau = baru (≤ 8 tahun), amber = lama */
+.delivery-new{color:#166534}
+.delivery-old{color:#92400e}
+.delivery-unknown{color:#64748b}
 
-.date-icon{
-    width:14px;
-    height:14px;
-    flex-shrink:0;
-    opacity:.65
-}
-
-
-/* =========================
-   UNIT BADGES
-   ========================= */
-
-.unit-badge{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:76px;
-    padding:6px 10px;
-    border-radius:8px;
-    font-size:8px;
-    font-weight:900;
-    letter-spacing:.02em;
-    border:1px solid transparent;
-    box-shadow:0 1px 2px rgba(15,23,42,.03)
-}
-
-.unit-wheel-loader{
-    background:#eff6ff;
-    color:#1d4ed8;
-    border-color:#bfdbfe
-}
-
-.unit-forklift{
-    background:#fff7ed;
-    color:#c2410c;
-    border-color:#fed7aa
-}
-
-.unit-dumptruck{
-    background:#fef2f2;
-    color:#b91c1c;
-    border-color:#fecaca
-}
-
-.unit-excavator{
-    background:#ecfdf5;
-    color:#047857;
-    border-color:#a7f3d0
-}
-
-.unit-other{
-    background:#f5f3ff;
-    color:#6d28d9;
-    border-color:#ddd6fe
-}
-
-
-/* =========================
-   BRAND BADGES
-   ========================= */
-
-.brand-badge{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:6px 10px;
-    border-radius:8px;
-    font-size:8px;
-    font-weight:800;
-    border:1px solid transparent;
-    box-shadow:0 1px 2px rgba(15,23,42,.03)
-}
-
-.brand-1{
-    background:#eff6ff;
-    color:#1d4ed8;
-    border-color:#bfdbfe
-}
-
-.brand-2{
-    background:#ecfdf5;
-    color:#047857;
-    border-color:#a7f3d0
-}
-
-.brand-3{
-    background:#fff7ed;
-    color:#c2410c;
-    border-color:#fed7aa
-}
-
-.brand-4{
-    background:#fef2f2;
-    color:#b91c1c;
-    border-color:#fecaca
-}
-
-.brand-5{
-    background:#f5f3ff;
-    color:#6d28d9;
-    border-color:#ddd6fe
-}
-
-.brand-6{
-    background:#ecfeff;
-    color:#0e7490;
-    border-color:#a5f3fc
-}
-
-.brand-7{
-    background:#fdf4ff;
-    color:#a21caf;
-    border-color:#f5d0fe
-}
-
-.brand-8{
-    background:#fefce8;
-    color:#a16207;
-    border-color:#fde68a
-}
-
-.brand-9{
-    background:#f0fdfa;
-    color:#0f766e;
-    border-color:#99f6e4
-}
-
-.brand-10{
-    background:#f8fafc;
-    color:#475569;
-    border-color:#cbd5e1
-}
-
-
-/* =========================
-   DELIVERY DATE
-   ========================= */
-
-.delivery-date{
-    font-weight:800;
-    white-space:nowrap
-}
-
-.delivery-new{
-    color:#16a34a
-}
-
-.delivery-old{
-    color:#ea580c
-}
-
-.delivery-unknown{
-    color:#64748b
-}
-
-
-/* =========================
+/* =========================================================
    PAGINATION
-   ========================= */
+========================================================= */
 
 .pagination-button{
     width:34px;
     height:34px;
+    min-width:34px;
     border-radius:9px;
     border:1px solid #e2e8f0;
     background:#fff;
@@ -873,7 +630,7 @@ tbody td:last-child{
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:10px;
+    font-size:11px;
     font-weight:800;
     cursor:pointer;
     transition:.2s ease
@@ -888,14 +645,10 @@ tbody td:last-child{
 .pagination-button.active{
     background:#1e3a8a;
     color:#fff;
-    border-color:#1e3a8a;
-    box-shadow:0 4px 10px rgba(30,58,138,.2)
+    border-color:#1e3a8a
 }
 
-.pagination-button:disabled{
-    opacity:.4;
-    cursor:not-allowed
-}
+.pagination-button:disabled{opacity:.4;cursor:not-allowed}
 
 #loading{
     min-height:350px;
@@ -905,22 +658,60 @@ tbody td:last-child{
     justify-content:center
 }
 
-#tableContent{
-    display:none
+#tableContent{display:none}
+#tableContent.show{display:block}
+#emptyState{display:none}
+#emptyState.show{display:block}
+
+/* =========================================================
+   MOBILE FILTER BAR & CARDS (≤767px)
+========================================================= */
+
+.mobile-filter-bar{
+    display:none;
+    gap:6px;
+    overflow-x:auto;
+    padding:10px 12px;
+    background:#fff;
+    border-bottom:1px solid #f1f5f9;
+    scrollbar-width:none
 }
 
-#tableContent.show{
-    display:block
+.mobile-filter-bar::-webkit-scrollbar{display:none}
+
+.mobile-filter-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:7px 10px;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    font-family:inherit;
+    font-size:9px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    cursor:pointer
 }
 
-
-/* =========================
-   MOBILE DATA CARD
-   ========================= */
-
-.mobile-data-list{
-    display:none
+.mobile-filter-btn.active{
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe
 }
+
+.mobile-filter-count{
+    background:#1e3a8a;
+    color:#fff;
+    border-radius:999px;
+    padding:1px 6px;
+    font-size:8px
+}
+
+.mobile-data-list{display:none}
 
 .mobile-data-card{
     background:#fff;
@@ -932,9 +723,7 @@ tbody td:last-child{
     transition:.2s ease
 }
 
-.mobile-data-card:active{
-    transform:scale(.995)
-}
+.mobile-data-card:active{transform:scale(.995)}
 
 .mobile-card-header{
     display:flex;
@@ -949,13 +738,34 @@ tbody td:last-child{
 .mobile-unit{
     font-size:16px;
     font-weight:900;
-    line-height:1.2
+    color:#1e3a8a;
+    line-height:1.2;
+    display:flex;
+    align-items:center;
+    gap:8px
 }
 
 .mobile-date{
     font-size:10px;
     font-weight:800;
-    margin-top:4px
+    margin-top:4px;
+    display:flex;
+    align-items:center;
+    gap:4px
+}
+
+.mobile-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:27px;
+    height:27px;
+    padding:0 7px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#64748b;
+    font-size:9px;
+    font-weight:900
 }
 
 .mobile-card-grid{
@@ -964,13 +774,8 @@ tbody td:last-child{
     gap:11px 14px
 }
 
-.mobile-field{
-    min-width:0
-}
-
-.mobile-field.full{
-    grid-column:1/-1
-}
+.mobile-field{min-width:0}
+.mobile-field.full{grid-column:1/-1}
 
 .mobile-label{
     font-size:8px;
@@ -989,24 +794,9 @@ tbody td:last-child{
     line-height:1.45
 }
 
-.mobile-number{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:27px;
-    height:27px;
-    padding:0 7px;
-    border-radius:8px;
-    background:#f1f5f9;
-    color:#64748b;
-    font-size:9px;
-    font-weight:900
-}
-
-
-/* =========================
-   LEADERBOARD
-   ========================= */
+/* =========================================================
+   LEADERBOARD / RINGKASAN BRAND
+========================================================= */
 
 #leaderboardButton{
     position:fixed;
@@ -1024,9 +814,7 @@ tbody td:last-child{
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease
+    transition:transform .25s ease,box-shadow .25s ease
 }
 
 #leaderboardButton:hover{
@@ -1039,30 +827,10 @@ tbody td:last-child{
 }
 
 @keyframes leaderPulse{
-
-    0%,100%{
-        transform:scale(1);
-        box-shadow:0 12px 30px rgba(15,23,42,.28)
-    }
-
-    20%{
-        transform:scale(1.18);
-        box-shadow:
-            0 0 0 12px rgba(30,58,138,.12),
-            0 16px 38px rgba(15,23,42,.32)
-    }
-
-    40%{
-        transform:scale(.98)
-    }
-
-    60%{
-        transform:scale(1.12);
-        box-shadow:
-            0 0 0 8px rgba(30,58,138,.1),
-            0 16px 38px rgba(15,23,42,.32)
-    }
-
+    0%,100%{transform:scale(1);box-shadow:0 12px 30px rgba(15,23,42,.28)}
+    20%{transform:scale(1.18);box-shadow:0 0 0 12px rgba(30,58,138,.12),0 16px 38px rgba(15,23,42,.32)}
+    40%{transform:scale(.98)}
+    60%{transform:scale(1.12);box-shadow:0 0 0 8px rgba(30,58,138,.1),0 16px 38px rgba(15,23,42,.32)}
 }
 
 .leader-tooltip{
@@ -1099,9 +867,7 @@ tbody td:last-child{
     padding:20px
 }
 
-#leaderboardOverlay.show{
-    display:flex
-}
+#leaderboardOverlay.show{display:flex}
 
 #leaderboardModal{
     width:min(430px,100%);
@@ -1115,17 +881,8 @@ tbody td:last-child{
 }
 
 @keyframes leaderModalIn{
-
-    from{
-        opacity:0;
-        transform:translateY(12px) scale(.97)
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1)
-    }
-
+    from{opacity:0;transform:translateY(12px) scale(.97)}
+    to{opacity:1;transform:translateY(0) scale(1)}
 }
 
 .leader-row{
@@ -1139,19 +896,9 @@ tbody td:last-child{
     border:1px solid #f1f5f9
 }
 
-.leader-row.top-1{
-    background:#fffbeb;
-    border-color:#fde68a
-}
-
-.leader-row.top-2{
-    border-color:#cbd5e1
-}
-
-.leader-row.top-3{
-    background:#fff7ed;
-    border-color:#fed7aa
-}
+.leader-row.top-1{background:#fffbeb;border-color:#fde68a}
+.leader-row.top-2{border-color:#cbd5e1}
+.leader-row.top-3{background:#fff7ed;border-color:#fed7aa}
 
 .leader-rank{
     width:30px;
@@ -1167,20 +914,9 @@ tbody td:last-child{
     flex-shrink:0
 }
 
-.top-1 .leader-rank{
-    background:#fbbf24;
-    color:#78350f
-}
-
-.top-2 .leader-rank{
-    background:#cbd5e1;
-    color:#334155
-}
-
-.top-3 .leader-rank{
-    background:#fdba74;
-    color:#7c2d12
-}
+.top-1 .leader-rank{background:#fbbf24;color:#78350f}
+.top-2 .leader-rank{background:#cbd5e1;color:#334155}
+.top-3 .leader-rank{background:#fdba74;color:#7c2d12}
 
 .leader-name{
     font-size:12px;
@@ -1200,60 +936,42 @@ tbody td:last-child{
     white-space:nowrap
 }
 
+/* =========================================================
+   BREAKPOINTS (bible Bab 4)
+========================================================= */
 
-/* =========================
-   TABLET
-   ========================= */
+@media(min-width:1920px){
+    main{max-width:1800px}
+}
 
 @media(min-width:768px) and (max-width:1100px){
 
-    main{
-        padding:25px!important
+    main{padding:28px!important;border-radius:24px!important}
+
+    .page-title{font-size:25px}
+
+    #tableContent>div:first-child{
+        grid-template-columns:repeat(3,minmax(0,1fr))!important
     }
 
-    .page-title{
-        font-size:25px
-    }
-
-    .filter-grid{
-        grid-template-columns:1fr 1fr
-    }
-
-    .filter-search{
-        grid-column:1/-1
-    }
+    header{margin-bottom:28px!important}
 
 }
 
-
-/* =========================
-   MOBILE
-   ========================= */
-
 @media(max-width:767px){
 
-    body{
-        padding:8px!important;
-        background:#f1f5f9
-    }
+    body{padding:10px!important;align-items:stretch!important}
 
     main{
-        padding:16px!important;
-        border-radius:22px!important;
-        box-shadow:0 8px 25px rgba(15,23,42,.06)!important
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
 
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
 
-    /* HEADER */
-
-    header{
-        margin-bottom:20px!important;
-        padding-bottom:18px!important
-    }
-
-    .logo-wrapper{
-        margin-bottom:12px!important
-    }
+    .logo-wrapper{margin-bottom:14px!important}
 
     .logo-wrapper>div{
         width:76px!important;
@@ -1261,20 +979,19 @@ tbody td:last-child{
         border-radius:18px!important
     }
 
-    .color-primary{
+    header .color-primary{
         width:100%!important;
         padding:13px 14px!important;
-        border-radius:15px!important;
-        gap:1px!important
+        border-radius:15px!important
     }
 
-    .color-primary h1{
+    header .color-primary h1{
         font-size:15px!important;
         line-height:1.2!important;
         letter-spacing:.06em!important
     }
 
-    .color-primary h2{
+    header .color-primary h2{
         font-size:10px!important;
         line-height:1.3!important;
         letter-spacing:.1em!important
@@ -1283,207 +1000,70 @@ tbody td:last-child{
     header>div:last-child{
         font-size:8px!important;
         letter-spacing:.18em!important;
-        line-height:1.4!important;
-        text-align:center!important
+        text-align:center
     }
 
-
-    /* PAGE TITLE */
-
     section>div:first-child{
-        align-items:flex-start!important;
-        gap:10px!important;
-        margin-bottom:17px!important
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
     }
 
     .page-title{
         font-size:20px!important;
         line-height:1.3!important;
-        gap:8px!important
+        gap:10px!important;
+        align-items:flex-start!important
     }
 
     .page-title span{
         padding:9px!important;
-        border-radius:10px!important
+        border-radius:10px!important;
+        flex-shrink:0
     }
 
-    .page-title svg{
-        width:18px!important;
-        height:18px!important
-    }
+    .page-title span svg{width:18px!important;height:18px!important}
 
     .page-subtitle{
         font-size:10px!important;
-        line-height:1.5!important;
-        margin-top:6px!important
+        line-height:1.6!important;
+        margin-top:8px!important
     }
 
-    .back-menu-wrapper{
-        position:relative!important
-    }
+    .back-menu-wrapper{width:100%}
 
     .back-button{
-        padding:9px 11px!important;
-        font-size:10px!important;
+        width:100%;
+        padding:10px 12px;
         border-radius:10px!important;
-        gap:5px!important
-    }
-
-    .back-button svg{
-        width:14px!important;
-        height:14px!important
-    }
-
-    .back-menu{
-        width:205px!important;
-        right:0!important;
-        border-radius:13px!important
-    }
-
-    .back-menu-item{
-        padding:9px!important
-    }
-
-    .back-menu-icon{
-        width:29px!important;
-        height:29px!important
-    }
-
-    .back-menu-main{
         font-size:10px!important
     }
 
-    .back-menu-sub{
-        font-size:7px!important
-    }
-
-
-    /* FILTER */
-
-    .filter-panel{
-        padding:13px!important;
-        border-radius:15px!important;
-        margin-bottom:12px!important
-    }
-
-    .filter-header{
-        margin-bottom:12px!important
-    }
-
-    .filter-icon{
-        width:30px!important;
-        height:30px!important;
-        border-radius:9px!important
-    }
-
-    .filter-icon svg{
-        width:14px!important;
-        height:14px!important
-    }
-
-    .filter-title{
-        font-size:11px!important
-    }
-
-    .filter-subtitle{
-        font-size:8px!important
-    }
-
-    .filter-status{
-        display:none!important
-    }
-
-    .filter-grid{
-        grid-template-columns:1fr!important;
-        gap:9px!important
-    }
-
-    .filter-field label{
-        font-size:8px!important;
-        margin-bottom:5px!important
-    }
-
-    .filter-input{
-        height:38px!important;
-        font-size:10px!important
-    }
-
-    .reset-button{
-        height:38px!important
-    }
-
-
-    /* STATISTICS */
+    .back-menu{width:100%!important;right:0!important}
 
     #tableContent>div:first-child{
-        grid-template-columns:1fr 1fr!important;
-        gap:9px!important;
-        margin-bottom:12px!important
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:10px!important;
+        margin-bottom:14px!important
     }
 
-    .stat-card{
-        padding:13px!important;
-        border-radius:14px!important
-    }
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-card p:first-child{font-size:8px!important;line-height:1.4!important}
+    .stat-card p.text-3xl{font-size:23px!important;line-height:1!important}
 
-    .stat-card p:first-child{
-        font-size:8px!important;
-        line-height:1.3!important
-    }
+    .table-panel{border-radius:16px!important}
+    .table-panel>div:first-child{padding:13px 14px!important}
+    .table-panel>div:first-child h3{font-size:12px!important}
+    .table-panel>div:first-child p{font-size:9px!important}
+    .table-panel>div:first-child>div:last-child{display:none!important}
 
-    .stat-card p:last-child{
-        font-size:23px!important;
-        line-height:1!important;
-        margin-top:7px!important
-    }
+    .active-filters-bar{padding:10px 14px}
 
+    /* tabel desktop disembunyikan, diganti filter bar + kartu */
+    .table-scroll{display:none!important}
 
-    /* TABLE */
-
-    .table-panel{
-        border-radius:16px!important
-    }
-
-    .table-panel-header{
-        padding:13px!important
-    }
-
-    .table-heading{
-        gap:9px!important
-    }
-
-    .table-heading-icon{
-        width:30px!important;
-        height:30px!important;
-        border-radius:9px!important
-    }
-
-    .table-heading-icon svg{
-        width:14px!important;
-        height:14px!important
-    }
-
-    .table-heading-title{
-        font-size:11px!important
-    }
-
-    .table-heading-subtitle{
-        font-size:8px!important
-    }
-
-    .table-live-status{
-        display:none!important
-    }
-
-
-    /* Hide desktop table */
-
-    .table-scroll{
-        display:none!important
-    }
-
-
-    /* Show mobile cards */
+    .mobile-filter-bar{display:flex}
 
     .mobile-data-list{
         display:block!important;
@@ -1491,74 +1071,34 @@ tbody td:last-child{
         background:#f8fafc
     }
 
-    .mobile-data-card{
-        padding:14px!important;
-        border-radius:15px!important;
-        margin-bottom:9px!important
+    .mobile-data-card{padding:14px!important;border-radius:15px!important;margin-bottom:9px!important}
+    .mobile-card-header{gap:8px!important;padding-bottom:11px!important;margin-bottom:11px!important}
+    .mobile-unit{font-size:15px!important}
+    .mobile-date{font-size:9px!important}
+    .mobile-card-grid{gap:10px 12px!important}
+    .mobile-label{font-size:7px!important;margin-bottom:4px!important}
+    .mobile-value{font-size:10px!important;line-height:1.45!important}
+    .mobile-number{min-width:25px!important;height:25px!important;font-size:8px!important}
+
+    .brand-badge{padding:4px 8px!important;font-size:8px!important}
+
+    /* popup jadi bottom sheet */
+    .col-dropdown.is-sheet{
+        left:16px!important;
+        right:16px!important;
+        top:auto!important;
+        bottom:16px!important;
+        width:auto!important;
+        max-height:70vh;
+        border-radius:14px;
+        overflow-y:auto
     }
 
-    .mobile-card-header{
-        gap:8px!important;
-        padding-bottom:11px!important;
-        margin-bottom:11px!important
-    }
+    .col-dropdown.is-sheet .dd-list{max-height:40vh}
 
-    .mobile-unit{
-        font-size:15px!important
-    }
+    .table-panel>div:last-child{padding:10px!important;gap:7px!important}
 
-    .mobile-date{
-        font-size:9px!important
-    }
-
-    .mobile-card-grid{
-        gap:10px 12px!important
-    }
-
-    .mobile-label{
-        font-size:7px!important;
-        margin-bottom:4px!important
-    }
-
-    .mobile-value{
-        font-size:10px!important;
-        line-height:1.45!important
-    }
-
-    .mobile-number{
-        min-width:25px!important;
-        height:25px!important;
-        font-size:8px!important
-    }
-
-
-    /* EMPTY STATE */
-
-    #emptyState .py-16{
-        padding-top:35px!important;
-        padding-bottom:35px!important
-    }
-
-    #emptyState h3{
-        font-size:13px!important
-    }
-
-    #emptyState p{
-        font-size:9px!important
-    }
-
-
-    /* PAGINATION */
-
-    .table-panel>div:last-child{
-        padding:10px!important;
-        gap:7px!important
-    }
-
-    #paginationInfo{
-        font-size:8px!important;
-        white-space:nowrap
-    }
+    #paginationInfo{font-size:8px!important;white-space:nowrap}
 
     #pagination{
         gap:3px!important;
@@ -1568,9 +1108,7 @@ tbody td:last-child{
         scrollbar-width:none
     }
 
-    #pagination::-webkit-scrollbar{
-        display:none
-    }
+    #pagination::-webkit-scrollbar{display:none}
 
     .pagination-button{
         width:30px!important;
@@ -1580,26 +1118,9 @@ tbody td:last-child{
         border-radius:8px!important
     }
 
-
-    /* FOOTER */
-
-    footer{
-        margin-top:18px!important;
-        padding:0 8px 90px!important
-    }
-
-    footer p:first-child{
-        font-size:8px!important;
-        line-height:1.5!important
-    }
-
-    footer p:last-child{
-        font-size:8px!important;
-        line-height:1.5!important
-    }
-
-
-    /* LEADERBOARD */
+    footer{margin-top:18px!important;padding:0 8px 90px!important}
+    footer p:first-child{font-size:8px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.5!important}
 
     #leaderboardButton{
         width:55px;
@@ -1610,3118 +1131,1365 @@ tbody td:last-child{
         box-shadow:0 10px 25px rgba(15,23,42,.25)
     }
 
-    #leaderboardButton svg{
-        width:23px;
-        height:23px
-    }
+    #leaderboardButton svg{width:23px;height:23px}
 
-    .leader-tooltip{
-        display:none
-    }
+    .leader-tooltip{display:none}
 
+    #leaderboardOverlay{padding:10px}
 
-    /* LEADERBOARD MODAL */
+    #leaderboardModal{width:100%;max-height:85vh;border-radius:18px}
 
-    #leaderboardOverlay{
-        padding:10px
-    }
+    #leaderboardList{padding:12px!important;max-height:65vh!important}
 
-    #leaderboardModal{
-        width:100%;
-        max-height:85vh;
-        border-radius:18px
-    }
+    .leader-row{padding:10px!important;gap:9px!important;border-radius:12px!important}
 
-    #leaderboardModal>div:first-child{
-        padding:13px!important
-    }
+    .leader-rank{width:28px!important;height:28px!important;border-radius:9px!important;font-size:11px!important}
 
-    #leaderboardList{
-        padding:12px!important;
-        max-height:65vh!important
-    }
+    .leader-name{font-size:10px!important}
 
-    .leader-row{
-        padding:10px!important;
-        gap:9px!important;
-        border-radius:12px!important
-    }
-
-    .leader-rank{
-        width:28px!important;
-        height:28px!important;
-        border-radius:9px!important;
-        font-size:11px!important
-    }
-
-    .leader-name{
-        font-size:10px!important
-    }
-
-    .leader-count{
-        font-size:8px!important;
-        padding:4px 7px!important
-    }
+    .leader-count{font-size:8px!important;padding:4px 7px!important}
 
 }
 
-
-/* =========================
-   VERY SMALL PHONE
-   ========================= */
-
 @media(max-width:380px){
 
-    body{
-        padding:5px!important
+    body{padding:6px!important}
+
+    main{padding:12px!important;border-radius:17px!important}
+
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
+
+    .logo-wrapper>div{width:70px!important;height:70px!important}
+
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
+
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
+    .page-title span{padding:8px!important}
+    .page-title span svg{width:18px!important;height:18px!important}
+
+    .back-button span{display:none}
+
+    #tableContent>div:first-child{gap:8px!important}
+
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-card p.text-3xl{font-size:21px!important}
+    .stat-card p:first-child{font-size:7px!important}
+
+    .mobile-card-grid{grid-template-columns:1fr!important}
+    .mobile-field.full{grid-column:auto}
+
+    .table-panel>div:last-child{
+        justify-content:center!important;
+        flex-direction:column!important;
+        align-items:stretch!important
     }
 
-    main{
-        padding:12px!important
-    }
-
-    .logo-wrapper>div{
-        width:70px!important;
-        height:70px!important;
-        border-radius:16px!important
-    }
-
-    .color-primary{
-        padding:12px 10px!important;
-        border-radius:14px!important
-    }
-
-    .color-primary h1{
-        font-size:13px!important
-    }
-
-    .color-primary h2{
-        font-size:8px!important
-    }
-
-    header>div:last-child{
-        font-size:7px!important;
-        letter-spacing:.15em!important
-    }
-
-    .page-title{
-        font-size:18px!important
-    }
-
-    .page-subtitle{
-        font-size:9px!important
-    }
-
-    .back-button{
-        padding:8px!important
-    }
-
-    .back-button span{
-        display:none
-    }
-
-    .mobile-card-grid{
-        grid-template-columns:1fr!important
-    }
-
-    .mobile-field.full{
-        grid-column:auto
-    }
-
-    #pagination{
-        max-width:58%
-    }
-
-    .stat-card p:last-child{
-        font-size:21px!important
-    }
-
-    .mobile-card-header{
-        align-items:flex-start!important
-    }
+    #paginationInfo{text-align:center}
+    #pagination{max-width:100%;justify-content:center}
 
 }
 
 </style>
 </head>
 
-
 <body class="flex flex-col items-center p-4 sm:p-8">
 
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-<main class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
-
-
-<!-- =========================
+<!-- ======================================================
      HEADER
-     ========================= -->
+====================================================== -->
 
 <header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
+    <div class="mb-4 logo-wrapper">
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="w-full h-full object-contain"
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+            <div
+                id="logoFallback"
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+            >
+                <span class="font-black text-2xl">TSI</span>
+            </div>
+        </div>
+    </div>
 
-<div class="mb-4 logo-wrapper">
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+            PAPERLESS PROJECT
+        </h1>
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+    </div>
 
-<div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-
-<img
-    src="default_logo.png"
-    alt="Logo PT TSI"
-    class="w-full h-full object-contain"
-    id="companyLogo"
-    onerror="handleLogoError()"
->
-
-<div
-    id="logoFallback"
-    class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
->
-
-<span class="font-black text-2xl">
-TSI
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
-
-<h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
-PAPERLESS PROJECT
-</h1>
-
-<div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-
-<h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
-PT TATSUMI SERUNI INDONESIA
-</h2>
-
-</div>
-
-
-<div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
-Digitalization Initiative v2.0
-</div>
-
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
+        Digitalization Initiative v2.0
+    </div>
 
 </header>
 
 
-<!-- =========================
-     CONTENT
-     ========================= -->
+<!-- ======================================================
+     SECTION
+====================================================== -->
 
 <section>
 
-
-<div class="flex items-center justify-between gap-5 mb-6">
-
-
-<div>
-
-<h2 class="page-title flex items-center gap-3">
-
-<span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
-
-<i
-    data-lucide="database"
-    class="w-6 h-6"
-></i>
-
-</span>
-
-Data Populasi Unit
-
-</h2>
-
-
-<p class="page-subtitle mt-2 ml-1">
-
-Daftar seluruh unit yang tersimpan pada database.
-
-</p>
-
-</div>
-
-
-<!-- BACK MENU -->
-
-<div class="back-menu-wrapper">
-
-<button
-    type="button"
-    onclick="toggleBackMenu()"
-    class="back-button"
-    aria-expanded="false"
-    aria-haspopup="true"
->
-
-<i
-    data-lucide="arrow-left"
-    class="w-4 h-4"
-></i>
-
-<span>
-Kembali
-</span>
-
-<i
-    data-lucide="chevron-down"
-    class="w-3.5 h-3.5"
-></i>
-
-</button>
-
-
-<div
-    id="backMenu"
-    class="back-menu"
->
-
-<div class="back-menu-title">
-Pilih tujuan
-</div>
-
-
-<button
-    type="button"
-    class="back-menu-item"
-    onclick="goToPage('populasi.html')"
->
-
-<span class="back-menu-icon">
-
-<i
-    data-lucide="layout-dashboard"
-    class="w-4 h-4"
-></i>
-
-</span>
-
-
-<span class="back-menu-text">
-
-<span class="back-menu-main">
-Dashboard Populasi Unit
-</span>
-
-<span class="back-menu-sub">
-Kembali ke dashboard populasi
-</span>
-
-</span>
-
-</button>
-
-
-<button
-    type="button"
-    class="back-menu-item"
-    onclick="goToPage('index.html')"
->
-
-<span class="back-menu-icon">
-
-<i
-    data-lucide="home"
-    class="w-4 h-4"
-></i>
-
-</span>
-
-
-<span class="back-menu-text">
-
-<span class="back-menu-main">
-Home
-</span>
-
-<span class="back-menu-sub">
-Kembali ke halaman utama
-</span>
-
-</span>
-
-</button>
-
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<!-- =========================
-     LOADING
-     ========================= -->
-
-<div id="loading">
-
-<i
-    data-lucide="loader-circle"
-    class="w-9 h-9 animate-spin text-amber-500"
-></i>
-
-<p class="font-semibold text-sm text-slate-400 mt-3">
-Memuat data...
-</p>
-
-</div>
-
-
-<div id="tableContent">
-
-
-<!-- =========================
-     FILTER
-     ========================= -->
-
-<div class="filter-panel">
-
-
-<div class="filter-header">
-
-<div class="filter-title-wrapper">
-
-<span class="filter-icon">
-
-<i
-    data-lucide="filter"
-    class="w-4 h-4"
-></i>
-
-</span>
-
-
-<div>
-
-<h3 class="filter-title">
-Filter Data
-</h3>
-
-<p class="filter-subtitle">
-Gunakan filter untuk mencari dan menyaring data unit.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="filter-status">
-
-<span class="filter-status-dot"></span>
-
-Database Terhubung
-
-</div>
-
-</div>
-
-
-<div class="filter-grid">
-
-
-<div class="filter-field filter-search">
-
-<label>
-Cari Data
-</label>
-
-
-<div class="search-wrapper">
-
-<i
-    data-lucide="search"
-    class="search-icon"
-></i>
-
-
-<input
-    id="searchInput"
-    type="text"
-    placeholder="Code unit, brand, model, tanggal..."
-    class="filter-input"
-    oninput="applyFilters()"
->
-
-</div>
-
-</div>
-
-
-<div class="filter-field">
-
-<label>
-Brand
-</label>
-
-
-<select
-    id="brandFilter"
-    class="filter-input"
-    onchange="applyFilters()"
->
-
-<option value="">
-Semua Brand
-</option>
-
-</select>
-
-</div>
-
-
-<div class="filter-field">
-
-<label>
-Jenis Unit
-</label>
-
-
-<select
-    id="unitTypeFilter"
-    class="filter-input"
-    onchange="applyFilters()"
->
-
-<option value="">
-Semua Jenis Unit
-</option>
-
-<option value="wheel-loader">
-Wheel Loader
-</option>
-
-<option value="forklift">
-Forklift
-</option>
-
-<option value="dumptruck">
-Dumptruck
-</option>
-
-<option value="excavator">
-Excavator
-</option>
-
-<option value="other">
-Other / Environment
-</option>
-
-</select>
-
-</div>
-
-
-<div class="filter-field">
-
-<label>
-Aksi
-</label>
-
-
-<button
-    onclick="resetFilters()"
-    class="reset-button"
->
-
-<i
-    data-lucide="rotate-ccw"
-    class="w-4 h-4"
-></i>
-
-Reset Filter
-
-</button>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     STATISTICS
-     ========================= -->
-
-<div class="grid grid-cols-5 gap-4 mb-6">
-
-
-<div class="stat-card">
-
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-Total Unit
-</p>
-
-<p
-    id="totalData"
-    class="text-3xl font-black text-blue-900 mt-2"
->
--
-</p>
-
-</div>
-
-
-<div class="stat-card">
-
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-Wheel Loader
-</p>
-
-<p
-    id="wheelLoaderTotal"
-    class="text-3xl font-black text-indigo-600 mt-2"
->
--
-</p>
-
-</div>
-
-
-<div class="stat-card">
-
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-Forklift
-</p>
-
-<p
-    id="forkliftTotal"
-    class="text-3xl font-black text-amber-600 mt-2"
->
--
-</p>
-
-</div>
-
-
-<div class="stat-card">
-
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-Dumptruck
-</p>
-
-<p
-    id="dumptruckTotal"
-    class="text-3xl font-black text-red-600 mt-2"
->
--
-</p>
-
-</div>
-
-
-<div class="stat-card">
-
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-Excavator
-</p>
-
-<p
-    id="excavatorTotal"
-    class="text-3xl font-black text-emerald-600 mt-2"
->
--
-</p>
-
-</div>
-
-
-</div>
-
-
-<!-- =========================
-     TABLE
-     ========================= -->
-
-<div class="table-panel">
-
-
-<div class="table-panel-header">
-
-
-<div class="table-heading">
-
-<div class="table-heading-icon">
-
-<i
-    data-lucide="table-2"
-    class="w-4 h-4"
-></i>
-
-</div>
-
-
-<div>
-
-<h3 class="table-heading-title">
-Daftar Populasi Unit
-</h3>
-
-<p
-    id="resultInfo"
-    class="table-heading-subtitle"
->
--
-</p>
-
-</div>
-
-</div>
-
-
-<div class="table-live-status">
-
-<span class="table-live-dot"></span>
-
-Data langsung dari Database
-
-</div>
-
-
-</div>
-
-
-<!-- DESKTOP TABLE -->
-
-<div class="table-scroll">
-
-<table>
-
-<thead>
-
-<tr>
-
-
-<th style="width:60px">
-
-<div class="sort-button">
-No
-</div>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="unit"
-    onclick="toggleSort('unit')"
->
-
-Code Unit
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="tanggal"
-    onclick="toggleSort('tanggal')"
->
-
-Delivery Date
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="brand"
-    onclick="toggleSort('brand')"
->
-
-Brand
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-<th>
-
-<button
-    class="sort-button sort-normal"
-    data-sort-key="model"
-    onclick="toggleSort('model')"
->
-
-Model
-
-<i
-    data-lucide="arrow-up-down"
-    class="sort-icon"
-></i>
-
-</button>
-
-</th>
-
-
-</tr>
-
-</thead>
-
-
-<tbody id="tableBody"></tbody>
-
-</table>
-
-</div>
-
-
-<!-- MOBILE DATA -->
-
-<div
-    id="mobileDataList"
-    class="mobile-data-list"
-></div>
-
-
-<!-- EMPTY STATE -->
-
-<div
-    id="emptyState"
-    class="hidden"
->
-
-<div class="py-16 text-center">
-
-
-<div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
-
-<i
-    data-lucide="search-x"
-    class="w-8 h-8"
-></i>
-
-</div>
-
-
-<h3 class="font-bold text-slate-600 mt-4">
-Data tidak ditemukan
-</h3>
-
-
-<p class="text-xs text-slate-400 mt-1">
-Coba ubah kata pencarian atau filter.
-</p>
-
-
-</div>
-
-</div>
-
-
-<!-- PAGINATION -->
-
-<div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
-
-
-<div
-    id="paginationInfo"
-    class="text-[10px] font-semibold text-slate-400"
->
--
-</div>
-
-
-<div
-    id="pagination"
-    class="flex items-center gap-1"
-></div>
-
-
-</div>
-
-
-</div>
-
-
-</div>
+    <div class="flex items-center justify-between gap-5 mb-6">
+
+        <div>
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="database" class="w-6 h-6"></i>
+                </span>
+                Data Populasi Unit
+            </h2>
+            <p class="page-subtitle mt-2 ml-1">
+                Daftar seluruh unit yang tersimpan pada database.
+            </p>
+        </div>
+
+        <!-- MENU KEMBALI -->
+        <div class="back-menu-wrapper">
+
+            <button
+                type="button"
+                onclick="toggleBackMenu()"
+                class="back-button"
+                aria-expanded="false"
+                aria-haspopup="true"
+            >
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Kembali</span>
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+            </button>
+
+            <div id="backMenu" class="back-menu">
+
+                <div class="back-menu-title">Pilih tujuan</div>
+
+                <button type="button" class="back-menu-item" onclick="goToPage('populasi.html')">
+                    <span class="back-menu-icon">
+                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    </span>
+                    <span class="back-menu-text">
+                        <span class="back-menu-main">Dashboard Populasi Unit</span>
+                        <span class="back-menu-sub">Kembali ke dashboard populasi</span>
+                    </span>
+                </button>
+
+                <button type="button" class="back-menu-item" onclick="goToPage('index.html')">
+                    <span class="back-menu-icon">
+                        <i data-lucide="home" class="w-4 h-4"></i>
+                    </span>
+                    <span class="back-menu-text">
+                        <span class="back-menu-main">Home</span>
+                        <span class="back-menu-sub">Kembali ke halaman utama</span>
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOADING -->
+    <div id="loading">
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p class="font-semibold text-sm text-slate-400 mt-3">Memuat data...</p>
+    </div>
+
+
+    <!-- TABLE CONTENT -->
+    <div id="tableContent">
+
+        <!-- STAT CARDS (dihitung dari baris yang lolos filter) -->
+        <div class="grid grid-cols-5 gap-4 mb-6">
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Unit</p>
+                <p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Wheel Loader</p>
+                <p id="wheelLoaderTotal" class="text-3xl font-black text-indigo-600 mt-2">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Forklift</p>
+                <p id="forkliftTotal" class="text-3xl font-black text-amber-600 mt-2">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Dumptruck</p>
+                <p id="dumptruckTotal" class="text-3xl font-black text-red-700 mt-2">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Excavator</p>
+                <p id="excavatorTotal" class="text-3xl font-black text-emerald-600 mt-2">-</p>
+            </div>
+
+        </div>
+
+
+        <!-- TABLE PANEL (tanpa panel filter terpisah) -->
+        <div class="table-panel">
+
+            <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-4">
+                <div>
+                    <h3 class="font-black text-slate-700 text-sm">Daftar Populasi Unit</h3>
+                    <p id="resultInfo" class="text-[10px] text-slate-400 mt-1 font-medium">-</p>
+                </div>
+                <div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
+                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                    Data langsung dari Database
+                </div>
+            </div>
+
+            <!-- CHIP FILTER AKTIF -->
+            <div id="activeFilters" class="active-filters-bar" hidden></div>
+
+            <!-- TABEL DESKTOP -->
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr id="tableHeadRow"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- MOBILE: bar filter + kartu -->
+            <div id="mobileFilterBar" class="mobile-filter-bar"></div>
+            <div id="mobileDataList" class="mobile-data-list"></div>
+
+            <!-- EMPTY STATE -->
+            <div id="emptyState" class="hidden">
+                <div class="py-16 text-center">
+                    <div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
+                        <i data-lucide="search-x" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-600 mt-4">Data tidak ditemukan</h3>
+                    <p class="text-xs text-slate-400 mt-1">Coba ubah filter pada header kolom.</p>
+                </div>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
+                <div id="paginationInfo" class="text-[10px] font-semibold text-slate-400">-</div>
+                <div id="pagination" class="flex items-center gap-1"></div>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 </main>
 
+<!-- POPUP FILTER & SORT KOLOM (satu instance, position fixed) -->
+<div id="colDropdown" class="col-dropdown" hidden></div>
 
-<!-- =========================
-     FOOTER
-     ========================= -->
-
+<!-- FOOTER -->
 <footer class="mt-8 text-center text-slate-400 px-4 pb-8">
-
-
-<p class="font-bold text-slate-500 tracking-tight uppercase">
-
-&copy; 2026 Paperless Project - PT TSI. All rights reserved.
-
-</p>
-
-
-<p class="text-[10px] mt-1">
-
-System Architecture by:
-
-<span class="text-slate-600 font-semibold uppercase">
-Imam Wahyu Ramadhan, S.T.
-</span>
-
-|
-
-<span class="text-amber-600 font-bold uppercase tracking-tighter">
-Project 2.0
-</span>
-
-</p>
-
-
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+    <p class="text-[10px] mt-1">
+        System Architecture by:
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
+        |
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
+    </p>
 </footer>
 
 
-<!-- =========================
-     LEADERBOARD BUTTON
-     ========================= -->
-
-<button
-    id="leaderboardButton"
-    onclick="openLeaderboard()"
-    aria-label="Informasi Unit"
->
-
-<i
-    data-lucide="layers"
-    class="w-7 h-7"
-></i>
-
-
-<span class="leader-tooltip">
-Informasi Unit
-</span>
-
+<!-- RINGKASAN BRAND -->
+<button id="leaderboardButton" onclick="openLeaderboard()" aria-label="Ringkasan Brand">
+    <i data-lucide="layers" class="w-7 h-7"></i>
+    <span class="leader-tooltip">Ringkasan Brand</span>
 </button>
 
+<div id="leaderboardOverlay" onclick="closeLeaderboardOutside(event)">
+    <div id="leaderboardModal">
 
-<!-- =========================
-     LEADERBOARD MODAL
-     ========================= -->
+        <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+            <div>
+                <h3 class="font-black text-slate-800 flex items-center gap-2">
+                    <span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                    </span>
+                    Ringkasan Brand
+                </h3>
+                <p class="text-[10px] text-slate-400 font-medium mt-1">Jumlah unit berdasarkan brand</p>
+            </div>
+            <button
+                onclick="closeLeaderboard()"
+                class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
+            >
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
 
-<div
-    id="leaderboardOverlay"
-    onclick="closeLeaderboardOutside(event)"
->
+        <div id="leaderboardList" class="p-5 overflow-y-auto max-h-[60vh]">
+            <div class="text-center text-slate-400 text-sm py-6">Memuat data...</div>
+        </div>
 
-
-<div id="leaderboardModal">
-
-
-<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-
-
-<div>
-
-<h3 class="font-black text-slate-800 flex items-center gap-2">
-
-
-<span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
-
-<i
-    data-lucide="layers"
-    class="w-5 h-5"
-></i>
-
-</span>
-
-
-Ringkasan Brand
-
-</h3>
-
-
-<p class="text-[10px] text-slate-400 font-medium mt-1">
-Jumlah unit berdasarkan brand
-</p>
-
-</div>
-
-
-<button
-    onclick="closeLeaderboard()"
-    class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
->
-
-<i
-    data-lucide="x"
-    class="w-5 h-5"
-></i>
-
-</button>
-
-
-</div>
-
-
-<div
-    id="leaderboardList"
-    class="p-5 overflow-y-auto max-h-[60vh]"
->
-
-<div class="text-center text-slate-400 text-sm py-6">
-Memuat data...
-</div>
-
-</div>
-
-
-</div>
-
+    </div>
 </div>
 
 
 <script>
 
+/* =========================================================
+   CONFIGURATION
+========================================================= */
 
-/* =========================
-   API CONFIGURATION
-   ========================= */
-
-const API_URL =
+const API_URL=
 'https://script.google.com/macros/s/AKfycbypUW5-2xrXqcYyoqNURmfnFfW6lRGresgHEFYLVTDNGoyBbWIleTyDgIWpFojc9g0a/exec';
 
 const ROWS_PER_PAGE=15;
 
+/* Kolom tabel (Bible Bab 10) */
+const COLUMNS=[
+    {key:'number',  label:'No',            type:'number', filterable:false, width:'60px'},
+    {key:'unit',    label:'Code Unit',     type:'text',   filterable:true},
+    {key:'tanggal', label:'Delivery Date', type:'date',   filterable:true},
+    {key:'brand',   label:'Brand',         type:'text',   filterable:true},
+    {key:'model',   label:'Model',         type:'text',   filterable:true}
+];
 
-/* =========================
-   GLOBAL DATA
-   ========================= */
+/* Lima warna brand dari palet bible, dipakai bergantian */
+const BRAND_CLASSES=['brand-blue','brand-amber','brand-green','brand-red','brand-slate'];
 
-let apiData=null;
 
-let allData=[];
+/* =========================================================
+   STATE
+========================================================= */
 
-let filteredData=[];
-
+let allData=[];          // seluruh unit (_idx = urutan sumber)
+let rowsView=[];         // unit yang lolos semua filter kolom
+let columnFilters={};    // { key: Set(nilai terpilih) }
+let sortKey=null;        // null = urutan database
+let sortDir=null;        // 'asc' | 'desc' | null
 let currentPage=1;
+let brandClassMap={};
 
-let sortState={
-    key:null,
-    direction:0
-};
-
-let brandColorMap={};
-
-
-/* =========================
-   HELPER
-   ========================= */
-
-const $=id=>
-document.getElementById(id);
+let openColumn=null;
+let ddValues=[];
+let draftSelection=new Set();
+let ddQuery='';
 
 
-const safe=v=>
-String(v??'').replace(
-    /[&<>"']/g,
-    m=>({
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        '"':'&quot;',
-        "'":'&#039;'
-    }[m])
-);
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $=id=>document.getElementById(id);
+
+const getColumn=key=>COLUMNS.find(c=>c.key===key);
+
+const isEmpty=v=>v===''||v===null||v===undefined;
+
+function safe(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+}
+
+function handleLogoError(){
+    $('companyLogo').classList.add('hidden');
+    $('logoFallback').classList.remove('hidden');
+}
 
 
-/* =========================
+/* =========================================================
    NAVIGATION
-   ========================= */
+========================================================= */
 
 function toggleBackMenu(){
 
     const menu=$('backMenu');
+    const button=document.querySelector('.back-menu-wrapper .back-button');
+    const isOpen=menu.classList.contains('show');
 
-    const button=
-        document.querySelector(
-            '.back-menu-wrapper .back-button'
-        );
-
-    const isOpen=
-        menu.classList.contains('show');
-
-    menu.classList.toggle(
-        'show',
-        !isOpen
-    );
-
-    button.setAttribute(
-        'aria-expanded',
-        String(!isOpen)
-    );
+    menu.classList.toggle('show',!isOpen);
+    button.setAttribute('aria-expanded',String(!isOpen));
 
 }
-
 
 function goToPage(url){
-
     location.href=url;
-
 }
 
+document.addEventListener('click',e=>{
 
-document.addEventListener(
-    'click',
-    e=>{
+    const wrapper=document.querySelector('.back-menu-wrapper');
 
-        const wrapper=
-            document.querySelector(
-                '.back-menu-wrapper'
-            );
-
-        if(
-            wrapper &&
-            !wrapper.contains(e.target)
-        ){
-
-            $('backMenu')
-                .classList.remove('show');
-
-            const button=
-                wrapper.querySelector(
-                    '.back-button'
-                );
-
-            if(button){
-
-                button.setAttribute(
-                    'aria-expanded',
-                    'false'
-                );
-
-            }
-
-        }
-
+    if(wrapper&&!wrapper.contains(e.target)){
+        $('backMenu').classList.remove('show');
+        const button=wrapper.querySelector('.back-button');
+        if(button) button.setAttribute('aria-expanded','false');
     }
-);
+
+});
 
 
-/* =========================
-   LOGO
-   ========================= */
-
-function handleLogoError(){
-
-    $('companyLogo').classList.add('hidden');
-
-    $('logoFallback').classList.remove('hidden');
-
-}
-
-
-/* =========================
+/* =========================================================
    UNIT TYPE
-   ========================= */
+========================================================= */
 
 function getUnitType(unit){
 
-    const value=
-        String(unit??'')
-        .trim()
-        .toUpperCase();
+    const value=String(unit??'').trim().toUpperCase();
 
-
-    if(
-        value.startsWith('W-') ||
-        value.startsWith('WA') ||
-        value.startsWith('ZW')
-    ){
-
-        return 'wheel-loader';
-
-    }
-
-
-    if(
-        value.startsWith('FD100') ||
-        value.startsWith('FD70') ||
-        value.startsWith('FD30')
-    ){
-
-        return 'forklift';
-
-    }
-
-
-    if(
-        value.startsWith('D-') ||
-        value.startsWith('L-')
-    ){
-
-        return 'dumptruck';
-
-    }
-
-
-    if(
-        value.startsWith('E-')
-    ){
-
-        return 'excavator';
-
-    }
-
+    if(value.startsWith('W-')||value.startsWith('WA')||value.startsWith('ZW')) return 'wheel-loader';
+    if(value.startsWith('FD100')||value.startsWith('FD70')||value.startsWith('FD30')) return 'forklift';
+    if(value.startsWith('D-')||value.startsWith('L-')) return 'dumptruck';
+    if(value.startsWith('E-')) return 'excavator';
 
     return 'other';
 
 }
 
+function buildBrandClassMap(){
 
-/* =========================
-   UNIT TYPE LABEL
-   ========================= */
+    const brands=[...new Set(allData.map(row=>row.brand).filter(Boolean))]
+        .sort((a,b)=>a.localeCompare(b,'id',{sensitivity:'base'}));
 
-function getUnitTypeLabel(type){
+    brandClassMap={};
 
-    const labels={
-        'wheel-loader':'Wheel Loader',
-        'forklift':'Forklift',
-        'dumptruck':'Dumptruck',
-        'excavator':'Excavator',
-        'other':'Other / Environment'
-    };
-
-
-    return labels[type]||'Other / Environment';
+    brands.forEach((brand,index)=>{
+        brandClassMap[brand.toLowerCase()]=BRAND_CLASSES[index%BRAND_CLASSES.length];
+    });
 
 }
 
-
-/* =========================
-   UNIT BADGE CLASS
-   ========================= */
-
-function getUnitBadgeClass(unit){
-
-    const type=
-        getUnitType(unit);
-
-
-    return{
-
-        'wheel-loader':
-            'unit-wheel-loader',
-
-        'forklift':
-            'unit-forklift',
-
-        'dumptruck':
-            'unit-dumptruck',
-
-        'excavator':
-            'unit-excavator',
-
-        'other':
-            'unit-other'
-
-    }[type];
-
+function getBrandClass(brand){
+    return brandClassMap[String(brand??'').trim().toLowerCase()]||'brand-slate';
 }
 
 
-/* =========================
-   BRAND COLOR
-   ========================= */
+/* =========================================================
+   TANGGAL
+========================================================= */
 
-function createBrandColorMap(){
-
-    const brands=
-        [
-            ...new Set(
-                allData
-                .map(row=>
-                    String(row.brand??'')
-                    .trim()
-                )
-                .filter(Boolean)
-            )
-        ]
-        .sort(
-            (a,b)=>
-                a.localeCompare(
-                    b,
-                    'id',
-                    {
-                        sensitivity:'base'
-                    }
-                )
-        );
-
-
-    brandColorMap={};
-
-
-    brands.forEach(
-        (brand,index)=>{
-
-            brandColorMap[
-                brand.toLowerCase()
-            ]=
-                `brand-${(index%10)+1}`;
-
-        }
-    );
-
-}
-
-
-/* =========================
-   BRAND BADGE CLASS
-   ========================= */
-
-function getBrandBadgeClass(brand){
-
-    const key=
-        String(brand??'')
-        .trim()
-        .toLowerCase();
-
-
-    return brandColorMap[key]||
-        'brand-10';
-
-}
-
-
-/* =========================
-   LOAD DATA
-   ========================= */
-
-async function loadTable(){
-
-try{
-
-const r=await fetch(
-    API_URL,
-    {
-        method:'GET',
-        cache:'no-store'
-    }
-);
-
-
-if(!r.ok)
-    throw Error(`HTTP Error ${r.status}`);
-
-
-const result=await r.json();
-
-
-apiData=result;
-
-
-let rawData=[];
-
-
-if(Array.isArray(result)){
-
-    rawData=result;
-
-}else if(Array.isArray(result.data)){
-
-    rawData=result.data;
-
-}else{
-
-    rawData=[];
-
-}
-
-
-allData=
-rawData
-.filter(row=>
-    Array.isArray(row)&&
-    row.some(v=>
-        String(v??'').trim()!==''
-    )
-)
-.map((row,index)=>({
-
-    no:row[0]??'',
-
-    unit:row[1]??'',
-
-    tanggal:row[2]??'',
-
-    brand:row[3]??'',
-
-    model:row[4]??'',
-
-    _originalIndex:index
-
-}));
-
-
-createBrandColorMap();
-
-updateStatistics();
-
-updateBrandFilter();
-
-updateBrandSummary();
-
-
-filteredData=[...allData];
-
-currentPage=1;
-
-sortState={
-    key:null,
-    direction:0
+/*
+   Format yang didukung: "Jan 2023", "Januari 2023", "Jan'23",
+   "12 Januari 2023", "12/01/2023", "2023-01-12".
+*/
+const MONTHS={
+    januari:1,jan:1,
+    februari:2,feb:2,
+    maret:3,mar:3,
+    april:4,apr:4,
+    mei:5,may:5,
+    juni:6,jun:6,
+    juli:7,jul:7,
+    agustus:8,agu:8,aug:8,
+    september:9,sep:9,
+    oktober:10,okt:10,oct:10,
+    november:11,nov:11,
+    desember:12,des:12,dec:12
 };
 
-updateSortHeaders();
-
-renderTable();
-
-
-$('loading').style.display='none';
-
-$('tableContent').classList.add('show');
-
-
-}catch(error){
-
-
-$('loading').innerHTML=`
-
-<div class="text-center">
-
-<div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
-
-<i data-lucide="alert-circle" class="w-8 h-8"></i>
-
-</div>
-
-<h3 class="font-bold text-red-700 mt-3">
-Gagal memuat data
-</h3>
-
-<p class="text-xs text-slate-500 mt-2 max-w-md">
-${safe(error.message)}
-</p>
-
-<button
-    onclick="loadTable()"
-    class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
->
-Coba Lagi
-</button>
-
-</div>
-`;
-
-
-lucide.createIcons();
-
+function validDate(y,m,d){
+    const x=new Date(Date.UTC(y,m-1,d));
+    return x.getUTCFullYear()===y&&x.getUTCMonth()===m-1&&x.getUTCDate()===d
+        ?x.getTime()
+        :null;
 }
-
-}
-
-
-/* =========================
-   STATISTICS
-   ========================= */
-
-function updateStatistics(){
-
-const total=
-    allData.length;
-
-
-const countType=
-keyword=>
-allData.filter(
-    row=>
-        getUnitType(row.unit)===keyword
-).length;
-
-
-$('totalData').textContent=
-    total;
-
-
-$('wheelLoaderTotal').textContent=
-    countType('wheel-loader');
-
-
-$('forkliftTotal').textContent=
-    countType('forklift');
-
-
-$('dumptruckTotal').textContent=
-    countType('dumptruck');
-
-
-$('excavatorTotal').textContent=
-    countType('excavator');
-
-}
-
-
-/* =========================
-   BRAND FILTER
-   ========================= */
-
-function updateBrandFilter(){
-
-const select=
-    $('brandFilter');
-
-
-const brands=
-[
-    ...new Set(
-        allData
-        .map(row=>
-            String(row.brand).trim()
-        )
-        .filter(Boolean)
-    )
-]
-.sort(
-    (a,b)=>
-        a.localeCompare(
-            b,
-            'id',
-            {
-                sensitivity:'base'
-            }
-        )
-);
-
-
-select.innerHTML=`
-
-<option value="">
-Semua Brand
-</option>
-
-`;
-
-
-brands.forEach(
-    brand=>{
-
-        const option=
-            document.createElement(
-                'option'
-            );
-
-
-        option.value=
-            brand;
-
-
-        option.textContent=
-            brand;
-
-
-        select.appendChild(option);
-
-    }
-);
-
-}
-
-
-/* =========================
-   FILTER
-   ========================= */
-
-function applyFilters(){
-
-const search=
-    $('searchInput')
-    .value
-    .trim()
-    .toLowerCase();
-
-
-const brand=
-    $('brandFilter')
-    .value
-    .trim()
-    .toLowerCase();
-
-
-const unitType=
-    $('unitTypeFilter')
-    .value
-    .trim()
-    .toLowerCase();
-
-
-filteredData=
-allData.filter(row=>{
-
-
-const text=[
-
-    row.no,
-
-    row.unit,
-
-    row.tanggal,
-
-    row.brand,
-
-    row.model
-
-]
-.map(v=>
-    String(v??'')
-)
-.join(' ')
-.toLowerCase();
-
-
-const rowType=
-    getUnitType(row.unit);
-
-
-return(
-
-    (!search||
-        text.includes(search)
-    )&&
-
-    (!brand||
-        String(row.brand)
-        .trim()
-        .toLowerCase()===brand
-    )&&
-
-    (!unitType||
-        rowType===unitType
-    )
-
-);
-
-});
-
-
-currentPage=1;
-
-applyCurrentSort();
-
-renderTable();
-
-}
-
-
-/* =========================
-   RESET FILTER
-   ========================= */
-
-function resetFilters(){
-
-$('searchInput').value='';
-
-$('brandFilter').value='';
-
-$('unitTypeFilter').value='';
-
-filteredData=[...allData];
-
-currentPage=1;
-
-applyCurrentSort();
-
-renderTable();
-
-}
-
-
-/* =========================
-   SORTING
-   ========================= */
-
-function toggleSort(key){
-
-if(sortState.key===key){
-
-sortState.direction=
-    sortState.direction===0
-        ?1
-        :sortState.direction===1
-            ?-1
-            :0;
-
-}else{
-
-sortState.key=key;
-
-sortState.direction=1;
-
-}
-
-
-applyCurrentSort();
-
-currentPage=1;
-
-updateSortHeaders();
-
-renderTable();
-
-}
-
-
-/* =========================
-   APPLY SORT
-   ========================= */
-
-function applyCurrentSort(){
-
-if(
-    !sortState.key||
-    !sortState.direction
-){
-
-filteredData.sort(
-    (a,b)=>
-        a._originalIndex-
-        b._originalIndex
-);
-
-return;
-
-}
-
-
-const direction=
-    sortState.direction;
-
-
-const key=
-    sortState.key;
-
-
-filteredData.sort(
-    (a,b)=>{
-
-        const c=
-            compareRows(
-                a,
-                b,
-                key
-            );
-
-
-        return c
-            ?c*direction
-            :a._originalIndex-
-                b._originalIndex;
-
-    }
-);
-
-}
-
-
-/* =========================
-   COMPARE ROW
-   ========================= */
-
-function compareRows(a,b,key){
-
-if(key==='tanggal'){
-
-const x=
-    parseIndonesianDate(
-        a.tanggal
-    );
-
-
-const y=
-    parseIndonesianDate(
-        b.tanggal
-    );
-
-
-if(x===null&&y===null)
-    return 0;
-
-
-if(x===null)
-    return 1;
-
-
-if(y===null)
-    return -1;
-
-
-return x-y;
-
-}
-
-
-const x=
-    String(a[key]??'')
-    .trim()
-    .toLowerCase();
-
-
-const y=
-    String(b[key]??'')
-    .trim()
-    .toLowerCase();
-
-
-if(!x&&!y)
-    return 0;
-
-
-if(!x)
-    return 1;
-
-
-if(!y)
-    return -1;
-
-
-return x.localeCompare(
-    y,
-    'id',
-    {
-        numeric:true,
-        sensitivity:'base'
-    }
-);
-
-}
-
-
-/* =========================
-   DATE PARSER
-   ========================= */
 
 function parseIndonesianDate(value){
 
-if(value==null)
-    return null;
+    if(value===null||value===undefined) return null;
+    if(value instanceof Date) return isNaN(value.getTime())?null:value.getTime();
 
+    const t=String(value).trim();
+    if(!t) return null;
 
-if(value instanceof Date)
+    let m=t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+    if(m) return validDate(+m[1],+m[2],+m[3]);
 
-return Number.isNaN(
-    value.getTime()
-)
-    ?null
-    :value.getTime();
+    if(/^\d{4}$/.test(t)) return validDate(Number(t),1,1);
 
+    m=t.match(/^([A-Za-z]+)\s*,?\s*(\d{4})$/);
+    if(m&&MONTHS[m[1].toLowerCase()]) return validDate(+m[2],MONTHS[m[1].toLowerCase()],1);
 
-let t=
-    String(value)
-    .trim();
+    m=t.match(/^(\d{1,2})\s+([A-Za-z]+)\s*,?\s*(\d{4})$/);
+    if(m&&MONTHS[m[2].toLowerCase()]) return validDate(+m[3],MONTHS[m[2].toLowerCase()],+m[1]);
 
-
-if(!t)
-    return null;
-
-
-let iso=
-    t.match(
-        /^(\d{4})-(\d{1,2})-(\d{1,2})/
-    );
-
-
-if(iso){
-
-    return validDate(
-        +iso[1],
-        +iso[2],
-        +iso[3]
-    );
-
-}
-
-
-if(/^\d{4}$/.test(t)){
-
-    return validDate(
-        Number(t),
-        1,
-        1
-    );
-
-}
-
-
-const months={
-
-    januari:1,
-    jan:1,
-
-    februari:2,
-    feb:2,
-
-    maret:3,
-    mar:3,
-
-    april:4,
-    apr:4,
-
-    mei:5,
-    may:5,
-
-    juni:6,
-    jun:6,
-
-    juli:7,
-    jul:7,
-
-    agustus:8,
-    agu:8,
-    aug:8,
-
-    september:9,
-    sep:9,
-
-    oktober:10,
-    okt:10,
-    oct:10,
-
-    november:11,
-    nov:11,
-
-    desember:12,
-    des:12,
-    dec:12
-
-};
-
-
-let monthYear=
-    t.match(
-        /^([A-Za-z]+)\s*,?\s*(\d{4})$/i
-    );
-
-
-if(monthYear){
-
-    const monthName=
-        monthYear[1]
-        .toLowerCase();
-
-
-    if(months[monthName]){
-
-        return validDate(
-            +monthYear[2],
-            months[monthName],
-            1
-        );
-
+    m=t.match(/^([A-Za-z]+)\s+(\d{1,2})['’](\d{2})$/);
+    if(m&&MONTHS[m[1].toLowerCase()]){
+        const yy=Number(m[3]);
+        return validDate(yy<=29?2000+yy:1900+yy,MONTHS[m[1].toLowerCase()],Number(m[2]));
     }
 
-}
+    m=t.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/);
+    if(m) return validDate(+m[3],+m[2],+m[1]);
 
+    m=t.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/);
+    if(m) return validDate(+m[1],+m[2],+m[3]);
 
-let indo=
-    t.match(
-        /^(\d{1,2})\s+([A-Za-z]+)\s*,?\s*(\d{4})$/i
-    );
-
-
-if(indo){
-
-    const monthName=
-        indo[2]
-        .toLowerCase();
-
-
-    if(months[monthName]){
-
-        return validDate(
-            +indo[3],
-            months[monthName],
-            +indo[1]
-        );
-
+    if(/^\d+(\.\d+)?$/.test(t)){
+        const n=Number(t);
+        if(n>20000&&n<100000) return Date.UTC(1899,11,30)+n*86400000;
     }
 
-}
-
-
-let shortYear=
-    t.match(
-        /^([A-Za-z]+)\s+(\d{1,2})['’](\d{2})$/i
-    );
-
-
-if(shortYear){
-
-    const monthName=
-        shortYear[1]
-        .toLowerCase();
-
-
-    if(months[monthName]){
-
-        const yy=
-            Number(shortYear[3]);
-
-
-        const year=
-            yy<=29
-                ?2000+yy
-                :1900+yy;
-
-
-        return validDate(
-            year,
-            months[monthName],
-            Number(shortYear[2])
-        );
-
-    }
+    const d=new Date(t);
+    return isNaN(d.getTime())?null:d.getTime();
 
 }
 
-
-let m=
-    t.match(
-        /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/
-    );
-
-
-if(m)
-
-return validDate(
-    +m[3],
-    +m[2],
-    +m[1]
-);
-
-
-m=
-    t.match(
-        /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/
-    );
-
-
-if(m)
-
-return validDate(
-    +m[1],
-    +m[2],
-    +m[3]
-);
-
-
-if(/^\d+(\.\d+)?$/.test(t)){
-
-const n=
-    Number(t);
-
-
-if(n>20000&&n<100000)
-
-return Date.UTC(
-    1899,
-    11,
-    30
-)+
-n*86400000;
-
-}
-
-
-const d=
-    new Date(t);
-
-
-return Number.isNaN(
-    d.getTime()
-)
-    ?null
-    :d.getTime();
-
-}
-
-
-/* =========================
-   VALID DATE
-   ========================= */
-
-function validDate(y,m,d){
-
-const x=
-    new Date(
-        Date.UTC(
-            y,
-            m-1,
-            d
-        )
-    );
-
-
-return x.getUTCFullYear()===y&&
-x.getUTCMonth()===m-1&&
-x.getUTCDate()===d
-
-    ?x.getTime()
-
-    :null;
-
-}
-
-
-/* =========================
-   SORT HEADER
-   ========================= */
-
-function updateSortHeaders(){
-
-document
-.querySelectorAll(
-    '.sort-button[data-sort-key]'
-)
-.forEach(b=>{
-
-
-const active=
-    sortState.key===
-        b.dataset.sortKey&&
-    sortState.direction!==0;
-
-
-b.classList.toggle(
-    'sort-active',
-    active
-);
-
-
-b.classList.toggle(
-    'sort-normal',
-    !active
-);
-
-
-const icon=
-    b.querySelector(
-        '.sort-icon'
-    );
-
-
-if(icon)
-
-icon.setAttribute(
-    'data-lucide',
-
-    active
-
-        ?(
-            sortState.direction===1
-                ?'arrow-up'
-                :'arrow-down'
-        )
-
-        :'arrow-up-down'
-);
-
-
-b.title=
-    active
-
-        ?(
-            sortState.direction===1
-                ?'Urutan naik (ASC)'
-                :'Urutan turun (DESC)'
-        )
-
-        :'Klik: ASC → DESC → Urutan Normal';
-
-});
-
-
-lucide.createIcons();
-
-}
-
-
-/* =========================
-   RENDER TABLE
-   ========================= */
-
-function renderTable(){
-
-const tbody=
-    $('tableBody');
-
-
-const mobile=
-    $('mobileDataList');
-
-
-const empty=
-    $('emptyState');
-
-
-tbody.innerHTML='';
-
-mobile.innerHTML='';
-
-
-const total=
-    filteredData.length;
-
-
-const pages=
-    Math.max(
-        1,
-        Math.ceil(
-            total/ROWS_PER_PAGE
-        )
-    );
-
-
-currentPage=
-    Math.min(
-        currentPage,
-        pages
-    );
-
-
-const start=
-    (currentPage-1)*
-    ROWS_PER_PAGE;
-
-
-const end=
-    Math.min(
-        start+ROWS_PER_PAGE,
-        total
-    );
-
-
-const rows=
-    filteredData.slice(
-        start,
-        end
-    );
-
-
-empty.classList.toggle(
-    'hidden',
-    !!rows.length
-);
-
-
-if(rows.length){
-
-
-rows.forEach(
-    (row,i)=>{
-
-
-        const no=
-            start+i+1;
-
-
-        const unitType=
-            getUnitType(
-                row.unit
-            );
-
-
-        const unitClass=
-            getUnitBadgeClass(
-                row.unit
-            );
-
-
-        const brandClass=
-            getBrandBadgeClass(
-                row.brand
-            );
-
-
-        const dateInfo=
-            getDeliveryAgeClass(
-                row.tanggal
-            );
-
-
-        const tr=
-            document.createElement(
-                'tr'
-            );
-
-
-        tr.innerHTML=`
-
-<td>
-${no}
-</td>
-
-
-<td>
-
-<div class="unit-cell">
-
-<span class="unit-indicator unit-indicator-${unitType}">
-</span>
-
-<span class="unit-code">
-${safe(row.unit)||'-'}
-</span>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="date-wrapper">
-
-<i
-    data-lucide="calendar-days"
-    class="date-icon ${dateInfo.className}"
-></i>
-
-<span class="delivery-date ${dateInfo.className}">
-${formatDate(row.tanggal)}
-</span>
-
-</div>
-
-</td>
-
-
-<td>
-
-<span class="brand-badge ${brandClass}">
-${safe(row.brand)||'-'}
-</span>
-
-</td>
-
-
-<td>
-
-<span class="model-text">
-${safe(row.model)||'-'}
-</span>
-
-</td>
-
-`;
-
-
-        tbody.appendChild(
-            tr
-        );
-
-
-        const card=
-            document.createElement(
-                'div'
-            );
-
-
-        card.className=
-            'mobile-data-card';
-
-
-        card.innerHTML=`
-
-<div class="mobile-card-header">
-
-
-<div>
-
-
-<div class="flex items-center gap-2">
-
-
-<span class="mobile-number">
-${no}
-</span>
-
-
-<div class="mobile-unit ${unitClass.replace('unit-','text-')}">
-${safe(row.unit)}
-</div>
-
-
-</div>
-
-
-<div class="mobile-date ${dateInfo.className}">
-
-
-<i
-    data-lucide="calendar-days"
-    class="inline w-3 h-3 mr-1"
-></i>
-
-
-${formatDate(row.tanggal)}
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-<div class="mobile-card-grid">
-
-
-<div class="mobile-field">
-
-
-<div class="mobile-label">
-Brand
-</div>
-
-
-<div class="mobile-value">
-
-<span class="brand-badge ${brandClass}">
-${safe(row.brand)||'-'}
-</span>
-
-</div>
-
-
-</div>
-
-
-<div class="mobile-field">
-
-
-<div class="mobile-label">
-Model
-</div>
-
-
-<div class="mobile-value">
-
-${safe(row.model)||'-'}
-
-</div>
-
-
-</div>
-
-
-</div>
-
-`;
-
-
-        mobile.appendChild(
-            card
-        );
-
-    }
-);
-
-}
-
-
-updateResultInfo(
-    total,
-    start,
-    end
-);
-
-
-renderPagination(
-    pages
-);
-
-
-lucide.createIcons();
-
-}
-
-
-/* =========================
-   DELIVERY AGE
-   ========================= */
-
+/* Umur delivery: ≤ 8 tahun = baru (hijau), lebih = lama (amber) */
 function getDeliveryAgeClass(value){
 
-const time=
-    parseIndonesianDate(
-        value
-    );
+    const time=parseIndonesianDate(value);
 
+    if(time===null) return 'delivery-unknown';
 
-if(time===null){
+    const delivery=new Date(time);
+    const now=new Date();
 
-    return{
-        className:'delivery-unknown',
-        age:null
-    };
+    let age=now.getUTCFullYear()-delivery.getUTCFullYear();
 
-}
+    if(
+        now.getUTCMonth()<delivery.getUTCMonth()||
+        (now.getUTCMonth()===delivery.getUTCMonth()&&now.getUTCDate()<delivery.getUTCDate())
+    ){
+        age--;
+    }
 
-
-const deliveryDate=
-    new Date(time);
-
-
-const now=
-    new Date();
-
-
-let age=
-    now.getUTCFullYear()-
-    deliveryDate.getUTCFullYear();
-
-
-const currentMonth=
-    now.getUTCMonth();
-
-
-const deliveryMonth=
-    deliveryDate.getUTCMonth();
-
-
-const currentDay=
-    now.getUTCDate();
-
-
-const deliveryDay=
-    deliveryDate.getUTCDate();
-
-
-if(
-    currentMonth<deliveryMonth||
-    (
-        currentMonth===deliveryMonth&&
-        currentDay<deliveryDay
-    )
-){
-
-    age--;
+    return age<=8?'delivery-new':'delivery-old';
 
 }
 
-
-return{
-
-    className:
-        age<=8
-            ?'delivery-new'
-            :'delivery-old',
-
-    age:age
-
-};
-
-}
-
-
-/* =========================
-   DATE DISPLAY
-   ========================= */
-
+/* Tampilan tanggal: format dd/mm/yyyy jika bisa diparsing, selain itu teks asli */
 function formatDate(value){
 
-const text=
-    String(value??'')
-    .trim();
+    const text=String(value??'').trim();
 
+    if(!text) return '-';
 
-if(!text)
-    return '-';
+    if(/^\d{4}$/.test(text)||/^[A-Za-z]+\s*,?\s*\d{4}$/.test(text)) return safe(text);
 
+    const time=parseIndonesianDate(text);
 
-const time=
-    parseIndonesianDate(
-        text
-    );
+    if(time===null) return safe(text);
 
-
-if(time===null)
-    return safe(text);
-
-
-const d=
-    new Date(time);
-
-
-if(/^\d{4}$/.test(text)){
-
-    return text;
-
-}
-
-
-if(
-    /^[A-Za-z]+\s*,?\s*\d{4}$/i
-    .test(text)
-){
-
-    return safe(text);
-
-}
-
-
-return d.toLocaleDateString(
-    'id-ID',
-    {
+    return new Date(time).toLocaleDateString('id-ID',{
         day:'2-digit',
         month:'2-digit',
         year:'numeric',
         timeZone:'UTC'
+    });
+
+}
+
+
+/* =========================================================
+   FILTER ENGINE (Excel-style, saling mempengaruhi)
+========================================================= */
+
+/* Nilai filter per baris. Tanggal memakai teks asli agar label tidak berubah. */
+function getCellValue(row,key){
+    switch(key){
+        case 'unit':    return String(row.unit??'').trim().toUpperCase();
+        case 'tanggal': return String(row.tanggal??'').trim();
+        case 'brand':   return String(row.brand??'').trim();
+        case 'model':   return String(row.model??'').trim();
+        default:        return '';
     }
-);
-
 }
 
-
-/* =========================
-   RESULT INFO
-   ========================= */
-
-function updateResultInfo(
-    total,
-    start,
-    end
-){
-
-if(!total){
-
-$('resultInfo').textContent=
-    'Tidak ada data yang sesuai filter.';
-
-$('paginationInfo').textContent=
-    '0 data';
-
-return;
-
+function getValueLabel(key,value){
+    return value||'(Kosong)';
 }
 
-
-$('resultInfo').textContent=
-    `Menampilkan ${start+1}–${end} dari ${total} data`;
-
-
-$('paginationInfo').textContent=
-    `${total} data ditemukan`;
-
+function rowPasses(row,excludeKey){
+    return Object.keys(columnFilters).every(key=>{
+        if(key===excludeKey) return true;
+        return columnFilters[key].has(getCellValue(row,key));
+    });
 }
 
+/* Nilai unik + jumlah, dari baris yang lolos filter KOLOM LAIN */
+function distinctValues(key){
 
-/* =========================
-   PAGINATION
-   ========================= */
+    const map=new Map();
 
-function renderPagination(
-    totalPages
-){
+    allData.forEach(row=>{
+        if(!rowPasses(row,key)) return;
+        const v=getCellValue(row,key);
+        map.set(v,(map.get(v)||0)+1);
+    });
 
-const c=
-    $('pagination');
+    const col=getColumn(key);
 
+    return [...map.entries()]
+        .map(([value,count])=>({value,count}))
+        .sort((a,b)=>{
 
-c.innerHTML='';
+            if(a.value===''||b.value==='') return (a.value==='')-(b.value==='');
 
+            if(col.type==='date'){
 
-if(!filteredData.length)
-return;
+                const ta=parseIndonesianDate(a.value);
+                const tb=parseIndonesianDate(b.value);
 
-
-const add=(
-    content,
-    cls='',
-    disabled=false,
-    fn=null
-)=>{
-
-
-const b=
-    document.createElement(
-        'button'
-    );
-
-
-b.className=
-    'pagination-button'+
-    (cls?' '+cls:'');
-
-
-b.disabled=
-    disabled;
-
-
-typeof content==='string'&&
-content.startsWith('<i')
-
-    ?b.innerHTML=content
-
-    :b.textContent=content;
-
-
-if(fn)
-    b.onclick=fn;
-
-
-c.appendChild(b);
-
-};
-
-
-add(
-
-    '<i data-lucide="chevron-left" class="w-4 h-4"></i>',
-
-    '',
-
-    currentPage===1,
-
-    ()=>{
-
-        if(currentPage>1){
-
-            currentPage--;
-
-            renderTable();
-
-        }
-
-    }
-
-);
-
-
-getPaginationPages(
-    currentPage,
-    totalPages
-)
-.forEach(
-
-    p=>
-
-    p==='...'
-
-        ?(()=>{
-
-            const s=
-                document.createElement(
-                    'span'
-                );
-
-
-            s.className=
-                'px-2 text-slate-400 text-xs';
-
-
-            s.textContent=
-                '...';
-
-
-            c.appendChild(s);
-
-        })()
-
-        :add(
-
-            p,
-
-            p===currentPage
-                ?'active'
-                :'',
-
-
-            false,
-
-            ()=>{
-
-                currentPage=p;
-
-                renderTable();
+                if(ta===null&&tb===null) return a.value.localeCompare(b.value,'id');
+                if(ta===null) return 1;
+                if(tb===null) return -1;
+                return ta-tb;
 
             }
 
-        )
+            return a.value.localeCompare(b.value,'id',{numeric:true,sensitivity:'base'});
 
-);
+        });
+}
+
+function applyAllFilters(){
+    rowsView=allData.filter(row=>rowPasses(row,null));
+    currentPage=1;
+    renderTable();
+}
+
+function removeColumnFilter(key){
+    delete columnFilters[key];
+    applyAllFilters();
+}
+
+function clearAllFilters(){
+    columnFilters={};
+    applyAllFilters();
+}
 
 
-add(
+/* =========================================================
+   SORT
+========================================================= */
 
-    '<i data-lucide="chevron-right" class="w-4 h-4"></i>',
+function getSortValue(row,key){
+    switch(key){
+        case 'number':  return row._idx;
+        case 'tanggal': return parseIndonesianDate(row.tanggal);
+        case 'unit':    return getCellValue(row,'unit').toLowerCase();
+        case 'brand':   return getCellValue(row,'brand').toLowerCase();
+        case 'model':   return getCellValue(row,'model').toLowerCase();
+        default:        return '';
+    }
+}
 
-    '',
+function getSortedData(rows){
 
-    currentPage===totalPages,
+    const list=[...rows];
 
-    ()=>{
-
-        if(
-            currentPage<
-            totalPages
-        ){
-
-            currentPage++;
-
-            renderTable();
-
-        }
-
+    if(!sortKey||!sortDir){
+        return list.sort((a,b)=>a._idx-b._idx);
     }
 
-);
+    return list.sort((a,b)=>{
 
+        const va=getSortValue(a,sortKey);
+        const vb=getSortValue(b,sortKey);
 
-lucide.createIcons();
+        /* Kosong selalu di paling akhir */
+        if(isEmpty(va)!==isEmpty(vb)) return isEmpty(va)?1:-1;
+        if(isEmpty(va)) return 0;
 
+        let c;
+
+        if(typeof va==='number'&&typeof vb==='number'){
+            c=va-vb;
+        }else{
+            c=String(va).localeCompare(String(vb),'id',{numeric:true,sensitivity:'base'});
+        }
+
+        return sortDir==='asc'?c:-c;
+
+    });
 }
 
 
-/* =========================
-   PAGINATION PAGES
-   ========================= */
+/* =========================================================
+   POPUP FILTER & SORT
+========================================================= */
 
-function getPaginationPages(
-    current,
-    total
-){
+function openColumnMenu(key,anchor){
 
-if(total<=7)
+    if(openColumn===key){
+        closeColumnMenu();
+        return;
+    }
 
-return Array.from(
-    {length:total},
-    (_,i)=>i+1
-);
+    closeColumnMenu();
 
+    const col=getColumn(key);
 
-const p=[1];
+    openColumn=key;
+    ddQuery='';
 
+    ddValues=col.filterable?distinctValues(key):[];
 
-if(current>4)
-    p.push('...');
-
-
-for(
-
-    let i=
-        Math.max(
-            2,
-            current-1
-        );
-
-    i<=Math.min(
-        total-1,
-        current+1
+    draftSelection=new Set(
+        columnFilters[key]
+            ?[...columnFilters[key]]
+            :ddValues.map(v=>v.value)
     );
 
-    i++
+    const dd=$('colDropdown');
 
-)
+    dd.innerHTML=buildDropdown(col);
+    dd.hidden=false;
 
-p.push(i);
+    positionColumnMenu(anchor);
+    renderDdList();
+    lucide.createIcons();
+
+    if(!window.matchMedia('(max-width:767px)').matches){
+        const s=dd.querySelector('.dd-search');
+        if(s) s.focus();
+    }
+
+}
+
+function closeColumnMenu(){
+    const dd=$('colDropdown');
+    dd.hidden=true;
+    dd.innerHTML='';
+    openColumn=null;
+}
+
+function positionColumnMenu(anchor){
+
+    const dd=$('colDropdown');
+
+    if(window.matchMedia('(max-width:767px)').matches){
+        dd.classList.add('is-sheet');
+        dd.style.left='';
+        dd.style.top='';
+        return;
+    }
+
+    dd.classList.remove('is-sheet');
+
+    const r=anchor.getBoundingClientRect();
+    const w=dd.offsetWidth||240;
+    const h=dd.offsetHeight||0;
+
+    let left=r.left;
+    if(left+w>window.innerWidth-8) left=Math.max(8,r.right-w);
+
+    let top=r.bottom+6;
+    if(top+h>window.innerHeight-8) top=Math.max(8,r.top-h-6);
+
+    dd.style.left=left+'px';
+    dd.style.top=top+'px';
+}
+
+function buildDropdown(col){
+
+    const labels=
+        col.type==='date'?['Lama→Baru','Baru→Lama']:
+        col.type==='number'?['Naik','Turun']:
+        ['A→Z','Z→A'];
+
+    const current=sortKey===col.key?sortDir:null;
+
+    const sortHtml=`
+        <div class="dd-sort">
+            <button class="dd-sort-btn ${current==='asc'?'on':''}" onclick="ddSetSort('asc')">${labels[0]}</button>
+            <button class="dd-sort-btn ${current==='desc'?'on':''}" onclick="ddSetSort('desc')">${labels[1]}</button>
+        </div>
+    `;
+
+    if(!col.filterable) return sortHtml;
+
+    return sortHtml+`
+        <div class="dd-divider"></div>
+        <div class="dd-search-wrap">
+            <i data-lucide="search" class="dd-search-icon"></i>
+            <input class="dd-search" type="text" placeholder="Cari ${safe(col.label)}..." oninput="ddSearch(this.value)">
+        </div>
+        <div class="dd-list" id="ddList"></div>
+        <div class="dd-footer">
+            <button class="dd-reset" onclick="ddReset()">Reset</button>
+            <button class="dd-apply" onclick="ddApply()">Terapkan</button>
+        </div>
+    `;
+}
+
+function ddVisible(){
+    return ddValues.filter(v=>
+        !ddQuery||getValueLabel(openColumn,v.value).toLowerCase().includes(ddQuery)
+    );
+}
+
+function renderDdList(){
+
+    const list=$('ddList');
+    if(!list) return;
+
+    const prevScroll=list.scrollTop;
+    const visible=ddVisible();
+
+    if(!visible.length){
+        list.innerHTML='<div class="dd-empty">Tidak ada nilai</div>';
+        return;
+    }
+
+    const allChecked=visible.every(v=>draftSelection.has(v.value));
+
+    list.innerHTML=`
+        <label class="dd-item dd-all">
+            <input type="checkbox" ${allChecked?'checked':''} onchange="ddToggleAll(this.checked)">
+            <span class="dd-item-label">(Pilih Semua)</span>
+        </label>
+        ${visible.map(v=>`
+            <label class="dd-item">
+                <input
+                    type="checkbox"
+                    ${draftSelection.has(v.value)?'checked':''}
+                    onchange="ddToggle(${ddValues.indexOf(v)},this.checked)"
+                >
+                <span class="dd-item-label">${safe(getValueLabel(openColumn,v.value))}</span>
+                <span class="dd-item-count">${v.count}</span>
+            </label>
+        `).join('')}
+    `;
+
+    list.scrollTop=prevScroll;
+}
+
+function ddSearch(query){
+    ddQuery=String(query).trim().toLowerCase();
+    renderDdList();
+}
+
+function ddToggle(index,checked){
+    const v=ddValues[index].value;
+    if(checked) draftSelection.add(v);
+    else draftSelection.delete(v);
+    renderDdList();
+}
+
+function ddToggleAll(checked){
+    ddVisible().forEach(v=>{
+        if(checked) draftSelection.add(v.value);
+        else draftSelection.delete(v.value);
+    });
+    renderDdList();
+}
+
+function ddSetSort(dir){
+    sortKey=openColumn;
+    sortDir=dir;
+    closeColumnMenu();
+    currentPage=1;
+    renderTable();
+}
+
+function ddApply(){
+    if(!openColumn) return;
+    const allSelected=ddValues.every(v=>draftSelection.has(v.value));
+    if(allSelected) delete columnFilters[openColumn];
+    else columnFilters[openColumn]=new Set(draftSelection);
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+function ddReset(){
+    if(!openColumn) return;
+    delete columnFilters[openColumn];
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+/* Tutup popup: klik di luar, scroll halaman, resize, Escape */
+document.addEventListener('mousedown',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    if(e.target.closest('[data-col-trigger]')) return;
+    closeColumnMenu();
+});
+
+window.addEventListener('scroll',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    closeColumnMenu();
+},true);
+
+window.addEventListener('resize',closeColumnMenu);
 
 
-if(current<total-3)
-    p.push('...');
+/* =========================================================
+   RENDER HEADER, FILTER BAR, CHIP, STATISTIK
+========================================================= */
 
+function renderTableHead(){
 
-p.push(total);
+    $('tableHeadRow').innerHTML=COLUMNS.map(col=>{
 
+        const sorted=sortKey===col.key&&!!sortDir;
+        const filtered=!!columnFilters[col.key];
+        const active=sorted||filtered;
 
-return p;
+        const sortIcon=
+            !sorted?'chevrons-up-down':
+            sortDir==='asc'?'chevron-up':'chevron-down';
+
+        return `
+            <th style="${col.width?`width:${col.width}`:''}">
+                <button
+                    class="col-header ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    <span>${col.label}</span>
+                    <span class="col-icons">
+                        <i data-lucide="${sortIcon}" class="col-sort-icon ${sorted?'on':''}"></i>
+                        ${col.filterable
+                            ?`<i data-lucide="filter" class="col-filter-icon ${filtered?'on':''}"></i>`
+                            :''}
+                    </span>
+                </button>
+            </th>
+        `;
+
+    }).join('');
+
+}
+
+function renderMobileFilterBar(){
+
+    $('mobileFilterBar').innerHTML=COLUMNS
+        .filter(c=>c.filterable)
+        .map(col=>{
+
+            const f=columnFilters[col.key];
+            const sorted=sortKey===col.key&&!!sortDir;
+            const active=!!f||sorted;
+
+            return `
+                <button
+                    class="mobile-filter-btn ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    ${col.label}
+                    ${f?`<span class="mobile-filter-count">${f.size}</span>`:''}
+                    ${sorted?`<i data-lucide="${sortDir==='asc'?'chevron-up':'chevron-down'}" class="w-3 h-3"></i>`:''}
+                </button>
+            `;
+
+        }).join('');
+
+}
+
+function renderActiveFilters(){
+
+    const bar=$('activeFilters');
+    const keys=Object.keys(columnFilters);
+
+    if(!keys.length){
+        bar.hidden=true;
+        bar.innerHTML='';
+        return;
+    }
+
+    bar.hidden=false;
+
+    bar.innerHTML=keys.map(key=>{
+
+        const labels=[...columnFilters[key]].map(v=>getValueLabel(key,v));
+
+        const text=labels.length
+            ?labels[0]+(labels.length>1?`, +${labels.length-1}`:'')
+            :'(Tidak ada)';
+
+        return `
+            <span class="active-filter-chip">
+                ${safe(getColumn(key).label)}: ${safe(text)}
+                <button onclick="removeColumnFilter('${key}')" aria-label="Hapus filter">×</button>
+            </span>
+        `;
+
+    }).join('')+`<button class="clear-all-btn" onclick="clearAllFilters()">Hapus Semua</button>`;
+
+}
+
+/* Statistik dihitung dari unit yang lolos filter */
+function updateStatistics(rows){
+
+    const count=type=>rows.filter(row=>getUnitType(row.unit)===type).length;
+
+    $('totalData').textContent=rows.length;
+    $('wheelLoaderTotal').textContent=count('wheel-loader');
+    $('forkliftTotal').textContent=count('forklift');
+    $('dumptruckTotal').textContent=count('dumptruck');
+    $('excavatorTotal').textContent=count('excavator');
 
 }
 
 
-/* =========================
-   BRAND SUMMARY
-   ========================= */
+/* =========================================================
+   RENDER TABLE + KARTU MOBILE
+========================================================= */
+
+function renderTable(){
+
+    renderTableHead();
+    renderMobileFilterBar();
+    renderActiveFilters();
+    updateStatistics(rowsView);
+
+    const tbody=$('tableBody');
+    const mobile=$('mobileDataList');
+
+    tbody.innerHTML='';
+    mobile.innerHTML='';
+
+    const sorted=getSortedData(rowsView);
+    const total=sorted.length;
+    const pages=Math.max(1,Math.ceil(total/ROWS_PER_PAGE));
+
+    if(currentPage>pages) currentPage=pages;
+
+    const start=(currentPage-1)*ROWS_PER_PAGE;
+    const end=Math.min(start+ROWS_PER_PAGE,total);
+    const pageData=sorted.slice(start,end);
+
+    $('emptyState').classList.toggle('hidden',pageData.length>0);
+
+    pageData.forEach((row,index)=>{
+
+        const no=start+index+1;
+        const unitType=getUnitType(row.unit);
+        const brandClass=getBrandClass(row.brand);
+        const dateClass=getDeliveryAgeClass(row.tanggal);
+
+        /* ---- baris desktop ---- */
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+            <td class="text-center font-bold text-slate-400">${no}</td>
+            <td>
+                <div class="unit-cell">
+                    <span class="unit-indicator unit-indicator-${unitType}"></span>
+                    <span class="unit-code">${safe(row.unit)||'-'}</span>
+                </div>
+            </td>
+            <td class="whitespace-nowrap">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="calendar-days" class="w-3.5 h-3.5 ${dateClass}"></i>
+                    <span class="font-bold ${dateClass}">${formatDate(row.tanggal)}</span>
+                </div>
+            </td>
+            <td>
+                <span class="brand-badge ${brandClass}">${safe(row.brand)||'-'}</span>
+            </td>
+            <td>
+                <span class="model-text">${safe(row.model)||'-'}</span>
+            </td>
+        `;
+        tbody.appendChild(tr);
+
+        /* ---- kartu mobile ---- */
+        const card=document.createElement('div');
+        card.className='mobile-data-card';
+        card.innerHTML=`
+            <div class="mobile-card-header">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="mobile-number">${no}</span>
+                        <div class="mobile-unit">${safe(row.unit)}</div>
+                    </div>
+                    <div class="mobile-date ${dateClass}">
+                        <i data-lucide="calendar-days" class="w-3 h-3"></i>
+                        ${formatDate(row.tanggal)}
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-card-grid">
+                <div class="mobile-field">
+                    <div class="mobile-label">Brand</div>
+                    <div class="mobile-value">
+                        <span class="brand-badge ${brandClass}">${safe(row.brand)||'-'}</span>
+                    </div>
+                </div>
+                <div class="mobile-field">
+                    <div class="mobile-label">Model</div>
+                    <div class="mobile-value">${safe(row.model)||'-'}</div>
+                </div>
+            </div>
+        `;
+        mobile.appendChild(card);
+
+    });
+
+    updateResultInfo(total,start,end);
+    renderPagination(pages);
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   RESULT INFO
+========================================================= */
+
+function updateResultInfo(total,start,end){
+
+    if(!total){
+        $('resultInfo').textContent='Tidak ada data yang sesuai filter.';
+        $('paginationInfo').textContent='0 data';
+        return;
+    }
+
+    $('resultInfo').textContent=`Menampilkan ${start+1}–${end} dari ${total} data`;
+    $('paginationInfo').textContent=`${total} data ditemukan`;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination(totalPages){
+
+    const c=$('pagination');
+    c.innerHTML='';
+
+    if(!rowsView.length) return;
+
+    const add=(content,cls,disabled,fn)=>{
+        const b=document.createElement('button');
+        b.className='pagination-button'+(cls?' '+cls:'');
+        b.disabled=!!disabled;
+        const s=String(content);
+        if(s.startsWith('<')) b.innerHTML=s;
+        else b.textContent=s;
+        if(fn) b.onclick=fn;
+        c.appendChild(b);
+    };
+
+    add('<i data-lucide="chevron-left" class="w-4 h-4"></i>','',currentPage===1,()=>{
+        if(currentPage>1){currentPage--;renderTable();}
+    });
+
+    getPaginationPages(currentPage,totalPages).forEach(p=>{
+        if(p==='...'){
+            const s=document.createElement('span');
+            s.className='px-2 text-slate-400 text-xs';
+            s.textContent='...';
+            c.appendChild(s);
+            return;
+        }
+        add(p,p===currentPage?'active':'',false,()=>{currentPage=p;renderTable();});
+    });
+
+    add('<i data-lucide="chevron-right" class="w-4 h-4"></i>','',currentPage===totalPages,()=>{
+        if(currentPage<totalPages){currentPage++;renderTable();}
+    });
+
+    lucide.createIcons();
+
+}
+
+function getPaginationPages(current,total){
+    if(total<=7) return Array.from({length:total},(_,i)=>i+1);
+    const p=[1];
+    if(current>4) p.push('...');
+    for(let i=Math.max(2,current-1);i<=Math.min(total-1,current+1);i++) p.push(i);
+    if(current<total-3) p.push('...');
+    p.push(total);
+    return p;
+}
+
+
+/* =========================================================
+   RINGKASAN BRAND
+========================================================= */
 
 function updateBrandSummary(){
 
-const counts={};
+    const counts={};
 
+    allData.forEach(row=>{
+        const brand=String(row.brand||'').trim();
+        if(brand) counts[brand]=(counts[brand]||0)+1;
+    });
 
-allData.forEach(
-    row=>{
+    const data=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
 
-        const brand=
-            String(
-                row.brand||''
-            ).trim();
-
-
-        if(!brand)
-            return;
-
-
-        counts[brand]=
-            (counts[brand]||0)+1;
-
+    if(!data.length){
+        $('leaderboardList').innerHTML='<div class="text-center text-slate-400 text-sm py-6">Belum ada data brand.</div>';
+        return;
     }
-);
 
+    $('leaderboardList').innerHTML=data.map((item,i)=>{
 
-const data=
-    Object.entries(counts)
-    .sort(
-        (a,b)=>
-            b[1]-a[1]
-    );
-
-
-const list=
-    $('leaderboardList');
-
-
-if(!data.length){
-
-list.innerHTML=`
-
-<div class="text-center text-slate-400 text-sm py-6">
-Belum ada data brand.
-</div>
-
-`;
-
-return;
-
-}
-
-
-list.innerHTML=
-
-data.map(
-    (item,i)=>{
-
-        const rank=
-            i+1;
-
-
-        const cls=
-            rank<=3
-                ?`top-${rank}`
-                :'';
-
-
-        const medal=
-            rank===1
-                ?'🥇'
-                :rank===2
-                    ?'🥈'
-                    :rank===3
-                        ?'🥉'
-                        :rank;
-
+        const rank=i+1;
+        const cls=rank<=3?`top-${rank}`:'';
+        const medal=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
 
         return `
+            <div class="leader-row ${cls}">
+                <div class="leader-rank">${medal}</div>
+                <div class="leader-name truncate">${safe(item[0])}</div>
+                <div class="leader-count">${item[1]} unit</div>
+            </div>
+        `;
 
-<div class="leader-row ${cls}">
-
-<div class="leader-rank">
-${medal}
-</div>
-
-<div class="leader-name truncate">
-${safe(item[0])}
-</div>
-
-<div class="leader-count">
-${item[1]} unit
-</div>
-
-</div>
-
-`;
-
-    }
-)
-.join('');
+    }).join('');
 
 }
-
-
-/* =========================
-   LEADERBOARD / SUMMARY
-   ========================= */
 
 function openLeaderboard(){
-
-updateBrandSummary();
-
-$('leaderboardOverlay')
-.classList.add('show');
-
-document.body.style.overflow=
-    'hidden';
-
+    updateBrandSummary();
+    $('leaderboardOverlay').classList.add('show');
+    document.body.style.overflow='hidden';
 }
-
 
 function closeLeaderboard(){
-
-$('leaderboardOverlay')
-.classList.remove('show');
-
-document.body.style.overflow=
-    '';
-
+    $('leaderboardOverlay').classList.remove('show');
+    document.body.style.overflow='';
 }
-
 
 function closeLeaderboardOutside(e){
-
-if(
-    e.target===
-    $('leaderboardOverlay')
-)
-
-closeLeaderboard();
-
+    if(e.target===$('leaderboardOverlay')) closeLeaderboard();
 }
-
-
-/* =========================
-   PULSE BUTTON
-   ========================= */
 
 function scheduleLeaderboardPulse(){
 
-const button=
-    $('leaderboardButton');
+    const button=$('leaderboardButton');
+    const delay=12000+Math.random()*14000;
 
+    setTimeout(()=>{
 
-const delay=
-    12000+
-    Math.random()*14000;
-
-
-setTimeout(
-    ()=>{
-
-
-        const overlay=
-            $('leaderboardOverlay');
-
-
-        if(
-            !overlay.classList.contains(
-                'show'
-            )
-        ){
-
-            button.classList.remove(
-                'leader-pulse'
-            );
-
-
+        if(!$('leaderboardOverlay').classList.contains('show')){
+            button.classList.remove('leader-pulse');
             void button.offsetWidth;
-
-
-            button.classList.add(
-                'leader-pulse'
-            );
-
+            button.classList.add('leader-pulse');
         }
-
 
         scheduleLeaderboardPulse();
 
-
-    },
-    delay
-);
+    },delay);
 
 }
 
 
-/* =========================
-   INITIALIZE
-   ========================= */
+/* =========================================================
+   LOAD DATA
+========================================================= */
 
-window.addEventListener(
-    'load',
-    ()=>{
+async function loadTable(){
+
+    try{
+
+        const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
+
+        if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
+
+        const result=await response.json();
+
+        const rawData=
+            Array.isArray(result)?result:
+            Array.isArray(result.data)?result.data:
+            [];
+
+        allData=rawData
+            .filter(row=>Array.isArray(row)&&row.some(v=>String(v??'').trim()!==''))
+            .map((row,index)=>({
+                no:row[0]??'',
+                unit:row[1]??'',
+                tanggal:row[2]??'',
+                brand:row[3]??'',
+                model:row[4]??'',
+                _idx:index
+            }));
+
+        buildBrandClassMap();
+
+        columnFilters={};
+        sortKey=null;
+        sortDir=null;
+        currentPage=1;
+
+        rowsView=[...allData];
+
+        renderTable();
+        updateBrandSummary();
+
+        $('loading').style.display='none';
+        $('tableContent').classList.add('show');
+
+    }catch(error){
+
+        console.error('Populasi API Error:',error);
+
+        $('loading').innerHTML=`
+            <div class="text-center">
+                <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
+                </div>
+                <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+                <p class="text-xs text-slate-500 mt-2 max-w-md">${safe(error.message)}</p>
+                <button onclick="loadTable()" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
+                    Coba Lagi
+                </button>
+            </div>
+        `;
 
         lucide.createIcons();
 
-        loadTable();
-
-        scheduleLeaderboardPulse();
-
     }
-);
+
+}
 
 
-/* =========================
-   ESC KEY
-   ========================= */
+/* =========================================================
+   START
+========================================================= */
 
-document.addEventListener(
-    'keydown',
-    e=>{
+window.addEventListener('load',()=>{
+    lucide.createIcons();
+    loadTable();
+    scheduleLeaderboardPulse();
+});
 
-        if(e.key==='Escape'){
-
-            closeLeaderboard();
-
-            $('backMenu')
-                ?.classList.remove('show');
-
-        }
-
+document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+        closeColumnMenu();
+        closeLeaderboard();
+        $('backMenu').classList.remove('show');
     }
-);
+});
 
 </script>
-
+<script src="nav.js"></script>
+   <script src="datacache.js"></script>
 </body>
 </html>
-
