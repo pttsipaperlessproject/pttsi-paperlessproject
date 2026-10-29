@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard Periodic Service - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -30,1715 +16,732 @@
    GLOBAL
 ========================================================= */
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    width:100%;
-    min-height:100%;
-}
+html{width:100%;min-width:0;overflow-x:hidden}
 
 body{
     margin:0;
-    min-width:320px;
-    min-height:100vh;
-
-    font-family:'Inter',sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #eef2f7
-        );
-
-    color:#1e293b;
-
-    overflow-x:hidden;
+    width:100%;
+    min-width:0;
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b
 }
 
-
-/* =========================================================
-   GLOBAL UTILITIES
-========================================================= */
-
-.color-primary{
-    background:#1E3A8A;
-}
-
-.text-primary{
-    color:#1E3A8A;
-}
-
-.fade-in{
-    animation:
-        fadeIn
-        .5s
-        cubic-bezier(.4,0,.2,1);
-}
-
-@keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
+.color-primary{background:#1e3a8a}
 
 .glass-panel{
-
-    background:
-        rgba(255,255,255,.95);
-
-    backdrop-filter:
-        blur(10px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3)
 }
 
-.logo-wrapper{
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 
-    transition:
-        transform
-        .4s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        );
-
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-.logo-wrapper:hover{
-
-    transform:
-        scale(1.08)
-        rotate(2deg);
-
-}
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 
 .logo-shadow{
-
     filter:
-        drop-shadow(
-            0 10px 8px
-            rgba(0,0,0,.04)
-        )
-        drop-shadow(
-            0 4px 3px
-            rgba(0,0,0,.1)
-        );
-
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
-
 
 /* =========================================================
-   CHART CARDS
+   PAGE TITLE & BUTTON
 ========================================================= */
 
-.chart-card{
-
-    background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:20px;
-
-    padding:20px;
-
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.04);
-
-    transition:
-        .25s ease;
-
-    min-width:0;
-
-}
-
-.chart-card:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 12px 25px
-        rgba(15,23,42,.08);
-
-}
-
-.chart-title{
-
-    font-size:14px;
-
+.page-title{
+    font-size:30px;
     font-weight:900;
+    color:#1e293b;
+    letter-spacing:-.025em;
+    line-height:1.2
+}
 
-    color:#334155;
+.page-subtitle{
+    font-size:13px;
+    color:#64748b;
+    font-weight:500;
+    line-height:1.6
+}
 
+.page-actions{
     display:flex;
-
     align-items:center;
-
     gap:9px;
-
+    flex-wrap:wrap;
+    flex-shrink:0
 }
 
-.chart-subtitle{
-
-    font-size:10px;
-
-    color:#94a3b8;
-
-    font-weight:600;
-
-    margin-top:4px;
-
-    line-height:1.5;
-
+.back-button,
+.secondary-button{
+    font-family:inherit;
+    font-size:12px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:11px 17px;
+    border-radius:12px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.2s ease
 }
 
-.chart-wrapper{
-
-    position:relative;
-
-    height:300px;
-
-    margin-top:15px;
-
-    width:100%;
-
+.back-button{
+    background:#1e3a8a;
+    color:#fff;
+    border:none;
+    box-shadow:0 5px 12px rgba(30,58,138,.18)
 }
 
+.back-button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
+}
+
+.secondary-button{
+    background:#f8fafc;
+    color:#475569;
+    border:1px solid #e2e8f0
+}
+
+.secondary-button:hover{
+    background:#f1f5f9;
+    color:#1e3a8a;
+    border-color:#bfdbfe;
+    transform:translateY(-2px)
+}
 
 /* =========================================================
-   STATISTICS
+   STAT CARDS
 ========================================================= */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:16px;
+    margin-bottom:20px
+}
 
 .stat-card{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:18px;
-
-    padding:18px;
-
-    transition:
-        .25s ease;
-
-    min-width:0;
-
-    overflow:hidden;
-
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:17px;
+    transition:.25s ease;
+    min-width:0
 }
 
 .stat-card:hover{
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 10px 20px
-        rgba(15,23,42,.07);
-
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
 
-
-/* =========================================================
-   NAVIGATION BUTTONS
-========================================================= */
-
-.navigation-button{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
-    font-size:13px;
-
-    font-weight:800;
-
-    border-radius:12px;
-
-    padding:
-        11px
-        17px;
-
-    transition:
-        all
-        .2s
-        ease;
-
-    cursor:pointer;
-
-    white-space:nowrap;
-
-}
-
-.navigation-button:hover{
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-/* =========================================================
-   FLOATING LEADERBOARD
-========================================================= */
-
-#leaderboardButton{
-
-    position:fixed;
-
-    right:28px;
-
-    bottom:28px;
-
-    z-index:90;
-
-    width:68px;
-
-    height:68px;
-
-    border-radius:20px;
-
-    background:#1e3a8a;
-
-    color:#fff;
-
-    border:
-        2px solid
-        rgba(255,255,255,.45);
-
-    box-shadow:
-        0 12px 30px
-        rgba(15,23,42,.25),
-        0 0 0
-        rgba(30,58,138,0);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-    transition:
-        transform
-        .25s
-        ease,
-
-        box-shadow
-        .25s
-        ease;
-
-}
-
-#leaderboardButton:hover{
-
-    transform:
-        translateY(-4px)
-        scale(1.06);
-
-    box-shadow:
-        0 16px 35px
-        rgba(15,23,42,.30),
-
-        0 0 22px
-        rgba(30,58,138,.28);
-
-}
-
-
-/* =========================================================
-   LEADERBOARD PULSE
-========================================================= */
-
-#leaderboardButton.leader-pulse{
-
-    animation:
-        leaderPulse
-        1.8s
-        cubic-bezier(.4,0,.2,1);
-
-}
-
-@keyframes leaderPulse{
-
-    0%{
-
-        transform:scale(1);
-
-        box-shadow:
-            0 12px 30px
-            rgba(15,23,42,.25),
-
-            0 0 0
-            rgba(30,58,138,0);
-
-    }
-
-    18%{
-
-        transform:scale(1.16);
-
-        box-shadow:
-            0 16px 35px
-            rgba(15,23,42,.28),
-
-            0 0 0 9px
-            rgba(30,58,138,.12),
-
-            0 0 28px
-            rgba(30,58,138,.35);
-
-    }
-
-    35%{
-
-        transform:scale(1.08);
-
-        box-shadow:
-            0 16px 35px
-            rgba(15,23,42,.28),
-
-            0 0 0 17px
-            rgba(30,58,138,.06),
-
-            0 0 34px
-            rgba(30,58,138,.25);
-
-    }
-
-    52%{
-
-        transform:scale(1.13);
-
-        box-shadow:
-            0 16px 35px
-            rgba(15,23,42,.28),
-
-            0 0 0 8px
-            rgba(30,58,138,.10),
-
-            0 0 30px
-            rgba(30,58,138,.30);
-
-    }
-
-    72%{
-
-        transform:scale(1.04);
-
-        box-shadow:
-            0 13px 30px
-            rgba(15,23,42,.25),
-
-            0 0 0 16px
-            rgba(30,58,138,.03),
-
-            0 0 20px
-            rgba(30,58,138,.16);
-
-    }
-
-    100%{
-
-        transform:scale(1);
-
-        box-shadow:
-            0 12px 30px
-            rgba(15,23,42,.25),
-
-            0 0 0
-            rgba(30,58,138,0);
-
-    }
-
-}
-
-
-/* =========================================================
-   LEADERBOARD TOOLTIP
-========================================================= */
-
-.leader-tooltip{
-
-    position:absolute;
-
-    right:0;
-
-    bottom:78px;
-
-    white-space:nowrap;
-
-    background:#0f172a;
-
-    color:#fff;
-
+.stat-label{
     font-size:10px;
-
     font-weight:700;
-
-    padding:
-        7px
-        10px;
-
-    border-radius:8px;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transform:
-        translateY(5px);
-
-    transition:.2s;
-
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.06em
 }
 
-#leaderboardButton:hover
-.leader-tooltip{
-
-    opacity:1;
-
-    transform:
-        translateY(0);
-
+.stat-value{
+    font-size:30px;
+    font-weight:900;
+    margin-top:8px;
+    line-height:1.1
 }
-
 
 /* =========================================================
-   LEADERBOARD OVERLAY
+   PANEL & GRID
 ========================================================= */
 
-#leaderboardOverlay{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:95;
-
-    background:
-        rgba(15,23,42,.28);
-
-    backdrop-filter:
-        blur(3px);
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
+.dash-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:20px;
+    margin-bottom:20px
 }
 
-#leaderboardOverlay.show{
+.dash-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
 
-    display:flex;
-
-}
-
-#leaderboardModal{
-
-    width:
-        min(
-            430px,
-            100%
-        );
-
-    max-height:80vh;
-
-    overflow:hidden;
-
+.panel{
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:22px;
-
-    box-shadow:
-        0 25px 60px
-        rgba(15,23,42,.25);
-
-    animation:
-        leaderModalIn
-        .25s
-        ease;
-
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    box-shadow:0 4px 12px rgba(15,23,42,.04);
+    padding:18px 20px;
+    min-width:0
 }
 
-@keyframes leaderModalIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(12px)
-            scale(.97);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
+.panel-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:14px
 }
 
+.panel-title{
+    font-size:13px;
+    font-weight:900;
+    color:#334155
+}
+
+.panel-subtitle{
+    font-size:10px;
+    color:#94a3b8;
+    font-weight:600;
+    margin-top:3px
+}
+
+.legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px
+}
+
+.legend-item{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:5px 9px;
+    border-radius:999px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.legend-item.off{opacity:.45}
+
+.legend-item.on{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.legend-item.on .legend-dot{background:#fff!important}
+
+.legend-dot{
+    width:9px;
+    height:9px;
+    border-radius:999px;
+    flex-shrink:0
+}
+
+.chart-wrap{width:100%;position:relative}
+
+.chart-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+
+.chart-empty{
+    padding:40px 10px;
+    text-align:center;
+    color:#94a3b8;
+    font-size:11px;
+    font-weight:700
+}
+
+.chart-label{font-size:10px;font-weight:700;fill:#64748b}
+.chart-value{font-size:10px;font-weight:900;fill:#334155}
+.chart-grid{stroke:#eef2f7;stroke-width:1}
+.chart-hit{cursor:pointer}
+.chart-bar{cursor:pointer}
 
 /* =========================================================
-   LEADERBOARD ROW
+   POPUP NILAI GRAFIK
 ========================================================= */
 
-.leader-row{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:
-        12px
-        14px;
-
-    border-radius:14px;
-
-    margin-bottom:7px;
-
-    background:#f8fafc;
-
-    border:
-        1px solid
-        #f1f5f9;
-
-}
-
-.leader-row.top-1{
-
-    background:#fffbeb;
-
-    border-color:#fde68a;
-
-}
-
-.leader-row.top-2{
-
-    background:#f8fafc;
-
-    border-color:#cbd5e1;
-
-}
-
-.leader-row.top-3{
-
-    background:#fff7ed;
-
-    border-color:#fed7aa;
-
-}
-
-.leader-rank{
-
-    width:30px;
-
-    height:30px;
-
+.chart-tip{
+    position:fixed;
+    z-index:2000;
+    pointer-events:none;
+    background:#0f172a;
+    color:#fff;
     border-radius:10px;
+    padding:9px 11px;
+    font-size:10px;
+    font-weight:700;
+    box-shadow:0 12px 24px rgba(15,23,42,.25);
+    opacity:0;
+    transform:translateY(4px);
+    transition:opacity .12s ease,transform .12s ease;
+    max-width:240px;
+    min-width:130px
+}
 
+.chart-tip.show{
+    opacity:1;
+    transform:translateY(0)
+}
+
+.tip-title{
+    font-size:9px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:#94a3b8;
+    margin-bottom:6px
+}
+
+.tip-row{
     display:flex;
-
     align-items:center;
-
-    justify-content:center;
-
-    font-size:12px;
-
-    font-weight:900;
-
-    background:#e2e8f0;
-
-    color:#475569;
-
-    flex-shrink:0;
-
+    justify-content:space-between;
+    gap:14px;
+    margin-top:4px
 }
 
-.top-1 .leader-rank{
-
-    background:#fbbf24;
-
-    color:#78350f;
-
+.tip-left{
+    display:inline-flex;
+    align-items:center;
+    gap:6px
 }
 
-.top-2 .leader-rank{
-
-    background:#cbd5e1;
-
-    color:#334155;
-
-}
-
-.top-3 .leader-rank{
-
-    background:#fdba74;
-
-    color:#7c2d12;
-
-}
-
-.leader-name{
-
-    font-size:12px;
-
-    font-weight:800;
-
-    color:#334155;
-
-    flex:1;
-
-    min-width:0;
-
-}
-
-.leader-count{
-
-    font-size:11px;
-
-    font-weight:900;
-
-    color:#1e3a8a;
-
-    background:#dbeafe;
-
-    padding:
-        5px
-        9px;
-
+.tip-dot{
+    width:8px;
+    height:8px;
     border-radius:999px;
-
-    white-space:nowrap;
-
+    display:inline-block
 }
 
+.tip-val{font-weight:900}
+
+/* =========================================================
+   DONUT
+========================================================= */
+
+.donut-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    width:100%
+}
+
+.donut-chart{width:100%;max-width:200px;margin:0 auto}
+
+.donut-legend{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:8px
+}
+
+/* Panel yang isinya dipusatkan vertikal agar tidak ada ruang kosong */
+.panel-fill{display:flex;flex-direction:column}
+
+.fill-body{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center
+}
+
+.donut-legend-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:8px 10px;
+    border-radius:12px;
+    background:#f8fafc;
+    font-size:10px;
+    font-weight:700;
+    color:#334155
+}
+
+.donut-legend-row .val{font-weight:900;color:#1e293b}
+.donut-legend-row .pct{font-size:9px;color:#94a3b8;font-weight:800;margin-left:6px}
+
+/* =========================================================
+   PRODUKTIVITAS PIC
+========================================================= */
+
+.pic-scroll{
+    max-height:320px;
+    overflow-y:auto;
+    padding-right:4px
+}
+
+.pic-row{margin-bottom:12px;cursor:default}
+
+.pic-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    font-size:10px;
+    font-weight:800;
+    color:#334155;
+    margin-bottom:5px
+}
+
+.pic-head .count{
+    font-size:10px;
+    font-weight:900;
+    color:#1e3a8a;
+    background:#dbeafe;
+    padding:2px 8px;
+    border-radius:999px;
+    white-space:nowrap
+}
+
+.pic-bar{
+    display:flex;
+    height:9px;
+    border-radius:999px;
+    overflow:hidden;
+    background:#f1f5f9
+}
+
+.pic-bar .seg-periodic{background:#2563eb;height:100%}
+.pic-bar .seg-general{background:#d97706;height:100%}
+.pic-bar .seg-other{background:#94a3b8;height:100%}
+
+/* =========================================================
+   TABEL 5 UNIT TERAKHIR
+========================================================= */
+
+.lt-table{
+    width:100%;
+    min-width:760px;
+    border-collapse:separate;
+    border-spacing:0
+}
+
+.lt-table thead th{
+    background:#f8fafc;
+    padding:12px 14px;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    text-align:left;
+    white-space:nowrap
+}
+
+.lt-table thead th.lt-no{text-align:center;width:60px}
+
+.lt-table tbody td{
+    padding:12px 14px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:11px;
+    font-weight:600;
+    vertical-align:middle
+}
+
+.lt-table tbody td.lt-no{text-align:center;font-weight:900;color:#94a3b8}
+.lt-table tbody tr:hover{background:#f8fafc}
+.lt-table tbody tr:last-child td{border-bottom:none}
+
+.lt-scroll{overflow-x:auto}
+
+.lt-mobile{display:none}
+
+.lt-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:9px
+}
+
+.lt-card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding-bottom:10px;
+    margin-bottom:10px;
+    border-bottom:1px solid #f1f5f9
+}
+
+.lt-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 12px
+}
+
+.lt-label{
+    font-size:8px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:4px
+}
+
+.lt-value{
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    word-break:break-word
+}
+
+/* =========================================================
+   BADGES (palet baku Bab 2)
+========================================================= */
+
+.service-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
+    white-space:nowrap
+}
+
+.service-periodic{background:#dbeafe;color:#1e40af}
+.service-general{background:#fef3c7;color:#92400e}
+.service-other{background:#e2e8f0;color:#475569}
+
+.status-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:800;
+    white-space:nowrap
+}
+
+.status-good{background:#dcfce7;color:#166534}
+.status-bad{background:#fee2e2;color:#991b1b}
+.status-other{background:#e2e8f0;color:#475569}
+
+.unit-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:56px;
+    padding:4px 9px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    font-size:10px;
+    font-weight:900
+}
 
 /* =========================================================
    LOADING
 ========================================================= */
 
 #loading{
-
+    min-height:350px;
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
-    justify-content:center;
-
-    min-height:400px;
-
+    justify-content:center
 }
 
-#dashboard{
+#loading[hidden]{display:none}
 
-    display:none;
-
-}
-
-#dashboard.show{
-
-    display:block;
-
-}
-
+#tableContent{display:none}
+#tableContent.show{display:block}
 
 /* =========================================================
-   RESPONSIVE - TABLET
+   BREAKPOINTS (bible Bab 4)
 ========================================================= */
 
-@media(max-width:1024px){
+@media(min-width:1920px){
+    main{max-width:1800px}
+}
 
-    body{
+@media(min-width:768px) and (max-width:1100px){
 
-        padding:
-            12px !important;
+    main{padding:28px!important;border-radius:24px!important}
 
-    }
+    .page-title{font-size:25px}
+
+    .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+    .dash-grid.three{grid-template-columns:minmax(0,1fr)}
+
+    header{margin-bottom:28px!important}
+
+}
+
+@media(max-width:767px){
+
+    body{padding:10px!important;align-items:stretch!important}
 
     main{
-
-        padding:
-            24px !important;
-
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
 
-    .chart-wrapper{
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
 
-        height:290px;
+    .logo-wrapper{margin-bottom:14px!important}
 
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
     }
+
+    header .color-primary{
+        width:100%!important;
+        padding:13px 14px!important;
+        border-radius:15px!important
+    }
+
+    header .color-primary h1{
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
+    }
+
+    header .color-primary h2{
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
+    }
+
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
+    }
+
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
+    }
+
+    .page-title{
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important
+    }
+
+    .page-title span{
+        padding:9px!important;
+        border-radius:10px!important;
+        flex-shrink:0
+    }
+
+    .page-title span svg{width:18px!important;height:18px!important}
+
+    .page-subtitle{
+        font-size:10px!important;
+        line-height:1.6!important;
+        margin-top:8px!important
+    }
+
+    .page-actions{
+        width:100%;
+        display:grid;
+        grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+        gap:8px
+    }
+
+    .back-button,
+    .secondary-button{
+        width:100%;
+        padding:10px 12px;
+        border-radius:10px;
+        font-size:10px
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:10px!important;
+        margin-bottom:14px!important
+    }
+
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-label{font-size:8px!important}
+    .stat-value{font-size:24px!important}
+
+    .dash-grid{gap:14px!important;margin-bottom:14px!important}
+
+    .panel{border-radius:16px!important;padding:14px!important}
+    .panel-title{font-size:12px!important}
+    .panel-subtitle{font-size:9px!important}
+
+    .legend-item{font-size:9px!important;padding:4px 8px!important}
+
+    .donut-wrap{grid-template-columns:minmax(0,1fr);gap:16px}
+    .donut-chart{max-width:170px}
+
+    .lt-scroll{display:none!important}
+    .lt-mobile{display:block;padding:4px 0}
+
+    footer{margin-top:18px!important;padding:0 8px 20px!important}
+    footer p:first-child{font-size:8px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.5!important}
 
 }
 
+@media(max-width:380px){
 
-/* =========================================================
-   RESPONSIVE - MOBILE
-========================================================= */
+    body{padding:6px!important}
 
-@media(max-width:768px){
+    main{padding:12px!important;border-radius:17px!important}
 
-    body{
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
 
-        padding:
-            8px !important;
+    .logo-wrapper>div{width:70px!important;height:70px!important}
 
-    }
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
 
-    main{
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
 
-        padding:
-            18px !important;
+    .back-button span,
+    .secondary-button span{display:none}
 
-        border-radius:
-            22px !important;
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-value{font-size:21px!important}
 
-    }
-
-
-    /* HEADER */
-
-    header{
-
-        margin-bottom:
-            24px !important;
-
-        padding-bottom:
-            20px !important;
-
-    }
-
-
-    .logo-wrapper{
-
-        margin-bottom:
-            14px !important;
-
-    }
-
-    .logo-wrapper > div{
-
-        width:
-            76px !important;
-
-        height:
-            76px !important;
-
-    }
-
-
-    .color-primary{
-
-        width:
-            100%;
-
-        max-width:
-            520px;
-
-        padding:
-            14px
-            16px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
-    .color-primary h1{
-
-        font-size:
-            16px !important;
-
-        line-height:
-            1.3;
-
-        letter-spacing:
-            .07em !important;
-
-    }
-
-    .color-primary h2{
-
-        font-size:
-            10px !important;
-
-        line-height:
-            1.4;
-
-        letter-spacing:
-            .12em !important;
-
-    }
-
-
-    header > div:last-child{
-
-        font-size:
-            8px !important;
-
-        letter-spacing:
-            .2em !important;
-
-        text-align:center;
-
-    }
-
-
-    /* TITLE */
-
-    section h2{
-
-        font-size:
-            20px !important;
-
-        line-height:
-            1.3;
-
-    }
-
-    section h2 span{
-
-        padding:
-            10px !important;
-
-    }
-
-    section h2 i{
-
-        width:
-            20px !important;
-
-        height:
-            20px !important;
-
-    }
-
-
-    section p{
-
-        line-height:
-            1.5;
-
-    }
-
-
-    /* NAVIGATION */
-
-    .navigation-button{
-
-        width:
-            100%;
-
-        min-height:
-            44px;
-
-    }
-
-
-    /* STATISTICS */
-
-    .stat-card{
-
-        padding:
-            14px;
-
-        border-radius:
-            15px;
-
-    }
-
-    .stat-card p:last-child{
-
-        font-size:
-            24px !important;
-
-        line-height:
-            1.1;
-
-    }
-
-
-    /* CHART */
-
-    .chart-card{
-
-        padding:
-            15px;
-
-        border-radius:
-            17px;
-
-    }
-
-    .chart-title{
-
-        font-size:
-            12px;
-
-        gap:
-            7px;
-
-        line-height:
-            1.35;
-
-    }
-
-    .chart-title span{
-
-        padding:
-            7px !important;
-
-    }
-
-    .chart-title i{
-
-        width:
-            15px !important;
-
-        height:
-            15px !important;
-
-    }
-
-    .chart-subtitle{
-
-        font-size:
-            9px;
-
-        line-height:
-            1.45;
-
-    }
-
-    .chart-wrapper{
-
-        height:
-            270px;
-
-        margin-top:
-            12px;
-
-    }
-
-
-    /* MECHANIC CHART */
-
-    .chart-card .chart-wrapper[style*="380px"]{
-
-        height:
-            320px !important;
-
-    }
-
-
-    /* LEADERBOARD BUTTON */
-
-    #leaderboardButton{
-
-        right:
-            16px;
-
-        bottom:
-            16px;
-
-        width:
-            58px;
-
-        height:
-            58px;
-
-        border-radius:
-            17px;
-
-    }
-
-    #leaderboardButton svg{
-
-        width:
-            24px;
-
-        height:
-            24px;
-
-    }
-
-    .leader-tooltip{
-
-        display:none;
-
-    }
-
-
-    /* LEADERBOARD MODAL */
-
-    #leaderboardOverlay{
-
-        padding:
-            12px;
-
-    }
-
-    #leaderboardModal{
-
-        width:
-            100%;
-
-        max-width:
-            430px;
-
-        max-height:
-            88vh;
-
-        border-radius:
-            18px;
-
-    }
-
-    #leaderboardList{
-
-        padding:
-            14px;
-
-        max-height:
-            68vh;
-
-    }
-
-    .leader-row{
-
-        gap:
-            8px;
-
-        padding:
-            10px;
-
-    }
-
-    .leader-rank{
-
-        width:
-            28px;
-
-        height:
-            28px;
-
-        border-radius:
-            9px;
-
-        font-size:
-            11px;
-
-    }
-
-    .leader-name{
-
-        font-size:
-            11px;
-
-    }
-
-    .leader-count{
-
-        font-size:
-            9px;
-
-        padding:
-            4px
-            7px;
-
-    }
-
-
-    /* FOOTER */
-
-    footer{
-
-        margin-top:
-            20px !important;
-
-        padding-left:
-            10px !important;
-
-        padding-right:
-            10px !important;
-
-    }
-
-    footer p:first-child{
-
-        font-size:
-            10px !important;
-
-        line-height:
-            1.5;
-
-    }
-
-    footer p:last-child{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.5;
-
-    }
-
-}
-
-
-/* =========================================================
-   RESPONSIVE - SMALL MOBILE
-========================================================= */
-
-@media(max-width:480px){
-
-    body{
-
-        padding:
-            5px !important;
-
-    }
-
-    main{
-
-        padding:
-            14px !important;
-
-        border-radius:
-            18px !important;
-
-    }
-
-
-    .logo-wrapper > div{
-
-        width:
-            68px !important;
-
-        height:
-            68px !important;
-
-        border-radius:
-            15px !important;
-
-    }
-
-
-    .color-primary{
-
-        padding:
-            12px
-            10px !important;
-
-        border-radius:
-            14px !important;
-
-    }
-
-    .color-primary h1{
-
-        font-size:
-            13px !important;
-
-        letter-spacing:
-            .05em !important;
-
-    }
-
-    .color-primary h2{
-
-        font-size:
-            8px !important;
-
-        letter-spacing:
-            .08em !important;
-
-    }
-
-
-    header > div:last-child{
-
-        font-size:
-            7px !important;
-
-    }
-
-
-    section h2{
-
-        font-size:
-            18px !important;
-
-        gap:
-            8px !important;
-
-    }
-
-    section h2 span{
-
-        padding:
-            8px !important;
-
-        border-radius:
-            9px !important;
-
-    }
-
-    section h2 i{
-
-        width:
-            18px !important;
-
-        height:
-            18px !important;
-
-    }
-
-
-    .stat-card{
-
-        padding:
-            12px;
-
-        border-radius:
-            14px;
-
-    }
-
-    .stat-card p:first-child{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.35;
-
-    }
-
-    .stat-card p:last-child{
-
-        font-size:
-            21px !important;
-
-    }
-
-
-    .chart-card{
-
-        padding:
-            12px;
-
-        border-radius:
-            15px;
-
-    }
-
-    .chart-title{
-
-        font-size:
-            11px;
-
-    }
-
-    .chart-subtitle{
-
-        font-size:
-            8px;
-
-    }
-
-    .chart-wrapper{
-
-        height:
-            245px;
-
-    }
-
-    .chart-card .chart-wrapper[style*="380px"]{
-
-        height:
-            290px !important;
-
-    }
-
-
-    #leaderboardButton{
-
-        right:
-            12px;
-
-        bottom:
-            12px;
-
-        width:
-            54px;
-
-        height:
-            54px;
-
-        border-radius:
-            16px;
-
-    }
-
-    #leaderboardButton svg{
-
-        width:
-            22px;
-
-        height:
-            22px;
-
-    }
-
-
-    #leaderboardModal{
-
-        border-radius:
-            16px;
-
-    }
-
-
-    #leaderboardModal > div:first-child{
-
-        padding:
-            13px
-            14px;
-
-    }
-
-
-    #leaderboardModal h3{
-
-        font-size:
-            13px;
-
-    }
-
-    #leaderboardModal h3 span{
-
-        padding:
-            7px !important;
-
-    }
-
-    #leaderboardModal h3 svg{
-
-        width:
-            16px !important;
-
-        height:
-            16px !important;
-
-    }
-
-
-    #leaderboardModal p{
-
-        font-size:
-            8px;
-
-    }
-
-
-    #leaderboardList{
-
-        padding:
-            11px;
-
-    }
-
-
-    .leader-row{
-
-        gap:
-            6px;
-
-        padding:
-            8px;
-
-        border-radius:
-            11px;
-
-    }
-
-    .leader-rank{
-
-        width:
-            25px;
-
-        height:
-            25px;
-
-        font-size:
-            10px;
-
-    }
-
-    .leader-name{
-
-        font-size:
-            10px;
-
-    }
-
-    .leader-count{
-
-        font-size:
-            8px;
-
-        padding:
-            4px
-            6px;
-
-    }
-
-
-    footer p:first-child{
-
-        font-size:
-            8px !important;
-
-    }
-
-    footer p:last-child{
-
-        font-size:
-            7px !important;
-
-    }
-
-}
-
-
-@media(max-width:375px){
-
-    body{
-
-        padding:
-            4px !important;
-
-    }
-
-    main{
-
-        padding:
-            11px !important;
-
-        border-radius:
-            16px !important;
-
-    }
-
-
-    .stat-card{
-
-        padding:
-            10px;
-
-    }
-
-    .stat-card p:first-child{
-
-        font-size:
-            7px !important;
-
-    }
-
-    .stat-card p:last-child{
-
-        font-size:
-            19px !important;
-
-    }
-
-
-    .chart-card{
-
-        padding:
-            10px;
-
-    }
-
-    .chart-wrapper{
-
-        height:
-            225px;
-
-    }
-
-    .chart-card .chart-wrapper[style*="380px"]{
-
-        height:
-            270px !important;
-
-    }
-
-
-    #leaderboardButton{
-
-        right:
-            9px;
-
-        bottom:
-            9px;
-
-        width:
-            50px;
-
-        height:
-            50px;
-
-        border-radius:
-            14px;
-
-    }
-
-}
-
-
-/* =========================================================
-   LANDSCAPE MOBILE
-========================================================= */
-
-@media(
-    max-width:768px
-)
-and (
-    orientation:landscape
-){
-
-    .chart-wrapper{
-
-        height:
-            250px;
-
-    }
-
-    .chart-card .chart-wrapper[style*="380px"]{
-
-        height:
-            280px !important;
-
-    }
-
-    #leaderboardModal{
-
-        max-height:
-            92vh;
-
-    }
-
-    #leaderboardList{
-
-        max-height:
-            72vh;
-
-    }
-
-}
-
-
-/* =========================================================
-   REDUCE MOTION
-========================================================= */
-
-@media(
-    prefers-reduced-motion:reduce
-){
-
-    *,
-    *::before,
-    *::after{
-
-        animation-duration:
-            .01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            .01ms !important;
-
-    }
+    .lt-card-grid{grid-template-columns:1fr!important}
 
 }
 
 </style>
-
 </head>
-
 
 <body class="flex flex-col items-center p-4 sm:p-8">
 
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-<main
-    class="w-full max-w-7xl flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in"
->
+<!-- ======================================================
+     HEADER (tidak diubah)
+====================================================== -->
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header
-    class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center"
->
-
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
     <div class="mb-4 logo-wrapper">
-
-        <div
-            class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2"
-        >
-
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
             <img
                 src="default_logo.png"
                 alt="Logo PT TSI"
@@ -1746,712 +749,215 @@ and (
                 id="companyLogo"
                 onerror="handleLogoError()"
             >
-
             <div
                 id="logoFallback"
-                class="hidden flex flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
             >
-
-                <span class="font-black text-2xl">
-                    TSI
-                </span>
-
+                <span class="font-black text-2xl">TSI</span>
             </div>
-
         </div>
-
     </div>
 
-
-    <div
-        class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1"
-    >
-
-        <h1
-            class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center"
-        >
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
             PAPERLESS PROJECT
         </h1>
-
-        <div
-            class="h-0.5 w-16 bg-amber-500 rounded-full my-1"
-        ></div>
-
-        <h2
-            class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center"
-        >
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
             PT TATSUMI SERUNI INDONESIA
         </h2>
-
     </div>
 
-
-    <div
-        class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase"
-    >
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
         Digitalization Initiative v2.0
     </div>
 
 </header>
 
 
-<!-- =====================================================
-     TITLE / NAVIGATION
-===================================================== -->
+<!-- ======================================================
+     SECTION
+====================================================== -->
 
 <section>
 
-
-    <div
-        class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6"
-    >
-
+    <div class="flex items-center justify-between gap-5 mb-6">
 
         <div>
-
-            <h2
-                class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3"
-            >
-
-                <span
-                    class="bg-blue-900 text-white p-3 rounded-xl shadow-md shrink-0"
-                >
-
-                    <i
-                        data-lucide="layout-dashboard"
-                        class="w-6 h-6"
-                    ></i>
-
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
                 </span>
-
                 Dashboard Periodic Service
-
             </h2>
-
-
-            <p
-                class="text-slate-500 font-medium text-sm mt-2 ml-1"
-            >
-                Monitoring dan analisis data periodic service secara terintegrasi.
+            <p class="page-subtitle mt-2 ml-1">
+                Ringkasan seluruh aktivitas periodic service, disajikan dari data database.
             </p>
-
         </div>
 
-
-        <!-- =================================================
-             NAVIGATION
-        ================================================= -->
-
-        <div
-            class="flex flex-col sm:flex-row gap-2 w-full lg:w-auto"
-        >
-
-
-            <!-- HOME -->
-
-            <button
-                type="button"
-                onclick="goToHome()"
-                class="navigation-button bg-slate-100 hover:bg-slate-200 text-slate-700 shadow-sm"
-            >
-
-                <i
-                    data-lucide="house"
-                    class="w-4 h-4"
-                ></i>
-
-                Kembali ke Home
-
+        <div class="page-actions">
+            <button onclick="goHome()" class="secondary-button">
+                <i data-lucide="house" class="w-4 h-4"></i>
+                <span>Home</span>
             </button>
-
-
-            <!-- TABLE -->
-
-            <button
-                type="button"
-                onclick="goToTable()"
-                class="navigation-button bg-blue-800 hover:bg-blue-700 text-white shadow-md"
-            >
-
-                <i
-                    data-lucide="table-2"
-                    class="w-4 h-4"
-                ></i>
-
-                Lihat Data
-
+            <button onclick="goTableAll()" class="back-button">
+                <i data-lucide="table-2" class="w-4 h-4"></i>
+                <span>Data Keseluruhan</span>
             </button>
-
-
         </div>
 
     </div>
 
 
-<!-- =====================================================
-     INFO
-===================================================== -->
-
-
-<!-- =====================================================
-     LOADING
-===================================================== -->
-
-<div id="loading">
-
-    <i
-        data-lucide="loader-circle"
-        class="w-9 h-9 animate-spin text-amber-500"
-    ></i>
-
-    <p
-        class="font-semibold text-sm text-slate-400 mt-3"
-    >
-        Memuat dashboard...
-    </p>
-
-</div>
-
-
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
-
-<div id="dashboard">
-
-
-<!-- =====================================================
-     STATISTICS
-===================================================== -->
-
-<div
-    class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
->
-
-
-    <div class="stat-card">
-
-        <p
-            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-        >
-            Total Pekerjaan
-        </p>
-
-        <p
-            id="totalData"
-            class="text-3xl font-black text-blue-900 mt-2"
-        >
-            -
-        </p>
-
+    <!-- LOADING -->
+    <div id="loading">
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p class="font-semibold text-sm text-slate-400 mt-3">Memuat ringkasan...</p>
     </div>
 
 
-    <div class="stat-card">
+    <!-- CONTENT -->
+    <div id="tableContent">
 
-        <p
-            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-        >
-            Periodic Service
-        </p>
+        <!-- KPI -->
+        <div class="stats-grid">
 
-        <p
-            id="periodicTotal"
-            class="text-3xl font-black text-indigo-600 mt-2"
-        >
-            -
-        </p>
+            <div class="stat-card">
+                <p class="stat-label">Total Pekerjaan</p>
+                <p id="kpiTotal" class="stat-value text-blue-900">-</p>
+            </div>
 
-    </div>
+            <div class="stat-card">
+                <p class="stat-label">Periodic Service</p>
+                <p id="kpiPeriodic" class="stat-value text-blue-600">-</p>
+            </div>
 
+            <div class="stat-card">
+                <p class="stat-label">General Service</p>
+                <p id="kpiGeneral" class="stat-value text-amber-600">-</p>
+            </div>
 
-    <div class="stat-card">
+            <div class="stat-card">
+                <p class="stat-label">Status Baik</p>
+                <p id="kpiBaik" class="stat-value text-emerald-600">-</p>
+            </div>
 
-        <p
-            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-        >
-            General Service
-        </p>
-
-        <p
-            id="generalTotal"
-            class="text-3xl font-black text-amber-600 mt-2"
-        >
-            -
-        </p>
-
-    </div>
+        </div>
 
 
-    <div class="stat-card">
+        <!-- BARIS 1: TREN AKTIVITAS (lebar penuh) -->
+        <div class="dash-grid">
 
-        <p
-            class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-        >
-            Status Baik
-        </p>
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Tren Aktivitas per Bulan</h3>
+                        <p id="trendSubtitle" class="panel-subtitle">-</p>
+                    </div>
+                </div>
+                <div id="trendChart" class="chart-wrap"></div>
+                <div id="trendLegend" class="legend"></div>
+            </div>
 
-        <p
-            id="baikTotal"
-            class="text-3xl font-black text-emerald-600 mt-2"
-        >
-            -
-        </p>
-
-    </div>
-
-
-</div>
+        </div>
 
 
-<!-- =====================================================
-     ROW 1
-===================================================== -->
+        <!-- BARIS 2: SERVICE PER JENIS ALAT | PRODUKTIVITAS MEKANIK | KOMPOSISI JENIS SERVICE -->
+        <div class="dash-grid three">
 
-<div
-    class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5"
->
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Service per Jenis Alat</h3>
+                        <p class="panel-subtitle">Periodic dan general service pada tiap jenis unit</p>
+                    </div>
+                </div>
+                <div id="unitChart" class="chart-wrap"></div>
+                <div id="unitLegend" class="legend"></div>
+            </div>
 
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Produktivitas Mekanik</h3>
+                        <p class="panel-subtitle">Jumlah pekerjaan per PIC (10 teratas)</p>
+                    </div>
+                </div>
+                <div id="picList" class="pic-scroll"></div>
+                <div class="legend">
+                    <span class="legend-item static"><span class="legend-dot" style="background:#2563eb"></span>Periodic</span>
+                    <span class="legend-item static"><span class="legend-dot" style="background:#d97706"></span>General</span>
+                    <span class="legend-item static"><span class="legend-dot" style="background:#94a3b8"></span>Lainnya</span>
+                </div>
+            </div>
 
-<!-- SERVICE BY UNIT -->
+            <div class="panel panel-fill">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Komposisi Jenis Service</h3>
+                        <p class="panel-subtitle">Porsi tiap jenis service dari seluruh pekerjaan</p>
+                    </div>
+                </div>
+                <div id="composition" class="fill-body"></div>
+            </div>
 
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-blue-100 text-blue-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="wrench"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Service per Jenis Alat
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Perbandingan Periodic dan General Service pada W, FD, D, dan E
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="serviceByUnitChart"></canvas>
-
-    </div>
-
-</div>
+        </div>
 
 
-<!-- STATUS -->
+        <!-- BARIS 3: 5 UNIT TERAKHIR YANG DISERVICE (tabel) -->
+        <div class="dash-grid">
 
-<div class="chart-card">
+            <div class="panel" style="padding:0;overflow:hidden">
 
-    <div class="chart-title">
+                <div style="padding:18px 20px 14px;border-bottom:1px solid #f1f5f9">
+                    <h3 class="panel-title">5 Unit Terakhir yang Diservice</h3>
+                    <p class="panel-subtitle">Berdasarkan tanggal service terbaru</p>
+                </div>
 
-        <span
-            class="bg-emerald-100 text-emerald-700 p-2 rounded-lg"
-        >
+                <div class="lt-scroll">
+                    <table class="lt-table">
+                        <thead>
+                            <tr>
+                                <th class="lt-no">No</th>
+                                <th>Tanggal</th>
+                                <th>Unit</th>
+                                <th>Jenis Service</th>
+                                <th>PIC</th>
+                                <th>Item Rusak</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ltBody"></tbody>
+                    </table>
+                </div>
 
-            <i
-                data-lucide="circle-check"
-                class="w-4 h-4"
-            ></i>
+                <div id="ltMobile" class="lt-mobile" style="padding:12px"></div>
 
-        </span>
+            </div>
 
-        Kondisi Unit
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Perbandingan status Baik dan Rusak
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="statusChart"></canvas>
+        </div>
 
     </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     ROW 2
-===================================================== -->
-
-<div
-    class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5"
->
-
-
-<!-- MONTHLY TREND -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-violet-100 text-violet-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="trending-up"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Trend Pekerjaan Bulanan
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Jumlah pekerjaan berdasarkan bulan
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="monthlyTrendChart"></canvas>
-
-    </div>
-
-</div>
-
-
-<!-- SERVICE TYPE -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-amber-100 text-amber-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="layers-3"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Komposisi Jenis Service
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Total pekerjaan berdasarkan jenis service
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="serviceTypeChart"></canvas>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     EXTRA CHARTS
-===================================================== -->
-
-<div
-    class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5"
->
-
-
-<!-- UNIT DISTRIBUTION -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-cyan-100 text-cyan-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="truck"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Distribusi Jenis Alat
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Jumlah pekerjaan berdasarkan tipe unit
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="unitDistributionChart"></canvas>
-
-    </div>
-
-</div>
-
-
-<!-- ACTIVITY -->
-
-<div class="chart-card">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-rose-100 text-rose-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="activity"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Aktivitas Service
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Perbandingan aktivitas berdasarkan tipe service
-    </p>
-
-
-    <div class="chart-wrapper">
-
-        <canvas id="activityChart"></canvas>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     MECHANIC PRODUCTIVITY
-===================================================== -->
-
-<div class="chart-card mb-2">
-
-    <div class="chart-title">
-
-        <span
-            class="bg-purple-100 text-purple-700 p-2 rounded-lg"
-        >
-
-            <i
-                data-lucide="trophy"
-                class="w-4 h-4"
-            ></i>
-
-        </span>
-
-        Produktivitas Mekanik
-
-    </div>
-
-
-    <p class="chart-subtitle">
-        Jumlah pekerjaan yang ditangani masing-masing PIC
-    </p>
-
-
-    <div
-        class="chart-wrapper"
-        style="height:380px"
-    >
-
-        <canvas id="mechanicChart"></canvas>
-
-    </div>
-
-</div>
-
-
-</div>
 
 </section>
 
 </main>
 
+<!-- POPUP NILAI GRAFIK -->
+<div id="chartTip" class="chart-tip"></div>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer
-    class="mt-8 text-center text-slate-400 px-4 pb-8"
->
-
-    <p
-        class="font-bold text-slate-500 tracking-tight uppercase"
-    >
+<!-- FOOTER (tidak diubah) -->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
         &copy; 2026 Paperless Project - PT TSI. All rights reserved.
     </p>
-
-
     <p class="text-[10px] mt-1">
-
         System Architecture by:
-
-        <span
-            class="text-slate-600 font-semibold uppercase"
-        >
-            Imam Wahyu Ramadhan, S.T.
-        </span>
-
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
         |
-
-        <span
-            class="text-amber-600 font-bold uppercase tracking-tighter"
-        >
-            Project 2.0
-        </span>
-
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
     </p>
-
 </footer>
-
-
-<!-- =====================================================
-     FLOATING LEADERBOARD
-===================================================== -->
-
-<button
-    id="leaderboardButton"
-    type="button"
-    onclick="openLeaderboard()"
-    aria-label="Leaderboard Mekanik"
->
-
-    <i
-        data-lucide="trophy"
-        class="w-7 h-7"
-    ></i>
-
-    <span class="leader-tooltip">
-        Leaderboard Mekanik
-    </span>
-
-</button>
-
-
-<!-- =====================================================
-     LEADERBOARD POPUP
-===================================================== -->
-
-<div
-    id="leaderboardOverlay"
-    onclick="closeLeaderboardOutside(event)"
->
-
-
-    <div
-        id="leaderboardModal"
-    >
-
-
-        <div
-            class="px-5 py-4 border-b border-slate-100 flex items-center justify-between"
-        >
-
-
-            <div>
-
-                <h3
-                    class="font-black text-slate-800 flex items-center gap-2"
-                >
-
-                    <span
-                        class="bg-amber-100 text-amber-600 p-2 rounded-xl"
-                    >
-
-                        <i
-                            data-lucide="trophy"
-                            class="w-5 h-5"
-                        ></i>
-
-                    </span>
-
-                    Leaderboard Mekanik
-
-                </h3>
-
-
-                <p
-                    class="text-[10px] text-slate-400 font-medium mt-1"
-                >
-                    Berdasarkan total aktivitas periodic service
-                </p>
-
-            </div>
-
-
-            <button
-                type="button"
-                onclick="closeLeaderboard()"
-                class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
-                aria-label="Tutup leaderboard"
-            >
-
-                <i
-                    data-lucide="x"
-                    class="w-5 h-5"
-                ></i>
-
-            </button>
-
-
-        </div>
-
-
-        <div
-            id="leaderboardList"
-            class="p-5 overflow-y-auto max-h-[60vh]"
-        >
-
-            <div
-                class="text-center text-slate-400 text-sm py-6"
-            >
-                Memuat leaderboard...
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-</div>
 
 
 <script>
@@ -2460,1823 +966,823 @@ and (
    CONFIGURATION
 ========================================================= */
 
-const API_URL =
-    'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
+const API_URL=
+'https://script.google.com/macros/s/AKfycby9wfiYdn4jrpHgFV6YgySj0ia7h1WSIInQAFAHDeGNUJdIT94EgSJsF2nF6kJS79cD/exec';
 
+const INDEX_URL='index.html';
+const TABLE_URL='table.html';
 
-const HOME_URL =
-    'index.html';
+const COLORS={
+    total:'#1e3a8a',
+    periodic:'#2563eb',
+    general:'#d97706',
+    other:'#94a3b8'
+};
 
-const TABLE_URL =
-    'table.html';
+const TYPE_ORDER=['W','FD','D','E','other'];
 
+const TYPE_LABELS={
+    W:'Wheelloader',
+    FD:'Forklift',
+    D:'Dumptruck',
+    E:'Excavator',
+    other:'Lainnya'
+};
 
-let apiData = null;
+const MONTH_SHORT=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+const MONTH_NAMES=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
-let charts = {};
+const MONTHS={
+    januari:1,jan:1,februari:2,feb:2,maret:3,mar:3,april:4,apr:4,
+    mei:5,may:5,juni:6,jun:6,juli:7,jul:7,agustus:8,agu:8,aug:8,
+    september:9,sep:9,oktober:10,okt:10,oct:10,november:11,nov:11,
+    desember:12,des:12,dec:12
+};
 
-let isLoading = false;
+const TREND_MONTHS=12;
+const TOP_PIC=10;
+const LATEST_ROWS=5;
+
+/* Seri yang disembunyikan (default: Total mati, Periodic & General tampil) */
+const trendOff=new Set(['total']);
+const unitOff=new Set();
 
 
 /* =========================================================
-   NAVIGATION
+   STATE
 ========================================================= */
 
-function goToHome(){
-
-    window.location.href =
-        HOME_URL;
-
-}
-
-
-function goToTable(){
-
-    window.location.href =
-        TABLE_URL;
-
-}
+let rows=[];
 
 
 /* =========================================================
-   LOGO
+   HELPERS
 ========================================================= */
+
+const $=id=>document.getElementById(id);
+
+const pad=n=>String(n).padStart(2,'0');
+
+function fmt(n){
+    return Math.round(Number(n||0)).toLocaleString('id-ID');
+}
+
+function safe(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+}
 
 function handleLogoError(){
+    $('companyLogo').classList.add('hidden');
+    const fb=$('logoFallback');
+    fb.classList.remove('hidden');
+    fb.classList.add('flex');
+}
 
-    const logo =
-        document.getElementById(
-            'companyLogo'
-        );
+function goHome(){ window.location.href=INDEX_URL; }
+function goTableAll(){ window.location.href=TABLE_URL; }
 
-    const fallback =
-        document.getElementById(
-            'logoFallback'
-        );
+function mk(y,m,d){
+    const x=new Date(y,m-1,d);
+    return x.getMonth()===m-1?x:null;
+}
 
+/* Parser tanggal: dd/mm/yyyy, yyyy-mm-dd, "12 Jan 2026", "12 Januari 2026", "Jan 2026" */
+function parseDate(value){
 
-    if(logo){
+    if(value===null||value===undefined) return null;
+    if(value instanceof Date) return isNaN(value)?null:value;
 
-        logo.classList.add(
-            'hidden'
-        );
+    const t=String(value).trim().replace(/T\d{1,2}:\d{2}(:\d{2})?.*$/,'').trim();
+    if(!t) return null;
 
+    let m;
+
+    if((m=t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return mk(+m[1],+m[2],+m[3]);
+    if((m=t.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/))) return mk(+m[3],+m[2],+m[1]);
+
+    if((m=t.match(/^(\d{1,2})\s+([A-Za-z]+)\s*,?\s*(\d{4})$/))&&MONTHS[m[2].toLowerCase()]){
+        return mk(+m[3],MONTHS[m[2].toLowerCase()],+m[1]);
     }
 
-
-    if(fallback){
-
-        fallback.classList.remove(
-            'hidden'
-        );
-
+    if((m=t.match(/^([A-Za-z]+)\s*,?\s*(\d{4})$/))&&MONTHS[m[1].toLowerCase()]){
+        return mk(+m[2],MONTHS[m[1].toLowerCase()],1);
     }
 
+    const d=new Date(t);
+    return isNaN(d.getTime())?null:d;
+}
+
+/* Jenis alat dari kode unit */
+function getUnitType(unit){
+
+    const u=String(unit??'').trim().toUpperCase();
+
+    if(u.startsWith('W-')||u.startsWith('WA')||u.startsWith('ZW')) return 'W';
+    if(u.startsWith('FD')) return 'FD';
+    if(u.startsWith('D-')||u.startsWith('L-')) return 'D';
+    if(u.startsWith('E-')) return 'E';
+
+    return 'other';
 }
 
 
 /* =========================================================
-   NUMBER HELPER
+   NORMALISASI & AGREGASI
 ========================================================= */
 
-function toNumber(value){
+function normalizeRows(data){
 
-    const number =
-        Number(value);
+    return data.map(r=>{
 
-    return Number.isFinite(number)
-        ? number
-        : 0;
+        const date=parseDate(r.tanggal);
+        const service=String(r.service??'').trim();
+        const sl=service.toLowerCase();
+        const status=String(r.status??'').trim();
 
-}
-
-
-/* =========================================================
-   OBJECT HELPER
-========================================================= */
-
-function safeObject(value){
-
-    if(
-        value &&
-        typeof value === 'object' &&
-        !Array.isArray(value)
-    ){
-
-        return value;
-
-    }
-
-    return {};
-
-}
-
-
-/* =========================================================
-   ARRAY HELPER
-========================================================= */
-
-function safeArray(value){
-
-    return Array.isArray(value)
-        ? value
-        : [];
-
-}
-
-
-/* =========================================================
-   CHART DEFAULT CONFIG
-========================================================= */
-
-Chart.defaults.font.family =
-    'Inter';
-
-Chart.defaults.font.size =
-    11;
-
-Chart.defaults.color =
-    '#64748b';
-
-Chart.defaults.plugins.legend.labels.usePointStyle =
-    true;
-
-Chart.defaults.plugins.legend.labels.boxWidth =
-    10;
-
-
-/* =========================================================
-   DESTROY CHARTS
-========================================================= */
-
-function destroyCharts(){
-
-    Object.values(
-        charts
-    ).forEach(chart => {
-
-        if(
-            chart &&
-            typeof chart.destroy === 'function'
-        ){
-
-            chart.destroy();
-
-        }
+        return {
+            tanggal:r.tanggal??'',
+            date:date,
+            month:date?`${date.getFullYear()}-${pad(date.getMonth()+1)}`:'',
+            unit:String(r.unit??'').trim().toUpperCase(),
+            type:getUnitType(r.unit),
+            service:service,
+            kind:sl.includes('periodic')?'periodic':sl.includes('general')?'general':'other',
+            status:status,
+            baik:status.toLowerCase()==='baik',
+            pic:String(r.pic??'').trim(),
+            itemRusak:String(r.itemRusak??'').trim()
+        };
 
     });
 
+}
 
-    charts = {};
+/* Tren per bulan: total, periodic, general */
+function buildMonthly(){
+
+    const map=new Map();
+
+    rows.forEach(r=>{
+        if(!r.month) return;
+        if(!map.has(r.month)) map.set(r.month,{total:0,periodic:0,general:0});
+        const m=map.get(r.month);
+        m.total++;
+        if(r.kind==='periodic') m.periodic++;
+        if(r.kind==='general') m.general++;
+    });
+
+    if(!map.size) return {year:null,lastMonth:0,months:[],data:{}};
+
+    /* tahun mengikuti data terakhir; sumbu selalu Januari–Desember */
+    const latest=[...map.keys()].sort().pop();
+    const year=Number(latest.split('-')[0]);
+    const lastMonth=Number(latest.split('-')[1]);
+
+    const months=Array.from({length:12},(_,i)=>`${year}-${pad(i+1)}`);
+    const data={};
+
+    months.forEach(k=>{
+        data[k]=map.get(k)||null;   /* null = belum ada data, garis berhenti di sini */
+    });
+
+    return {year,lastMonth,months,data};
+}
+
+/* Service per jenis alat */
+function buildByType(){
+
+    const result={};
+
+    TYPE_ORDER.forEach(t=>result[t]={periodic:0,general:0,other:0,total:0});
+
+    rows.forEach(r=>{
+        const t=result[r.type]?r.type:'other';
+        result[t][r.kind]++;
+        result[t].total++;
+    });
+
+    return result;
+}
+
+/* Komposisi jenis service */
+function buildComposition(){
+
+    const c={periodic:0,general:0,other:0};
+    rows.forEach(r=>c[r.kind]++);
+    return c;
+}
+
+/* Produktivitas PIC */
+function buildPic(){
+
+    const map=new Map();
+
+    rows.forEach(r=>{
+
+        if(!r.pic) return;
+
+        if(!map.has(r.pic)){
+            map.set(r.pic,{name:r.pic,total:0,periodic:0,general:0,other:0});
+        }
+
+        const p=map.get(r.pic);
+        p.total++;
+        p[r.kind]++;
+
+    });
+
+    return [...map.values()]
+        .sort((a,b)=>b.total-a.total||a.name.localeCompare(b.name,'id'))
+        .slice(0,TOP_PIC);
+}
+
+/* 5 unit yang terakhir diservice (satu baris per unit) */
+function buildLatest(){
+
+    const dated=rows
+        .filter(r=>r.date)
+        .sort((a,b)=>b.date-a.date);
+
+    const seen=new Set();
+    const result=[];
+
+    for(const r of dated){
+        if(!r.unit||seen.has(r.unit)) continue;
+        seen.add(r.unit);
+        result.push(r);
+        if(result.length===LATEST_ROWS) break;
+    }
+
+    return result;
+}
+
+
+/* =========================================================
+   KPI
+========================================================= */
+
+function renderKpi(){
+
+    const total=rows.length;
+    const periodic=rows.filter(r=>r.kind==='periodic').length;
+    const general=rows.filter(r=>r.kind==='general').length;
+    const baik=rows.filter(r=>r.baik).length;
+
+    $('kpiTotal').textContent=fmt(total);
+    $('kpiPeriodic').textContent=fmt(periodic);
+    $('kpiGeneral').textContent=fmt(general);
+    $('kpiBaik').textContent=total?`${Math.round(baik/total*100)}%`:'0%';
 
 }
 
 
 /* =========================================================
-   LOAD API
+   GRAFIK GARIS (sama dengan Tren Availability)
+========================================================= */
+
+function niceStep(raw){
+    const p=Math.pow(10,Math.floor(Math.log10(raw)));
+    const n=raw/p;
+    const m=n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10;
+    return m*p;
+}
+
+function chartWidth(elId){
+    const el=$(elId);
+    return Math.max(320,Math.round((el&&el.clientWidth)||760));
+}
+
+/* Skala dari data, mulai dari 0 (satuan jumlah pekerjaan) */
+function scaleFor(values){
+    const vals=values.filter(v=>v!==null&&v!==undefined&&isFinite(v));
+    const hi=vals.length?Math.max(...vals):1;
+    const step=niceStep(Math.max(hi,1)/4);
+    const max=Math.max(step*4,Math.ceil(hi/step)*step);
+    return {min:0,max:max,step:max/4};
+}
+
+function lineChartHtml(cfg){
+
+    const W=cfg.width||760,H=300,pl=54,pr=22,pt=22,pb=38;
+    const n=cfg.labels.length;
+    const s=cfg.scale;
+
+    const x=i=>pl+(n===1?(W-pl-pr)/2:i*(W-pl-pr)/(n-1));
+    const y=v=>pt+(H-pt-pb)*(1-(v-s.min)/(s.max-s.min));
+
+    const visible=cfg.series.filter(sr=>sr.visible);
+
+    const tipFor=i=>{
+        const rowsHtml=visible
+            .filter(sr=>sr.values[i]!==null&&sr.values[i]!==undefined)
+            .map(sr=>`<div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${sr.color}"></span>${safe(sr.label)}</span><span class="tip-val">${fmt(sr.values[i])}</span></div>`)
+            .join('');
+        return `<div class="tip-title">${safe(cfg.fullLabels[i])}</div>${rowsHtml||'<div class="tip-row"><span>Tidak ada data</span></div>'}`;
+    };
+
+    let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${safe(cfg.aria)}">`;
+
+    for(let v=s.min; v<=s.max+1e-9; v+=s.step){
+        const yy=y(v);
+        svg+=`<line class="chart-grid" x1="${pl}" x2="${W-pr}" y1="${yy}" y2="${yy}"></line>`;
+        svg+=`<text class="chart-label" x="${pl-8}" y="${yy+3}" text-anchor="end">${fmt(v)}</text>`;
+    }
+
+    cfg.labels.forEach((l,i)=>{
+        svg+=`<text class="chart-label" x="${x(i)}" y="${H-12}" text-anchor="middle">${safe(l)}</text>`;
+    });
+
+    visible.forEach(sr=>{
+
+        const pts=sr.values
+            .map((v,i)=>v===null||v===undefined?null:`${x(i)},${y(v)}`)
+            .filter(Boolean)
+            .join(' ');
+
+        svg+=`<polyline fill="none" stroke="${sr.color}" stroke-width="${sr.width||2.4}"
+            stroke-linejoin="round" stroke-linecap="round" points="${pts}"></polyline>`;
+
+        sr.values.forEach((v,i)=>{
+            if(v===null||v===undefined) return;
+            svg+=`<circle cx="${x(i)}" cy="${y(v)}" r="${sr.width>=3?4.5:4}" fill="#fff" stroke="${sr.color}" stroke-width="2"></circle>`;
+        });
+
+    });
+
+    /* area sentuh hanya di titik data */
+    visible.forEach(sr=>{
+        sr.values.forEach((v,i)=>{
+            if(v===null||v===undefined) return;
+            svg+=`<circle cx="${x(i)}" cy="${y(v)}" r="11" fill="transparent" class="chart-hit" data-tip="${safe(tipFor(i))}"></circle>`;
+        });
+    });
+
+    svg+='</svg>';
+
+    return svg;
+}
+
+function legendHtml(list,offSet,toggleFn){
+    return list.map(sr=>`
+        <button class="legend-item ${offSet.has(sr.key)?'off':'on'}" onclick="${toggleFn}('${sr.key}')">
+            <span class="legend-dot" style="background:${sr.color}"></span>${safe(sr.label)}
+        </button>
+    `).join('');
+}
+
+
+/* =========================================================
+   RENDER: TREN AKTIVITAS
+========================================================= */
+
+const TREND_DEF=[
+    {key:'total',    label:'Total',    color:COLORS.total},
+    {key:'periodic', label:'Periodic', color:COLORS.periodic},
+    {key:'general',  label:'General',  color:COLORS.general}
+];
+
+function renderTrend(){
+
+    const {year,lastMonth,months,data}=buildMonthly();
+
+    const series=TREND_DEF.map(s=>({
+        key:s.key,
+        label:s.label,
+        color:s.color,
+        width:s.key==='total'?3:2.4,
+        values:months.map(k=>data[k]?data[k][s.key]:null),
+        visible:!trendOff.has(s.key)
+    }));
+
+    const shownValues=series.filter(s=>s.visible).flatMap(s=>s.values);
+
+    $('trendSubtitle').textContent=year
+        ?`Tahun ${year} · data tersedia sampai ${MONTH_NAMES[lastMonth-1]} · klik legenda untuk menampilkan atau menyembunyikan garis`
+        :'Belum ada data bertanggal';
+
+    $('trendChart').innerHTML=year
+        ?lineChartHtml({
+            aria:'Tren aktivitas per bulan',
+            labels:months.map((k,i)=>`${MONTH_SHORT[i]} ${String(year).slice(2)}`),
+            fullLabels:months.map((k,i)=>`${MONTH_NAMES[i]} ${year}`),
+            series:series,
+            scale:scaleFor(shownValues),
+            width:chartWidth('trendChart')
+        })
+        :'<div class="chart-empty">Tidak ada data tanggal yang bisa dibaca.</div>';
+
+    $('trendLegend').innerHTML=legendHtml(TREND_DEF,trendOff,'toggleTrend');
+
+}
+
+function toggleTrend(key){
+
+    const visibleCount=TREND_DEF.filter(s=>!trendOff.has(s.key)).length;
+
+    if(trendOff.has(key)){
+        trendOff.delete(key);
+    }else if(visibleCount>1){
+        trendOff.add(key);
+    }
+
+    renderTrend();
+
+}
+
+
+/* =========================================================
+   RENDER: SERVICE PER JENIS ALAT (batang, legenda bisa diklik)
+========================================================= */
+
+const UNIT_DEF=[
+    {key:'periodic',label:'Periodic',color:COLORS.periodic},
+    {key:'general', label:'General', color:COLORS.general}
+];
+
+function renderUnitChart(){
+
+    const byType=buildByType();
+
+    const types=['W','FD','D','E'];
+
+    const series=UNIT_DEF.filter(s=>!unitOff.has(s.key));
+
+    const el=$('unitChart');
+
+    if(!rows.length||!series.length){
+        el.innerHTML='<div class="chart-empty">'+(rows.length?'Pilih minimal satu jenis service pada legenda.':'Belum ada data.')+'</div>';
+    }else{
+
+        /* lebar mengikuti panel, sehingga font tampil ukuran asli (tidak mengecil) */
+        const W=chartWidth('unitChart'),H=300,pl=44,pr=14,pt=22,pb=44;
+
+        const maxVal=Math.max(1,...types.flatMap(t=>series.map(s=>byType[t][s.key])));
+        const step=niceStep(maxVal/4);
+        const yMax=Math.max(step*4,Math.ceil(maxVal/step)*step);
+
+        const groupW=(W-pl-pr)/types.length;
+        const barW=Math.max(10,Math.min(34,groupW*0.3));
+        const gap=5;
+
+        const y=v=>pt+(H-pt-pb)*(1-v/yMax);
+        const baseY=H-pb;
+
+        let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Service per jenis alat">`;
+
+        for(let v=0; v<=yMax+1e-9; v+=yMax/4){
+            const yy=y(v);
+            svg+=`<line class="chart-grid" x1="${pl}" x2="${W-pr}" y1="${yy}" y2="${yy}"></line>`;
+            svg+=`<text class="chart-label" x="${pl-8}" y="${yy+3}" text-anchor="end">${fmt(v)}</text>`;
+        }
+
+        types.forEach((t,ti)=>{
+
+            const cx=pl+groupW*ti+groupW/2;
+            const totalW=series.length*barW+(series.length-1)*gap;
+            const startX=cx-totalW/2;
+
+            series.forEach((s,si)=>{
+
+                const v=byType[t][s.key];
+                const bx=startX+si*(barW+gap);
+                const by=y(v);
+                const h=Math.max(baseY-by,0);
+
+                const tip=`<div class="tip-title">${safe(TYPE_LABELS[t])}</div>
+                    <div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${s.color}"></span>${s.label}</span><span class="tip-val">${fmt(v)}</span></div>`;
+
+                svg+=`<rect class="chart-bar" x="${bx}" y="${by}" width="${barW}" height="${h}" rx="6" fill="${s.color}" data-tip="${safe(tip)}"></rect>`;
+
+            });
+
+            svg+=`<text class="chart-label" x="${cx}" y="${H-16}" text-anchor="middle" font-weight="800">${safe(TYPE_LABELS[t])}</text>`;
+
+        });
+
+        svg+='</svg>';
+
+        el.innerHTML=svg;
+
+    }
+
+    $('unitLegend').innerHTML=legendHtml(UNIT_DEF,unitOff,'toggleUnit');
+
+}
+
+function toggleUnit(key){
+
+    const visibleCount=UNIT_DEF.filter(s=>!unitOff.has(s.key)).length;
+
+    if(unitOff.has(key)){
+        unitOff.delete(key);
+    }else if(visibleCount>1){
+        unitOff.add(key);
+    }
+
+    renderUnitChart();
+
+}
+
+
+/* =========================================================
+   RENDER: PRODUKTIVITAS PIC
+========================================================= */
+
+function renderPic(){
+
+    const list=buildPic();
+    const el=$('picList');
+
+    if(!list.length){
+        el.innerHTML='<div class="chart-empty">Belum ada data PIC.</div>';
+        return;
+    }
+
+    const max=list[0].total;
+
+    el.innerHTML=list.map(p=>{
+
+        const w=v=>Math.round(v/max*100);
+
+        const tip=`<div class="tip-title">${safe(p.name)}</div>
+            <div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${COLORS.periodic}"></span>Periodic</span><span class="tip-val">${fmt(p.periodic)}</span></div>
+            <div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${COLORS.general}"></span>General</span><span class="tip-val">${fmt(p.general)}</span></div>
+            <div class="tip-row"><span class="tip-left"><span class="tip-dot" style="background:${COLORS.other}"></span>Lainnya</span><span class="tip-val">${fmt(p.other)}</span></div>`;
+
+        return `
+            <div class="pic-row" data-tip="${safe(tip)}">
+                <div class="pic-head">
+                    <span>${safe(p.name)}</span>
+                    <span class="count">${fmt(p.total)}</span>
+                </div>
+                <div class="pic-bar">
+                    <div class="seg-periodic" style="width:${w(p.periodic)}%"></div>
+                    <div class="seg-general" style="width:${w(p.general)}%"></div>
+                    <div class="seg-other" style="width:${w(p.other)}%"></div>
+                </div>
+            </div>
+        `;
+
+    }).join('');
+
+}
+
+
+/* =========================================================
+   RENDER: KOMPOSISI JENIS SERVICE (donat)
+========================================================= */
+
+function renderComposition(){
+
+    const c=buildComposition();
+    const total=c.periodic+c.general+c.other;
+
+    const el=$('composition');
+
+    if(!total){
+        el.innerHTML='<div class="chart-empty">Belum ada data.</div>';
+        return;
+    }
+
+    const segs=[
+        {label:'Periodic Service',value:c.periodic,color:COLORS.periodic},
+        {label:'General Service', value:c.general, color:COLORS.general},
+        {label:'Lainnya',         value:c.other,   color:COLORS.other}
+    ].filter(s=>s.value>0);
+
+    const R=70,SW=22,C=2*Math.PI*R;
+    let offset=0;
+
+    const arcs=segs.map(s=>{
+        const len=(s.value/total)*C;
+        const tip=`<div class="tip-title">${safe(s.label)}</div><div class="tip-row"><span>Jumlah</span><span class="tip-val">${fmt(s.value)} (${Math.round(s.value/total*100)}%)</span></div>`;
+        const arc=`<circle cx="90" cy="90" r="${R}" fill="none" stroke="${s.color}" stroke-width="${SW}"
+            stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-offset}"
+            transform="rotate(-90 90 90)" data-tip="${safe(tip)}"></circle>`;
+        offset+=len;
+        return arc;
+    }).join('');
+
+    el.innerHTML=`
+        <div class="donut-wrap">
+            <div class="donut-chart">
+                <svg viewBox="0 0 180 180" role="img" aria-label="Komposisi jenis service" style="width:100%;height:auto;display:block">
+                    <circle cx="90" cy="90" r="${R}" fill="none" stroke="#f1f5f9" stroke-width="${SW}"></circle>
+                    ${arcs}
+                    <text x="90" y="88" text-anchor="middle" font-size="22" font-weight="900" fill="#1e293b">${fmt(total)}</text>
+                    <text x="90" y="106" text-anchor="middle" font-size="9" font-weight="800" fill="#94a3b8">PEKERJAAN</text>
+                </svg>
+            </div>
+            <div class="donut-legend">
+                ${segs.map(s=>`
+                    <div class="donut-legend-row">
+                        <span class="flex items-center gap-2">
+                            <span class="legend-dot" style="background:${s.color}"></span>${s.label}
+                        </span>
+                        <span>
+                            <span class="val">${fmt(s.value)}</span>
+                            <span class="pct">${Math.round(s.value/total*100)}%</span>
+                        </span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+
+}
+
+
+/* =========================================================
+   RENDER: 5 UNIT TERAKHIR YANG DISERVICE (tabel)
+========================================================= */
+
+function serviceBadge(kind,service){
+    const cls=kind==='periodic'?'service-periodic':kind==='general'?'service-general':'service-other';
+    return `<span class="service-badge ${cls}">${safe(service||'-')}</span>`;
+}
+
+function statusBadge(baik,status){
+    const cls=baik?'status-good':status.toLowerCase()==='rusak'?'status-bad':'status-other';
+    return `<span class="status-badge ${cls}">${safe(status||'-')}</span>`;
+}
+
+function renderLatest(){
+
+    const list=buildLatest();
+    const body=$('ltBody');
+    const mobile=$('ltMobile');
+
+    if(!list.length){
+        body.innerHTML='<tr><td colspan="7" class="text-center text-slate-400 py-6">Belum ada data bertanggal.</td></tr>';
+        mobile.innerHTML='<div class="chart-empty">Belum ada data bertanggal.</div>';
+        return;
+    }
+
+    body.innerHTML=list.map((r,i)=>`
+        <tr>
+            <td class="lt-no">${i+1}</td>
+            <td>${safe(String(r.tanggal))}</td>
+            <td><span class="unit-badge">${safe(r.unit)||'-'}</span></td>
+            <td>${serviceBadge(r.kind,r.service)}</td>
+            <td>${safe(r.pic)||'-'}</td>
+            <td style="white-space:normal;min-width:180px">${safe(r.itemRusak)||'<span class="text-slate-300">Tidak ada</span>'}</td>
+            <td>${statusBadge(r.baik,r.status)}</td>
+        </tr>
+    `).join('');
+
+    mobile.innerHTML=list.map((r,i)=>`
+        <div class="lt-card">
+            <div class="lt-card-top">
+                <span class="unit-badge">${i+1} · ${safe(r.unit)||'-'}</span>
+                ${statusBadge(r.baik,r.status)}
+            </div>
+            <div class="lt-card-grid">
+                <div><div class="lt-label">Tanggal</div><div class="lt-value">${safe(String(r.tanggal))}</div></div>
+                <div><div class="lt-label">Jenis Service</div><div class="lt-value">${serviceBadge(r.kind,r.service)}</div></div>
+                <div><div class="lt-label">PIC</div><div class="lt-value">${safe(r.pic)||'-'}</div></div>
+                <div><div class="lt-label">Item Rusak</div><div class="lt-value">${safe(r.itemRusak)||'-'}</div></div>
+            </div>
+        </div>
+    `).join('');
+
+}
+
+
+/* =========================================================
+   POPUP NILAI (event delegation)
+========================================================= */
+
+function placeTip(e){
+
+    const tip=$('chartTip');
+    const gap=14;
+
+    let x=e.clientX+gap;
+    let y=e.clientY+gap;
+
+    const r=tip.getBoundingClientRect();
+
+    if(x+r.width>window.innerWidth-8) x=e.clientX-r.width-gap;
+    if(y+r.height>window.innerHeight-8) y=e.clientY-r.height-gap;
+
+    tip.style.left=Math.max(8,x)+'px';
+    tip.style.top=Math.max(8,y)+'px';
+}
+
+function hideTip(){
+    $('chartTip').classList.remove('show');
+}
+
+document.addEventListener('mouseover',e=>{
+
+    const target=e.target.closest?e.target.closest('[data-tip]'):null;
+
+    if(!target){
+        hideTip();
+        return;
+    }
+
+    const tip=$('chartTip');
+    tip.innerHTML=target.getAttribute('data-tip');
+    tip.classList.add('show');
+    placeTip(e);
+
+});
+
+document.addEventListener('mousemove',e=>{
+
+    const target=e.target.closest?e.target.closest('[data-tip]'):null;
+
+    if(!target){
+        hideTip();
+        return;
+    }
+
+    placeTip(e);
+
+});
+
+document.addEventListener('mouseout',e=>{
+    if(!e.relatedTarget) hideTip();
+});
+
+let resizeTimer=null;
+window.addEventListener('resize',()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=>{
+        if($('tableContent').classList.contains('show')) renderTrend(), renderUnitChart();
+    },150);
+});
+
+
+/* =========================================================
+   RENDER SEMUA
+========================================================= */
+
+function renderAll(){
+
+    renderKpi();
+    renderTrend();
+    renderUnitChart();
+    renderPic();
+    renderComposition();
+    renderLatest();
+
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   LOAD DATA
 ========================================================= */
 
 async function loadDashboard(){
 
-    if(isLoading){
-
-        return;
-
-    }
-
-
-    isLoading = true;
-
-
-    showLoading();
-
-
     try{
 
-        const response =
-            await fetch(
-                API_URL,
-                {
-                    method:'GET',
+        const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
 
-                    cache:'no-store',
+        if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
 
-                    headers:{
-                        'Accept':
-                            'application/json'
-                    }
-                }
-            );
+        const result=await response.json();
 
+        const data=Array.isArray(result.data)?result.data:[];
 
-        if(!response.ok){
+        rows=normalizeRows(data);
 
-            throw new Error(
-                `HTTP Error ${response.status}`
-            );
+        $('loading').hidden=true;
+        $('tableContent').classList.add('show');
 
-        }
+        renderAll();
 
+    }catch(error){
 
-        const result =
-            await response.json();
+        console.error('Periodic API Error:',error);
 
-
-        if(
-            !result ||
-            typeof result !== 'object'
-        ){
-
-            throw new Error(
-                'Response API tidak valid.'
-            );
-
-        }
-
-
-        const chart =
-            safeObject(
-                result.chart
-            );
-
-
-        apiData = result;
-
-
-        updateStatistics(
-            result
-        );
-
-
-        createCharts(
-            chart
-        );
-
-
-        updateLeaderboardFromData(
-            safeArray(
-                chart.mechanic
-            )
-        );
-
-
-        document
-            .getElementById('loading')
-            .style.display =
-                'none';
-
-
-        document
-            .getElementById('dashboard')
-            .classList.add(
-                'show'
-            );
-
-
-        isLoading = false;
-
-
-    }
-
-    catch(error){
-
-        isLoading = false;
-
-        showError(
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   SHOW LOADING
-========================================================= */
-
-function showLoading(){
-
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    if(!loading){
-
-        return;
-
-    }
-
-
-    loading.style.display =
-        'flex';
-
-
-    loading.innerHTML = `
-
-        <i
-            data-lucide="loader-circle"
-            class="w-9 h-9 animate-spin text-amber-500"
-        ></i>
-
-        <p
-            class="font-semibold text-sm text-slate-400 mt-3"
-        >
-            Memuat dashboard...
-        </p>
-
-    `;
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   SHOW ERROR
-========================================================= */
-
-function showError(error){
-
-    const loading =
-        document.getElementById(
-            'loading'
-        );
-
-
-    const message =
-        error?.message ||
-        'Terjadi kesalahan saat mengambil data.';
-
-
-    loading.style.display =
-        'flex';
-
-
-    loading.innerHTML = `
-
-        <div class="text-center">
-
-            <div
-                class="bg-red-50 text-red-600 p-4 rounded-full inline-flex"
-            >
-
-                <i
-                    data-lucide="alert-circle"
-                    class="w-8 h-8"
-                ></i>
-
+        $('loading').hidden=false;
+        $('loading').innerHTML=`
+            <div class="text-center">
+                <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
+                </div>
+                <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+                <p class="text-xs text-slate-500 mt-2 max-w-md">${safe(error.message)}</p>
+                <button onclick="loadDashboard()" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
+                    Coba Lagi
+                </button>
             </div>
-
-
-            <h3
-                class="font-bold text-red-700 mt-3"
-            >
-                Gagal memuat dashboard
-            </h3>
-
-
-            <p
-                class="text-xs text-slate-500 mt-2 max-w-md"
-            >
-                ${escapeHtml(message)}
-            </p>
-
-
-            <button
-                type="button"
-                onclick="loadDashboard()"
-                class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
-            >
-                Coba Lagi
-            </button>
-
-        </div>
-
-    `;
-
-
-    lucide.createIcons();
-
-}
-
-
-/* =========================================================
-   STATISTICS
-========================================================= */
-
-function updateStatistics(result){
-
-    const data =
-        safeArray(
-            result?.data
-        );
-
-
-    const chart =
-        safeObject(
-            result?.chart
-        );
-
-
-    const serviceByType =
-        safeObject(
-            chart.serviceByType
-        );
-
-
-    let total =
-        data.length;
-
-
-    if(total === 0){
-
-        total =
-            Object.values(
-                serviceByType
-            )
-            .reduce(
-                (sum,value) =>
-                    sum +
-                    toNumber(value),
-
-                0
-            );
-
-    }
-
-
-    const periodic =
-        Object.entries(
-            serviceByType
-        )
-        .filter(
-            ([key]) =>
-                String(key)
-                    .toLowerCase()
-                    .includes('periodic')
-        )
-        .reduce(
-            (sum,[,value]) =>
-                sum +
-                toNumber(value),
-
-            0
-        );
-
-
-    const general =
-        Object.entries(
-            serviceByType
-        )
-        .filter(
-            ([key]) =>
-                String(key)
-                    .toLowerCase()
-                    .includes('general')
-        )
-        .reduce(
-            (sum,[,value]) =>
-                sum +
-                toNumber(value),
-
-            0
-        );
-
-
-    const status =
-        safeObject(
-            chart.status
-        );
-
-
-    const baik =
-        Object.entries(
-            status
-        )
-        .filter(
-            ([key]) =>
-                String(key)
-                    .trim()
-                    .toLowerCase()
-                    === 'baik'
-        )
-        .reduce(
-            (sum,[,value]) =>
-                sum +
-                toNumber(value),
-
-            0
-        );
-
-
-    setText(
-        'totalData',
-        total
-    );
-
-
-    setText(
-        'periodicTotal',
-        periodic
-    );
-
-
-    setText(
-        'generalTotal',
-        general
-    );
-
-
-    setText(
-        'baikTotal',
-        baik
-    );
-
-}
-
-
-/* =========================================================
-   SET TEXT
-========================================================= */
-
-function setText(
-    id,
-    value
-){
-
-    const element =
-        document.getElementById(
-            id
-        );
-
-
-    if(element){
-
-        element.textContent =
-            value;
-
-    }
-
-}
-
-
-/* =========================================================
-   CREATE ALL CHARTS
-========================================================= */
-
-function createCharts(chart){
-
-    destroyCharts();
-
-
-    const safeChart =
-        safeObject(
-            chart
-        );
-
-
-    createServiceByUnitChart(
-        safeObject(
-            safeChart.serviceByUnit
-        )
-    );
-
-
-    createStatusChart(
-        safeObject(
-            safeChart.status
-        )
-    );
-
-
-    createMonthlyTrendChart(
-        safeObject(
-            safeChart.monthlyTrend
-        )
-    );
-
-
-    createServiceTypeChart(
-        safeObject(
-            safeChart.serviceByType
-        )
-    );
-
-
-    createUnitDistributionChart(
-        safeObject(
-            safeChart.serviceByUnit
-        )
-    );
-
-
-    createActivityChart(
-        safeObject(
-            safeChart.serviceByType
-        )
-    );
-
-
-    createMechanicChart(
-        safeArray(
-            safeChart.mechanic
-        )
-    );
-
-}
-
-
-/* =========================================================
-   SERVICE BY UNIT
-========================================================= */
-
-function createServiceByUnitChart(data){
-
-    const units =
-        [
-            'W',
-            'FD',
-            'D',
-            'E'
-        ];
-
-
-    charts.serviceByUnit =
-        new Chart(
-
-            document.getElementById(
-                'serviceByUnitChart'
-            ),
-
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:units,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Periodic Service',
-
-                            data:
-                                units.map(
-                                    unit =>
-                                        toNumber(
-                                            data[unit]?.periodic
-                                        )
-                                ),
-
-                            backgroundColor:
-                                '#1E3A8A',
-
-                            borderRadius:
-                                7
-
-                        },
-
-
-                        {
-
-                            label:
-                                'General Service',
-
-                            data:
-                                units.map(
-                                    unit =>
-                                        toNumber(
-                                            data[unit]?.general
-                                        )
-                                ),
-
-                            backgroundColor:
-                                '#F59E0B',
-
-                            borderRadius:
-                                7
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-                            position:'top'
-                        }
-
-                    },
-
-                    scales:{
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   STATUS CHART
-========================================================= */
-
-function createStatusChart(data){
-
-    const entries =
-        Object.entries(
-            data
-        );
-
-
-    const labels =
-        entries.map(
-            ([key]) =>
-                key
-        );
-
-
-    const values =
-        entries.map(
-            ([,value]) =>
-                toNumber(value)
-        );
-
-
-    if(!labels.length){
-
-        return;
-
-    }
-
-
-    charts.status =
-        new Chart(
-
-            document.getElementById(
-                'statusChart'
-            ),
-
-            {
-
-                type:'doughnut',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            data:values,
-
-                            backgroundColor:[
-
-                                '#10B981',
-                                '#EF4444',
-                                '#94A3B8',
-                                '#3B82F6',
-                                '#F59E0B'
-
-                            ],
-
-                            borderWidth:3,
-
-                            borderColor:'#fff'
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    cutout:'62%',
-
-                    plugins:{
-
-                        legend:{
-                            position:'bottom'
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   MONTHLY TREND
-========================================================= */
-
-function createMonthlyTrendChart(data){
-
-    const keys =
-        Object.keys(
-            data
-        )
-        .sort();
-
-
-    const monthNames =
-        [
-
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'Mei',
-            'Jun',
-            'Jul',
-            'Agu',
-            'Sep',
-            'Okt',
-            'Nov',
-            'Des'
-
-        ];
-
-
-    const labels =
-        keys.map(
-            key => {
-
-                const parts =
-                    String(key)
-                        .split('-');
-
-
-                if(
-                    parts.length < 2
-                ){
-
-                    return key;
-
-                }
-
-
-                const year =
-                    parts[0];
-
-
-                const monthIndex =
-                    toNumber(
-                        parts[1]
-                    ) - 1;
-
-
-                const month =
-                    monthNames[
-                        monthIndex
-                    ];
-
-
-                if(!month){
-
-                    return key;
-
-                }
-
-
-                return `${month} ${year}`;
-
-            }
-        );
-
-
-    const values =
-        keys.map(
-            key =>
-                toNumber(
-                    data[key]
-                )
-        );
-
-
-    if(!labels.length){
-
-        return;
-
-    }
-
-
-    charts.monthlyTrend =
-        new Chart(
-
-            document.getElementById(
-                'monthlyTrendChart'
-            ),
-
-            {
-
-                type:'line',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Jumlah Pekerjaan',
-
-                            data:values,
-
-                            borderColor:
-                                '#7C3AED',
-
-                            backgroundColor:
-                                'rgba(124,58,237,.10)',
-
-                            fill:true,
-
-                            tension:.35,
-
-                            pointRadius:4,
-
-                            pointHoverRadius:6
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   SERVICE TYPE
-========================================================= */
-
-function createServiceTypeChart(data){
-
-    const entries =
-        Object.entries(
-            data
-        );
-
-
-    const labels =
-        entries.map(
-            ([key]) =>
-                key
-        );
-
-
-    const values =
-        entries.map(
-            ([,value]) =>
-                toNumber(value)
-        );
-
-
-    if(!labels.length){
-
-        return;
-
-    }
-
-
-    charts.serviceType =
-        new Chart(
-
-            document.getElementById(
-                'serviceTypeChart'
-            ),
-
-            {
-
-                type:'doughnut',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            data:values,
-
-                            backgroundColor:[
-
-                                '#1E3A8A',
-                                '#F59E0B',
-                                '#94A3B8',
-                                '#10B981',
-                                '#7C3AED'
-
-                            ],
-
-                            borderWidth:3,
-
-                            borderColor:'#fff'
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    cutout:'58%',
-
-                    plugins:{
-
-                        legend:{
-                            position:'bottom'
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   UNIT DISTRIBUTION
-========================================================= */
-
-function createUnitDistributionChart(data){
-
-    const units =
-        [
-            'W',
-            'FD',
-            'D',
-            'E'
-        ];
-
-
-    const values =
-        units.map(
-            unit => {
-
-                const periodic =
-                    toNumber(
-                        data[unit]?.periodic
-                    );
-
-
-                const general =
-                    toNumber(
-                        data[unit]?.general
-                    );
-
-
-                const other =
-                    toNumber(
-                        data[unit]?.other
-                    );
-
-
-                return (
-                    periodic +
-                    general +
-                    other
-                );
-
-            }
-        );
-
-
-    charts.unitDistribution =
-        new Chart(
-
-            document.getElementById(
-                'unitDistributionChart'
-            ),
-
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:units,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Total Pekerjaan',
-
-                            data:values,
-
-                            backgroundColor:[
-
-                                '#0EA5E9',
-                                '#8B5CF6',
-                                '#F97316',
-                                '#10B981'
-
-                            ],
-
-                            borderRadius:7
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        y:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   ACTIVITY CHART
-========================================================= */
-
-function createActivityChart(data){
-
-    const entries =
-        Object.entries(
-            data
-        );
-
-
-    const labels =
-        entries.map(
-            ([key]) =>
-                key
-        );
-
-
-    const values =
-        entries.map(
-            ([,value]) =>
-                toNumber(value)
-        );
-
-
-    if(!labels.length){
-
-        return;
-
-    }
-
-
-    charts.activity =
-        new Chart(
-
-            document.getElementById(
-                'activityChart'
-            ),
-
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Pekerjaan',
-
-                            data:values,
-
-                            backgroundColor:[
-
-                                '#3B82F6',
-                                '#F59E0B',
-                                '#64748B',
-                                '#10B981',
-                                '#7C3AED'
-
-                            ],
-
-                            borderRadius:7
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    indexAxis:'y',
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        x:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   MECHANIC PRODUCTIVITY
-========================================================= */
-
-function createMechanicChart(data){
-
-    const validData =
-        safeArray(
-            data
-        )
-        .filter(
-            item =>
-                item &&
-                typeof item === 'object'
-        );
-
-
-    const sorted =
-        [...validData]
-        .sort(
-            (a,b) =>
-                toNumber(
-                    b.count
-                ) -
-                toNumber(
-                    a.count
-                )
-        );
-
-
-    const labels =
-        sorted.map(
-            item =>
-                String(
-                    item.name ??
-                    'Tanpa Nama'
-                )
-        );
-
-
-    const values =
-        sorted.map(
-            item =>
-                toNumber(
-                    item.count
-                )
-        );
-
-
-    if(!labels.length){
-
-        return;
-
-    }
-
-
-    charts.mechanic =
-        new Chart(
-
-            document.getElementById(
-                'mechanicChart'
-            ),
-
-            {
-
-                type:'bar',
-
-                data:{
-
-                    labels:labels,
-
-                    datasets:[
-
-                        {
-
-                            label:
-                                'Jumlah Pekerjaan',
-
-                            data:values,
-
-                            backgroundColor:
-                                '#7C3AED',
-
-                            borderRadius:7
-
-                        }
-
-                    ]
-
-                },
-
-                options:{
-
-                    indexAxis:'y',
-
-                    responsive:true,
-
-                    maintainAspectRatio:false,
-
-                    plugins:{
-
-                        legend:{
-                            display:false
-                        }
-
-                    },
-
-                    scales:{
-
-                        x:{
-
-                            beginAtZero:true,
-
-                            ticks:{
-                                precision:0
-                            }
-
-                        },
-
-                        y:{
-
-                            ticks:{
-
-                                font:{
-
-                                    size:10,
-
-                                    weight:'600'
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        );
-
-}
-
-
-/* =========================================================
-   LEADERBOARD
-========================================================= */
-
-function updateLeaderboardFromData(data){
-
-    const list =
-        document.getElementById(
-            'leaderboardList'
-        );
-
-
-    if(!list){
-
-        return;
-
-    }
-
-
-    const validData =
-        safeArray(
-            data
-        )
-        .filter(
-            item =>
-                item &&
-                typeof item === 'object'
-        );
-
-
-    if(!validData.length){
-
-        list.innerHTML = `
-
-            <div
-                class="text-center text-slate-400 text-sm py-6"
-            >
-                Belum ada data mekanik.
-            </div>
-
         `;
 
-        return;
+        $('tableContent').classList.remove('show');
+        lucide.createIcons();
 
     }
-
-
-    const ranking =
-        [...validData]
-        .sort(
-            (a,b) =>
-                toNumber(b.count) -
-                toNumber(a.count)
-        );
-
-
-    list.innerHTML =
-        ranking
-        .map(
-            (mechanic,index) => {
-
-                const rank =
-                    index + 1;
-
-
-                const cls =
-                    rank <= 3
-                        ? `top-${rank}`
-                        : '';
-
-
-                const medal =
-                    rank === 1
-                        ? '🥇'
-                        : rank === 2
-                            ? '🥈'
-                            : rank === 3
-                                ? '🥉'
-                                : rank;
-
-
-                const name =
-                    escapeHtml(
-                        mechanic.name ??
-                        'Tanpa Nama'
-                    );
-
-
-                const count =
-                    toNumber(
-                        mechanic.count
-                    );
-
-
-                return `
-
-                    <div
-                        class="leader-row ${cls}"
-                    >
-
-                        <div
-                            class="leader-rank"
-                        >
-                            ${medal}
-                        </div>
-
-
-                        <div
-                            class="leader-name truncate"
-                        >
-                            ${name}
-                        </div>
-
-
-                        <div
-                            class="leader-count"
-                        >
-                            ${count} pekerjaan
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        )
-        .join('');
-
-}
-
-
-/* =========================================================
-   OPEN LEADERBOARD
-========================================================= */
-
-function openLeaderboard(){
-
-    if(
-        apiData?.chart?.mechanic
-    ){
-
-        updateLeaderboardFromData(
-            apiData.chart.mechanic
-        );
-
-    }
-
-
-    document
-        .getElementById(
-            'leaderboardOverlay'
-        )
-        .classList.add(
-            'show'
-        );
-
-
-    document.body.style.overflow =
-        'hidden';
-
-}
-
-
-/* =========================================================
-   CLOSE LEADERBOARD
-========================================================= */
-
-function closeLeaderboard(){
-
-    document
-        .getElementById(
-            'leaderboardOverlay'
-        )
-        .classList.remove(
-            'show'
-        );
-
-
-    document.body.style.overflow =
-        '';
-
-}
-
-
-/* =========================================================
-   CLOSE OUTSIDE
-========================================================= */
-
-function closeLeaderboardOutside(
-    event
-){
-
-    const overlay =
-        document.getElementById(
-            'leaderboardOverlay'
-        );
-
-
-    if(
-        event.target ===
-        overlay
-    ){
-
-        closeLeaderboard();
-
-    }
-
-}
-
-
-/* =========================================================
-   LEADERBOARD PULSE
-========================================================= */
-
-function scheduleLeaderboardPulse(){
-
-    const button =
-        document.getElementById(
-            'leaderboardButton'
-        );
-
-
-    if(!button){
-
-        return;
-
-    }
-
-
-    const delay =
-        9000 +
-        Math.random() *
-        10000;
-
-
-    setTimeout(
-
-        () => {
-
-            const overlay =
-                document.getElementById(
-                    'leaderboardOverlay'
-                );
-
-
-            if(
-                overlay &&
-                !overlay.classList.contains(
-                    'show'
-                )
-            ){
-
-                button.classList.remove(
-                    'leader-pulse'
-                );
-
-
-                void button.offsetWidth;
-
-
-                button.classList.add(
-                    'leader-pulse'
-                );
-
-            }
-
-
-            scheduleLeaderboardPulse();
-
-        },
-
-        delay
-
-    );
-
-}
-
-
-/* =========================================================
-   SECURITY
-========================================================= */
-
-function escapeHtml(value){
-
-    return String(
-        value ?? ''
-    )
-
-    .replace(
-        /&/g,
-        '&amp;'
-    )
-
-    .replace(
-        /</g,
-        '&lt;'
-    )
-
-    .replace(
-        />/g,
-        '&gt;'
-    )
-
-    .replace(
-        /"/g,
-        '&quot;'
-    )
-
-    .replace(
-        /'/g,
-        '&#039;'
-    );
 
 }
 
@@ -4285,42 +1791,13 @@ function escapeHtml(value){
    START
 ========================================================= */
 
-window.addEventListener(
-    'load',
-    () => {
-
-        lucide.createIcons();
-
-        loadDashboard();
-
-        scheduleLeaderboardPulse();
-
-    }
-);
-
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
-document.addEventListener(
-    'keydown',
-    event => {
-
-        if(
-            event.key === 'Escape'
-        ){
-
-            closeLeaderboard();
-
-        }
-
-    }
-);
+window.addEventListener('load',()=>{
+    lucide.createIcons();
+    loadDashboard();
+});
 
 </script>
-
+<script src="nav.js"></script>
+<script src="datacache.js"></script>
 </body>
-
 </html>
-
