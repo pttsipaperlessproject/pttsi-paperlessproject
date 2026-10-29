@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard Man Power Harian - PT TSI</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -28,839 +16,86 @@ rel="stylesheet"
    GLOBAL
 ========================================================= */
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    width:100%;
-    min-width:0;
-    overflow-x:hidden;
-}
+html{width:100%;min-width:0;overflow-x:hidden}
 
 body{
     margin:0;
     width:100%;
     min-width:0;
-    font-family:'Inter',sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #eef2f7
-        );
-
-    color:#1e293b;
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b
 }
 
-/* =========================================================
-   COLOR
-========================================================= */
-
-.color-primary{
-    background:#1E3A8A;
-}
-
-.text-primary{
-    color:#1E3A8A;
-}
-
-/* =========================================================
-   GLASS
-========================================================= */
+.color-primary{background:#1e3a8a}
 
 .glass-panel{
     background:rgba(255,255,255,.95);
-
     backdrop-filter:blur(10px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
+    border:1px solid rgba(255,255,255,.3)
 }
 
-/* =========================================================
-   ANIMATION
-========================================================= */
-
-.fade-in{
-    animation:
-        fadeIn
-        .5s
-        cubic-bezier(.4,0,.2,1);
-}
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
 
 @keyframes fadeIn{
-
-    from{
-        opacity:0;
-
-        transform:
-            translateY(12px);
-    }
-
-    to{
-        opacity:1;
-
-        transform:
-            translateY(0);
-    }
-
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo-wrapper{
-
-    transition:
-        transform
-        .4s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        );
-
-}
-
-.logo-wrapper:hover{
-
-    transform:
-        scale(1.08)
-        rotate(2deg);
-
-}
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
 
 .logo-shadow{
-
     filter:
-        drop-shadow(
-            0 10px 8px
-            rgba(0,0,0,.04)
-        )
-        drop-shadow(
-            0 4px 3px
-            rgba(0,0,0,.1)
-        );
-
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
 
 /* =========================================================
-   PAGE TITLE
+   PAGE TITLE & BUTTON
 ========================================================= */
 
 .page-title{
-
     font-size:30px;
-
     font-weight:900;
-
     color:#1e293b;
-
     letter-spacing:-.025em;
-
-    line-height:1.2;
-
+    line-height:1.2
 }
 
 .page-subtitle{
-
     font-size:13px;
-
     color:#64748b;
-
     font-weight:500;
-
-    line-height:1.6;
-
+    line-height:1.6
 }
 
-/* =========================================================
-   BUTTON
-========================================================= */
-
 .back-button{
-
     background:#1e3a8a;
-
     color:#fff;
-
-    border-radius:12px;
-
-    padding:
-        11px
-        17px;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
-    transition:
-        .2s ease;
-
-    box-shadow:
-        0 5px 12px
-        rgba(30,58,138,.18);
-
     border:none;
-
+    border-radius:12px;
+    padding:11px 17px;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
     cursor:pointer;
-
+    white-space:nowrap;
     flex-shrink:0;
-
+    box-shadow:0 5px 12px rgba(30,58,138,.18);
+    transition:.2s ease
 }
 
 .back-button:hover{
-
     background:#1d4ed8;
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 18px
-        rgba(30,58,138,.25);
-
-}
-
-/* =========================================================
-   STAT CARDS
-========================================================= */
-
-.stat-card{
-
-    background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:17px;
-
-    padding:17px;
-
-    transition:
-        .25s ease;
-
-    min-width:0;
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.stat-card:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 10px 20px
-        rgba(15,23,42,.07);
-
-}
-
-/* =========================================================
-   STAT COLOR
-========================================================= */
-
-.stat-shift-1{
-
-    border-color:#bfdbfe;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #eff6ff
-        );
-
-}
-
-.stat-shift-1::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    bottom:0;
-
-    width:4px;
-
-    background:#2563eb;
-
-}
-
-.stat-shift-2{
-
-    border-color:#fed7aa;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #fff7ed
-        );
-
-}
-
-.stat-shift-2::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    bottom:0;
-
-    width:4px;
-
-    background:#ea580c;
-
-}
-
-.stat-shift-3{
-
-    border-color:#ddd6fe;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #f5f3ff
-        );
-
-}
-
-.stat-shift-3::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    bottom:0;
-
-    width:4px;
-
-    background:#7c3aed;
-
-}
-
-.stat-off{
-
-    border-color:#6ee7b7;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #d1fae5
-        );
-
-}
-
-.stat-off::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    bottom:0;
-
-    width:4px;
-
-    background:#047857;
-
-}
-
-/* =========================================================
-   TODAY BADGE
-========================================================= */
-
-.today-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:5px;
-
-    padding:
-        5px
-        9px;
-
-    border-radius:999px;
-
-    background:#fff7ed;
-
-    color:#c2410c;
-
-    border:
-        1px solid
-        #fed7aa;
-
-    font-size:9px;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-
-    letter-spacing:.04em;
-
-}
-
-/* =========================================================
-   SHIFT CARDS
-========================================================= */
-
-.shift-card{
-
-    background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.04);
-
-    transition:
-        .25s ease;
-
-    cursor:pointer;
-
-}
-
-.shift-card:hover{
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 12px 26px
-        rgba(15,23,42,.09);
-
-}
-
-.shift-card:active{
-
-    transform:
-        translateY(-1px);
-
-}
-
-.shift-header{
-
-    padding:
-        16px
-        18px;
-
-    border-bottom:
-        1px solid
-        #f1f5f9;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-}
-
-.shift-title-wrap{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-}
-
-.shift-icon{
-
-    width:38px;
-
-    height:38px;
-
-    border-radius:11px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-.shift-1-icon{
-
-    background:#eff6ff;
-
-    color:#1d4ed8;
-
-}
-
-.shift-2-icon{
-
-    background:#fff7ed;
-
-    color:#c2410c;
-
-}
-
-.shift-3-icon{
-
-    background:#f5f3ff;
-
-    color:#6d28d9;
-
-}
-
-.off-icon{
-
-    background:#d1fae5;
-
-    color:#047857;
-
-}
-
-.shift-title{
-
-    font-size:13px;
-
-    font-weight:900;
-
-    color:#334155;
-
-}
-
-.shift-subtitle{
-
-    font-size:9px;
-
-    color:#94a3b8;
-
-    font-weight:600;
-
-    margin-top:2px;
-
-}
-
-.shift-count{
-
-    min-width:34px;
-
-    height:34px;
-
-    padding:
-        0 8px;
-
-    border-radius:10px;
-
-    background:#f8fafc;
-
-    color:#475569;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:13px;
-
-    font-weight:900;
-
-}
-
-/* =========================================================
-   SHIFT COLOR BORDER
-========================================================= */
-
-.shift-1-card{
-
-    border-color:#bfdbfe;
-
-}
-
-.shift-1-card .shift-header{
-
-    background:#f8fbff;
-
-    border-bottom-color:#dbeafe;
-
-}
-
-.shift-1-card .shift-count{
-
-    background:#eff6ff;
-
-    color:#1d4ed8;
-
-}
-
-.shift-2-card{
-
-    border-color:#fed7aa;
-
-}
-
-.shift-2-card .shift-header{
-
-    background:#fffaf5;
-
-    border-bottom-color:#ffedd5;
-
-}
-
-.shift-2-card .shift-count{
-
-    background:#fff7ed;
-
-    color:#c2410c;
-
-}
-
-.shift-3-card{
-
-    border-color:#ddd6fe;
-
-}
-
-.shift-3-card .shift-header{
-
-    background:#faf9ff;
-
-    border-bottom-color:#ede9fe;
-
-}
-
-.shift-3-card .shift-count{
-
-    background:#f5f3ff;
-
-    color:#6d28d9;
-
-}
-
-.off-card{
-
-    border-color:#6ee7b7;
-
-}
-
-.off-card .shift-header{
-
-    background:#dcfce7;
-
-    border-bottom-color:#bbf7d0;
-
-}
-
-.off-card .shift-count{
-
-    background:#d1fae5;
-
-    color:#047857;
-
-}
-
-/* =========================================================
-   SHIFT BODY
-========================================================= */
-
-.shift-body{
-
-    padding:15px 18px 18px;
-
-}
-
-.mechanic-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:8px;
-
-}
-
-.mechanic-item{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:
-        10px
-        11px;
-
-    border-radius:11px;
-
-    background:#f8fafc;
-
-    border:
-        1px solid
-        #f1f5f9;
-
-    transition:.2s ease;
-
-    cursor:pointer;
-
-}
-
-.mechanic-item:hover{
-
-    background:#f1f5f9;
-
-    transform:
-        translateX(3px);
-
-    border-color:#dbeafe;
-
-}
-
-.mechanic-number{
-
-    width:25px;
-
-    height:25px;
-
-    min-width:25px;
-
-    border-radius:8px;
-
-    background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:9px;
-
-    font-weight:900;
-
-    color:#64748b;
-
-}
-
-.mechanic-name{
-
-    font-size:11px;
-
-    font-weight:700;
-
-    color:#334155;
-
-    flex:1;
-
-}
-
-.mechanic-arrow{
-
-    color:#cbd5e1;
-
-    transition:.2s ease;
-
-}
-
-.mechanic-item:hover .mechanic-arrow{
-
-    color:#64748b;
-
-    transform:
-        translateX(2px);
-
-}
-
-.empty-mechanic{
-
-    padding:
-        25px
-        10px;
-
-    text-align:center;
-
-    color:#94a3b8;
-
-    font-size:10px;
-
-    font-weight:600;
-
-}
-
-/* =========================================================
-   CLICK HINT
-========================================================= */
-
-.click-hint{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:5px;
-
-    margin-top:9px;
-
-    font-size:8px;
-
-    font-weight:600;
-
-    color:#94a3b8;
-
-}
-
-.click-hint i{
-
-    width:11px;
-
-    height:11px;
-
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
 }
 
 /* =========================================================
@@ -868,2533 +103,969 @@ body{
 ========================================================= */
 
 .date-panel{
-
     background:#fff;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:20px;
-
     padding:18px 20px;
-
     margin-bottom:20px;
-
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.04);
-
+    box-shadow:0 4px 12px rgba(15,23,42,.04);
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    gap:15px;
-
+    gap:15px
 }
 
-.date-main{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:13px;
-
-}
+.date-main{display:flex;align-items:center;gap:13px}
 
 .date-icon{
-
     width:44px;
-
     height:44px;
-
     border-radius:12px;
-
     background:#eff6ff;
-
     color:#1e3a8a;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
+    flex-shrink:0
 }
 
 .date-label{
-
     font-size:9px;
-
     color:#94a3b8;
-
     font-weight:800;
-
     text-transform:uppercase;
-
-    letter-spacing:.08em;
-
+    letter-spacing:.08em
 }
 
 .date-value{
-
     font-size:17px;
-
     font-weight:900;
-
     color:#1e293b;
+    margin-top:2px
+}
 
-    margin-top:2px;
+.today-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 9px;
+    border-radius:999px;
+    background:#fff7ed;
+    color:#c2410c;
+    border:1px solid #fed7aa;
+    font-size:9px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    white-space:nowrap
+}
 
+/* =========================================================
+   STAT CARDS (aksen warna per shift)
+========================================================= */
+
+.stat-grid{margin-bottom:20px}
+
+.stat-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:17px;
+    transition:.25s ease;
+    min-width:0;
+    position:relative;
+    overflow:hidden
+}
+
+.stat-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
+}
+
+.stat-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:4px
+}
+
+.stat-shift-1::before{background:#2563EB}
+.stat-shift-2::before{background:#059669}
+.stat-shift-3::before{background:#7C3AED}
+.stat-off::before{background:#EA580C}
+
+/* =========================================================
+   SHIFT CARDS
+========================================================= */
+
+.shift-grid{gap:16px}
+
+.shift-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(15,23,42,.04);
+    transition:.25s ease;
+    cursor:pointer
+}
+
+.shift-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 26px rgba(15,23,42,.09)
+}
+
+.shift-header{
+    padding:16px 18px;
+    border-bottom:1px solid #f1f5f9;
+    display:flex;
+    align-items:center;
+    justify-content:space-between
+}
+
+.shift-title-wrap{display:flex;align-items:center;gap:10px}
+
+.shift-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0
+}
+
+.shift-title{font-size:13px;font-weight:900;color:#334155}
+
+.shift-subtitle{
+    font-size:9px;
+    color:#94a3b8;
+    font-weight:600;
+    margin-top:2px
+}
+
+.shift-count{
+    min-width:34px;
+    height:34px;
+    padding:0 8px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    font-weight:900
+}
+
+.shift-body{padding:15px 18px 18px}
+
+.mechanic-list{display:flex;flex-direction:column;gap:8px}
+
+.mechanic-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 11px;
+    border-radius:11px;
+    background:#f8fafc;
+    border:1px solid #f1f5f9;
+    transition:.2s ease;
+    cursor:pointer
+}
+
+.mechanic-item:hover{
+    background:#f1f5f9;
+    transform:translateX(3px);
+    border-color:#dbeafe
+}
+
+.mechanic-number{
+    width:25px;
+    height:25px;
+    min-width:25px;
+    border-radius:8px;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:9px;
+    font-weight:900;
+    color:#64748b
+}
+
+.mechanic-name{
+    font-size:11px;
+    font-weight:700;
+    color:#334155;
+    flex:1;
+    min-width:0
+}
+
+.mechanic-arrow{color:#cbd5e1;transition:.2s ease}
+.mechanic-item:hover .mechanic-arrow{color:#64748b}
+
+.empty-mechanic{
+    padding:25px 10px;
+    text-align:center;
+    color:#94a3b8;
+    font-size:10px;
+    font-weight:600
+}
+
+/* Warna shift: Shift 1 biru, Shift 2 hijau, Shift 3 ungu, OFF oranye */
+.shift-1-icon{background:#eff6ff;color:#1d4ed8}
+.shift-2-icon{background:#ecfdf5;color:#047857}
+.shift-3-icon{background:#f5f3ff;color:#6d28d9}
+.off-icon{background:#fff7ed;color:#c2410c}
+
+.shift-1-card{border-color:#bfdbfe}
+.shift-1-card .shift-header{background:#f8fbff}
+.shift-1-card .shift-count{background:#eff6ff;color:#1d4ed8}
+
+.shift-2-card{border-color:#a7f3d0}
+.shift-2-card .shift-header{background:#f7fdfa}
+.shift-2-card .shift-count{background:#ecfdf5;color:#047857}
+
+.shift-3-card{border-color:#ddd6fe}
+.shift-3-card .shift-header{background:#faf9ff}
+.shift-3-card .shift-count{background:#f5f3ff;color:#6d28d9}
+
+.off-card{border-color:#fed7aa}
+.off-card .shift-header{background:#fffaf5}
+.off-card .shift-count{background:#ffedd5;color:#c2410c}
+
+.mechanic-item .shift-dot{
+    width:6px;
+    height:6px;
+    border-radius:999px;
+    flex-shrink:0
+}
+
+.click-hint{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    margin-bottom:14px;
+    font-size:9px;
+    font-weight:600;
+    color:#94a3b8;
+    text-align:center
 }
 
 /* =========================================================
    MENU MODAL
 ========================================================= */
 
-.menu-overlay{
-
+.menu-overlay,
+.detail-overlay{
     position:fixed;
-
     inset:0;
-
-    background:
-        rgba(15,23,42,.35);
-
-    backdrop-filter:
-        blur(5px);
-
     display:none;
-
     align-items:center;
-
     justify-content:center;
-
-    z-index:100;
-
     padding:20px;
-
+    z-index:100
 }
 
-.menu-overlay.show{
+.menu-overlay{background:rgba(15,23,42,.35);backdrop-filter:blur(5px)}
+.detail-overlay{background:rgba(15,23,42,.42);backdrop-filter:blur(6px);z-index:110}
 
-    display:flex;
-
-}
+.menu-overlay.show,
+.detail-overlay.show{display:flex}
 
 .menu-box{
-
     width:100%;
-
     max-width:420px;
-
     background:#fff;
-
     border-radius:20px;
-
     padding:20px;
-
-    box-shadow:
-        0 25px 60px
-        rgba(15,23,42,.2);
-
-    animation:
-        menuIn
-        .25s
-        ease;
-
+    box-shadow:0 25px 60px rgba(15,23,42,.2);
+    animation:modalIn .25s ease
 }
 
-@keyframes menuIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(10px)
-            scale(.98);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
+@keyframes modalIn{
+    from{opacity:0;transform:translateY(10px) scale(.98)}
+    to{opacity:1;transform:translateY(0) scale(1)}
 }
 
 .menu-header{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    margin-bottom:15px;
-
+    margin-bottom:15px
 }
 
-.menu-title{
+.menu-title{font-size:14px;font-weight:900;color:#334155}
 
-    font-size:14px;
-
-    font-weight:900;
-
-    color:#334155;
-
-}
-
-.menu-close{
-
-    width:32px;
-
-    height:32px;
-
+.menu-close,
+.detail-close{
+    width:34px;
+    height:34px;
     border:none;
-
-    border-radius:9px;
-
+    border-radius:10px;
     background:#f8fafc;
-
     color:#64748b;
-
     cursor:pointer;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
+    flex-shrink:0;
+    transition:.2s ease
 }
+
+.menu-close:hover,
+.detail-close:hover{background:#f1f5f9;color:#334155}
 
 .menu-option{
-
     width:100%;
-
-    border:
-        1px solid
-        #e2e8f0;
-
+    border:1px solid #e2e8f0;
     background:#fff;
-
     border-radius:13px;
-
     padding:13px;
-
     margin-top:9px;
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     text-align:left;
-
     cursor:pointer;
-
     transition:.2s ease;
-
+    font-family:inherit
 }
 
 .menu-option:hover{
-
     background:#eff6ff;
-
     border-color:#bfdbfe;
-
-    transform:
-        translateY(-1px);
-
+    transform:translateY(-1px)
 }
 
 .menu-option-icon{
-
     width:38px;
-
     height:38px;
-
     border-radius:10px;
-
     background:#eff6ff;
-
     color:#1e3a8a;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    flex-shrink:0;
-
+    flex-shrink:0
 }
 
-.menu-option-title{
-
-    font-size:11px;
-
-    font-weight:900;
-
-    color:#334155;
-
-}
-
-.menu-option-desc{
-
-    font-size:9px;
-
-    font-weight:500;
-
-    color:#94a3b8;
-
-    margin-top:2px;
-
-}
+.menu-option-title{font-size:11px;font-weight:900;color:#334155}
+.menu-option-desc{font-size:9px;font-weight:500;color:#94a3b8;margin-top:2px}
 
 /* =========================================================
    DETAIL MODAL
 ========================================================= */
 
-.detail-overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    background:
-        rgba(15,23,42,.42);
-
-    backdrop-filter:
-        blur(6px);
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    z-index:110;
-
-    padding:20px;
-
-}
-
-.detail-overlay.show{
-
-    display:flex;
-
-}
-
 .detail-box{
-
     width:100%;
-
     max-width:720px;
-
-    max-height:
-        calc(100vh - 40px);
-
+    max-height:calc(100vh - 40px);
     background:#fff;
-
     border-radius:22px;
-
     overflow:hidden;
-
-    box-shadow:
-        0 25px 70px
-        rgba(15,23,42,.25);
-
-    animation:
-        detailIn
-        .25s
-        ease;
-
+    box-shadow:0 25px 70px rgba(15,23,42,.25);
+    animation:modalIn .25s ease;
     display:flex;
-
-    flex-direction:column;
-
-}
-
-@keyframes detailIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(12px)
-            scale(.98);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
+    flex-direction:column
 }
 
 .detail-header{
-
-    padding:
-        18px 20px;
-
-    border-bottom:
-        1px solid
-        #e2e8f0;
-
+    padding:18px 20px;
+    border-bottom:1px solid #e2e8f0;
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:15px;
-
-    flex-shrink:0;
-
+    flex-shrink:0
 }
 
-.detail-title-wrap{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:11px;
-
-    min-width:0;
-
-}
+.detail-title-wrap{display:flex;align-items:center;gap:11px;min-width:0}
 
 .detail-icon{
-
     width:42px;
-
     height:42px;
-
     border-radius:12px;
-
     background:#eff6ff;
-
     color:#1e3a8a;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    flex-shrink:0;
-
+    flex-shrink:0
 }
 
-.detail-title{
+.detail-title{font-size:15px;font-weight:900;color:#1e293b}
+.detail-subtitle{font-size:9px;font-weight:600;color:#94a3b8;margin-top:3px}
 
-    font-size:15px;
-
-    font-weight:900;
-
-    color:#1e293b;
-
-}
-
-.detail-subtitle{
-
-    font-size:9px;
-
-    font-weight:600;
-
-    color:#94a3b8;
-
-    margin-top:3px;
-
-}
-
-.detail-close{
-
-    width:34px;
-
-    height:34px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#f8fafc;
-
-    color:#64748b;
-
-    cursor:pointer;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-shrink:0;
-
-    transition:.2s ease;
-
-}
-
-.detail-close:hover{
-
-    background:#f1f5f9;
-
-    color:#334155;
-
-}
-
-.detail-body{
-
-    padding:18px 20px 20px;
-
-    overflow:auto;
-
-}
+.detail-body{padding:18px 20px 20px;overflow:auto}
 
 .detail-table-wrap{
-
     width:100%;
-
     overflow:auto;
-
-    border:
-        1px solid
-        #e2e8f0;
-
-    border-radius:14px;
-
+    border:1px solid #e2e8f0;
+    border-radius:14px
 }
 
 .detail-table{
-
     width:100%;
-
     border-collapse:collapse;
-
-    min-width:400px;
-
+    min-width:400px
 }
 
 .detail-table th{
-
     background:#f8fafc;
-
     color:#64748b;
-
     font-size:9px;
-
     font-weight:900;
-
     text-transform:uppercase;
-
     letter-spacing:.05em;
-
     text-align:left;
-
-    padding:
-        11px 13px;
-
-    border-bottom:
-        1px solid
-        #e2e8f0;
-
+    padding:11px 13px;
+    border-bottom:1px solid #e2e8f0;
     position:sticky;
-
     top:0;
-
-    z-index:2;
-
+    z-index:2
 }
 
 .detail-table td{
-
-    padding:
-        11px 13px;
-
-    border-bottom:
-        1px solid
-        #f1f5f9;
-
+    padding:11px 13px;
+    border-bottom:1px solid #f1f5f9;
     font-size:10px;
-
     font-weight:600;
-
     color:#334155;
-
-    vertical-align:middle;
-
+    vertical-align:middle
 }
 
-.detail-table tbody tr:last-child td{
+.detail-table tbody tr:last-child td{border-bottom:none}
+.detail-table tbody tr:hover{background:#f8fafc}
 
-    border-bottom:none;
-
-}
-
-.detail-table tbody tr:hover{
-
-    background:#f8fafc;
-
-}
-
-.detail-date{
-
-    white-space:nowrap;
-
-    font-weight:800 !important;
-
-    color:#475569 !important;
-
-}
+.detail-date{white-space:nowrap;font-weight:800!important;color:#475569!important}
 
 .shift-badge{
-
     display:inline-flex;
-
     align-items:center;
-
-    gap:4px;
-
-    padding:
-        5px 8px;
-
-    border-radius:7px;
-
+    padding:5px 9px;
+    border-radius:999px;
     font-size:8px;
-
     font-weight:900;
-
-    margin-right:3px;
-
-    margin-bottom:2px;
-
+    margin:0 3px 3px 0;
+    white-space:nowrap
 }
 
-.shift-badge-1{
+.shift-badge-1{background:#dbeafe;color:#1e40af}
+.shift-badge-2{background:#d1fae5;color:#047857}
+.shift-badge-3{background:#ede9fe;color:#6d28d9}
+.shift-badge-off{background:#ffedd5;color:#c2410c}
 
-    background:#eff6ff;
-
-    color:#1d4ed8;
-
-    border:1px solid #bfdbfe;
-
-}
-
-.shift-badge-2{
-
-    background:#fff7ed;
-
-    color:#c2410c;
-
-    border:1px solid #fed7aa;
-
-}
-
-.shift-badge-3{
-
-    background:#f5f3ff;
-
-    color:#6d28d9;
-
-    border:1px solid #ddd6fe;
-
-}
-
-.shift-badge-off{
-
-    background:#d1fae5;
-
-    color:#047857;
-
-    border:1px solid #6ee7b7;
-
-}
-
-.detail-empty{
-
-    padding:
-        45px 20px;
-
-    text-align:center;
-
-}
+.detail-empty{padding:45px 20px;text-align:center}
 
 .detail-empty-icon{
-
     width:50px;
-
     height:50px;
-
     border-radius:14px;
-
     background:#f8fafc;
-
     color:#94a3b8;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    margin:
-        0 auto 12px;
-
+    margin:0 auto 12px
 }
 
-.detail-empty-title{
-
-    font-size:12px;
-
-    font-weight:900;
-
-    color:#475569;
-
-}
-
-.detail-empty-text{
-
-    font-size:9px;
-
-    color:#94a3b8;
-
-    font-weight:600;
-
-    margin-top:4px;
-
-}
+.detail-empty-title{font-size:12px;font-weight:900;color:#475569}
+.detail-empty-text{font-size:9px;color:#94a3b8;font-weight:600;margin-top:4px}
 
 /* =========================================================
-   LOADING
+   LOADING & CONTENT
 ========================================================= */
 
 #loading{
-
     min-height:350px;
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
-    justify-content:center;
-
+    justify-content:center
 }
 
-/* =========================================================
-   DASHBOARD CONTENT
-========================================================= */
+#loading[hidden]{display:none}
 
-#dashboardContent{
-
-    display:none;
-
-}
-
-#dashboardContent.show{
-
-    display:block;
-
-}
-
-/* =========================================================
-   ERROR
-========================================================= */
+#dashboardContent{display:none}
+#dashboardContent.show{display:block}
 
 .error-box{
-
     background:#fff;
-
-    border:
-        1px solid
-        #fecaca;
-
+    border:1px solid #fecaca;
     border-radius:20px;
-
     padding:45px 20px;
-
-    text-align:center;
-
+    text-align:center
 }
 
 /* =========================================================
-   FOOTER
+   BREAKPOINTS (bible Bab 4)
 ========================================================= */
 
-footer{
+@media(min-width:1920px){
+    main{max-width:1800px}
+}
 
-    width:100%;
+@media(min-width:768px) and (max-width:1100px){
+
+    main{padding:28px!important;border-radius:24px!important}
+
+    .page-title{font-size:25px}
+
+    .shift-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+
+    header{margin-bottom:28px!important}
 
 }
 
-/* =========================================================
-   TABLET
-========================================================= */
+@media(max-width:767px){
 
-@media(max-width:1024px){
-
-    body{
-
-        padding:
-            20px !important;
-
-    }
+    body{padding:10px!important;align-items:stretch!important}
 
     main{
-
-        padding:
-            28px !important;
-
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
 
-    .page-title{
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
 
-        font-size:26px;
+    .logo-wrapper{margin-bottom:14px!important}
 
-    }
-
-    .shift-grid{
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-    }
-
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:768px){
-
-    body{
-
-        padding:
-            10px !important;
-
-        align-items:
-            stretch !important;
-
-    }
-
-    main{
-
-        width:100% !important;
-
-        max-width:none !important;
-
-        padding:
-            18px !important;
-
-        border-radius:
-            22px !important;
-
-        box-shadow:
-            0 10px 30px
-            rgba(15,23,42,.08) !important;
-
-    }
-
-    /* HEADER */
-
-    header{
-
-        margin-bottom:
-            24px !important;
-
-        padding-bottom:
-            20px !important;
-
-    }
-
-    .logo-wrapper{
-
-        margin-bottom:
-            14px !important;
-
-    }
-
-    .logo-wrapper > div{
-
-        width:
-            76px !important;
-
-        height:
-            76px !important;
-
-        border-radius:
-            16px !important;
-
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
     }
 
     header .color-primary{
-
-        width:100%;
-
-        max-width:
-            420px;
-
-        padding:
-            14px 18px !important;
-
-        border-radius:
-            16px !important;
-
+        width:100%!important;
+        padding:13px 14px!important;
+        border-radius:15px!important
     }
 
     header .color-primary h1{
-
-        font-size:
-            18px !important;
-
-        line-height:
-            1.3 !important;
-
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
     }
 
     header .color-primary h2{
-
-        font-size:
-            11px !important;
-
-        line-height:
-            1.4 !important;
-
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
     }
 
-    header > div:last-child{
-
-        font-size:
-            8px !important;
-
-        letter-spacing:
-            .18em !important;
-
-        text-align:center;
-
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
     }
 
-    /* TITLE */
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
+    }
 
     .page-title{
-
-        font-size:
-            21px !important;
-
-        line-height:
-            1.3 !important;
-
-        gap:
-            10px !important;
-
-        align-items:
-            flex-start !important;
-
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important
     }
 
-    .page-title span{
+    .page-title span{padding:9px!important;border-radius:10px!important;flex-shrink:0}
+    .page-title span svg{width:18px!important;height:18px!important}
 
-        padding:
-            9px !important;
-
-        border-radius:
-            10px !important;
-
-        flex-shrink:0;
-
-    }
-
-    .page-title span svg{
-
-        width:
-            20px !important;
-
-        height:
-            20px !important;
-
-    }
-
-    .page-subtitle{
-
-        font-size:
-            11px !important;
-
-        line-height:
-            1.6 !important;
-
-        margin-top:
-            8px !important;
-
-    }
-
-    /* TITLE + BUTTON */
-
-    section > div:first-child{
-
-        flex-direction:
-            column !important;
-
-        align-items:
-            stretch !important;
-
-        gap:
-            14px !important;
-
-        margin-bottom:
-            20px !important;
-
-    }
+    .page-subtitle{font-size:10px!important;line-height:1.6!important;margin-top:8px!important}
 
     .back-button{
-
         width:100%;
-
-        min-height:
-            42px;
-
-        padding:
-            10px 14px;
-
-        border-radius:
-            11px;
-
+        padding:10px 14px;
+        border-radius:10px!important;
+        font-size:10px!important
     }
 
-    /* DATE */
+    .date-panel{padding:14px!important;border-radius:15px!important;margin-bottom:14px!important}
+    .date-icon{width:38px;height:38px;border-radius:10px}
+    .date-value{font-size:14px}
 
-    .date-panel{
+    .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin-bottom:14px!important}
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-card p.text-3xl{font-size:25px!important;line-height:1!important}
+    .stat-card p:first-child{font-size:8px!important;line-height:1.4!important}
 
-        padding:
-            14px !important;
+    .shift-grid{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+    .shift-card{border-radius:16px!important}
+    .shift-header{padding:13px 14px!important}
+    .shift-body{padding:12px 14px 14px!important}
+    .shift-icon{width:34px;height:34px;border-radius:10px}
+    .shift-title{font-size:12px}
+    .mechanic-item{padding:9px 10px}
+    .mechanic-name{font-size:10px}
 
-        border-radius:
-            15px !important;
+    .detail-overlay{padding:10px}
+    .detail-box{max-height:calc(100vh - 20px);border-radius:18px}
+    .detail-header{padding:14px}
+    .detail-body{padding:14px}
+    .detail-title{font-size:13px}
 
-        margin-bottom:
-            14px !important;
-
+    /* tabel detail berubah menjadi kartu di layar kecil */
+    .detail-table{min-width:0!important}
+    .detail-table thead{display:none}
+    .detail-table,
+    .detail-table tbody,
+    .detail-table tr,
+    .detail-table td{display:block;width:100%}
+    .detail-table tr{padding:11px 12px;border-bottom:1px solid #f1f5f9}
+    .detail-table tbody tr:last-child{border-bottom:none}
+    .detail-table td{border:none;padding:4px 0}
+    .detail-table td::before{
+        content:attr(data-label);
+        display:block;
+        font-size:8px;
+        font-weight:900;
+        color:#94a3b8;
+        text-transform:uppercase;
+        letter-spacing:.06em;
+        margin-bottom:4px
     }
 
-    .date-icon{
-
-        width:38px;
-
-        height:38px;
-
-        border-radius:10px;
-
-    }
-
-    .date-value{
-
-        font-size:14px;
-
-    }
-
-    /* STATISTICS */
-
-    .stat-grid{
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-
-        gap:
-            10px !important;
-
-        margin-bottom:
-            14px !important;
-
-    }
-
-    .stat-card{
-
-        padding:
-            13px !important;
-
-        border-radius:
-            14px !important;
-
-    }
-
-    .stat-card p.text-3xl{
-
-        font-size:
-            25px !important;
-
-        line-height:
-            1 !important;
-
-    }
-
-    .stat-card p.text-\[10px\]{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.4 !important;
-
-    }
-
-    /* SHIFT */
-
-    .shift-grid{
-
-        grid-template-columns:
-            1fr !important;
-
-        gap:
-            12px !important;
-
-    }
-
-    .shift-card{
-
-        border-radius:
-            16px !important;
-
-    }
-
-    .shift-header{
-
-        padding:
-            13px 14px !important;
-
-    }
-
-    .shift-body{
-
-        padding:
-            12px 14px 14px !important;
-
-    }
-
-    .shift-icon{
-
-        width:34px;
-
-        height:34px;
-
-        border-radius:10px;
-
-    }
-
-    .shift-title{
-
-        font-size:12px;
-
-    }
-
-    .mechanic-item{
-
-        padding:
-            9px 10px;
-
-    }
-
-    .mechanic-name{
-
-        font-size:10px;
-
-    }
-
-    /* DETAIL MODAL */
-
-    .detail-overlay{
-
-        padding:
-            10px;
-
-    }
-
-    .detail-box{
-
-        max-height:
-            calc(100vh - 20px);
-
-        border-radius:
-            18px;
-
-    }
-
-    .detail-header{
-
-        padding:
-            14px;
-
-    }
-
-    .detail-body{
-
-        padding:
-            14px;
-
-    }
-
-    .detail-title{
-
-        font-size:13px;
-
-    }
-
-    /* FOOTER */
-
-    footer{
-
-        margin-top:
-            18px !important;
-
-        padding-left:
-            10px !important;
-
-        padding-right:
-            10px !important;
-
-        padding-bottom:
-            20px !important;
-
-    }
-
-    footer p:first-child{
-
-        font-size:
-            9px !important;
-
-        line-height:
-            1.5 !important;
-
-    }
-
-    footer p:last-child{
-
-        font-size:
-            8px !important;
-
-        line-height:
-            1.7 !important;
-
-    }
+    footer{margin-top:18px!important;padding:0 10px 20px!important}
+    footer p:first-child{font-size:9px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.7!important}
 
 }
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
+@media(max-width:380px){
 
-@media(max-width:480px){
+    body{padding:6px!important}
 
-    body{
+    main{padding:12px!important;border-radius:17px!important}
 
-        padding:
-            7px !important;
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
 
-    }
+    .logo-wrapper>div{width:70px!important;height:70px!important}
 
-    main{
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
 
-        padding:
-            14px !important;
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
+    .page-title span{padding:8px!important}
 
-        border-radius:
-            19px !important;
+    .back-button span{display:none}
 
-    }
-
-    header{
-
-        margin-bottom:
-            20px !important;
-
-        padding-bottom:
-            17px !important;
-
-    }
-
-    .logo-wrapper > div{
-
-        width:
-            68px !important;
-
-        height:
-            68px !important;
-
-    }
-
-    header .color-primary{
-
-        padding:
-            12px 13px !important;
-
-        border-radius:
-            14px !important;
-
-    }
-
-    header .color-primary h1{
-
-        font-size:
-            15px !important;
-
-        letter-spacing:
-            .07em !important;
-
-    }
-
-    header .color-primary h2{
-
-        font-size:
-            9px !important;
-
-        letter-spacing:
-            .12em !important;
-
-    }
-
-    .page-title{
-
-        font-size:
-            18px !important;
-
-    }
-
-    .page-title span{
-
-        padding:
-            8px !important;
-
-    }
-
-    .page-title span svg{
-
-        width:
-            18px !important;
-
-        height:
-            18px !important;
-
-    }
-
-    .page-subtitle{
-
-        font-size:
-            10px !important;
-
-    }
-
-    .stat-grid{
-
-        gap:
-            8px !important;
-
-    }
-
-    .stat-card{
-
-        padding:
-            11px !important;
-
-        border-radius:
-            12px !important;
-
-    }
-
-    .stat-card p.text-3xl{
-
-        font-size:
-            22px !important;
-
-    }
-
-    .stat-card p.text-\[10px\]{
-
-        font-size:
-            7px !important;
-
-    }
-
-}
-
-/* =========================================================
-   EXTRA SMALL MOBILE
-========================================================= */
-
-@media(max-width:375px){
-
-    main{
-
-        padding:
-            11px !important;
-
-    }
-
-    .page-title{
-
-        font-size:
-            16px !important;
-
-    }
-
-    .page-title span{
-
-        padding:
-            7px !important;
-
-    }
-
-    .page-title span svg{
-
-        width:
-            17px !important;
-
-        height:
-            17px !important;
-
-    }
-
-    .stat-card p.text-3xl{
-
-        font-size:
-            20px !important;
-
-    }
-
-    .stat-card{
-
-        padding:
-            10px !important;
-
-    }
-
-    header .color-primary h1{
-
-        font-size:
-            14px !important;
-
-    }
-
-    header .color-primary h2{
-
-        font-size:
-            8px !important;
-
-    }
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-card p.text-3xl{font-size:21px!important}
+    .stat-card p:first-child{font-size:7px!important}
 
 }
 
 </style>
-
 </head>
 
-<body
-class="
-flex
-flex-col
-items-center
-p-4
-sm:p-8
-"
->
+<body class="flex flex-col items-center p-4 sm:p-8">
 
-<main
-class="
-w-full
-max-w-7xl
-flex-grow
-glass-panel
-p-6
-sm:p-10
-rounded-3xl
-shadow-2xl
-fade-in
-"
->
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- ======================================================
+     HEADER (tidak diubah)
+====================================================== -->
 
-<header
-class="
-w-full
-mb-8
-pb-6
-border-b-2
-border-slate-100
-flex
-flex-col
-items-center
-"
->
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
-<div class="mb-4 logo-wrapper">
+    <div class="mb-4 logo-wrapper">
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="w-full h-full object-contain"
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+            <div
+                id="logoFallback"
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+            >
+                <span class="font-black text-2xl">TSI</span>
+            </div>
+        </div>
+    </div>
 
-<div
-class="
-w-24
-h-24
-flex
-items-center
-justify-center
-bg-white
-rounded-2xl
-logo-shadow
-overflow-hidden
-p-2
-"
->
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+            PAPERLESS PROJECT
+        </h1>
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+    </div>
 
-<img
-src="default_logo.png"
-alt="Logo PT TSI"
-class="
-w-full
-h-full
-object-contain
-"
-id="companyLogo"
-onerror="handleLogoError()"
-
->
-
-<div
-id="logoFallback"
-class="
-hidden
-flex
-flex-col
-items-center
-justify-center
-bg-blue-900
-w-full
-h-full
-text-white
-"
->
-
-<span
-class="
-font-black
-text-2xl
-"
-
->
-
-TSI </span>
-
-</div>
-
-</div>
-
-</div>
-
-<div
-class="
-color-primary
-text-white
-px-8
-py-4
-rounded-2xl
-shadow-lg
-flex
-flex-col
-items-center
-gap-1
-"
->
-
-<h1
-class="
-text-xl
-sm:text-2xl
-font-black
-uppercase
-tracking-[0.1em]
-text-center
-"
->
-PAPERLESS PROJECT
-</h1>
-
-<div
-class="
-h-0.5
-w-16
-bg-amber-500
-rounded-full
-my-1
-"
-></div>
-
-<h2
-class="
-text-sm
-sm:text-lg
-font-bold
-uppercase
-tracking-widest
-text-blue-100
-text-center
-"
->
-PT TATSUMI SERUNI INDONESIA
-</h2>
-
-</div>
-
-<div
-class="
-mt-3
-text-[10px]
-font-bold
-text-slate-400
-tracking-[0.3em]
-uppercase
-"
->
-Digitalization Initiative v2.0
-</div>
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
+        Digitalization Initiative v2.0
+    </div>
 
 </header>
 
-<!-- =====================================================
-     PAGE TITLE
-===================================================== -->
+
+<!-- ======================================================
+     SECTION
+====================================================== -->
 
 <section>
 
-<div
-class="
-flex
-items-center
-justify-between
-gap-5
-mb-6
-"
->
-
-<div>
-
-<h2
-class="
-page-title
-flex
-items-center
-gap-3
-"
->
-
-<span
-class="
-bg-blue-900
-text-white
-p-3
-rounded-xl
-shadow-md
-"
-
->
-
-<i
-data-lucide="users"
-class="w-6 h-6"
-
-> </i>
-
-</span>
-
-Dashboard Man Power Harian
-
-</h2>
-
-<p
-class="
-page-subtitle
-mt-2
-ml-1
-"
->
-Informasi cepat mengenai mekanik yang bertugas
-pada Shift 1, Shift 2, Shift 3, dan mekanik yang OFF hari ini.
-</p>
-
-</div>
-
-<button
-onclick="openDataMenu()"
-class="back-button"
-
->
-
-<i
-data-lucide="layout-list"
-class="w-4 h-4"
-
-> </i>
-
-Lihat Data
-
-</button>
-
-</div>
-
-<!-- =================================================
-     LOADING
-================================================= -->
-
-<div id="loading">
-
-<i
-data-lucide="loader-circle"
-class="
-w-9
-h-9
-animate-spin
-text-amber-500
-"
-
-> </i>
-
-<p
-class="
-font-semibold
-text-sm
-text-slate-400
-mt-3
-"
->
-Memuat data Man Power...
-</p>
-
-</div>
-
-<!-- =================================================
-     DASHBOARD CONTENT
-================================================= -->
-
-<div id="dashboardContent">
-
-<!-- =================================================
-     TODAY
-================================================= -->
-
-<div class="date-panel">
-
-<div class="date-main">
-
-<div class="date-icon">
-
-<i
-data-lucide="calendar-days"
-class="w-5 h-5"
-
-> </i>
-
-</div>
-
-<div>
-
-<div class="date-label">
-Jadwal Man Power
-</div>
-
-<div
-id="todayDate"
-class="date-value"
->
--
-</div>
-
-</div>
-
-</div>
-
-<div class="today-badge">
-
-<i
-data-lucide="circle-dot"
-class="w-3 h-3"
-
-> </i>
-
-HARI INI
-
-</div>
-
-</div>
-
-<!-- =================================================
-     STATISTICS
-================================================= -->
-
-<div
-class="
-stat-grid
-grid
-grid-cols-4
-gap-4
-mb-6
-"
->
-
-<div
-class="
-stat-card
-stat-shift-1
-"
->
-
-<p
-class="
-text-[10px]
-font-bold
-text-blue-500
-uppercase
-tracking-wider
-"
->
-Shift 1
-</p>
-
-<p
-id="shift1Total"
-class="
-text-3xl
-font-black
-text-blue-600
-mt-2
-"
->
--
-</p>
-
-<p
-class="
-text-[9px]
-font-semibold
-text-slate-400
-mt-1
-"
->
-Mekanik bertugas
-</p>
-
-</div>
-
-<div
-class="
-stat-card
-stat-shift-2
-"
->
-
-<p
-class="
-text-[10px]
-font-bold
-text-orange-500
-uppercase
-tracking-wider
-"
->
-Shift 2
-</p>
-
-<p
-id="shift2Total"
-class="
-text-3xl
-font-black
-text-orange-600
-mt-2
-"
->
--
-</p>
-
-<p
-class="
-text-[9px]
-font-semibold
-text-slate-400
-mt-1
-"
->
-Mekanik bertugas
-</p>
-
-</div>
-
-<div
-class="
-stat-card
-stat-shift-3
-"
->
-
-<p
-class="
-text-[10px]
-font-bold
-text-purple-500
-uppercase
-tracking-wider
-"
->
-Shift 3
-</p>
-
-<p
-id="shift3Total"
-class="
-text-3xl
-font-black
-text-purple-600
-mt-2
-"
->
--
-</p>
-
-<p
-class="
-text-[9px]
-font-semibold
-text-slate-400
-mt-1
-"
->
-Mekanik bertugas
-</p>
-
-</div>
-
-<div
-class="
-stat-card
-stat-off
-"
->
-
-<p
-class="
-text-[10px]
-font-bold
-text-emerald-700
-uppercase
-tracking-wider
-"
->
-OFF
-</p>
-
-<p
-id="offTotal"
-class="
-text-3xl
-font-black
-text-emerald-700
-mt-2
-"
->
--
-</p>
-
-<p
-class="
-text-[9px]
-font-semibold
-text-slate-400
-mt-1
-"
->
-Tidak bertugas
-</p>
-
-</div>
-
-</div>
-
-<!-- =================================================
-     GENERAL CLICK INFORMATION
-================================================= -->
-
-<div
-class="
-click-hint
-mb-4
-"
->
-
-<i data-lucide="mouse-pointer-click"></i>
-
-<span>
-Klik nama untuk melihat detail rotasi mekanik • Klik panel shift untuk melihat detail jadwal bulan ini
-</span>
-
-</div>
-
-<!-- =================================================
-     SHIFT CARDS
-================================================= -->
-
-<div
-class="
-shift-grid
-grid
-grid-cols-4
-gap-4
-"
->
-
-<!-- =================================================
-     SHIFT 1
-================================================= -->
-
-<div
-class="
-shift-card
-shift-1-card
-"
-onclick="openShiftDetail(1)"
->
-
-<div class="shift-header">
-
-<div class="shift-title-wrap">
-
-<div
-class="
-shift-icon
-shift-1-icon
-"
->
-
-<i
-data-lucide="sun"
-class="w-5 h-5"
-
-> </i>
-
-</div>
-
-<div>
-
-<div class="shift-title">
-Shift 1
-</div>
-
-<div class="shift-subtitle">
-Mekanik bertugas
-</div>
-
-</div>
-
-</div>
-
-<div
-id="shift1Count"
-class="shift-count"
->
-0
-</div>
-
-</div>
-
-<div class="shift-body">
-
-<div
-id="shift1List"
-class="mechanic-list"
-></div>
-
-</div>
-
-</div>
-
-<!-- =================================================
-     SHIFT 2
-================================================= -->
-
-<div
-class="
-shift-card
-shift-2-card
-"
-onclick="openShiftDetail(2)"
->
-
-<div class="shift-header">
-
-<div class="shift-title-wrap">
-
-<div
-class="
-shift-icon
-shift-2-icon
-"
->
-
-<i
-data-lucide="sun-medium"
-class="w-5 h-5"
-
-> </i>
-
-</div>
-
-<div>
-
-<div class="shift-title">
-Shift 2
-</div>
-
-<div class="shift-subtitle">
-Mekanik bertugas
-</div>
-
-</div>
-
-</div>
-
-<div
-id="shift2Count"
-class="shift-count"
->
-0
-</div>
-
-</div>
-
-<div class="shift-body">
-
-<div
-id="shift2List"
-class="mechanic-list"
-></div>
-
-</div>
-
-</div>
-
-<!-- =================================================
-     SHIFT 3
-================================================= -->
-
-<div
-class="
-shift-card
-shift-3-card
-"
-onclick="openShiftDetail(3)"
->
-
-<div class="shift-header">
-
-<div class="shift-title-wrap">
-
-<div
-class="
-shift-icon
-shift-3-icon
-"
->
-
-<i
-data-lucide="moon"
-class="w-5 h-5"
-
-> </i>
-
-</div>
-
-<div>
-
-<div class="shift-title">
-Shift 3
-</div>
-
-<div class="shift-subtitle">
-Mekanik bertugas
-</div>
-
-</div>
-
-</div>
-
-<div
-id="shift3Count"
-class="shift-count"
->
-0
-</div>
-
-</div>
-
-<div class="shift-body">
-
-<div
-id="shift3List"
-class="mechanic-list"
-></div>
-
-</div>
-
-</div>
-
-<!-- =================================================
-     OFF
-================================================= -->
-
-<div
-class="
-shift-card
-off-card
-"
-onclick="openShiftDetail(0)"
->
-
-<div class="shift-header">
-
-<div class="shift-title-wrap">
-
-<div
-class="
-shift-icon
-off-icon
-"
->
-
-<i
-data-lucide="coffee"
-class="w-5 h-5"
-
-> </i>
-
-</div>
-
-<div>
-
-<div class="shift-title">
-OFF
-</div>
-
-<div class="shift-subtitle">
-Tidak bertugas hari ini
-</div>
-
-</div>
-
-</div>
-
-<div
-id="offCount"
-class="shift-count"
->
-0
-</div>
-
-</div>
-
-<div class="shift-body">
-
-<div
-id="offList"
-class="mechanic-list"
-></div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+    <div class="flex items-center justify-between gap-5 mb-6">
+
+        <div>
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </span>
+                Dashboard Man Power Harian
+            </h2>
+            <p class="page-subtitle mt-2 ml-1">
+                Informasi mekanik yang bertugas pada Shift 1, Shift 2, Shift 3, dan yang OFF hari ini.
+            </p>
+        </div>
+
+        <button onclick="openDataMenu()" class="back-button">
+            <i data-lucide="layout-list" class="w-4 h-4"></i>
+            Lihat Data
+        </button>
+
+    </div>
+
+
+    <!-- LOADING -->
+    <div id="loading">
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p class="font-semibold text-sm text-slate-400 mt-3">Memuat data Man Power...</p>
+    </div>
+
+
+    <!-- CONTENT -->
+    <div id="dashboardContent">
+
+        <!-- TANGGAL HARI INI -->
+        <div class="date-panel">
+            <div class="date-main">
+                <div class="date-icon">
+                    <i data-lucide="calendar-days" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <div class="date-label">Jadwal Man Power</div>
+                    <div id="todayDate" class="date-value">-</div>
+                </div>
+            </div>
+            <div class="today-badge">
+                <i data-lucide="circle-dot" class="w-3 h-3"></i>
+                Hari Ini
+            </div>
+        </div>
+
+        <!-- STATISTIK -->
+        <div class="stat-grid grid grid-cols-4 gap-4">
+
+            <div class="stat-card stat-shift-1">
+                <p class="text-[10px] font-bold text-blue-500 uppercase tracking-wider">Shift 1</p>
+                <p id="shift1Total" class="text-3xl font-black text-blue-600 mt-2">-</p>
+                <p class="text-[9px] font-semibold text-slate-400 mt-1">Mekanik bertugas</p>
+            </div>
+
+            <div class="stat-card stat-shift-2">
+                <p class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider">Shift 2</p>
+                <p id="shift2Total" class="text-3xl font-black text-emerald-600 mt-2">-</p>
+                <p class="text-[9px] font-semibold text-slate-400 mt-1">Mekanik bertugas</p>
+            </div>
+
+            <div class="stat-card stat-shift-3">
+                <p class="text-[10px] font-bold text-purple-500 uppercase tracking-wider">Shift 3</p>
+                <p id="shift3Total" class="text-3xl font-black text-purple-600 mt-2">-</p>
+                <p class="text-[9px] font-semibold text-slate-400 mt-1">Mekanik bertugas</p>
+            </div>
+
+            <div class="stat-card stat-off">
+                <p class="text-[10px] font-bold text-orange-600 uppercase tracking-wider">OFF</p>
+                <p id="offTotal" class="text-3xl font-black text-orange-600 mt-2">-</p>
+                <p class="text-[9px] font-semibold text-slate-400 mt-1">Tidak bertugas</p>
+            </div>
+
+        </div>
+
+        <!-- PETUNJUK -->
+        <div class="click-hint">
+            <i data-lucide="mouse-pointer-click" class="w-3 h-3"></i>
+            Klik nama untuk melihat jadwal bulan ini. Klik panel shift untuk melihat daftar bulan ini.
+        </div>
+
+        <!-- KARTU SHIFT -->
+        <div class="shift-grid grid grid-cols-4 gap-4">
+
+            <div class="shift-card shift-1-card" onclick="openShiftDetail(1)">
+                <div class="shift-header">
+                    <div class="shift-title-wrap">
+                        <div class="shift-icon shift-1-icon">
+                            <i data-lucide="sun" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <div class="shift-title">Shift 1</div>
+                            <div class="shift-subtitle">Mekanik bertugas</div>
+                        </div>
+                    </div>
+                    <div id="shift1Count" class="shift-count">0</div>
+                </div>
+                <div class="shift-body">
+                    <div id="shift1List" class="mechanic-list"></div>
+                </div>
+            </div>
+
+            <div class="shift-card shift-2-card" onclick="openShiftDetail(2)">
+                <div class="shift-header">
+                    <div class="shift-title-wrap">
+                        <div class="shift-icon shift-2-icon">
+                            <i data-lucide="sun-medium" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <div class="shift-title">Shift 2</div>
+                            <div class="shift-subtitle">Mekanik bertugas</div>
+                        </div>
+                    </div>
+                    <div id="shift2Count" class="shift-count">0</div>
+                </div>
+                <div class="shift-body">
+                    <div id="shift2List" class="mechanic-list"></div>
+                </div>
+            </div>
+
+            <div class="shift-card shift-3-card" onclick="openShiftDetail(3)">
+                <div class="shift-header">
+                    <div class="shift-title-wrap">
+                        <div class="shift-icon shift-3-icon">
+                            <i data-lucide="moon" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <div class="shift-title">Shift 3</div>
+                            <div class="shift-subtitle">Mekanik bertugas</div>
+                        </div>
+                    </div>
+                    <div id="shift3Count" class="shift-count">0</div>
+                </div>
+                <div class="shift-body">
+                    <div id="shift3List" class="mechanic-list"></div>
+                </div>
+            </div>
+
+            <div class="shift-card off-card" onclick="openShiftDetail(0)">
+                <div class="shift-header">
+                    <div class="shift-title-wrap">
+                        <div class="shift-icon off-icon">
+                            <i data-lucide="coffee" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <div class="shift-title">OFF</div>
+                            <div class="shift-subtitle">Tidak bertugas hari ini</div>
+                        </div>
+                    </div>
+                    <div id="offCount" class="shift-count">0</div>
+                </div>
+                <div class="shift-body">
+                    <div id="offList" class="mechanic-list"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 </main>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer
-class="
-mt-8
-text-center
-text-slate-400
-px-4
-pb-8
-"
->
-
-<p
-class="
-font-bold
-text-slate-500
-tracking-tight
-uppercase
-"
->
-&copy; 2026 Paperless Project - PT TSI.
-All rights reserved.
-</p>
-
-<p
-class="
-text-[10px]
-mt-1
-"
->
-
-System Architecture by:
-
-<span
-class="
-text-slate-600
-font-semibold
-uppercase
-"
-
->
-
-Imam Wahyu Ramadhan, S.T. </span>
-
-|
-
-<span
-class="
-text-amber-600
-font-bold
-uppercase
-tracking-tighter
-"
-
->
-
-Project 2.0 </span>
-
-</p>
-
+<!-- FOOTER (tidak diubah) -->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+    <p class="text-[10px] mt-1">
+        System Architecture by:
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
+        |
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
+    </p>
 </footer>
 
-<!-- =====================================================
-     DATA MENU
-===================================================== -->
 
-<div
-id="dataMenu"
-class="menu-overlay"
-onclick="handleMenuOverlayClick(event)"
->
+<!-- MENU LIHAT DATA -->
+<div id="dataMenu" class="menu-overlay" onclick="handleMenuOverlayClick(event)">
+    <div class="menu-box">
 
-<div class="menu-box">
+        <div class="menu-header">
+            <div class="menu-title">Lihat Data</div>
+            <button onclick="closeDataMenu()" class="menu-close">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
 
-<div class="menu-header">
+        <button onclick="goToHome()" class="menu-option">
+            <div class="menu-option-icon">
+                <i data-lucide="house" class="w-5 h-5"></i>
+            </div>
+            <div>
+                <div class="menu-option-title">Home</div>
+                <div class="menu-option-desc">Kembali ke halaman utama Paperless Project.</div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 ml-auto"></i>
+        </button>
 
-<div class="menu-title">
-Lihat Data
+        <button onclick="goToManpowerTable()" class="menu-option">
+            <div class="menu-option-icon">
+                <i data-lucide="table-2" class="w-5 h-5"></i>
+            </div>
+            <div>
+                <div class="menu-option-title">Daftar Lengkap Man Power</div>
+                <div class="menu-option-desc">Melihat seluruh jadwal Man Power dalam tabel.</div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 ml-auto"></i>
+        </button>
+
+    </div>
 </div>
 
-<button
-onclick="closeDataMenu()"
-class="menu-close"
 
->
+<!-- MODAL DETAIL -->
+<div id="detailModal" class="detail-overlay" onclick="handleDetailOverlayClick(event)">
+    <div class="detail-box">
 
-<i
-data-lucide="x"
-class="w-4 h-4"
+        <div class="detail-header">
+            <div class="detail-title-wrap">
+                <div id="detailIcon" class="detail-icon">
+                    <i data-lucide="calendar-range" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <div id="detailTitle" class="detail-title">Detail Jadwal</div>
+                    <div id="detailSubtitle" class="detail-subtitle">-</div>
+                </div>
+            </div>
+            <button onclick="closeDetailModal()" class="detail-close">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
 
-> </i>
+        <div id="detailBody" class="detail-body"></div>
 
-</button>
-
+    </div>
 </div>
 
-<button
-onclick="goToHome()"
-class="menu-option"
-
->
-
-<div class="menu-option-icon">
-
-<i
-data-lucide="home"
-class="w-5 h-5"
-
-> </i>
-
-</div>
-
-<div>
-
-<div class="menu-option-title">
-Home
-</div>
-
-<div class="menu-option-desc">
-Kembali ke halaman utama Paperless Project.
-</div>
-
-</div>
-
-<i
-data-lucide="chevron-right"
-class="
-w-4
-h-4
-text-slate-300
-ml-auto
-"
-
-> </i>
-
-</button>
-
-<button
-onclick="goToManpowerTable()"
-class="menu-option"
-
->
-
-<div class="menu-option-icon">
-
-<i
-data-lucide="table-2"
-class="w-5 h-5"
-
-> </i>
-
-</div>
-
-<div>
-
-<div class="menu-option-title">
-Daftar Lengkap Man Power
-</div>
-
-<div class="menu-option-desc">
-Melihat seluruh jadwal Man Power dalam tabel.
-</div>
-
-</div>
-
-<i
-data-lucide="chevron-right"
-class="
-w-4
-h-4
-text-slate-300
-ml-auto
-"
-
-> </i>
-
-</button>
-
-</div>
-
-</div>
-
-<!-- =====================================================
-     DETAIL MODAL
-===================================================== -->
-
-<div
-id="detailModal"
-class="detail-overlay"
-onclick="handleDetailOverlayClick(event)"
->
-
-<div class="detail-box">
-
-<div class="detail-header">
-
-<div class="detail-title-wrap">
-
-<div
-id="detailIcon"
-class="detail-icon"
->
-
-<i
-data-lucide="calendar-range"
-class="w-5 h-5"
-
-> </i>
-
-</div>
-
-<div>
-
-<div
-id="detailTitle"
-class="detail-title"
->
-Detail Jadwal
-</div>
-
-<div
-id="detailSubtitle"
-class="detail-subtitle"
->
--
-</div>
-
-</div>
-
-</div>
-
-<button
-onclick="closeDetailModal()"
-class="detail-close"
-
->
-
-<i
-data-lucide="x"
-class="w-4 h-4"
-
-> </i>
-
-</button>
-
-</div>
-
-<div
-id="detailBody"
-class="detail-body"
->
-</div>
-
-</div>
-
-</div>
 
 <script>
 
@@ -3402,1892 +1073,433 @@ class="detail-body"
    CONFIGURATION
 ========================================================= */
 
-const API_URL =
+const API_URL=
 'https://script.google.com/macros/s/AKfycbzNkJaGpfQ1e4AfcQxUfQxKrfB6-Y1mzOKZ2WSDwsTlc_tzaVkU-gmeqjr2lSEiuyku/exec';
 
-const HOME_URL =
-'index.html';
+const HOME_URL='index.html';
+const MANPOWER_TABLE_URL='tmanpower.html';
 
-const MANPOWER_TABLE_URL =
-'tmanpower.html';
-
-/* =========================================================
-   MASTER MECHANIC
-========================================================= */
-
-const MASTER_MECHANICS = [
-
+/* Daftar mekanik resmi */
+const MASTER_MECHANICS=[
     'PRASETYO T.U',
-
     'SUPRAYITNO',
-
     'A. NAJIB',
-
     'M. ISNAINI',
-
     'M. EFENDI N.U',
-
     'WAHYUDI',
-
     'M. CHOIRUDDIN',
-
     'SUBAKTIAR',
-
     'SABILATURROHMAN',
-
     'DANANG T.S.B',
-
     'GATOT G'
-
 ];
 
+/* Kolom sumber: Shift 1 = N–X, Shift 2 = Y–AI, Shift 3 = AJ–AT */
+const SHIFT_1_COLUMNS=['N','O','P','Q','R','S','T','U','V','W','X'];
+const SHIFT_2_COLUMNS=['Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI'];
+const SHIFT_3_COLUMNS=['AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT'];
+
+const MONTH_NAMES=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+
+const MONTH_INDEX={
+    jan:0,january:0,feb:1,february:1,mar:2,march:2,apr:3,april:3,
+    may:4,mei:4,jun:5,june:5,jul:6,july:6,aug:7,agu:7,august:7,
+    sep:8,sept:8,september:8,oct:9,okt:9,october:9,
+    nov:10,november:10,dec:11,des:11,december:11
+};
+
+
 /* =========================================================
-   COLUMN CONFIGURATION
+   STATE
 ========================================================= */
 
-const SHIFT_1_COLUMNS = [
-    'N','O','P','Q','R','S','T','U','V','W','X'
-];
+let allData=[];
 
-const SHIFT_2_COLUMNS = [
-    'Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI'
-];
-
-const SHIFT_3_COLUMNS = [
-    'AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT'
-];
 
 /* =========================================================
-   GLOBAL VARIABLES
+   HELPERS
 ========================================================= */
 
-let allData = [];
+const $=id=>document.getElementById(id);
 
-let todayRow = null;
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+}
+
+function normalizeName(value){
+    return String(value??'').trim().replace(/\s+/g,' ').toUpperCase();
+}
+
+function handleLogoError(){
+    $('companyLogo').classList.add('hidden');
+    const fb=$('logoFallback');
+    fb.classList.remove('hidden');
+    fb.classList.add('flex');
+}
+
 
 /* =========================================================
-   NAVIGATION
+   NAVIGASI & MODAL
 ========================================================= */
 
 function goToHome(){
-
-    window.location.href =
-        HOME_URL;
-
+    window.location.href=HOME_URL;
 }
 
 function goToManpowerTable(){
-
-    window.location.href =
-        MANPOWER_TABLE_URL;
-
+    window.location.href=MANPOWER_TABLE_URL;
 }
 
-/* =========================================================
-   DATA MENU
-========================================================= */
-
 function openDataMenu(){
-
-    document
-        .getElementById('dataMenu')
-        .classList
-        .add('show');
-
+    $('dataMenu').classList.add('show');
     lucide.createIcons();
-
 }
 
 function closeDataMenu(){
-
-    document
-        .getElementById('dataMenu')
-        .classList
-        .remove('show');
-
+    $('dataMenu').classList.remove('show');
 }
 
 function handleMenuOverlayClick(event){
+    if(event.target.id==='dataMenu') closeDataMenu();
+}
 
-    if(
-        event.target.id === 'dataMenu'
-    ){
+function openDetailModal(){
+    $('detailModal').classList.add('show');
+    document.body.style.overflow='hidden';
+    lucide.createIcons();
+}
 
-        closeDataMenu();
+function closeDetailModal(){
+    $('detailModal').classList.remove('show');
+    document.body.style.overflow='';
+}
 
+function handleDetailOverlayClick(event){
+    if(event.target.id==='detailModal') closeDetailModal();
+}
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+/* Ambil nama dari kolom-kolom shift (satu sel bisa berisi beberapa nama) */
+function getNamesFromColumns(row,columns){
+
+    const names=[];
+
+    columns.forEach(column=>{
+
+        const value=row[column];
+
+        if(value===null||value===undefined) return;
+
+        String(value)
+            .split(/[\n;,]+/)
+            .map(item=>item.trim())
+            .filter(Boolean)
+            .forEach(item=>names.push(item));
+
+    });
+
+    return names;
+}
+
+function getUniqueNames(names){
+
+    const seen=new Set();
+    const result=[];
+
+    names.forEach(name=>{
+        const key=normalizeName(name);
+        if(!key||seen.has(key)) return;
+        seen.add(key);
+        result.push(name.trim());
+    });
+
+    return result;
+}
+
+function getShiftNames(row,shift){
+
+    if(shift===1) return getUniqueNames(getNamesFromColumns(row,SHIFT_1_COLUMNS));
+    if(shift===2) return getUniqueNames(getNamesFromColumns(row,SHIFT_2_COLUMNS));
+    if(shift===3) return getUniqueNames(getNamesFromColumns(row,SHIFT_3_COLUMNS));
+
+    return getOffMechanics(row);
+}
+
+/* OFF = mekanik master yang tidak ada di shift manapun pada hari itu */
+function getOffMechanics(row){
+
+    const assigned=new Set(
+        [
+            ...getNamesFromColumns(row,SHIFT_1_COLUMNS),
+            ...getNamesFromColumns(row,SHIFT_2_COLUMNS),
+            ...getNamesFromColumns(row,SHIFT_3_COLUMNS)
+        ].map(normalizeName)
+    );
+
+    return MASTER_MECHANICS.filter(m=>!assigned.has(normalizeName(m)));
+}
+
+function getDateValue(row){
+    if(row['MAN POWER HARI INI']!==undefined) return row['MAN POWER HARI INI'];
+    if(row.M!==undefined) return row.M;
+    return '';
+}
+
+/* Format sumber: "12 Jan 2026", ISO "2026-01-12", atau format lain yang dikenali Date */
+function parseDate(value){
+
+    const text=String(value??'').trim();
+    if(!text) return null;
+
+    let match=text.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if(match) return new Date(Number(match[1]),Number(match[2])-1,Number(match[3]));
+
+    match=text.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/);
+    if(match){
+        const month=MONTH_INDEX[match[2].toLowerCase()]??MONTH_INDEX[match[2].substring(0,3).toLowerCase()];
+        if(month!==undefined) return new Date(Number(match[3]),month,Number(match[1]));
     }
 
+    const date=new Date(text);
+    if(isNaN(date.getTime())) return null;
+
+    return new Date(date.getFullYear(),date.getMonth(),date.getDate());
 }
+
+function sameDay(a,b){
+    return a.getFullYear()===b.getFullYear()
+        &&a.getMonth()===b.getMonth()
+        &&a.getDate()===b.getDate();
+}
+
+function isToday(value){
+    const date=parseDate(value);
+    return !!date&&sameDay(date,new Date());
+}
+
+function isCurrentMonth(value){
+    const date=parseDate(value);
+    const now=new Date();
+    return !!date&&date.getMonth()===now.getMonth()&&date.getFullYear()===now.getFullYear();
+}
+
+function formatLongDate(value){
+    const date=parseDate(value);
+    if(!date) return String(value??'-');
+    return `${String(date.getDate()).padStart(2,'0')} ${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+function findTodayRow(data){
+    return data.find(row=>isToday(getDateValue(row)))||null;
+}
+
+/* Baris bulan berjalan, diurutkan dari tanggal terlama */
+function getCurrentMonthRows(){
+    return allData
+        .filter(row=>isCurrentMonth(getDateValue(row)))
+        .sort((a,b)=>parseDate(getDateValue(a))-parseDate(getDateValue(b)));
+}
+
+
+/* =========================================================
+   RENDER DASHBOARD HARI INI
+========================================================= */
+
+function shiftDotColor(shift){
+    if(shift===1) return '#2563EB';
+    if(shift===2) return '#059669';
+    if(shift===3) return '#7C3AED';
+    return '#EA580C';
+}
+
+function renderMechanicList(elementId,names,shift){
+
+    const element=$(elementId);
+
+    if(!names.length){
+        element.innerHTML='<div class="empty-mechanic">Tidak ada data</div>';
+        return;
+    }
+
+    element.innerHTML=names.map((name,index)=>`
+        <div class="mechanic-item" onclick="event.stopPropagation();openMechanicDetail('${escapeHtml(name).replace(/'/g,"\\'")}')">
+            <div class="mechanic-number">${index+1}</div>
+            <div class="mechanic-name">${escapeHtml(name)}</div>
+            <span class="shift-dot" style="background:${shiftDotColor(shift)}"></span>
+            <i data-lucide="chevron-right" class="mechanic-arrow w-3.5 h-3.5"></i>
+        </div>
+    `).join('');
+
+}
+
+function updateDashboard(row){
+
+    if(!row){
+        showNoTodayData();
+        return;
+    }
+
+    const shift1=getShiftNames(row,1);
+    const shift2=getShiftNames(row,2);
+    const shift3=getShiftNames(row,3);
+    const off=getShiftNames(row,0);
+
+    $('todayDate').textContent=formatLongDate(getDateValue(row));
+
+    $('shift1Total').textContent=shift1.length;
+    $('shift2Total').textContent=shift2.length;
+    $('shift3Total').textContent=shift3.length;
+    $('offTotal').textContent=off.length;
+
+    $('shift1Count').textContent=shift1.length;
+    $('shift2Count').textContent=shift2.length;
+    $('shift3Count').textContent=shift3.length;
+    $('offCount').textContent=off.length;
+
+    renderMechanicList('shift1List',shift1,1);
+    renderMechanicList('shift2List',shift2,2);
+    renderMechanicList('shift3List',shift3,3);
+    renderMechanicList('offList',off,0);
+
+    lucide.createIcons();
+}
+
+function showNoTodayData(){
+
+    $('todayDate').textContent='Data hari ini belum tersedia';
+
+    ['shift1Total','shift2Total','shift3Total','offTotal',
+     'shift1Count','shift2Count','shift3Count','offCount']
+        .forEach(id=>$(id).textContent='0');
+
+    renderMechanicList('shift1List',[],1);
+    renderMechanicList('shift2List',[],2);
+    renderMechanicList('shift3List',[],3);
+    renderMechanicList('offList',[],0);
+
+}
+
 
 /* =========================================================
    DETAIL MODAL
 ========================================================= */
 
-function openDetailModal(){
-
-    document
-        .getElementById('detailModal')
-        .classList
-        .add('show');
-
-    document.body.style.overflow =
-        'hidden';
-
-    lucide.createIcons();
-
-}
-
-function closeDetailModal(){
-
-    document
-        .getElementById('detailModal')
-        .classList
-        .remove('show');
-
-    document.body.style.overflow =
-        '';
-
-}
-
-function handleDetailOverlayClick(event){
-
-    if(
-        event.target.id === 'detailModal'
-    ){
-
-        closeDetailModal();
-
-    }
-
-}
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-function handleLogoError(){
-
-    document
-        .getElementById(
-            'companyLogo'
-        )
-        .classList
-        .add('hidden');
-
-    document
-        .getElementById(
-            'logoFallback'
-        )
-        .classList
-        .remove('hidden');
-
-}
-
-/* =========================================================
-   NORMALIZE NAME
-========================================================= */
-
-function normalizeName(
-    value
-){
-
-    return String(
-        value ?? ''
-    )
-    .trim()
-    .replace(
-        /\s+/g,
-        ' '
-    )
-    .toUpperCase();
-
-}
-
-/* =========================================================
-   GET NAMES FROM COLUMNS
-========================================================= */
-
-function getNamesFromColumns(
-    row,
-    columns
-){
-
-    const names = [];
-
-    columns.forEach(
-        column=>{
-
-            const value =
-                row[column];
-
-            if(
-                value === null ||
-                value === undefined
-            ){
-
-                return;
-
-            }
-
-            const text =
-                String(value)
-                .trim();
-
-            if(
-                !text
-            ){
-
-                return;
-
-            }
-
-            /*
-             * Mendukung apabila suatu saat
-             * satu cell berisi beberapa nama.
-             */
-
-            const parts =
-                text
-                .split(
-                    /[\n;,]+/
-                )
-                .map(
-                    item =>
-                        item.trim()
-                )
-                .filter(
-                    Boolean
-                );
-
-            names.push(
-                ...parts
-            );
-
-        }
-    );
-
-    return names;
-
-}
-
-/* =========================================================
-   GET UNIQUE NAMES
-========================================================= */
-
-function getUniqueNames(
-    names
-){
-
-    const result = [];
-
-    const seen =
-        new Set();
-
-    names.forEach(
-        name=>{
-
-            const normalized =
-                normalizeName(name);
-
-            if(
-                !normalized
-            ){
-
-                return;
-
-            }
-
-            if(
-                seen.has(normalized)
-            ){
-
-                return;
-
-            }
-
-            seen.add(
-                normalized
-            );
-
-            result.push(
-                name.trim()
-            );
-
-        }
-    );
-
-    return result;
-
-}
-
-/* =========================================================
-   GET OFF MECHANICS
-========================================================= */
-
-function getOffMechanics(
-    row
-){
-
-    const shift1 =
-        getNamesFromColumns(
-            row,
-            SHIFT_1_COLUMNS
-        );
-
-    const shift2 =
-        getNamesFromColumns(
-            row,
-            SHIFT_2_COLUMNS
-        );
-
-    const shift3 =
-        getNamesFromColumns(
-            row,
-            SHIFT_3_COLUMNS
-        );
-
-    const assigned =
-        new Set();
-
-    [
-        ...shift1,
-        ...shift2,
-        ...shift3
-    ]
-    .forEach(
-        name=>{
-
-            const normalized =
-                normalizeName(
-                    name
-                );
-
-            if(
-                normalized
-            ){
-
-                assigned.add(
-                    normalized
-                );
-
-            }
-
-        }
-    );
-
-    return MASTER_MECHANICS
-        .filter(
-            mechanic=>{
-
-                return !assigned.has(
-                    normalizeName(
-                        mechanic
-                    )
-                );
-
-            }
-        );
-
-}
-
-/* =========================================================
-   GET DATE VALUE
-========================================================= */
-
-function getDateValue(
-    row
-){
-
-    if(
-        row[
-            'MAN POWER HARI INI'
-        ] !== undefined
-    ){
-
-        return row[
-            'MAN POWER HARI INI'
-        ];
-
-    }
-
-    if(
-        row.M !== undefined
-    ){
-
-        return row.M;
-
-    }
-
-    return '';
-
-}
-
-/* =========================================================
-   PARSE DATE
-========================================================= */
-
-function parseDate(
-    value
-){
-
-    const text =
-        String(
-            value ?? ''
-        )
-        .trim();
-
-    if(
-        !text
-    ){
-
-        return null;
-
-    }
-
-    let match =
-        text.match(
-            /^(\d{4})-(\d{2})-(\d{2})/
-        );
-
-    if(match){
-
-        const year =
-            Number(match[1]);
-
-        const month =
-            Number(match[2]);
-
-        const day =
-            Number(match[3]);
-
-        return new Date(
-            year,
-            month - 1,
-            day
-        );
-
-    }
-
-    match =
-        text.match(
-            /^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/
-        );
-
-    if(match){
-
-        const day =
-            Number(match[1]);
-
-        const monthName =
-            match[2]
-            .toLowerCase();
-
-        const year =
-            Number(match[3]);
-
-        const months = {
-
-            jan:0,
-            january:0,
-
-            feb:1,
-            february:1,
-
-            mar:2,
-            march:2,
-
-            apr:3,
-            april:3,
-
-            may:4,
-            mei:4,
-
-            jun:5,
-            june:5,
-
-            jul:6,
-            july:6,
-
-            aug:7,
-            agu:7,
-            august:7,
-
-            sep:8,
-            sept:8,
-            september:8,
-
-            oct:9,
-            okt:9,
-            october:9,
-
-            nov:10,
-            november:10,
-
-            dec:11,
-            des:11,
-            december:11
-
-        };
-
-        if(
-            months[monthName] !== undefined
-        ){
-
-            return new Date(
-                year,
-                months[monthName],
-                day
-            );
-
-        }
-
-    }
-
-    const date =
-        new Date(text);
-
-    if(
-        !isNaN(
-            date.getTime()
-        )
-    ){
-
-        return new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate()
-        );
-
-    }
-
-    return null;
-
-}
-
-/* =========================================================
-   TODAY CHECK
-========================================================= */
-
-function isToday(
-    value
-){
-
-    const date =
-        parseDate(value);
-
-    if(!date){
-
-        return false;
-
-    }
-
-    const today =
-        new Date();
-
-    return (
-
-        date.getFullYear()
-        ===
-        today.getFullYear()
-
-        &&
-
-        date.getMonth()
-        ===
-        today.getMonth()
-
-        &&
-
-        date.getDate()
-        ===
-        today.getDate()
-
-    );
-
-}
-
-/* =========================================================
-   FORMAT DATE
-========================================================= */
-
-function formatLongDate(
-    value
-){
-
-    const date =
-        parseDate(value);
-
-    if(!date){
-
-        return '-';
-
-    }
-
-    const months = [
-
-        'Januari',
-        'Februari',
-        'Maret',
-        'April',
-        'Mei',
-        'Juni',
-        'Juli',
-        'Agustus',
-        'September',
-        'Oktober',
-        'November',
-        'Desember'
-
-    ];
-
-    return (
-
-        String(
-            date.getDate()
-        )
-        .padStart(2,'0')
-
-        +
-
-        ' ' +
-
-        months[
-            date.getMonth()
-        ]
-
-        +
-
-        ' ' +
-
-        date.getFullYear()
-
-    );
-
-}
-
-/* =========================================================
-   FIND TODAY ROW
-========================================================= */
-
-function findTodayRow(
-    data
-){
-
-    if(
-        !Array.isArray(data)
-    ){
-
-        return null;
-
-    }
-
-    return (
-        data.find(
-            row=>
-                isToday(
-                    getDateValue(row)
-                )
-        )
-        || null
-    );
-
-}
-
-/* =========================================================
-   FIND LATEST DATE
-========================================================= */
-
-function findLatestDate(){
-
-    let latest =
-        null;
-
-    allData.forEach(
-        row=>{
-
-            const date =
-                parseDate(
-                    getDateValue(row)
-                );
-
-            if(
-                !date
-            ){
-
-                return;
-
-            }
-
-            if(
-                !latest ||
-                date > latest
-            ){
-
-                latest =
-                    date;
-
-            }
-
-        }
-    );
-
-    if(!latest){
-
-        return '-';
-
-    }
-
-    return formatLongDate(
-        latest
-    );
-
-}
-
-/* =========================================================
-   GET MONTH/YEAR FROM TODAY
-========================================================= */
-
-function getCurrentMonthYear(){
-
-    const today =
-        new Date();
-
-    return {
-
-        month:
-            today.getMonth(),
-
-        year:
-            today.getFullYear()
-
-    };
-
-}
-
-/* =========================================================
-   CHECK CURRENT MONTH
-========================================================= */
-
-function isCurrentMonth(
-    value
-){
-
-    const date =
-        parseDate(value);
-
-    if(!date){
-
-        return false;
-
-    }
-
-    const current =
-        getCurrentMonthYear();
-
-    return (
-
-        date.getMonth()
-        ===
-        current.month
-
-        &&
-
-        date.getFullYear()
-        ===
-        current.year
-
-    );
-
-}
-
-/* =========================================================
-   SORT DATA BY DATE
-========================================================= */
-
-function getCurrentMonthRows(){
-
-    return allData
-
-        .filter(
-            row =>
-                isCurrentMonth(
-                    getDateValue(row)
-                )
-        )
-
-        .sort(
-            (a,b)=>{
-
-                const dateA =
-                    parseDate(
-                        getDateValue(a)
-                    );
-
-                const dateB =
-                    parseDate(
-                        getDateValue(b)
-                    );
-
-                return dateA - dateB;
-
-            }
-        );
-
-}
-
-/* =========================================================
-   RENDER MECHANIC LIST
-========================================================= */
-
-function renderMechanicList(
-    elementId,
-    names
-){
-
-    const element =
-        document.getElementById(
-            elementId
-        );
-
-    if(!element){
-
-        return;
-
-    }
-
-    element.innerHTML =
-        '';
-
-    const uniqueNames =
-        getUniqueNames(
-            names
-        );
-
-    if(
-        !uniqueNames.length
-    ){
-
-        element.innerHTML = `
-
-            <div
-                class="
-                    empty-mechanic
-                "
-            >
-
-                Tidak ada data
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-    uniqueNames.forEach(
-        (
-            name,
-            index
-        )=>{
-
-            const item =
-                document.createElement(
-                    'div'
-                );
-
-            item.className =
-                'mechanic-item';
-
-            /*
-             * Hentikan event agar klik nama
-             * tidak dianggap sebagai klik panel.
-             */
-
-            item.onclick =
-                event => {
-
-                    event.stopPropagation();
-
-                    openMechanicDetail(
-                        name
-                    );
-
-                };
-
-            item.innerHTML = `
-
-                <div
-                    class="
-                        mechanic-number
-                    "
-                >
-                    ${index + 1}
-                </div>
-
-                <div
-                    class="
-                        mechanic-name
-                    "
-                >
-                    ${escapeHtml(name)}
-                </div>
-
-                <i
-                    data-lucide="chevron-right"
-                    class="
-                        mechanic-arrow
-                        w-3.5
-                        h-3.5
-                    "
-                ></i>
-
-            `;
-
-            element.appendChild(
-                item
-            );
-
-        }
-    );
-
-    lucide.createIcons();
-
-}
-
-/* =========================================================
-   UPDATE DASHBOARD
-========================================================= */
-
-function updateDashboard(
-    row
-){
-
-    if(!row){
-
-        showNoTodayData();
-
-        return;
-
-    }
-
-    const shift1 =
-        getUniqueNames(
-            getNamesFromColumns(
-                row,
-                SHIFT_1_COLUMNS
-            )
-        );
-
-    const shift2 =
-        getUniqueNames(
-            getNamesFromColumns(
-                row,
-                SHIFT_2_COLUMNS
-            )
-        );
-
-    const shift3 =
-        getUniqueNames(
-            getNamesFromColumns(
-                row,
-                SHIFT_3_COLUMNS
-            )
-        );
-
-    const off =
-        getOffMechanics(
-            row
-        );
-
-    document
-        .getElementById(
-            'todayDate'
-        )
-        .textContent =
-            formatLongDate(
-                getDateValue(row)
-            );
-
-    document
-        .getElementById(
-            'shift1Total'
-        )
-        .textContent =
-            shift1.length;
-
-    document
-        .getElementById(
-            'shift2Total'
-        )
-        .textContent =
-            shift2.length;
-
-    document
-        .getElementById(
-            'shift3Total'
-        )
-        .textContent =
-            shift3.length;
-
-    document
-        .getElementById(
-            'offTotal'
-        )
-        .textContent =
-            off.length;
-
-    document
-        .getElementById(
-            'shift1Count'
-        )
-        .textContent =
-            shift1.length;
-
-    document
-        .getElementById(
-            'shift2Count'
-        )
-        .textContent =
-            shift2.length;
-
-    document
-        .getElementById(
-            'shift3Count'
-        )
-        .textContent =
-            shift3.length;
-
-    document
-        .getElementById(
-            'offCount'
-        )
-        .textContent =
-            off.length;
-
-    renderMechanicList(
-        'shift1List',
-        shift1
-    );
-
-    renderMechanicList(
-        'shift2List',
-        shift2
-    );
-
-    renderMechanicList(
-        'shift3List',
-        shift3
-    );
-
-    renderMechanicList(
-        'offList',
-        off
-    );
-
-    lucide.createIcons();
-
-}
-
-/* =========================================================
-   NO TODAY DATA
-========================================================= */
-
-function showNoTodayData(){
-
-    document
-        .getElementById(
-            'todayDate'
-        )
-        .textContent =
-            'Data hari ini belum tersedia';
-
-    [
-        'shift1Total',
-        'shift2Total',
-        'shift3Total',
-        'offTotal',
-        'shift1Count',
-        'shift2Count',
-        'shift3Count',
-        'offCount'
-    ]
-    .forEach(
-        id=>{
-
-            const element =
-                document.getElementById(id);
-
-            if(element){
-
-                element.textContent =
-                    '0';
-
-            }
-
-        }
-    );
-
-    renderMechanicList(
-        'shift1List',
-        []
-    );
-
-    renderMechanicList(
-        'shift2List',
-        []
-    );
-
-    renderMechanicList(
-        'shift3List',
-        []
-    );
-
-    renderMechanicList(
-        'offList',
-        []
-    );
-
-}
-
-/* =========================================================
-   GET SHIFT DATA FOR MECHANIC
-========================================================= */
-
-function getMechanicMonthlySchedule(
-    mechanicName
-){
-
-    const target =
-        normalizeName(
-            mechanicName
-        );
-
-    const rows =
-        getCurrentMonthRows();
-
-    const schedule = [];
-
-    rows.forEach(
-        row=>{
-
-            const shift1 =
-                getUniqueNames(
-                    getNamesFromColumns(
-                        row,
-                        SHIFT_1_COLUMNS
-                    )
-                );
-
-            const shift2 =
-                getUniqueNames(
-                    getNamesFromColumns(
-                        row,
-                        SHIFT_2_COLUMNS
-                    )
-                );
-
-            const shift3 =
-                getUniqueNames(
-                    getNamesFromColumns(
-                        row,
-                        SHIFT_3_COLUMNS
-                    )
-                );
-
-            const isShift1 =
-                shift1.some(
-                    name =>
-                        normalizeName(name)
-                        ===
-                        target
-                );
-
-            const isShift2 =
-                shift2.some(
-                    name =>
-                        normalizeName(name)
-                        ===
-                        target
-                );
-
-            const isShift3 =
-                shift3.some(
-                    name =>
-                        normalizeName(name)
-                        ===
-                        target
-                );
-
-            const shifts = [];
-
-            if(isShift1){
-
-                shifts.push(
-                    1
-                );
-
-            }
-
-            if(isShift2){
-
-                shifts.push(
-                    2
-                );
-
-            }
-
-            if(isShift3){
-
-                shifts.push(
-                    3
-                );
-
-            }
-
-            /*
-             * Jika tidak ditemukan pada ketiga shift,
-             * maka dianggap OFF berdasarkan master mechanic.
-             */
-
-            if(
-                !shifts.length &&
-                MASTER_MECHANICS.some(
-                    mechanic =>
-                        normalizeName(
-                            mechanic
-                        )
-                        ===
-                        target
-                )
-            ){
-
-                shifts.push(
-                    0
-                );
-
-            }
-
-            if(
-                shifts.length
-            ){
-
-                schedule.push({
-
-                    date:
-                        getDateValue(row),
-
-                    shifts:
-                        shifts
-
-                });
-
-            }
-
-        }
-    );
-
-    return schedule;
-
-}
-
-/* =========================================================
-   SHIFT LABEL
-========================================================= */
-
-function getShiftLabel(
-    shift
-){
-
-    if(
-        shift === 1
-    ){
-
-        return 'Shift 1';
-
-    }
-
-    if(
-        shift === 2
-    ){
-
-        return 'Shift 2';
-
-    }
-
-    if(
-        shift === 3
-    ){
-
-        return 'Shift 3';
-
-    }
-
+function getShiftLabel(shift){
+    if(shift===1) return 'Shift 1';
+    if(shift===2) return 'Shift 2';
+    if(shift===3) return 'Shift 3';
     return 'OFF';
-
 }
 
-/* =========================================================
-   SHIFT BADGE HTML
-========================================================= */
+function getShiftBadge(shift){
+    const cls=shift===1?'shift-badge-1':shift===2?'shift-badge-2':shift===3?'shift-badge-3':'shift-badge-off';
+    return `<span class="shift-badge ${cls}">${getShiftLabel(shift)}</span>`;
+}
 
-function getShiftBadge(
-    shift
-){
-
-    let className =
-        'shift-badge-off';
-
-    if(
-        shift === 1
-    ){
-
-        className =
-            'shift-badge-1';
-
-    }
-
-    else if(
-        shift === 2
-    ){
-
-        className =
-            'shift-badge-2';
-
-    }
-
-    else if(
-        shift === 3
-    ){
-
-        className =
-            'shift-badge-3';
-
-    }
-
+function emptyDetailHtml(text){
     return `
-
-        <span
-            class="
-                shift-badge
-                ${className}
-            "
-        >
-            ${getShiftLabel(shift)}
-        </span>
-
-    `;
-
+        <div class="detail-empty">
+            <div class="detail-empty-icon">
+                <i data-lucide="calendar-x" class="w-6 h-6"></i>
+            </div>
+            <div class="detail-empty-title">Tidak ada data bulan ini</div>
+            <div class="detail-empty-text">${escapeHtml(text)}</div>
+        </div>`;
 }
 
-/* =========================================================
-   OPEN MECHANIC DETAIL
-========================================================= */
+/* Jadwal satu mekanik pada bulan berjalan */
+function openMechanicDetail(mechanicName){
 
-function openMechanicDetail(
-    mechanicName
-){
+    const target=normalizeName(mechanicName);
+    const schedule=[];
 
-    const schedule =
-        getMechanicMonthlySchedule(
-            mechanicName
-        );
+    getCurrentMonthRows().forEach(row=>{
 
-    document
-        .getElementById(
-            'detailTitle'
-        )
-        .textContent =
-            mechanicName;
+        const shifts=[];
 
-    document
-        .getElementById(
-            'detailSubtitle'
-        )
-        .textContent =
-            'Detail rotasi mekanik bulan ini';
+        if(getShiftNames(row,1).some(n=>normalizeName(n)===target)) shifts.push(1);
+        if(getShiftNames(row,2).some(n=>normalizeName(n)===target)) shifts.push(2);
+        if(getShiftNames(row,3).some(n=>normalizeName(n)===target)) shifts.push(3);
 
-    document
-        .getElementById(
-            'detailIcon'
-        )
-        .innerHTML = `
+        if(!shifts.length && getOffMechanics(row).some(n=>normalizeName(n)===target)) shifts.push(0);
 
-            <i
-                data-lucide="user-round"
-                class="w-5 h-5"
-            ></i>
+        if(shifts.length) schedule.push({date:getDateValue(row),shifts});
 
-        `;
+    });
 
-    renderMechanicDetailTable(
-        schedule
-    );
+    $('detailTitle').textContent=mechanicName;
+    $('detailSubtitle').textContent='Jadwal mekanik bulan ini';
+    $('detailIcon').innerHTML='<i data-lucide="user-round" class="w-5 h-5"></i>';
+
+    if(!schedule.length){
+        $('detailBody').innerHTML=emptyDetailHtml('Jadwal mekanik ini tidak ditemukan pada bulan berjalan.');
+    }else{
+        $('detailBody').innerHTML=`
+            <div class="detail-table-wrap">
+                <table class="detail-table">
+                    <thead><tr><th>Tanggal</th><th>Shift</th></tr></thead>
+                    <tbody>
+                        ${schedule.map(item=>`
+                            <tr>
+                                <td class="detail-date" data-label="Tanggal">${escapeHtml(formatLongDate(item.date))}</td>
+                                <td data-label="Shift">${item.shifts.map(getShiftBadge).join('')}</td>
+                            </tr>`).join('')}
+                    </tbody>
+                </table>
+            </div>`;
+    }
 
     openDetailModal();
-
 }
 
-/* =========================================================
-   RENDER MECHANIC DETAIL
-========================================================= */
+/* Daftar satu shift (atau OFF) pada bulan berjalan */
+function openShiftDetail(shift){
 
-function renderMechanicDetailTable(
-    schedule
-){
+    const schedule=[];
 
-    const body =
-        document.getElementById(
-            'detailBody'
-        );
+    getCurrentMonthRows().forEach(row=>{
+        const names=getShiftNames(row,shift);
+        if(names.length) schedule.push({date:getDateValue(row),names});
+    });
 
-    if(
-        !schedule.length
-    ){
+    const label=getShiftLabel(shift);
 
-        body.innerHTML = `
+    $('detailTitle').textContent=`Detail ${label}`;
+    $('detailSubtitle').textContent=shift===0?'Daftar mekanik OFF bulan ini':'Daftar mekanik bertugas bulan ini';
 
-            <div class="detail-empty">
+    const icon=shift===1?'sun':shift===2?'sun-medium':shift===3?'moon':'coffee';
+    $('detailIcon').innerHTML=`<i data-lucide="${icon}" class="w-5 h-5"></i>`;
 
-                <div
-                    class="detail-empty-icon"
-                >
-
-                    <i
-                        data-lucide="calendar-x"
-                        class="w-6 h-6"
-                    ></i>
-
-                </div>
-
-                <div
-                    class="detail-empty-title"
-                >
-                    Tidak ada data bulan ini
-                </div>
-
-                <div
-                    class="detail-empty-text"
-                >
-                    Jadwal mekanik tidak ditemukan pada bulan berjalan.
-                </div>
-
-            </div>
-
-        `;
-
-        lucide.createIcons();
-
-        return;
-
+    if(!schedule.length){
+        $('detailBody').innerHTML=emptyDetailHtml(`Belum ada jadwal untuk ${label} bulan ini.`);
+    }else{
+        $('detailBody').innerHTML=`
+            <div class="detail-table-wrap">
+                <table class="detail-table">
+                    <thead><tr><th>Tanggal</th><th>${shift===0?'Mekanik OFF':'Mekanik Bertugas'}</th></tr></thead>
+                    <tbody>
+                        ${schedule.map(item=>`
+                            <tr>
+                                <td class="detail-date" data-label="Tanggal">${escapeHtml(formatLongDate(item.date))}</td>
+                                <td data-label="${shift===0?'Mekanik OFF':'Mekanik Bertugas'}">${item.names.map(n=>escapeHtml(n)).join(', ')}</td>
+                            </tr>`).join('')}
+                    </tbody>
+                </table>
+            </div>`;
     }
-
-    const rows =
-        schedule
-        .map(
-            item=>{
-
-                const shiftHtml =
-                    item.shifts
-                    .map(
-                        shift =>
-                            getShiftBadge(
-                                shift
-                            )
-                    )
-                    .join('');
-
-                return `
-
-                    <tr>
-
-                        <td
-                            class="detail-date"
-                        >
-                            ${escapeHtml(
-                                formatLongDate(
-                                    item.date
-                                )
-                            )}
-                        </td>
-
-                        <td>
-                            ${shiftHtml}
-                        </td>
-
-                    </tr>
-
-                `;
-
-            }
-        )
-        .join('');
-
-    body.innerHTML = `
-
-        <div class="detail-table-wrap">
-
-            <table
-                class="detail-table"
-            >
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Tanggal
-                        </th>
-
-                        <th>
-                            Shift
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    ${rows}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
-
-}
-
-/* =========================================================
-   GET SHIFT MONTHLY DETAIL
-========================================================= */
-
-function getShiftMonthlySchedule(
-    shift
-){
-
-    const rows =
-        getCurrentMonthRows();
-
-    const schedule = [];
-
-    rows.forEach(
-        row=>{
-
-            let names = [];
-
-            if(
-                shift === 1
-            ){
-
-                names =
-                    getUniqueNames(
-                        getNamesFromColumns(
-                            row,
-                            SHIFT_1_COLUMNS
-                        )
-                    );
-
-            }
-
-            else if(
-                shift === 2
-            ){
-
-                names =
-                    getUniqueNames(
-                        getNamesFromColumns(
-                            row,
-                            SHIFT_2_COLUMNS
-                        )
-                    );
-
-            }
-
-            else if(
-                shift === 3
-            ){
-
-                names =
-                    getUniqueNames(
-                        getNamesFromColumns(
-                            row,
-                            SHIFT_3_COLUMNS
-                        )
-                    );
-
-            }
-
-            else if(
-                shift === 0
-            ){
-
-                names =
-                    getOffMechanics(
-                        row
-                    );
-
-            }
-
-            /*
-             * Hanya tampilkan tanggal yang
-             * memiliki mekanik pada kategori tersebut.
-             */
-
-            if(
-                names.length
-            ){
-
-                schedule.push({
-
-                    date:
-                        getDateValue(row),
-
-                    names:
-                        names
-
-                });
-
-            }
-
-        }
-    );
-
-    return schedule;
-
-}
-
-/* =========================================================
-   OPEN SHIFT DETAIL
-========================================================= */
-
-function openShiftDetail(
-    shift
-){
-
-    const schedule =
-        getShiftMonthlySchedule(
-            shift
-        );
-
-    const label =
-        getShiftLabel(
-            shift
-        );
-
-    document
-        .getElementById(
-            'detailTitle'
-        )
-        .textContent =
-            `Detail ${label}`;
-
-    document
-        .getElementById(
-            'detailSubtitle'
-        )
-        .textContent =
-            `Daftar ${shift === 0 ? 'mekanik OFF' : 'mekanik bertugas'} bulan ini`;
-
-    let icon =
-        'calendar-range';
-
-    if(
-        shift === 1
-    ){
-
-        icon =
-            'sun';
-
-    }
-
-    else if(
-        shift === 2
-    ){
-
-        icon =
-            'sun-medium';
-
-    }
-
-    else if(
-        shift === 3
-    ){
-
-        icon =
-            'moon';
-
-    }
-
-    else if(
-        shift === 0
-    ){
-
-        icon =
-            'coffee';
-
-    }
-
-    document
-        .getElementById(
-            'detailIcon'
-        )
-        .innerHTML = `
-
-            <i
-                data-lucide="${icon}"
-                class="w-5 h-5"
-            ></i>
-
-        `;
-
-    renderShiftDetailTable(
-        schedule,
-        shift
-    );
 
     openDetailModal();
-
 }
 
-/* =========================================================
-   RENDER SHIFT DETAIL
-========================================================= */
-
-function renderShiftDetailTable(
-    schedule,
-    shift
-){
-
-    const body =
-        document.getElementById(
-            'detailBody'
-        );
-
-    if(
-        !schedule.length
-    ){
-
-        body.innerHTML = `
-
-            <div class="detail-empty">
-
-                <div
-                    class="detail-empty-icon"
-                >
-
-                    <i
-                        data-lucide="calendar-x"
-                        class="w-6 h-6"
-                    ></i>
-
-                </div>
-
-                <div
-                    class="detail-empty-title"
-                >
-                    Tidak ada data bulan ini
-                </div>
-
-                <div
-                    class="detail-empty-text"
-                >
-                    Belum ada jadwal untuk kategori ${escapeHtml(
-                        getShiftLabel(shift)
-                    )}.
-                </div>
-
-            </div>
-
-        `;
-
-        lucide.createIcons();
-
-        return;
-
-    }
-
-    const rows =
-        schedule
-        .map(
-            item=>{
-
-                const names =
-                    item.names
-                    .map(
-                        name =>
-                            escapeHtml(name)
-                    )
-                    .join(', ');
-
-                return `
-
-                    <tr>
-
-                        <td
-                            class="detail-date"
-                        >
-                            ${escapeHtml(
-                                formatLongDate(
-                                    item.date
-                                )
-                            )}
-                        </td>
-
-                        <td>
-                            ${names}
-                        </td>
-
-                    </tr>
-
-                `;
-
-            }
-        )
-        .join('');
-
-    body.innerHTML = `
-
-        <div class="detail-table-wrap">
-
-            <table
-                class="detail-table"
-            >
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Tanggal
-                        </th>
-
-                        <th>
-                            ${shift === 0
-                                ? 'Mekanik'
-                                : 'Mekanik Bertugas'}
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    ${rows}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
-
-}
 
 /* =========================================================
    LOAD DATA
@@ -5297,248 +1509,67 @@ async function loadDashboard(){
 
     try{
 
-        const response =
-            await fetch(
-                API_URL +
-                '?action=data',
-                {
-                    method:'GET',
-                    cache:'no-store'
-                }
-            );
+        const response=await fetch(API_URL+'?action=data',{method:'GET',cache:'no-store'});
 
-        if(
-            !response.ok
-        ){
+        if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
 
-            throw new Error(
-                `HTTP Error ${response.status}`
-            );
+        const result=await response.json();
 
-        }
+        if(Array.isArray(result)) allData=result;
+        else if(Array.isArray(result.data)) allData=result.data;
+        else throw new Error('Format data dari API tidak sesuai.');
 
-        const result =
-            await response.json();
+        updateDashboard(findTodayRow(allData));
 
-        if(
-            Array.isArray(result)
-        ){
-
-            allData =
-                result;
-
-        }
-
-        else if(
-            Array.isArray(result.data)
-        ){
-
-            allData =
-                result.data;
-
-        }
-
-        else{
-
-            throw new Error(
-                'Format data dari API tidak sesuai.'
-            );
-
-        }
-
-        todayRow =
-            findTodayRow(
-                allData
-            );
-
-        updateDashboard(
-            todayRow
-        );
-
-        document
-            .getElementById(
-                'loading'
-            )
-            .style
-            .display =
-                'none';
-
-        document
-            .getElementById(
-                'dashboardContent'
-            )
-            .classList
-            .add('show');
+        $('loading').hidden=true;
+        $('dashboardContent').classList.add('show');
 
         lucide.createIcons();
 
     }
-
     catch(error){
 
-        console.error(
-            'Man Power API Error:',
-            error
-        );
+        console.error('Man Power API Error:',error);
 
-        document
-            .getElementById(
-                'loading'
-            )
-            .innerHTML = `
-
-                <div
-                    class="
-                        error-box
-                    "
-                >
-
-                    <div
-                        class="
-                            bg-red-50
-                            text-red-600
-                            p-4
-                            rounded-full
-                            inline-flex
-                        "
-                    >
-
-                        <i
-                            data-lucide="alert-circle"
-                            class="w-8 h-8"
-                        ></i>
-
-                    </div>
-
-                    <h3
-                        class="
-                            font-bold
-                            text-red-700
-                            mt-3
-                        "
-                    >
-                        Gagal memuat data
-                    </h3>
-
-                    <p
-                        class="
-                            text-xs
-                            text-slate-500
-                            mt-2
-                            max-w-md
-                            mx-auto
-                        "
-                    >
-                        ${escapeHtml(
-                            error.message
-                        )}
-                    </p>
-
-                    <button
-                        onclick="loadDashboard()"
-                        class="
-                            mt-4
-                            bg-blue-800
-                            hover:bg-blue-700
-                            text-white
-                            font-bold
-                            px-5
-                            py-2.5
-                            rounded-xl
-                            text-sm
-                        "
-                    >
-
-                        Coba Lagi
-
-                    </button>
-
+        $('loading').hidden=false;
+        $('loading').innerHTML=`
+            <div class="error-box">
+                <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
                 </div>
+                <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+                <p class="text-xs text-slate-500 mt-2 max-w-md mx-auto">${escapeHtml(error.message)}</p>
+                <button onclick="loadDashboard()" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
+                    Coba Lagi
+                </button>
+            </div>`;
 
-            `;
-
+        $('dashboardContent').classList.remove('show');
         lucide.createIcons();
 
     }
 
 }
 
-/* =========================================================
-   SECURITY
-========================================================= */
-
-function escapeHtml(
-    value
-){
-
-    return String(
-        value ?? ''
-    )
-
-    .replace(
-        /&/g,
-        '&amp;'
-    )
-
-    .replace(
-        /</g,
-        '&lt;'
-    )
-
-    .replace(
-        />/g,
-        '&gt;'
-    )
-
-    .replace(
-        /"/g,
-        '&quot;'
-    )
-
-    .replace(
-        /'/g,
-        '&#039;'
-    );
-
-}
 
 /* =========================================================
-   ESCAPE KEY
+   KEYBOARD & START
 ========================================================= */
 
-document.addEventListener(
-    'keydown',
-    event=>{
-
-        if(
-            event.key === 'Escape'
-        ){
-
-            closeDataMenu();
-
-            closeDetailModal();
-
-        }
-
+document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+        closeDataMenu();
+        closeDetailModal();
     }
-);
+});
 
-/* =========================================================
-   START
-========================================================= */
-
-window.addEventListener(
-    'load',
-    ()=>{
-
-        lucide.createIcons();
-
-        loadDashboard();
-
-    }
-);
+window.addEventListener('load',()=>{
+    lucide.createIcons();
+    loadDashboard();
+});
 
 </script>
-
+   <script src="nav.js"></script>
+   <script src="datacache.js"></script>
 </body>
 </html>
