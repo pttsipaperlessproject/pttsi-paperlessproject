@@ -1,204 +1,216 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Man Power Harian - PT TSI</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-*{
-    box-sizing:border-box;
-}
-html{
-    width:100%;
-    min-width:0;
-    overflow-x:hidden;
-}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{box-sizing:border-box}
+
+html{width:100%;min-width:0;overflow-x:hidden}
+
 body{
     margin:0;
     width:100%;
     min-width:0;
-    font-family:'Inter',sans-serif;
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #eef2f7
-        );
-    color:#1e293b;
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b
 }
-.color-primary{
-    background:#1E3A8A;
-}
-.text-primary{
-    color:#1E3A8A;
-}
+
+.color-primary{background:#1e3a8a}
+
 .glass-panel{
     background:rgba(255,255,255,.95);
     backdrop-filter:blur(10px);
-    border:
-        1px solid
-        rgba(255,255,255,.3);
+    border:1px solid rgba(255,255,255,.3)
 }
-.fade-in{
-    animation:
-        fadeIn
-        .5s
-        cubic-bezier(.4,0,.2,1);
-}
+
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
+
 @keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:
-            translateY(12px);
-    }
-    to{
-        opacity:1;
-        transform:
-            translateY(0);
-    }
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
-.logo-wrapper{
-    transition:
-        transform
-        .4s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        );
-}
-.logo-wrapper:hover{
-    transform:
-        scale(1.08)
-        rotate(2deg);
-}
+
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
+
 .logo-shadow{
     filter:
-        drop-shadow(
-            0 10px 8px
-            rgba(0,0,0,.04)
-        )
-        drop-shadow(
-            0 4px 3px
-            rgba(0,0,0,.1)
-        );
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
 }
+
+/* =========================================================
+   PAGE TITLE & BUTTON
+========================================================= */
+
 .page-title{
     font-size:30px;
     font-weight:900;
     color:#1e293b;
     letter-spacing:-.025em;
-    line-height:1.2;
+    line-height:1.2
 }
+
 .page-subtitle{
     font-size:13px;
     color:#64748b;
     font-weight:500;
-    line-height:1.6;
+    line-height:1.6
 }
+
 .back-button{
     background:#1e3a8a;
     color:#fff;
     border-radius:12px;
-    padding:
-        11px
-        17px;
+    padding:11px 17px;
     font-size:12px;
     font-weight:800;
     display:flex;
     align-items:center;
     justify-content:center;
     gap:8px;
-    transition:
-        .2s ease;
-    box-shadow:
-        0 5px 12px
-        rgba(30,58,138,.18);
+    transition:.2s ease;
+    box-shadow:0 5px 12px rgba(30,58,138,.18);
     border:none;
     cursor:pointer;
     flex-shrink:0;
+    white-space:nowrap
 }
+
 .back-button:hover{
     background:#1d4ed8;
-    transform:
-        translateY(-2px);
-    box-shadow:
-        0 8px 18px
-        rgba(30,58,138,.25);
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(30,58,138,.25)
 }
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
 .stat-card{
     background:#fff;
-    border:
-        1px solid
-        #e2e8f0;
+    border:1px solid #e2e8f0;
     border-radius:17px;
     padding:17px;
-    transition:
-        .25s ease;
-    min-width:0;
+    transition:.25s ease;
+    min-width:0
 }
+
 .stat-card:hover{
-    transform:
-        translateY(-2px);
-    box-shadow:
-        0 10px 20px
-        rgba(15,23,42,.07);
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
 }
+
+/* =========================================================
+   TABLE PANEL & TABLE
+========================================================= */
+
 .table-panel{
     background:#fff;
-    border:
-        1px solid
-        #e2e8f0;
+    border:1px solid #e2e8f0;
     border-radius:20px;
     overflow:hidden;
-    box-shadow:
-        0 4px 12px
-        rgba(15,23,42,.04);
+    box-shadow:0 4px 12px rgba(15,23,42,.04)
 }
+
 .table-scroll{
     width:100%;
     overflow-x:auto;
     overflow-y:hidden;
     -webkit-overflow-scrolling:touch;
-    scrollbar-width:thin;
+    scrollbar-width:thin
 }
+
+.table-scroll::-webkit-scrollbar{height:7px}
+.table-scroll::-webkit-scrollbar-track{background:#f8fafc}
+.table-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+.table-scroll::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+
 table{
     width:100%;
     min-width:900px;
     border-collapse:separate;
-    border-spacing:0;
+    border-spacing:0
 }
-thead{
-    background:#f8fafc;
-}
+
+thead{background:#f8fafc}
+
 thead th{
     padding:0;
-    border-bottom:
-        2px solid
-        #e2e8f0;
+    border-bottom:2px solid #e2e8f0;
     color:#475569;
     font-size:10px;
     font-weight:900;
     text-transform:uppercase;
     letter-spacing:.08em;
     white-space:nowrap;
-    text-align:left;
+    text-align:left
 }
-.sort-button{
+
+tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:11px;
+    font-weight:500;
+    vertical-align:middle
+}
+
+tbody tr{transition:background .15s ease}
+tbody tr:last-child td{border-bottom:none}
+
+tbody tr.summary-row{cursor:pointer}
+tbody tr.summary-row.no-collapse{cursor:default}
+tbody tr.summary-row:hover{background:#f8fafc}
+tbody tr.summary-row.no-collapse:hover{background:transparent}
+
+tbody tr.expanded-row{background:#fafcff}
+
+tbody tr.today-row{
+    background:linear-gradient(90deg,#fffbeb 0%,#fffdf5 45%,#ffffff 100%)
+}
+
+tbody tr.today-row:hover{background:#fff7d6}
+
+tbody tr.today-row td:first-child{border-left:4px solid #f59e0b}
+
+.today-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    margin-top:5px;
+    padding:3px 7px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#b45309;
+    border:1px solid #fde68a;
+    font-size:8px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.05em
+}
+
+/* =========================================================
+   COLUMN HEADER (Excel-style: sort + filter di header)
+========================================================= */
+
+.col-header{
     width:100%;
-    padding:
-        14px
-        14px;
+    padding:13px 14px;
     background:transparent;
     border:none;
     color:#475569;
@@ -212,154 +224,321 @@ thead th{
     justify-content:space-between;
     gap:8px;
     cursor:pointer;
-    transition:
-        .2s ease;
-    text-align:left;
-}
-.sort-button:hover{
-    background:#eff6ff;
-    color:#1e3a8a;
-}
-.sort-button.active{
-    color:#1e3a8a;
-    background:#eff6ff;
-}
-.sort-icon{
-    width:14px;
-    height:14px;
-    flex-shrink:0;
-    opacity:.35;
-    transition:.2s ease;
-}
-.sort-button:hover .sort-icon{
-    opacity:.8;
-}
-.sort-button.active .sort-icon{
-    opacity:1;
-}
-tbody td{
-    padding:
-        13px
-        14px;
-    border-bottom:
-        1px solid
-        #f1f5f9;
-    color:#334155;
-    font-size:11px;
-    font-weight:500;
-    vertical-align:middle;
-}
-tbody tr{
-    transition:
-        background
-        .15s ease;
-}
-tbody tr.summary-row{
-    cursor:pointer;
-}
-tbody tr.summary-row.no-collapse{
-    cursor:default;
-}
-tbody tr.summary-row:hover{
-    background:#f8fafc;
-}
-tbody tr.summary-row.no-collapse:hover{
-    background:transparent;
-}
-tbody tr.expanded-row{
-    background:#fafcff;
-}
-tbody tr.today-row{
-    background:
-        linear-gradient(
-            90deg,
-            #fffbeb 0%,
-            #fffdf5 45%,
-            #ffffff 100%
-        );
-}
-tbody tr.today-row:hover{
-    background:#fff7d6;
-}
-tbody tr.today-row td:first-child{
-    border-left:
-        4px solid
-        #f59e0b;
-}
-.today-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-    margin-top:5px;
-    padding:
-        3px
-        7px;
-    border-radius:999px;
-    background:#fef3c7;
-    color:#b45309;
-    border:
-        1px solid
-        #fde68a;
-    font-size:8px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:.05em;
-}
-tbody tr:last-child td{
-    border-bottom:none;
+    transition:.18s ease;
+    text-align:left
 }
 
-/* ================================
-   FILTER ACTIVE INDICATOR
-================================ */
-.filter-active-badge{
+.col-header:hover,
+.col-header.active{
+    background:#eff6ff;
+    color:#1e3a8a
+}
+
+.col-icons{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    flex-shrink:0
+}
+
+.col-sort-icon{
+    width:12px;
+    height:12px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-sort-icon.on{
+    opacity:1;
+    color:#1e3a8a
+}
+
+.col-filter-icon{
+    width:11px;
+    height:11px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-filter-icon.on{
+    opacity:1;
+    color:#f59e0b
+}
+
+.col-header:hover .col-sort-icon,
+.col-header:hover .col-filter-icon{opacity:.8}
+
+/* Warna header kolom shift (mengikuti warna shift) */
+.shift1-head{background:#EFF6FF}
+.shift2-head{background:#FFF7ED}
+.shift3-head{background:#F5F3FF}
+.off-head{background:#ECFDF5}
+
+.shift1-head .col-header{color:#1D4ED8}
+.shift2-head .col-header{color:#C2410C}
+.shift3-head .col-header{color:#6D28D9}
+.off-head .col-header{color:#047857}
+
+/* =========================================================
+   COLUMN DROPDOWN (popup filter & sort)
+========================================================= */
+
+.col-dropdown{
+    position:fixed;
+    z-index:1100;
+    width:240px;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(15,23,42,.13);
+    padding:8px;
+    animation:ddIn .15s ease
+}
+
+.col-dropdown[hidden]{display:none}
+
+@keyframes ddIn{
+    from{opacity:0;transform:translateY(-4px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.dd-sort{display:flex;gap:6px;padding:4px}
+
+.dd-sort-btn{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-sort-btn:hover{background:#eff6ff;color:#1e3a8a}
+
+.dd-sort-btn.on{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.dd-divider{height:1px;background:#f1f5f9;margin:8px 0}
+
+.dd-search-wrap{position:relative}
+
+.dd-search-icon{
+    position:absolute;
+    left:9px;
+    top:50%;
+    transform:translateY(-50%);
+    width:12px;
+    height:12px;
+    color:#94a3b8;
+    pointer-events:none
+}
+
+.dd-search{
+    width:100%;
+    padding:7px 8px 7px 28px;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    background:#f8fafc;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    outline:none
+}
+
+.dd-search:focus{
+    background:#fff;
+    border-color:#93c5fd;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
+}
+
+.dd-list{
+    max-height:160px;
+    overflow-y:auto;
+    margin-top:6px
+}
+
+.dd-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+    color:#334155
+}
+
+.dd-item:hover{background:#f8fafc}
+
+.dd-item input{
+    accent-color:#1e3a8a;
+    width:13px;
+    height:13px;
+    flex-shrink:0;
+    cursor:pointer
+}
+
+.dd-item-label{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+
+.dd-item-count{
+    font-size:9px;
+    font-weight:700;
+    color:#94a3b8
+}
+
+.dd-all{
+    border-bottom:1px solid #f1f5f9;
+    border-radius:0;
+    margin-bottom:4px;
+    padding-bottom:8px
+}
+
+.dd-empty{
+    font-size:10px;
+    color:#94a3b8;
+    padding:10px;
+    text-align:center
+}
+
+.dd-footer{
+    display:flex;
+    gap:6px;
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px solid #f1f5f9
+}
+
+.dd-reset{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-reset:hover{background:#fee2e2;color:#991b1b}
+
+.dd-apply{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:none;
+    background:#1e3a8a;
+    color:#fff;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-apply:hover{background:#1d4ed8}
+
+/* =========================================================
+   ACTIVE FILTER CHIPS & FILTER MODE BADGE
+========================================================= */
+
+.active-filters-bar{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 20px;
+    background:#fffbeb;
+    border-bottom:1px solid #fde68a
+}
+
+.active-filters-bar[hidden]{display:none}
+
+.active-filter-chip{
     display:inline-flex;
     align-items:center;
     gap:6px;
-    margin-top:9px;
-    padding:
-        5px
-        9px;
+    padding:4px 6px 4px 10px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#92400e;
+    font-size:9px;
+    font-weight:800
+}
+
+.active-filter-chip button{
+    border:none;
+    background:transparent;
+    color:#92400e;
+    cursor:pointer;
+    font-size:12px;
+    line-height:1;
+    padding:0 4px;
+    border-radius:999px
+}
+
+.active-filter-chip button:hover{background:#fde68a}
+
+.clear-all-btn{
+    margin-left:auto;
+    font-size:9px;
+    font-weight:800;
+    color:#92400e;
+    border:1px solid #fde68a;
+    background:#fff;
+    border-radius:999px;
+    padding:4px 10px;
+    cursor:pointer;
+    font-family:inherit
+}
+
+.filter-active-badge{
+    display:none;
+    align-items:center;
+    gap:6px;
+    margin-top:8px;
+    padding:5px 9px;
     border-radius:999px;
     background:#eff6ff;
     color:#1d4ed8;
-    border:
-        1px solid
-        #bfdbfe;
+    border:1px solid #bfdbfe;
     font-size:8px;
     font-weight:900;
     text-transform:uppercase;
-    letter-spacing:.04em;
+    letter-spacing:.04em
 }
+
+.filter-active-badge.show{display:inline-flex}
+
 .filter-active-badge .status-dot{
     width:6px;
     height:6px;
     border-radius:999px;
-    background:#2563eb;
+    background:#2563eb
 }
 
-/* ================================
-   SHIFT COLORS
-================================ */
-.shift-summary{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    min-height:44px;
-}
-.shift-count{
-    font-size:12px;
-    font-weight:900;
-    line-height:1.2;
-}
-.shift-label{
-    font-size:9px;
-    font-weight:700;
-    margin-top:3px;
-    opacity:.65;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-}
+/* =========================================================
+   SHIFT SUMMARY (sel di tabel)
+========================================================= */
+
 .shift-summary-card{
     border-radius:11px;
     padding:9px 11px;
@@ -367,216 +546,100 @@ tbody tr:last-child td{
     min-height:48px;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:center
 }
 
-/* SHIFT 1 */
-.shift1-summary{
-    background:#EFF6FF;
-    border-color:#BFDBFE;
-    color:#1D4ED8;
+.shift-count{
+    font-size:12px;
+    font-weight:900;
+    line-height:1.2
 }
 
-/* SHIFT 2 */
-.shift2-summary{
-    background:#FFF7ED;
-    border-color:#FED7AA;
-    color:#C2410C;
-}
-
-/* SHIFT 3 */
-.shift3-summary{
-    background:#F5F3FF;
-    border-color:#DDD6FE;
-    color:#6D28D9;
-}
-
-/* OFF */
-.off-summary{
-    background:#ECFDF5;
-    border-color:#A7F3D0;
-    color:#047857;
-}
-
-/* ================================
-   FILTERED SUMMARY
-================================ */
-.filtered-hidden-summary{
-    min-height:48px;
-    border-radius:11px;
-    padding:9px 11px;
-    border:1px dashed #cbd5e1;
-    background:#f8fafc;
-    color:#94a3b8;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:10px;
-    font-weight:800;
+.shift-label{
+    font-size:9px;
+    font-weight:700;
+    margin-top:3px;
+    opacity:.65;
     text-transform:uppercase;
-    letter-spacing:.04em;
+    letter-spacing:.04em
 }
 
-/* ================================
-   TABLE HEADER COLORS
-================================ */
-.shift1-head{
-    background:#EFF6FF;
-}
-.shift2-head{
-    background:#FFF7ED;
-}
-.shift3-head{
-    background:#F5F3FF;
-}
-.off-head{
-    background:#ECFDF5;
-}
+.shift1-summary{background:#EFF6FF;border-color:#BFDBFE;color:#1D4ED8}
+.shift2-summary{background:#FFF7ED;border-color:#FED7AA;color:#C2410C}
+.shift3-summary{background:#F5F3FF;border-color:#DDD6FE;color:#6D28D9}
+.off-summary{background:#ECFDF5;border-color:#A7F3D0;color:#047857}
 
-.shift1-head .sort-button{
-    color:#1D4ED8;
-}
-.shift2-head .sort-button{
-    color:#C2410C;
-}
-.shift3-head .sort-button{
-    color:#6D28D9;
-}
-.off-head .sort-button{
-    color:#047857;
-}
+/* =========================================================
+   DETAIL (expand baris & kartu)
+========================================================= */
 
-/* ================================
-   DETAIL
-================================ */
 .detail-cell{
-    padding:
-        0
-        14px
-        16px
-        64px !important;
+    padding:0 14px 16px 64px !important;
     background:#fafcff;
-    border-bottom:
-        1px solid
-        #e2e8f0 !important;
+    border-bottom:1px solid #e2e8f0 !important
 }
+
 .detail-container{
     display:grid;
-    grid-template-columns:
-        repeat(4,minmax(0,1fr));
+    grid-template-columns:repeat(4,minmax(0,1fr));
     gap:12px;
-    animation:
-        detailOpen
-        .2s
-        ease;
+    animation:detailOpen .2s ease
 }
-.detail-container.filtered-detail{
-    animation:none;
-}
+
 @keyframes detailOpen{
-    from{
-        opacity:0;
-        transform:
-            translateY(-5px);
-    }
-    to{
-        opacity:1;
-        transform:
-            translateY(0);
-    }
+    from{opacity:0;transform:translateY(-5px)}
+    to{opacity:1;transform:translateY(0)}
 }
+
 .shift-detail{
     border-radius:14px;
     padding:14px;
     border:1px solid;
+    min-width:0
 }
 
-/* SHIFT 1 DETAIL */
-.shift-detail.shift1{
-    background:#EFF6FF;
-    border-color:#BFDBFE;
-}
-
-/* SHIFT 2 DETAIL */
-.shift-detail.shift2{
-    background:#FFF7ED;
-    border-color:#FED7AA;
-}
-
-/* SHIFT 3 DETAIL */
-.shift-detail.shift3{
-    background:#F5F3FF;
-    border-color:#DDD6FE;
-}
-
-/* OFF DETAIL */
-.shift-detail.off{
-    background:#ECFDF5;
-    border-color:#A7F3D0;
-}
+.shift-detail.shift1{background:#EFF6FF;border-color:#BFDBFE}
+.shift-detail.shift2{background:#FFF7ED;border-color:#FED7AA}
+.shift-detail.shift3{background:#F5F3FF;border-color:#DDD6FE}
+.shift-detail.off{background:#ECFDF5;border-color:#A7F3D0}
 
 .shift-detail-title{
     display:flex;
     align-items:center;
     gap:8px;
-    margin-bottom:11px;
-}
-.shift-dot{
-    width:9px;
-    height:9px;
-    border-radius:999px;
-    flex-shrink:0;
-}
-
-/* SHIFT 1 DOT */
-.shift1-dot{
-    background:#2563EB;
-}
-
-/* SHIFT 2 DOT */
-.shift2-dot{
-    background:#EA580C;
-}
-
-/* SHIFT 3 DOT */
-.shift3-dot{
-    background:#7C3AED;
-}
-
-/* OFF DOT */
-.off-dot{
-    background:#059669;
+    margin-bottom:11px
 }
 
 .shift-detail-title span{
     font-size:10px;
     font-weight:900;
     text-transform:uppercase;
-    letter-spacing:.08em;
+    letter-spacing:.08em
 }
 
-.shift1 .shift-detail-title span{
-    color:#1D4ED8;
+.shift1 .shift-detail-title span{color:#1D4ED8}
+.shift2 .shift-detail-title span{color:#C2410C}
+.shift3 .shift-detail-title span{color:#6D28D9}
+.off .shift-detail-title span{color:#047857}
+
+.shift-dot{
+    width:9px;
+    height:9px;
+    border-radius:999px;
+    flex-shrink:0
 }
-.shift2 .shift-detail-title span{
-    color:#C2410C;
-}
-.shift3 .shift-detail-title span{
-    color:#6D28D9;
-}
-.off .shift-detail-title span{
-    color:#047857;
-}
+
+.shift1-dot{background:#2563EB}
+.shift2-dot{background:#EA580C}
+.shift3-dot{background:#7C3AED}
+.off-dot{background:#059669}
 
 .mechanic-list{
     display:grid;
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(150px,1fr)
-        );
-    gap:7px;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:7px
 }
+
 .mechanic-name{
     background:#fff;
     border:1px solid #e2e8f0;
@@ -588,35 +651,31 @@ tbody tr:last-child td{
     display:flex;
     align-items:center;
     gap:7px;
-    min-width:0;
+    min-width:0
 }
+
 .mechanic-name::before{
     content:'';
     width:5px;
     height:5px;
     border-radius:999px;
     background:#94a3b8;
-    flex-shrink:0;
+    flex-shrink:0
 }
-.shift1 .mechanic-name::before{
-    background:#2563EB;
-}
-.shift2 .mechanic-name::before{
-    background:#EA580C;
-}
-.shift3 .mechanic-name::before{
-    background:#7C3AED;
-}
-.off .mechanic-name::before{
-    background:#059669;
-}
+
+.shift1 .mechanic-name::before{background:#2563EB}
+.shift2 .mechanic-name::before{background:#EA580C}
+.shift3 .mechanic-name::before{background:#7C3AED}
+.off .mechanic-name::before{background:#059669}
+
 .no-mechanic{
     font-size:10px;
     color:#94a3b8;
     font-weight:600;
     font-style:italic;
-    padding:4px 0;
+    padding:4px 0
 }
+
 .expand-indicator{
     width:30px;
     height:30px;
@@ -628,63 +687,38 @@ tbody tr:last-child td{
     border:1px solid #e2e8f0;
     color:#64748b;
     transition:.2s ease;
+    flex-shrink:0
 }
+
 .summary-row:hover .expand-indicator{
     background:#eff6ff;
     color:#1e3a8a;
-    border-color:#bfdbfe;
+    border-color:#bfdbfe
 }
+
 .expand-indicator.open{
     background:#1e3a8a;
     color:#fff;
     border-color:#1e3a8a;
-    transform:rotate(180deg);
+    transform:rotate(180deg)
 }
+
 .expand-indicator.disabled{
     background:#f1f5f9;
     color:#94a3b8;
-    border-color:#e2e8f0;
-    cursor:default;
+    border-color:#e2e8f0
 }
 
-/* ================================
-   FILTER
-================================ */
-.filter-input{
-    width:100%;
-    background:#f8fafc;
-    border:
-        1px solid
-        #e2e8f0;
-    border-radius:11px;
-    padding:
-        10px
-        12px;
-    color:#334155;
-    font-size:11px;
-    font-weight:600;
-    outline:none;
-    transition:
-        .2s ease;
-}
-.filter-input:focus{
-    background:#fff;
-    border-color:#93c5fd;
-    box-shadow:
-        0 0 0 3px
-        rgba(59,130,246,.10);
-}
-select.filter-input{
-    cursor:pointer;
-}
+/* =========================================================
+   PAGINATION
+========================================================= */
+
 .pagination-button{
     width:34px;
     height:34px;
     min-width:34px;
     border-radius:9px;
-    border:
-        1px solid
-        #e2e8f0;
+    border:1px solid #e2e8f0;
     background:#fff;
     color:#475569;
     display:flex;
@@ -693,58 +727,158 @@ select.filter-input{
     font-size:11px;
     font-weight:800;
     cursor:pointer;
-    transition:.2s ease;
+    transition:.2s ease
 }
+
 .pagination-button:hover:not(:disabled){
     background:#eff6ff;
     color:#1e3a8a;
-    border-color:#bfdbfe;
+    border-color:#bfdbfe
 }
+
 .pagination-button.active{
     background:#1e3a8a;
     color:#fff;
-    border-color:#1e3a8a;
+    border-color:#1e3a8a
 }
-.pagination-button:disabled{
-    opacity:.4;
-    cursor:not-allowed;
-}
+
+.pagination-button:disabled{opacity:.4;cursor:not-allowed}
+
+/* =========================================================
+   LOADING & EMPTY
+========================================================= */
+
 #loading{
     min-height:350px;
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
-}
-#tableContent{
-    display:none;
-}
-#tableContent.show{
-    display:block;
-}
-#emptyState{
-    display:none;
-}
-#emptyState.show{
-    display:block;
-}
-.table-scroll::-webkit-scrollbar{
-    height:7px;
-}
-.table-scroll::-webkit-scrollbar-track{
-    background:#f8fafc;
-}
-.table-scroll::-webkit-scrollbar-thumb{
-    background:#cbd5e1;
-    border-radius:999px;
-}
-.table-scroll::-webkit-scrollbar-thumb:hover{
-    background:#94a3b8;
+    justify-content:center
 }
 
-/* ================================
+#tableContent{display:none}
+#tableContent.show{display:block}
+#emptyState{display:none}
+#emptyState.show{display:block}
+
+/* =========================================================
+   MOBILE FILTER BAR & CARDS (≤767px)
+========================================================= */
+
+.mobile-filter-bar{
+    display:none;
+    gap:6px;
+    overflow-x:auto;
+    padding:10px 12px;
+    background:#fff;
+    border-bottom:1px solid #f1f5f9;
+    scrollbar-width:none
+}
+
+.mobile-filter-bar::-webkit-scrollbar{display:none}
+
+.mobile-filter-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:7px 10px;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    font-family:inherit;
+    font-size:9px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    cursor:pointer
+}
+
+.mobile-filter-btn.active{
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe
+}
+
+.mobile-filter-count{
+    background:#1e3a8a;
+    color:#fff;
+    border-radius:999px;
+    padding:1px 6px;
+    font-size:8px
+}
+
+.mobile-data-list{display:none}
+
+.mobile-data-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:10px;
+    box-shadow:0 3px 10px rgba(15,23,42,.035);
+    transition:.2s ease
+}
+
+.mobile-data-card.today{
+    border-left:4px solid #f59e0b
+}
+
+.mobile-card-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:12px;
+    margin-bottom:12px;
+    border-bottom:1px solid #f1f5f9
+}
+
+.mobile-unit{
+    font-size:16px;
+    font-weight:900;
+    color:#1e3a8a;
+    line-height:1.2;
+    display:flex;
+    align-items:center;
+    gap:8px
+}
+
+.mobile-date{
+    font-size:10px;
+    font-weight:700;
+    color:#64748b;
+    margin-top:4px;
+    display:flex;
+    align-items:center;
+    gap:4px
+}
+
+.mobile-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:27px;
+    height:27px;
+    padding:0 7px;
+    border-radius:8px;
+    background:#f1f5f9;
+    color:#64748b;
+    font-size:9px;
+    font-weight:900
+}
+
+.mobile-shift-list{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:9px
+}
+
+/* =========================================================
    NAVIGATION MODAL
-================================ */
+========================================================= */
+
 .navigation-modal{
     position:fixed;
     inset:0;
@@ -754,11 +888,11 @@ select.filter-input{
     justify-content:center;
     padding:20px;
     background:rgba(15,23,42,.45);
-    backdrop-filter:blur(7px);
+    backdrop-filter:blur(7px)
 }
-.navigation-modal.show{
-    display:flex;
-}
+
+.navigation-modal.show{display:flex}
+
 .navigation-box{
     width:100%;
     max-width:430px;
@@ -766,36 +900,25 @@ select.filter-input{
     border:1px solid #e2e8f0;
     border-radius:22px;
     padding:24px;
-    box-shadow:
-        0 25px 60px
-        rgba(15,23,42,.20);
-    animation:
-        modalOpen
-        .2s
-        ease;
+    box-shadow:0 25px 60px rgba(15,23,42,.20);
+    animation:modalOpen .2s ease
 }
+
 @keyframes modalOpen{
-    from{
-        opacity:0;
-        transform:scale(.96) translateY(8px);
-    }
-    to{
-        opacity:1;
-        transform:scale(1) translateY(0);
-    }
+    from{opacity:0;transform:scale(.96) translateY(8px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
 }
-.navigation-title{
-    font-size:16px;
-    font-weight:900;
-    color:#1e293b;
-}
+
+.navigation-title{font-size:16px;font-weight:900;color:#1e293b}
+
 .navigation-subtitle{
     margin-top:5px;
     font-size:10px;
     line-height:1.6;
     color:#94a3b8;
-    font-weight:600;
+    font-weight:600
 }
+
 .navigation-option{
     width:100%;
     border:1px solid #e2e8f0;
@@ -807,13 +930,15 @@ select.filter-input{
     gap:12px;
     text-align:left;
     cursor:pointer;
-    transition:.2s ease;
+    transition:.2s ease
 }
+
 .navigation-option:hover{
     background:#eff6ff;
     border-color:#bfdbfe;
-    transform:translateY(-1px);
+    transform:translateY(-1px)
 }
+
 .navigation-option-icon{
     width:40px;
     height:40px;
@@ -823,19 +948,18 @@ select.filter-input{
     display:flex;
     align-items:center;
     justify-content:center;
-    flex-shrink:0;
+    flex-shrink:0
 }
-.navigation-option-title{
-    font-size:11px;
-    font-weight:900;
-    color:#334155;
-}
+
+.navigation-option-title{font-size:11px;font-weight:900;color:#334155}
+
 .navigation-option-description{
     font-size:9px;
     color:#94a3b8;
     font-weight:600;
-    margin-top:3px;
+    margin-top:3px
 }
+
 .navigation-close{
     width:100%;
     margin-top:10px;
@@ -844,1719 +968,679 @@ select.filter-input{
     border:1px solid #e2e8f0;
     background:#fff;
     color:#64748b;
+    font-family:inherit;
     font-size:10px;
     font-weight:800;
     cursor:pointer;
-    transition:.2s ease;
-}
-.navigation-close:hover{
-    background:#f8fafc;
+    transition:.2s ease
 }
 
-/* ================================
-   RESPONSIVE
-================================ */
-@media(max-width:1024px){
-    body{
-        padding:
-            20px !important;
-    }
-    main{
-        padding:
-            28px !important;
-    }
-    .page-title{
-        font-size:26px;
-    }
-    .detail-container{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
-    }
+.navigation-close:hover{background:#f8fafc}
+
+/* =========================================================
+   BREAKPOINTS (bible Bab 4)
+========================================================= */
+
+@media(min-width:1920px){
+    main{max-width:1800px}
 }
-@media(max-width:768px){
-    body{
-        padding:
-            10px !important;
-        align-items:
-            stretch !important;
+
+@media(min-width:768px) and (max-width:1100px){
+
+    main{padding:28px!important;border-radius:24px!important}
+
+    .page-title{font-size:25px}
+
+    #tableContent>div:first-child{
+        grid-template-columns:repeat(3,minmax(0,1fr))!important
     }
+
+    .detail-container{
+        grid-template-columns:repeat(2,minmax(0,1fr))
+    }
+
+    header{margin-bottom:28px!important}
+
+}
+
+@media(max-width:767px){
+
+    body{padding:10px!important;align-items:stretch!important}
+
     main{
-        width:100% !important;
-        max-width:none !important;
-        padding:
-            18px !important;
-        border-radius:
-            22px !important;
-        box-shadow:
-            0 10px 30px
-            rgba(15,23,42,.08) !important;
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
     }
-    header{
-        margin-bottom:
-            24px !important;
-        padding-bottom:
-            20px !important;
+
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
+
+    .logo-wrapper{margin-bottom:14px!important}
+
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
     }
-    .logo-wrapper{
-        margin-bottom:
-            14px !important;
-    }
-    .logo-wrapper > div{
-        width:
-            76px !important;
-        height:
-            76px !important;
-        border-radius:
-            16px !important;
-    }
+
     header .color-primary{
-        width:100%;
-        max-width:
-            420px;
-        padding:
-            14px 18px !important;
-        border-radius:
-            16px !important;
+        width:100%!important;
+        padding:13px 14px!important;
+        border-radius:15px!important
     }
+
     header .color-primary h1{
-        font-size:
-            18px !important;
-        line-height:
-            1.3 !important;
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
     }
+
     header .color-primary h2{
-        font-size:
-            11px !important;
-        line-height:
-            1.4 !important;
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
     }
-    header > div:last-child{
-        font-size:
-            8px !important;
-        letter-spacing:
-            .18em !important;
-        text-align:center;
+
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
     }
+
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
+    }
+
     .page-title{
-        font-size:
-            21px !important;
-        line-height:
-            1.3 !important;
-        gap:
-            10px !important;
-        align-items:
-            flex-start !important;
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important;
+        align-items:flex-start!important
     }
+
     .page-title span{
-        padding:
-            9px !important;
-        border-radius:
-            10px !important;
-        flex-shrink:0;
+        padding:9px!important;
+        border-radius:10px!important;
+        flex-shrink:0
     }
-    .page-title span svg{
-        width:
-            20px !important;
-        height:
-            20px !important;
-    }
+
+    .page-title span svg{width:18px!important;height:18px!important}
+
     .page-subtitle{
-        font-size:
-            11px !important;
-        line-height:
-            1.6 !important;
-        margin-top:
-            8px !important;
+        font-size:10px!important;
+        line-height:1.6!important;
+        margin-top:8px!important
     }
-    section > div:first-child{
-        flex-direction:
-            column !important;
-        align-items:
-            stretch !important;
-        gap:
-            14px !important;
-        margin-bottom:
-            20px !important;
-    }
+
     .back-button{
         width:100%;
-        min-height:
-            42px;
-        padding:
-            10px 14px;
-        border-radius:
-            11px;
+        padding:10px 14px;
+        border-radius:10px!important;
+        font-size:10px!important
     }
-    #tableContent > div:first-child{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-        gap:
-            10px !important;
-        margin-bottom:
-            14px !important;
+
+    #tableContent>div:first-child{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:10px!important;
+        margin-bottom:14px!important
     }
-    .stat-card{
-        padding:
-            13px !important;
-        border-radius:
-            14px !important;
+
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-card p:first-child{font-size:8px!important;line-height:1.4!important}
+    .stat-card p.text-3xl{font-size:23px!important;line-height:1!important}
+    .stat-card span{font-size:9px!important}
+
+    .table-panel{border-radius:16px!important}
+    .table-panel>div:first-child{padding:13px 14px!important}
+    .table-panel>div:first-child h3{font-size:12px!important}
+    .table-panel>div:first-child p{font-size:9px!important}
+
+    .active-filters-bar{padding:10px 14px}
+
+    /* tabel desktop disembunyikan, diganti filter bar + kartu */
+    .table-scroll{display:none!important}
+
+    .mobile-filter-bar{display:flex}
+
+    .mobile-data-list{
+        display:block!important;
+        padding:9px!important;
+        background:#f8fafc
     }
-    .stat-card p.text-3xl{
-        font-size:
-            25px !important;
-        line-height:
-            1 !important;
-    }
-    .stat-card p.text-\[10px\]{
-        font-size:
-            8px !important;
-        line-height:
-            1.4 !important;
-    }
-    .stat-card span{
-        font-size:
-            9px !important;
-    }
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl{
-        padding:
-            14px !important;
-        border-radius:
-            15px !important;
-        margin-bottom:
-            14px !important;
-    }
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl
-    > div:first-child{
-        margin-bottom:
-            13px !important;
-    }
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl
-    > div:first-child h3{
-        font-size:
-            12px !important;
-    }
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl
-    > div:first-child p{
-        font-size:
-            9px !important;
-        line-height:
-            1.5 !important;
-    }
-    #tableContent .grid.grid-cols-4{
-        grid-template-columns:
-            1fr !important;
-        gap:
-            11px !important;
-    }
-    #tableContent .grid.grid-cols-4 label{
-        font-size:
-            9px !important;
-        margin-bottom:
-            6px !important;
-    }
-    .filter-input{
-        min-height:
-            40px;
-        font-size:
-            11px;
-    }
-    #tableContent .grid.grid-cols-4 .flex.items-end{
-        margin-top:
-            1px;
-    }
-    .table-panel{
-        border-radius:
-            16px !important;
-    }
-    .table-panel > div:first-child{
-        padding:
-            13px 14px !important;
-        gap:
-            10px;
-    }
-    .table-panel > div:first-child h3{
-        font-size:
-            12px !important;
-    }
-    .table-panel > div:first-child p{
-        font-size:
-            9px !important;
-    }
-    .table-panel > div:first-child > div:last-child{
-        font-size:
-            0 !important;
-        gap:
-            0 !important;
-    }
-    .table-panel > div:first-child > div:last-child svg{
-        width:
-            15px;
-        height:
-            15px;
-    }
-    .table-scroll{
-        width:
-            100%;
-    }
-    table{
-        min-width:
-            900px;
-    }
-    thead th{
-        font-size:
-            9px;
-    }
-    .sort-button{
-        padding:
-            12px 11px;
-        font-size:
-            9px;
-    }
-    tbody td{
-        padding:
-            11px;
-        font-size:
-            10px;
-    }
-    .detail-cell{
-        padding:
-            0
-            11px
-            13px
-            51px !important;
-    }
-    .detail-container{
-        grid-template-columns:
-            1fr;
-        gap:9px;
-    }
-    .mechanic-list{
-        grid-template-columns:
-            repeat(
-                2,
-                minmax(0,1fr)
-            );
-    }
-    .shift-summary-card{
-        padding:
-            8px 9px;
-    }
-    .shift-count{
-        font-size:
-            11px;
-    }
-    .shift-label{
-        font-size:
-            8px;
-    }
-    .table-panel > div:last-child{
-        padding:
-            11px 12px !important;
-        gap:
-            10px;
-    }
-    #paginationInfo{
-        font-size:
-            9px !important;
-        white-space:
-            nowrap;
-    }
+
+    .mobile-data-card{padding:14px!important;border-radius:15px!important;margin-bottom:9px!important}
+    .mobile-card-header{gap:8px!important;padding-bottom:11px!important;margin-bottom:11px!important}
+    .mobile-unit{font-size:15px!important}
+    .mobile-date{font-size:9px!important}
+    .mobile-number{min-width:25px!important;height:25px!important;font-size:8px!important}
+
+    .shift-detail{padding:11px!important;border-radius:12px!important}
+    .shift-detail-title span{font-size:9px!important}
+    .mechanic-name{font-size:9px!important;padding:7px 8px!important}
+    .shift-summary-card{padding:8px 9px}
+    .shift-count{font-size:11px}
+    .shift-label{font-size:8px}
+
+    .detail-cell{padding:0 11px 13px 51px !important}
+
+    .detail-container{grid-template-columns:1fr;gap:9px}
+
+    .mechanic-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+    .today-badge{font-size:7px!important;padding:2px 6px!important}
+
+    .table-panel>div:last-child{padding:11px 12px!important;gap:10px}
+
+    #paginationInfo{font-size:9px!important;white-space:nowrap}
+
     #pagination{
-        max-width:
-            100%;
-        overflow-x:
-            auto;
-        padding-bottom:
-            2px;
-        scrollbar-width:none;
+        max-width:100%;
+        overflow-x:auto;
+        padding-bottom:2px;
+        scrollbar-width:none
     }
-    #pagination::-webkit-scrollbar{
-        display:none;
-    }
+
+    #pagination::-webkit-scrollbar{display:none}
+
     .pagination-button{
-        width:
-            32px;
-        height:
-            32px;
-        min-width:
-            32px;
-        border-radius:
-            8px;
-        font-size:
-            10px;
+        width:30px!important;
+        height:30px!important;
+        min-width:30px!important;
+        font-size:9px!important;
+        border-radius:8px!important
     }
-    #emptyState .py-16{
-        padding-top:
-            45px !important;
-        padding-bottom:
-            45px !important;
+
+    /* popup jadi bottom sheet */
+    .col-dropdown.is-sheet{
+        left:16px!important;
+        right:16px!important;
+        top:auto!important;
+        bottom:16px!important;
+        width:auto!important;
+        max-height:70vh;
+        border-radius:14px;
+        overflow-y:auto
     }
-    footer{
-        margin-top:
-            18px !important;
-        padding-left:
-            10px !important;
-        padding-right:
-            10px !important;
-        padding-bottom:
-            20px !important;
-    }
-    footer p:first-child{
-        font-size:
-            9px !important;
-        line-height:
-            1.5 !important;
-    }
-    footer p:last-child{
-        font-size:
-            8px !important;
-        line-height:
-            1.7 !important;
-    }
+
+    .col-dropdown.is-sheet .dd-list{max-height:40vh}
+
+    .navigation-box{padding:18px}
+
+    footer{margin-top:18px!important;padding:0 10px 20px!important}
+    footer p:first-child{font-size:9px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.7!important}
+
 }
-@media(max-width:480px){
-    body{
-        padding:
-            7px !important;
+
+@media(max-width:380px){
+
+    body{padding:6px!important}
+
+    main{padding:12px!important;border-radius:17px!important}
+
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
+
+    .logo-wrapper>div{width:70px!important;height:70px!important}
+
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
+
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
+    .page-title span{padding:8px!important}
+    .page-title span svg{width:18px!important;height:18px!important}
+
+    #tableContent>div:first-child{gap:8px!important}
+
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-card p.text-3xl{font-size:21px!important}
+    .stat-card p:first-child{font-size:7px!important}
+
+    .mechanic-list{grid-template-columns:1fr}
+
+    .table-panel>div:last-child{
+        justify-content:center!important;
+        flex-direction:column!important;
+        align-items:stretch!important
     }
-    main{
-        padding:
-            14px !important;
-        border-radius:
-            19px !important;
-    }
-    header{
-        margin-bottom:
-            20px !important;
-        padding-bottom:
-            17px !important;
-    }
-    .logo-wrapper > div{
-        width:
-            68px !important;
-        height:
-            68px !important;
-    }
-    header .color-primary{
-        padding:
-            12px 13px !important;
-        border-radius:
-            14px !important;
-    }
-    header .color-primary h1{
-        font-size:
-            15px !important;
-        letter-spacing:
-            .07em !important;
-    }
-    header .color-primary h2{
-        font-size:
-            9px !important;
-        letter-spacing:
-            .12em !important;
-    }
-    .page-title{
-        font-size:
-            18px !important;
-    }
-    .page-title span{
-        padding:
-            8px !important;
-    }
-    .page-title span svg{
-        width:
-            18px !important;
-        height:
-            18px !important;
-    }
-    .page-subtitle{
-        font-size:
-            10px !important;
-    }
-    #tableContent > div:first-child{
-        gap:
-            8px !important;
-    }
-    .stat-card{
-        padding:
-            11px !important;
-        border-radius:
-            12px !important;
-    }
-    .stat-card p.text-3xl{
-        font-size:
-            22px !important;
-    }
-    .stat-card p.text-\[10px\]{
-        font-size:
-            7px !important;
-    }
-    .stat-card span{
-        font-size:
-            8px !important;
-    }
-    #tableContent .bg-white.border.border-slate-200.rounded-2xl{
-        padding:
-            12px !important;
-    }
-    .table-panel > div:first-child{
-        padding:
-            11px 12px !important;
-    }
-    table{
-        min-width:
-            880px;
-    }
-    #paginationInfo{
-        display:none;
-    }
-    .table-panel > div:last-child{
-        justify-content:
-            center !important;
-    }
-    footer p:first-child{
-        font-size:
-            8px !important;
-    }
+
+    #paginationInfo{text-align:center}
+    #pagination{justify-content:center}
+
 }
-@media(max-width:375px){
-    main{
-        padding:
-            11px !important;
-    }
-    .page-title{
-        font-size:
-            16px !important;
-    }
-    .page-title span{
-        padding:
-            7px !important;
-    }
-    .page-title span svg{
-        width:
-            17px !important;
-        height:
-            17px !important;
-    }
-    #tableContent > div:first-child{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr)) !important;
-    }
-    .stat-card p.text-3xl{
-        font-size:
-            20px !important;
-    }
-    .stat-card{
-        padding:
-            10px !important;
-    }
-    header .color-primary h1{
-        font-size:
-            14px !important;
-    }
-    header .color-primary h2{
-        font-size:
-            8px !important;
-    }
-    .mechanic-list{
-        grid-template-columns:
-            1fr;
-    }
+
+
+/* =========================================================
+   TABEL MAN POWER (ringkas, nama terlihat langsung)
+========================================================= */
+
+tbody tr.day-row{transition:background .15s ease}
+tbody tr.day-row:hover{background:#f8fafc}
+tbody tr.day-row td{vertical-align:top}
+
+tbody tr.today-row{background:#fffdf5}
+tbody tr.today-row td:first-child{box-shadow:inset 4px 0 0 #f59e0b}
+
+.date-main{font-size:12px;font-weight:900;color:#1e293b;white-space:nowrap}
+
+.date-sub{
+    font-size:10px;
+    font-weight:700;
+    color:#94a3b8;
+    margin-top:3px;
+    white-space:nowrap
 }
+
+.today-tag{
+    display:inline-block;
+    padding:2px 7px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#b45309;
+    font-size:8px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.05em
+}
+
+.shift-cell{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    min-width:150px
+}
+
+.cell-count{
+    align-self:flex-start;
+    display:inline-flex;
+    align-items:center;
+    padding:3px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:900;
+    border:1px solid
+}
+
+.name-chips{display:flex;flex-wrap:wrap;gap:5px}
+
+.name-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 9px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    font-size:10px;
+    font-weight:700;
+    color:#334155;
+    white-space:nowrap
+}
+
+.mp-empty{
+    font-size:10px;
+    font-weight:600;
+    color:#cbd5e1;
+    font-style:italic
+}
+
+.mobile-shift-block{border-radius:14px;padding:12px;border:1px solid}
+.mobile-shift-block.shift1{background:#EFF6FF;border-color:#BFDBFE}
+.mobile-shift-block.shift2{background:#FFF7ED;border-color:#FED7AA}
+.mobile-shift-block.shift3{background:#F5F3FF;border-color:#DDD6FE}
+.mobile-shift-block.off{background:#ECFDF5;border-color:#A7F3D0}
+
+.mobile-shift-head{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:9px;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:#334155
+}
+
+.shift1-head .cell-count,.shift1 .cell-count{color:#1D4ED8;border-color:#BFDBFE;background:#fff}
+.shift2-head .cell-count,.shift2 .cell-count{color:#C2410C;border-color:#FED7AA;background:#fff}
+.shift3-head .cell-count,.shift3 .cell-count{color:#6D28D9;border-color:#DDD6FE;background:#fff}
+.off-head .cell-count,.off .cell-count{color:#047857;border-color:#A7F3D0;background:#fff}
+
+.page-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    flex-wrap:wrap;
+    flex-shrink:0
+}
+
+.period-selector{
+    background:#fff;
+    border:1px solid #dbeafe;
+    border-radius:12px;
+    padding:10px 14px;
+    color:#1e3a8a;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:900;
+    outline:none;
+    cursor:pointer;
+    transition:.2s ease;
+    min-width:160px
+}
+
+.period-selector:hover{border-color:#93c5fd}
+
+.period-selector:focus{
+    border-color:#60a5fa;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
+}
+
+.period-selector option:disabled{color:#64748b;background:#e2e8f0}
+
 </style>
 </head>
 
-<body
-    class="
-        flex
-        flex-col
-        items-center
-        p-4
-        sm:p-8
-    "
->
+<body class="flex flex-col items-center p-4 sm:p-8">
 
-<main
-    class="
-        w-full
-        max-w-7xl
-        flex-grow
-        glass-panel
-        p-6
-        sm:p-10
-        rounded-3xl
-        shadow-2xl
-        fade-in
-    "
->
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
 
-<header
-    class="
-        w-full
-        mb-8
-        pb-6
-        border-b-2
-        border-slate-100
-        flex
-        flex-col
-        items-center
-    "
->
+<!-- ======================================================
+     HEADER
+====================================================== -->
 
-<div class="mb-4 logo-wrapper">
-<div
-    class="
-        w-24
-        h-24
-        flex
-        items-center
-        justify-center
-        bg-white
-        rounded-2xl
-        logo-shadow
-        overflow-hidden
-        p-2
-    "
->
-<img
-    src="default_logo.png"
-    alt="Logo PT TSI"
-    class="
-        w-full
-        h-full
-        object-contain
-    "
-    id="companyLogo"
-    onerror="handleLogoError()"
->
-<div
-    id="logoFallback"
-    class="
-        hidden
-        flex
-        flex-col
-        items-center
-        justify-center
-        bg-blue-900
-        w-full
-        h-full
-        text-white
-    "
->
-    <span
-        class="
-            font-black
-            text-2xl
-        "
-    >
-        TSI
-    </span>
-</div>
-</div>
-</div>
+<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
 
-<div
-    class="
-        color-primary
-        text-white
-        px-8
-        py-4
-        rounded-2xl
-        shadow-lg
-        flex
-        flex-col
-        items-center
-        gap-1
-    "
->
-<h1
-    class="
-        text-xl
-        sm:text-2xl
-        font-black
-        uppercase
-        tracking-[0.1em]
-        text-center
-    "
->
-    PAPERLESS PROJECT
-</h1>
+    <div class="mb-4 logo-wrapper">
+        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
+            <img
+                src="default_logo.png"
+                alt="Logo PT TSI"
+                class="w-full h-full object-contain"
+                id="companyLogo"
+                onerror="handleLogoError()"
+            >
+            <div
+                id="logoFallback"
+                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
+            >
+                <span class="font-black text-2xl">TSI</span>
+            </div>
+        </div>
+    </div>
 
-<div
-    class="
-        h-0.5
-        w-16
-        bg-amber-500
-        rounded-full
-        my-1
-    "
-></div>
+    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
+        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
+            PAPERLESS PROJECT
+        </h1>
+        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
+        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
+            PT TATSUMI SERUNI INDONESIA
+        </h2>
+    </div>
 
-<h2
-    class="
-        text-sm
-        sm:text-lg
-        font-bold
-        uppercase
-        tracking-widest
-        text-blue-100
-        text-center
-    "
->
-    PT TATSUMI SERUNI INDONESIA
-</h2>
-</div>
-
-<div
-    class="
-        mt-3
-        text-[10px]
-        font-bold
-        text-slate-400
-        tracking-[0.3em]
-        uppercase
-    "
->
-    Digitalization Initiative v2.0
-</div>
+    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
+        Digitalization Initiative v2.0
+    </div>
 
 </header>
 
+
+<!-- ======================================================
+     SECTION
+====================================================== -->
+
 <section>
 
-<div
-    class="
-        flex
-        items-center
-        justify-between
-        gap-5
-        mb-6
-    "
->
+    <div class="flex items-center justify-between gap-5 mb-6">
 
-<div>
+        <div>
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </span>
+                Data Man Power Harian
+            </h2>
+            <p class="page-subtitle mt-2 ml-1">
+                Daftar man power harian berdasarkan tanggal dan pembagian Shift 1, Shift 2, Shift 3, serta OFF.
+            </p>
+        </div>
 
-<h2
-    class="
-        page-title
-        flex
-        items-center
-        gap-3
-    "
->
-    <span
-        class="
-            bg-blue-900
-            text-white
-            p-3
-            rounded-xl
-            shadow-md
-        "
-    >
-        <i
-            data-lucide="users"
-            class="w-6 h-6"
-        ></i>
-    </span>
-    Data Man Power Harian
-</h2>
+        <div class="page-actions">
 
-<p
-    class="
-        page-subtitle
-        mt-2
-        ml-1
-    "
->
-    Daftar man power harian berdasarkan tanggal dan
-    pembagian Shift 1, Shift 2, Shift 3, serta OFF.
-</p>
+            <div class="flex items-center gap-2">
+                <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">Periode</span>
+                <select id="periodSelector" class="period-selector" onchange="changePeriod()">
+                    <option value="M1">Januari</option>
+                    <option value="M2">Februari</option>
+                    <option value="M3">Maret</option>
+                    <option value="M4">April</option>
+                    <option value="M5">Mei</option>
+                    <option value="M6">Juni</option>
+                    <option value="M7">Juli</option>
+                    <option value="M8">Agustus</option>
+                    <option value="M9">September</option>
+                    <option value="M10">Oktober</option>
+                    <option value="M11">November</option>
+                    <option value="M12">Desember</option>
+                    <option value="ALL">Seluruh Data</option>
+                </select>
+            </div>
 
-</div>
+            <button onclick="goToDashboard()" class="back-button">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Kembali
+            </button>
 
-<button
-onclick="goToDashboard()"
-class="back-button"
->
-<i
-    data-lucide="arrow-left"
-    class="w-4 h-4"
-></i>
-Kembali
-</button>
+        </div>
 
-</div>
-
-<div id="loading">
-
-<i
-data-lucide="loader-circle"
-class="
-w-9
-h-9
-animate-spin
-text-amber-500
-"
-></i>
-
-<p
-    class="
-        font-semibold
-        text-sm
-        text-slate-400
-        mt-3
-    "
->
-    Memuat data Man Power...
-</p>
-
-</div>
-
-<div id="tableContent">
-
-<div
-    class="
-        grid
-        grid-cols-5
-        gap-4
-        mb-6
-    "
->
-
-<div class="stat-card">
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Total Hari
-    </p>
-
-    <p
-        id="totalData"
-        class="
-            text-3xl
-            font-black
-            text-blue-900
-            mt-2
-        "
-    >
-        -
-    </p>
-</div>
-
-<div class="stat-card">
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Shift 1
-    </p>
-
-    <div
-        class="
-            flex
-            items-end
-            gap-2
-            mt-2
-        "
-    >
-        <p
-            id="shift1Total"
-            class="
-                text-3xl
-                font-black
-                text-blue-600
-            "
-        >
-            -
-        </p>
-
-        <span
-            class="
-                mb-1
-                text-[11px]
-                font-black
-                text-slate-400
-            "
-        >
-            MP
-        </span>
     </div>
-</div>
 
-<div class="stat-card">
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Shift 2
-    </p>
 
-    <div
-        class="
-            flex
-            items-end
-            gap-2
-            mt-2
-        "
-    >
-        <p
-            id="shift2Total"
-            class="
-                text-3xl
-                font-black
-                text-orange-600
-            "
-        >
-            -
-        </p>
-
-        <span
-            class="
-                mb-1
-                text-[11px]
-                font-black
-                text-slate-400
-            "
-        >
-            MP
-        </span>
+    <!-- LOADING -->
+    <div id="loading">
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p class="font-semibold text-sm text-slate-400 mt-3">Memuat data Man Power...</p>
     </div>
-</div>
 
-<div class="stat-card">
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Shift 3
-    </p>
 
-    <div
-        class="
-            flex
-            items-end
-            gap-2
-            mt-2
-        "
-    >
-        <p
-            id="shift3Total"
-            class="
-                text-3xl
-                font-black
-                text-purple-600
-            "
-        >
-            -
-        </p>
+    <!-- TABLE CONTENT -->
+    <div id="tableContent">
 
-        <span
-            class="
-                mb-1
-                text-[11px]
-                font-black
-                text-slate-400
-            "
-        >
-            MP
-        </span>
+        <!-- STAT CARDS (dihitung dari baris yang lolos filter) -->
+        <div class="grid grid-cols-5 gap-4 mb-6">
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Hari</p>
+                <p id="totalData" class="text-3xl font-black text-blue-900 mt-2">-</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Shift 1</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="shift1Total" class="text-3xl font-black text-blue-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">MP</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Shift 2</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="shift2Total" class="text-3xl font-black text-amber-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">MP</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Shift 3</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="shift3Total" class="text-3xl font-black text-indigo-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">MP</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Man Power</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="manpowerTotal" class="text-3xl font-black text-emerald-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">MP</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- TABLE PANEL (tanpa panel filter terpisah) -->
+        <div class="table-panel">
+
+            <!-- HEADER PANEL -->
+            <div class="table-header px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-4">
+                <div>
+                    <h3 class="font-black text-slate-700 text-sm">Daftar Man Power Harian</h3>
+                    <p id="resultInfo" class="text-[10px] text-slate-400 mt-1 font-medium">-</p>
+                </div>
+                <div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
+                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                    Data langsung dari Database
+                </div>
+            </div>
+
+            <!-- CHIP FILTER AKTIF -->
+            <div id="activeFilters" class="active-filters-bar" hidden></div>
+
+            <!-- TABEL DESKTOP -->
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr id="tableHeadRow"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- MOBILE: bar filter + kartu -->
+            <div id="mobileFilterBar" class="mobile-filter-bar"></div>
+            <div id="mobileDataList" class="mobile-data-list"></div>
+
+            <!-- EMPTY STATE -->
+            <div id="emptyState">
+                <div class="py-16 text-center">
+                    <div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
+                        <i data-lucide="search-x" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-600 mt-4">Data tidak ditemukan</h3>
+                    <p id="emptyText" class="text-xs text-slate-400 mt-1">Coba ubah filter pada header kolom.</p>
+                </div>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between">
+                <div id="paginationInfo" class="text-[10px] font-semibold text-slate-400">-</div>
+                <div id="pagination" class="flex items-center gap-1"></div>
+            </div>
+
+        </div>
+
     </div>
-</div>
-
-<div class="stat-card">
-    <p
-        class="
-            text-[10px]
-            font-bold
-            text-slate-400
-            uppercase
-            tracking-wider
-        "
-    >
-        Total Man Power
-    </p>
-
-    <div
-        class="
-            flex
-            items-end
-            gap-2
-            mt-2
-        "
-    >
-        <p
-            id="manpowerTotal"
-            class="
-                text-3xl
-                font-black
-                text-emerald-600
-            "
-        >
-            -
-        </p>
-
-        <span
-            class="
-                mb-1
-                text-[11px]
-                font-black
-                text-slate-400
-            "
-        >
-            MP
-        </span>
-    </div>
-</div>
-
-</div>
-
-<!-- FILTER -->
-
-<div
-    class="
-        bg-white
-        border
-        border-slate-200
-        rounded-2xl
-        p-5
-        mb-5
-        shadow-sm
-    "
->
-
-<div
-    class="
-        flex
-        items-center
-        gap-3
-        mb-4
-    "
->
-
-<span
-    class="
-        bg-blue-100
-        text-blue-700
-        p-2
-        rounded-lg
-    "
->
-    <i
-        data-lucide="filter"
-        class="w-4 h-4"
-    ></i>
-</span>
-
-<div>
-
-<h3
-    class="
-        text-sm
-        font-black
-        text-slate-700
-    "
->
-    Filter Data
-</h3>
-
-<p
-    class="
-        text-[10px]
-        text-slate-400
-        font-medium
-    "
->
-    Pilih nama, bulan, atau shift untuk menyaring data.
-</p>
-
-<div
-    id="filterActiveBadge"
-    class="filter-active-badge"
-    style="display:none;"
->
-    <span class="status-dot"></span>
-    Filter aktif — detail ditampilkan langsung
-</div>
-
-</div>
-</div>
-
-<div
-    class="
-        grid
-        grid-cols-4
-        gap-4
-    "
->
-
-<div>
-<label
-    class="
-        block
-        text-[10px]
-        font-bold
-        text-slate-500
-        uppercase
-        tracking-wider
-        mb-2
-    "
->
-    Nama Mekanik
-</label>
-
-<select
-    id="mechanicFilter"
-    class="filter-input"
-    onchange="applyFilters()"
->
-    <option value="">
-        Semua Mekanik
-    </option>
-</select>
-</div>
-
-<div>
-<label
-    class="
-        block
-        text-[10px]
-        font-bold
-        text-slate-500
-        uppercase
-        tracking-wider
-        mb-2
-    "
->
-    Bulan
-</label>
-
-<select
-    id="monthFilter"
-    class="filter-input"
-    onchange="applyFilters()"
->
-    <option value="">
-        Semua Bulan
-    </option>
-</select>
-</div>
-
-<div>
-<label
-    class="
-        block
-        text-[10px]
-        font-bold
-        text-slate-500
-        uppercase
-        tracking-wider
-        mb-2
-    "
->
-    Shift
-</label>
-
-<select
-    id="shiftFilter"
-    class="filter-input"
-    onchange="applyFilters()"
->
-    <option value="">
-        Semua Shift
-    </option>
-
-    <option value="SHIFT 1">
-        Shift 1
-    </option>
-
-    <option value="SHIFT 2">
-        Shift 2
-    </option>
-
-    <option value="SHIFT 3">
-        Shift 3
-    </option>
-
-    <option value="OFF">
-        OFF
-    </option>
-</select>
-</div>
-
-<div
-    class="
-        flex
-        items-end
-    "
->
-<button
-    onclick="resetFilters()"
-    class="
-        w-full
-        h-[38px]
-        rounded-xl
-        border
-        border-slate-200
-        bg-slate-50
-        hover:bg-slate-100
-        text-slate-600
-        font-bold
-        text-[11px]
-        transition
-        flex
-        items-center
-        justify-center
-        gap-2
-    "
->
-    <i
-        data-lucide="rotate-ccw"
-        class="w-4 h-4"
-    ></i>
-    Reset Filter
-</button>
-</div>
-
-</div>
-</div>
-
-<!-- TABLE -->
-
-<div class="table-panel">
-
-<div
-    class="
-        px-5
-        py-4
-        border-b
-        border-slate-100
-        flex
-        items-center
-        justify-between
-    "
->
-
-<div>
-
-<h3
-    class="
-        font-black
-        text-slate-700
-        text-sm
-    "
->
-    Daftar Man Power Harian
-</h3>
-
-<p
-    id="resultInfo"
-    class="
-        text-[10px]
-        text-slate-400
-        mt-1
-        font-medium
-    "
->
-    -
-</p>
-
-<div
-    id="tableInstruction"
-    class="
-        mt-2
-        flex
-        items-center
-        gap-1.5
-        text-[9px]
-        text-slate-400
-        font-semibold
-    "
->
-    <i
-        data-lucide="mouse-pointer-click"
-        class="w-3.5 h-3.5"
-    ></i>
-    Klik baris tanggal untuk melihat daftar nama mekanik lengkap.
-</div>
-
-</div>
-
-<div
-    class="
-        flex
-        items-center
-        gap-2
-        text-[10px]
-        text-slate-400
-        font-semibold
-    "
->
-    <i
-        data-lucide="refresh-cw"
-        class="w-3.5 h-3.5"
-    ></i>
-    Data langsung dari Database
-</div>
-
-</div>
-
-<div class="table-scroll">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="width:50px">
-
-<button
-    class="sort-button"
-    onclick="sortBy('number')"
-    data-sort-key="number"
->
-    <span>No</span>
-
-    <i
-        data-lucide="chevrons-up-down"
-        class="sort-icon"
-    ></i>
-</button>
-
-</th>
-
-<th>
-
-<button
-    class="sort-button"
-    onclick="sortBy('date')"
-    data-sort-key="date"
->
-    <span>Tanggal</span>
-
-    <i
-        data-lucide="chevrons-up-down"
-        class="sort-icon"
-    ></i>
-</button>
-
-</th>
-
-<th class="shift1-head">
-
-<button
-    class="sort-button"
-    onclick="sortBy('shift1')"
-    data-sort-key="shift1"
->
-    <span>Shift 1</span>
-
-    <i
-        data-lucide="chevrons-up-down"
-        class="sort-icon"
-    ></i>
-</button>
-
-</th>
-
-<th class="shift2-head">
-
-<button
-    class="sort-button"
-    onclick="sortBy('shift2')"
-    data-sort-key="shift2"
->
-    <span>Shift 2</span>
-
-    <i
-        data-lucide="chevrons-up-down"
-        class="sort-icon"
-    ></i>
-</button>
-
-</th>
-
-<th class="shift3-head">
-
-<button
-    class="sort-button"
-    onclick="sortBy('shift3')"
-    data-sort-key="shift3"
->
-    <span>Shift 3</span>
-
-    <i
-        data-lucide="chevrons-up-down"
-        class="sort-icon"
-    ></i>
-</button>
-
-</th>
-
-<th class="off-head">
-
-<button
-    class="sort-button"
-    onclick="sortBy('off')"
-    data-sort-key="off"
->
-    <span>OFF</span>
-
-    <i
-        data-lucide="chevrons-up-down"
-        class="sort-icon"
-    ></i>
-</button>
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody id="tableBody"></tbody>
-
-</table>
-
-</div>
-
-<!-- EMPTY -->
-
-<div id="emptyState">
-
-<div
-    class="
-        py-16
-        text-center
-    "
->
-
-<div
-    class="
-        inline-flex
-        items-center
-        justify-center
-        bg-slate-100
-        text-slate-400
-        p-4
-        rounded-full
-    "
->
-
-<i
-    data-lucide="search-x"
-    class="w-8 h-8"
-></i>
-
-</div>
-
-<h3
-    class="
-        font-bold
-        text-slate-600
-        mt-4
-    "
->
-    Data tidak ditemukan
-</h3>
-
-<p
-    class="
-        text-xs
-        text-slate-400
-        mt-1
-    "
->
-    Coba ubah nama mekanik, bulan, atau shift yang digunakan.
-</p>
-
-</div>
-
-</div>
-
-<!-- PAGINATION -->
-
-<div
-    class="
-        px-5
-        py-4
-        border-t
-        border-slate-100
-        flex
-        items-center
-        justify-between
-    "
->
-
-<div
-    id="paginationInfo"
-    class="
-        text-[10px]
-        font-semibold
-        text-slate-400
-    "
->
-    -
-</div>
-
-<div
-    id="pagination"
-    class="
-        flex
-        items-center
-        gap-1
-    "
-></div>
-
-</div>
-
-</div>
-
-</div>
 
 </section>
 
 </main>
 
-<footer
-    class="
-        mt-8
-        text-center
-        text-slate-400
-        px-4
-        pb-8
-    "
->
+<!-- POPUP FILTER & SORT KOLOM (satu instance, position fixed) -->
+<div id="colDropdown" class="col-dropdown" hidden></div>
 
-<p
-    class="
-        font-bold
-        text-slate-500
-        tracking-tight
-        uppercase
-    "
->
-    &copy; 2026 Paperless Project - PT TSI.
-    All rights reserved.
-</p>
-
-<p
-    class="
-        text-[10px]
-        mt-1
-    "
->
-System Architecture by:
-
-<span
-class="
-text-slate-600
-font-semibold
-uppercase
-"
->
-Imam Wahyu Ramadhan, S.T.
-</span>
-
-|
-
-<span
-class="
-text-amber-600
-font-bold
-uppercase
-tracking-tighter
-"
->
-Project 2.0
-</span>
-
-</p>
-
+<!-- FOOTER -->
+<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
+    <p class="font-bold text-slate-500 tracking-tight uppercase">
+        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
+    </p>
+    <p class="text-[10px] mt-1">
+        System Architecture by:
+        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
+        |
+        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
+    </p>
 </footer>
 
-<!-- ================================
-     NAVIGATION MODAL
-================================ -->
 
-<div
-    id="navigationModal"
-    class="navigation-modal"
-    onclick="closeNavigationOnBackdrop(event)"
->
+<!-- NAVIGATION MODAL -->
+<div id="navigationModal" class="navigation-modal" onclick="closeNavigationOnBackdrop(event)">
+    <div class="navigation-box" onclick="event.stopPropagation()">
 
-<div
-    class="navigation-box"
-    onclick="event.stopPropagation()"
->
+        <div class="flex items-start gap-3">
+            <div class="bg-blue-100 text-blue-700 p-2.5 rounded-xl">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </div>
+            <div>
+                <div class="navigation-title">Kembali ke mana?</div>
+                <div class="navigation-subtitle">Pilih halaman yang ingin kamu buka.</div>
+            </div>
+        </div>
 
-<div
-    class="
-        flex
-        items-start
-        gap-3
-    "
->
+        <div class="mt-5 space-y-2.5">
 
-<div
-    class="
-        bg-blue-100
-        text-blue-700
-        p-2.5
-        rounded-xl
-    "
->
+            <button class="navigation-option" onclick="goToHome()">
+                <div class="navigation-option-icon">
+                    <i data-lucide="house" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <div class="navigation-option-title">Home</div>
+                    <div class="navigation-option-description">Kembali ke halaman utama Paperless Project.</div>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 ml-auto text-slate-400"></i>
+            </button>
 
-<i
-    data-lucide="arrow-left"
-    class="w-5 h-5"
-></i>
+            <button class="navigation-option" onclick="goToManpowerDashboard()">
+                <div class="navigation-option-icon">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <div class="navigation-option-title">Dashboard Man Power Hari Ini</div>
+                    <div class="navigation-option-description">Melihat ringkasan man power hari ini.</div>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 ml-auto text-slate-400"></i>
+            </button>
 
+        </div>
+
+        <button class="navigation-close" onclick="closeNavigation()">Batal</button>
+
+    </div>
 </div>
 
-<div>
-
-<div class="navigation-title">
-    Kembali ke mana?
-</div>
-
-<div class="navigation-subtitle">
-    Pilih halaman yang ingin kamu buka.
-</div>
-
-</div>
-
-</div>
-
-<div
-    class="
-        mt-5
-        space-y-2.5
-    "
->
-
-<button
-    class="navigation-option"
-    onclick="goToHome()"
->
-
-<div class="navigation-option-icon">
-
-<i
-    data-lucide="house"
-    class="w-5 h-5"
-></i>
-
-</div>
-
-<div>
-
-<div class="navigation-option-title">
-    Home
-</div>
-
-<div class="navigation-option-description">
-    Kembali ke halaman utama Paperless Project.
-</div>
-
-</div>
-
-<i
-    data-lucide="chevron-right"
-    class="
-        w-4
-        h-4
-        ml-auto
-        text-slate-400
-    "
-></i>
-
-</button>
-
-<button
-    class="navigation-option"
-    onclick="goToManpowerDashboard()"
->
-
-<div class="navigation-option-icon">
-
-<i
-    data-lucide="layout-dashboard"
-    class="w-5 h-5"
-></i>
-
-</div>
-
-<div>
-
-<div class="navigation-option-title">
-    Dashboard Man Power Hari Ini
-</div>
-
-<div class="navigation-option-description">
-    Melihat ringkasan man power hari ini.
-</div>
-
-</div>
-
-<i
-    data-lucide="chevron-right"
-    class="
-        w-4
-        h-4
-        ml-auto
-        text-slate-400
-    "
-></i>
-
-</button>
-
-</div>
-
-<button
-    class="navigation-close"
-    onclick="closeNavigation()"
->
-    Batal
-</button>
-
-</div>
-
-</div>
 
 <script>
 
-const API_URL =
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const API_URL=
 'https://script.google.com/macros/s/AKfycbzNkJaGpfQ1e4AfcQxUfQxKrfB6-Y1mzOKZ2WSDwsTlc_tzaVkU-gmeqjr2lSEiuyku/exec?action=data';
 
-const ROWS_PER_PAGE = 15;
+const ROWS_PER_PAGE=15;
 
-/* ================================
-   DAFTAR MEKANIK RESMI
-================================ */
+const WEEKDAYS=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
 
-const MASTER_MECHANICS = [
+const PERIOD_LABELS={
+    TODAY:'Hari Ini',
+    M1:'Januari',M2:'Februari',M3:'Maret',M4:'April',M5:'Mei',M6:'Juni',
+    M7:'Juli',M8:'Agustus',M9:'September',M10:'Oktober',M11:'November',M12:'Desember',
+    ALL:'Seluruh Data'
+};
+
+const MONTH_PERIOD_KEYS=['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'];
+
+/* Daftar mekanik resmi */
+const MASTER_MECHANICS=[
     'PRASETYO T.U',
     'SUPRAYITNO',
     'A. NAJIB',
@@ -2570,255 +1654,1011 @@ const MASTER_MECHANICS = [
     'GATOT G'
 ];
 
-/* ================================
+/* Kolom tabel. Kolom shift berisi daftar nama (multi-nilai). */
+const COLUMNS=[
+    {key:'number', label:'No',      type:'number', filterable:false, width:'50px'},
+    {key:'date',   label:'Tanggal', type:'date',   filterable:true,  width:'150px'},
+    {key:'shift1', label:'Shift 1', type:'names',  filterable:true,  headClass:'shift1-head'},
+    {key:'shift2', label:'Shift 2', type:'names',  filterable:true,  headClass:'off-head'},
+    {key:'shift3', label:'Shift 3', type:'names',  filterable:true,  headClass:'shift3-head'},
+    {key:'off',    label:'OFF',     type:'names',  filterable:true,  headClass:'shift2-head'}
+];
+
+const SHIFT_META={
+    shift1:{title:'Shift 1',summary:'shift1-summary',detail:'shift1',dot:'shift1-dot'},
+    shift2:{title:'Shift 2',summary:'off-summary',detail:'off',dot:'off-dot'},
+    shift3:{title:'Shift 3',summary:'shift3-summary',detail:'shift3',dot:'shift3-dot'},
+    off:   {title:'OFF',    summary:'shift2-summary',detail:'shift2',dot:'shift2-dot'}
+};
+
+
+/* =========================================================
    STATE
-================================ */
+========================================================= */
 
-let apiData = null;
-let allData = [];
-let filteredData = [];
-let currentPage = 1;
-let sortKey = 'date';
-let sortDirection = 'desc';
-let expandedDate = null;
+let masterRows=[];        // seluruh data dari API (sudah dinormalisasi)
+let periodCache={};       // periode → baris (sudah diberi _idx), dimuat dan disimpan di cache
+let currentPeriod='M'+(new Date().getMonth()+1);   // default: bulan ini
+let pendingTodayPage=false;                          // lompat ke halaman yang memuat hari ini (sekali, saat pertama dibuka)
+let allData=[];           // baris periode yang sedang tampil (_idx = urutan dalam periode)
+let rowsView=[];         // hari yang lolos semua filter kolom
+let columnFilters={};    // { key: Set(nilai terpilih) }
+let sortKey='date';
+let sortDir='desc';
+let currentPage=1;
 
-/* ================================
+let openColumn=null;
+let ddValues=[];
+let draftSelection=new Set();
+let ddQuery='';
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $=id=>document.getElementById(id);
+
+const getColumn=key=>COLUMNS.find(c=>c.key===key);
+
+const isEmpty=v=>v===''||v===null||v===undefined;
+
+const pad=n=>String(n).padStart(2,'0');
+
+/* Nama mekanik dinormalisasi (uppercase, spasi tunggal) */
+const normName=name=>String(name??'').trim().toUpperCase().replace(/\s+/g,' ');
+
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+}
+
+function handleLogoError(){
+    $('companyLogo').classList.add('hidden');
+    const fb=$('logoFallback');
+    fb.classList.remove('hidden');
+    fb.classList.add('flex');
+}
+
+
+/* =========================================================
    NAVIGATION
-================================ */
+========================================================= */
 
 function goToDashboard(){
-
-    document
-        .getElementById(
-            'navigationModal'
-        )
-        .classList
-        .add('show');
-
+    $('navigationModal').classList.add('show');
     lucide.createIcons();
 }
 
 function closeNavigation(){
-
-    document
-        .getElementById(
-            'navigationModal'
-        )
-        .classList
-        .remove('show');
-
+    $('navigationModal').classList.remove('show');
 }
 
 function closeNavigationOnBackdrop(event){
+    if(event.target.id==='navigationModal') closeNavigation();
+}
 
-    if(
-        event.target.id ===
-        'navigationModal'
-    ){
-        closeNavigation();
+function goToHome(){
+    window.location.href='index.html';
+}
+
+function goToManpowerDashboard(){
+    window.location.href='manpower.html';
+}
+
+
+/* =========================================================
+   DATA NORMALISASI
+========================================================= */
+
+function columnNumber(column){
+    let number=0;
+    for(let i=0;i<column.length;i++){
+        number=number*26+column.charCodeAt(i)-64;
+    }
+    return number;
+}
+
+function getOffMechanics(shift1,shift2,shift3){
+    const working=new Set(
+        [...shift1,...shift2,...shift3].map(normName).filter(Boolean)
+    );
+    return MASTER_MECHANICS.filter(m=>!working.has(normName(m)));
+}
+
+function normalizeRow(row,index){
+
+    const date=String(row['MAN POWER HARI INI']??row.M??'').trim();
+
+    const columns=Object.keys(row).filter(key=>/^[A-Z]{1,2}$/.test(key));
+
+    const pick=(from,to)=>columns
+        .filter(key=>columnNumber(key)>=from&&columnNumber(key)<=to)
+        .map(key=>String(row[key]??'').trim())
+        .filter(Boolean);
+
+    const shift1=pick(14,24);
+    const shift2=pick(25,35);
+    const shift3=pick(36,46);
+
+    return {
+        date,
+        shift1,
+        shift2,
+        shift3,
+        off:getOffMechanics(shift1,shift2,shift3),
+        originalIndex:index
+    };
+}
+
+
+/* =========================================================
+   TANGGAL
+========================================================= */
+
+const MONTH_INDEX={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+
+/* Format sumber: "12 Jan 2026" / "12 January 2026" */
+function parseDate(value){
+    const match=String(value??'').trim().match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+    if(!match) return null;
+    const month=MONTH_INDEX[match[2].substring(0,3).toLowerCase()];
+    if(month===undefined) return null;
+    return new Date(Number(match[3]),month,Number(match[1]));
+}
+
+/* yyyy-mm-dd untuk filter & sort */
+function dateKey(value){
+    const d=parseDate(value);
+    if(!d) return String(value??'').trim();
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+
+function formatDate(value){
+    const k=dateKey(value);
+    if(!k) return '-';
+    const m=k.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return m?`${m[3]}/${m[2]}/${m[1]}`:escapeHtml(k);
+}
+
+function isToday(value){
+    const now=new Date();
+    return dateKey(value)===`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+}
+
+
+/* =========================================================
+   FILTER ENGINE (Excel-style, saling mempengaruhi)
+
+   Nilai per baris:
+   - kolom tanggal → [yyyy-mm-dd]
+   - kolom shift   → daftar nama (uppercase). Baris tanpa nama → [''] (Kosong)
+   Baris lolos filter kolom jika salah satu nilainya dipilih (OR di dalam kolom).
+========================================================= */
+
+function getRowValues(row,key){
+    if(key==='date') return [dateKey(row.date)];
+    const names=row[key]||[];
+    if(!names.length) return [''];
+    return [...new Set(names.map(normName))];
+}
+
+function rowPasses(row,excludeKey){
+    return Object.keys(columnFilters).every(key=>{
+        if(key===excludeKey) return true;
+        const set=columnFilters[key];
+        return getRowValues(row,key).some(v=>set.has(v));
+    });
+}
+
+/* Nilai unik + jumlah baris, dari baris yang lolos filter KOLOM LAIN */
+function distinctValues(key){
+    const map=new Map();
+    allData.forEach(row=>{
+        if(!rowPasses(row,key)) return;
+        getRowValues(row,key).forEach(v=>map.set(v,(map.get(v)||0)+1));
+    });
+    const isDate=getColumn(key).type==='date';
+    return [...map.entries()]
+        .map(([value,count])=>({value,count}))
+        .sort((a,b)=>{
+            if(a.value===''||b.value==='') return (a.value==='')-(b.value==='');
+            return isDate
+                ?a.value.localeCompare(b.value)
+                :a.value.localeCompare(b.value,'id',{numeric:true,sensitivity:'base'});
+        });
+}
+
+function getValueLabel(key,value){
+    if(getColumn(key).type==='date') return value?formatDate(value):'(Kosong)';
+    return value||'(Kosong)';
+}
+
+function applyAllFilters(){
+    rowsView=allData.filter(row=>rowPasses(row,null));
+    currentPage=1;
+    renderTable();
+}
+
+function removeColumnFilter(key){
+    delete columnFilters[key];
+    applyAllFilters();
+}
+
+function clearAllFilters(){
+    columnFilters={};
+    applyAllFilters();
+}
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+function getSortValue(row,key){
+    if(key==='date') return dateKey(row.date);
+    return (row[key]||[]).join(' ');
+}
+
+function getSortedData(rows){
+
+    const list=[...rows];
+
+    if(!sortKey||!sortDir){
+        return list.sort((a,b)=>a._idx-b._idx);
+    }
+
+    return list.sort((a,b)=>{
+
+        if(sortKey==='number'){
+            const c=a._idx-b._idx;
+            return sortDir==='asc'?c:-c;
+        }
+
+        const va=getSortValue(a,sortKey);
+        const vb=getSortValue(b,sortKey);
+
+        /* Kosong selalu di paling akhir */
+        if(isEmpty(va)!==isEmpty(vb)) return isEmpty(va)?1:-1;
+        if(isEmpty(va)) return 0;
+
+        const c=sortKey==='date'
+            ?va.localeCompare(vb)
+            :va.localeCompare(vb,'id',{numeric:true,sensitivity:'base'});
+
+        return sortDir==='asc'?c:-c;
+
+    });
+}
+
+
+/* =========================================================
+   POPUP FILTER & SORT
+========================================================= */
+
+function openColumnMenu(key,anchor){
+
+    if(openColumn===key){
+        closeColumnMenu();
+        return;
+    }
+
+    closeColumnMenu();
+
+    const col=getColumn(key);
+
+    openColumn=key;
+    ddQuery='';
+
+    ddValues=col.filterable?distinctValues(key):[];
+
+    draftSelection=new Set(
+        columnFilters[key]
+            ?[...columnFilters[key]]
+            :ddValues.map(v=>v.value)
+    );
+
+    const dd=$('colDropdown');
+
+    dd.innerHTML=buildDropdown(col);
+    dd.hidden=false;
+
+    positionColumnMenu(anchor);
+    renderDdList();
+    lucide.createIcons();
+
+    if(!window.matchMedia('(max-width:767px)').matches){
+        const s=dd.querySelector('.dd-search');
+        if(s) s.focus();
     }
 
 }
 
-function goToHome(){
+function closeColumnMenu(){
+    const dd=$('colDropdown');
+    dd.hidden=true;
+    dd.innerHTML='';
+    openColumn=null;
+}
 
-    window.location.href =
-        'index.html';
+function positionColumnMenu(anchor){
+
+    const dd=$('colDropdown');
+
+    if(window.matchMedia('(max-width:767px)').matches){
+        dd.classList.add('is-sheet');
+        dd.style.left='';
+        dd.style.top='';
+        return;
+    }
+
+    dd.classList.remove('is-sheet');
+
+    const r=anchor.getBoundingClientRect();
+    const w=dd.offsetWidth||240;
+    const h=dd.offsetHeight||0;
+
+    let left=r.left;
+    if(left+w>window.innerWidth-8) left=Math.max(8,r.right-w);
+
+    let top=r.bottom+6;
+    if(top+h>window.innerHeight-8) top=Math.max(8,r.top-h-6);
+
+    dd.style.left=left+'px';
+    dd.style.top=top+'px';
+}
+
+function buildDropdown(col){
+
+    const labels=col.type==='date'
+        ?['Lama→Baru','Baru→Lama']
+        :['A→Z','Z→A'];
+
+    const current=sortKey===col.key?sortDir:null;
+
+    const sortHtml=`
+        <div class="dd-sort">
+            <button class="dd-sort-btn ${current==='asc'?'on':''}" onclick="ddSetSort('asc')">${labels[0]}</button>
+            <button class="dd-sort-btn ${current==='desc'?'on':''}" onclick="ddSetSort('desc')">${labels[1]}</button>
+        </div>
+    `;
+
+    if(!col.filterable) return sortHtml;
+
+    return sortHtml+`
+        <div class="dd-divider"></div>
+        <div class="dd-search-wrap">
+            <i data-lucide="search" class="dd-search-icon"></i>
+            <input class="dd-search" type="text" placeholder="Cari ${escapeHtml(col.label)}..." oninput="ddSearch(this.value)">
+        </div>
+        <div class="dd-list" id="ddList"></div>
+        <div class="dd-footer">
+            <button class="dd-reset" onclick="ddReset()">Reset</button>
+            <button class="dd-apply" onclick="ddApply()">Terapkan</button>
+        </div>
+    `;
+}
+
+function ddVisible(){
+    return ddValues.filter(v=>
+        !ddQuery||getValueLabel(openColumn,v.value).toLowerCase().includes(ddQuery)
+    );
+}
+
+function renderDdList(){
+
+    const list=$('ddList');
+    if(!list) return;
+
+    const prevScroll=list.scrollTop;
+    const visible=ddVisible();
+
+    if(!visible.length){
+        list.innerHTML='<div class="dd-empty">Tidak ada nilai</div>';
+        return;
+    }
+
+    const allChecked=visible.every(v=>draftSelection.has(v.value));
+
+    list.innerHTML=`
+        <label class="dd-item dd-all">
+            <input type="checkbox" ${allChecked?'checked':''} onchange="ddToggleAll(this.checked)">
+            <span class="dd-item-label">(Pilih Semua)</span>
+        </label>
+        ${visible.map(v=>`
+            <label class="dd-item">
+                <input
+                    type="checkbox"
+                    ${draftSelection.has(v.value)?'checked':''}
+                    onchange="ddToggle(${ddValues.indexOf(v)},this.checked)"
+                >
+                <span class="dd-item-label">${escapeHtml(getValueLabel(openColumn,v.value))}</span>
+                <span class="dd-item-count">${v.count}</span>
+            </label>
+        `).join('')}
+    `;
+
+    list.scrollTop=prevScroll;
+}
+
+function ddSearch(query){
+    ddQuery=String(query).trim().toLowerCase();
+    renderDdList();
+}
+
+function ddToggle(index,checked){
+    const v=ddValues[index].value;
+    if(checked) draftSelection.add(v);
+    else draftSelection.delete(v);
+    renderDdList();
+}
+
+function ddToggleAll(checked){
+    ddVisible().forEach(v=>{
+        if(checked) draftSelection.add(v.value);
+        else draftSelection.delete(v.value);
+    });
+    renderDdList();
+}
+
+function ddSetSort(dir){
+    sortKey=openColumn;
+    sortDir=dir;
+    closeColumnMenu();
+    currentPage=1;
+    renderTable();
+}
+
+function ddApply(){
+    if(!openColumn) return;
+    const allSelected=ddValues.every(v=>draftSelection.has(v.value));
+    if(allSelected) delete columnFilters[openColumn];
+    else columnFilters[openColumn]=new Set(draftSelection);
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+function ddReset(){
+    if(!openColumn) return;
+    delete columnFilters[openColumn];
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+/* Tutup popup: klik di luar, scroll halaman, resize, Escape */
+document.addEventListener('mousedown',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    if(e.target.closest('[data-col-trigger]')) return;
+    closeColumnMenu();
+});
+
+window.addEventListener('scroll',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    closeColumnMenu();
+},true);
+
+window.addEventListener('resize',closeColumnMenu);
+
+document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+        closeColumnMenu();
+        closeNavigation();
+        renderTable();
+        document.activeElement?.blur();
+    }
+});
+
+
+/* =========================================================
+   NAMA VISIBLE PER SHIFT (mengikuti filter kolom shift)
+========================================================= */
+
+function getVisibleNames(row,key){
+    const names=row[key]||[];
+    const set=columnFilters[key];
+    return set?names.filter(n=>set.has(normName(n))):names;
+}
+
+
+/* =========================================================
+   RENDER HEADER, FILTER BAR, CHIP, STATISTIK
+========================================================= */
+
+function renderTableHead(){
+
+    $('tableHeadRow').innerHTML=COLUMNS.map(col=>{
+
+        const sorted=sortKey===col.key&&!!sortDir;
+        const filtered=!!columnFilters[col.key];
+        const active=sorted||filtered;
+
+        const sortIcon=
+            !sorted?'chevrons-up-down':
+            sortDir==='asc'?'chevron-up':'chevron-down';
+
+        return `
+            <th class="${col.headClass||''}" style="${col.width?`width:${col.width}`:''}">
+                <button
+                    class="col-header ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    <span>${col.label}</span>
+                    <span class="col-icons">
+                        <i data-lucide="${sortIcon}" class="col-sort-icon ${sorted?'on':''}"></i>
+                        ${col.filterable
+                            ?`<i data-lucide="filter" class="col-filter-icon ${filtered?'on':''}"></i>`
+                            :''}
+                    </span>
+                </button>
+            </th>
+        `;
+
+    }).join('');
 
 }
 
-function goToManpowerDashboard(){
+function renderMobileFilterBar(){
 
-    window.location.href =
-        'manpower.html';
+    $('mobileFilterBar').innerHTML=COLUMNS
+        .filter(c=>c.filterable)
+        .map(col=>{
+
+            const f=columnFilters[col.key];
+            const sorted=sortKey===col.key&&!!sortDir;
+            const active=!!f||sorted;
+
+            return `
+                <button
+                    class="mobile-filter-btn ${active?'active':''}"
+                    data-col-trigger
+                    onclick="openColumnMenu('${col.key}',this)"
+                >
+                    ${col.label}
+                    ${f?`<span class="mobile-filter-count">${f.size}</span>`:''}
+                    ${sorted
+                        ?`<i data-lucide="${sortDir==='asc'?'chevron-up':'chevron-down'}" class="w-3 h-3"></i>`
+                        :''}
+                </button>
+            `;
+
+        }).join('');
 
 }
 
-/* ================================
-   LOGO
-================================ */
+function renderActiveFilters(){
 
-function handleLogoError(){
+    const bar=$('activeFilters');
+    const keys=Object.keys(columnFilters);
 
-    document
-        .getElementById('companyLogo')
-        .classList
-        .add('hidden');
+    if(!keys.length){
+        bar.hidden=true;
+        bar.innerHTML='';
+        return;
+    }
 
-    document
-        .getElementById('logoFallback')
-        .classList
-        .remove('hidden');
+    bar.hidden=false;
+
+    bar.innerHTML=keys.map(key=>{
+
+        const labels=[...columnFilters[key]].map(v=>getValueLabel(key,v));
+
+        const text=labels.length
+            ?labels[0]+(labels.length>1?`, +${labels.length-1}`:'')
+            :'(Tidak ada)';
+
+        return `
+            <span class="active-filter-chip">
+                ${escapeHtml(getColumn(key).label)}: ${escapeHtml(text)}
+                <button onclick="removeColumnFilter('${key}')" aria-label="Hapus filter">×</button>
+            </span>
+        `;
+
+    }).join('')+`<button class="clear-all-btn" onclick="clearAllFilters()">Hapus Semua</button>`;
 
 }
 
-/* ================================
+function updateStatistics(rows){
+
+    let s1=0,s2=0,s3=0;
+
+    rows.forEach(row=>{
+        s1+=getVisibleNames(row,'shift1').length;
+        s2+=getVisibleNames(row,'shift2').length;
+        s3+=getVisibleNames(row,'shift3').length;
+    });
+
+    $('totalData').textContent=rows.length.toLocaleString('id-ID');
+    $('shift1Total').textContent=s1.toLocaleString('id-ID');
+    $('shift2Total').textContent=s2.toLocaleString('id-ID');
+    $('shift3Total').textContent=s3.toLocaleString('id-ID');
+    $('manpowerTotal').textContent=MASTER_MECHANICS.length;
+
+}
+
+function updateFilterMode(){ }
+
+
+/* =========================================================
+   CELL & DETAIL
+========================================================= */
+
+function getShiftSummary(row,key){ return ''; }
+
+function getShiftDetail(row,key){ return ''; }
+
+function toggleRow(id){ }
+
+
+/* =========================================================
+   RENDER TABLE + KARTU MOBILE
+========================================================= */
+
+function countCell(names,key){ return ''; }
+
+function todayKey(){
+    const now=new Date();
+    return `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+}
+
+/* Baris untuk satu periode. Hasilnya disimpan di cache. */
+function getPeriodRows(key){
+
+    if(periodCache[key]) return periodCache[key];
+
+    let rows;
+
+    if(key==='ALL'){
+        rows=masterRows;
+    }
+    else if(key==='TODAY'){
+        const today=todayKey();
+        rows=masterRows.filter(r=>dateKey(r.date)===today);
+    }
+    else{
+        const month=Number(key.replace('M',''))-1;
+        const year=new Date().getFullYear();
+        rows=masterRows.filter(r=>r.dt&&r.dt.getMonth()===month&&r.dt.getFullYear()===year);
+    }
+
+    periodCache[key]=rows.map((r,i)=>({...r,_idx:i}));
+
+    return periodCache[key];
+}
+
+/* Muat bulan lain di background (per bulan, tidak memblokir tampilan) */
+function prefetchPeriods(){
+
+    let i=0;
+
+    const step=()=>{
+
+        if(i>=MONTH_PERIOD_KEYS.length){
+            updatePeriodOptions();
+            return;
+        }
+
+        getPeriodRows(MONTH_PERIOD_KEYS[i]);
+        i++;
+        updatePeriodOptions();
+        setTimeout(step,0);
+
+    };
+
+    setTimeout(step,0);
+
+}
+
+/* Bulan tanpa data dinonaktifkan di dropdown (hanya setelah cache siap) */
+function updatePeriodOptions(){
+
+    const selector=$('periodSelector');
+
+    MONTH_PERIOD_KEYS.forEach(key=>{
+        if(!periodCache[key]) return;
+        const option=selector.querySelector(`option[value="${key}"]`);
+        if(!option) return;
+        const empty=periodCache[key].length===0;
+        option.disabled=empty;
+        option.textContent=PERIOD_LABELS[key]+(empty?' (kosong)':'');
+    });
+
+}
+
+function setPeriod(key){
+
+    currentPeriod=key;
+    $('periodSelector').value=key;
+
+    allData=getPeriodRows(key);
+    rowsView=[...allData];
+
+    columnFilters={};
+    sortKey='date';
+    sortDir='desc';
+    currentPage=1;
+
+    renderTable();
+
+}
+
+function changePeriod(){
+    setPeriod($('periodSelector').value);
+}
+
+/* Sel shift: jumlah + daftar nama dalam bentuk chip (terlihat langsung, tanpa klik) */
+function shiftCell(row,key){
+
+    const names=getVisibleNames(row,key);
+    const meta=SHIFT_META[key];
+
+    if(!names.length){
+        return `
+            <div class="shift-cell">
+                ${countCell(names,key)}
+                <div class="mp-empty">${columnFilters[key]?'Tidak sesuai filter':'Tidak ada man power'}</div>
+            </div>`;
+    }
+
+    return `
+        <div class="shift-cell">
+            ${countCell(names,key)}
+            <div class="name-chips">
+                ${names.map(n=>`<span class="name-chip"><span class="shift-dot ${meta.dot}"></span>${escapeHtml(n)}</span>`).join('')}
+            </div>
+        </div>`;
+}
+
+/* Sel tanggal: tanggal, hari, dan penanda hari ini */
+function dateCell(row){
+
+    const d=parseDate(row.date);
+    const weekday=d?WEEKDAYS[d.getDay()]:'';
+    const today=isToday(row.date);
+
+    return `
+        <div class="date-cell">
+            <div class="date-main">${formatDate(row.date)}</div>
+            <div class="date-sub">${weekday}${today?' · <span class="today-tag">Hari ini</span>':''}</div>
+        </div>`;
+}
+
+function renderTable(){
+
+    renderTableHead();
+    renderMobileFilterBar();
+    renderActiveFilters();
+    updateStatistics(rowsView);
+
+    const tbody=$('tableBody');
+    const mobileList=$('mobileDataList');
+
+    tbody.innerHTML='';
+    mobileList.innerHTML='';
+
+    const sorted=getSortedData(rowsView);
+    const total=sorted.length;
+    const totalPages=Math.max(1,Math.ceil(total/ROWS_PER_PAGE));
+
+    /* Saat pertama dibuka: pindah ke halaman yang memuat tanggal hari ini */
+    if(pendingTodayPage){
+        pendingTodayPage=false;
+        const todayIdx=sorted.findIndex(row=>isToday(row.date));
+        if(todayIdx>=0) currentPage=Math.floor(todayIdx/ROWS_PER_PAGE)+1;
+    }
+
+    if(currentPage>totalPages) currentPage=totalPages;
+
+    const start=(currentPage-1)*ROWS_PER_PAGE;
+    const end=Math.min(start+ROWS_PER_PAGE,total);
+    const pageData=sorted.slice(start,end);
+
+    $('emptyState').classList.toggle('show',pageData.length===0);
+
+    const filterActive=Object.values(columnFilters).some(set=>set&&set.size);
+    $('emptyText').textContent=filterActive
+        ?'Coba ubah filter pada header kolom.'
+        :'Belum ada jadwal man power untuk periode ini.';
+
+    pageData.forEach((row,index)=>{
+
+        const no=start+index+1;
+        const today=isToday(row.date);
+
+        /* ---- baris desktop: satu baris = satu hari, semua nama terlihat ---- */
+        const tr=document.createElement('tr');
+        tr.className='day-row'+(today?' today-row':'');
+
+        tr.innerHTML=`
+            <td class="text-center font-bold text-slate-400 align-top pt-4">${no}</td>
+            <td class="align-top pt-3">${dateCell(row)}</td>
+            <td class="shift1-head align-top">${shiftCell(row,'shift1')}</td>
+            <td class="off-head align-top">${shiftCell(row,'shift2')}</td>
+            <td class="shift3-head align-top">${shiftCell(row,'shift3')}</td>
+            <td class="shift2-head align-top">${shiftCell(row,'off')}</td>
+        `;
+
+        tbody.appendChild(tr);
+
+        /* ---- kartu mobile ---- */
+        const card=document.createElement('div');
+        card.className='mobile-data-card'+(today?' today':'');
+
+        card.innerHTML=`
+            <div class="mobile-card-header">
+                <div>
+                    <div class="mobile-unit">
+                        <span class="mobile-number">${no}</span>
+                        ${formatDate(row.date)}
+                    </div>
+                    <div class="mobile-date">${escapeHtml(WEEKDAYS[(parseDate(row.date)||new Date()).getDay()])}${today?' · <span class="today-tag">Hari ini</span>':''}</div>
+                </div>
+            </div>
+            <div class="mobile-shift-list">
+                ${['shift1','shift2','shift3','off'].map(key=>`
+                    <div class="mobile-shift-block ${SHIFT_META[key].detail}">
+                        <div class="mobile-shift-head">
+                            <span class="shift-dot ${SHIFT_META[key].dot}"></span>
+                            <span>${SHIFT_META[key].title}</span>
+                        </div>
+                        ${shiftCell(row,key)}
+                    </div>`).join('')}
+            </div>
+        `;
+
+        mobileList.appendChild(card);
+
+    });
+
+    updateResultInfo(total,start,end);
+    renderPagination(totalPages);
+    lucide.createIcons();
+
+}
+
+
+/* =========================================================
+   RESULT INFO
+========================================================= */
+
+function updateResultInfo(total,start,end){
+
+    const ri=$('resultInfo');
+    const pi=$('paginationInfo');
+
+    if(total===0){
+        ri.textContent='Tidak ada data yang sesuai filter.';
+        pi.textContent='0 hari';
+        return;
+    }
+
+    ri.textContent=`Menampilkan ${start+1}–${end} dari ${total} hari`;
+    pi.textContent=`${total} hari ditemukan`;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination(totalPages){
+
+    const c=$('pagination');
+    c.innerHTML='';
+
+    if(!rowsView.length) return;
+
+    const goTo=page=>{
+        currentPage=page;
+        renderTable();
+    };
+
+    const add=(content,cls,disabled,fn)=>{
+        const b=document.createElement('button');
+        b.className='pagination-button'+(cls?' '+cls:'');
+        b.disabled=!!disabled;
+        const s=String(content);
+        if(s.startsWith('<')) b.innerHTML=s;
+        else b.textContent=s;
+        if(fn) b.onclick=fn;
+        c.appendChild(b);
+    };
+
+    add('<i data-lucide="chevron-left" class="w-4 h-4"></i>','',currentPage===1,()=>{
+        if(currentPage>1) goTo(currentPage-1);
+    });
+
+    getPaginationPages(currentPage,totalPages).forEach(p=>{
+        if(p==='...'){
+            const s=document.createElement('span');
+            s.className='px-2 text-slate-400 text-xs';
+            s.textContent='...';
+            c.appendChild(s);
+            return;
+        }
+        add(p,p===currentPage?'active':'',false,()=>goTo(p));
+    });
+
+    add('<i data-lucide="chevron-right" class="w-4 h-4"></i>','',currentPage===totalPages,()=>{
+        if(currentPage<totalPages) goTo(currentPage+1);
+    });
+
+    lucide.createIcons();
+
+}
+
+function getPaginationPages(current,total){
+    if(total<=7) return Array.from({length:total},(_,i)=>i+1);
+    const p=[1];
+    if(current>4) p.push('...');
+    for(let i=Math.max(2,current-1);i<=Math.min(total-1,current+1);i++) p.push(i);
+    if(current<total-3) p.push('...');
+    p.push(total);
+    return p;
+}
+
+
+/* =========================================================
    LOAD DATA
-================================ */
+========================================================= */
 
 async function loadTable(){
 
     try{
 
-        const response =
-            await fetch(
-                API_URL,
-                {
-                    method:'GET',
-                    cache:'no-store'
-                }
-            );
+        const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
 
-        if(!response.ok){
+        if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
 
-            throw new Error(
-                `HTTP Error ${response.status}`
-            );
+        const result=await response.json();
 
+        if(result.success===false){
+            throw new Error(result.message||'API gagal mengembalikan data.');
         }
 
-        const result =
-            await response.json();
+        const raw=Array.isArray(result.data)?result.data:[];
 
-        if(
-            result.success === false
-        ){
+        masterRows=raw
+            .map((row,index)=>normalizeRow(row,index))
+            .filter(row=>row.date!=='')
+            .map(row=>({...row,dt:parseDate(row.date)}));
 
-            throw new Error(
-                result.message ||
-                'API gagal mengembalikan data.'
-            );
+        periodCache={};
 
-        }
+        /* Tampilkan jadwal hari ini dulu */
+        $('loading').style.display='none';
+        $('tableContent').classList.add('show');
 
-        apiData =
-            result;
+        pendingTodayPage=true;
+        setPeriod(currentPeriod);
 
-        const rawData =
-            Array.isArray(result.data)
-            ? result.data
-            : [];
-
-        allData =
-            rawData
-                .map(
-                    (
-                        row,
-                        index
-                    ) =>
-                        normalizeRow(
-                            row,
-                            index
-                        )
-                )
-                .filter(
-                    row =>
-                        row.date !== ''
-                );
-
-        updateStatistics(
-            allData
-        );
-
-        populateMechanicFilter();
-
-        populateMonthFilter(
-            allData
-        );
-
-        filteredData =
-            [...allData];
-
-        currentPage = 1;
-
-        expandedDate = null;
-
-        updateFilterMode();
-
-        renderTable();
-
-        document
-            .getElementById('loading')
-            .style
-            .display =
-                'none';
-
-        document
-            .getElementById('tableContent')
-            .classList
-            .add('show');
+        /* Periode lain disiapkan di background dan disimpan di cache */
+        prefetchPeriods();
 
     }
-
     catch(error){
 
-        console.error(
-            'Man Power API Error:',
-            error
-        );
+        console.error('Man Power API Error:',error);
 
-        document
-            .getElementById('loading')
-            .innerHTML = `
-                <div class="text-center">
-
-                    <div
-                        class="
-                            bg-red-50
-                            text-red-600
-                            p-4
-                            rounded-full
-                            inline-flex
-                        "
-                    >
-                        <i
-                            data-lucide="alert-circle"
-                            class="w-8 h-8"
-                        ></i>
-                    </div>
-
-                    <h3
-                        class="
-                            font-bold
-                            text-red-700
-                            mt-3
-                        "
-                    >
-                        Gagal memuat data
-                    </h3>
-
-                    <p
-                        class="
-                            text-xs
-                            text-slate-500
-                            mt-2
-                            max-w-md
-                        "
-                    >
-                        ${escapeHtml(
-                            error.message
-                        )}
-                    </p>
-
-                    <button
-                        onclick="loadTable()"
-                        class="
-                            mt-4
-                            bg-blue-800
-                            hover:bg-blue-700
-                            text-white
-                            font-bold
-                            px-5
-                            py-2.5
-                            rounded-xl
-                            text-sm
-                        "
-                    >
-                        Coba Lagi
-                    </button>
-
+        $('loading').innerHTML=`
+            <div class="text-center">
+                <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                    <i data-lucide="alert-circle" class="w-8 h-8"></i>
                 </div>
-            `;
+                <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+                <p class="text-xs text-slate-500 mt-2 max-w-md">${escapeHtml(error.message)}</p>
+                <button onclick="loadTable()" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
+                    Coba Lagi
+                </button>
+            </div>
+        `;
 
         lucide.createIcons();
 
@@ -2826,2449 +2666,18 @@ async function loadTable(){
 
 }
 
-/* ================================
-   NORMALIZE DATA
-================================ */
 
-function normalizeRow(
-    row,
-    index
-){
+/* =========================================================
+   START
+========================================================= */
 
-    const date =
-        String(
-            row['MAN POWER HARI INI'] ??
-            row.M ??
-            ''
-        )
-        .trim();
-
-    const values =
-        Object.keys(row)
-            .filter(
-                key =>
-                    /^[A-Z]{1,2}$/.test(key)
-            );
-
-    const shift1 =
-        values
-            .filter(
-                key =>
-                    columnNumber(key) >= 14 &&
-                    columnNumber(key) <= 24
-            )
-            .map(
-                key =>
-                    String(
-                        row[key] ?? ''
-                    ).trim()
-            )
-            .filter(Boolean);
-
-    const shift2 =
-        values
-            .filter(
-                key =>
-                    columnNumber(key) >= 25 &&
-                    columnNumber(key) <= 35
-            )
-            .map(
-                key =>
-                    String(
-                        row[key] ?? ''
-                    ).trim()
-            )
-            .filter(Boolean);
-
-    const shift3 =
-        values
-            .filter(
-                key =>
-                    columnNumber(key) >= 36 &&
-                    columnNumber(key) <= 46
-            )
-            .map(
-                key =>
-                    String(
-                        row[key] ?? ''
-                    ).trim()
-            )
-            .filter(Boolean);
-
-    const off =
-        getOffMechanics(
-            shift1,
-            shift2,
-            shift3
-        );
-
-    return {
-        date:date,
-        shift1:shift1,
-        shift2:shift2,
-        shift3:shift3,
-        off:off,
-        originalIndex:index
-    };
-
-}
-
-/* ================================
-   COLUMN NUMBER
-================================ */
-
-function columnNumber(column){
-
-    let number = 0;
-
-    for(
-        let i = 0;
-        i < column.length;
-        i++
-    ){
-
-        number =
-            number * 26 +
-            column.charCodeAt(i) -
-            64;
-
-    }
-
-    return number;
-
-}
-
-/* ================================
-   NORMALIZE NAME
-================================ */
-
-function normalizeName(name){
-
-    return String(
-        name ?? ''
-    )
-    .trim()
-    .toLowerCase()
-    .replace(
-        /\s+/g,
-        ' '
-    );
-
-}
-
-/* ================================
-   GET OFF MECHANICS
-================================ */
-
-function getOffMechanics(
-    shift1,
-    shift2,
-    shift3
-){
-
-    const workingNames =
-        new Set(
-            [
-                ...shift1,
-                ...shift2,
-                ...shift3
-            ]
-            .map(
-                name =>
-                    normalizeName(
-                        name
-                    )
-            )
-            .filter(Boolean)
-        );
-
-    return MASTER_MECHANICS.filter(
-        mechanic =>
-            !workingNames.has(
-                normalizeName(
-                    mechanic
-                )
-            )
-    );
-
-}
-
-/* ================================
-   STATISTICS
-================================ */
-
-function updateStatistics(data){
-
-    let shift1 = 0;
-    let shift2 = 0;
-    let shift3 = 0;
-
-    data.forEach(
-        row => {
-
-            shift1 +=
-                row.shift1.length;
-
-            shift2 +=
-                row.shift2.length;
-
-            shift3 +=
-                row.shift3.length;
-
-        }
-    );
-
-    document
-        .getElementById('totalData')
-        .textContent =
-            data.length;
-
-    document
-        .getElementById('shift1Total')
-        .textContent =
-            shift1;
-
-    document
-        .getElementById('shift2Total')
-        .textContent =
-            shift2;
-
-    document
-        .getElementById('shift3Total')
-        .textContent =
-            shift3;
-
-    document
-        .getElementById('manpowerTotal')
-        .textContent =
-            MASTER_MECHANICS.length;
-
-}
-
-/* ================================
-   MECHANIC FILTER
-================================ */
-
-function populateMechanicFilter(){
-
-    const select =
-        document
-            .getElementById(
-                'mechanicFilter'
-            );
-
-    select.innerHTML = `
-        <option value="">
-            Semua Mekanik
-        </option>
-    `;
-
-    MASTER_MECHANICS.forEach(
-        name => {
-
-            const option =
-                document.createElement(
-                    'option'
-                );
-
-            option.value =
-                name;
-
-            option.textContent =
-                name;
-
-            select.appendChild(
-                option
-            );
-
-        }
-    );
-
-}
-
-/* ================================
-   MONTH FILTER
-================================ */
-
-function populateMonthFilter(
-    data
-){
-
-    const select =
-        document
-            .getElementById(
-                'monthFilter'
-            );
-
-    const months = [
-        'Januari',
-        'Februari',
-        'Maret',
-        'April',
-        'Mei',
-        'Juni',
-        'Juli',
-        'Agustus',
-        'September',
-        'Oktober',
-        'November',
-        'Desember'
-    ];
-
-    const monthSet =
-        new Set();
-
-    data.forEach(
-        row => {
-
-            const date =
-                parseDate(
-                    row.date
-                );
-
-            if(!date){
-                return;
-            }
-
-            const year =
-                date.getFullYear();
-
-            const month =
-                String(
-                    date.getMonth() + 1
-                )
-                .padStart(
-                    2,
-                    '0'
-                );
-
-            monthSet.add(
-                `${year}-${month}`
-            );
-
-        }
-    );
-
-    const sortedMonths =
-        Array.from(
-            monthSet
-        )
-        .sort(
-            (
-                a,
-                b
-            ) =>
-                b.localeCompare(a)
-        );
-
-    select.innerHTML = `
-        <option value="">
-            Semua Bulan
-        </option>
-    `;
-
-    sortedMonths.forEach(
-        value => {
-
-            const [
-                year,
-                month
-            ] =
-                value.split('-');
-
-            const monthName =
-                months[
-                    Number(month) - 1
-                ];
-
-            const option =
-                document.createElement(
-                    'option'
-                );
-
-            option.value =
-                value;
-
-            option.textContent =
-                `${monthName} ${year}`;
-
-            select.appendChild(
-                option
-            );
-
-        }
-    );
-
-}
-
-/* ================================
-   CHECK FILTER ACTIVE
-================================ */
-
-function hasActiveFilter(){
-
-    const mechanic =
-        document
-            .getElementById(
-                'mechanicFilter'
-            )
-            ?.value
-            .trim();
-
-    const month =
-        document
-            .getElementById(
-                'monthFilter'
-            )
-            ?.value;
-
-    const shift =
-        document
-            .getElementById(
-                'shiftFilter'
-            )
-            ?.value;
-
-    return Boolean(
-        mechanic ||
-        month ||
-        shift
-    );
-
-}
-
-/* ================================
-   UPDATE FILTER MODE
-================================ */
-
-function updateFilterMode(){
-
-    const active =
-        hasActiveFilter();
-
-    const badge =
-        document
-            .getElementById(
-                'filterActiveBadge'
-            );
-
-    const instruction =
-        document
-            .getElementById(
-                'tableInstruction'
-            );
-
-    if(active){
-
-        badge.style.display =
-            'inline-flex';
-
-        instruction.innerHTML = `
-            <i
-                data-lucide="list"
-                class="w-3.5 h-3.5"
-            ></i>
-            Filter aktif — nama mekanik ditampilkan langsung.
-        `;
-
-    }
-
-    else{
-
-        badge.style.display =
-            'none';
-
-        instruction.innerHTML = `
-            <i
-                data-lucide="mouse-pointer-click"
-                class="w-3.5 h-3.5"
-            ></i>
-            Klik baris tanggal untuk melihat daftar nama mekanik lengkap.
-        `;
-
-    }
-
+window.addEventListener('load',()=>{
     lucide.createIcons();
-
-}
-
-/* ================================
-   FILTER
-================================ */
-
-function applyFilters(){
-
-    const mechanic =
-        document
-            .getElementById(
-                'mechanicFilter'
-            )
-            .value
-            .trim();
-
-    const month =
-        document
-            .getElementById(
-                'monthFilter'
-            )
-            .value;
-
-    const shift =
-        document
-            .getElementById(
-                'shiftFilter'
-            )
-            .value;
-
-    const mechanicNormalized =
-        normalizeName(
-            mechanic
-        );
-
-    filteredData =
-        allData.filter(
-            row => {
-
-                const dateObject =
-                    parseDate(
-                        row.date
-                    );
-
-                let matchMonth = true;
-
-                if(
-                    month &&
-                    dateObject
-                ){
-
-                    const rowMonth =
-                        `${dateObject.getFullYear()}-${String(
-                            dateObject.getMonth() + 1
-                        ).padStart(2,'0')}`;
-
-                    matchMonth =
-                        rowMonth ===
-                        month;
-
-                }
-
-                let matchMechanic = true;
-
-                if(
-                    mechanicNormalized
-                ){
-
-                    const allNames = [
-                        ...row.shift1,
-                        ...row.shift2,
-                        ...row.shift3,
-                        ...row.off
-                    ]
-                    .map(
-                        name =>
-                            normalizeName(
-                                name
-                            )
-                    );
-
-                    matchMechanic =
-                        allNames.includes(
-                            mechanicNormalized
-                        );
-
-                }
-
-                let matchShift = true;
-
-                if(
-                    shift === 'SHIFT 1'
-                ){
-
-                    matchShift =
-                        mechanicNormalized
-                        ? row.shift1.some(
-                            name =>
-                                normalizeName(
-                                    name
-                                ) ===
-                                mechanicNormalized
-                        )
-                        : row.shift1.length > 0;
-
-                }
-
-                else if(
-                    shift === 'SHIFT 2'
-                ){
-
-                    matchShift =
-                        mechanicNormalized
-                        ? row.shift2.some(
-                            name =>
-                                normalizeName(
-                                    name
-                                ) ===
-                                mechanicNormalized
-                        )
-                        : row.shift2.length > 0;
-
-                }
-
-                else if(
-                    shift === 'SHIFT 3'
-                ){
-
-                    matchShift =
-                        mechanicNormalized
-                        ? row.shift3.some(
-                            name =>
-                                normalizeName(
-                                    name
-                                ) ===
-                                mechanicNormalized
-                        )
-                        : row.shift3.length > 0;
-
-                }
-
-                else if(
-                    shift === 'OFF'
-                ){
-
-                    matchShift =
-                        mechanicNormalized
-                        ? row.off.some(
-                            name =>
-                                normalizeName(
-                                    name
-                                ) ===
-                                mechanicNormalized
-                        )
-                        : row.off.length > 0;
-
-                }
-
-                return (
-                    matchMonth &&
-                    matchMechanic &&
-                    matchShift
-                );
-
-            }
-        );
-
-    currentPage = 1;
-
-    expandedDate = null;
-
-    updateFilterMode();
-
-    renderTable();
-
-}
-
-/* ================================
-   RESET FILTER
-================================ */
-
-function resetFilters(){
-
-    document
-        .getElementById(
-            'mechanicFilter'
-        )
-        .value = '';
-
-    document
-        .getElementById(
-            'monthFilter'
-        )
-        .value = '';
-
-    document
-        .getElementById(
-            'shiftFilter'
-        )
-        .value = '';
-
-    filteredData =
-        [...allData];
-
-    currentPage = 1;
-
-    expandedDate = null;
-
-    updateFilterMode();
-
-    renderTable();
-
-}
-
-/* ================================
-   SORT
-================================ */
-
-function sortBy(key){
-
-    if(
-        sortKey !== key
-    ){
-
-        sortKey =
-            key;
-
-        sortDirection =
-            'desc';
-
-    }
-
-    else{
-
-        sortDirection =
-            sortDirection === 'desc'
-            ? 'asc'
-            : 'desc';
-
-    }
-
-    currentPage = 1;
-
-    expandedDate = null;
-
-    renderTable();
-
-}
-
-/* ================================
-   SORT DATA
-================================ */
-
-function getSortedData(data){
-
-    const result =
-        [...data];
-
-    if(
-        !sortKey ||
-        !sortDirection
-    ){
-        return result;
-    }
-
-    result.sort(
-        (
-            a,
-            b
-        ) => {
-
-            let valueA;
-            let valueB;
-
-            switch(sortKey){
-
-                case 'number':
-
-                    valueA =
-                        a.originalIndex;
-
-                    valueB =
-                        b.originalIndex;
-
-                    break;
-
-                case 'date':
-
-                    valueA =
-                        getDateSortValue(
-                            a.date
-                        );
-
-                    valueB =
-                        getDateSortValue(
-                            b.date
-                        );
-
-                    break;
-
-                case 'shift1':
-
-                    valueA =
-                        a.shift1.join(' ');
-
-                    valueB =
-                        b.shift1.join(' ');
-
-                    break;
-
-                case 'shift2':
-
-                    valueA =
-                        a.shift2.join(' ');
-
-                    valueB =
-                        b.shift2.join(' ');
-
-                    break;
-
-                case 'shift3':
-
-                    valueA =
-                        a.shift3.join(' ');
-
-                    valueB =
-                        b.shift3.join(' ');
-
-                    break;
-
-                case 'off':
-
-                    valueA =
-                        a.off.join(' ');
-
-                    valueB =
-                        b.off.join(' ');
-
-                    break;
-
-                default:
-                    return 0;
-
-            }
-
-            const emptyA =
-                valueA === '' ||
-                valueA === null ||
-                valueA === undefined;
-
-            const emptyB =
-                valueB === '' ||
-                valueB === null ||
-                valueB === undefined;
-
-            if(
-                emptyA &&
-                emptyB
-            ){
-                return 0;
-            }
-
-            if(emptyA){
-                return 1;
-            }
-
-            if(emptyB){
-                return -1;
-            }
-
-            let comparison = 0;
-
-            if(
-                typeof valueA === 'number' &&
-                typeof valueB === 'number'
-            ){
-
-                comparison =
-                    valueA -
-                    valueB;
-
-            }
-
-            else{
-
-                comparison =
-                    String(valueA)
-                    .localeCompare(
-                        String(valueB),
-                        'id',
-                        {
-                            numeric:true,
-                            sensitivity:'base'
-                        }
-                    );
-
-            }
-
-            return sortDirection === 'asc'
-                ? comparison
-                : -comparison;
-
-        }
-    );
-
-    return result;
-
-}
-
-/* ================================
-   DATE
-================================ */
-
-function getDateSortValue(value){
-
-    const date =
-        parseDate(
-            value
-        );
-
-    if(!date){
-        return 0;
-    }
-
-    return date.getTime();
-
-}
-
-function parseDate(value){
-
-    const text =
-        String(
-            value ?? ''
-        )
-        .trim();
-
-    const match =
-        text.match(
-            /^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/
-        );
-
-    if(!match){
-        return null;
-    }
-
-    const months = {
-        jan:0,
-        feb:1,
-        mar:2,
-        apr:3,
-        may:4,
-        jun:5,
-        jul:6,
-        aug:7,
-        sep:8,
-        oct:9,
-        nov:10,
-        dec:11
-    };
-
-    const month =
-        months[
-            match[2]
-                .substring(0,3)
-                .toLowerCase()
-        ];
-
-    if(
-        month === undefined
-    ){
-        return null;
-    }
-
-    return new Date(
-        Number(match[3]),
-        month,
-        Number(match[1])
-    );
-
-}
-
-function normalizeDateForInput(value){
-
-    const date =
-        parseDate(
-            value
-        );
-
-    if(!date){
-        return '';
-    }
-
-    const year =
-        date.getFullYear();
-
-    const month =
-        String(
-            date.getMonth() + 1
-        )
-        .padStart(
-            2,
-            '0'
-        );
-
-    const day =
-        String(
-            date.getDate()
-        )
-        .padStart(
-            2,
-            '0'
-        );
-
-    return `${year}-${month}-${day}`;
-
-}
-
-/* ================================
-   CURRENT DATE
-================================ */
-
-function isToday(value){
-
-    const date =
-        parseDate(
-            value
-        );
-
-    if(!date){
-        return false;
-    }
-
-    const today =
-        new Date();
-
-    return (
-        date.getFullYear() ===
-        today.getFullYear()
-        &&
-        date.getMonth() ===
-        today.getMonth()
-        &&
-        date.getDate() ===
-        today.getDate()
-    );
-
-}
-
-/* ================================
-   FORMAT DATE
-================================ */
-
-function formatDate(value){
-
-    if(!value){
-        return '-';
-    }
-
-    const date =
-        parseDate(
-            value
-        );
-
-    if(!date){
-
-        return escapeHtml(
-            value
-        );
-
-    }
-
-    const day =
-        String(
-            date.getDate()
-        )
-        .padStart(
-            2,
-            '0'
-        );
-
-    const month =
-        String(
-            date.getMonth() + 1
-        )
-        .padStart(
-            2,
-            '0'
-        );
-
-    const year =
-        date.getFullYear();
-
-    return `${day}/${month}/${year}`;
-
-}
-
-/* ================================
-   EXPAND / COLLAPSE
-================================ */
-
-function toggleRow(date){
-
-    if(
-        hasActiveFilter()
-    ){
-        return;
-    }
-
-    if(
-        expandedDate === date
-    ){
-
-        expandedDate =
-            null;
-
-    }
-
-    else{
-
-        expandedDate =
-            date;
-
-    }
-
-    renderTable();
-
-}
-
-/* ================================
-   GET CURRENT FILTERS
-================================ */
-
-function getCurrentFilters(){
-
-    return {
-
-        mechanic:
-            document
-                .getElementById(
-                    'mechanicFilter'
-                )
-                ?.value
-                .trim() || '',
-
-        month:
-            document
-                .getElementById(
-                    'monthFilter'
-                )
-                ?.value || '',
-
-        shift:
-            document
-                .getElementById(
-                    'shiftFilter'
-                )
-                ?.value || ''
-
-    };
-
-}
-
-/* ================================
-   FILTER DISPLAY NAMES
-================================ */
-
-function getVisibleNames(
-    names
-){
-
-    const filters =
-        getCurrentFilters();
-
-    let result =
-        [...names];
-
-    if(
-        filters.mechanic
-    ){
-
-        const normalized =
-            normalizeName(
-                filters.mechanic
-            );
-
-        result =
-            result.filter(
-                name =>
-                    normalizeName(
-                        name
-                    ) ===
-                    normalized
-            );
-
-    }
-
-    return result;
-
-}
-
-/* ================================
-   GET SHIFT DETAIL NAMES
-================================ */
-
-function getVisibleShiftNames(
-    names,
-    shiftType
-){
-
-    const filters =
-        getCurrentFilters();
-
-    if(
-        filters.shift &&
-        filters.shift !== shiftType
-    ){
-
-        return [];
-
-    }
-
-    return getVisibleNames(
-        names
-    );
-
-}
-
-/* ================================
-   SUMMARY SHIFT
-================================ */
-
-function getShiftSummary(
-    names,
-    type
-){
-
-    const filters =
-        getCurrentFilters();
-
-    const shiftType =
-        getShiftTypeFromClass(
-            type
-        );
-
-    if(
-        filters.shift &&
-        filters.shift !== shiftType
-    ){
-
-        return `
-            <div
-                class="
-                    filtered-hidden-summary
-                "
-            >
-                Filter aktif
-            </div>
-        `;
-
-    }
-
-    const visibleNames =
-        getVisibleNames(
-            names
-        );
-
-    const count =
-        visibleNames.length;
-
-    return `
-        <div
-            class="
-                shift-summary-card
-                ${type}
-            "
-        >
-
-            <div
-                class="
-                    shift-count
-                "
-            >
-                ${count}
-            </div>
-
-            <div
-                class="
-                    shift-label
-                "
-            >
-                Man Power
-            </div>
-
-        </div>
-    `;
-
-}
-
-function getShiftTypeFromClass(
-    type
-){
-
-    if(
-        type.includes('shift1')
-    ){
-        return 'SHIFT 1';
-    }
-
-    if(
-        type.includes('shift2')
-    ){
-        return 'SHIFT 2';
-    }
-
-    if(
-        type.includes('shift3')
-    ){
-        return 'SHIFT 3';
-    }
-
-    return 'OFF';
-
-}
-
-/* ================================
-   DETAIL SHIFT
-================================ */
-
-function getShiftDetail(
-    names,
-    type,
-    title,
-    dotClass,
-    shiftType
-){
-
-    const visibleNames =
-        getVisibleShiftNames(
-            names,
-            shiftType
-        );
-
-    let content = '';
-
-    if(
-        !visibleNames ||
-        !visibleNames.length
-    ){
-
-        const filters =
-            getCurrentFilters();
-
-        if(
-            filters.shift &&
-            filters.shift !== shiftType
-        ){
-
-            content = `
-                <div class="no-mechanic">
-                    Tidak ditampilkan karena filter shift.
-                </div>
-            `;
-
-        }
-
-        else if(
-            filters.mechanic
-        ){
-
-            content = `
-                <div class="no-mechanic">
-                    Mekanik tidak berada pada kategori ini.
-                </div>
-            `;
-
-        }
-
-        else{
-
-            content = `
-                <div class="no-mechanic">
-                    Tidak ada man power terdaftar.
-                </div>
-            `;
-
-        }
-
-    }
-
-    else{
-
-        content = `
-            <div
-                class="
-                    mechanic-list
-                "
-            >
-
-                ${
-                    visibleNames
-                        .map(
-                            name => `
-                                <div
-                                    class="
-                                        mechanic-name
-                                    "
-                                >
-                                    ${escapeHtml(
-                                        name
-                                    )}
-                                </div>
-                            `
-                        )
-                        .join('')
-                }
-
-            </div>
-        `;
-
-    }
-
-    return `
-        <div
-            class="
-                shift-detail
-                ${type}
-            "
-        >
-
-            <div
-                class="
-                    shift-detail-title
-                "
-            >
-
-                <span
-                    class="
-                        shift-dot
-                        ${dotClass}
-                    "
-                ></span>
-
-                <span>
-                    ${title}
-                    (${visibleNames.length} MP)
-                </span>
-
-            </div>
-
-            ${content}
-
-        </div>
-    `;
-
-}
-
-/* ================================
-   DIRECT FILTERED DETAIL
-================================ */
-
-function getDirectFilteredDetails(
-    row
-){
-
-    const filters =
-        getCurrentFilters();
-
-    const details = [];
-
-    if(
-        filters.shift === 'SHIFT 1'
-    ){
-
-        details.push(
-            getShiftDetail(
-                row.shift1,
-                'shift1',
-                'Shift 1',
-                'shift1-dot',
-                'SHIFT 1'
-            )
-        );
-
-    }
-
-    else if(
-        filters.shift === 'SHIFT 2'
-    ){
-
-        details.push(
-            getShiftDetail(
-                row.shift2,
-                'shift2',
-                'Shift 2',
-                'shift2-dot',
-                'SHIFT 2'
-            )
-        );
-
-    }
-
-    else if(
-        filters.shift === 'SHIFT 3'
-    ){
-
-        details.push(
-            getShiftDetail(
-                row.shift3,
-                'shift3',
-                'Shift 3',
-                'shift3-dot',
-                'SHIFT 3'
-            )
-        );
-
-    }
-
-    else if(
-        filters.shift === 'OFF'
-    ){
-
-        details.push(
-            getShiftDetail(
-                row.off,
-                'off',
-                'OFF',
-                'off-dot',
-                'OFF'
-            )
-        );
-
-    }
-
-    else{
-
-        details.push(
-
-            getShiftDetail(
-                row.shift1,
-                'shift1',
-                'Shift 1',
-                'shift1-dot',
-                'SHIFT 1'
-            ),
-
-            getShiftDetail(
-                row.shift2,
-                'shift2',
-                'Shift 2',
-                'shift2-dot',
-                'SHIFT 2'
-            ),
-
-            getShiftDetail(
-                row.shift3,
-                'shift3',
-                'Shift 3',
-                'shift3-dot',
-                'SHIFT 3'
-            ),
-
-            getShiftDetail(
-                row.off,
-                'off',
-                'OFF',
-                'off-dot',
-                'OFF'
-            )
-
-        );
-
-    }
-
-    return details.join('');
-
-}
-
-/* ================================
-   RENDER TABLE
-================================ */
-
-function renderTable(){
-
-    const tbody =
-        document
-            .getElementById(
-                'tableBody'
-            );
-
-    const emptyState =
-        document
-            .getElementById(
-                'emptyState'
-            );
-
-    tbody.innerHTML = '';
-
-    const sortedData =
-        getSortedData(
-            filteredData
-        );
-
-    const total =
-        sortedData.length;
-
-    const totalPages =
-        Math.max(
-            1,
-            Math.ceil(
-                total /
-                ROWS_PER_PAGE
-            )
-        );
-
-    if(
-        currentPage >
-        totalPages
-    ){
-
-        currentPage =
-            totalPages;
-
-    }
-
-    const start =
-        (
-            currentPage -
-            1
-        ) *
-        ROWS_PER_PAGE;
-
-    const end =
-        Math.min(
-            start +
-            ROWS_PER_PAGE,
-            total
-        );
-
-    const pageData =
-        sortedData.slice(
-            start,
-            end
-        );
-
-    const filterActive =
-        hasActiveFilter();
-
-    if(
-        !pageData.length
-    ){
-
-        emptyState
-            .classList
-            .add('show');
-
-    }
-
-    else{
-
-        emptyState
-            .classList
-            .remove('show');
-
-        pageData.forEach(
-            (
-                row,
-                index
-            ) => {
-
-                const number =
-                    start +
-                    index +
-                    1;
-
-                const isExpanded =
-                    expandedDate ===
-                    row.date;
-
-                const today =
-                    isToday(
-                        row.date
-                    );
-
-                const tr =
-                    document
-                        .createElement(
-                            'tr'
-                        );
-
-                tr.className =
-                    'summary-row' +
-                    (
-                        isExpanded
-                        ? ' expanded-row'
-                        : ''
-                    ) +
-                    (
-                        today
-                        ? ' today-row'
-                        : ''
-                    ) +
-                    (
-                        filterActive
-                        ? ' no-collapse'
-                        : ''
-                    );
-
-                if(
-                    !filterActive
-                ){
-
-                    tr.onclick =
-                        () =>
-                            toggleRow(
-                                row.date
-                            );
-
-                }
-
-                const expandIndicator =
-                    filterActive
-                    ? `
-                        <div
-                            class="
-                                expand-indicator
-                                disabled
-                            "
-                        >
-                            <i
-                                data-lucide="list"
-                                class="w-4 h-4"
-                            ></i>
-                        </div>
-                    `
-                    : `
-                        <div
-                            class="
-                                expand-indicator
-                                ${
-                                    isExpanded
-                                    ? 'open'
-                                    : ''
-                                }
-                            "
-                        >
-                            <i
-                                data-lucide="chevron-down"
-                                class="w-4 h-4"
-                            ></i>
-                        </div>
-                    `;
-
-                tr.innerHTML = `
-
-                    <td
-                        class="
-                            text-center
-                            font-bold
-                            text-slate-400
-                        "
-                    >
-                        ${number}
-                    </td>
-
-                    <td>
-
-                        <div
-                            class="
-                                flex
-                                items-center
-                                gap-3
-                            "
-                        >
-
-                            ${expandIndicator}
-
-                            <div>
-
-                                <div
-                                    class="
-                                        font-black
-                                        text-slate-700
-                                        text-[11px]
-                                    "
-                                >
-                                    ${formatDate(
-                                        row.date
-                                    )}
-                                </div>
-
-                                ${
-                                    today
-                                    ? `
-                                        <div
-                                            class="
-                                                today-badge
-                                            "
-                                        >
-
-                                            <i
-                                                data-lucide="calendar-days"
-                                                class="w-3 h-3"
-                                            ></i>
-
-                                            Hari Ini
-
-                                        </div>
-                                    `
-                                    : filterActive
-                                    ? `
-                                        <div
-                                            class="
-                                                text-[9px]
-                                                text-blue-500
-                                                font-bold
-                                                mt-1
-                                            "
-                                        >
-                                            Detail filter ditampilkan
-                                        </div>
-                                    `
-                                    : `
-                                        <div
-                                            class="
-                                                text-[9px]
-                                                text-slate-400
-                                                font-medium
-                                                mt-1
-                                            "
-                                        >
-                                            Klik untuk melihat detail
-                                        </div>
-                                    `
-                                }
-
-                            </div>
-
-                        </div>
-
-                    </td>
-
-                    <td class="shift1-head">
-
-                        ${getShiftSummary(
-                            row.shift1,
-                            'shift1-summary'
-                        )}
-
-                    </td>
-
-                    <td class="shift2-head">
-
-                        ${getShiftSummary(
-                            row.shift2,
-                            'shift2-summary'
-                        )}
-
-                    </td>
-
-                    <td class="shift3-head">
-
-                        ${getShiftSummary(
-                            row.shift3,
-                            'shift3-summary'
-                        )}
-
-                    </td>
-
-                    <td class="off-head">
-
-                        ${getShiftSummary(
-                            row.off,
-                            'off-summary'
-                        )}
-
-                    </td>
-
-                `;
-
-                tbody.appendChild(
-                    tr
-                );
-
-                if(
-                    isExpanded &&
-                    !filterActive
-                ){
-
-                    const detailRow =
-                        document
-                            .createElement(
-                                'tr'
-                            );
-
-                    detailRow.className =
-                        'expanded-row';
-
-                    detailRow.innerHTML = `
-
-                        <td
-                            colspan="6"
-                            class="detail-cell"
-                        >
-
-                            <div
-                                class="
-                                    detail-container
-                                "
-                            >
-
-                                ${getShiftDetail(
-                                    row.shift1,
-                                    'shift1',
-                                    'Shift 1',
-                                    'shift1-dot',
-                                    'SHIFT 1'
-                                )}
-
-                                ${getShiftDetail(
-                                    row.shift2,
-                                    'shift2',
-                                    'Shift 2',
-                                    'shift2-dot',
-                                    'SHIFT 2'
-                                )}
-
-                                ${getShiftDetail(
-                                    row.shift3,
-                                    'shift3',
-                                    'Shift 3',
-                                    'shift3-dot',
-                                    'SHIFT 3'
-                                )}
-
-                                ${getShiftDetail(
-                                    row.off,
-                                    'off',
-                                    'OFF',
-                                    'off-dot',
-                                    'OFF'
-                                )}
-
-                            </div>
-
-                        </td>
-
-                    `;
-
-                    tbody.appendChild(
-                        detailRow
-                    );
-
-                }
-
-                if(
-                    filterActive
-                ){
-
-                    const detailRow =
-                        document
-                            .createElement(
-                                'tr'
-                            );
-
-                    detailRow.className =
-                        'expanded-row';
-
-                    detailRow.innerHTML = `
-
-                        <td
-                            colspan="6"
-                            class="detail-cell"
-                        >
-
-                            <div
-                                class="
-                                    detail-container
-                                    filtered-detail
-                                "
-                                style="
-                                    grid-template-columns:
-                                    ${
-                                        getCurrentFilters().shift
-                                        ? 'minmax(0,1fr)'
-                                        : 'repeat(4,minmax(0,1fr))'
-                                    };
-                                "
-                            >
-
-                                ${getDirectFilteredDetails(
-                                    row
-                                )}
-
-                            </div>
-
-                        </td>
-
-                    `;
-
-                    tbody.appendChild(
-                        detailRow
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-    updateResultInfo(
-        total,
-        start,
-        end
-    );
-
-    renderPagination(
-        totalPages
-    );
-
-    updateSortIndicators();
-
-    lucide.createIcons();
-
-}
-
-/* ================================
-   RESULT INFO
-================================ */
-
-function updateResultInfo(
-    total,
-    start,
-    end
-){
-
-    const resultInfo =
-        document
-            .getElementById(
-                'resultInfo'
-            );
-
-    const paginationInfo =
-        document
-            .getElementById(
-                'paginationInfo'
-            );
-
-    if(
-        total === 0
-    ){
-
-        resultInfo.textContent =
-            'Tidak ada data yang sesuai filter.';
-
-        paginationInfo.textContent =
-            '0 hari';
-
-        return;
-
-    }
-
-    resultInfo.textContent =
-        `Menampilkan ${start + 1}–${end} dari ${total} hari`;
-
-    paginationInfo.textContent =
-        `${total} hari ditemukan`;
-
-}
-
-/* ================================
-   PAGINATION
-================================ */
-
-function renderPagination(
-    totalPages
-){
-
-    const container =
-        document
-            .getElementById(
-                'pagination'
-            );
-
-    container.innerHTML = '';
-
-    if(
-        filteredData.length === 0
-    ){
-        return;
-    }
-
-    const prev =
-        document.createElement(
-            'button'
-        );
-
-    prev.className =
-        'pagination-button';
-
-    prev.innerHTML = `
-        <i
-            data-lucide="chevron-left"
-            class="w-4 h-4"
-        ></i>
-    `;
-
-    prev.disabled =
-        currentPage === 1;
-
-    prev.onclick =
-        () => {
-
-            if(
-                currentPage > 1
-            ){
-
-                currentPage--;
-
-                expandedDate =
-                    null;
-
-                renderTable();
-
-            }
-
-        };
-
-    container.appendChild(
-        prev
-    );
-
-    const pages =
-        getPaginationPages(
-            currentPage,
-            totalPages
-        );
-
-    pages.forEach(
-        page => {
-
-            if(
-                page === '...'
-            ){
-
-                const span =
-                    document.createElement(
-                        'span'
-                    );
-
-                span.className =
-                    'px-2 text-slate-400 text-xs';
-
-                span.textContent =
-                    '...';
-
-                container.appendChild(
-                    span
-                );
-
-                return;
-
-            }
-
-            const button =
-                document.createElement(
-                    'button'
-                );
-
-            button.className =
-                'pagination-button' +
-                (
-                    page === currentPage
-                    ? ' active'
-                    : ''
-                );
-
-            button.textContent =
-                page;
-
-            button.onclick =
-                () => {
-
-                    currentPage =
-                        page;
-
-                    expandedDate =
-                        null;
-
-                    renderTable();
-
-                };
-
-            container.appendChild(
-                button
-            );
-
-        }
-    );
-
-    const next =
-        document.createElement(
-            'button'
-        );
-
-    next.className =
-        'pagination-button';
-
-    next.innerHTML = `
-        <i
-            data-lucide="chevron-right"
-            class="w-4 h-4"
-        ></i>
-    `;
-
-    next.disabled =
-        currentPage === totalPages;
-
-    next.onclick =
-        () => {
-
-            if(
-                currentPage <
-                totalPages
-            ){
-
-                currentPage++;
-
-                expandedDate =
-                    null;
-
-                renderTable();
-
-            }
-
-        };
-
-    container.appendChild(
-        next
-    );
-
-    lucide.createIcons();
-
-}
-
-/* ================================
-   PAGINATION PAGES
-================================ */
-
-function getPaginationPages(
-    current,
-    total
-){
-
-    if(
-        total <= 7
-    ){
-
-        return Array.from(
-            {
-                length:total
-            },
-            (
-                _,
-                i
-            ) =>
-                i + 1
-        );
-
-    }
-
-    const pages = [];
-
-    pages.push(1);
-
-    if(
-        current > 4
-    ){
-
-        pages.push(
-            '...'
-        );
-
-    }
-
-    const start =
-        Math.max(
-            2,
-            current - 1
-        );
-
-    const end =
-        Math.min(
-            total - 1,
-            current + 1
-        );
-
-    for(
-        let i = start;
-        i <= end;
-        i++
-    ){
-
-        pages.push(i);
-
-    }
-
-    if(
-        current <
-        total - 3
-    ){
-
-        pages.push(
-            '...'
-        );
-
-    }
-
-    pages.push(
-        total
-    );
-
-    return pages;
-
-}
-
-/* ================================
-   SORT INDICATORS
-================================ */
-
-function updateSortIndicators(){
-
-    const buttons =
-        document.querySelectorAll(
-            '[data-sort-key]'
-        );
-
-    buttons.forEach(
-        button => {
-
-            const key =
-                button.getAttribute(
-                    'data-sort-key'
-                );
-
-            const icon =
-                button.querySelector(
-                    '.sort-icon'
-                );
-
-            button.classList.remove(
-                'active'
-            );
-
-            if(!icon){
-                return;
-            }
-
-            icon.setAttribute(
-                'data-lucide',
-                'chevrons-up-down'
-            );
-
-            if(
-                sortKey === key &&
-                sortDirection === 'asc'
-            ){
-
-                button.classList.add(
-                    'active'
-                );
-
-                icon.setAttribute(
-                    'data-lucide',
-                    'chevron-up'
-                );
-
-            }
-
-            else if(
-                sortKey === key &&
-                sortDirection === 'desc'
-            ){
-
-                button.classList.add(
-                    'active'
-                );
-
-                icon.setAttribute(
-                    'data-lucide',
-                    'chevron-down'
-                );
-
-            }
-
-        }
-    );
-
-    lucide.createIcons();
-
-}
-
-/* ================================
-   ESCAPE HTML
-================================ */
-
-function escapeHtml(value){
-
-    return String(
-        value ?? ''
-    )
-    .replace(
-        /&/g,
-        '&amp;'
-    )
-    .replace(
-        /</g,
-        '&lt;'
-    )
-    .replace(
-        />/g,
-        '&gt;'
-    )
-    .replace(
-        /"/g,
-        '&quot;'
-    )
-    .replace(
-        /'/g,
-        '&#039;'
-    );
-
-}
-
-/* ================================
-   INITIALIZE
-================================ */
-
-window.addEventListener(
-    'load',
-    () => {
-
-        lucide.createIcons();
-
-        loadTable();
-
-    }
-);
-
-/* ================================
-   ESC KEY
-================================ */
-
-document.addEventListener(
-    'keydown',
-    event => {
-
-        if(
-            event.key === 'Escape'
-        ){
-
-            expandedDate =
-                null;
-
-            closeNavigation();
-
-            renderTable();
-
-            document
-                .activeElement
-                ?.blur();
-
-        }
-
-    }
-);
+    loadTable();
+});
 
 </script>
-
+<script src="nav.js"></script>
+   <script src="datacache.js"></script>
 </body>
 </html>
-
