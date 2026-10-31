@@ -1204,41 +1204,7 @@ tbody tr:last-child td{border-bottom:none}
      HEADER
 ====================================================== -->
 
-<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
-
-    <div class="mb-4 logo-wrapper">
-        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-            <img
-                src="default_logo.png"
-                alt="Logo PT TSI"
-                class="w-full h-full object-contain"
-                id="companyLogo"
-                onerror="handleLogoError()"
-            >
-            <div
-                id="logoFallback"
-                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
-            >
-                <span class="font-black text-2xl">TSI</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
-        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
-            PAPERLESS PROJECT
-        </h1>
-        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
-            PT TATSUMI SERUNI INDONESIA
-        </h2>
-    </div>
-
-    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
-        Digitalization Initiative v2.0
-    </div>
-
-</header>
+<div id="siteHeader"></div>
 
 
 <!-- ======================================================
@@ -1318,7 +1284,7 @@ tbody tr:last-child td{border-bottom:none}
     <div id="tableContent">
 
         <!-- STAT CARDS (dihitung dari baris yang lolos filter) -->
-        <div class="grid grid-cols-5 gap-4 mb-6">
+        <div class="stats-row grid grid-cols-5 gap-4 mb-6">
 
             <div class="stat-card">
                 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Unit</p>
@@ -1326,23 +1292,35 @@ tbody tr:last-child td{border-bottom:none}
             </div>
 
             <div class="stat-card">
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Wheel Loader</p>
-                <p id="wheelLoaderTotal" class="text-3xl font-black text-indigo-600 mt-2">-</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Wheelloader</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="wheelLoaderTotal" class="text-3xl font-black text-indigo-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
             <div class="stat-card">
                 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Forklift</p>
-                <p id="forkliftTotal" class="text-3xl font-black text-amber-600 mt-2">-</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="forkliftTotal" class="text-3xl font-black text-amber-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
             <div class="stat-card">
                 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Dumptruck</p>
-                <p id="dumptruckTotal" class="text-3xl font-black text-red-700 mt-2">-</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="dumptruckTotal" class="text-3xl font-black text-red-700">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
             <div class="stat-card">
                 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Excavator</p>
-                <p id="excavatorTotal" class="text-3xl font-black text-emerald-600 mt-2">-</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="excavatorTotal" class="text-3xl font-black text-emerald-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
         </div>
@@ -1408,17 +1386,7 @@ tbody tr:last-child td{border-bottom:none}
 <div id="colDropdown" class="col-dropdown" hidden></div>
 
 <!-- FOOTER -->
-<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
-    <p class="font-bold text-slate-500 tracking-tight uppercase">
-        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
-    </p>
-    <p class="text-[10px] mt-1">
-        System Architecture by:
-        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
-        |
-        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
-    </p>
-</footer>
+<div id="siteFooter"></div>
 
 
 <!-- RINGKASAN BRAND -->
@@ -2489,7 +2457,9 @@ document.addEventListener('keydown',e=>{
 });
 
 </script>
+
+<script src="layout.js"></script>
 <script src="nav.js"></script>
-   <script src="datacache.js"></script>
+<script src="datacache.js"></script>
 </body>
 </html>
