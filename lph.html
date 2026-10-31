@@ -764,41 +764,7 @@ body{
      HEADER (tidak diubah)
 ====================================================== -->
 
-<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
-
-    <div class="mb-4 logo-wrapper">
-        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-            <img
-                src="default_logo.png"
-                alt="Logo PT TSI"
-                class="w-full h-full object-contain"
-                id="companyLogo"
-                onerror="handleLogoError()"
-            >
-            <div
-                id="logoFallback"
-                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
-            >
-                <span class="font-black text-2xl">TSI</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
-        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
-            PAPERLESS PROJECT
-        </h1>
-        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
-            PT TATSUMI SERUNI INDONESIA
-        </h2>
-    </div>
-
-    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
-        Digitalization Initiative v2.0
-    </div>
-
-</header>
+<div id="siteHeader"></div>
 
 
 <!-- ======================================================
@@ -846,46 +812,53 @@ body{
     <div id="tableContent">
 
         <!-- KPI: total, open, close -->
-        <div class="kpi-row main">
+        <div class="stats-grid">
 
             <div class="stat-card">
-                <p class="stat-label">Total Laporan</p>
-                <p id="kpiTotal" class="stat-value text-blue-900">-</p>
-            </div>
-
-            <div class="stat-card">
-                <p class="stat-label">Open</p>
-                <p id="kpiOpen" class="stat-value" style="color:#991b1b">-</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Laporan</p>
+                <p id="kpiTotal" class="text-3xl font-black text-blue-900 mt-2">-</p>
             </div>
 
             <div class="stat-card">
-                <p class="stat-label">Close</p>
-                <p id="kpiClose" class="stat-value" style="color:#166534">-</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Open</p>
+                <p id="kpiOpen" class="text-3xl font-black text-red-800 mt-2">-</p>
             </div>
 
-        </div>
-
-        <!-- KPI: satu kartu per jenis unit -->
-        <div class="kpi-row units">
-
-            <div class="stat-card" style="border-top:3px solid #2563eb">
-                <p class="stat-label">Wheelloader <span class="unit-code">W</span></p>
-                <p id="kpiW" class="stat-value" style="color:#2563eb">-</p>
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Close</p>
+                <p id="kpiClose" class="text-3xl font-black text-green-800 mt-2">-</p>
             </div>
 
-            <div class="stat-card" style="border-top:3px solid #d97706">
-                <p class="stat-label">Forklift <span class="unit-code">FD</span></p>
-                <p id="kpiF" class="stat-value" style="color:#d97706">-</p>
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Wheelloader</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="kpiW" class="text-3xl font-black text-indigo-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
-            <div class="stat-card" style="border-top:3px solid #b91c1c">
-                <p class="stat-label">Dumptruck <span class="unit-code">D</span></p>
-                <p id="kpiD" class="stat-value" style="color:#b91c1c">-</p>
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Forklift</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="kpiF" class="text-3xl font-black text-amber-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
-            <div class="stat-card" style="border-top:3px solid #059669">
-                <p class="stat-label">Excavator <span class="unit-code">E</span></p>
-                <p id="kpiE" class="stat-value" style="color:#059669">-</p>
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Dumptruck</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="kpiD" class="text-3xl font-black text-red-700">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Excavator</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="kpiE" class="text-3xl font-black text-emerald-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
         </div>
@@ -989,17 +962,7 @@ body{
 <div id="chartTip" class="chart-tip"></div>
 
 <!-- FOOTER (tidak diubah) -->
-<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
-    <p class="font-bold text-slate-500 tracking-tight uppercase">
-        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
-    </p>
-    <p class="text-[10px] mt-1">
-        System Architecture by:
-        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
-        |
-        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
-    </p>
-</footer>
+<div id="siteFooter"></div>
 
 
 <script>
@@ -1899,6 +1862,7 @@ window.addEventListener('load',()=>{
 });
 
 </script>
+<script src="layout.js"></script>
 <script src="nav.js"></script>
 <script src="datacache.js"></script>
 </body>
