@@ -814,41 +814,7 @@ body{
      HEADER (tidak diubah)
 ====================================================== -->
 
-<header class="w-full mb-8 pb-6 border-b-2 border-slate-100 flex flex-col items-center">
-
-    <div class="mb-4 logo-wrapper">
-        <div class="w-24 h-24 flex items-center justify-center bg-white rounded-2xl logo-shadow overflow-hidden p-2">
-            <img
-                src="default_logo.png"
-                alt="Logo PT TSI"
-                class="w-full h-full object-contain"
-                id="companyLogo"
-                onerror="handleLogoError()"
-            >
-            <div
-                id="logoFallback"
-                class="hidden flex-col items-center justify-center bg-blue-900 w-full h-full text-white"
-            >
-                <span class="font-black text-2xl">TSI</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="color-primary text-white px-8 py-4 rounded-2xl shadow-lg flex flex-col items-center gap-1">
-        <h1 class="text-xl sm:text-2xl font-black uppercase tracking-[0.1em] text-center">
-            PAPERLESS PROJECT
-        </h1>
-        <div class="h-0.5 w-16 bg-amber-500 rounded-full my-1"></div>
-        <h2 class="text-sm sm:text-lg font-bold uppercase tracking-widest text-blue-100 text-center">
-            PT TATSUMI SERUNI INDONESIA
-        </h2>
-    </div>
-
-    <div class="mt-3 text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase text-center">
-        Digitalization Initiative v2.0
-    </div>
-
-</header>
+<div id="siteHeader"></div>
 
 
 <!-- ======================================================
@@ -923,23 +889,35 @@ body{
             </div>
 
             <div class="stat-card">
-                <p class="stat-label">Forklift <span class="stat-unit">FD</span></p>
-                <p id="forkliftTotal" class="stat-value text-amber-600">-</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Wheelloader</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="wheelloaderTotal" class="text-3xl font-black text-indigo-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
             <div class="stat-card">
-                <p class="stat-label">Wheelloader <span class="stat-unit">W</span></p>
-                <p id="wheelloaderTotal" class="stat-value text-indigo-600">-</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Forklift</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="forkliftTotal" class="text-3xl font-black text-amber-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
             <div class="stat-card">
-                <p class="stat-label">Dumptruck <span class="stat-unit">D</span></p>
-                <p id="dumptruckTotal" class="stat-value text-red-700">-</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Dumptruck</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="dumptruckTotal" class="text-3xl font-black text-red-700">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
             <div class="stat-card">
-                <p class="stat-label">Excavator <span class="stat-unit">E</span></p>
-                <p id="excavatorTotal" class="stat-value text-emerald-600">-</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Excavator</p>
+                <div class="flex items-end gap-2 mt-2">
+                    <p id="excavatorTotal" class="text-3xl font-black text-emerald-600">-</p>
+                    <span class="mb-1 text-[11px] font-black text-slate-400">unit</span>
+                </div>
             </div>
 
         </div>
@@ -953,6 +931,7 @@ body{
                     <div>
                         <h3 class="panel-title">Tren Corrective Maintenance per Bulan</h3>
                         <p id="trendSubtitle" class="panel-subtitle">-</p>
+                        <div id="trendViewToggle" class="legend" style="margin-top:8px"></div>
                     </div>
                 </div>
                 <div id="trendChart" class="chart-wrap"></div>
@@ -1058,17 +1037,7 @@ body{
 <div id="chartTip" class="chart-tip"></div>
 
 <!-- FOOTER (tidak diubah) -->
-<footer class="mt-8 text-center text-slate-400 px-4 pb-8">
-    <p class="font-bold text-slate-500 tracking-tight uppercase">
-        &copy; 2026 Paperless Project - PT TSI. All rights reserved.
-    </p>
-    <p class="text-[10px] mt-1">
-        System Architecture by:
-        <span class="text-slate-600 font-semibold uppercase">Imam Wahyu Ramadhan, S.T.</span>
-        |
-        <span class="text-amber-600 font-bold uppercase tracking-tighter">Project 2.0</span>
-    </p>
-</footer>
+<div id="siteFooter"></div>
 
 
 <script>
@@ -1635,7 +1604,7 @@ function monthRange(keys){
         if(m>12){m=1;y++;}
     }
 
-    return all.slice(-TREND_MONTHS_ALL);
+    return all;
 }
 
 /* Tren: tahun = 12 bulan Jan–Des; bulan setelah data terakhir = null (garis berhenti) */
@@ -1737,9 +1706,99 @@ function renderKpi(){
    RENDER: TREN (line chart, Total mati default)
 ========================================================= */
 
+const TREND_MONTH_PX=44;     /* lebar per bulan saat mode Per Bulan (Seluruh Data) */
+const TREND_PL=54, TREND_PR=22;   /* margin kiri-kanan grafik (samakan dengan lineChartHtml) */
+let trendView='year';            /* year | month — hanya dipakai saat Seluruh Data */
+
+function setTrendView(v){
+    trendView=v;
+    renderTrend();
+}
+
+function renderTrendToggle(isAll){
+    const tog=$('trendViewToggle');
+    if(!tog) return;
+    if(!isAll){
+        tog.innerHTML='';
+        return;
+    }
+    tog.innerHTML=[['year','Per Tahun'],['month','Per Bulan']].map(([v,label])=>
+        `<button class="legend-item ${trendView===v?'on':'off'}" onclick="setTrendView('${v}')">${label}</button>`
+    ).join('');
+}
+
+/* Sumbu tren: scroll ke Januari tahun ini (tampilan Per Bulan Seluruh Data) */
+function scrollTrendToThisYear(el,keys,width){
+    const thisYear=String(new Date().getFullYear());
+    const idx=keys.findIndex(k=>k.startsWith(thisYear));
+    const n=keys.length;
+    if(idx<0||n<2){
+        el.scrollLeft=0;
+        return;
+    }
+    const x=TREND_PL+idx*(width-TREND_PL-TREND_PR)/(n-1);
+    requestAnimationFrame(()=>{ el.scrollLeft=Math.max(0,x-24); });
+}
+function buildYearly(){
+
+    const map=new Map();
+    const empty=()=>({total:0,W:0,F:0,D:0,E:0});
+
+    periodRows.forEach(r=>{
+        if(!r.month) return;
+        const y=r.month.slice(0,4);
+        if(!map.has(y)) map.set(y,empty());
+        const m=map.get(y);
+        m.total++;
+        if(UNIT_KEYS.includes(r.type)) m[r.type]++;
+    });
+
+    const years=[...map.keys()].sort();
+    const data={};
+    years.forEach(y=>data[y]=map.get(y));
+
+    return {years,data};
+}
+
 function renderTrend(){
 
-    const {months,data,lastKey}=buildMonthly();
+    const isAll=selectedYear==='ALL';
+    if(!isAll) trendView='month';
+    renderTrendToggle(isAll);
+
+    const el=$('trendChart');
+    const yearMode=isAll&&trendView==='year';
+
+    let keys,data,lastKey,labels,fullLabels,width,subtitle;
+
+    if(yearMode){
+        const y=buildYearly();
+        keys=y.years;
+        data=y.data;
+        lastKey=keys[keys.length-1]||null;
+        labels=keys;
+        fullLabels=keys.map(k=>`Tahun ${k}`);
+        width=chartWidth('trendChart');
+        subtitle=keys.length
+            ?`Seluruh data per tahun · ${keys.length} tahun · klik Per Bulan untuk melihat per bulan`
+            :'Belum ada data bertanggal';
+    }else{
+        const m=buildMonthly();
+        keys=m.months;
+        data=m.data;
+        lastKey=m.lastKey;
+        labels=keys.map(k=>`${MONTH_SHORT[Number(k.split('-')[1])-1]} ${k.split('-')[0].slice(2)}`);
+        fullLabels=keys.map(k=>`${MONTH_NAMES[Number(k.split('-')[1])-1]} ${k.split('-')[0]}`);
+        width=isAll?Math.max(chartWidth('trendChart'),keys.length*TREND_MONTH_PX+TREND_PL+TREND_PR):chartWidth('trendChart');
+        const lastLabel=lastKey?`${MONTH_NAMES[Number(lastKey.split('-')[1])-1]} ${lastKey.split('-')[0]}`:'';
+        subtitle=keys.length
+            ?(isAll
+                ?`Seluruh data per bulan · geser ke samping untuk tahun lain · data sampai ${lastLabel}`
+                :`${periodLabel()} · data tersedia sampai ${lastLabel} · klik legenda untuk menampilkan atau menyembunyikan garis`)
+            :'Belum ada data bertanggal';
+    }
+
+    $('trendSubtitle').textContent=subtitle;
 
     const series=TREND_DEF.map(s=>({
         key:s.key,
@@ -1747,28 +1806,34 @@ function renderTrend(){
         color:s.color,
         width:s.key==='total'?3:2.4,
         dashed:false,
-        values:months.map(k=>data[k]?data[k][s.key]:null),
+        values:keys.map(k=>data[k]?data[k][s.key]:null),
         visible:!trendOff.has(s.key)
     }));
 
     const shownValues=series.filter(s=>s.visible).flatMap(s=>s.values);
 
-    const lastLabel=lastKey?`${MONTH_NAMES[Number(lastKey.split('-')[1])-1]} ${lastKey.split('-')[0]}`:'';
-
-    $('trendSubtitle').textContent=months.length
-        ?`${periodLabel()} · data tersedia sampai ${lastLabel} · klik legenda untuk menampilkan atau menyembunyikan garis`
-        :'Belum ada data bertanggal';
-
-    $('trendChart').innerHTML=months.length
-        ?lineChartHtml({
-            aria:'Tren corrective maintenance per bulan',
-            labels:months.map(k=>`${MONTH_SHORT[Number(k.split('-')[1])-1]} ${k.split('-')[0].slice(2)}`),
-            fullLabels:months.map(k=>`${MONTH_NAMES[Number(k.split('-')[1])-1]} ${k.split('-')[0]}`),
+    if(!keys.length){
+        el.style.overflowX='hidden';
+        el.innerHTML='<div class="chart-empty">Tidak ada data dengan tanggal yang bisa dibaca.</div>';
+    }else{
+        const html=lineChartHtml({
+            aria:'Tren corrective maintenance per bulan / per tahun',
+            labels:labels,
+            fullLabels:fullLabels,
             series:series,
             scale:scaleFor(shownValues),
-            width:chartWidth('trendChart')
-        })
-        :'<div class="chart-empty">Tidak ada data dengan tanggal yang bisa dibaca.</div>';
+            width:width
+        });
+
+        if(!yearMode&&isAll){
+            el.style.overflowX='auto';
+            el.innerHTML=html.replace('<svg viewBox',`<svg style="width:${width}px;max-width:none;height:auto;display:block" viewBox`);
+            scrollTrendToThisYear(el,keys,width);
+        }else{
+            el.style.overflowX='hidden';
+            el.innerHTML=html;
+        }
+    }
 
     $('trendLegend').innerHTML=TREND_DEF.map(s=>`
         <button class="legend-item ${trendOff.has(s.key)?'off':'on'}" onclick="toggleTrend('${s.key}')">
@@ -2086,6 +2151,7 @@ window.addEventListener('load',()=>{
 });
 
 </script>
+<script src="layout.js"></script>
 <script src="nav.js"></script>
 <script src="datacache.js"></script>
 </body>
