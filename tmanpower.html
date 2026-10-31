@@ -1345,6 +1345,17 @@ tbody tr.today-row td:first-child{box-shadow:inset 4px 0 0 #f59e0b}
 
 .period-selector option:disabled{color:#64748b;background:#e2e8f0}
 
+
+@media(max-width:767px){
+    .stats-row{
+        display:grid!important;
+        grid-template-columns:repeat(var(--n,4),minmax(140px,1fr))!important;
+        overflow-x:auto!important;
+        overflow-y:hidden;
+        padding-bottom:4px
+    }
+    .stats-row>*{min-width:0!important;grid-column:auto!important}
+}
 </style>
 </head>
 
