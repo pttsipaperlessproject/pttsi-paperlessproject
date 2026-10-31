@@ -1193,6 +1193,17 @@ tbody tr:last-child td{border-bottom:none}
 
 }
 
+
+@media(max-width:767px){
+    .stats-row{
+        display:grid!important;
+        grid-template-columns:repeat(var(--n,4),minmax(140px,1fr))!important;
+        overflow-x:auto!important;
+        overflow-y:hidden;
+        padding-bottom:4px
+    }
+    .stats-row>*{min-width:0!important;grid-column:auto!important}
+}
 </style>
 </head>
 
