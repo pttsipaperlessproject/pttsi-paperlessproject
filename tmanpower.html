@@ -1349,7 +1349,9 @@ tbody tr.today-row td:first-child{box-shadow:inset 4px 0 0 #f59e0b}
 @media(max-width:767px){
     .stats-row{
         display:grid!important;
-        grid-template-columns:repeat(var(--n,4),minmax(140px,1fr))!important;
+        grid-template-columns:none!important;
+        grid-auto-flow:column!important;
+        grid-auto-columns:minmax(140px,1fr)!important;
         overflow-x:auto!important;
         overflow-y:hidden;
         padding-bottom:4px
