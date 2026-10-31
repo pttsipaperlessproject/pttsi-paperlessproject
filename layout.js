@@ -83,10 +83,8 @@ const style=document.createElement('style');
 style.id='statRowStyle';
 style.textContent=`
 ${STAT_ROW_SELECTOR.split(',').join(',\n')}{
-    display:grid!important;
-    grid-template-columns:none!important;
-    grid-auto-flow:column!important;
-    grid-auto-columns:minmax(0,1fr)!important;
+    display:flex!important;
+    flex-wrap:nowrap!important;
     gap:14px!important;
     margin-bottom:20px!important;
     overflow-x:auto;
@@ -94,14 +92,16 @@ ${STAT_ROW_SELECTOR.split(',').join(',\n')}{
     padding-bottom:4px
 }
 ${STAT_ROW_SELECTOR.split(',').join('>*,')}>*{
-    grid-column:auto!important;
+    flex:1 1 0!important;
     min-width:0
 }
 @media(max-width:767px){
     ${STAT_ROW_SELECTOR.split(',').join(',\n    ')}{
-        grid-auto-columns:minmax(140px,1fr)!important;
         gap:10px!important;
         margin-bottom:14px!important
+    }
+    ${STAT_ROW_SELECTOR.split(',').join('>*,')}>*{
+        flex:0 0 140px!important
     }
 }
 `;

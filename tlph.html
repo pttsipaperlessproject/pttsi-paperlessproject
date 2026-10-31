@@ -933,15 +933,13 @@ tbody tr:last-child td{border-bottom:none}
 
 @media(max-width:767px){
     .stats-row{
-        display:grid!important;
-        grid-template-columns:none!important;
-        grid-auto-flow:column!important;
-        grid-auto-columns:minmax(140px,1fr)!important;
+        display:flex!important;
+        flex-wrap:nowrap!important;
         overflow-x:auto!important;
         overflow-y:hidden;
         padding-bottom:4px
     }
-    .stats-row>*{min-width:0!important;grid-column:auto!important}
+    .stats-row>*{flex:0 0 140px!important;min-width:0!important}
 }
 </style>
 </head>
