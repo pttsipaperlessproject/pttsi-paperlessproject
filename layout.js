@@ -84,7 +84,9 @@ style.id='statRowStyle';
 style.textContent=`
 ${STAT_ROW_SELECTOR.split(',').join(',\n')}{
     display:grid!important;
-    grid-template-columns:repeat(var(--n,1),minmax(0,1fr))!important;
+    grid-template-columns:none!important;
+    grid-auto-flow:column!important;
+    grid-auto-columns:minmax(0,1fr)!important;
     gap:14px!important;
     margin-bottom:20px!important;
     overflow-x:auto;
@@ -97,7 +99,7 @@ ${STAT_ROW_SELECTOR.split(',').join('>*,')}>*{
 }
 @media(max-width:767px){
     ${STAT_ROW_SELECTOR.split(',').join(',\n    ')}{
-        grid-template-columns:repeat(var(--n,1),minmax(140px,1fr))!important;
+        grid-auto-columns:minmax(140px,1fr)!important;
         gap:10px!important;
         margin-bottom:14px!important
     }
