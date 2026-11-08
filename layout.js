@@ -421,123 +421,108 @@ window.addEventListener('afterprint',printAllRowsOff);
 })();
 
 /* =========================================================
-   TOMBOL CETAK (melayang di pojok kanan bawah)
-   - Samar saat membaca, jelas saat disentuh/disorot
+   TOMBOL CETAK DI BARIS NAVIGASI
+   - Tersembunyi secara default
+   - Muncul saat user menekan tombol "⋯" (Lainnya)
+   - Muncul otomatis saat halaman digulir ke bawah
+   - Ctrl+P tetap berfungsi seperti biasa
    - Tidak ikut tercetak
-   - Hanya di halaman dashboard & tabel (yang punya nav-group)
 ========================================================= */
 
 (function(){
 
-const fabStyle=document.createElement('style');
-fabStyle.id='printFabStyle';
-fabStyle.textContent=`
-#printFab{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    z-index:900;
+const cetakStyle=document.createElement('style');
+cetakStyle.id='cetakStyle';
+cetakStyle.textContent=`
+#cetakMore,#cetakBtn{display:none}
+#cetakMore.show,#cetakBtn.show{display:flex}
+#cetakMore{
     width:44px;
-    height:44px;
-    border-radius:999px;
-    border:1px solid #e2e8f0;
-    background:#f8fafc;
-    color:#475569;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    opacity:.45;
-    box-shadow:0 4px 12px rgba(15,23,42,.08);
-    transition:opacity .2s ease,background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease
+    padding:11px 0!important;
+    justify-content:center
 }
-#printFab:hover,
-#printFab:focus-visible{
-    opacity:1;
-    background:#1e3a8a;
-    color:#fff;
-    border-color:#1e3a8a;
-    transform:translateY(-2px);
-    box-shadow:0 8px 18px rgba(30,58,138,.25);
-    outline:none
-}
-#printFab span.fab-label{
-    position:absolute;
-    right:52px;
-    white-space:nowrap;
-    background:#1e3a8a;
-    color:#fff;
-    font:800 11px Inter,sans-serif;
-    padding:6px 10px;
-    border-radius:8px;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .2s ease
-}
-#printFab:hover span.fab-label,
-#printFab:focus-visible span.fab-label{opacity:1}
 @media print{
-    #printFab{display:none!important}
+    #cetakMore,#cetakBtn{display:none!important}
 }
 @media(max-width:767px){
-    #printFab{opacity:.7;right:14px;bottom:14px}
+    #cetakMore{width:100%}
 }
 `;
-document.head.appendChild(fabStyle);
+document.head.appendChild(cetakStyle);
+
+const SCROLL_TRIGGER=200;   /* px: setelah ini tombol Cetak muncul otomatis */
+const IDLE_HIDE=60000;      /* ms: tanpa scroll selama ini, tombol hasil scroll disembunyikan lagi */
+let manualOpen=false;
+let scrolledDown=false;
+let idleTimer=null;
+let ticking=false;
+
+function applyVisibility(){
+    const btn=document.getElementById('cetakBtn');
+    const more=document.getElementById('cetakMore');
+    if(!btn||!more) return;
+
+    const show=manualOpen||scrolledDown;
+    btn.classList.toggle('show',show);
+    more.setAttribute('aria-expanded',manualOpen?'true':'false');
+}
+
+function onScroll(){
+    if(ticking) return;
+    ticking=true;
+    requestAnimationFrame(function(){
+        ticking=false;
+
+        /* Sekali muncul karena scroll, tetap muncul selama layar masih digulir */
+        if(window.scrollY>SCROLL_TRIGGER&&!scrolledDown){
+            scrolledDown=true;
+            applyVisibility();
+        }
+
+        /* Setiap scroll mengatur ulang hitung mundur 1 menit */
+        clearTimeout(idleTimer);
+        idleTimer=setTimeout(function(){
+            if(scrolledDown){
+                scrolledDown=false;
+                applyVisibility();
+            }
+        },IDLE_HIDE);
+    });
+}
 
 window.addEventListener('load',function(){
 
-    if(!document.querySelector('.nav-group')) return;
-    if(document.getElementById('printFab')) return;
+    const group=document.querySelector('.nav-group');
+    if(!group||document.getElementById('cetakBtn')) return;
+
+    const more=document.createElement('button');
+    more.type='button';
+    more.id='cetakMore';
+    more.className='nav-btn';
+    more.title='Lainnya';
+    more.setAttribute('aria-label','Lainnya');
+    more.innerHTML='<i data-lucide="ellipsis" class="w-4 h-4"></i>';
+    more.onclick=function(){
+        manualOpen=!manualOpen;
+        applyVisibility();
+    };
 
     const btn=document.createElement('button');
     btn.type='button';
-    btn.id='printFab';
-    btn.title='Cetak';
-    btn.setAttribute('aria-label','Cetak');
-    btn.innerHTML='<i data-lucide="printer" class="w-5 h-5"></i><span class="fab-label">Cetak</span>';
+    btn.id='cetakBtn';
+    btn.className='nav-btn';
+    btn.title='Cetak / Simpan PDF';
+    btn.innerHTML='<i data-lucide="printer" class="w-4 h-4"></i><span>Cetak</span>';
     btn.onclick=function(){ window.print(); };
 
-    document.body.appendChild(btn);
+    group.appendChild(more);
+    group.appendChild(btn);
+
+    window.addEventListener('scroll',onScroll,{passive:true});
+    onScroll();
+    applyVisibility();
 
     if(window.lucide) lucide.createIcons();
-
-});
-
-})();
-
-
-/* =========================================================
-   GRAFIK TIDAK TIMPANG
-   Grafik dihitung dari lebar panel saat render. Jika konten
-   pertama kali tampil atau ukuran layar berubah, grafik perlu
-   dihitung ulang agar ukuran font dan lebarnya seragam.
-========================================================= */
-
-(function(){
-
-let timer=null;
-
-function refreshCharts(){
-    clearTimeout(timer);
-    timer=setTimeout(function(){
-        window.dispatchEvent(new Event('resize'));
-    },150);
-}
-
-window.addEventListener('load',function(){
-
-    refreshCharts();
-
-    if(window.ResizeObserver){
-        const main=document.querySelector('main');
-        if(main) new ResizeObserver(refreshCharts).observe(main);
-    }
-
-    const content=document.getElementById('tableContent');
-    if(content){
-        new MutationObserver(refreshCharts).observe(content,{attributes:true,attributeFilter:['class','style']});
-    }
 
 });
 

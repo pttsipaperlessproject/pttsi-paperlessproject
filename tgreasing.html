@@ -736,145 +736,6 @@ tbody tr:last-child td{border-bottom:none}
 }
 
 /* =========================================================
-   LEADERBOARD
-========================================================= */
-
-#leaderboardButton{
-    position:fixed;
-    right:28px;
-    bottom:28px;
-    z-index:90;
-    width:68px;
-    height:68px;
-    border-radius:20px;
-    background:#1e3a8a;
-    color:#fff;
-    border:2px solid rgba(255,255,255,.45);
-    box-shadow:0 12px 30px rgba(15,23,42,.28);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    transition:transform .25s ease,box-shadow .25s ease
-}
-
-#leaderboardButton:hover{
-    transform:translateY(-4px) scale(1.05);
-    box-shadow:0 18px 38px rgba(15,23,42,.34)
-}
-
-#leaderboardButton.leader-pulse{
-    animation:leaderPulse 1.5s ease-in-out
-}
-
-@keyframes leaderPulse{
-    0%,100%{transform:scale(1);box-shadow:0 12px 30px rgba(15,23,42,.28)}
-    20%{transform:scale(1.18);box-shadow:0 0 0 12px rgba(30,58,138,.12),0 16px 38px rgba(15,23,42,.32)}
-    40%{transform:scale(.98)}
-    60%{transform:scale(1.12);box-shadow:0 0 0 8px rgba(30,58,138,.1),0 16px 38px rgba(15,23,42,.32)}
-}
-
-.leader-tooltip{
-    position:absolute;
-    right:0;
-    bottom:78px;
-    white-space:nowrap;
-    background:#0f172a;
-    color:#fff;
-    font-size:10px;
-    font-weight:700;
-    padding:7px 10px;
-    border-radius:8px;
-    opacity:0;
-    pointer-events:none;
-    transform:translateY(5px);
-    transition:.2s
-}
-
-#leaderboardButton:hover .leader-tooltip{opacity:1;transform:translateY(0)}
-
-#leaderboardOverlay{
-    position:fixed;
-    inset:0;
-    z-index:95;
-    background:rgba(15,23,42,.28);
-    backdrop-filter:blur(3px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px
-}
-
-#leaderboardOverlay.show{display:flex}
-
-#leaderboardModal{
-    width:min(430px,100%);
-    max-height:80vh;
-    overflow:hidden;
-    background:#fff;
-    border:1px solid #e2e8f0;
-    border-radius:22px;
-    box-shadow:0 25px 60px rgba(15,23,42,.25);
-    animation:leaderModalIn .25s ease
-}
-
-@keyframes leaderModalIn{
-    from{opacity:0;transform:translateY(12px) scale(.97)}
-    to{opacity:1;transform:translateY(0) scale(1)}
-}
-
-.leader-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:12px 14px;
-    border-radius:14px;
-    margin-bottom:7px;
-    background:#f8fafc;
-    border:1px solid #f1f5f9
-}
-
-.leader-row.top-1{background:#fffbeb;border-color:#fde68a}
-.leader-row.top-2{border-color:#cbd5e1}
-.leader-row.top-3{background:#fff7ed;border-color:#fed7aa}
-
-.leader-rank{
-    width:30px;
-    height:30px;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
-    font-weight:900;
-    background:#e2e8f0;
-    color:#475569;
-    flex-shrink:0
-}
-
-.top-1 .leader-rank{background:#fbbf24;color:#78350f}
-.top-2 .leader-rank{background:#cbd5e1;color:#334155}
-.top-3 .leader-rank{background:#fdba74;color:#7c2d12}
-
-.leader-name{
-    font-size:12px;
-    font-weight:800;
-    color:#334155;
-    flex:1;
-    min-width:0
-}
-
-.leader-count{
-    font-size:11px;
-    font-weight:900;
-    color:#1e3a8a;
-    background:#dbeafe;
-    padding:5px 9px;
-    border-radius:999px;
-    white-space:nowrap
-}
-
-/* =========================================================
    BREAKPOINTS (bible Bab 4)
 ========================================================= */
 
@@ -1060,34 +921,16 @@ tbody tr:last-child td{border-bottom:none}
     footer p:first-child{font-size:8px!important;line-height:1.5!important}
     footer p:last-child{font-size:8px!important;line-height:1.5!important}
 
-    #leaderboardButton{
-        width:55px;
-        height:55px;
-        right:16px;
-        bottom:16px;
-        border-radius:17px;
-        box-shadow:0 10px 25px rgba(15,23,42,.25)
-    }
 
-    #leaderboardButton svg{width:23px;height:23px}
 
-    .leader-tooltip{display:none}
 
-    #leaderboardOverlay{padding:10px}
 
-    #leaderboardModal{width:100%;max-height:85vh;border-radius:18px}
 
-    #leaderboardModal>div:first-child{padding:13px!important}
 
-    #leaderboardList{padding:12px!important;max-height:65vh!important}
 
-    .leader-row{padding:10px!important;gap:9px!important;border-radius:12px!important}
 
-    .leader-rank{width:28px!important;height:28px!important;border-radius:9px!important;font-size:11px!important}
 
-    .leader-name{font-size:10px!important}
 
-    .leader-count{font-size:8px!important;padding:4px 7px!important}
 
 }
 
@@ -1297,41 +1140,6 @@ tbody tr:last-child td{border-bottom:none}
 
 <!-- FOOTER -->
 <div id="siteFooter"></div>
-
-
-<!-- LEADERBOARD -->
-<button id="leaderboardButton" onclick="openLeaderboard()" aria-label="Leaderboard">
-    <i data-lucide="trophy" class="w-7 h-7"></i>
-    <span class="leader-tooltip">Leaderboard PIC</span>
-</button>
-
-<div id="leaderboardOverlay" onclick="closeLeaderboardOutside(event)">
-    <div id="leaderboardModal">
-
-        <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-            <div>
-                <h3 class="font-black text-slate-800 flex items-center gap-2">
-                    <span class="bg-amber-100 text-amber-600 p-2 rounded-xl">
-                        <i data-lucide="trophy" class="w-5 h-5"></i>
-                    </span>
-                    Leaderboard PIC
-                </h3>
-                <p class="text-[10px] text-slate-400 font-medium mt-1">Berdasarkan total aktivitas</p>
-            </div>
-            <button
-                onclick="closeLeaderboard()"
-                class="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition"
-            >
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-        </div>
-
-        <div id="leaderboardList" class="p-5 overflow-y-auto max-h-[60vh]">
-            <div class="text-center text-slate-400 text-sm py-6">Memuat leaderboard...</div>
-        </div>
-
-    </div>
-</div>
 
 
 <script>
@@ -2126,77 +1934,6 @@ function getPaginationPages(current,total){
 }
 
 
-/* =========================================================
-   LEADERBOARD (jumlah unit per PIC, dari seluruh data)
-========================================================= */
-
-function updateLeaderboardFromData(data){
-
-    const list=$('leaderboardList');
-
-    const picCounts={};
-
-    data.forEach(row=>{
-        const pic=String(row.pic||'').trim();
-        if(!pic) return;
-        picCounts[pic]=(picCounts[pic]||0)+splitUnits(row.codeUnit).length;
-    });
-
-    const ranking=Object.entries(picCounts)
-        .map(([name,count])=>({name,count}))
-        .filter(p=>p.count>0)
-        .sort((a,b)=>b.count-a.count);
-
-    if(!ranking.length){
-        list.innerHTML='<div class="text-center text-slate-400 text-sm py-6">Belum ada data PIC.</div>';
-        return;
-    }
-
-    list.innerHTML=ranking.map((person,i)=>{
-        const rank=i+1;
-        const cls=rank<=3?`top-${rank}`:'';
-        const medal=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
-        return `
-            <div class="leader-row ${cls}">
-                <div class="leader-rank">${medal}</div>
-                <div class="leader-name truncate" title="${escapeHtml(person.name)}">${escapeHtml(person.name)}</div>
-                <div class="leader-count">${person.count} aktivitas</div>
-            </div>`;
-    }).join('');
-
-}
-
-function openLeaderboard(){
-    updateLeaderboardFromData(allData);
-    $('leaderboardOverlay').classList.add('show');
-    document.body.style.overflow='hidden';
-}
-
-function closeLeaderboard(){
-    $('leaderboardOverlay').classList.remove('show');
-    document.body.style.overflow='';
-}
-
-function closeLeaderboardOutside(event){
-    if(event.target===$('leaderboardOverlay')) closeLeaderboard();
-}
-
-function scheduleLeaderboardPulse(){
-
-    const button=$('leaderboardButton');
-    const delay=12000+Math.random()*14000;
-
-    setTimeout(()=>{
-        if(!$('leaderboardOverlay').classList.contains('show')){
-            button.classList.remove('leader-pulse');
-            void button.offsetWidth;
-            button.classList.add('leader-pulse');
-        }
-        scheduleLeaderboardPulse();
-    },delay);
-
-}
-
 
 /* =========================================================
    LOAD DATA
@@ -2231,7 +1968,6 @@ async function loadTable(){
 
         rowsView=[...allData];
 
-        updateLeaderboardFromData(allData);
         renderTable();
 
         $('loading').style.display='none';
@@ -2268,13 +2004,11 @@ async function loadTable(){
 window.addEventListener('load',()=>{
     lucide.createIcons();
     loadTable();
-    scheduleLeaderboardPulse();
 });
 
 document.addEventListener('keydown',e=>{
     if(e.key!=='Escape') return;
     closeColumnMenu();
-    closeLeaderboard();
 });
 
 </script>
