@@ -23,6 +23,7 @@ const MIN_CHECK_GAP=10*60*1000;         /* pemeriksaan data terbaru per sumber: 
 const API_MARK='script.google.com/macros/';
 const SKIP_KEY='tsi:skipConfirmUntil';   /* waktu (ms) sampai konfirmasi dilewati */
 const SKIP_DURATION=5*60*1000;
+const BADGE_SKIP_KEY='tsi:skipBadgeUntil';  /* waktu (ms) sampai badge 'Data baru' disembunyikan */
 
 const nativeFetch=window.fetch.bind(window);
 
@@ -230,7 +231,8 @@ function openConfirm(){
     overlay.querySelector('.btn-ok').onclick=function(){
         const check=overlay.querySelector('.skip-check');
         if(check&&check.checked){
-            try{ sessionStorage.setItem(SKIP_KEY,String(Date.now()+SKIP_DURATION)); }catch(e){}
+            showBadgePanel(overlay);
+            return;
         }
         window.location.reload();
     };
@@ -242,8 +244,55 @@ function openConfirm(){
 
 }
 
+/* Panel kedua: tawarkan untuk menyembunyikan badge 'Data baru' selama 5 menit */
+function showBadgePanel(overlay){
+
+    const box=overlay.querySelector('#dataConfirmBox');
+
+    box.innerHTML=`
+        <h3>Sembunyikan notif "Data baru"?</h3>
+        <p>
+            Notif "Data baru" tidak akan ditampilkan selama 5 menit ke depan.
+            Anda tetap bisa memuat ulang data kapan saja.
+        </p>
+        <label class="skip-row">
+            <input type="checkbox" class="badge-check">
+            Ya, sembunyikan notif "Data baru" selama 5 menit
+        </label>
+        <div class="actions">
+            <button type="button" class="btn-cancel">Kembali</button>
+            <button type="button" class="btn-ok">Lanjut</button>
+        </div>
+    `;
+
+    box.querySelector('.btn-cancel').onclick=function(){
+        overlay.remove();
+        openConfirm();
+    };
+
+    box.querySelector('.btn-ok').onclick=function(){
+        const badgeCheck=box.querySelector('.badge-check');
+        try{
+            sessionStorage.setItem(SKIP_KEY,String(Date.now()+SKIP_DURATION));
+            if(badgeCheck&&badgeCheck.checked){
+                sessionStorage.setItem(BADGE_SKIP_KEY,String(Date.now()+SKIP_DURATION));
+            }
+        }catch(e){}
+        window.location.reload();
+    };
+}
+
 /* Tandai bahwa ada data baru (badge tetap tampil sampai diklik) */
+function badgeSkipActive(){
+    try{
+        return Number(sessionStorage.getItem(BADGE_SKIP_KEY)||0)>Date.now();
+    }catch(e){
+        return false;
+    }
+}
+
 function markUpdated(){
+    if(badgeSkipActive()) return;
     showBadge();
 }
 

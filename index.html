@@ -840,7 +840,10 @@ const DASHBOARD_DATA=[
     ]},
 
 {title:"Dashboard Populasi Unit",icon:"truck",link:"populasi.html",theme:"dashboard-slate",
-    tables:[{label:"Data Keseluruhan",url:"tpopulasi.html"}]}
+    tables:[{label:"Data Keseluruhan",url:"tpopulasi.html"}]},
+
+{title:"Dashboard Checklist Inspection Machine",icon:"clipboard-check",link:"machine.html",theme:"dashboard-slate",
+    tables:[{label:"Data Checklist 2026",url:"tmachine.html",sub:"Histori pengisian form checklist inspection machine"}]}
 
 ];
 
@@ -976,11 +979,13 @@ function openDashboardChooser(index){
     const box=document.getElementById('chooserOptions');
     box.innerHTML='';
 
-    /* Opsi pertama: dashboard */
-    box.appendChild(chooserOption(
-        'bg-blue-800','layout-dashboard','Lihat Dashboard','Ringkasan dan grafik',
-        ()=>{ window.location.href=dashboard.link; }
-    ));
+    /* Opsi pertama: dashboard (hanya jika modul punya dashboard) */
+    if(dashboard.link){
+        box.appendChild(chooserOption(
+            'bg-blue-800','layout-dashboard','Lihat Dashboard','Ringkasan dan grafik',
+            ()=>{ window.location.href=dashboard.link; }
+        ));
+    }
 
     /* Opsi berikutnya: setiap tabel milik modul */
     const tableColors=['bg-amber-600','bg-emerald-600','bg-violet-600'];

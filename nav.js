@@ -51,7 +51,10 @@ const NAV_ITEMS=[
         ]},
 
     {title:"Populasi Unit",          icon:"truck",            dash:"populasi.html",
-        tables:[{url:"tpopulasi.html",     btn:"Lihat Data", chip:"Data"}]}
+        tables:[{url:"tpopulasi.html",     btn:"Lihat Data", chip:"Data"}]},
+
+    {title:"Checklist Inspection Machine", icon:"clipboard-check", dash:"machine.html",
+        tables:[{url:"tmachine.html",      btn:"Lihat Data", chip:"Data"}]}
 ];
 
 const HOME_PAGE="index.html";
@@ -236,7 +239,7 @@ function findCurrent(){
     const here=currentFile();
 
     for(const item of NAV_ITEMS){
-        if(item.dash===here) return {item,kind:'dashboard',table:null};
+        if(item.dash&&item.dash===here) return {item,kind:'dashboard',table:null};
         const t=item.tables.find(t=>t.url===here);
         if(t) return {item,kind:'table',table:t};
     }
@@ -323,7 +326,9 @@ function buildGroup(current){
     }else{
 
         /* Di tabel: kembali ke dashboard + tabel lain dalam modul yang sama */
-        group.appendChild(makeButton('nav-btn','layout-dashboard','Lihat Dashboard',()=>go(current.item.dash)));
+        if(current.item.dash){
+            group.appendChild(makeButton('nav-btn','layout-dashboard','Lihat Dashboard',()=>go(current.item.dash)));
+        }
 
         current.item.tables
             .filter(t=>t.url!==current.table.url)
@@ -359,11 +364,11 @@ function chipHtml(icon,label,url,isCurrent){
 
 function cardHtml(item,here){
 
-    const onDashboard=item.dash===here;
+    const onDashboard=!!item.dash&&item.dash===here;
     const onTable=item.tables.some(t=>t.url===here);
     const isCurrentModule=onDashboard||onTable;
 
-    const chips=[chipHtml('layout-dashboard','Dashboard',item.dash,onDashboard)]
+    const chips=(item.dash?[chipHtml('layout-dashboard','Dashboard',item.dash,onDashboard)]:[])
         .concat(item.tables.map(t=>chipHtml('table-2',t.chip||'Data',t.url,t.url===here)));
 
     return `

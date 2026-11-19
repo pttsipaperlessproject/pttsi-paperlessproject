@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Machine Checklist - PT TSI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{box-sizing:border-box}
+
+html{width:100%;min-width:0;overflow-x:hidden}
+
+body{
+    margin:0;
+    width:100%;
+    min-width:0;
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#f8fafc,#eef2f7);
+    color:#1e293b
+}
+
+.color-primary{background:#1e3a8a}
+
+.glass-panel{
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3)
+}
+
+.fade-in{animation:fadeIn .5s cubic-bezier(.4,0,.2,1)}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.logo-wrapper{transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+.logo-wrapper:hover{transform:scale(1.08) rotate(2deg)}
+
+.logo-shadow{
+    filter:
+        drop-shadow(0 10px 8px rgba(0,0,0,.04))
+        drop-shadow(0 4px 3px rgba(0,0,0,.1))
+}
+
+/* =========================================================
+   PAGE TITLE, YEAR SELECTOR
+========================================================= */
+
+.page-title{
+    font-size:30px;
+    font-weight:900;
+    color:#1e293b;
+    letter-spacing:-.025em;
+    line-height:1.2
+}
+
+.page-subtitle{
+    font-size:13px;
+    color:#64748b;
+    font-weight:500;
+    line-height:1.6
+}
+
+.page-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-shrink:0
+}
+
+.year-selector{
+    background:#fff;
+    border:1px solid #dbeafe;
+    border-radius:12px;
+    padding:10px 14px;
+    color:#1e3a8a;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:900;
+    outline:none;
+    cursor:pointer;
+    transition:.2s ease;
+    min-width:150px
+}
+
+.year-selector:hover{border-color:#93c5fd}
+
+.year-selector:focus{
+    border-color:#60a5fa;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
+}
+
+/* =========================================================
+   STAT CARDS (jumlah kolom mengikuti jumlah kartu)
+========================================================= */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(var(--n,4),minmax(0,1fr));
+    gap:14px;
+    margin-bottom:20px
+}
+
+.stat-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:17px;
+    transition:.25s ease;
+    min-width:0
+}
+
+.stat-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,23,42,.07)
+}
+
+/* =========================================================
+   TABLE PANEL & TABLE
+========================================================= */
+
+.table-panel{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(15,23,42,.04)
+}
+
+.table-scroll{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin
+}
+
+.table-scroll::-webkit-scrollbar{height:7px}
+.table-scroll::-webkit-scrollbar-track{background:#f8fafc}
+.table-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+
+table{
+    width:100%;
+    min-width:1400px;
+    border-collapse:separate;
+    border-spacing:0;
+    table-layout:fixed
+}
+
+/* Proporsi kolom: NO 5% · TANGGAL 10% · UNIT 9% · PROBLEM DATE 10% · DESKRIPSI 22% · PROGRESS 14% · ESTIMATION 9% · REMARK 12% · STATUS 9% */
+.col-no{width:5%}
+.col-date{width:10%}
+.col-unit{width:9%}
+.col-pdate{width:10%}
+.col-desc{width:22%}
+.col-progress{width:14%}
+.col-est{width:9%}
+.col-remark{width:12%}
+.col-status{width:9%}
+
+thead{background:#f8fafc}
+
+thead th{
+    padding:0;
+    border-bottom:2px solid #e2e8f0;
+    color:#475569;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    white-space:nowrap;
+    text-align:left
+}
+
+tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #f1f5f9;
+    color:#334155;
+    font-size:11px;
+    font-weight:500;
+    vertical-align:middle;
+    overflow:hidden
+}
+
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:#f8fafc}
+tbody tr:last-child td{border-bottom:none}
+
+.cell-wrap{white-space:normal;overflow-wrap:anywhere;line-height:1.5}
+.cell-truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* =========================================================
+   COLUMN HEADER (Excel-style: sort + filter di header)
+========================================================= */
+
+.col-header{
+    width:100%;
+    padding:13px 14px;
+    background:transparent;
+    border:none;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    cursor:pointer;
+    transition:.18s ease;
+    text-align:left
+}
+
+.col-header:hover,
+.col-header.active{
+    background:#eff6ff;
+    color:#1e3a8a
+}
+
+.col-icons{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    flex-shrink:0
+}
+
+.col-sort-icon{
+    width:12px;
+    height:12px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-sort-icon.on{
+    opacity:1;
+    color:#1e3a8a
+}
+
+.col-filter-icon{
+    width:11px;
+    height:11px;
+    opacity:.3;
+    transition:.18s ease
+}
+
+.col-filter-icon.on{
+    opacity:1;
+    color:#f59e0b
+}
+
+.col-header:hover .col-sort-icon,
+.col-header:hover .col-filter-icon{opacity:.8}
+
+/* =========================================================
+   COLUMN DROPDOWN (popup filter & sort)
+========================================================= */
+
+.col-dropdown{
+    position:fixed;
+    z-index:1100;
+    width:240px;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(15,23,42,.13);
+    padding:8px;
+    animation:ddIn .15s ease
+}
+
+.col-dropdown[hidden]{display:none}
+
+@keyframes ddIn{
+    from{opacity:0;transform:translateY(-4px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.dd-sort{display:flex;gap:6px;padding:4px}
+
+.dd-sort-btn{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-sort-btn:hover{background:#eff6ff;color:#1e3a8a}
+
+.dd-sort-btn.on{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.dd-divider{height:1px;background:#f1f5f9;margin:8px 0}
+
+.dd-search-wrap{position:relative}
+
+.dd-search-icon{
+    position:absolute;
+    left:9px;
+    top:50%;
+    transform:translateY(-50%);
+    width:12px;
+    height:12px;
+    color:#94a3b8;
+    pointer-events:none
+}
+
+.dd-search{
+    width:100%;
+    padding:7px 8px 7px 28px;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    background:#f8fafc;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    outline:none
+}
+
+.dd-search:focus{
+    background:#fff;
+    border-color:#93c5fd;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10)
+}
+
+.dd-list{
+    max-height:160px;
+    overflow-y:auto;
+    margin-top:6px
+}
+
+.dd-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+    color:#334155
+}
+
+.dd-item:hover{background:#f8fafc}
+
+.dd-item input{
+    accent-color:#1e3a8a;
+    width:13px;
+    height:13px;
+    flex-shrink:0;
+    cursor:pointer
+}
+
+.dd-item-label{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+
+.dd-item-count{
+    font-size:9px;
+    font-weight:700;
+    color:#94a3b8
+}
+
+.dd-all{
+    border-bottom:1px solid #f1f5f9;
+    border-radius:0;
+    margin-bottom:4px;
+    padding-bottom:8px
+}
+
+.dd-empty{
+    font-size:10px;
+    color:#94a3b8;
+    padding:10px;
+    text-align:center
+}
+
+.dd-footer{
+    display:flex;
+    gap:6px;
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px solid #f1f5f9
+}
+
+.dd-reset{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    color:#475569;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-reset:hover{background:#fee2e2;color:#991b1b}
+
+.dd-apply{
+    flex:1;
+    padding:8px;
+    border-radius:8px;
+    border:none;
+    background:#1e3a8a;
+    color:#fff;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease
+}
+
+.dd-apply:hover{background:#1d4ed8}
+
+/* =========================================================
+   ACTIVE FILTER CHIPS
+========================================================= */
+
+.active-filters-bar{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 20px;
+    background:#fffbeb;
+    border-bottom:1px solid #fde68a
+}
+
+.active-filters-bar[hidden]{display:none}
+
+.active-filter-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 6px 4px 10px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#92400e;
+    font-size:9px;
+    font-weight:800
+}
+
+.active-filter-chip button{
+    border:none;
+    background:transparent;
+    color:#92400e;
+    cursor:pointer;
+    font-size:12px;
+    line-height:1;
+    padding:0 4px;
+    border-radius:999px
+}
+
+.active-filter-chip button:hover{background:#fde68a}
+
+.clear-all-btn{
+    margin-left:auto;
+    font-size:9px;
+    font-weight:800;
+    color:#92400e;
+    border:1px solid #fde68a;
+    background:#fff;
+    border-radius:999px;
+    padding:4px 10px;
+    cursor:pointer;
+    font-family:inherit
+}
+
+/* =========================================================
+   BADGES (palet baku Bab 2)
+========================================================= */
+
+.unit-text{
+    font-weight:900;
+    color:#1e3a8a;
+    letter-spacing:.03em
+}
+
+.status-pill{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:900;
+    white-space:nowrap
+}
+
+.status-open{background:#fee2e2;color:#991b1b}
+.status-close{background:#dcfce7;color:#166534}
+.status-other{background:#e2e8f0;color:#475569}
+
+.progress-pill{
+    display:inline-block;
+    padding:4px 9px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e3a8a;
+    font-size:10px;
+    font-weight:800;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    line-height:1.4
+}
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination-button{
+    width:34px;
+    height:34px;
+    min-width:34px;
+    border-radius:9px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s ease
+}
+
+.pagination-button:hover:not(:disabled){
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe
+}
+
+.pagination-button.active{
+    background:#1e3a8a;
+    color:#fff;
+    border-color:#1e3a8a
+}
+
+.pagination-button:disabled{opacity:.4;cursor:not-allowed}
+
+/* =========================================================
+   LOADING & EMPTY
+========================================================= */
+
+#loading{
+    min-height:350px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px
+}
+
+#tableContent{display:none}
+#tableContent.show{display:block}
+#emptyState{display:none}
+#emptyState.show{display:block}
+
+/* =========================================================
+   MOBILE FILTER BAR & CARDS (≤767px)
+========================================================= */
+
+.mobile-filter-bar{
+    display:none;
+    gap:6px;
+    overflow-x:auto;
+    padding:10px 12px;
+    background:#fff;
+    border-bottom:1px solid #f1f5f9;
+    scrollbar-width:none
+}
+
+.mobile-filter-bar::-webkit-scrollbar{display:none}
+
+.mobile-filter-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:7px 10px;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    font-family:inherit;
+    font-size:9px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    cursor:pointer
+}
+
+.mobile-filter-btn.active{
+    background:#eff6ff;
+    color:#1e3a8a;
+    border-color:#bfdbfe
+}
+
+.mobile-filter-count{
+    background:#1e3a8a;
+    color:#fff;
+    border-radius:999px;
+    padding:1px 6px;
+    font-size:8px
+}
+
+.mobile-data-list{display:none}
+
+.mobile-data-card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:10px;
+    box-shadow:0 3px 10px rgba(15,23,42,.035)
+}
+
+.mobile-card-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:12px;
+    margin-bottom:12px;
+    border-bottom:1px solid #f1f5f9
+}
+
+.mobile-unit{
+    font-size:16px;
+    font-weight:900;
+    color:#1e3a8a;
+    line-height:1.2
+}
+
+.mobile-date{
+    font-size:10px;
+    font-weight:700;
+    color:#64748b;
+    margin-top:4px
+}
+
+.mobile-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px 14px
+}
+
+.mobile-field{min-width:0}
+.mobile-field.full{grid-column:1/-1}
+
+.mobile-label{
+    font-size:8px;
+    font-weight:900;
+    color:#94a3b8;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:4px
+}
+
+.mobile-value{
+    font-size:11px;
+    font-weight:600;
+    color:#334155;
+    word-break:break-word;
+    line-height:1.45
+}
+
+.mobile-box{
+    background:#f8fafc;
+    border-radius:10px;
+    padding:9px 10px;
+    color:#475569;
+    font-size:10px;
+    line-height:1.5;
+    word-break:break-word
+}
+
+/* =========================================================
+   BREAKPOINTS (bible Bab 4)
+========================================================= */
+
+@media(min-width:1920px){
+    main{max-width:1800px}
+}
+
+@media(min-width:768px) and (max-width:1100px){
+
+    main{padding:28px!important;border-radius:24px!important}
+
+    .page-title{font-size:25px}
+
+    .stats-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+    header{margin-bottom:28px!important}
+
+}
+
+@media(max-width:767px){
+
+    body{padding:10px!important;align-items:stretch!important}
+
+    main{
+        width:100%!important;
+        padding:20px!important;
+        border-radius:20px!important;
+        box-shadow:0 10px 30px rgba(15,23,42,.08)!important
+    }
+
+    header{margin-bottom:24px!important;padding-bottom:20px!important}
+
+    .logo-wrapper{margin-bottom:14px!important}
+
+    .logo-wrapper>div{
+        width:76px!important;
+        height:76px!important;
+        border-radius:18px!important
+    }
+
+    header .color-primary{
+        width:100%!important;
+        padding:13px 14px!important;
+        border-radius:15px!important
+    }
+
+    header .color-primary h1{
+        font-size:15px!important;
+        line-height:1.2!important;
+        letter-spacing:.06em!important
+    }
+
+    header .color-primary h2{
+        font-size:10px!important;
+        line-height:1.3!important;
+        letter-spacing:.1em!important
+    }
+
+    header>div:last-child{
+        font-size:8px!important;
+        letter-spacing:.18em!important;
+        text-align:center
+    }
+
+    section>div:first-child{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:14px!important;
+        margin-bottom:20px!important
+    }
+
+    .page-title{
+        font-size:20px!important;
+        line-height:1.3!important;
+        gap:10px!important;
+        align-items:flex-start!important
+    }
+
+    .page-title span{
+        padding:9px!important;
+        border-radius:10px!important;
+        flex-shrink:0
+    }
+
+    .page-title span svg{width:18px!important;height:18px!important}
+
+    .page-subtitle{
+        font-size:10px!important;
+        line-height:1.6!important;
+        margin-top:8px!important
+    }
+
+    .page-actions{
+        width:100%;
+        display:grid;
+        grid-template-columns:minmax(0,1fr);
+        gap:8px
+    }
+
+    .year-selector{min-width:0!important;width:100%!important;padding:10px!important}
+
+    .stats-grid{
+        grid-template-columns:repeat(var(--n,4),minmax(150px,1fr));
+        overflow-x:auto;
+        padding-bottom:6px;
+        gap:10px!important;
+        margin-bottom:14px!important
+    }
+
+    .stat-card{padding:13px!important;border-radius:14px!important}
+    .stat-card p:first-child{font-size:8px!important;line-height:1.4!important}
+    .stat-card p.text-3xl,
+    .stat-card p.text-xl{font-size:23px!important;line-height:1!important}
+
+    .table-panel{border-radius:16px!important}
+    .table-panel>div:first-child{padding:13px 14px!important}
+    .table-panel>div:first-child h3{font-size:12px!important}
+    .table-panel>div:first-child p{font-size:9px!important}
+
+    .active-filters-bar{padding:10px 14px}
+
+    /* tabel desktop disembunyikan, diganti filter bar + kartu */
+    .table-scroll{display:none!important}
+
+    .mobile-filter-bar{display:flex}
+
+    .mobile-data-list{
+        display:block!important;
+        padding:9px!important;
+        background:#f8fafc
+    }
+
+    .mobile-data-card{padding:14px!important;border-radius:15px!important;margin-bottom:9px!important}
+    .mobile-card-header{gap:8px!important;padding-bottom:11px!important;margin-bottom:11px!important}
+    .mobile-unit{font-size:15px!important}
+    .mobile-date{font-size:9px!important}
+    .mobile-card-grid{gap:10px 12px!important}
+    .mobile-label{font-size:7px!important;margin-bottom:4px!important}
+    .mobile-value{font-size:10px!important;line-height:1.45!important}
+    .mobile-box{font-size:9px!important;padding:8px 9px!important}
+
+    /* popup jadi bottom sheet */
+    .col-dropdown.is-sheet{
+        left:16px!important;
+        right:16px!important;
+        top:auto!important;
+        bottom:16px!important;
+        width:auto!important;
+        max-height:70vh;
+        border-radius:14px;
+        overflow-y:auto
+    }
+
+    .col-dropdown.is-sheet .dd-list{max-height:40vh}
+
+    .table-panel>div:last-child{padding:11px 12px!important;gap:10px}
+
+    #paginationInfo{font-size:9px!important;white-space:nowrap}
+
+    #pagination{
+        max-width:100%;
+        overflow-x:auto;
+        padding-bottom:2px;
+        scrollbar-width:none
+    }
+
+    #pagination::-webkit-scrollbar{display:none}
+
+    .pagination-button{
+        width:30px!important;
+        height:30px!important;
+        min-width:30px!important;
+        font-size:9px!important;
+        border-radius:8px!important
+    }
+
+    footer{margin-top:18px!important;padding:0 10px 20px!important}
+    footer p:first-child{font-size:9px!important;line-height:1.5!important}
+    footer p:last-child{font-size:8px!important;line-height:1.7!important}
+
+}
+
+@media(max-width:380px){
+
+    body{padding:6px!important}
+
+    main{padding:12px!important;border-radius:17px!important}
+
+    header{margin-bottom:20px!important;padding-bottom:17px!important}
+
+    .logo-wrapper>div{width:70px!important;height:70px!important}
+
+    header .color-primary{padding:12px 10px!important;border-radius:14px!important}
+    header .color-primary h1{font-size:13px!important}
+    header .color-primary h2{font-size:8px!important;letter-spacing:.08em!important}
+    header>div:last-child{font-size:7px!important;letter-spacing:.15em!important}
+
+    .page-title{font-size:18px!important}
+    .page-subtitle{font-size:9px!important}
+    .page-title span{padding:8px!important}
+
+    .stat-card{padding:11px!important;border-radius:12px!important}
+    .stat-card p.text-3xl,
+    .stat-card p.text-xl{font-size:21px!important}
+
+    .mobile-card-grid{grid-template-columns:1fr!important}
+    .mobile-field.full{grid-column:auto}
+
+    .table-panel>div:last-child{
+        justify-content:center!important;
+        flex-direction:column!important;
+        align-items:stretch!important
+    }
+
+    #paginationInfo{text-align:center}
+    #pagination{justify-content:center}
+
+}
+
+
+.status-pill{display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;font-size:9px;font-weight:900;white-space:nowrap}
+.status-open{background:#fee2e2;color:#991b1b}
+.status-close{background:#dcfce7;color:#166534}
+.tag{display:inline-flex;align-items:center;padding:3px 8px;border-radius:8px;font-size:10px;font-weight:800;white-space:normal;overflow-wrap:anywhere;line-height:1.35}
+</style>
+</head>
+<body class="flex flex-col items-center p-4 sm:p-8">
+
+<main class="w-full flex-grow glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl fade-in">
+
+<div id="siteHeader"></div>
+
+<section>
+
+    <div class="flex items-center justify-between gap-5 mb-6">
+        <div>
+            <h2 class="page-title flex items-center gap-3">
+                <span class="bg-blue-900 text-white p-3 rounded-xl shadow-md">
+                    <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+                </span>
+                Checklist Inspection Machine
+            </h2>
+            <p class="page-subtitle mt-2 ml-1">
+                Data pengisian form checklist inspection machine tahun 2026.
+            </p>
+        </div>
+    </div>
+
+    <!-- LOADING -->
+    <div id="loading">
+        <i data-lucide="loader-circle" class="w-9 h-9 animate-spin text-amber-500"></i>
+        <p id="loadingText" class="font-semibold text-sm text-slate-400 mt-3">Memuat data checklist...</p>
+    </div>
+
+    <!-- TABLE CONTENT -->
+    <div id="tableContent">
+
+        <div id="statsGrid" class="stats-grid"></div>
+
+        <div class="table-panel">
+
+            <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-4">
+                <div class="table-header-info">
+                    <h3 class="font-black text-slate-700 text-sm">Histori Pemeriksaan</h3>
+                    <p id="resultInfo" class="text-[10px] text-slate-400 mt-1 font-medium">-</p>
+                </div>
+                <div class="flex items-center gap-2 text-[10px] text-slate-400 font-semibold">
+                    <i data-lucide="database" class="w-3.5 h-3.5"></i>
+                    Database Spreadsheet
+                    <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded-md font-black">2026</span>
+                </div>
+            </div>
+
+            <div id="activeFilters" class="active-filters-bar" hidden></div>
+
+            <div class="table-scroll">
+                <table>
+                    <colgroup>
+                        <col style="width:4%">
+                        <col style="width:8%">
+                        <col style="width:14%">
+                        <col style="width:11%">
+                        <col style="width:10%">
+                        <col style="width:7%">
+                        <col style="width:11%">
+                        <col style="width:14%">
+                        <col style="width:13%">
+                        <col style="width:8%">
+                    </colgroup>
+                    <thead>
+                        <tr id="tableHeadRow"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <div id="emptyState">
+                <div class="py-16 text-center">
+                    <div class="inline-flex items-center justify-center bg-slate-100 text-slate-400 p-4 rounded-full">
+                        <i data-lucide="search-x" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-600 mt-4">Data tidak ditemukan</h3>
+                    <p class="text-xs text-slate-400 mt-1">Coba ubah filter pada header kolom.</p>
+                </div>
+            </div>
+
+            <div class="px-5 py-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                <div id="paginationInfo" class="text-[10px] font-semibold text-slate-400">-</div>
+                <div id="pagination" class="flex items-center gap-1"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<div id="colDropdown" class="col-dropdown" hidden></div>
+
+<div id="siteFooter"></div>
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const API_URL='https://script.google.com/macros/s/AKfycbziULYO_IzI-1DyiFh_rw8cp1YpTSvdr1bdab52jePgtbrBNcEEtEm3NcWGtovfcZTBPA/exec';
+const ROWS_PER_PAGE=15;
+let machineColors={};
+let locationColors={};
+
+/* Kolom sesuai sheet 2026 (A-I) */
+
+/* =========================================================
+   WARNA PEMBEDA (mesin & lokasi)
+   Gaya pil pastel seperti kategori service di periodic.html:
+   latar terang + teks gelap. Urutan mengikuti abjad nama,
+   sehingga warna sama di semua halaman.
+========================================================= */
+
+const PAL_MACHINE=[
+    {bg:'#dbeafe',fg:'#1e40af'},   /* biru */
+    {bg:'#fef3c7',fg:'#92400e'},   /* amber */
+    {bg:'#d1fae5',fg:'#065f46'},   /* hijau */
+    {bg:'#e0e7ff',fg:'#3730a3'},   /* indigo */
+    {bg:'#ffe4e6',fg:'#9f1239'},   /* rose */
+    {bg:'#ede9fe',fg:'#5b21b6'},   /* ungu */
+    {bg:'#ffedd5',fg:'#9a3412'},   /* oranye */
+    {bg:'#ccfbf1',fg:'#115e59'},   /* teal */
+    {bg:'#ecfccb',fg:'#3f6212'},   /* lime */
+    {bg:'#fae8ff',fg:'#86198f'},   /* fuchsia */
+    {bg:'#fee2e2',fg:'#991b1b'}    /* merah */
+];
+
+const PAL_LOC=[
+    {bg:'#e0f2fe',fg:'#075985'},   /* sky */
+    {bg:'#fff7ed',fg:'#c2410c'},   /* jingga muda */
+    {bg:'#ecfdf5',fg:'#047857'},   /* emerald muda */
+    {bg:'#fdf2f8',fg:'#be185d'},   /* pink */
+    {bg:'#f0fdfa',fg:'#0f766e'},   /* teal muda */
+    {bg:'#fefce8',fg:'#854d0e'},   /* kuning */
+    {bg:'#f5f3ff',fg:'#6d28d9'},   /* violet muda */
+    {bg:'#f1f5f9',fg:'#334155'}    /* abu-abu */
+];
+
+const FALLBACK_PAIR={bg:'#e2e8f0',fg:'#475569'};
+
+function hslPair(i){
+    const h=Math.round((i*137.5)%360);
+    return {bg:`hsl(${h} 80% 93%)`,fg:`hsl(${h} 60% 30%)`};
+}
+
+function colorMap(values,palette){
+    const uniq=[...new Set(values.filter(Boolean))].sort((a,b)=>a.localeCompare(b,'id',{numeric:true}));
+    const map={};
+    uniq.forEach((v,i)=>{ map[v]=i<palette.length?palette[i]:hslPair(i); });
+    return map;
+}
+
+/* Label pil: latar pastel + teks gelap */
+function tagHtml(pair,text){
+    const p=pair||FALLBACK_PAIR;
+    const t=escapeHtml(text||'-');
+    return `<span class="tag" style="background:${p.bg};color:${p.fg}">${t}</span>`;
+}
+
+const COLUMNS=[
+    {key:'number',      label:'No',           type:'number', filterable:false},
+    {key:'tanggal',     label:'Tanggal',      type:'date',   filterable:true},
+    {key:'mesin',       label:'Mesin',        type:'text',   filterable:true},
+    {key:'pemeriksaan', label:'Pemeriksaan',  type:'text',   filterable:true},
+    {key:'lokasi',      label:'Lokasi',       type:'text',   filterable:true},
+    {key:'status',      label:'Status',       type:'text',   filterable:true},
+    {key:'pic',         label:'PIC',          type:'text',   filterable:true},
+    {key:'item',        label:'Item Rusak',   type:'text',   filterable:true},
+    {key:'remark',      label:'Remark',       type:'text',   filterable:true},
+    {key:'pap',         label:'PAP',          type:'text',   filterable:true}
+];
+
+/* Urutan kolom sumber (A-I) */
+const SRC_KEYS=['tanggal','mesin','pemeriksaan','lokasi','status','pic','item','remark','pap'];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let allData=[];
+let rowsView=[];
+let columnFilters={};
+let sortKey='tanggal';
+let sortDir='desc';
+let currentPage=1;
+
+let openColumn=null;
+let ddValues=[];
+let draftSelection=new Set();
+let ddQuery='';
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $=id=>document.getElementById(id);
+
+const getColumn=key=>COLUMNS.find(c=>c.key===key);
+
+const isEmpty=v=>v===''||v===null||v===undefined;
+
+function escapeHtml(value){
+    return String(value??'')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+}
+
+function normalize(value){
+    return String(value??'').trim().toUpperCase();
+}
+
+function handleLogoError(){
+    const logo=$('companyLogo');
+    if(logo) logo.classList.add('hidden');
+    const fb=$('logoFallback');
+    if(fb){ fb.classList.remove('hidden'); fb.classList.add('flex'); }
+}
+
+/* Tanggal dikirim sebagai yyyy-MM-dd; ditampilkan dd/MM/yyyy */
+function dateKey(value){
+    const t=String(value??'').trim();
+    const m=t.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    return m?`${m[1]}-${m[2]}-${m[3]}`:t;
+}
+
+function formatDate(value){
+    const k=dateKey(value);
+    const m=k.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if(m) return `${m[3]}/${m[2]}/${m[1]}`;
+    return k?escapeHtml(k):'-';
+}
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+function mapRow(row,index){
+    const obj={originalIndex:index};
+    SRC_KEYS.forEach((key,i)=>{
+        obj[key]=String(row?.[i]??'').trim();
+    });
+    obj.tanggal=dateKey(obj.tanggal);
+    return obj;
+}
+
+async function loadData(){
+
+    showLoading('Memuat data checklist...');
+
+    try{
+
+        const response=await fetch(API_URL,{method:'GET',cache:'no-store'});
+        if(!response.ok) throw new Error(`HTTP Error ${response.status}`);
+
+        const result=await response.json();
+
+        if(!result||result.success!==true){
+            throw new Error(result?.error||'API mengembalikan respons tidak valid.');
+        }
+
+        const sheet=result.sheets?.['2026'];
+        if(!sheet||!Array.isArray(sheet.data)){
+            throw new Error('Data sheet 2026 tidak ditemukan.');
+        }
+
+        allData=sheet.data
+            .filter(row=>row.some(v=>String(v).trim()!==''))
+            .map((row,i)=>mapRow(row,i));
+
+        machineColors=colorMap(allData.map(r=>normalize(r.mesin)),PAL_MACHINE);
+        locationColors=colorMap(allData.map(r=>r.lokasi),PAL_LOC);
+
+        columnFilters={};
+        sortKey='tanggal';
+        sortDir='desc';
+        currentPage=1;
+        rowsView=[...allData];
+
+        renderTable();
+        hideLoading();
+
+    }catch(error){
+        console.error('Checklist API Error:',error);
+        showError(error.message||'Terjadi kesalahan saat mengambil data.');
+    }
+}
+
+function showLoading(message){
+    $('loadingText').textContent=message||'Memuat data...';
+    $('loading').style.display='flex';
+    $('tableContent').classList.remove('show');
+}
+
+function hideLoading(){
+    $('loading').style.display='none';
+    $('tableContent').classList.add('show');
+}
+
+function showError(message){
+    const loading=$('loading');
+    loading.style.display='flex';
+    loading.innerHTML=`
+        <div class="text-center">
+            <div class="bg-red-50 text-red-600 p-4 rounded-full inline-flex">
+                <i data-lucide="alert-circle" class="w-8 h-8"></i>
+            </div>
+            <h3 class="font-bold text-red-700 mt-3">Gagal memuat data</h3>
+            <p class="text-xs text-slate-500 mt-2 max-w-lg mx-auto break-words">${escapeHtml(message)}</p>
+            <p class="text-[10px] text-slate-400 mt-3">
+                Pastikan Deployment Apps Script menggunakan akses <b>Anyone</b>.
+            </p>
+            <button onclick="loadData()" class="mt-4 bg-blue-800 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
+                Coba Lagi
+            </button>
+        </div>
+    `;
+    $('tableContent').classList.remove('show');
+    lucide.createIcons();
+}
+
+
+/* =========================================================
+   FILTER ENGINE (Excel-style)
+========================================================= */
+
+function getCellValue(row,key){
+    switch(key){
+        case 'number':      return String(row.originalIndex+1);
+        case 'tanggal':     return row.tanggal;
+        case 'mesin':       return normalize(row.mesin);
+        case 'pemeriksaan': return row.pemeriksaan;
+        case 'lokasi':      return row.lokasi;
+        case 'status':      return row.status;
+        case 'pic':         return row.pic;
+        case 'item':        return row.item;
+        case 'remark':      return row.remark;
+        case 'pap':         return row.pap;
+        default:            return '';
+    }
+}
+
+function getValueLabel(key,value){
+    const col=getColumn(key);
+    if(col.type==='date') return value?formatDate(value):'(Kosong)';
+    return value||'(Kosong)';
+}
+
+function rowPasses(row,excludeKey){
+    return Object.keys(columnFilters).every(key=>{
+        if(key===excludeKey) return true;
+        return columnFilters[key].has(getCellValue(row,key));
+    });
+}
+
+function distinctValues(key){
+
+    const map=new Map();
+
+    allData.forEach(row=>{
+        if(!rowPasses(row,key)) return;
+        const v=getCellValue(row,key);
+        map.set(v,(map.get(v)||0)+1);
+    });
+
+    const type=getColumn(key).type;
+
+    return [...map.entries()]
+        .map(([value,count])=>({value,count}))
+        .sort((a,b)=>{
+            if(a.value===''||b.value==='') return (a.value==='')-(b.value==='');
+            if(type==='date') return a.value.localeCompare(b.value);
+            return a.value.localeCompare(b.value,'id',{numeric:true,sensitivity:'base'});
+        });
+}
+
+function applyAllFilters(){
+    rowsView=allData.filter(row=>rowPasses(row,null));
+    currentPage=1;
+    renderTable();
+}
+
+function removeColumnFilter(key){
+    delete columnFilters[key];
+    applyAllFilters();
+}
+
+function clearAllFilters(){
+    columnFilters={};
+    applyAllFilters();
+}
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+function getSortValue(row,key){
+    switch(key){
+        case 'number':      return row.originalIndex;
+        case 'tanggal':     return row.tanggal;
+        case 'mesin':       return normalize(row.mesin);
+        case 'pemeriksaan': return row.pemeriksaan.toLowerCase();
+        case 'lokasi':      return row.lokasi.toLowerCase();
+        case 'status':      return row.status.toLowerCase();
+        case 'pic':         return row.pic.toLowerCase();
+        case 'item':        return row.item.toLowerCase();
+        case 'remark':      return row.remark.toLowerCase();
+        case 'pap':         return row.pap.toLowerCase();
+        default:            return '';
+    }
+}
+
+function getSortedData(rows){
+
+    const list=[...rows];
+
+    if(!sortKey||!sortDir){
+        return list.sort((a,b)=>a.originalIndex-b.originalIndex);
+    }
+
+    return list.sort((a,b)=>{
+        const va=getSortValue(a,sortKey);
+        const vb=getSortValue(b,sortKey);
+
+        if(isEmpty(va)!==isEmpty(vb)) return isEmpty(va)?1:-1;
+        if(isEmpty(va)) return 0;
+
+        let c;
+        if(typeof va==='number'&&typeof vb==='number') c=va-vb;
+        else c=String(va).localeCompare(String(vb),'id',{numeric:true,sensitivity:'base'});
+
+        return sortDir==='asc'?c:-c;
+    });
+}
+
+
+/* =========================================================
+   POPUP FILTER & SORT
+========================================================= */
+
+function openColumnMenu(key,anchor){
+
+    if(openColumn===key){
+        closeColumnMenu();
+        return;
+    }
+
+    closeColumnMenu();
+
+    const col=getColumn(key);
+
+    openColumn=key;
+    ddQuery='';
+
+    ddValues=col.filterable?distinctValues(key):[];
+
+    draftSelection=new Set(
+        columnFilters[key]
+            ?[...columnFilters[key]]
+            :ddValues.map(v=>v.value)
+    );
+
+    const dd=$('colDropdown');
+
+    dd.innerHTML=buildDropdown(col);
+    dd.hidden=false;
+
+    positionColumnMenu(anchor);
+    renderDdList();
+    lucide.createIcons();
+
+    if(!window.matchMedia('(max-width:767px)').matches){
+        const s=dd.querySelector('.dd-search');
+        if(s) s.focus();
+    }
+}
+
+function closeColumnMenu(){
+    const dd=$('colDropdown');
+    dd.hidden=true;
+    dd.innerHTML='';
+    openColumn=null;
+}
+
+function positionColumnMenu(anchor){
+
+    const dd=$('colDropdown');
+
+    if(window.matchMedia('(max-width:767px)').matches){
+        dd.classList.add('is-sheet');
+        dd.style.left='';
+        dd.style.top='';
+        return;
+    }
+
+    dd.classList.remove('is-sheet');
+
+    const r=anchor.getBoundingClientRect();
+    const w=dd.offsetWidth||240;
+    const h=dd.offsetHeight||0;
+
+    let left=r.left;
+    if(left+w>window.innerWidth-8) left=Math.max(8,r.right-w);
+
+    let top=r.bottom+6;
+    if(top+h>window.innerHeight-8) top=Math.max(8,r.top-h-6);
+
+    dd.style.left=left+'px';
+    dd.style.top=top+'px';
+}
+
+function buildDropdown(col){
+
+    const labels=col.type==='date'
+        ?['Lama→Baru','Baru→Lama']
+        :col.type==='number'
+            ?['Kecil→Besar','Besar→Kecil']
+            :['A→Z','Z→A'];
+
+    const current=sortKey===col.key?sortDir:null;
+
+    const sortHtml=`
+        <div class="dd-sort">
+            <button class="dd-sort-btn ${current==='asc'?'on':''}" onclick="ddSetSort('asc')">${labels[0]}</button>
+            <button class="dd-sort-btn ${current==='desc'?'on':''}" onclick="ddSetSort('desc')">${labels[1]}</button>
+        </div>
+    `;
+
+    if(!col.filterable) return sortHtml;
+
+    return sortHtml+`
+        <div class="dd-divider"></div>
+        <div class="dd-search-wrap">
+            <i data-lucide="search" class="dd-search-icon"></i>
+            <input class="dd-search" type="text" placeholder="Cari ${escapeHtml(col.label)}..." oninput="ddSearch(this.value)">
+        </div>
+        <div class="dd-list" id="ddList"></div>
+        <div class="dd-footer">
+            <button class="dd-reset" onclick="ddReset()">Reset</button>
+            <button class="dd-apply" onclick="ddApply()">Terapkan</button>
+        </div>
+    `;
+}
+
+function ddVisible(){
+    return ddValues.filter(v=>
+        !ddQuery||getValueLabel(openColumn,v.value).toLowerCase().includes(ddQuery)
+    );
+}
+
+function renderDdList(){
+
+    const list=$('ddList');
+    if(!list) return;
+
+    const prevScroll=list.scrollTop;
+    const visible=ddVisible();
+
+    if(!visible.length){
+        list.innerHTML='<div class="dd-empty">Tidak ada nilai</div>';
+        return;
+    }
+
+    const allChecked=visible.every(v=>draftSelection.has(v.value));
+
+    list.innerHTML=`
+        <label class="dd-item dd-all">
+            <input type="checkbox" ${allChecked?'checked':''} onchange="ddToggleAll(this.checked)">
+            <span class="dd-item-label">(Pilih Semua)</span>
+        </label>
+        ${visible.map(v=>`
+            <label class="dd-item">
+                <input type="checkbox" ${draftSelection.has(v.value)?'checked':''}
+                       onchange="ddToggle(${ddValues.indexOf(v)},this.checked)">
+                <span class="dd-item-label">${escapeHtml(getValueLabel(openColumn,v.value))}</span>
+                <span class="dd-item-count">${v.count}</span>
+            </label>
+        `).join('')}
+    `;
+
+    list.scrollTop=prevScroll;
+}
+
+function ddSearch(query){
+    ddQuery=String(query).trim().toLowerCase();
+    renderDdList();
+}
+
+function ddToggle(index,checked){
+    const v=ddValues[index].value;
+    if(checked) draftSelection.add(v);
+    else draftSelection.delete(v);
+    renderDdList();
+}
+
+function ddToggleAll(checked){
+    ddVisible().forEach(v=>{
+        if(checked) draftSelection.add(v.value);
+        else draftSelection.delete(v.value);
+    });
+    renderDdList();
+}
+
+function ddSetSort(dir){
+    sortKey=openColumn;
+    sortDir=dir;
+    closeColumnMenu();
+    currentPage=1;
+    renderTable();
+}
+
+function ddApply(){
+    if(!openColumn) return;
+    const allSelected=ddValues.every(v=>draftSelection.has(v.value));
+    if(allSelected) delete columnFilters[openColumn];
+    else columnFilters[openColumn]=new Set(draftSelection);
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+function ddReset(){
+    if(!openColumn) return;
+    delete columnFilters[openColumn];
+    closeColumnMenu();
+    applyAllFilters();
+}
+
+/* Tutup popup: klik di luar, scroll halaman, resize, Escape */
+document.addEventListener('mousedown',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    if(e.target.closest('[data-col-trigger]')) return;
+    closeColumnMenu();
+});
+
+window.addEventListener('scroll',e=>{
+    if(openColumn===null) return;
+    if($('colDropdown').contains(e.target)) return;
+    closeColumnMenu();
+},true);
+
+window.addEventListener('resize',closeColumnMenu);
+
+document.addEventListener('keydown',e=>{
+    if(e.key==='Escape') closeColumnMenu();
+});
+
+
+/* =========================================================
+   RESULT INFO
+========================================================= */
+
+function updateResultInfo(total,start,end){
+
+    const ri=$('resultInfo');
+    const pi=$('paginationInfo');
+
+    if(total===0){
+        ri.textContent='Tidak ada data yang sesuai filter.';
+        pi.textContent='0 data';
+        return;
+    }
+
+    ri.textContent=`Menampilkan ${start+1}–${end} dari ${total.toLocaleString('id-ID')} histori`;
+    pi.textContent=`${total.toLocaleString('id-ID')} histori ditemukan`;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination(totalPages){
+
+    const c=$('pagination');
+    c.innerHTML='';
+
+    if(!rowsView.length) return;
+
+    const add=(content,cls,disabled,fn)=>{
+        const b=document.createElement('button');
+        b.className='pagination-button'+(cls?' '+cls:'');
+        b.disabled=!!disabled;
+        const s=String(content);
+        if(s.startsWith('<')) b.innerHTML=s;
+        else b.textContent=s;
+        if(fn) b.onclick=fn;
+        c.appendChild(b);
+    };
+
+    add('<i data-lucide="chevron-left" class="w-4 h-4"></i>','',currentPage===1,()=>{
+        if(currentPage>1){currentPage--;renderTable();}
+    });
+
+    getPaginationPages(currentPage,totalPages).forEach(p=>{
+        if(p==='...'){
+            const s=document.createElement('span');
+            s.className='px-2 text-slate-400 text-xs';
+            s.textContent='...';
+            c.appendChild(s);
+            return;
+        }
+        add(p,p===currentPage?'active':'',false,()=>{currentPage=p;renderTable();});
+    });
+
+    add('<i data-lucide="chevron-right" class="w-4 h-4"></i>','',currentPage===totalPages,()=>{
+        if(currentPage<totalPages){currentPage++;renderTable();}
+    });
+
+    lucide.createIcons();
+}
+
+function getPaginationPages(current,total){
+    if(total<=7) return Array.from({length:total},(_,i)=>i+1);
+    const p=[1];
+    if(current>4) p.push('...');
+    for(let i=Math.max(2,current-1);i<=Math.min(total-1,current+1);i++) p.push(i);
+    if(current<total-3) p.push('...');
+    p.push(total);
+    return p;
+}
+
+
+
+/* =========================================================
+   KARTU STATISTIK
+========================================================= */
+
+function updateStatistics(rows){
+
+    const total=rows.length;
+    const baik=rows.filter(r=>r.status.toLowerCase()==='baik').length;
+    const rusak=rows.filter(r=>r.item!=='').length;
+    const mesin=new Set(rows.map(r=>normalize(r.mesin)).filter(Boolean)).size;
+
+    const cards=[
+        {label:'Total Pemeriksaan', value:total,  color:'text-blue-900',    sub:'Tahun 2026'},
+        {label:'Status Baik',       value:baik,   color:'text-green-800',   sub:'Dari total pemeriksaan'},
+        {label:'Item Rusak',        value:rusak,  color:'text-red-800',     sub:'Baris dengan item rusak'},
+        {label:'Jenis Mesin',       value:mesin,  color:'text-indigo-600',  sub:'Mesin berbeda'}
+    ];
+
+    $('statsGrid').innerHTML=cards.map(c=>`
+        <div class="stat-card">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">${escapeHtml(c.label)}</p>
+            <p class="text-3xl font-black ${c.color} mt-2">${c.value.toLocaleString('id-ID')}</p>
+            <p class="text-[9px] text-slate-400 font-bold mt-1">${escapeHtml(c.sub)}</p>
+        </div>
+    `).join('');
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderTableHead(){
+
+    $('tableHeadRow').innerHTML=COLUMNS.map(col=>{
+
+        const sorted=sortKey===col.key&&!!sortDir;
+        const filtered=!!columnFilters[col.key];
+        const active=sorted||filtered;
+
+        const sortIcon=!sorted?'chevrons-up-down':sortDir==='asc'?'chevron-up':'chevron-down';
+
+        return `
+            <th>
+                <button class="col-header ${active?'active':''}" data-col-trigger
+                        onclick="openColumnMenu('${col.key}',this)">
+                    <span>${escapeHtml(col.label.toUpperCase())}</span>
+                    <span class="col-icons">
+                        <i data-lucide="${sortIcon}" class="col-sort-icon ${sorted?'on':''}"></i>
+                        <i data-lucide="filter" class="col-filter-icon ${filtered?'on':''}"></i>
+                    </span>
+                </button>
+            </th>
+        `;
+    }).join('');
+}
+
+function renderActiveFilters(){
+
+    const bar=$('activeFilters');
+    const keys=Object.keys(columnFilters);
+
+    if(!keys.length){
+        bar.hidden=true;
+        bar.innerHTML='';
+        return;
+    }
+
+    bar.hidden=false;
+
+    bar.innerHTML=keys.map(key=>{
+        const labels=[...columnFilters[key]].map(v=>getValueLabel(key,v));
+        const text=labels.length
+            ?labels[0]+(labels.length>1?`, +${labels.length-1}`:'')
+            :'(Tidak ada)';
+        return `
+            <span class="active-filter-chip">
+                ${escapeHtml(getColumn(key).label)}: ${escapeHtml(text)}
+                <button onclick="removeColumnFilter('${key}')" aria-label="Hapus filter">×</button>
+            </span>
+        `;
+    }).join('')+`<button class="clear-all-btn" onclick="clearAllFilters()">Hapus Semua</button>`;
+}
+
+function renderTable(){
+
+    renderTableHead();
+    renderActiveFilters();
+    updateStatistics(rowsView);
+
+    const tbody=$('tableBody');
+    tbody.innerHTML='';
+
+    const sorted=getSortedData(rowsView);
+    const total=sorted.length;
+    const totalPages=Math.max(1,Math.ceil(total/ROWS_PER_PAGE));
+
+    if(currentPage>totalPages) currentPage=totalPages;
+
+    const start=(currentPage-1)*ROWS_PER_PAGE;
+    const end=Math.min(start+ROWS_PER_PAGE,total);
+    const pageData=sorted.slice(start,end);
+
+    $('emptyState').classList.toggle('show',pageData.length===0);
+
+    /* No mengikuti urutan tampilan: 1 = baris paling atas */
+    pageData.forEach((row,i)=>{
+        const tr=document.createElement('tr');
+        const no=start+i+1;
+
+        tr.innerHTML=`
+            <td class="text-center font-bold text-slate-400">${no}</td>
+            <td class="whitespace-nowrap font-semibold">${formatDate(row.tanggal)}</td>
+            <td><div class="cell-wrap">${row.mesin?tagHtml(machineColors[normalize(row.mesin)],normalize(row.mesin)):'<span class="text-slate-300">-</span>'}</div></td>
+            <td><div class="cell-wrap">${escapeHtml(row.pemeriksaan)||'<span class="text-slate-300">-</span>'}</div></td>
+            <td><div class="cell-wrap">${row.lokasi?tagHtml(locationColors[row.lokasi],row.lokasi):'<span class="text-slate-300">-</span>'}</div></td>
+            <td>${statusBadge(row.status)}</td>
+            <td><div class="cell-wrap">${escapeHtml(row.pic)||'<span class="text-slate-300">-</span>'}</div></td>
+            <td><div class="cell-wrap">${escapeHtml(row.item)||'<span class="text-slate-300">-</span>'}</div></td>
+            <td><div class="cell-wrap">${escapeHtml(row.remark)||'<span class="text-slate-300">-</span>'}</div></td>
+            <td><div class="cell-wrap">${escapeHtml(row.pap)||'<span class="text-slate-300">-</span>'}</div></td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    updateResultInfo(total,start,end);
+    renderPagination(totalPages);
+    lucide.createIcons();
+}
+
+function statusBadge(value){
+    const s=String(value??'').trim();
+    if(!s) return '<span class="text-slate-300">-</span>';
+    const cls=s.toLowerCase()==='baik'?'status-close':'status-open';
+    return `<span class="status-pill ${cls}">${escapeHtml(s)}</span>`;
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+window.addEventListener('load',()=>{
+    lucide.createIcons();
+    loadData();
+});
+
+</script>
+
+<script src="layout.js"></script>
+<script src="nav.js"></script>
+<script src="datacache.js"></script>
+</body>
+</html>
