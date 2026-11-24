@@ -818,7 +818,7 @@ body{
             <div class="panel">
                 <div class="panel-header">
                     <div>
-                        <h3 class="panel-title">Tren Pemeriksaan per Bulan</h3>
+                        <h3 class="panel-title">Komposisi Mesin per Bulan</h3>
                         <p id="trendSubtitle" class="panel-subtitle">-</p>
                     </div>
                 </div>
@@ -862,8 +862,35 @@ body{
 
         </div>
 
+        <!-- 5 HARI TERAKHIR -->
+        <div class="dash-grid" id="last5Wrap">
+            <div class="panel" style="padding:0;overflow:hidden">
+                <div style="padding:18px 20px 14px;border-bottom:1px solid #f1f5f9">
+                    <h3 class="panel-title">Pemeriksaan 5 Hari Terakhir</h3>
+                    <p id="last5Subtitle" class="panel-subtitle">-</p>
+                </div>
+                <div class="ol-scroll">
+                    <table class="ol-table" style="min-width:1000px">
+                        <thead>
+                            <tr>
+                                <th class="ol-no">No</th>
+                                <th>Tanggal</th>
+                                <th>Mesin</th>
+                                <th>Pemeriksaan</th>
+                                <th>Lokasi</th>
+                                <th>Status</th>
+                                <th>PIC</th>
+                                <th>Item Rusak</th>
+                            </tr>
+                        </thead>
+                        <tbody id="last5Body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <!-- ITEM RUSAK -->
-        <div class="dash-grid">
+        <div class="dash-grid" id="rusakWrap">
             <div class="panel" style="padding:0;overflow:hidden">
                 <div style="padding:18px 20px 14px;border-bottom:1px solid #f1f5f9">
                     <h3 class="panel-title">Item Rusak Terbaru</h3>
@@ -1114,23 +1141,26 @@ function renderKpi(){
 
 function renderTrend(){
 
-    const locations=Object.keys(locationColors);
+    const machines=Object.keys(machineColors);
 
     const byMonth={};
-    for(let i=1;i<=12;i++) byMonth[`2026-${pad(i)}`]={total:0};
-    locations.forEach(l=>Object.values(byMonth).forEach(m=>m[l]=0));
+    for(let i=1;i<=12;i++){
+        const k=`2026-${pad(i)}`;
+        byMonth[k]={total:0};
+        machines.forEach(mc=>byMonth[k][mc]=0);
+    }
 
     rows.forEach(r=>{
         if(!byMonth[r.month]) return;
         byMonth[r.month].total++;
-        if(r.lokasi&&byMonth[r.month][r.lokasi]!==undefined) byMonth[r.month][r.lokasi]++;
+        if(r.mesin&&byMonth[r.month][r.mesin]!==undefined) byMonth[r.month][r.mesin]++;
     });
 
     const latest=rows.map(r=>r.month).filter(Boolean).sort().pop();
     const keys=Object.keys(byMonth);
 
     const series=[{key:'total',label:'Total',color:COLORS.total,width:3}]
-        .concat(locations.map(l=>({key:l,label:l,color:(locationColors[l]||FALLBACK_PAIR).fg,width:2.2})))
+        .concat(machines.map(mc=>({key:mc,label:mc,color:machineColors[mc].fg,width:2.2})))
         .map(s=>({
             ...s,
             dashed:false,
@@ -1141,11 +1171,11 @@ function renderTrend(){
     const shown=series.filter(s=>s.visible).flatMap(s=>s.values);
 
     $('trendSubtitle').textContent=latest
-        ?`Tahun 2026 · data tersedia sampai ${MONTH_NAMES[Number(latest.slice(5))-1]} · klik legenda untuk menampilkan atau menyembunyikan garis`
+        ?`Tahun 2026 · jumlah pemeriksaan tiap mesin per bulan · data tersedia sampai ${MONTH_NAMES[Number(latest.slice(5))-1]} · klik legenda untuk menampilkan atau menyembunyikan garis`
         :'Belum ada data bertanggal';
 
     $('trendChart').innerHTML=lineChartHtml({
-        aria:'Tren pemeriksaan per bulan',
+        aria:'Komposisi mesin yang diperiksa per bulan',
         labels:keys.map(k=>MONTH_SHORT[Number(k.slice(5))-1]),
         fullLabels:keys.map(k=>`${MONTH_NAMES[Number(k.slice(5))-1]} 2026`),
         series:series,
@@ -1161,7 +1191,7 @@ function renderTrend(){
 }
 
 function toggleTrend(key){
-    const count=Object.keys(locationColors).length+1;
+    const count=Object.keys(machineColors).length+1;
     const onCount=count-trendOff.size;
     if(trendOff.has(key)) trendOff.delete(key);
     else if(onCount>1) trendOff.add(key);
@@ -1241,14 +1271,12 @@ function renderRusakTable(){
         .filter(r=>r.item!=='')
         .sort((a,b)=>(b.tanggal||'').localeCompare(a.tanggal||''));
 
-    $('rusakSubtitle').textContent=list.length
-        ?`${fmt(list.length)} item rusak · terbaru di atas · scroll untuk melihat semua`
-        :'Tidak ada item rusak';
+    /* Panel disembunyikan jika tidak ada item rusak */
+    $('rusakWrap').style.display=list.length?'':'none';
 
-    if(!list.length){
-        $('rusakBody').innerHTML='<tr><td colspan="7" class="text-center text-slate-400 py-6">Tidak ada item rusak.</td></tr>';
-        return;
-    }
+    if(!list.length) return;
+
+    $('rusakSubtitle').textContent=`${fmt(list.length)} item rusak · terbaru di atas · scroll untuk melihat semua`;
 
     $('rusakBody').innerHTML=list.map((r,i)=>`
         <tr>
@@ -1259,6 +1287,41 @@ function renderRusakTable(){
             <td>${escapeHtml(r.pic)||'<span class="text-slate-300">-</span>'}</td>
             <td class="ol-desc" style="font-weight:800;color:#991b1b">${escapeHtml(r.item)}</td>
             <td class="ol-desc">${escapeHtml(r.remark)||'<span class="text-slate-300">-</span>'}</td>
+        </tr>
+    `).join('');
+}
+
+/* Pemeriksaan dari 5 hari terakhir (hari dengan data) */
+function renderLast5(){
+
+    const dates=[...new Set(rows.map(r=>r.tanggal).filter(Boolean))]
+        .sort()
+        .reverse()
+        .slice(0,5);
+
+    const list=rows
+        .filter(r=>dates.includes(r.tanggal))
+        .sort((a,b)=>(b.tanggal||'').localeCompare(a.tanggal||''));
+
+    if(!list.length){
+        $('last5Subtitle').textContent='Belum ada data pemeriksaan';
+        $('last5Body').innerHTML='<tr><td colspan="8" class="text-center text-slate-400 py-6">Belum ada data pemeriksaan.</td></tr>';
+        return;
+    }
+
+    $('last5Subtitle').textContent=
+        `${fmt(list.length)} pemeriksaan dari ${dates.length} hari terakhir (${formatDate(dates[dates.length-1])} – ${formatDate(dates[0])})`;
+
+    $('last5Body').innerHTML=list.map((r,i)=>`
+        <tr>
+            <td class="ol-no">${i+1}</td>
+            <td>${formatDate(r.tanggal)}</td>
+            <td>${tagHtml(machineColors[r.mesin],r.mesin)}</td>
+            <td>${escapeHtml(r.pemeriksaan)||'<span class="text-slate-300">-</span>'}</td>
+            <td>${r.lokasi?tagHtml(locationColors[r.lokasi],r.lokasi):'<span class="text-slate-300">-</span>'}</td>
+            <td><span class="status-badge ${r.baik?'status-close':'status-open'}">${escapeHtml(r.status)||'-'}</span></td>
+            <td>${escapeHtml(r.pic)||'<span class="text-slate-300">-</span>'}</td>
+            <td>${r.item?`<span style="font-weight:800;color:#991b1b">${escapeHtml(r.item)}</span>`:'<span class="text-slate-300">-</span>'}</td>
         </tr>
     `).join('');
 }
@@ -1294,6 +1357,7 @@ function renderAll(){
     renderMachineBars();
     renderLocationDonut();
     renderRusakTable();
+    renderLast5();
     lucide.createIcons();
 }
 

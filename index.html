@@ -218,15 +218,18 @@ body{
 
 .dashboard-card:hover .dashboard-arrow{opacity:1;background:rgba(255,255,255,.22)}
 
-.dashboard-blue{background:linear-gradient(135deg,#2563eb,#1e3a8a)}
-.dashboard-cyan{background:linear-gradient(135deg,#0891b2,#155e75)}
-.dashboard-indigo{background:linear-gradient(135deg,#6366f1,#3730a3)}
+.dashboard-blue{background:linear-gradient(135deg,#1e40af,#1e3a8a)}
+.dashboard-indigo{background:linear-gradient(135deg,#4f46e5,#3730a3)}
 .dashboard-emerald{background:linear-gradient(135deg,#059669,#065f46)}
-.dashboard-amber{background:linear-gradient(135deg,#f59e0b,#b45309)}
-.dashboard-violet{background:linear-gradient(135deg,#8b5cf6,#5b21b6)}
-.dashboard-rose{background:linear-gradient(135deg,#f43f5e,#9f1239)}
+.dashboard-amber{background:linear-gradient(135deg,#d97706,#b45309)}
+.dashboard-red{background:linear-gradient(135deg,#b91c1c,#7f1d1d)}
+.dashboard-rose{background:linear-gradient(135deg,#be185d,#9d174d)}
+.dashboard-teal{background:linear-gradient(135deg,#0f766e,#115e59)}
+.dashboard-sky{background:linear-gradient(135deg,#0369a1,#075985)}
+.dashboard-violet{background:linear-gradient(135deg,#7c3aed,#5b21b6)}
 .dashboard-slate{background:linear-gradient(135deg,#475569,#1e293b)}
-.dashboard-teal{background:linear-gradient(135deg,#14b8a6,#115e59)}
+.group-title{grid-column:1/-1;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#64748b;margin:10px 0 -4px;padding-left:4px;border-left:3px solid #1e3a8a;padding-top:2px;padding-bottom:2px}
+.group-title:first-child{margin-top:0}
 
 /* =========================================================
    MODAL & PILIHAN
@@ -812,39 +815,38 @@ children:[
 
 const DASHBOARD_DATA=[
 
-{title:"Dashboard Periodic Service",icon:"calendar-check-2",link:"periodic.html",theme:"dashboard-blue",
+{group:"Service & Perawatan",title:"Dashboard Periodic Service",icon:"calendar-check-2",link:"periodic.html",theme:"dashboard-blue",
     tables:[{label:"Data Keseluruhan",url:"table.html"}]},
 
-{title:"Dashboard Laporan Kerusakan pada LPH",icon:"clipboard-x",link:"lph.html",theme:"dashboard-cyan",
-    tables:[{label:"Data Keseluruhan",url:"tlph.html"}]},
-
-{title:"Dashboard Corrective Maintenance",icon:"wrench",link:"maintenance.html",theme:"dashboard-indigo",
+{group:"Service & Perawatan",title:"Dashboard Corrective Maintenance",icon:"wrench",link:"maintenance.html",theme:"dashboard-indigo",
     tables:[{label:"Data Keseluruhan",url:"tmaintenance.html"}]},
 
-{title:"Dashboard Greasing Activity",icon:"droplets",link:"greasing.html",theme:"dashboard-emerald",
+{group:"Service & Perawatan",title:"Dashboard Greasing Activity",icon:"droplets",link:"greasing.html",theme:"dashboard-emerald",
     tables:[{label:"Data Keseluruhan",url:"tgreasing.html"}]},
 
-{title:"Dashboard Oil Usage",icon:"fuel",link:"oil.html",theme:"dashboard-amber",
+{group:"Service & Perawatan",title:"Dashboard Oil Usage",icon:"fuel",link:"oil.html",theme:"dashboard-amber",
     tables:[{label:"Data Keseluruhan",url:"toil.html"}]},
 
-{title:"Dashboard Man Power",icon:"users",link:"manpower.html",theme:"dashboard-violet",
-    tables:[{label:"Data Keseluruhan",url:"tmanpower.html"}]},
-
-{title:"Dashboard Breakdown Unit",icon:"triangle-alert",link:"breakdown.html",theme:"dashboard-rose",
+{group:"Breakdown & Availability",title:"Dashboard Breakdown Unit",icon:"triangle-alert",link:"breakdown.html",theme:"dashboard-rose",
     tables:[{label:"Data Keseluruhan",url:"tbreakdown.html"}]},
 
-{title:"Dashboard Availability",icon:"activity",link:"availability.html",theme:"dashboard-teal",
+{group:"Breakdown & Availability",title:"Dashboard Laporan Kerusakan pada LPH",icon:"clipboard-x",link:"lph.html",theme:"dashboard-red",
+    tables:[{label:"Data Keseluruhan",url:"tlph.html"}]},
+
+{group:"Breakdown & Availability",title:"Dashboard Availability",icon:"activity",link:"availability.html",theme:"dashboard-teal",
     tables:[
         {label:"Data Availability Unit",url:"tavailability.html",sub:"Data per bulan, tabel lengkap dengan filter"},
         {label:"Data Availability per Hari",url:"davailability.html",sub:"Data harian availability unit"}
     ]},
 
-{title:"Dashboard Populasi Unit",icon:"truck",link:"populasi.html",theme:"dashboard-slate",
-    tables:[{label:"Data Keseluruhan",url:"tpopulasi.html"}]},
+{group:"Inspeksi & Machine",title:"Dashboard Checklist Inspection Machine",icon:"clipboard-check",link:"machine.html",theme:"dashboard-sky",
+    tables:[{label:"Data Keseluruhan",url:"tmachine.html",sub:"Tabel lengkap dengan filter"}]},
 
-{title:"Dashboard Checklist Inspection Machine",icon:"clipboard-check",link:"machine.html",theme:"dashboard-slate",
-    tables:[{label:"Data Checklist 2026",url:"tmachine.html",sub:"Histori pengisian form checklist inspection machine"}]}
+{group:"Sumber Daya & Populasi",title:"Dashboard Man Power",icon:"users",link:"manpower.html",theme:"dashboard-violet",
+    tables:[{label:"Data Keseluruhan",url:"tmanpower.html"}]},
 
+{group:"Sumber Daya & Populasi",title:"Dashboard Populasi Unit",icon:"truck",link:"populasi.html",theme:"dashboard-slate",
+    tables:[{label:"Data Keseluruhan",url:"tpopulasi.html"}]}
 ];
 
 
@@ -908,7 +910,17 @@ function renderDashboards(){
 
     container.innerHTML='';
 
+    let currentGroup=null;
+
     DASHBOARD_DATA.forEach((dashboard,index)=>{
+
+        if(dashboard.group&&dashboard.group!==currentGroup){
+            currentGroup=dashboard.group;
+            const title=document.createElement('div');
+            title.className='group-title';
+            title.textContent=currentGroup;
+            container.appendChild(title);
+        }
 
         const card=document.createElement('button');
 
